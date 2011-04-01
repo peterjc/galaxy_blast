@@ -1,0 +1,72 @@
+<tool id="reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.0.1">
+    <description>from BLAST output or similar data</description>
+    <command interpreter="python">
+      reciprocal_best_hits.py $a_vs_b $b_vs_a $id1 $id2 $score $order $output
+    </command>
+    <inputs>
+        <param name="a_vs_b" type="data" format="tabular" label="Hits from querying A against B" description="Tabular file, e.g. BLAST output" /> 
+        <param name="b_vs_a" type="data" format="tabular" label="Hits from querying B against A" description="Tabular file, e.g. BLAST output" /> 
+        <param name="id1" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" value="1" label="Column containing query ID" help="This is column 1 in standard BLAST tabular output" />
+        <param name="id2" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" value="2" label="Column containing match ID" help="This is column 2 in standard BLAST tabular output"/>
+        <param name="score" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" value="12" label="Column containing containing score to rank on" help="The bit score is column 12 in standard BLAST tabular output"/>
+        <param name="order" type="select" label="Highest or lowest score is best?">
+            <option value="high">Highest is best (e.g. BLAST bitscore)</option>
+            <option value="low">Lowest is best (e.g. BLAST e-value)</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="output" format="tabular" label="RBH results" />
+    </outputs>
+    <requirements>
+    </requirements>
+    <tests>
+    </tests>
+    <help>
+    
+**What it does**
+
+Takes two tabular search results files (A against B, and B against A) and
+compiles a list of the reciprocal best hits (RBH).
+
+NCBI BLAST+ (and the older NCBI 'legacy' BLAST) and other related search
+tools like Bill Pearson's FASTA suite can can output matches (hits) in a
+tabular form suitable for use with this tool.
+
+The suggested settings of query ID in column 1, match/subject ID in column
+2 and the a score in column 12 (where highest is best) assume you have the
+standard 12 column BLAST tabular output (or the extended tabular output
+with additional extra columns) and want to rank on the bit score. Note the
+tool assumes that the same column numbers apply to both the input files.
+
+The standard 12 column output from BLAST+ is as follows:
+
+====== ========= ============================================
+Column NCBI name Description
+------ --------- --------------------------------------------
+     1 qseqid    Query Seq-id (ID of your sequence)
+     2 sseqid    Subject Seq-id (ID of the database hit)
+     3 pident    Percentage of identical matches
+     4 length    Alignment length
+     5 mismatch  Number of mismatches
+     6 gapopen   Number of gap openings
+     7 qstart    Start of alignment in query
+     8 qend      End of alignment in query
+     9 sstart    Start of alignment in subject (database hit)
+    10 send      End of alignment in subject (database hit)
+    11 evalue    Expectation value (E-value)
+    12 bitscore  Bit score
+====== ========= ============================================
+
+The output from this tool is a tabular file containing four columns:
+
+====== =================
+Column Description
+------ -----------------
+     1 ID from file A
+     2 ID from file B
+     3 Score from A vs B
+     4 Score from B vs A
+====== =================
+
+    </help>
+</tool>
