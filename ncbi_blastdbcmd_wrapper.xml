@@ -7,7 +7,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
-#if $id_opts.id_type=="file"
+#if $id_opts.id_type=="file":
 -entry_batch "$entries"
 #else:
 ##Perform some simple search/replaces to remove whitespace
@@ -15,22 +15,32 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 -entry "$entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',')"
 #end if
 
-##We could tell blastdbcmd to write directly to the file with: -out "$seq"
-##However, the tool insists on using it's modified identifiers. Therefore
-##to recover the original ID as used in the FASTA file for makeblastdb
-##we need a litte post processing...
+##When building a BLAST database, to ensure unique IDs makeblastdb will
+##do things like turning a FASTA entry with ID of ERP44 into lcl|ERP44
+##(if using -parse_seqids) or simply assign it an ID using the record
+##number like gnl|BL_ORD_ID|123 (to cope with duplicate IDs in the FASTA
+##file). In -parse_seqids mode, a duplicate FASTA ID gives an error.
 ##
-##We now remove the NCBI's lcl|... or gnl|BL_ORD_ID|123 prefixes
+##The BLAST plain text and XML output will contain these BLAST IDs, but
+##the tabular output does not (at least, not in BLAST 2.2.25+ at least).
+##Therefore in general, Galaxy users won't care about the (internal)
+##BLAST identifiers.
+##
+##The blastdbcmd FASTA output will also contain these IDs, but in the
+##context of the BLAST tabular output they are not helpful. Therefore
+##to recover the original ID as used in the FASTA file for makeblastdb
+##we need a litte post processing.
+##
+##We remove the NCBI's lcl|... or gnl|BL_ORD_ID|123 prefixes
 ##using sed, however the exact syntax differs for Mac OS X's sed
-#if sys.platform == "darwin":
-| sed -E 's/^>(lcl\||gnl\|BL_ORD_ID\|[0-9]* )/>/1'
+
+#if str($outfmt)=="blastid":
+-out "$seq"
+#else if sys.platform == "darwin":
+| sed -E 's/^>(lcl\||gnl\|BL_ORD_ID\|[0-9]* )/>/1' > "$seq"
 #else:
-| sed 's/>\(lcl|\|gnl|BL_ORD_ID|[0-9]* \)/>/1'
+| sed 's/>\(lcl|\|gnl|BL_ORD_ID|[0-9]* \)/>/1' > "$seq"
 #end if
-
-
-##Finally, pipe to output file
-> "$seq"
     </command>
     <inputs>
         <conditional name="db_opts">
@@ -69,6 +79,10 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
                 <param name="entries" type="text" label="Sequence identifier(s)" help="Comma or new line separated list." optional="False" area="True" size="10x30"/>
             </when>
         </conditional>
+        <param name="outfmt" type="select" label="Output format">
+          <option value="original">FASTA with original identifiers</option>
+          <option value="blastid">FASTA with BLAST assigned identifiers</option>
+        </param>
     </inputs>
     <outputs>
         <data name="seq" format="fasta" label="Sequences from ${db_opts.database.fields.name}" />
@@ -83,9 +97,14 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 Extracts FASTA formatted sequences from a BLAST database
 using the NCBI BLAST+ blastdbcmd command line tool.
 
-Currently it tries to grab *all* the sequences, which is a
-very bad idea on large databases! This is an interim step
-in testing and developing the tool wrapper.
+When a BLAST database is constructed from a FASTA file, the
+original identifiers can be replaced with BLAST assigned
+identifiers, partly to ensure uniqueness. e.g. Sometimes
+a prefix of lcl (bar) is added (lcl is short for local).
+
+If you are using the tabular output from BLAST, it will contain
+the original identifiers. If you are using the XML or plain text
+output, this will also contain the BLAST assigned identifiers.
 
 -------
 
