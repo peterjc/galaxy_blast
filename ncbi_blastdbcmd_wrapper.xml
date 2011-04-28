@@ -7,9 +7,12 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
-##TODO: Add user parameter to type in list of identifiers,
-##or pick a text file or single tabular file for -entry_list
--entry all
+##TODO: Allow user to pick a text file or single tabular file for -entry_list
+
+##Perform some simple search/replaces to remove whitespace
+##and make it comma separated
+-entry "$entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',')"
+
 
 ##We could tell blastdbcmd to write directly to the file with: -out "$seq"
 ##However, the tool insists on using it's modified identifiers. Therefore
@@ -53,6 +56,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
                 </param>
             </when>
         </conditional>
+        <param name="entries" type="text" label="Sequence identifier(s)" help="Comma or new line separated list." optional="False" area="True" size="10x30"/>
     </inputs>
     <outputs>
         <data name="seq" format="fasta" label="Sequences from ${db_opts.database.fields.name}" />
