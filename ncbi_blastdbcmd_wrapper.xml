@@ -1,0 +1,83 @@
+<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd" version="0.0.1">
+    <description>Extract sequence(s) from BLAST database</description>
+    <command interpreter="python">hide_stderr.py
+## The command is a Cheetah template which allows some Python based syntax.
+## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
+blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
+
+##TODO: What about -ctrl_a and -target_only as advanced options?
+
+##TODO: Add user parameter to type in list of identifiers,
+##or pick a text file or single tabular file for -entry_list
+-entry all
+
+##We could tell blastdbcmd to write directly to the file with: -out "$seq"
+##However, the tool insists on using it's modified identifiers. Therefore
+##to recover the original ID as used in the FASTA file for makeblastdb
+##we need a litte post processing...
+##
+##We now remove the NCBI's lcl|... or gnl|BL_ORD_ID|123 prefixes
+##using sed, however the exact syntax differs for Mac OS X's sed
+#if sys.platform == "darwin":
+| sed -E 's/^>(lcl\||gnl\|BL_ORD_ID\|[0-9]* )/>/1'
+#else:
+| sed 's/>\(lcl|\|gnl|BL_ORD_ID|[0-9]* \)/>/1'
+#end if
+
+
+##Finally, pipe to output file
+> "$seq"
+    </command>
+    <inputs>
+        <conditional name="db_opts">
+            <param name="db_type" type="select" label="Type of BLAST database">
+              <option value="nucl" selected="True">Nucleotide</option>
+              <option value="prot">Protein</option>
+            </param>
+            <when value="nucl">
+                <param name="database" type="select" label="Nucleotide BLAST database">
+                    <options from_file="blastdb.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+            </when>
+            <when value="prot">
+                <param name="database" type="select" label="Protein BLAST database">
+                    <options from_file="blastdb_p.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data name="seq" format="fasta" label="Sequences from ${db_opts.database.fields.name}" />
+    </outputs>
+    <requirements>
+        <requirement type="binary">blastdbcmd</requirement>
+    </requirements>
+    <help>
+    
+**What it does**
+
+Extracts FASTA formatted sequences from a BLAST database
+using the NCBI BLAST+ blastdbcmd command line tool.
+
+Currently it tries to grab *all* the sequences, which is a
+very bad idea on large databases! This is an interim step
+in testing and developing the tool wrapper.
+
+-------
+
+**References**
+
+Altschul et al. Gapped BLAST and PSI-BLAST: a new generation of protein database search programs. 1997. Nucleic Acids Res. 25:3389-3402.
+
+Schaffer et al. Improving the accuracy of PSI-BLAST protein database searches with composition-based statistics and other refinements. 2001. Nucleic Acids Res. 29:2994-3005.
+
+    </help>
+</tool>
