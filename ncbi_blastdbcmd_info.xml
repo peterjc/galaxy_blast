@@ -1,0 +1,55 @@
+<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.1">
+    <description>Show BLAST database information from blastdbcmd</description>
+    <command interpreter="python">hide_stderr.py
+blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out $info
+    </command>
+    <inputs>
+        <conditional name="db_opts">
+            <param name="db_type" type="select" label="Type of BLAST database">
+              <option value="nucl" selected="True">Nucleotide</option>
+              <option value="prot">Protein</option>
+            </param>
+            <when value="nucl">
+                <param name="database" type="select" label="Nucleotide BLAST database">
+                    <options from_file="blastdb.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+            </when>
+            <when value="prot">
+                <param name="database" type="select" label="Protein BLAST database">
+                    <options from_file="blastdb_p.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data name="info" format="txt" label="${db_opts.database.fields.name} info" />
+    </outputs>
+    <requirements>
+        <requirement type="binary">blastdbcmd</requirement>
+    </requirements>
+    <help>
+    
+**What it does**
+
+Calls the NCBI BLAST+ blastdbcmd command line tool with the -info
+switch to give summary information about a BLAST database, such as
+the size (number of sequences and total length) and date.
+
+-------
+
+**References**
+
+Altschul et al. Gapped BLAST and PSI-BLAST: a new generation of protein database search programs. 1997. Nucleic Acids Res. 25:3389-3402.
+
+Schaffer et al. Improving the accuracy of PSI-BLAST protein database searches with composition-based statistics and other refinements. 2001. Nucleic Acids Res. 29:2994-3005.
+
+    </help>
+</tool>
