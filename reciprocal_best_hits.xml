@@ -8,7 +8,7 @@
         <param name="b_vs_a" type="data" format="tabular" label="Hits from querying B against A" description="Tabular file, e.g. BLAST output" /> 
         <param name="id1" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" value="c1" label="Column containing query ID" help="This is column 1 in standard BLAST tabular output" />
         <param name="id2" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" value="c2" label="Column containing match ID" help="This is column 2 in standard BLAST tabular output"/>
-        <param name="score" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" value="c12" label="Column containing containing score to rank on" help="The bit score is column 12 in standard BLAST tabular output"/>
+        <param name="score" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" value="c12" label="Column containing containing score to rank on" help="The bit score is column 12 in standard BLAST tabular output (highest is best), while e-value is column 11 (lowest is best)"/>
         <param name="order" type="select" label="Highest or lowest score is best?">
             <option value="high">Highest is best (e.g. BLAST bitscore)</option>
             <option value="low">Lowest is best (e.g. BLAST e-value)</option>
@@ -33,10 +33,15 @@ tools like Bill Pearson's FASTA suite can can output matches (hits) in a
 tabular form suitable for use with this tool.
 
 The suggested settings of query ID in column 1, match/subject ID in column
-2 and the a score in column 12 (where highest is best) assume you have the
+2 and the score in column 12 (where highest is best) assume you have the
 standard 12 column BLAST tabular output (or the extended tabular output
-with additional extra columns) and want to rank on the bit score. Note the
-tool assumes that the same column numbers apply to both the input files.
+with additional extra columns) and want to rank on the bit score.
+
+If you wanted to rank on the e-value, use column 11 and select lowest score
+is best.
+
+Note the tool assumes that the same column numbers apply to both the input
+files.
 
 The standard 12 column output from BLAST+ is as follows:
 
