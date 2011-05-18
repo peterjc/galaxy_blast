@@ -22,7 +22,6 @@
     <tests>
     </tests>
     <help>
-    
 **What it does**
 
 Takes two tabular search results files (A against B, and B against A) and
@@ -32,13 +31,44 @@ NCBI BLAST+ (and the older NCBI 'legacy' BLAST) and other related search
 tools like Bill Pearson's FASTA suite can can output matches (hits) in a
 tabular form suitable for use with this tool.
 
+The output from this tool is a tabular file containing four columns, with
+the order taken from input file A:
+
+====== =================
+Column Description
+------ -----------------
+     1 ID from file A
+     2 ID from file B
+     3 Score from A vs B
+     4 Score from B vs A
+====== =================
+
+
+.. class:: warningmark
+
+**Note**
+
+This tool does not do any filtering of the data. If you are trying to use
+BLAST RBH matches to transfer annotation, you should probably consider
+using a percentage identity and minimum coverage threshold (i.e. what
+proportion of the query/subject was matched). See *Suggested Filters*
+below for examples of how to do this in Galaxy. See also:
+
+Punta and Ofran (2008) The Rough Guide to In Silico Function Prediction,
+or How To Use Sequence and Structure Information To Predict Protein
+Function. PLoS Comput Biol 4(10): e1000160.
+http://dx.doi.org/10.1371/journal.pcbi.1000160
+
+
+**Suggested settings**
+
 The suggested settings of query ID in column 1, match/subject ID in column
 2 and the score in column 12 (where highest is best) assume you have the
 standard 12 column BLAST tabular output (or the extended tabular output
 with additional extra columns) and want to rank on the bit score.
 
 If you wanted to rank on the e-value, use column 11 and select lowest score
-is best.
+is best. However, e-values are dependent on the dataset size.
 
 Note the tool assumes that the same column numbers apply to both the input
 files.
@@ -50,7 +80,7 @@ Column NCBI name Description
 ------ --------- --------------------------------------------
      1 qseqid    Query Seq-id (ID of your sequence)
      2 sseqid    Subject Seq-id (ID of the database hit)
-     3 pident    Percentage of identical matches
+     3 pident    Percentage of identical matches (between 0 and 100)
      4 length    Alignment length
      5 mismatch  Number of mismatches
      6 gapopen   Number of gap openings
@@ -62,16 +92,21 @@ Column NCBI name Description
     12 bitscore  Bit score
 ====== ========= ============================================
 
-The output from this tool is a tabular file containing four columns:
 
-====== =================
-Column Description
------- -----------------
-     1 ID from file A
-     2 ID from file B
-     3 Score from A vs B
-     4 Score from B vs A
-====== =================
+**Suggested filters**
+
+To require 70% sequence identity over the aligned region, use 'c4 >= 70'
+in Galaxy's tool for filtering tabular data.
+
+To require the alignment to cover at least 50% of the query sequence, you
+will need the extended BLAST tabular output (with additional extra
+columns), and use 'c8-c7+1 >= 0.5*c23'. Here 'c23' is the query length,
+and 'c8-c7+1' gives the length of the aligned part of the query from its
+start and end coordinates. If you used 'c4' instead which is the alignment
+length, it could include gap characters.
+
+Similarly, to require the alignment covers at least 50% of the subject
+sequence, use 'c10-c9+1 >= 0.5*c24' as the filter expression.
 
     </help>
 </tool>
