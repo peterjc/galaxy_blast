@@ -49,10 +49,10 @@ Column Description
 **Note**
 
 This tool does not do any filtering of the data. If you are trying to use
-BLAST RBH matches to transfer annotation, you should probably consider
-using a percentage identity and minimum coverage threshold (i.e. what
-proportion of the query/subject was matched). See *Suggested Filters*
-below for examples of how to do this in Galaxy. See also:
+BLAST RBH matches to identify candidate orthologues or transfer annotation,
+you *must* use a percentage identity and minimum coverage threshold or
+similiar. See *Suggested Filters* below for examples of how to do this in
+Galaxy. See also:
 
 Punta and Ofran (2008) The Rough Guide to In Silico Function Prediction,
 or How To Use Sequence and Structure Information To Predict Protein
@@ -95,7 +95,7 @@ Column NCBI name Description
 
 **Suggested filters**
 
-To require 70% sequence identity over the aligned region, use 'c4 >= 70'
+To require 70% sequence identity over the aligned region, use 'c3 >= 70'
 in Galaxy's tool for filtering tabular data.
 
 To require the alignment to cover at least 50% of the query sequence, you
@@ -107,6 +107,9 @@ length, it could include gap characters.
 
 Similarly, to require the alignment covers at least 50% of the subject
 sequence, use 'c10-c9+1 >= 0.5*c24' as the filter expression.
+
+Note for BLASTX or TBLASTN, those expressions may need adjustment for
+converting from nucleotide coordinates to amino acids (factor of 3).
 
     </help>
 </tool>
