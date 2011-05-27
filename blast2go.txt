@@ -52,13 +52,13 @@ the JAR file etc. Then, you must tell Galaxy about these settings, so they
 can be offered to the user. Create the file tool-data/blast2go.loc under the
 Galaxy folder. This must be plain text, tab separated, with three columns:
 
-(1) ID for the setup, e.g. blast2go or Spain
-(2) Description for the setup, e.g. Blast2GO server in Spain
-(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain.properties
+(1) ID for the setup, e.g. Spain_2010_May
+(2) Description for the setup, e.g. Blast2GO database in Spain (May 2010)
+(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2010_May.properties
 
-This allows you to customise the database setup, if for example you have aa
+This allows you to customise the database setup, if for example you have a
 local Blast2GO server running. Consult the Blast2GO documentation for details
-about the property files.
+about the property files and setting up a local MySQL Blast2GO database.
 
 
 History
