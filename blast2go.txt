@@ -26,6 +26,9 @@ http://www.blast2go.org/
 
 
 
+Installation
+============
+
 You can change the path by editing the definition near the start of the Python
 script blast2go.py, but by default it expects the underlying tool to be here:
 
