@@ -76,6 +76,7 @@ History
 =======
 
 v0.0.1 - Initial public release
+v0.0.2 - Documentation clarifications, e.g. concatenated BLAST XML is allowed.
 
 
 Developers

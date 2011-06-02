@@ -62,8 +62,11 @@ if not os.path.isfile(blast2go_jar):
 cmd = ["java", "-jar", blast2go_jar,
        "-in", xml_file,
        "-prop", prop_file,
-       "-out", tabular_file,
-       "-a"]
+       "-out", tabular_file, #Used as base name for output files
+       "-a", # Generate *.annot tabular file
+       "-img", # Generate images
+       ]
+print " ".join(cmd)
 run(cmd)
 
 out_file = tabular_file + ".annot"
