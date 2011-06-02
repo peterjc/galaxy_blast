@@ -14,7 +14,7 @@
         </param>
     </inputs>
     <outputs>
-        <data name="tab" format="tabular" label="Blast2GO results" />
+        <data name="tab" format="tabular" label="Blast2GO ${prop.fields.name}" />
     </outputs>
     <requirements>
     </requirements>

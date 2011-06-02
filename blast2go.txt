@@ -5,7 +5,8 @@ This wrapper is copyright 2011 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
-This is a wrapper for the command line Java tool b2g4pip, v2.3.5,
+This is a wrapper for the command line Java tool b2g4pipe v2.3.5,
+Blast2GO for pipelines. See:
 
 S. Götz et al.
 High-throughput functional annotation and data mining with the Blast2GO suite.
@@ -46,22 +47,29 @@ tool. We suggest putting it next to the NCBI BLAST+ wrappers. Just add the line:
 
 <tool file="ncbi_blast_plus/blast2go.xml" />
 
-Finally you will need to setup one or more Blast2GO property files which tell
-the tool which database to use etc. The example b2gPipe.properties provided
-with b2g4pipe v2.3.5 is out of date, with the latest server IP address and
-database name given on the Blast2GO website. These files can be anywhere
-accessable to the Galaxy Unix user, e.g. put them under /opt/b2g4pipe with
-the JAR file etc. Then, you must tell Galaxy about these settings, so they
-can be offered to the user. Create the file tool-data/blast2go.loc under the
-Galaxy folder. This must be plain text, tab separated, with three columns:
+As part of setting up b2g4pipe you will need to setup one or more Blast2GO
+property files which tell the tool which database to use etc. The example
+b2gPipe.properties provided with b2g4pipe v2.3.5 is out of date, with the
+latest server IP address and database name given on the Blast2GO website.
+These files can be anywhere accessable to the Galaxy Unix user, we put them
+under /opt/b2g4pipe with the JAR file etc.
+
+You must tell Galaxy about these Blast2GO property files so that they can be
+offered to the user. Create the file tool-data/blast2go.loc under the Galaxy
+folder. This must be plain text, tab separated, with three columns:
 
 (1) ID for the setup, e.g. Spain_2010_May
-(2) Description for the setup, e.g. Blast2GO database in Spain (May 2010)
+(2) Description for the setup, e.g. Database in Spain (May 2010)
 (3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2010_May.properties
 
-This allows you to customise the database setup, if for example you have a
-local Blast2GO server running. Consult the Blast2GO documentation for details
-about the property files and setting up a local MySQL Blast2GO database.
+Avoid including "Blast2GO" in the description (column 2) as this will be
+included in the automatically assigned output dataset name. The blast2go.loc
+file allows you to customise the database setup. If for example you have a local
+Blast2GO server running (which we recommend for speed), and you want this to be
+the default setting, include it as the first line in your blast2go.loc file.
+
+Consult the Blast2GO documentation for details about the property files and
+setting up a local MySQL Blast2GO database.
 
 
 History
@@ -83,7 +91,7 @@ $ tar -czf blast2go.tar.gz tools/ncbi_blast_plus/blast2go.xml tools/ncbi_blast_p
 
 Check this worked:
 
-$ tar -tzf effectiveT3.tar.gz
+$ tar -tzf blast2go.tar.gz
 tools/ncbi_blast_plus/blast2go.xml
 tools/ncbi_blast_plus/blast2go.py
 tools/ncbi_blast_plus/blast2go.txt
@@ -110,5 +118,5 @@ OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
 OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 OR PERFORMANCE OF THIS SOFTWARE.
 
-NOTE: This is the licence for the Galaxy Wrapper only.
-Blast2GO is available and licenced separately.
+NOTE: This is the licence for the Galaxy Wrapper only. Blast2GO and
+associated data files are available and licenced separately.
