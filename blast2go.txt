@@ -77,6 +77,7 @@ History
 
 v0.0.1 - Initial public release
 v0.0.2 - Documentation clarifications, e.g. concatenated BLAST XML is allowed.
+       - Fixed error handler in wrapper script (for when b2g4pipe fails)
 
 
 Developers

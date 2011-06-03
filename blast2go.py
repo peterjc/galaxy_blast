@@ -44,10 +44,11 @@ def run(cmd):
     stdout, stderr = child.communicate()
     return_code = child.returncode
     if return_code:
+        cmd_str = " ".join(cmd)
         if stderr and stdout:
-            stop_err("Return code %i from command:\n%s\n\n%s\n\n%s" % (return_code, err, stdout, stderr))
+            stop_err("Return code %i from command:\n%s\n\n%s\n\n%s" % (return_code, cmd_str, stdout, stderr))
         else:
-            stop_err("Return code %i from command:\n%s\n%s" % (return_code, err, stderr))
+            stop_err("Return code %i from command:\n%s\n%s" % (return_code, cmd_str, stderr))
     #For early diagnostics,
     else:
        print stdout
