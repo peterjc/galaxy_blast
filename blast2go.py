@@ -65,7 +65,7 @@ cmd = ["java", "-jar", blast2go_jar,
        "-prop", prop_file,
        "-out", tabular_file, #Used as base name for output files
        "-a", # Generate *.annot tabular file
-       "-img", # Generate images
+       #"-img", # Generate images, feature not in v2.3.5
        ]
 print " ".join(cmd)
 run(cmd)
