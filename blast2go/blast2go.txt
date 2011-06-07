@@ -1,0 +1,122 @@
+Galaxy wrapper for Blast2GO for pipelines, b2g4pipe
+===================================================
+
+This wrapper is copyright 2011 by Peter Cock, The James Hutton Institute
+(formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
+See the licence text below.
+
+This is a wrapper for the command line Java tool b2g4pipe v2.3.5,
+Blast2GO for pipelines. See:
+
+S. Götz et al.
+High-throughput functional annotation and data mining with the Blast2GO suite.
+Nucleic Acids Res. 36(10):3420–3435, 2008.
+http://dx.doi.org/10.1093/nar/gkn176
+
+A. Conesa and S. Götz.
+Blast2GO: A Comprehensive Suite for Functional Analysis in Plant Genomics.
+Int. J. Plant Genomics. 619832, 2008.
+http://dx.doi.org/10.1155/2008/619832
+
+A. Conesa et al.
+Blast2GO: A universal tool for annotation, visualization and analysis in functional genomics research.
+Bioinformatics 21:3674-3676, 2005.
+http://dx.doi.org/10.1093/bioinformatics/bti610
+
+http://www.blast2go.org/
+
+
+
+Installation
+============
+
+You can change the path by editing the definition near the start of the Python
+script blast2go.py, but by default it expects the underlying tool to be here:
+
+/opt/b2g4pip/blast2go.jar
+
+To install the wrapper copy or move the following files under the Galaxy tools
+folder, e.g. in the tools/ncbi_blast_blast folder:
+
+* blast2go.xml (the Galaxy tool definition)
+* blast2go.py (the Python wrapper script)
+* blast2go.txt (this README file)
+
+You will also need to modify the tools_conf.xml file to tell Galaxy to offer the
+tool. We suggest putting it next to the NCBI BLAST+ wrappers. Just add the line:
+
+<tool file="ncbi_blast_plus/blast2go.xml" />
+
+As part of setting up b2g4pipe you will need to setup one or more Blast2GO
+property files which tell the tool which database to use etc. The example
+b2gPipe.properties provided with b2g4pipe v2.3.5 is out of date, with the
+latest server IP address and database name given on the Blast2GO website.
+These files can be anywhere accessable to the Galaxy Unix user, we put them
+under /opt/b2g4pipe with the JAR file etc.
+
+You must tell Galaxy about these Blast2GO property files so that they can be
+offered to the user. Create the file tool-data/blast2go.loc under the Galaxy
+folder. This must be plain text, tab separated, with three columns:
+
+(1) ID for the setup, e.g. Spain_2010_May
+(2) Description for the setup, e.g. Database in Spain (May 2010)
+(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2010_May.properties
+
+Avoid including "Blast2GO" in the description (column 2) as this will be
+included in the automatically assigned output dataset name. The blast2go.loc
+file allows you to customise the database setup. If for example you have a local
+Blast2GO server running (which we recommend for speed), and you want this to be
+the default setting, include it as the first line in your blast2go.loc file.
+
+Consult the Blast2GO documentation for details about the property files and
+setting up a local MySQL Blast2GO database.
+
+
+History
+=======
+
+v0.0.1 - Initial public release
+
+
+Developers
+==========
+
+This script and related tools are being developed on the following hg branch:
+http://bitbucket.org/peterjc/galaxy-central/src/tools
+
+For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
+the following command from the Galaxy root folder:
+
+$ tar -czf blast2go.tar.gz tools/ncbi_blast_plus/blast2go.xml tools/ncbi_blast_plus/blast2go.py tools/ncbi_blast_plus/blast2go.txt
+
+Check this worked:
+
+$ tar -tzf blast2go.tar.gz
+tools/ncbi_blast_plus/blast2go.xml
+tools/ncbi_blast_plus/blast2go.py
+tools/ncbi_blast_plus/blast2go.txt
+
+
+Licence (MIT/BSD style)
+=======================
+
+Permission to use, copy, modify, and distribute this software and its
+documentation with or without modifications and for any purpose and
+without fee is hereby granted, provided that any copyright notices
+appear in all copies and that both those copyright notices and this
+permission notice appear in supporting documentation, and that the
+names of the contributors or copyright holders not be used in
+advertising or publicity pertaining to distribution of the software
+without specific prior permission.
+
+THE CONTRIBUTORS AND COPYRIGHT HOLDERS OF THIS SOFTWARE DISCLAIM ALL
+WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL THE
+CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIRECT
+OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
+OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+OR PERFORMANCE OF THIS SOFTWARE.
+
+NOTE: This is the licence for the Galaxy Wrapper only. Blast2GO and
+associated data files are available and licenced separately.
