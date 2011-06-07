@@ -1,4 +1,4 @@
-<tool id="blast2go" name="Blast2GO" version="0.0.1">
+<tool id="blast2go" name="Blast2GO" version="0.0.2">
     <description>Maps BLAST results to GO annotation terms</description>
     <command interpreter="python">
         blast2go.py $xml ${prop.fields.path} $tab
@@ -35,8 +35,13 @@ This runs b2g4Pipe, the command line (no GUI) version of Blast2GO designed
 for use in pipelines.
 
 It takes as input BLAST XML results against a protein database, typically
-the NCBI non-redundant (NR) database. The BLAST matches are used to assign
-Gene Ontology (GO) annotation terms to each query sequence.
+the NCBI non-redundant (NR) database. This tool will accept concatenated
+BLAST XML files (although they are technically invalid XML), which is very
+useful if you have sub-divided your protein FASTA files and run BLAST on
+them in batches.
+
+The BLAST matches are used to assign Gene Ontology (GO) annotation terms
+to each query sequence.
 
 The output from this tool is a tabular file containing three columns, with
 the order taken from query order in the original BLAST XML file:
@@ -51,6 +56,16 @@ Column Description
 
 Note that if no GO terms are assigned to a sequence (e.g. if it had no
 BLAST matches), then it will not be present in the output file.
+
+
+**Advanced Settings**
+
+Blast2GO has a properties setting file which includes which database
+server to connect to (e.g. the public server in Valencia, Spain, or a
+local server), as well as more advanced options such as thresholds and
+evidence code weights. To change these settings, your Galaxy administrator
+must create a new properties file, and add it to the drop down menu above.
+
 
 **References**
 

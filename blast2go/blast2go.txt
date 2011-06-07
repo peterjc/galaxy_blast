@@ -76,6 +76,11 @@ History
 =======
 
 v0.0.1 - Initial public release
+v0.0.2 - Documentation clarifications, e.g. concatenated BLAST XML is allowed.
+       - Fixed error handler in wrapper script (for when b2g4pipe fails).
+       - Reformats the XML to use old NCBI-style concatenated BLAST XML since
+         b2g4pipe crashes with heap space error on with large files using
+         current NCBI output.
 
 
 Developers
