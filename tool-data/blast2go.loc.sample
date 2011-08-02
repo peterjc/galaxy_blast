@@ -1,0 +1,15 @@
+# This is a three column tab separated file to define the properties
+# file (settings) to be offered for Blast2GO for Pipelines (b2g4pipe).
+#
+# Column 1 - ID, string that Galaxy will save in its database
+# Column 2 - Human readable name, Galaxy will show this in the UI
+# Column 3 - Filename, Galaxy will use this when calling the tool
+#
+# Probably the most important setting in the properties file is the
+# Blast2GO database to use. Currently b2g4pipe v2.3.5 ships with an
+# old configuration so consult http://blast2go.org for the latest
+# public database they host in Spain. We also strongly recommend
+# configuring a local Blast2GO database.
+#
+Local_2011_May	Local database (May 2011)	/opt/b2g4pipe/Local_2011_May.properties
+Spain_2010_May	Database in Spain (May 2010)	/opt/b2g4pipe/Spain_2010_May.properties

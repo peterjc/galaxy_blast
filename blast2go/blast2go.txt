@@ -55,8 +55,9 @@ These files can be anywhere accessable to the Galaxy Unix user, we put them
 under /opt/b2g4pipe with the JAR file etc.
 
 You must tell Galaxy about these Blast2GO property files so that they can be
-offered to the user. Create the file tool-data/blast2go.loc under the Galaxy
-folder. This must be plain text, tab separated, with three columns:
+offered to the user. Copy file blast2go.loc.sample to tool-data/blast2go.loc
+under the Galaxy folder and edit this to match your installation. This must
+be plain text, tab separated, with three columns:
 
 (1) ID for the setup, e.g. Spain_2010_May
 (2) Description for the setup, e.g. Database in Spain (May 2010)
@@ -81,6 +82,7 @@ v0.0.2 - Documentation clarifications, e.g. concatenated BLAST XML is allowed.
        - Reformats the XML to use old NCBI-style concatenated BLAST XML since
          b2g4pipe crashes with heap space error on with large files using
          current NCBI output.
+v0.0.3 - Include sample loc file, tool-data/blast2go.loc.sample
 
 
 Developers
@@ -92,7 +94,7 @@ http://bitbucket.org/peterjc/galaxy-central/src/tools
 For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder:
 
-$ tar -czf blast2go.tar.gz tools/ncbi_blast_plus/blast2go.xml tools/ncbi_blast_plus/blast2go.py tools/ncbi_blast_plus/blast2go.txt
+$ tar -czf blast2go.tar.gz tools/ncbi_blast_plus/blast2go.xml tools/ncbi_blast_plus/blast2go.py tools/ncbi_blast_plus/blast2go.txt tool-data/blast2go.loc.sample
 
 Check this worked:
 
@@ -100,6 +102,7 @@ $ tar -tzf blast2go.tar.gz
 tools/ncbi_blast_plus/blast2go.xml
 tools/ncbi_blast_plus/blast2go.py
 tools/ncbi_blast_plus/blast2go.txt
+tool-data/blast2go.loc.sample
 
 
 Licence (MIT/BSD style)
