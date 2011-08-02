@@ -1,4 +1,4 @@
-<tool id="blast2go" name="Blast2GO" version="0.0.2">
+<tool id="blast2go" name="Blast2GO" version="0.0.3">
     <description>Maps BLAST results to GO annotation terms</description>
     <command interpreter="python">
         blast2go.py $xml ${prop.fields.path} $tab
