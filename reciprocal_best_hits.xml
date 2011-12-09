@@ -1,8 +1,5 @@
 <tool id="reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.0.2">
     <description>from BLAST output or similar data</description>
-    <version_command interpreter="python">
-      reciprocal_best_hits.py --version
-    </version_command>
     <command interpreter="python">
       reciprocal_best_hits.py $a_vs_b $b_vs_a $id1 $id2 $score $order $output
     </command>
