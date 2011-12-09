@@ -12,7 +12,9 @@ Takes seven command line options,
 
 """
 import sys
-
+if "--version" in sys.argv[1:]:
+    print "RBH v0.0.2"
+    sys.exit(0)
 
 def stop_err( msg ):
     sys.stderr.write("%s\n" % msg)
