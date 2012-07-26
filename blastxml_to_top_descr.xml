@@ -8,7 +8,7 @@
 	<param name="topN" type="integer" min="1" max="100" optional="false" label="Number of descriptions" value="3"/>
     </inputs>
     <outputs>
-        <data name="tabular_file" format="tabular" label="BLAST top hit descriptions" />
+        <data name="tabular_file" format="tabular" label="Top $topN descriptions from $blastxml_file.name" />
     </outputs>
     <requirements>
     </requirements>
