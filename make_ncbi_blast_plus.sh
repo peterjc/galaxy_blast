@@ -1,11 +1,11 @@
 #!/bin/sh
 echo "This will create a tar-ball suitable to upload to the toolshed."
 
-if [ -f "make_ncbi_blast_plus.sh" ]
+if [ -f "tools/ncbi_blast_plus/make_ncbi_blast_plus.sh" ]
 then
 echo "Good, in the expected directory"
 else
-echo "ERROR. Run this from the galaxy tools/ncbi_blast_plus directory."
+echo "ERROR. Run this from the galaxy root directory."
 exit 1
 fi
 
@@ -22,14 +22,14 @@ rm ncbi_blast_plus.tar
 fi
 
 #Create tar file (-cf then -rf to add to it)
-tar -cf ncbi_blast_plus.tar ncbi_*_wrapper.xml
-tar -rf ncbi_blast_plus.tar blastxml_to_tabular.xml
-tar -rf ncbi_blast_plus.tar blastxml_to_tabular.py
-tar -rf ncbi_blast_plus.tar hide_stderr.py
-tar -rf ncbi_blast_plus.tar tool_dependencies.xml
-tar -rf ncbi_blast_plus.tar blastdb.loc.sample
-tar -rf ncbi_blast_plus.tar blastdb_p.loc.sample
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus.txt
+tar -cf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_*_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.py
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/hide_stderr.py
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/tool_dependencies.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastdb.loc.sample
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastdb_p.loc.sample
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blast_plus.txt
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin.xml
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin_converted.tabular
