@@ -1,7 +1,7 @@
-<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.11">
+<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.12">
     <description>Search nucleotide database with nucleotide query sequence(s)</description>
-    <!-- If job splitting is enabled, break up the query file into four -->
-    <parallelism method="multi" split_inputs="query" split_mode="number_of_parts" split_size="4" shared_inputs="subject" merge_outputs="output1"></parallelism>
+    <!-- If job splitting is enabled, break up the query file into parts -->
+    <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject" merge_outputs="output1"></parallelism>
     <version_command>blastn -version</version_command>
     <command interpreter="python">hide_stderr.py
 ## The command is a Cheetah template which allows some Python based syntax.
@@ -44,7 +44,7 @@ $adv_opts.parse_deflines
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="True">BLAST Database</option>
-              <option value="file">FASTA file</option>
+              <option value="file">FASTA file (pairwise e-values)</option>
             </param>
             <when value="db">
                 <param name="database" type="select" label="Nucleotide BLAST database">
