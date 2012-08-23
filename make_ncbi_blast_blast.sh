@@ -37,6 +37,7 @@ tar -rf ncbi_blast_plus.tar ncbi_blast_plus/hide_stderr.py
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/tool_dependencies.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/blastdb.loc.sample
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/blastdb_p.loc.sample
+tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blast_plus.txt
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/test-data/blastp_four_human_vs_rhodopsin.tabular
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/test-data/blastp_four_human_vs_rhodopsin.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/test-data/blastp_four_human_vs_rhodopsin_converted.tabular
@@ -68,5 +69,5 @@ tar -rf ncbi_blast_plus.tar ncbi_blast_plus/test-data/tblastn_four_human_vs_rhod
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 37 files, have:"
+echo "Expect a tar-ball 38 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l

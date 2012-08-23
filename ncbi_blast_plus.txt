@@ -1,0 +1,81 @@
+Galaxy wrappers for NCBI BLAST+ suite
+=====================================
+
+These wrappers are copyright 2010-2012 by Peter Cock, The James Hutton Institute
+(formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
+See the licence text below.
+
+Currently tested with NCBI BLAST 2.2.26+ (i.e. version 2.2.26 of BLAST+),
+and do not work with the NCBI 'legacy' BLAST suite (e.g. blastall).
+
+Note that these wrappers were originally distributed as part of the main
+Galaxy repository, but as of August 2012 moved to the Galaxy Tool Shed.
+My thanks to Dannon Baker from the Galaxy development team for this assistance
+with this.
+
+
+Manual Installation
+===================
+
+For those not using Galaxy's automated installation from the Tool Shed, put
+the XML and Python files under tools/ncbi_blast_plus and add the XML files
+to your tool_conf.xml as normal.
+
+You must tell Galaxy about any system level BLAST databases using configuration
+files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
+databases like NR).
+
+You will also need to install the 'blast_datatypes' from the Tool Shed. This
+defines the BLAST XML file format ('blastxml').
+
+
+History
+=======
+
+v0.0.11 - Final revision as part of the Galaxy main repository, and the
+          first release via the Tool Shed
+v0.0.12 - Implements genetic code option for translation searches.
+        - Changes <parallelism> to 1000 sequences at a time (to cope with
+          very large sets of queries where BLAST+ can become memory hungry)
+        - Include warning that BLAST+ with subject FASTA gives pairwise
+          e-values
+
+
+Developers
+==========
+
+This script and related tools are being developed on the following hg branch:
+http://bitbucket.org/peterjc/galaxy-central/src/tools
+
+For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
+the following command from the Galaxy rtools or tools/ncbi_blast_plus folder:
+
+$ ./make_ncbi_blast_plus.sh
+
+This similifies ensuring a consistent set of files is bundled each time,
+including all the relevant test files.
+
+
+Licence (MIT/BSD style)
+=======================
+
+Permission to use, copy, modify, and distribute this software and its
+documentation with or without modifications and for any purpose and
+without fee is hereby granted, provided that any copyright notices
+appear in all copies and that both those copyright notices and this
+permission notice appear in supporting documentation, and that the
+names of the contributors or copyright holders not be used in
+advertising or publicity pertaining to distribution of the software
+without specific prior permission.
+
+THE CONTRIBUTORS AND COPYRIGHT HOLDERS OF THIS SOFTWARE DISCLAIM ALL
+WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL THE
+CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIRECT
+OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
+OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+OR PERFORMANCE OF THIS SOFTWARE.
+
+NOTE: This is the licence for the Galaxy Wrapper only. BLAST+ and
+associated data files are available and licenced separately.
