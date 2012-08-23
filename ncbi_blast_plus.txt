@@ -48,7 +48,7 @@ This script and related tools are being developed on the following hg branch:
 http://bitbucket.org/peterjc/galaxy-central/src/tools
 
 For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
-the following command from the Galaxy rtools or tools/ncbi_blast_plus folder:
+the following command from the Galaxy tools/ncbi_blast_plus folder:
 
 $ ./make_ncbi_blast_plus.sh
 
