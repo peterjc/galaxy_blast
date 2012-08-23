@@ -1,7 +1,7 @@
-<tool id="ncbi_tblastn_wrapper" name="NCBI BLAST+ tblastn" version="0.0.11">
+<tool id="ncbi_tblastn_wrapper" name="NCBI BLAST+ tblastn" version="0.0.12">
     <description>Search translated nucleotide database with protein query sequence(s)</description>
-    <!-- If job splitting is enabled, break up the query file into four -->
-    <parallelism method="multi" split_inputs="query" split_mode="number_of_parts" split_size="4" shared_inputs="subject" merge_outputs="output1"></parallelism>
+    <!-- If job splitting is enabled, break up the query file into parts -->
+    <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject" merge_outputs="output1"></parallelism>
     <version_command>tblastn -version</version_command>
     <command interpreter="python">hide_stderr.py
 ## The command is a Cheetah template which allows some Python based syntax.
@@ -23,6 +23,7 @@ tblastn
 #end if
 -num_threads 8
 #if $adv_opts.adv_opts_selector=="advanced":
+-db_gencode $adv_opts.db_gencode
 $adv_opts.filter_query
 -matrix $adv_opts.matrix
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
@@ -44,7 +45,7 @@ $adv_opts.parse_deflines
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="True">BLAST Database</option>
-              <option value="file">FASTA file</option>
+              <option value="file">FASTA file (pairwise e-values)</option>
             </param>
             <when value="db">
                 <param name="database" type="select" label="Nucleotide BLAST database">
@@ -83,6 +84,27 @@ $adv_opts.parse_deflines
             </param>
             <when value="basic" />
             <when value="advanced">
+                <param name="db_gencode" type="select" label="Database/subject genetic code">
+                    <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
+                    <option value="1" select="True">1. Standard</option>
+                    <option value="2">2. Vertebrate Mitochondrial</option>
+                    <option value="3">3. Yeast Mitochondrial</option>
+                    <option value="4">4. Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
+                    <option value="5">5. Invertebrate Mitochondrial</option>
+                    <option value="6">6. Ciliate, Dasycladacean and Hexamita Nuclear Code</option>
+                    <option value="9">9. Echinoderm Mitochondrial</option>
+                    <option value="10">10. Euplotid Nuclear</option>
+                    <option value="11">11. Bacteria and Archaea</option>
+                    <option value="12">12. Alternative Yeast Nuclear</option>
+                    <option value="13">13. Ascidian Mitochondrial</option>
+                    <option value="14">14. Flatworm Mitochondrial</option>
+                    <option value="15">15. Blepharisma Macronuclear</option>
+                    <option value="16">16. Chlorophycean Mitochondrial Code</option>
+                    <option value="21">21. Trematode Mitochondrial Code</option>
+                    <option value="22">22. Scenedesmus obliquus mitochondrial Code</option>
+                    <option value="23">23. Thraustochytrium Mitochondrial Code</option>
+                    <option value="24">24. Pterobranchia mitochondrial code</option>
+                </param>
                 <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
                 <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="true" />
                 <param name="matrix" type="select" label="Scoring matrix">
