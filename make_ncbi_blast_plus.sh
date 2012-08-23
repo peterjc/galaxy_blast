@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "This will create a tar-ball suitable to upload to the toolshed."
 
-if [ -f "make_ncbi_blast_blast.sh" ]
+if [ -f "make_ncbi_blast_plus.sh" ]
 then
 echo "Good, in the expected directory"
 else
