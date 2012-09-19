@@ -1,9 +1,9 @@
-<tool id="ncbi_blastp_wrapper" name="NCBI BLAST+ blastp" version="0.0.12">
+<tool id="ncbi_blastp_wrapper" name="NCBI BLAST+ blastp" version="0.0.13">
     <description>Search protein database with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject" merge_outputs="output1"></parallelism>
     <version_command>blastp -version</version_command>
-    <command interpreter="python">hide_stderr.py
+    <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastp
@@ -40,6 +40,10 @@ $adv_opts.parse_deflines
 ## End of advanced options:
 #end if
     </command>
+    <stdio>
+        <exit_code range="1:" />
+	<exit_code range="://0" />
+    </stdio>
     <inputs>
         <param name="query" type="data" format="fasta" label="Protein query sequence(s)"/> 
         <conditional name="db_opts">

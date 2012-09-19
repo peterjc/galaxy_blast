@@ -40,6 +40,8 @@ v0.0.12 - Implements genetic code option for translation searches.
           very large sets of queries where BLAST+ can become memory hungry)
         - Include warning that BLAST+ with subject FASTA gives pairwise
           e-values
+v0.0.13 - Use the new error handling options in Galaxy (the previously
+          bundled hide_stderr.py script is no longer needed).
 
 
 Developers

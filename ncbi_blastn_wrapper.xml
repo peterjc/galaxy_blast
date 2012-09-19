@@ -1,9 +1,9 @@
-<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.12">
+<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.13">
     <description>Search nucleotide database with nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject" merge_outputs="output1"></parallelism>
     <version_command>blastn -version</version_command>
-    <command interpreter="python">hide_stderr.py
+    <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastn
@@ -39,6 +39,10 @@ $adv_opts.parse_deflines
 ## End of advanced options:
 #end if
     </command>
+    <stdio>
+        <exit_code range="1:" />
+	<exit_code range="://0" />
+    </stdio>
     <inputs>
         <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
         <conditional name="db_opts">
