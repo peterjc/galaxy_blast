@@ -33,6 +33,10 @@ $sep${i.file}
 ## -taxid_map $tax.map
 ## #end if
 </command>
+<stdio>
+    <exit_code range="1:" />
+    <exit_code range="://0" />
+</stdio>
 <inputs>
     <param name="dbtype" type="select" display="radio" label="Molecule type of input">
         <option value="prot">protein</option>
