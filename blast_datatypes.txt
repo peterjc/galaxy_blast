@@ -20,7 +20,7 @@ explicitly in the datatypes themselves.
 
 v0.0.11 - Final revision as part of the Galaxy main repository, and the
           first release via the Tool Shed
-v0.0.14 - Uses blast.py instead of xml.py to define the datatypes
+v0.0.13 - Uses blast.py instead of xml.py to define the datatypes
 
 
 Installation
