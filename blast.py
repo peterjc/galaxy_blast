@@ -3,8 +3,9 @@ BlastXml class
 """
 
 from galaxy.datatypes.data import get_file_peek
-from galaxy.datatypes.data import Text
+from galaxy.datatypes.data import Text, Data
 from galaxy.datatypes.xml import GenericXml
+from galaxy.datatypes.metadata import MetadataElement
 
 class BlastXml( GenericXml ):
     """NCBI Blast XML Output data"""
@@ -122,3 +123,72 @@ class BlastXml( GenericXml ):
         out.close()
     merge = staticmethod(merge)
 
+
+class _BlastDb(object):
+    """Base class for BLAST database datatype."""
+
+    def set_peek( self, dataset, is_multi_byte=False ):
+        if not dataset.dataset.purged:
+            dataset.peek  = "BLAST database (multiple files)"
+            dataset.blurb = "BLAST database (multiple files)"
+        else:
+            dataset.peek = 'file does not exist'
+            dataset.blurb = 'file purged from disk'
+
+    def display_peek( self, dataset ):
+        try:
+            return dataset.peek
+        except:
+            return "Folder of multiple files"
+
+    def get_mime(self):
+        """Returns the mime type of the datatype (pretend it is text for peek)"""
+        return 'text/plain'
+
+    def merge(split_files, output_file):
+        """Merge BLAST databases (not implemented for now)."""
+        raise NotImplementedError("Merging BLAST databases is non-trivial (do this via makeblastdb?)")
+
+    def split( cls, input_datasets, subdir_generator_function, split_params):
+        """Split a BLAST database (not implemented for now)."""
+        if split_params is None:
+            return None
+        raise NotImplementedError("Can't split BLAST databases")
+
+
+class BlastNucDb( _BlastDb, Data ):
+    """Class for nucleotide BLAST database files."""
+    file_ext = 'blastdbn'
+    composite_type ='basic'
+    MetadataElement( readonly=True, optional=True, visible=False, no_value=0 )
+
+    def __init__(self,**kwd):
+        Data.__init__(self, **kwd)
+        self.add_composite_file('blastdb.nhr')
+        self.add_composite_file('blastdb.nin')
+        self.add_composite_file('blastdb.nsq')
+        self.add_composite_file('blastdb.nhd', optional=True)
+        self.add_composite_file('blastdb.nsi', optional=True)
+        self.add_composite_file('blastdb.nhi', optional=True)
+        self.add_composite_file('blastdb.nog', optional=True)
+        self.add_composite_file('blastdb.nsd', optional=True)
+
+class BlastProtDb( _BlastDb, Data ):
+    """Class for protein BLAST database files."""
+    file_ext = 'blastdbp'
+    composite_type ='basic'
+    MetadataElement( readonly=True, optional=True, visible=False, no_value=0 )
+
+    def __init__(self,**kwd):
+        Data.__init__(self, **kwd)
+        self.add_composite_file('blastdb.phr')
+        self.add_composite_file('blastdb.pin')
+        self.add_composite_file('blastdb.psq')
+        self.add_composite_file('blastdb.pnd', optional=True)
+        self.add_composite_file('blastdb.pni', optional=True)
+        self.add_composite_file('blastdb.psd', optional=True)
+        self.add_composite_file('blastdb.psi', optional=True)
+        self.add_composite_file('blastdb.psq', optional=True)
+        self.add_composite_file('blastdb.phd', optional=True)
+        self.add_composite_file('blastdb.phi', optional=True)
+        self.add_composite_file('blastdb.pog', optional=True)
