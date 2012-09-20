@@ -43,8 +43,9 @@ $adv_opts.parse_deflines
 #end if
     </command>
     <stdio>
+        <!-- Anything other than zero is an error -->
         <exit_code range="1:" />
-        <exit_code range="://0" />
+        <exit_code range=":-1" />
     </stdio>
     <inputs>
         <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
