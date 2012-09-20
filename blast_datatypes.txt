@@ -1,0 +1,98 @@
+Galaxy datatypes for NCBI BLAST+ suite
+======================================
+
+These Galaxy datatypes are copyright 2010-2012 by Peter Cock, The James Hutton
+Institute (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
+See the licence text below.
+
+Note that these files (and the associated BLAST+ wrappers) were originally
+distributed as part of the main Galaxy repository, but as of August 2012 moved
+to the Galaxy Tool Shed as 'blast_datatypes' (and 'ncbi_blast_plus' for the
+wrappers). My thanks to Dannon Baker from the Galaxy development team for his
+assistance with this.
+
+
+History
+=======
+
+These versions numbers match those for 'ncbi_blast_plus', but are not used
+explicitly in the datatypes themselves.
+
+v0.0.11 - Final revision as part of the Galaxy main repository, and the
+          first release via the Tool Shed
+v0.0.14 - Uses blast.py instead of xml.py to define the datatypes
+
+
+Installation
+============
+
+Doing this automatically via the Galaxy Tool Shed is probably simplest.
+
+
+Manual Installation
+===================
+
+Normally you would install this via the Galaxy ToolShed, which would move
+the provided blast.py file into a suitable location and process the
+datatypes_conf.xml entry to be combined with your local configuration.
+
+However, if you really want to this should work for a manual install. Add
+the following line to the datatypes_conf.xml file in the Galaxy main folder:
+
+   <datatype extension="blastxml" type="galaxy.datatypes.blast:BlastXml" mimetype="application/xml" display_in_upload="true"/>
+
+Also create the file lib/galaxy/datatypes/blast.py by moving, copying or linking
+the blast.py file provided in this tar-ball.  Finally add 'import blast' near
+the start of file lib/galaxy/datatypes/registry.py (after the other import
+lines).
+
+
+Developers
+==========
+
+BLAST+ datatypes and wrappers, and other tools are being developed on the
+following hg branch: http://bitbucket.org/peterjc/galaxy-central/src/tools
+
+For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
+the following command from the Galaxy tools/ncbi_blast_plus folder:
+
+$ tar -hczf blast_datatypes.tar.gz blast_datatypes.txt datatypes_conf.xml blast.py
+
+Check this worked:
+
+$ tar -tzf blast_datatypes.tar.gz
+blast_datatypes.txt
+datatypes_conf.xml
+blast.py
+
+Note that the placement of these three files under tools/ncbi_blast_plus is
+arbitrary - this just puts them next to the tool wrappers which use them.
+
+For development, rather than having a local ToolShed running, I currently
+use a symlink from lib/galaxy/datatypes/blast.py to the actual file
+tools/ncbi_blast_plus/blast.py as described above.
+
+
+Licence (MIT/BSD style)
+=======================
+
+Permission to use, copy, modify, and distribute this software and its
+documentation with or without modifications and for any purpose and
+without fee is hereby granted, provided that any copyright notices
+appear in all copies and that both those copyright notices and this
+permission notice appear in supporting documentation, and that the
+names of the contributors or copyright holders not be used in
+advertising or publicity pertaining to distribution of the software
+without specific prior permission.
+
+THE CONTRIBUTORS AND COPYRIGHT HOLDERS OF THIS SOFTWARE DISCLAIM ALL
+WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL THE
+CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIRECT
+OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
+OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+OR PERFORMANCE OF THIS SOFTWARE.
+
+NOTE: This is the licence for the Galaxy BLAST datatypes  only. BLAST+
+and associated data files are available and licenced separately.
