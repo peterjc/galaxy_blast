@@ -68,7 +68,7 @@ $adv_opts.parse_deflines
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+                <param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
                 <param name="subject" type="hidden" value="" />
             </when>
             <when value="file">
