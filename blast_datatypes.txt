@@ -56,7 +56,7 @@ following hg branch: http://bitbucket.org/peterjc/galaxy-central/src/tools
 For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy tools/ncbi_blast_plus folder:
 
-$ tar -hczf blast_datatypes.tar.gz blast_datatypes.txt datatypes_conf.xml blast.py
+$ tar -czf blast_datatypes.tar.gz blast_datatypes.txt datatypes_conf.xml blast.py
 
 Check this worked:
 
