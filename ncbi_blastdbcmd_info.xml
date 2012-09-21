@@ -7,6 +7,9 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
         <!-- Anything other than zero is an error -->
         <exit_code range="1:" />
         <exit_code range=":-1" />
+	<!-- Suspect blastdbcmd sometimes fails to set error level -->
+	<regex match="Error:" />
+	<regex match="EXception:" />
     </stdio>
     <inputs>
         <conditional name="db_opts">
