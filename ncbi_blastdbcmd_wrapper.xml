@@ -1,4 +1,4 @@
-<tool id="ncbi_blastdbcmd_entry" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.2">
+<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.2">
     <description>Extract sequence(s) from BLAST database</description>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
