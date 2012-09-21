@@ -1,6 +1,6 @@
-<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd" version="0.0.1">
+<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd" version="0.0.2">
     <description>Extract sequence(s) from BLAST database</description>
-    <command interpreter="python">hide_stderr.py
+    <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
@@ -42,6 +42,11 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 | sed 's/>\(lcl|\|gnl|BL_ORD_ID|[0-9]* \)/>/1' > "$seq"
 #end if
     </command>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <inputs>
         <conditional name="db_opts">
             <param name="db_type" type="select" label="Type of BLAST database">
