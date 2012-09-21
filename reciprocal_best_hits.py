@@ -13,7 +13,7 @@ Takes seven command line options,
 """
 import sys
 if "--version" in sys.argv[1:]:
-    print "RBH v0.0.2"
+    print "RBH v0.0.3"
     sys.exit(0)
 
 def stop_err( msg ):
@@ -37,6 +37,9 @@ else:
 
 if out_file in [a_vs_b, b_vs_a]:
     stop_err("Output file would overwrite an input file")
+
+if "None" in [c_query, c_match, c_score]:
+    stop_err("Three distinct column numbers must be chosen")
 
 def get_col_index(col_str):
     if col_str[0]=="c":
