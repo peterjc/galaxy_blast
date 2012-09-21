@@ -23,6 +23,8 @@ fi
 
 #Create tar file (-cf then -rf to add to it)
 tar -cf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_*_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_makeblastdb.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastdbcmd_info.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.py
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/tool_dependencies.xml
@@ -60,5 +62,5 @@ tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin_parse_defl
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 37 files, have:"
+echo "Expect a tar-ball 40 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
