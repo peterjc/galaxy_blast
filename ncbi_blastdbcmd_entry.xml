@@ -1,4 +1,4 @@
-<tool id="ncbi_blastdbcmd_entry" name="NCBI BLAST+ blastdbcmd" version="0.0.2">
+<tool id="ncbi_blastdbcmd_entry" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.2">
     <description>Extract sequence(s) from BLAST database</description>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
@@ -8,11 +8,11 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
 #if $id_opts.id_type=="file":
--entry_batch "$entries"
+-entry_batch "$id_opts.entries"
 #else:
 ##Perform some simple search/replaces to remove whitespace
 ##and make it comma separated
--entry "$entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',')"
+-entry "$id_opts.entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',')"
 #end if
 
 ##When building a BLAST database, to ensure unique IDs makeblastdb will
@@ -22,7 +22,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 ##file). In -parse_seqids mode, a duplicate FASTA ID gives an error.
 ##
 ##The BLAST plain text and XML output will contain these BLAST IDs, but
-##the tabular output does not (at least, not in BLAST 2.2.25+ at least).
+##the tabular output does not (at least, not in BLAST 2.2.25+).
 ##Therefore in general, Galaxy users won't care about the (internal)
 ##BLAST identifiers.
 ##
