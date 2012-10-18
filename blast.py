@@ -56,6 +56,8 @@ class BlastXml( GenericXml ):
         if len(split_files) == 1:
             #For one file only, use base class method (move/copy)
             return Text.merge(split_files, output_file)
+        if not split_files:
+            raise ValueError("Given no BLAST XML files to merge! %r" % (split_files))
         out = open(output_file, "w")
         h = None
         for f in split_files:
