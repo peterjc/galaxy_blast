@@ -1,4 +1,4 @@
-<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.2">
+<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.3">
     <description>Extract sequence(s) from BLAST database</description>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
@@ -11,8 +11,8 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 -entry_batch "$id_opts.entries"
 #else:
 ##Perform some simple search/replaces to remove whitespace
-##and make it comma separated
--entry "$id_opts.entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',')"
+##and make it comma separated, and escape any pipe characters
+-entry "$id_opts.entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',').replace('|','\|')"
 #end if
 
 ##When building a BLAST database, to ensure unique IDs makeblastdb will
