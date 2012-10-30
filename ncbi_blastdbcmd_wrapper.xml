@@ -107,13 +107,13 @@ using the NCBI BLAST+ blastdbcmd command line tool.
 
 .. class:: warningmark
 
-**Note** BLAST assigned identifiers
+**BLAST assigned identifiers**
 
 When a BLAST database is constructed from a FASTA file, the
 original identifiers can be replaced with BLAST assigned
 identifiers, partly to ensure uniqueness. e.g. Sometimes
 a prefix of 'lcl|' is added (lcl is short for local),
-or an arbitray name starting 'gnl|BL_ORD_ID|' is created.
+or an arbitrary name starting 'gnl|BL_ORD_ID|' is created.
 
 If you are using the tabular output from BLAST, it will contain
 the original identifiers - not the BLAST assigned identifiers
@@ -121,7 +121,7 @@ suitable for use with the blastdbcmd tool.
 
 If you are using the XML or plain text output, this will also
 contain the BLAST assigned identifiers. However, this means
-getting a list of BLAST assigned identifiers isn't straightfoward.
+getting a list of BLAST assigned identifiers isn't straightforward.
 
 -------
 
