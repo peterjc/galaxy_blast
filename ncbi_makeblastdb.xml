@@ -103,11 +103,14 @@ $sep${i.file}
 **What it does**
 
 Make BLAST database from one or more FASTA files and/or BLAST databases.
-This application serves as a replacement for formatdb.
 
+This is a wrapper for the NCBI BLAST+ tool 'makeblastdb', which is the
+replacement for the 'formatdb' tool in the NCBI 'legacy' BLAST suite.
+
+<!--
 Applying masks to an existing BLAST database will not change the original database; a new database will be created.
 For this reason, it's best to apply all masks at once to minimize the number of unnecessary intermediate databases.
-
+-->
 
 **Documentation**
 
