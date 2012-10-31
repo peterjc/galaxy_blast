@@ -5,11 +5,13 @@
 makeblastdb -out ${os.path.join($outfile.extra_files_path,'blastdb')}
 $parse_seqids
 $hash_index
-#set $sep = '-in '
+## Single call to -in with multiple filenames space separated with outer quotes
+## (presumably any filenames with spaces would be a problem). Note this gives
+## some extra spaces, e.g. -in " file1 file2 file3  " but BLAST seems happy:
+-in "
 #for $i in $in
-$sep${i.file}
-#set $set = ', '
-#end for
+${i.file} #end for
+"
 #if $title:
 -title "$title"
 #else:
