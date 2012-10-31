@@ -19,6 +19,7 @@ class BlastXml( GenericXml ):
         else:
             dataset.peek = 'file does not exist'
             dataset.blurb = 'file purged from disk'
+
     def sniff( self, filename ):
         """
         Determines whether the file is blastxml
@@ -131,6 +132,7 @@ class _BlastDb(object):
     """Base class for BLAST database datatype."""
 
     def set_peek( self, dataset, is_multi_byte=False ):
+        """Set the peek and blurb text."""
         if not dataset.dataset.purged:
             dataset.peek  = "BLAST database (multiple files)"
             dataset.blurb = "BLAST database (multiple files)"
@@ -139,10 +141,19 @@ class _BlastDb(object):
             dataset.blurb = 'file purged from disk'
 
     def display_peek( self, dataset ):
+        """Create HTML content, used for displaying peek."""
         try:
             return dataset.peek
         except:
-            return "Folder of multiple files"
+            return "BLAST database (multiple files)"
+
+    def display_data(self, trans, data, preview=False, filename=None,
+                     to_ext=None, size=None, offset=None, **kwd):
+        """Apparently an old display method, but still gets called.
+
+        This allows us to format the data shown in the central pane via the "eye" icon.
+        """
+        return "This is a BLAST database."
 
     def get_mime(self):
         """Returns the mime type of the datatype (pretend it is text for peek)"""
@@ -176,6 +187,14 @@ class BlastNucDb( _BlastDb, Data ):
         self.add_composite_file('blastdb.nog', optional=True)
         self.add_composite_file('blastdb.nsd', optional=True)
 
+    def display_data(self, trans, data, preview=False, filename=None,
+                     to_ext=None, size=None, offset=None, **kwd):
+        """Apparently an old display method, but still gets called.
+
+        This allows us to format the data shown in the central pane via the "eye" icon.
+        """
+        return "This is a BLAST nucleotide database."
+
 class BlastProtDb( _BlastDb, Data ):
     """Class for protein BLAST database files."""
     file_ext = 'blastdbp'
@@ -195,3 +214,11 @@ class BlastProtDb( _BlastDb, Data ):
         self.add_composite_file('blastdb.phd', optional=True)
         self.add_composite_file('blastdb.phi', optional=True)
         self.add_composite_file('blastdb.pog', optional=True)
+
+    def display_data(self, trans, data, preview=False, filename=None,
+                     to_ext=None, size=None, offset=None, **kwd):
+        """Apparently an old display method, but still gets called.
+
+        This allows us to format the data shown in the central pane via the "eye" icon.
+        """
+        return "This is a BLAST protein database."
