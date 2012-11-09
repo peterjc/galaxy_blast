@@ -41,8 +41,8 @@ However, if you really want to this should work for a manual install. Add
 the following lines to the datatypes_conf.xml file in the Galaxy main folder:
 
    <datatype extension="blastxml" type="galaxy.datatypes.blast:BlastXml" mimetype="application/xml" display_in_upload="true"/>
-   <datatype extension="blastdbn" type="galaxy.datatypes.blast:BlastNucDb" display_in_upload="false"/>
-   <datatype extension="blastdbp" type="galaxy.datatypes.blast:BlastProtDb" display_in_upload="false"/>
+   <datatype extension="blastdbn" type="galaxy.datatypes.blast:BlastNucDb" mimetype="text/html" display_in_upload="false"/>
+   <datatype extension="blastdbp" type="galaxy.datatypes.blast:BlastProtDb" mimetype="text/html" display_in_upload="false"/>
 
 and later in the sniffer section:
 
