@@ -27,7 +27,8 @@ files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
 databases like NR).
 
 You will also need to install 'blast_datatypes' from the Tool Shed. This
-defines the BLAST XML file format ('blastxml').
+defines the BLAST XML file format ('blastxml') and protein and nucleotide
+BLAST databases composite file formats ('blastdbp' and 'blastdbn').
 
 
 History
@@ -42,6 +43,9 @@ v0.0.12 - Implements genetic code option for translation searches.
           e-values
 v0.0.13 - Use the new error handling options in Galaxy (the previously
           bundled hide_stderr.py script is no longer needed).
+v0.0.14 - Support for makeblastdb and blastdbinfo with local BLAST databases
+          in the history (using work from Edward Kirton), requires v0.0.14
+          of the 'blast_datatypes' repository from the Tool Shed.
 
 
 Developers
@@ -80,5 +84,5 @@ OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
 OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 OR PERFORMANCE OF THIS SOFTWARE.
 
-NOTE: This is the licence for the Galaxy Wrapper only. BLAST+ and
+NOTE: This is the licence for the Galaxy Wrapper only. NCBI BLAST+ and
 associated data files are available and licenced separately.
