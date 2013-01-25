@@ -1,7 +1,7 @@
 Galaxy wrappers for NCBI BLAST+ suite
 =====================================
 
-These wrappers are copyright 2010-2012 by Peter Cock, The James Hutton Institute
+These wrappers are copyright 2010-2013 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
@@ -46,6 +46,8 @@ v0.0.13 - Use the new error handling options in Galaxy (the previously
 v0.0.14 - Support for makeblastdb and blastdbinfo with local BLAST databases
           in the history (using work from Edward Kirton), requires v0.0.14
           of the 'blast_datatypes' repository from the Tool Shed.
+v0.0.15 - Stronger warning in help text against searching against subject
+          FASTA files (better looking e-values than you might be expecting).
 
 
 Developers
