@@ -15,6 +15,20 @@ My thanks to Dannon Baker from the Galaxy development team for his assistance
 with this.
 
 
+Automated Installation
+======================
+
+Galaxy should be able to automatically install the dependencies, i.e. the
+'blast_datatypes' repository which defines the BLAST XML file format
+('blastxml') and protein and nucleotide BLAST databases ('blastdbp' and
+'blastdbn').
+
+You must tell Galaxy about any system level BLAST databases using configuration
+files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
+databases like NR), located in the tool-data folder. Sample fils are included
+which explain the tab based format to use.
+
+
 Manual Installation
 ===================
 
@@ -22,13 +36,14 @@ For those not using Galaxy's automated installation from the Tool Shed, put
 the XML and Python files under tools/ncbi_blast_plus and add the XML files
 to your tool_conf.xml as normal.
 
-You must tell Galaxy about any system level BLAST databases using configuration
-files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
-databases like NR).
-
 You will also need to install 'blast_datatypes' from the Tool Shed. This
 defines the BLAST XML file format ('blastxml') and protein and nucleotide
 BLAST databases composite file formats ('blastdbp' and 'blastdbn').
+
+You must tell Galaxy about any system level BLAST databases using configuration
+files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
+databases like NR), located in the tool-data folder. Sample fils are included
+which explain the tab based format to use.
 
 
 History
@@ -48,6 +63,8 @@ v0.0.14 - Support for makeblastdb and blastdbinfo with local BLAST databases
           of the 'blast_datatypes' repository from the Tool Shed.
 v0.0.15 - Stronger warning in help text against searching against subject
           FASTA files (better looking e-values than you might be expecting).
+v0.0.16 - Added repository_dependencies.xml for automates installation of the
+          'blast_datatypes' repository from the Tool Shed.
 
 
 Developers
