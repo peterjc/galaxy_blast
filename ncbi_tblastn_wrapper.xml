@@ -216,7 +216,7 @@ $adv_opts.parse_deflines
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.tabular" ftype="tabular" />
         </test>
         <test>
-            <!-- Same as above, but parse deflines - on BLAST 2.2.25+ makes no difference -->
+            <!-- Same as above, but parse deflines - on BLAST 2.2.25+ - 2.2.27+ makes no difference -->
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
             <param name="db_opts_selector" value="file" />
             <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
