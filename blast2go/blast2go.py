@@ -6,9 +6,9 @@ This script takes exactly three command line arguments:
  * Blast2GO properties filename (settings file)
  * Output tabular filename
 
-Sadly b2g4pipe v2.3.5 cannot cope with current style large BLAST XML
-files (e.g. from BLAST 2.2.25+), so we have to reformat these to
-avoid it crashing with a Java heap space OutOfMemoryError.
+Sadly b2g4pipe (at least v2.3.5 to v2.5.0) cannot cope with current
+style large BLAST XML files (e.g. from BLAST 2.2.25+), so we reformat
+these to avoid it crashing with a Java heap space OutOfMemoryError.
 
 As part of this reformatting, we check for BLASTP or BLASTX output
 (otherwise raise an error), and print the query count.
