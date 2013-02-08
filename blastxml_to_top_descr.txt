@@ -61,7 +61,7 @@ http://bitbucket.org/peterjc/galaxy-central/src/tools
 For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball use
 the following command from the Galaxy root folder:
 
-$ tar -czf blastxml_to_top_descr.tar.gz tools/ncbi_blast_plus/blastxml_to_top_descr.* tools/ncbi_blast_plus/datatypes_conf.xml
+$ tar -czf blastxml_to_top_descr.tar.gz tools/ncbi_blast_plus/blastxml_to_top_descr.* tools/ncbi_blast_plus/tool_dependencies.xml
 
 Check this worked:
 
@@ -69,7 +69,7 @@ $ tar -tzf blastxml_to_top_descr.tar.gz
 tools/ncbi_blast_plus/blastxml_to_top_descr.py
 tools/ncbi_blast_plus/blastxml_to_top_descr.txt
 tools/ncbi_blast_plus/blastxml_to_top_descr.xml
-tools/ncbi_blast_plus/datatypes_conf.xml
+tools/ncbi_blast_plus/tool_dependencies.xml
 
 
 Licence (MIT/BSD style)
