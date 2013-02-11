@@ -64,7 +64,7 @@ path. Currently the unit tests are written using "BLAST 2.2.26+".
 Run the functional tests (adusting the section identifier to match your
 tool_conf.xml.sample file):
 
-./run_functional_tests.sh --sid NCBI_BLAST+-ncbi_blast_plus_tools
+./run_functional_tests.sh -sid NCBI_BLAST+-ncbi_blast_plus_tools
 
 
 History
