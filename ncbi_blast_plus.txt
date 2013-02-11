@@ -34,7 +34,20 @@ Manual Installation
 
 For those not using Galaxy's automated installation from the Tool Shed, put
 the XML and Python files under tools/ncbi_blast_plus and add the XML files
-to your tool_conf.xml as normal.
+to your tool_conf.xml as normal (and do the same in tool_conf.xml.sample
+in order to run the unit tests). For example, use:
+
+  <section name="NCBI BLAST+" id="ncbi_blast_plus_tools">
+    <tool file="ncbi_blast_plus/ncbi_blastn_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_blastp_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_blastx_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_tblastn_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_tblastx_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_makeblastdb.xml" />
+    <tool file="ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_blastdbcmd_info.xml" />
+    <tool file="ncbi_blast_plus/blastxml_to_tabular.xml" />
+  </section>
 
 You will also need to install 'blast_datatypes' from the Tool Shed. This
 defines the BLAST XML file format ('blastxml') and protein and nucleotide
@@ -44,6 +57,14 @@ You must tell Galaxy about any system level BLAST databases using configuration
 files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
 databases like NR), located in the tool-data folder. Sample fils are included
 which explain the tab based format to use.
+
+You must install the NCBI BLAST+ standalone tools somewhere on the system
+path. Currently the unit tests are written using "BLAST 2.2.26+".
+
+Run the functional tests (adusting the section identifier to match your
+tool_conf.xml.sample file):
+
+./run_functional_tests.sh --sid NCBI_BLAST+-ncbi_blast_plus_tools
 
 
 History
