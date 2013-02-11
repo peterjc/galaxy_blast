@@ -1,0 +1,90 @@
+<tool id="ncbi_dustmasker_wrapper" name="NCBI DustMasker" version="0.0.1">
+    <!-- Draft dustmasker wrapper from Nicola Soranzo
+         TODO: datatype definitions -->
+    <description>masks low complexity regions</description>
+    <requirements>
+        <requirement type="binary">dustmasker</requirement>
+    </requirements>
+    <version_command>dustmasker -version-full</version_command>
+    <command>
+## The command is a Cheetah template which allows some Python based syntax.
+## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
+dustmasker
+#if $db_opts.db_opts_selector == "db":
+  -in "${db_opts.database.fields.path}" -infmt blastdb
+#elif $db_opts.db_opts_selector == "histdb":
+  -in "${os.path.join($db_opts.histdb.extra_files_path, 'blastdb')}" -infmt blastdb
+#else:
+  -in $fastafile -infmt fasta
+#end if
+ -out $outfile -window $window -level $level -linker $linker -outfmt $outformat</command>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+    <inputs>
+        <conditional name="db_opts">
+            <param name="db_opts_selector" type="select" label="Nucleotide database/sequences">
+                <option value="db" selected="true">BLAST database</option>
+                <option value="histdb">BLAST database from your history</option>
+                <option value="file">FASTA file from your history</option>
+            </param>
+            <when value="db">
+                <param name="database" type="select" label="Nucleotide BLAST database">
+                    <options from_file="blastdb.loc">
+                        <column name="value" index="0" />
+                        <column name="name" index="1" />
+                        <column name="path" index="2" />
+                    </options>
+                </param>
+            </when>
+            <when value="histdb">
+                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+            </when>
+            <when value="file">
+                <param name="fastafile" type="data" format="fasta" label="FASTA file"/> 
+            </when>
+        </conditional>
+        <param name="window" type="integer" value="64" label="DUST window length" />
+        <param name="level" type="integer" value="20" label="DUST level" help="Score threshold for subwindows" />
+        <param name="linker" type="integer" value="1" label="DUST linker" help="How close masked intervals should be to get merged together" />
+        <param name="outformat" type="select" label="Output format">
+<!-- acclist and maskinfo_xml are listed as possible output formats in "dustmasker -help", but are not recognized because of some dustmasker bugs. Tested with NCBI BLAST 2.2.26+ and 2.2.27+ -->
+<!--            <option value="acclist">acclist</option>-->
+            <option value="fasta">FASTA</option>
+            <option value="interval" selected="true">interval</option>
+            <option value="maskinfo_asn1_bin">maskinfo_asn1_bin</option>
+            <option value="maskinfo_asn1_text">maskinfo_asn1_text</option>
+<!--            <option value="maskinfo_xml">maskinfo_xml</option>-->
+            <option value="seqloc_asn1_bin">seqloc_asn1_bin</option>
+            <option value="seqloc_asn1_text">seqloc_asn1_text</option>
+            <option value="seqloc_xml">seqloc_xml</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="outfile" format="interval" label="DUST Masked File">
+            <change_format>
+                <when input="outformat" value="acclist" format="acclist" />
+                <when input="outformat" value="fasta" format="fasta" />
+                <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo_asn1_bin" />
+                <when input="outformat" value="maskinfo_asn1_text" format="maskinfo_asn1_text" />
+                <when input="outformat" value="maskinfo_xml" format="xml" />
+                <when input="outformat" value="seqloc_asn1_bin" format="seqloc_asn1_bin" />
+                <when input="outformat" value="seqloc_asn1_text" format="seqloc_asn1_text" />
+                <when input="outformat" value="seqloc_xml" format="xml" />
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+**What it does**
+
+This tool identifies and masks out low complexity regions of a nucleotide database (or sequences in FASTA format) by using the symmetric DUST algorithm.
+
+More information about DustMasker can be found in the `BLAST Command Line Applications User Manual`_.
+
+.. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+    </help>
+</tool>
