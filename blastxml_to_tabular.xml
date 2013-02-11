@@ -1,8 +1,13 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.0.8">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.0.9">
     <description>Convert BLAST XML output to tabular</description>
     <command interpreter="python">
       blastxml_to_tabular.py $blastxml_file $tabular_file $out_format
     </command>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <inputs>
         <param name="blastxml_file" type="data" format="blastxml" label="BLAST results as XML"/> 
         <param name="out_format" type="select" label="Output format">
