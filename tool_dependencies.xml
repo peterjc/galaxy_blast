@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="blast+" version="2.2.26+">
+        <install version="1.0">
+            <actions>
+                <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-src.tar.gz</action>
+                <action type="shell_command">cd c++ &amp;&amp; ./configure --prefix=$INSTALL_DIR &amp;&amp; make &amp;&amp; make install</action>
+                <action type="set_environment">
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR/bin</environment_variable>
+                </action>
+            </actions>
+        </install>
+        <readme>
+These links provide information for building the NCBI Blast+ package in most environments.
+
+System requirements
+http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download
+        </readme>
+    </package>
+</tool_dependency>
+
