@@ -62,11 +62,10 @@ tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.html
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.tabular
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.xml
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin_ext.tabular
-tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin_parse_deflines.tabular
 
 #Zip the tar file
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 41 files, have:"
+echo "Expect a tar-ball 40 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
