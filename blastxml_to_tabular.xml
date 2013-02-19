@@ -1,4 +1,4 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.0.9">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.0.10">
     <description>Convert BLAST XML output to tabular</description>
     <command interpreter="python">
       blastxml_to_tabular.py $blastxml_file $tabular_file $out_format
@@ -11,8 +11,8 @@
     <inputs>
         <param name="blastxml_file" type="data" format="blastxml" label="BLAST results as XML"/> 
         <param name="out_format" type="select" label="Output format">
-            <option value="std" selected="True">Tabular (standard 12 columns)</option>
-            <option value="ext">Tabular (extended 24 columns)</option>
+            <option value="std">Tabular (standard 12 columns)</option>
+            <option value="ext" selected="True">Tabular (extended 24 columns)</option>
         </param>
     </inputs>
     <outputs>
@@ -79,7 +79,7 @@ formats including tabular and a more detailed XML format. A complex workflow
 may need both the XML and the tabular output - but running BLAST twice is
 slow and wasteful.
 
-This tool takes the BLAST XML output and by default converts it into the
+This tool takes the BLAST XML output and can convert it into the
 standard 12 column tabular equivalent:
 
 ====== ========= ============================================
@@ -104,7 +104,7 @@ but this takes longer to calculate. Most (but not all) of these columns are
 included by selecting the extended tabular output. The extra columns are
 included *after* the standard 12 columns. This is so that you can write
 workflow filtering steps that accept either the 12 or 22 column tabular
-BLAST output.
+BLAST output. This tool now uses this extended 24 column output by default.
 
 ====== ============= ===========================================
 Column NCBI name     Description
@@ -126,7 +126,7 @@ Column NCBI name     Description
 Beware that the XML file (and thus the conversion) and the tabular output
 direct from BLAST+ may differ in the presence of XXXX masking on regions
 low complexity (columns 21 and 22), and thus also calculated figures like
-the percentage idenity (column 3).
+the percentage identity (column 3).
 
     </help>
 </tool>
