@@ -1,4 +1,4 @@
-<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="0.0.15">
+<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="0.0.17">
     <description>Search translated nucleotide database with translated nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
@@ -103,8 +103,8 @@ $adv_opts.parse_deflines
         </param>
         <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
         <param name="out_format" type="select" label="Output format">
-            <option value="6" selected="True">Tabular (standard 12 columns)</option>
-            <option value="ext">Tabular (extended 24 columns)</option>
+            <option value="6">Tabular (standard 12 columns)</option>
+            <option value="ext" selected="True">Tabular (extended 24 columns)</option>
             <option value="5">BLAST XML</option>
             <option value="0">Pairwise text</option>
             <option value="0 -html">Pairwise HTML</option>
@@ -241,7 +241,7 @@ but this takes longer to calculate. Most (but not all) of these columns are
 included by selecting the extended tabular output. The extra columns are
 included *after* the standard 12 columns. This is so that you can write
 workflow filtering steps that accept either the 12 or 24 column tabular
-BLAST output.
+BLAST output. Galaxy now uses this extended 24 column output by default.
 
 ====== ============= ===========================================
 Column NCBI name     Description

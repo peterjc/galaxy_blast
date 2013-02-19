@@ -86,6 +86,9 @@ v0.0.15 - Stronger warning in help text against searching against subject
           FASTA files (better looking e-values than you might be expecting).
 v0.0.16 - Added repository_dependencies.xml for automates installation of the
           'blast_datatypes' repository from the Tool Shed.
+v0.0.17 - The BLAST+ search tools now default to extended tabular output
+          (all too often our users where having to re-run searches just to
+          get one of the missing columns like query or subject length)
 
 
 Developers
