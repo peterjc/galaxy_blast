@@ -15,9 +15,10 @@ dustmasker
 #elif $db_opts.db_opts_selector == "histdb":
   -in "${os.path.join($db_opts.histdb.extra_files_path, 'blastdb')}" -infmt blastdb
 #else:
-  -in $fastafile -infmt fasta
+  -in "$fastafile" -infmt fasta
 #end if
- -out $outfile -window $window -level $level -linker $linker -outfmt $outformat</command>
+-out "$outfile"
+-window $window -level $level -linker $linker -outfmt $outformat</command>
     <stdio>
         <!-- Anything other than zero is an error -->
         <exit_code range="1:" />

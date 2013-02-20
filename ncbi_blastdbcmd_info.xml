@@ -1,7 +1,7 @@
-<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.2">
+<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.3">
     <description>Show BLAST database information from blastdbcmd</description>
     <command>
-blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out $info
+blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out "$info"
     </command>
     <stdio>
         <!-- Anything other than zero is an error -->

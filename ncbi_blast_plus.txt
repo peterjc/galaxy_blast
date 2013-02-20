@@ -89,6 +89,8 @@ v0.0.16 - Added repository_dependencies.xml for automates installation of the
 v0.0.17 - The BLAST+ search tools now default to extended tabular output
           (all too often our users where having to re-run searches just to
           get one of the missing columns like query or subject length)
+v0.0.18 - Defensive quoting of filenames in case of spaces (where possible,
+          BLAST+ handling of some mult-file arguments is problematic).
 
 
 Developers

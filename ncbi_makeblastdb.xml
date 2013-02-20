@@ -1,8 +1,8 @@
-<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.1">
+<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.2">
 <description>Make BLAST database</description>
 <version_command>makeblastdb -version</version_command>
 <command>
-makeblastdb -out ${os.path.join($outfile.extra_files_path,'blastdb')}
+makeblastdb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
 $parse_seqids
 $hash_index
 ## Single call to -in with multiple filenames space separated with outer quotes
