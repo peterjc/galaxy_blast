@@ -51,6 +51,7 @@ v0.0.1 - Initial version.
 v0.0.2 - Since BLAST+ was moved out of the Galaxy core, now have a dependency
          on the 'blast_datatypes' repository in the Tool Shed.
 v0.0.3 - Include the test files required to run the unit tests
+v0.0.4 - Quote filenames in case they contain spaces (internal change)
 
 
 Developers
