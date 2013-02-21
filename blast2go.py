@@ -29,12 +29,12 @@ blast2go_jar = "/opt/b2g4pipe_v2.5/blast2go.jar"
 
 
 def stop_err(msg, error_level=1):
-   """Print error message to stdout and quit with given error level."""
-   sys.stderr.write("%s\n" % msg)
-   sys.exit(error_level)
+    """Print error message to stdout and quit with given error level."""
+    sys.stderr.write("%s\n" % msg)
+    sys.exit(error_level)
 
 if len(sys.argv) != 4:
-   stop_err("Require three arguments: XML filename, properties filename, output tabular filename")
+    stop_err("Require three arguments: XML filename, properties filename, output tabular filename")
 
 xml_file, prop_file, tabular_file = sys.argv[1:]
 
@@ -153,7 +153,7 @@ os.remove(tmp_xml_file)
 
 out_file = tabular_file + ".annot"
 if not os.path.isfile(out_file):
-   stop_err("ERROR - No output annotation file from Blast2GO")
+    stop_err("ERROR - No output annotation file from Blast2GO")
 
 #Move the output file where Galaxy expects it to be:
 os.rename(out_file, tabular_file)
