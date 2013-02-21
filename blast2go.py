@@ -117,15 +117,26 @@ def run(cmd):
     #Use .communicate as can get deadlocks with .wait(),
     stdout, stderr = child.communicate()
     return_code = child.returncode
-    #For diagnostics within Galaxy,
+
+    #keep stdout minimal as shown prominently in Galaxy
+    #Record it in case a silent error needs diagnosis
     if stdout:
-        #Galaxy uses stdout for the history info (Blast2GO is very noisy)
         sys.stderr.write("Standard out:\n%s\n\n" % stdout)
     if stderr:
         sys.stderr.write("Standard error:\n%s\n\n" % stderr)
+
+    error_msg = None
     if return_code:
         cmd_str = " ".join(cmd)
-        stop_err("Return code %i from command:\n%s" % (return_code, cmd_str))
+        error_msg = "Return code %i from command:\n%s" % (return_code, cmd_str)
+    elif "Database or network connection (timeout) error" in stdout+stderr:
+        error_msg = "Database or network connection (timeout) error"
+    elif "Annotation of 0 seqs with 0 annots finished." in stdout+stderr:
+        error_msg = "No sequences processed!"
+
+    if error_msg:
+        print error_msg
+        stop_err(error_msg)
 
 
 blast2go_classpath = os.path.split(blast2go_jar)[0]
