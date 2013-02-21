@@ -175,18 +175,24 @@ class BlastNucDb( _BlastDb, Data ):
     """Class for nucleotide BLAST database files."""
     file_ext = 'blastdbn'
     composite_type ='basic'
-    MetadataElement( readonly=True, optional=True, visible=False, no_value=0 )
 
-    def __init__(self,**kwd):
+    def __init__(self, **kwd):
         Data.__init__(self, **kwd)
-        self.add_composite_file('blastdb.nhr')
-        self.add_composite_file('blastdb.nin')
-        self.add_composite_file('blastdb.nsq')
-        self.add_composite_file('blastdb.nhd', optional=True)
-        self.add_composite_file('blastdb.nsi', optional=True)
-        self.add_composite_file('blastdb.nhi', optional=True)
-        self.add_composite_file('blastdb.nog', optional=True)
-        self.add_composite_file('blastdb.nsd', optional=True)
+        self.add_composite_file('blastdb.nhr', is_binary=True) # sequence headers
+        self.add_composite_file('blastdb.nin', is_binary=True) # index file
+        self.add_composite_file('blastdb.nsq', is_binary=True) # nucleotide sequences
+        self.add_composite_file('blastdb.nal', is_binary=False, optional=True) # alias ( -gi_mask option of makeblastdb)
+        self.add_composite_file('blastdb.nhd', is_binary=True, optional=True) # sorted sequence hash values ( -hash_index option of makeblastdb)
+        self.add_composite_file('blastdb.nhi', is_binary=True, optional=True) # index of sequence hash values ( -hash_index option of makeblastdb)
+        self.add_composite_file('blastdb.nnd', is_binary=True, optional=True) # sorted GI values ( -parse_seqids option of makeblastdb and gi present in the description lines)
+        self.add_composite_file('blastdb.nni', is_binary=True, optional=True) # index of GI values ( -parse_seqids option of makeblastdb and gi present in the description lines)
+        self.add_composite_file('blastdb.nog', is_binary=True, optional=True) # OID->GI lookup file ( -hash_index or -parse_seqids option of makeblastdb)
+        self.add_composite_file('blastdb.nsd', is_binary=True, optional=True) # sorted sequence accession values ( -hash_index or -parse_seqids option of makeblastdb)
+        self.add_composite_file('blastdb.nsi', is_binary=True, optional=True) # index of sequence accession values ( -hash_index or -parse_seqids option of makeblastdb)
+#        self.add_composite_file('blastdb.naa', is_binary=True, optional=True) # index of a WriteDB column for e.g. mask data
+#        self.add_composite_file('blastdb.nab', is_binary=True, optional=True) # data of a WriteDB column
+#        self.add_composite_file('blastdb.nac', is_binary=True, optional=True) # multiple byte order for a WriteDB column
+# The last 3 lines should be repeated for each WriteDB column, with filename extensions like ('.nba', '.nbb', '.nbc'), ('.nca', '.ncb', '.ncc'), etc.
 
     def display_data(self, trans, data, preview=False, filename=None,
                      to_ext=None, size=None, offset=None, **kwd):
@@ -201,21 +207,24 @@ class BlastProtDb( _BlastDb, Data ):
     """Class for protein BLAST database files."""
     file_ext = 'blastdbp'
     composite_type ='basic'
-    MetadataElement( readonly=True, optional=True, visible=False, no_value=0 )
 
-    def __init__(self,**kwd):
+    def __init__(self, **kwd):
         Data.__init__(self, **kwd)
-        self.add_composite_file('blastdb.phr')
-        self.add_composite_file('blastdb.pin')
-        self.add_composite_file('blastdb.psq')
-        self.add_composite_file('blastdb.pnd', optional=True)
-        self.add_composite_file('blastdb.pni', optional=True)
-        self.add_composite_file('blastdb.psd', optional=True)
-        self.add_composite_file('blastdb.psi', optional=True)
-        self.add_composite_file('blastdb.psq', optional=True)
-        self.add_composite_file('blastdb.phd', optional=True)
-        self.add_composite_file('blastdb.phi', optional=True)
-        self.add_composite_file('blastdb.pog', optional=True)
+# Component file comments are as in BlastNucDb except where noted
+        self.add_composite_file('blastdb.phr', is_binary=True)
+        self.add_composite_file('blastdb.pin', is_binary=True)
+        self.add_composite_file('blastdb.psq', is_binary=True) # protein sequences
+        self.add_composite_file('blastdb.phd', is_binary=True, optional=True)
+        self.add_composite_file('blastdb.phi', is_binary=True, optional=True)
+        self.add_composite_file('blastdb.pnd', is_binary=True, optional=True)
+        self.add_composite_file('blastdb.pni', is_binary=True, optional=True)
+        self.add_composite_file('blastdb.pog', is_binary=True, optional=True)
+        self.add_composite_file('blastdb.psd', is_binary=True, optional=True)
+        self.add_composite_file('blastdb.psi', is_binary=True, optional=True)
+#        self.add_composite_file('blastdb.paa', is_binary=True, optional=True)
+#        self.add_composite_file('blastdb.pab', is_binary=True, optional=True)
+#        self.add_composite_file('blastdb.pac', is_binary=True, optional=True)
+# The last 3 lines should be repeated for each WriteDB column, with filename extensions like ('.pba', '.pbb', '.pbc'), ('.pca', '.pcb', '.pcc'), etc.
 
     def display_data(self, trans, data, preview=False, filename=None,
                      to_ext=None, size=None, offset=None, **kwd):
