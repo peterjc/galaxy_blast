@@ -24,8 +24,8 @@ import os
 import subprocess
 
 #You may need to edit this to match your local setup,
-#blast2go_jar = "/opt/b2g4pipe/blast2go.jar"
-blast2go_jar = "/opt/b2g4pipe_v2.5/blast2go.jar"
+blast2go_jar = "/opt/b2g4pipe/blast2go.jar"
+#blast2go_jar = "/opt/b2g4pipe_v2.5/blast2go.jar"
 
 
 def stop_err(msg, error_level=1):
