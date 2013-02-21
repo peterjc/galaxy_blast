@@ -5,7 +5,7 @@ This wrapper is copyright 2011-2013 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
-This is a wrapper for the command line Java tool b2g4pipe v2.3.5 or v2.5,
+This is a wrapper for the command line Java tool b2g4pipe v2.5,
 Blast2GO for pipelines. See:
 
 S. Götz et al.
@@ -71,9 +71,9 @@ offered to the user. Copy file blast2go.loc.sample to tool-data/blast2go.loc
 under the Galaxy folder and edit this to match your installation. This must
 be plain text, tab separated, with three columns:
 
-(1) ID for the setup, e.g. Spain_2010_May
-(2) Description for the setup, e.g. Database in Spain (May 2010)
-(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2010_May.properties
+(1) ID for the setup, e.g. Spain_2012_August
+(2) Description for the setup, e.g. Database in Spain (August 2012)
+(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2012_August.properties
 
 Avoid including "Blast2GO" in the description (column 2) as this text will be
 included in the automatically assigned output dataset name. The blast2go.loc
@@ -98,9 +98,13 @@ v0.0.3 - Include sample loc file, tool-data/blast2go.loc.sample
 v0.0.4 - Include repository_dependencies.xml file for 'blastxml' format
          (previously included in the core Galaxy installation)
 v0.0.5 - Quote arguments in case of spaces in filenames (internal change)
-v0.0.6 - Support for b2g4pipe v2.5 which must be invoked with a class path and
-         es.blast2go.prog.B2GAnnotPipe rather then simply calling the jar file.
-       - Catch a few error messages and treating them explicitly as errors.
+       - Last release supporting b2g4pipe v2.3.5
+v0.0.6 - Support for b2g4pipe v2.5 instead of v2.3.5
+          - Now invoked with a class path and es.blast2go.prog.B2GAnnotPipe
+            rather then simply calling the jar file
+          - Now uses the switch -annot instead of -a (this change breaks
+            support for b2g4pipe v2.3.5 unfortunately)
+       - Catch a few error messages and treat them explicitly as errors.
 
 
 Developers

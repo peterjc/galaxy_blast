@@ -24,8 +24,8 @@ import os
 import subprocess
 
 #You may need to edit this to match your local setup,
-blast2go_jar = "/opt/b2g4pipe/blast2go.jar"
-#blast2go_jar = "/opt/b2g4pipe_v2.5/blast2go.jar"
+#blast2go_jar = "/opt/b2g4pipe/blast2go.jar"
+blast2go_jar = "/opt/b2g4pipe_v2.5/blast2go.jar"
 
 
 def stop_err(msg, error_level=1):
@@ -153,7 +153,8 @@ cmd = ["java", "-cp", blast2go_classpath, "es.blast2go.prog.B2GAnnotPipe",
        "-in", tmp_xml_file,
        "-prop", prop_file,
        "-out", tabular_file, #Used as base name for output files
-       "-a", # Generate *.annot tabular file
+       "-annot", # Generate *.annot tabular file
+       #NOTE: For v2.3.5 must use -a, for v2.5 must use -annot instead
        #"-img", # Generate images, feature not in v2.3.5
        ]
 #print " ".join(cmd)
