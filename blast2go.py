@@ -119,10 +119,10 @@ def run(cmd):
     return_code = child.returncode
     #For diagnostics within Galaxy,
     if stdout:
-       sys.stdout.write(stdout)
+        #Galaxy uses stdout for the history info (Blast2GO is very noisy)
+        sys.stderr.write("Standard out:\n%s\n\n" % stdout)
     if stderr:
-       sys.stderr.write(stderr)
-
+        sys.stderr.write("Standard error:\n%s\n\n" % stderr)
     if return_code:
         cmd_str = " ".join(cmd)
         stop_err("Return code %i from command:\n%s" % (return_code, cmd_str))
