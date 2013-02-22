@@ -1,10 +1,13 @@
 #!/usr/bin/env python
-"""Galaxy wrapper for Blast2GO for pipelines, b2g4pipe v2.3.5.
+"""Galaxy wrapper for Blast2GO for pipelines, b2g4pipe v2.5.
 
 This script takes exactly three command line arguments:
  * Input BLAST XML filename
  * Blast2GO properties filename (settings file)
  * Output tabular filename
+
+The properties filename can be a fully qualified path, but if not
+this will look next to the blast2go.jar file.
 
 Sadly b2g4pipe (at least v2.3.5 to v2.5.0) cannot cope with current
 style large BLAST XML files (e.g. from BLAST 2.2.25+), so we reformat
@@ -21,27 +24,37 @@ import os
 import subprocess
 
 #You may need to edit this to match your local setup,
-blast2go_jar = "/opt/b2g4pipe/blast2go.jar"
+#blast2go_jar = "/opt/b2g4pipe/blast2go.jar"
+blast2go_jar = "/opt/b2g4pipe_v2.5/blast2go.jar"
 
 
 def stop_err(msg, error_level=1):
-   """Print error message to stdout and quit with given error level."""
-   sys.stderr.write("%s\n" % msg)
-   sys.exit(error_level)
+    """Print error message to stdout and quit with given error level."""
+    sys.stderr.write("%s\n" % msg)
+    sys.exit(error_level)
 
 if len(sys.argv) != 4:
-   stop_err("Require three arguments: XML filename, properties filename, output tabular filename")
+    stop_err("Require three arguments: XML filename, properties filename, output tabular filename")
 
 xml_file, prop_file, tabular_file = sys.argv[1:]
 
 #We should have write access here:
 tmp_xml_file = tabular_file + ".tmp.xml"
 
+if not os.path.isfile(blast2go_jar):
+    stop_err("Blast2GO JAR file not found: %s" % blast2go_jar)
+
 if not os.path.isfile(xml_file):
-   stop_err("Input BLAST XML file not found: %s" % xml_file)
+    stop_err("Input BLAST XML file not found: %s" % xml_file)
 
 if not os.path.isfile(prop_file):
-   stop_err("Blast2GO configuration file not found: %s" % prop_file)
+    tmp = os.path.join(os.path.split(blast2go_jar)[0], prop_file)
+    if os.path.isfile(tmp):
+        #The properties file seems to have been given relative to the JAR
+        prop_file = tmp
+    else:
+        stop_err("Blast2GO configuration file not found: %s" % prop_file)
+    del tmp
 
 def prepare_xml(original_xml, mangled_xml):
     """Reformat BLAST XML to suit Blast2GO.
@@ -104,19 +117,31 @@ def run(cmd):
     #Use .communicate as can get deadlocks with .wait(),
     stdout, stderr = child.communicate()
     return_code = child.returncode
+
+    #keep stdout minimal as shown prominently in Galaxy
+    #Record it in case a silent error needs diagnosis
+    if stdout:
+        sys.stderr.write("Standard out:\n%s\n\n" % stdout)
+    if stderr:
+        sys.stderr.write("Standard error:\n%s\n\n" % stderr)
+
+    error_msg = None
     if return_code:
         cmd_str = " ".join(cmd)
-        if stderr and stdout:
-            stop_err("Return code %i from command:\n%s\n\n%s\n\n%s" % (return_code, cmd_str, stdout, stderr))
-        else:
-            stop_err("Return code %i from command:\n%s\n%s" % (return_code, cmd_str, stderr))
-    #For early diagnostics,
-    else:
-       print stdout
-       print stderr
+        error_msg = "Return code %i from command:\n%s" % (return_code, cmd_str)
+    elif "Database or network connection (timeout) error" in stdout+stderr:
+        error_msg = "Database or network connection (timeout) error"
+    elif "Annotation of 0 seqs with 0 annots finished." in stdout+stderr:
+        error_msg = "No sequences processed!"
 
-if not os.path.isfile(blast2go_jar):
-   stop_err("Blast2GO JAR file not found: %s" % blast2go_jar)
+    if error_msg:
+        print error_msg
+        stop_err(error_msg)
+
+
+blast2go_classpath = os.path.split(blast2go_jar)[0]
+assert os.path.isdir(blast2go_classpath)
+blast2go_classpath = "%s/*:%s/ext/*:" % (blast2go_classpath, blast2go_classpath)
 
 prepare_xml(xml_file, tmp_xml_file)
 #print "XML file prepared for Blast2GO"
@@ -124,11 +149,12 @@ prepare_xml(xml_file, tmp_xml_file)
 #We will have write access wherever the output should be,
 #so we'll ask Blast2GO to use that as the stem for its output
 #(it will append .annot to the filename)
-cmd = ["java", "-jar", blast2go_jar,
+cmd = ["java", "-cp", blast2go_classpath, "es.blast2go.prog.B2GAnnotPipe",
        "-in", tmp_xml_file,
        "-prop", prop_file,
        "-out", tabular_file, #Used as base name for output files
-       "-a", # Generate *.annot tabular file
+       "-annot", # Generate *.annot tabular file
+       #NOTE: For v2.3.5 must use -a, for v2.5 must use -annot instead
        #"-img", # Generate images, feature not in v2.3.5
        ]
 #print " ".join(cmd)
@@ -139,7 +165,7 @@ os.remove(tmp_xml_file)
 
 out_file = tabular_file + ".annot"
 if not os.path.isfile(out_file):
-   stop_err("ERROR - No output annotation file from Blast2GO")
+    stop_err("ERROR - No output annotation file from Blast2GO")
 
 #Move the output file where Galaxy expects it to be:
 os.rename(out_file, tabular_file)

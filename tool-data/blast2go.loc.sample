@@ -11,6 +11,14 @@
 # public database they host in Spain. We also strongly recommend
 # configuring a local Blast2GO database.
 #
-Local_2011_May	Local database (May 2011)	/opt/b2g4pipe/Local_2011_May.properties
-Spain_2010_May	Database in Spain (May 2010)	/opt/b2g4pipe/Spain_2010_May.properties
-Spain_2011_June	Database in Spain (June 2011)	/opt/b2g4pipe/Spain_2011_June.properties
+# The property filenames can be fullied qualified paths like
+# /opt/b2g4pipe/Spain_2012_August.properties or provided they are
+# in the same folder as the Blast2GO JAR file, just the filename
+# like Spain_2012_August.properties instead. This is intended to
+# make migrating between versions of Blast2GO easier (as the
+# property files change between versions), and simpler overall.
+#
+Local_2011_May	Local database (May 2011)	Local_2011_May.properties
+Spain_2010_May	Database in Spain (May 2010)	Spain_2010_May.properties
+Spain_2011_June	Database in Spain (June 2011)	Spain_2011_June.properties
+Spain_2012_August	Database in Spain (August 2012)	Spain_2012_August.properties

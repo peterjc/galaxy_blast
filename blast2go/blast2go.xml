@@ -1,8 +1,13 @@
-<tool id="blast2go" name="Blast2GO" version="0.0.5">
+<tool id="blast2go" name="Blast2GO" version="0.0.6">
     <description>Maps BLAST results to GO annotation terms</description>
     <command interpreter="python">
         blast2go.py "${xml}" "${prop.fields.path}" "${tab}"
     </command>
+    <stdio>
+        <!-- Wrapper ensures anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <inputs>
         <param name="xml" type="data" format="blastxml" label="BLAST XML results" description="You must have run BLAST against a protein database such as the NCBI non-redundant (NR) database. Use BLASTX for nucleotide queries, BLASTP for protein queries." /> 
         <param name="prop" type="select" label="Blast2GO settings" description="One or more configurations can be setup, such as using the Blast2GO team's server in Spain, or a local database.">

@@ -1,11 +1,11 @@
 Galaxy wrapper for Blast2GO for pipelines, b2g4pipe
 ===================================================
 
-This wrapper is copyright 2011 by Peter Cock, The James Hutton Institute
+This wrapper is copyright 2011-2013 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
-This is a wrapper for the command line Java tool b2g4pipe v2.3.5,
+This is a wrapper for the command line Java tool b2g4pipe v2.5,
 Blast2GO for pipelines. See:
 
 S. Götz et al.
@@ -32,19 +32,21 @@ Installation
 
 The main dependency is b2g4pipe which must be installed manually. Also we
 strongly recommend installing a local Blast2GO database as well (see the
-intructions below about the blast2go.loc file).
+intructions below about the blast2go.loc file). At the time of writing,
+the current version is b2g4pipe v2.5 which is available here:
+
+http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
 
 You can change the path by editing the definition near the start of the Python
 script blast2go.py, but by default it expects the underlying tool to be here:
 
-/opt/b2g4pipe/blast2go.jar
-
+/opt/b2g4pipe_v2.5/blast2go.jar
 
 Installation of the Galaxy wrapper should work automatically via the Galaxy
 Tool Shed, including the dependency on 'blast_datatypes' for the 'blastxml'
 file format definition. To install the wrapper manually, first install
 'blast_datatypes', then copy or move the following files under the Galaxy
-tools folder, e.g. in the tools/ncbi_blast_blast folder:
+tools folder, e.g. in a tools/blast2go/ folder:
 
 * blast2go.xml (the Galaxy tool definition)
 * blast2go.py (the Python wrapper script)
@@ -54,23 +56,24 @@ For a manual installation of the wrapper you will also need to modify the
 tools_conf.xml file to tell Galaxy to offer the tool. We suggest putting
 it next to the NCBI BLAST+ wrappers. Just add the line:
 
-<tool file="ncbi_blast_plus/blast2go.xml" />
+<tool file="blast2go/blast2go.xml" />
 
 As part of setting up b2g4pipe you will need to setup one or more Blast2GO
 property files which tell the tool which database to use etc. The example
-b2gPipe.properties provided with b2g4pipe v2.3.5 is out of date, with the
-latest server IP address and database name given on the Blast2GO website.
-These files can be anywhere accessable to the Galaxy Unix user, we put them
-under /opt/b2g4pipe with the JAR file etc.
+b2gPipe.properties provided with b2g4pipe is often out of date. The current
+server IP address and database name may given on the Blast2GO website, or
+can be found by running the latest GUI version via Java web-start, and
+looking under the tools/options menu. These property files can be anywhere
+accessable to the Galaxy Unix user, we put them with the JAR file etc.
 
 You must tell Galaxy about these Blast2GO property files so that they can be
 offered to the user. Copy file blast2go.loc.sample to tool-data/blast2go.loc
 under the Galaxy folder and edit this to match your installation. This must
 be plain text, tab separated, with three columns:
 
-(1) ID for the setup, e.g. Spain_2010_May
-(2) Description for the setup, e.g. Database in Spain (May 2010)
-(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2010_May.properties
+(1) ID for the setup, e.g. Spain_2012_August
+(2) Description for the setup, e.g. Database in Spain (August 2012)
+(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2012_August.properties
 
 Avoid including "Blast2GO" in the description (column 2) as this text will be
 included in the automatically assigned output dataset name. The blast2go.loc
@@ -95,6 +98,13 @@ v0.0.3 - Include sample loc file, tool-data/blast2go.loc.sample
 v0.0.4 - Include repository_dependencies.xml file for 'blastxml' format
          (previously included in the core Galaxy installation)
 v0.0.5 - Quote arguments in case of spaces in filenames (internal change)
+       - Last release supporting b2g4pipe v2.3.5
+v0.0.6 - Support for b2g4pipe v2.5 instead of v2.3.5
+          - Now invoked with a class path and es.blast2go.prog.B2GAnnotPipe
+            rather then simply calling the jar file
+          - Now uses the switch -annot instead of -a (this change breaks
+            support for b2g4pipe v2.3.5 unfortunately)
+       - Catch a few error messages and treat them explicitly as errors.
 
 
 Developers
@@ -106,15 +116,15 @@ http://bitbucket.org/peterjc/galaxy-central/src/tools
 For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder:
 
-$ tar -czf blast2go.tar.gz tools/ncbi_blast_plus/blast2go.xml tools/ncbi_blast_plus/blast2go.py tools/ncbi_blast_plus/blast2go.txt tools/ncbi_blast_plus/repository_dependencies.xml tool-data/blast2go.loc.sample
+$ tar -czf blast2go.tar.gz tools/blast2go/blast2go.xml tools/blast2go/blast2go.py tools/blast2go/blast2go.txt tools/blast2go/repository_dependencies.xml tool-data/blast2go.loc.sample
 
 Check this worked:
 
 $ tar -tzf blast2go.tar.gz
-tools/ncbi_blast_plus/blast2go.xml
-tools/ncbi_blast_plus/blast2go.py
-tools/ncbi_blast_plus/blast2go.txt
-tools/ncbi_blast_plus/repository_dependencies.xml
+tools/blast2go/blast2go.xml
+tools/blast2go/blast2go.py
+tools/blast2go/blast2go.txt
+tools/blast2go/repository_dependencies.xml
 tool-data/blast2go.loc.sample
 
 
