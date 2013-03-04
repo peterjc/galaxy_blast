@@ -51,6 +51,12 @@ def load_go_mapping(rdf_xml):
             thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#GO:')+54:]
             thing = thing[:thing.find('"')]
             is_a[go] = thing
+        elif '<go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_' in line and go:
+            #i.e. <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_molecular_function" />
+            #or   <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_biological_process" />
+            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#')+54:]
+            thing = thing[:thing.find('"')]
+            is_a[go] = thing
         elif "</go:term>" in line:
             go = None
     h.close()
@@ -60,13 +66,13 @@ def load_go_mapping(rdf_xml):
         x = alias.get(go, go)
         term_class = "??"
         while x:
-            if x == "GO:0008150":
+            if x in ["GO:0008150", "obsolete_biological_process"]:
                 term_class = "BP"
                 break
-            elif x == "GO:0005575":
+            elif x in ["GO:0005575", "obsolete_cellular_component"]:
                 term_class = "CC"
                 break
-            elif x == "GO:0003674":
+            elif x in ["GO:0003674", "obsolete_molecular_function"]:
                 term_class = "MF"
                 break
             try:
