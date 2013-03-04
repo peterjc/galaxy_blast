@@ -16,6 +16,22 @@ def gzip_open(filename, mode="rb"):
         sys.stderr.write("%s isn't compressed\n" % filename)
         return h
 
+
+def get_term_class(go, alias, is_a):
+    x = alias.get(go, go)
+    while x:
+        if x in ["GO:0008150", "obsolete_biological_process"]:
+            return "BP"
+        elif x in ["GO:0005575", "obsolete_cellular_component"]:
+            return "CC"
+        elif x in ["GO:0003674", "obsolete_molecular_function"]:
+            return "MF"
+        try:
+            x = is_a[x]
+        except KeyError:
+            return "??"
+
+
 def load_go_mapping(rdf_xml):
     """Quick and dirty GO RDF-XML parser."""
     sys.stderr.write("Loading %s\n" % rdf_xml)
@@ -65,23 +81,7 @@ def load_go_mapping(rdf_xml):
     if "all" in names: del names["all"]
 
     for go in names:
-        x = alias.get(go, go)
-        term_class = "??"
-        while x:
-            if x in ["GO:0008150", "obsolete_biological_process"]:
-                term_class = "BP"
-                break
-            elif x in ["GO:0005575", "obsolete_cellular_component"]:
-                term_class = "CC"
-                break
-            elif x in ["GO:0003674", "obsolete_molecular_function"]:
-                term_class = "MF"
-                break
-            try:
-                x = is_a[x]
-            except KeyError:
-                x = None
-        yield go, names[go], term_class
+        yield go, names[go], get_term_class(go, alias, is_a)
 
 for go, name, term_class, in load_go_mapping(sys.argv[1]):
     print go, term_class, name
