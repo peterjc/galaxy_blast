@@ -7,6 +7,7 @@ from galaxy.datatypes.data import Text, Data
 from galaxy.datatypes.xml import GenericXml
 from galaxy.datatypes.metadata import MetadataElement
 
+
 class BlastXml( GenericXml ):
     """NCBI Blast XML Output data"""
     file_ext = "blastxml"
@@ -194,6 +195,7 @@ class BlastNucDb( _BlastDb, Data ):
         This allows us to format the data shown in the central pane via the "eye" icon.
         """
         return "This is a BLAST nucleotide database."
+
 
 class BlastProtDb( _BlastDb, Data ):
     """Class for protein BLAST database files."""
