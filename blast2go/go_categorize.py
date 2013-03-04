@@ -62,6 +62,8 @@ def load_go_mapping(rdf_xml):
     h.close()
     sys.stderr.write("%i names, %i aliases, %i parents\n" % (len(names), len(alias), len(is_a)))
 
+    if "all" in names: del names["all"]
+
     for go in names:
         x = alias.get(go, go)
         term_class = "??"
