@@ -21,10 +21,15 @@ def load_go_mapping(rdf_xml):
     sys.stderr.write("Loading %s\n" % rdf_xml)
     h = gzip_open(rdf_xml, "rb")
 
+    names = dict()
+    alias = dict()
+    is_a = dict()
+
     go = None
     for line in h:
         #sys.stderr.write("... %r\n" % line)
         if "<go:accession>" in line:
+            assert go is None, line
             go = line[line.find("<go:accession>")+14:]
             assert "</go:accession>" in line, line
             go = go[:go.find("</go:accession>")]
@@ -33,13 +38,42 @@ def load_go_mapping(rdf_xml):
             name = line[line.find("<go:name>")+9:]
             assert "</go:name>" in name, name
             name = name[:name.find("</go:name>")]
-            yield go, name
+            names[go] = name
+        elif "<go:synonym>GO:" in line:
+            assert go is not None
+            go2 = line[line.find("<go:synonym>GO:")+12:]
+            assert "</go:synonym>" in line, line
+            go2 = go2[:go2.find("</go:synonym>")]
+            alias[go2] = go
+        elif '<go:is_a rdf:resource="http://www.geneontology.org/go#GO:' in line and go:
+            assert go is not None
+            #e.g. <go:is_a rdf:resource="http://www.geneontology.org/go#GO:0008150" />
+            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#GO:')+54:]
+            thing = thing[:thing.find('"')]
+            is_a[go] = thing
+        elif "</go:term>" in line:
             go = None
-        # On some files this was near the end and a good break
-        # point, but on others it is at the start instead
-        #elif "<go:accession>all</go:accession>" in line:
-        #    break
     h.close()
+    sys.stderr.write("%i names, %i aliases, %i parents\n" % (len(names), len(alias), len(is_a)))
 
-for go, name in load_go_mapping(sys.argv[1]):
-    print go, name
+    for go in names:
+        x = alias.get(go, go)
+        term_class = "??"
+        while x:
+            if x == "GO:0008150":
+                term_class = "BP"
+                break
+            elif x == "GO:0005575":
+                term_class = "CC"
+                break
+            elif x == "GO:0003674":
+                term_class = "MF"
+                break
+            try:
+                x = is_a[x]
+            except KeyError:
+                x = None
+        yield go, names[go], term_class
+
+for go, name, term_class, in load_go_mapping(sys.argv[1]):
+    print go, term_class, name
