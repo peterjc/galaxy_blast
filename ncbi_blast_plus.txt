@@ -47,6 +47,7 @@ in order to run the unit tests). For example, use:
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_info.xml" />
     <tool file="ncbi_blast_plus/ncbi_rpsblast_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_rpstblastn_wrapper.xml" />
     <tool file="ncbi_blast_plus/blastxml_to_tabular.xml" />
   </section>
 
@@ -92,8 +93,8 @@ v0.0.17 - The BLAST+ search tools now default to extended tabular output
           get one of the missing columns like query or subject length)
 v0.0.18 - Defensive quoting of filenames in case of spaces (where possible,
           BLAST+ handling of some mult-file arguments is problematic).
-v0.0.19 - Added wrapper for rpsblast, and new blastdb_d.loc for the domain
-          databases it uses (e.g. CDD).
+v0.0.19 - Added wrappers for rpsblast and rpstblastn, and new blastdb_d.loc
+          for the domain databases they use (e.g. CDD).
 
 
 Developers
