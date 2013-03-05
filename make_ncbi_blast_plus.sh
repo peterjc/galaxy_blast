@@ -34,9 +34,9 @@ tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastdbcmd_info.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.py
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/tool_dependencies.xml
-tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastdb.loc.sample
-tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastdb_p.loc.sample
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blast_plus.txt
+tar -rf ncbi_blast_plus.tar tool-data/blastdb.loc.sample
+tar -rf ncbi_blast_plus.tar tool-data/blastdb_p.loc.sample
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin.xml
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin_converted.tabular
