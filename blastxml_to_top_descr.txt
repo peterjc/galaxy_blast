@@ -60,7 +60,7 @@ Developers
 This script and related tools are being developed on the following hg branch:
 http://bitbucket.org/peterjc/galaxy-central/src/tools
 
-For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball use
+For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball use
 the following command from the Galaxy root folder:
 
 $ tar -czf blastxml_to_top_descr.tar.gz tools/ncbi_blast_plus/blastxml_to_top_descr.* tools/ncbi_blast_plus/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular
