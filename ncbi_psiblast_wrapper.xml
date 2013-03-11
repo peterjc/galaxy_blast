@@ -1,4 +1,4 @@
-<tool id="ncbi_psiblast_wrapper" name="NCBI BLAST+ psiblast" version="0.0.2">
+<tool id="ncbi_psiblast_wrapper" name="NCBI BLAST+ psiblast" version="0.0.3">
     <!-- Draft wrapper from Luobin Yang, based on the blastp wrapper.
          TODO: Handle datatype definitions -->
     <description>Search protein database with protein query sequence(s)</description>
@@ -75,7 +75,7 @@ $adv_opts.parse_deflines
         <exit_code range=":-1" />
         <!-- In case the return code has not been set propery check stderr too -->
         <regex match="Error:" />
-        <regex match="EXception:" />
+        <regex match="Exception:" />
     </stdio>
     <inputs>
         <conditional name="input_opts">

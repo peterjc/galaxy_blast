@@ -1,4 +1,4 @@
-<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.3">
+<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.4">
     <description>Show BLAST database information from blastdbcmd</description>
     <command>
 blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out "$info"
@@ -9,7 +9,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
         <exit_code range=":-1" />
 	<!-- Suspect blastdbcmd sometimes fails to set error level -->
 	<regex match="Error:" />
-	<regex match="EXception:" />
+	<regex match="Exception:" />
     </stdio>
     <inputs>
         <conditional name="db_opts">

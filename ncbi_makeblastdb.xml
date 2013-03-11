@@ -1,4 +1,4 @@
-<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.2">
+<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.3">
 <description>Make BLAST database</description>
 <version_command>makeblastdb -version</version_command>
 <command>
@@ -41,7 +41,7 @@ ${i.file} #end for
     <exit_code range=":-1" />
     <!-- In case the return code has not been set propery check stderr too -->
     <regex match="Error:" />
-    <regex match="EXception:" />
+    <regex match="Exception:" />
 </stdio>
 <inputs>
     <param name="dbtype" type="select" display="radio" label="Molecule type of input">

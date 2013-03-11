@@ -1,4 +1,4 @@
-<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="0.0.1">
+<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="0.0.2">
     <description>Search protein domain database (PSSMs) with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject" merge_outputs="output1"></parallelism>
@@ -38,7 +38,7 @@ $adv_opts.parse_deflines
         <exit_code range=":-1" />
         <!-- In case the return code has not been set propery check stderr too -->
         <regex match="Error:" />
-        <regex match="EXception:" />
+        <regex match="Exception:" />
     </stdio>
     <inputs>
         <param name="query" type="data" format="fasta" label="Protein query sequence(s)"/> 
