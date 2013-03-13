@@ -1,6 +1,5 @@
-<tool id="ncbi_dustmasker_wrapper" name="NCBI DustMasker" version="0.0.2">
-    <!-- Draft dustmasker wrapper from Nicola Soranzo
-         TODO: datatype definitions -->
+<tool id="ncbi_dustmasker_wrapper" name="NCBI DustMasker" version="0.0.3">
+    <!-- dustmasker wrapper from Nicola Soranzo -->
     <description>masks low complexity regions</description>
     <requirements>
         <requirement type="binary">dustmasker</requirement>
@@ -71,8 +70,8 @@ dustmasker
         <data name="outfile" format="interval" label="DUST Masked File">
             <change_format>
                 <when input="outformat" value="fasta" format="fasta" />
-                <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo_asn1_bin" />
-                <when input="outformat" value="maskinfo_asn1_text" format="maskinfo_asn1_text" />
+                <when input="outformat" value="maskinfo_asn1_bin" format="asn1-binary" />
+                <when input="outformat" value="maskinfo_asn1_text" format="asn1" />
             </change_format>
         </data>
     </outputs>
