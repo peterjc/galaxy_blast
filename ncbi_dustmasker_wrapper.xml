@@ -1,5 +1,5 @@
 <tool id="ncbi_dustmasker_wrapper" name="NCBI DustMasker" version="0.0.3">
-    <!-- dustmasker wrapper from Nicola Soranzo -->
+    <!-- dustmasker wrapper from Edward Kirton and Nicola Soranzo -->
     <description>masks low complexity regions</description>
     <requirements>
         <requirement type="binary">dustmasker</requirement>
