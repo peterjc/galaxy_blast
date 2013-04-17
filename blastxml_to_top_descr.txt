@@ -20,7 +20,6 @@ This should be straightforward, Galaxy should automatically install the
 'blast_datatypes' dependency.
 
 
-
 Manual Installation
 ===================
 
@@ -53,6 +52,7 @@ v0.0.2 - Since BLAST+ was moved out of the Galaxy core, now have a dependency
 v0.0.3 - Include the test files required to run the unit tests
 v0.0.4 - Quote filenames in case they contain spaces (internal change)
 v0.0.5 - Include number of queries with BLAST matches in stdout (peek text)
+v0.0.6 - Check for errors via the script's return code (internal change)
 
 
 Developers

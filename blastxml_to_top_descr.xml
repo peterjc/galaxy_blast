@@ -1,9 +1,14 @@
-<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.5">
+<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.6">
     <description>Make a table from BLAST XML</description>
     <version_command interpreter="python">blastxml_to_top_descr.py --version</version_command>
     <command interpreter="python">
       blastxml_to_top_descr.py "${blastxml_file}" "${tabular_file}" ${topN}
     </command>
+    <stdio>
+        <!-- Assume anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <inputs>
         <param name="blastxml_file" type="data" format="blastxml" label="BLAST results as XML"/> 
 	<param name="topN" type="integer" min="1" max="100" optional="false" label="Number of descriptions" value="3"/>
