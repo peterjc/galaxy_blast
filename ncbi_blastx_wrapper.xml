@@ -54,7 +54,7 @@ $adv_opts.parse_deflines
         <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
-              <option value="db" selected="True">BLAST Database</option>
+              <option value="db" selected="True">Locally installed BLAST database</option>
               <option value="histdb">BLAST database from your history</option>
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
