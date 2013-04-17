@@ -1,5 +1,10 @@
-<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.4">
+<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.5">
     <description>Show BLAST database information from blastdbcmd</description>
+    <requirements>
+        <requirement type="binary">blastdbcmd</requirement>
+        <requirement type="package" version="2.2.26+">blast+</requirement>
+    </requirements>
+    <version_command>blastdbcmd -version</version_command>
     <command>
 blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out "$info"
     </command>
@@ -40,9 +45,6 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
     <outputs>
         <data name="info" format="txt" label="${db_opts.database.fields.name} info" />
     </outputs>
-    <requirements>
-        <requirement type="binary">blastdbcmd</requirement>
-    </requirements>
     <help>
     
 **What it does**

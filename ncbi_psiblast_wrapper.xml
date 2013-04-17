@@ -4,6 +4,10 @@
     <description>Search protein database with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
+    <requirements>
+        <requirement type="binary">psiblast</requirement>
+        <requirement type="package" version="2.2.26+">blast+</requirement>
+    </requirements>
     <version_command>psiblast -version</version_command>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
@@ -226,9 +230,6 @@ $adv_opts.parse_deflines
         </data>
 
     </outputs>
-    <requirements>
-        <requirement type="binary">blastp</requirement>
-    </requirements>
     <tests>
         <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />

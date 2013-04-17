@@ -1,7 +1,11 @@
 <tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.3">
-<description>Make BLAST database</description>
-<version_command>makeblastdb -version</version_command>
-<command>
+  <description>Make BLAST database</description>
+    <requirements>
+        <requirement type="binary">makeblastdb</requirement>
+        <requirement type="package" version="2.2.26+">blast+</requirement>
+    </requirements>
+    <version_command>makeblastdb -version</version_command>
+    <command>
 makeblastdb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
 $parse_seqids
 $hash_index
@@ -100,6 +104,7 @@ ${i.file} #end for
 </outputs>
 <requirements>
     <requirement type="binary">makeblastdb</requirement>
+    <requirement type="package" version="2.2.26+">blast+</requirement>
 </requirements>
 <help>
 **What it does**

@@ -2,6 +2,10 @@
     <description>Search nucleotide database with nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
+    <requirements>
+        <requirement type="binary">blastn</requirement>
+        <requirement type="package" version="2.2.26+">blast+</requirement>
+    </requirements>
     <version_command>blastn -version</version_command>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
@@ -144,9 +148,6 @@ $adv_opts.parse_deflines
             </change_format>
         </data>
     </outputs>
-    <requirements>
-        <requirement type="binary">blastn</requirement>
-    </requirements>
     <help>
     
 .. class:: warningmark
