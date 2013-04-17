@@ -1,4 +1,4 @@
-<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="0.0.2">
+<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="0.0.3">
     <description>Search protein domain database (PSSMs) with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject" merge_outputs="output1"></parallelism>
@@ -8,7 +8,11 @@
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 rpsblast
 -query "$query"
--db "${database.fields.path}"
+#if $db_opts.db_opts_selector == "db":
+  -db "${db_opts.database.fields.path}"
+#elif $db_opts.db_opts_selector == "histdb":
+  -db "${os.path.join($db_opts.histdb.extra_files_path,'blastdb')}"
+#end if
 -evalue $evalue_cutoff
 -out "$output1"
 ##Set the extended list here so if/when we add things, saved workflows are not affected
@@ -42,13 +46,32 @@ $adv_opts.parse_deflines
     </stdio>
     <inputs>
         <param name="query" type="data" format="fasta" label="Protein query sequence(s)"/> 
-        <param name="database" type="select" label="Protein domain database">
-            <options from_file="blastdb_d.loc">
-                <column name="value" index="0"/>
-                <column name="name" index="1"/>
-                <column name="path" index="2"/>
-            </options>
-        </param>
+        <conditional name="db_opts">
+            <param name="db_opts_selector" type="select" label="Protein domain database (PSSM)">
+              <option value="db" selected="True">Locally installed BLAST database</option>
+	      <!-- TODO - define new datatype
+              <option value="histdb">BLAST protein domain database from your history</option>
+	      -->
+            </param>
+            <when value="db">
+                <param name="database" type="select" label="Protein domain database">
+                    <options from_file="blastdb_d.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+                <param name="histdb" type="hidden" value="" />
+                <param name="subject" type="hidden" value="" /> 
+            </when>
+	    <!-- TODO - define new datatype
+            <when value="histdb">
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" type="data" format="blastdbd" label="Protein domain database" />
+                <param name="subject" type="hidden" value="" />
+            </when>
+	    -->
+        </conditional>
         <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
         <param name="out_format" type="select" label="Output format">
             <option value="6">Tabular (standard 12 columns)</option>
