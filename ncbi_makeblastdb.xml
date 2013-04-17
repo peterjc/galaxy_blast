@@ -102,10 +102,6 @@ ${i.file} #end for
         </change_format>
     </data>
 </outputs>
-<requirements>
-    <requirement type="binary">makeblastdb</requirement>
-    <requirement type="package" version="2.2.26+">blast+</requirement>
-</requirements>
 <help>
 **What it does**
 
