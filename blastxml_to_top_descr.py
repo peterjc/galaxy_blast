@@ -7,6 +7,10 @@ BLAST filename, number of hits to collect the descriptions of.
 import sys
 import re
 
+if "-v" in sys.argv or "--version" in sys.argv:
+    print "v0.0.5"
+    sys.exit(0)
+
 if sys.version_info[:2] >= ( 2, 5 ):
     import xml.etree.cElementTree as ElementTree
 else:
@@ -58,6 +62,7 @@ assert not re_default_subject_id.match("TheSubject_1")
 
 
 count = 0
+pos_count = 0
 outfile = open(out_file, 'w')
 outfile.write("#Query\t%s\n" % "\t".join("BLAST hit %i" % (i+1) for i in range(topN)))
 for event, elem in context:
@@ -103,6 +108,8 @@ for event, elem in context:
             assert hit_def not in hit_descrs
             hit_descrs.append(hit_def)
         #print "%r has %i hits" % (qseqid, len(hit_descrs))
+        if hit_descrs:
+            pos_count += 1
         hit_descrs = hit_descrs[:topN]
         while len(hit_descrs) < topN:
             hit_descrs.append("")
@@ -112,4 +119,4 @@ for event, elem in context:
         root.clear()
         elem.clear()
 outfile.close()
-print "%i BLAST results" % count
+print "Of %i queries, %i had BLAST results" % (count, pos_count)
