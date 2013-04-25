@@ -113,7 +113,7 @@ $adv_opts.parse_deflines
         </conditional>
     </inputs>
     <outputs>
-        <data name="output1" format="tabular" label="RPS-BLAST on ${db_opts.db_opts_selector}">
+        <data name="output1" format="tabular" label="rpsblast on ${on_string}">
             <change_format>
                 <when input="out_format" value="0" format="txt"/>
                 <when input="out_format" value="0 -html" format="html"/>
