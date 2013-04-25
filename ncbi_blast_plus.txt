@@ -29,6 +29,10 @@ databases like NR), and blastdb_d.loc (protein domain databases like CDD or
 SMART) which are located in the tool-data/ folder. Sample files are included
 which explain the tab-based format to use.
 
+You can download the NCBI provided databases as tar-balls from here:
+ftp://ftp.ncbi.nlm.nih.gov/blast/db/ (nucleotide and protein databases like NR)
+ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/ (domain databases like CDD)
+
 
 Manual Installation
 ===================
