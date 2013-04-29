@@ -59,7 +59,7 @@ tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human_converted_e
 tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human_ext.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastx_sample.xml
 tar -rf ncbi_blast_plus.tar test-data/blastx_sample_converted.tabular
-tar -rf ncbi_blast_plus.tar test-data/tblastx_rhodopsin_vs_three_human_ext.tabular
+tar -rf ncbi_blast_plus.tar test-data/tblastx_rhodopsin_vs_three_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta
 tar -rf ncbi_blast_plus.tar test-data/rhodopsin_nucs.fasta

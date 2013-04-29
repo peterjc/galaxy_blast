@@ -197,9 +197,9 @@ $adv_opts.parse_deflines
             <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
             <param name="database" value="" />
             <param name="evalue_cutoff" value="1e-40" />
-            <param name="out_format" value="ext" />
+            <param name="out_format" value="6" />
             <param name="adv_opts_selector" value="basic" />
-            <output name="output1" file="tblastx_rhodopsin_vs_three_human_ext.tabular" ftype="tabular" />
+            <output name="output1" file="tblastx_rhodopsin_vs_three_human.tabular" ftype="tabular" />
         </test>
     </tests>
     <help>
