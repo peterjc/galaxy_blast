@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Convert a BLAST XML file to 12 column tabular output
+"""Convert a BLAST XML file to tabular output.
 
 Takes three command line options, input BLAST XML filename, output tabular
 BLAST filename, output format (std for standard 12 columns, or ext for the
@@ -61,6 +61,10 @@ space character (probably a bug).
 """
 import sys
 import re
+
+if "-v" in sys.argv or "--version" in sys.argv:
+    print "v0.0.11"
+    sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
     import xml.etree.cElementTree as ElementTree
