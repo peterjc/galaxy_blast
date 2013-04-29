@@ -101,6 +101,7 @@ v0.0.19 - Added wrappers for rpsblast and rpstblastn, and new blastdb_d.loc
         - Correct case of exception regular expression (for error handling
           fall-back in case the return code is not set properly).
         - Clearer naming of output files.
+v0.0.20 - Added unit tests for BLASTN and TBLASTX.
 
 
 Developers
