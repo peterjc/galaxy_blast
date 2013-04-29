@@ -1,4 +1,4 @@
-<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="0.0.19">
+<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="0.0.20">
     <description>Search translated nucleotide database with translated nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
@@ -190,6 +190,18 @@ $adv_opts.parse_deflines
             </change_format>
         </data>
     </outputs>
+    <tests>
+        <test>
+            <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="database" value="" />
+            <param name="evalue_cutoff" value="1e-40" />
+            <param name="out_format" value="ext" />
+            <param name="adv_opts_selector" value="basic" />
+            <output name="output1" file="tblastx_rhodopsin_vs_three_human_ext.tabular" ftype="tabular" />
+        </test>
+    </tests>
     <help>
     
 .. class:: warningmark
