@@ -3,17 +3,26 @@
     <package name="blast+" version="2.2.26+">
         <install version="1.0">
             <actions>
-                <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-src.tar.gz</action>
-                <action type="shell_command">cd c++ &amp;&amp; ./configure --prefix=$INSTALL_DIR &amp;&amp; make &amp;&amp; make install</action>
+                <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-x64-linux.tar.gz</action>
+                <action type="move_directory_files">
+                    <source_directory>ncbi-blast-2.2.26+/bin</source_directory>
+                    <destination_directory>$INSTALL_DIR</destination_directory>
+                </action>
                 <action type="set_environment">
-                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR/bin</environment_variable>
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR</environment_variable>
                 </action>
             </actions>
         </install>
         <readme>
-These links provide information for building the NCBI Blast+ package in most environments.
+Downloads the precompiled 64bit Linux BLAST+ binaries from the NCBI,
+which is faster than performing a local compliation, avoids any issues
+with build dependencies, and is more reproducible between installations
+as there is no variability from the compiler or library versions.
 
-System requirements
+If/when the Galaxy installation framework allows for 32bit versus 64bit,
+or different operating system, the NCBI binaries cover the main cases.
+
+For more details, see:
 http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download
         </readme>
     </package>
