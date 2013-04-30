@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="b2g4pipe" version="2.5">
+        <install version="1.0">
+            <actions>
+                <!-- The ZIP file decompresses to give a folder b2g4pipe -->
+                <action type="download_by_url">http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip</action>
+                <action type="move_directory_files"><source_directory>b2g4pipe</source_directory><destination_directory>$INSTALL_DIR/</destination_directory></action>
+		<!-- Set environment variable so Python script knows where to look -->
+		<action type="set_environment"><environment_variable name="B2G4PIPE" action="set_to">$INSTALL_DIR</environment_variable></action>
+            </actions>
+        </install>
+        <readme>
+Downloads b2g4pipe v2.5
+        </readme>
+    </package>
+</tool_dependency>
+
