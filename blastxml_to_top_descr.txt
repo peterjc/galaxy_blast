@@ -9,6 +9,9 @@ This tool is a short Python script to parse a BLAST XML file, and extract the
 identifiers with description for the top matches (by default the top 3), and
 output these as a simple tabular file along with the query identifiers.
 
+It is available from the Galaxy Tool Shed at:
+http://toolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr
+
 This requires the 'blast_datatypes' repository from the Galaxy Tool Shed
 to provide the 'blastxml' file format definition.
 
@@ -53,6 +56,7 @@ v0.0.3 - Include the test files required to run the unit tests
 v0.0.4 - Quote filenames in case they contain spaces (internal change)
 v0.0.5 - Include number of queries with BLAST matches in stdout (peek text)
 v0.0.6 - Check for errors via the script's return code (internal change)
+v0.0.7 - Link to Tool Shed added to help text and this documentation.
 
 
 Developers

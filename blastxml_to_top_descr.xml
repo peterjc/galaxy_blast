@@ -1,4 +1,4 @@
-<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.6">
+<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.7">
     <description>Make a table from BLAST XML</description>
     <version_command interpreter="python">blastxml_to_top_descr.py --version</version_command>
     <command interpreter="python">
@@ -48,6 +48,11 @@ then use this tool to make a table of the top three BLAST hits. This
 can give you a 'quick and dirty' crude annotation, potentially enough
 to spot some problems (e.g. bacterial contaimination could be very
 obvious).
+
+**Citation**
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr
 
     </help>
 </tool>
