@@ -63,11 +63,14 @@ import sys
 import re
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.0.11"
+    print "v0.0.12"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
-    import xml.etree.cElementTree as ElementTree
+    try:
+        from xml.etree import cElementTree as ElementTree
+    except ImportError:
+        from xml.etree import ElementTree as ElementTree
 else:
     from galaxy import eggs
     import pkg_resources; pkg_resources.require( "elementtree" )

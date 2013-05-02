@@ -104,6 +104,7 @@ v0.0.19 - Added wrappers for rpsblast and rpstblastn, and new blastdb_d.loc
 v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Automatic installation via the Tool Shed now uses the NCBI provided
           precompiled binaries for 64bit Linux, rather than compiling locally.
+        - Fallback on ElementTree if cElementTree missing in XML to tabular.
 
 
 Developers
