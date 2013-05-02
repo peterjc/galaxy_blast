@@ -14,6 +14,9 @@ moved to the Galaxy Tool Shed as 'ncbi_blast_plus' (and 'blast_datatypes').
 My thanks to Dannon Baker from the Galaxy development team for his assistance
 with this.
 
+These wrappers are available from the Galaxy Tool Shed at:
+http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
+
 
 Automated Installation
 ======================
@@ -105,6 +108,7 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Automatic installation via the Tool Shed now uses the NCBI provided
           precompiled binaries for 64bit Linux, rather than compiling locally.
         - Fallback on ElementTree if cElementTree missing in XML to tabular.
+        - Link to Tool Shed added to help text and this documentation.
 
 
 Developers

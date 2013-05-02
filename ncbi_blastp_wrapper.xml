@@ -1,4 +1,4 @@
-<tool id="ncbi_blastp_wrapper" name="NCBI BLAST+ blastp" version="0.0.19">
+<tool id="ncbi_blastp_wrapper" name="NCBI BLAST+ blastp" version="0.0.20">
     <description>Search protein database with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
@@ -302,5 +302,7 @@ Altschul et al. Gapped BLAST and PSI-BLAST: a new generation of protein database
 
 Schaffer et al. Improving the accuracy of PSI-BLAST protein database searches with composition-based statistics and other refinements. 2001. Nucleic Acids Res. 29:2994-3005.
 
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </help>
 </tool>

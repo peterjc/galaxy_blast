@@ -1,4 +1,4 @@
-<tool id="ncbi_dustmasker_wrapper" name="NCBI DustMasker" version="0.0.3">
+<tool id="ncbi_dustmasker_wrapper" name="NCBI DustMasker" version="0.0.4">
     <!-- dustmasker wrapper from Edward Kirton and Nicola Soranzo -->
     <description>masks low complexity regions</description>
     <requirements>
@@ -86,5 +86,8 @@ This tool identifies and masks out low complexity regions of a nucleotide databa
 More information about DustMasker can be found in the `BLAST Command Line Applications User Manual`_.
 
 .. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </help>
 </tool>

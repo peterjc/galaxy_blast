@@ -1,4 +1,4 @@
-<tool id="ncbi_tblastn_wrapper" name="NCBI BLAST+ tblastn" version="0.0.19">
+<tool id="ncbi_tblastn_wrapper" name="NCBI BLAST+ tblastn" version="0.0.20">
     <description>Search translated nucleotide database with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
@@ -334,5 +334,7 @@ and differ in how insertions are shown (marked as insertions or with gap charact
 
 Altschul et al. Gapped BLAST and PSI-BLAST: a new generation of protein database search programs. 1997. Nucleic Acids Res. 25:3389-3402.
 
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </help>
 </tool>

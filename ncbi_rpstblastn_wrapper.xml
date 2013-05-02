@@ -1,4 +1,4 @@
-<tool id="ncbi_rpstblastn_wrapper" name="NCBI BLAST+ rpstblastn" version="0.0.3">
+<tool id="ncbi_rpstblastn_wrapper" name="NCBI BLAST+ rpstblastn" version="0.0.4">
     <description>Search protein domain database (PSSMs) with translated nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject" merge_outputs="output1"></parallelism>
@@ -233,5 +233,7 @@ and differ in how insertions are shown (marked as insertions or with gap charact
 
 Marchler-Bauer A, Bryant SH. CD-Search: protein domain annotations on the fly. Nucleic Acids Res. 2004 Jul 1;32(Web Server issue):W327-31.
 
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </help>
 </tool>

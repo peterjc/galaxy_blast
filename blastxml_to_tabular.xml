@@ -129,5 +129,9 @@ direct from BLAST+ may differ in the presence of XXXX masking on regions
 low complexity (columns 21 and 22), and thus also calculated figures like
 the percentage identity (column 3).
 
+**References**
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </help>
 </tool>

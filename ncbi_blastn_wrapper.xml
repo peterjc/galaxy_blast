@@ -247,5 +247,7 @@ and differ in how insertions are shown (marked as insertions or with gap charact
 
 Zhang et al. A Greedy Algorithm for Aligning DNA Sequences. 2000. JCB: 203-214.
 
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </help>
 </tool>
