@@ -1,5 +1,8 @@
-<tool id="blast2go" name="Blast2GO" version="0.0.6">
+<tool id="blast2go" name="Blast2GO" version="0.0.8">
     <description>Maps BLAST results to GO annotation terms</description>
+    <requirements>
+        <requirement type="package" version="2.5">b2g4pipe</requirement>
+    </requirements>
     <command interpreter="python">
         blast2go.py "${xml}" "${prop.fields.path}" "${tab}"
     </command>
@@ -21,9 +24,12 @@
     <outputs>
         <data name="tab" format="tabular" label="Blast2GO ${prop.fields.name}" />
     </outputs>
-    <requirements>
-    </requirements>
     <tests>
+        <test>
+            <param name="xml" value="blastp_sample.xml" ftype="blastxml"/>
+            <param name="prop" value="default"/>
+            <output name="tab" file="blastp_sample.blast2go.tabular" ftype="tabular"/>
+        </test>
     </tests>
     <help>
 .. class:: warningmark
@@ -36,8 +42,8 @@ is advisable to allow overnight processing, or consider subdividing.
 
 **What it does**
 
-This runs b2g4Pipe, the command line (no GUI) version of Blast2GO designed
-for use in pipelines.
+This runs b2g4Pipe v2.5, which is the command line (no GUI) version of
+Blast2GO designed for use in pipelines.
 
 It takes as input BLAST XML results against a protein database, typically
 the NCBI non-redundant (NR) database. This tool will accept concatenated
@@ -51,16 +57,22 @@ to each query sequence.
 The output from this tool is a tabular file containing three columns, with
 the order taken from query order in the original BLAST XML file:
 
-====== ====================================
+====== ====================
 Column Description
------- ------------------------------------
-     1 ID and description of query sequence
+------ --------------------
+     1 ID of query sequence
      2 GO term
      3 GO description
-====== ====================================
+====== ====================
 
 Note that if no GO terms are assigned to a sequence (e.g. if it had no
 BLAST matches), then it will not be present in the output file.
+
+This tabular file is called an "Annotation File" in the Blast2GO GUI.
+If you download the tabular file, and rename it to use the extension
+".annot", then it can be opened with the Blast2GO GUI via the "File",
+"Load Annotation (.annot)" menu (keyboard shortcut ALT+L). You can
+then run some of the interactive analyses offered in the GUI tool.
 
 
 **Advanced Settings**
@@ -89,7 +101,10 @@ Blast2GO: A universal tool for annotation, visualization and analysis in functio
 Bioinformatics 21:3674-3676, 2005.
 http://dx.doi.org/10.1093/bioinformatics/bti610
 
-http://www.blast2go.org/
+http://www.blast2go.com/
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 
     </help>
 </tool>

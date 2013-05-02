@@ -6,7 +6,10 @@ This wrapper is copyright 2011-2013 by Peter Cock, The James Hutton Institute
 See the licence text below.
 
 This is a wrapper for the command line Java tool b2g4pipe v2.5,
-Blast2GO for pipelines. See:
+Blast2GO for pipelines. It is available from the Galaxy Tool Shed at:
+http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
+
+See also:
 
 S. Götz et al.
 High-throughput functional annotation and data mining with the Blast2GO suite.
@@ -26,9 +29,18 @@ http://dx.doi.org/10.1093/bioinformatics/bti610
 http://www.blast2go.org/
 
 
+Automated Installation
+======================
 
-Installation
-============
+Installation via the Galaxy Tool Shed should take care of the Galaxy side of
+things, including the dependency on 'blast_datatypes' which defines the
+'blastxml' file format. However, you will also probably need to configure
+the Blast2GO property file(s), for example if you have a local Blast2GO
+database (which we recommend for speed).
+
+
+Manual Installation
+===================
 
 The main dependency is b2g4pipe which must be installed manually. Also we
 strongly recommend installing a local Blast2GO database as well (see the
@@ -37,16 +49,14 @@ the current version is b2g4pipe v2.5 which is available here:
 
 http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
 
-You can change the path by editing the definition near the start of the Python
-script blast2go.py, but by default it expects the underlying tool to be here:
+You can change the path by setting the B2G4PIP environement variable to
+the desired folder, but by default the script looks for the JAR file here:
 
 /opt/b2g4pipe_v2.5/blast2go.jar
 
-Installation of the Galaxy wrapper should work automatically via the Galaxy
-Tool Shed, including the dependency on 'blast_datatypes' for the 'blastxml'
-file format definition. To install the wrapper manually, first install
-'blast_datatypes', then copy or move the following files under the Galaxy
-tools folder, e.g. in a tools/blast2go/ folder:
+To install the wrapper manually, first install 'blast_datatypes', then
+copy or move the following files under the Galaxy tools folder, e.g. in a
+tools/blast2go/ folder:
 
 * blast2go.xml (the Galaxy tool definition)
 * blast2go.py (the Python wrapper script)
@@ -57,6 +67,15 @@ tools_conf.xml file to tell Galaxy to offer the tool. We suggest putting
 it next to the NCBI BLAST+ wrappers. Just add the line:
 
 <tool file="blast2go/blast2go.xml" />
+
+If you wish to run the unit tests, also add this to tools_conf.xml.sample
+and move/copy the test-data files under Galaxy's test-data folder. Then:
+
+$ ./run_functional_tests.sh -id blast2go
+
+
+Configuration
+=============
 
 As part of setting up b2g4pipe you will need to setup one or more Blast2GO
 property files which tell the tool which database to use etc. The example
@@ -73,7 +92,9 @@ be plain text, tab separated, with three columns:
 
 (1) ID for the setup, e.g. Spain_2012_August
 (2) Description for the setup, e.g. Database in Spain (August 2012)
-(3) Properties filename for the setup, e.g. /opt/b2g4pipe/Spain_2012_August.properties
+(3) Properties filename for the setup, e.g. Spain_2012_August.properties
+    relative to the main JAR file, or with a full path
+    e.g. /opt/b2g4pipe/Spain_2012_August.properties
 
 Avoid including "Blast2GO" in the description (column 2) as this text will be
 included in the automatically assigned output dataset name. The blast2go.loc
@@ -105,6 +126,12 @@ v0.0.6 - Support for b2g4pipe v2.5 instead of v2.3.5
           - Now uses the switch -annot instead of -a (this change breaks
             support for b2g4pipe v2.3.5 unfortunately)
        - Catch a few error messages and treat them explicitly as errors.
+v0.0.7 - Update output description in XML file (b2g4pipe v2.3.5 included
+         the sequence description, b2g4pipe v2.5 omits this).
+v0.0.8 - Automated installation via the Galaxy Tool Shed.
+       - Added unit test.
+       - Explain how to load the tabular file into the Blast2GO GUI.
+       - Link to Tool Shed added to help text and this documentation.
 
 
 Developers
@@ -113,10 +140,10 @@ Developers
 This script and related tools are being developed on the following hg branch:
 http://bitbucket.org/peterjc/galaxy-central/src/tools
 
-For making the "Galaxy Tool Shed" http://community.g2.bx.psu.edu/ tarball I use
+For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder:
 
-$ tar -czf blast2go.tar.gz tools/blast2go/blast2go.xml tools/blast2go/blast2go.py tools/blast2go/blast2go.txt tools/blast2go/repository_dependencies.xml tool-data/blast2go.loc.sample
+$ tar -czf blast2go.tar.gz tools/blast2go/blast2go.xml tools/blast2go/blast2go.py tools/blast2go/blast2go.txt tools/blast2go/repository_dependencies.xml tools/blast2go/tool_dependencies.xml tool-data/blast2go.loc.sample test-data/blastp_sample.xml test-data/blastp_sample.blast2go.tabular
 
 Check this worked:
 
@@ -125,7 +152,10 @@ tools/blast2go/blast2go.xml
 tools/blast2go/blast2go.py
 tools/blast2go/blast2go.txt
 tools/blast2go/repository_dependencies.xml
+tools/blast2go/tool_dependencies.xml
 tool-data/blast2go.loc.sample
+test-data/blastp_sample.xml
+test-data/blastp_sample.blast2go.tabular
 
 
 Licence (MIT/BSD style)
