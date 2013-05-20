@@ -57,6 +57,7 @@ v0.0.4 - Quote filenames in case they contain spaces (internal change)
 v0.0.5 - Include number of queries with BLAST matches in stdout (peek text)
 v0.0.6 - Check for errors via the script's return code (internal change)
 v0.0.7 - Link to Tool Shed added to help text and this documentation.
+       - Tweak dependency on blast_datatypes to also work on Test Tool Shed
 
 
 Developers
