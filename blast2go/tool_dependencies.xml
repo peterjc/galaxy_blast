@@ -6,7 +6,8 @@
                 <!-- If used, download_by_url must be the first action -->	
                 <!-- The ZIP file decompresses to give a folder b2g4pipe -->
                 <action type="download_by_url">http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip</action>
-                <action type="move_directory_files"><source_directory>b2g4pipe</source_directory><destination_directory>$INSTALL_DIR/</destination_directory></action>
+		<!-- Galaxy moves into the unzipped folder b2g4pipe -->
+                <action type="move_directory_files"><source_directory>.</source_directory><destination_directory>$INSTALL_DIR/</destination_directory></action>
                 <!-- Set environment variable $B2G4PIPE so Python script knows where to look -->
                 <action type="set_environment">
                     <environment_variable name="B2G4PIPE" action="set_to">$INSTALL_DIR</environment_variable>
