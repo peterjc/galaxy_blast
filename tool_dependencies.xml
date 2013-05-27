@@ -5,7 +5,8 @@
             <actions>
                 <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-x64-linux.tar.gz</action>
                 <action type="move_directory_files">
-                    <source_directory>ncbi-blast-2.2.26+/bin</source_directory>
+                    <!-- Galaxy will have changed directory into ncbi-blast-2.2.26+/ -->		  
+                    <source_directory>bin</source_directory>
                     <destination_directory>$INSTALL_DIR</destination_directory>
                 </action>
                 <action type="set_environment">
