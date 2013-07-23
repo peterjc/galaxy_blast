@@ -77,7 +77,7 @@ Check this worked:
 
 $ tar -tzf blastxml_to_top_descr.tar.gz
 tools/ncbi_blast_plus/blastxml_to_top_descr.py
-tools/ncbi_blast_plus/blastxml_to_top_descr.txt
+tools/ncbi_blast_plus/blastxml_to_top_descr.rst
 tools/ncbi_blast_plus/blastxml_to_top_descr.xml
 tools/ncbi_blast_plus/repository_dependencies.xml
 test-data/blastp_four_human_vs_rhodopsin.xml
