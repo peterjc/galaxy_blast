@@ -15,7 +15,8 @@ My thanks to Dannon Baker from the Galaxy development team for his assistance
 with this.
 
 These wrappers are available from the Galaxy Tool Shed at:
-http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
+
+* http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
 
 
 Automated Installation
@@ -33,8 +34,9 @@ SMART) which are located in the tool-data/ folder. Sample files are included
 which explain the tab-based format to use.
 
 You can download the NCBI provided databases as tar-balls from here:
-ftp://ftp.ncbi.nlm.nih.gov/blast/db/ (nucleotide and protein databases like NR)
-ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/ (domain databases like CDD)
+
+* ftp://ftp.ncbi.nlm.nih.gov/blast/db/ (nucleotide and protein databases like NR)
+* ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/ (domain databases like CDD)
 
 
 Manual Installation
@@ -43,7 +45,7 @@ Manual Installation
 For those not using Galaxy's automated installation from the Tool Shed, put
 the XML and Python files in the tools/ncbi_blast_plus/ folder and add the XML
 files to your tool_conf.xml as normal (and do the same in tool_conf.xml.sample
-in order to run the unit tests). For example, use:
+in order to run the unit tests). For example, use::
 
   <section name="NCBI BLAST+" id="ncbi_blast_plus_tools">
     <tool file="ncbi_blast_plus/ncbi_blastn_wrapper.xml" />
@@ -70,14 +72,17 @@ You must install the NCBI BLAST+ standalone tools somewhere on the system
 path. Currently the unit tests are written using "BLAST 2.2.26+".
 
 Run the functional tests (adjusting the section identifier to match your
-tool_conf.xml.sample file):
+tool_conf.xml.sample file)::
 
-./run_functional_tests.sh -sid NCBI_BLAST+-ncbi_blast_plus_tools
+    ./run_functional_tests.sh -sid NCBI_BLAST+-ncbi_blast_plus_tools
 
 
 History
 =======
 
+======= ======================================================================
+Version Changes
+------- ----------------------------------------------------------------------
 v0.0.11 - Final revision as part of the Galaxy main repository, and the
           first release via the Tool Shed
 v0.0.12 - Implements genetic code option for translation searches.
@@ -109,6 +114,7 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Link to Tool Shed added to help text and this documentation.
         - Tweak dependency on blast_datatypes to also work on Test Tool Shed
         - Adopted standard MIT License.
+======= ======================================================================
 
 
 Developers
@@ -119,9 +125,9 @@ following Mercurial repository:
 https://bitbucket.org/peterjc/galaxy-central/
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the Galaxy root folder:
+the following command from the Galaxy root folder::
 
-$ ./tools/ncbi_blast_plus/make_ncbi_blast_plus.sh
+    $ ./tools/ncbi_blast_plus/make_ncbi_blast_plus.sh
 
 This simplifies ensuring a consistent set of files is bundled each time,
 including all the relevant test files.

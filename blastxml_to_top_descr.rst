@@ -37,29 +37,32 @@ The suggested location is in the Galaxy folder tools/ncbi_blast_plus next to
 the NCBI BLAST+ tool wrappers.
 
 You will also need to modify the tools_conf.xml file to tell Galaxy to offer
-the tool. e.g. next to the NCBI BLAST+ tools. Simply add the line:
+the tool. e.g. next to the NCBI BLAST+ tools. Simply add the line::
 
-<tool file="filters/seq_select_by_id.xml" />
+    <tool file="filters/seq_select_by_id.xml" />
 
-To run the tool's tests, also add this line to tools_conf.xml.sample then:
+To run the tool's tests, also add this line to tools_conf.xml.sample then::
 
-$ sh run_functional_tests.sh -id blastxml_to_top_descr
+    $ sh run_functional_tests.sh -id blastxml_to_top_descr
 
 
 History
 =======
 
-v0.0.1 - Initial version.
-v0.0.2 - Since BLAST+ was moved out of the Galaxy core, now have a dependency
-         on the 'blast_datatypes' repository in the Tool Shed.
-v0.0.3 - Include the test files required to run the unit tests
-v0.0.4 - Quote filenames in case they contain spaces (internal change)
-v0.0.5 - Include number of queries with BLAST matches in stdout (peek text)
-v0.0.6 - Check for errors via the script's return code (internal change)
-v0.0.7 - Link to Tool Shed added to help text and this documentation.
-       - Tweak dependency on blast_datatypes to also work on Test Tool Shed
-       - Adopt standard MIT License.
-
+======= ======================================================================
+Version Changes
+------- ----------------------------------------------------------------------
+v0.0.1  - Initial version.
+v0.0.2  - Since BLAST+ was moved out of the Galaxy core, now have a dependency
+          on the 'blast_datatypes' repository in the Tool Shed.
+v0.0.3  - Include the test files required to run the unit tests
+v0.0.4  - Quote filenames in case they contain spaces (internal change)
+v0.0.5  - Include number of queries with BLAST matches in stdout (peek text)
+v0.0.6  - Check for errors via the script's return code (internal change)
+v0.0.7  - Link to Tool Shed added to help text and this documentation.
+        - Tweak dependency on blast_datatypes to also work on Test Tool Shed
+        - Adopt standard MIT License.
+======= ======================================================================
 
 
 Developers
@@ -69,19 +72,19 @@ This script and related tools are being developed on the following hg branch:
 http://bitbucket.org/peterjc/galaxy-central/src/tools
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball use
-the following command from the Galaxy root folder:
+the following command from the Galaxy root folder::
 
-$ tar -czf blastxml_to_top_descr.tar.gz tools/ncbi_blast_plus/blastxml_to_top_descr.* tools/ncbi_blast_plus/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular
+    $ tar -czf blastxml_to_top_descr.tar.gz tools/ncbi_blast_plus/blastxml_to_top_descr.* tools/ncbi_blast_plus/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular
 
 Check this worked:
 
-$ tar -tzf blastxml_to_top_descr.tar.gz
-tools/ncbi_blast_plus/blastxml_to_top_descr.py
-tools/ncbi_blast_plus/blastxml_to_top_descr.rst
-tools/ncbi_blast_plus/blastxml_to_top_descr.xml
-tools/ncbi_blast_plus/repository_dependencies.xml
-test-data/blastp_four_human_vs_rhodopsin.xml
-test-data/blastp_four_human_vs_rhodopsin_top3.tabular
+    $ tar -tzf blastxml_to_top_descr.tar.gz
+    tools/ncbi_blast_plus/blastxml_to_top_descr.py
+    tools/ncbi_blast_plus/blastxml_to_top_descr.rst
+    tools/ncbi_blast_plus/blastxml_to_top_descr.xml
+    tools/ncbi_blast_plus/repository_dependencies.xml
+    test-data/blastp_four_human_vs_rhodopsin.xml
+    test-data/blastp_four_human_vs_rhodopsin_top3.tabular
 
 
 Licence (MIT)

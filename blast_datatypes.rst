@@ -21,6 +21,9 @@ History
 These versions numbers match those for 'ncbi_blast_plus', but are not used
 explicitly in the datatypes themselves.
 
+======= ======================================================================
+Version Changes
+------- ----------------------------------------------------------------------
 v0.0.11 - Final revision as part of the Galaxy main repository, and the
           first release via the Tool Shed
 v0.0.13 - Uses blast.py instead of xml.py to define the datatypes
@@ -29,6 +32,7 @@ v0.0.14 - Includes datatypes for protein and nucleotide BLAST databases
 v0.0.15 - Fixes a MetadataElement bug and includes more of the optional
           BLAST database files (contribution from Nicola Soranzo)
 v0.0.16 - Adopt standard MIT License.
+======= ======================================================================
 
 
 Installation
@@ -45,13 +49,13 @@ the provided blast.py file into a suitable location and process the
 datatypes_conf.xml entry to be combined with your local configuration.
 
 However, if you really want to this should work for a manual install. Add
-the following lines to the datatypes_conf.xml file in the Galaxy main folder:
+the following lines to the datatypes_conf.xml file in the Galaxy main folder::
 
-   <datatype extension="blastxml" type="galaxy.datatypes.blast:BlastXml" mimetype="application/xml" display_in_upload="true"/>
-   <datatype extension="blastdbn" type="galaxy.datatypes.blast:BlastNucDb" mimetype="text/html" display_in_upload="false"/>
-   <datatype extension="blastdbp" type="galaxy.datatypes.blast:BlastProtDb" mimetype="text/html" display_in_upload="false"/>
+    <datatype extension="blastxml" type="galaxy.datatypes.blast:BlastXml" mimetype="application/xml" display_in_upload="true"/>
+    <datatype extension="blastdbn" type="galaxy.datatypes.blast:BlastNucDb" mimetype="text/html" display_in_upload="false"/>
+    <datatype extension="blastdbp" type="galaxy.datatypes.blast:BlastProtDb" mimetype="text/html" display_in_upload="false"/>
 
-and later in the sniffer section:
+and later in the sniffer section::
 
     <sniffer type="galaxy.datatypes.blast:BlastXml"/>
 
@@ -68,16 +72,16 @@ BLAST+ datatypes and wrappers, and other tools are being developed on the
 following hg branch: http://bitbucket.org/peterjc/galaxy-central/src/tools
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the Galaxy tools/ncbi_blast_plus folder:
+the following command from the Galaxy tools/ncbi_blast_plus folder::
 
-$ tar -czf blast_datatypes.tar.gz blast_datatypes.rst datatypes_conf.xml blast.py
+    $ tar -czf blast_datatypes.tar.gz blast_datatypes.rst datatypes_conf.xml blast.py
 
-Check this worked:
+Check this worked::
 
-$ tar -tzf blast_datatypes.tar.gz
-blast_datatypes.rst
-datatypes_conf.xml
-blast.py
+    $ tar -tzf blast_datatypes.tar.gz
+    blast_datatypes.rst
+    datatypes_conf.xml
+    blast.py
 
 Note that the placement of these three files under tools/ncbi_blast_plus is
 arbitrary - this just puts them next to the tool wrappers which use them.
