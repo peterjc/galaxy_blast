@@ -15,8 +15,7 @@ My thanks to Dannon Baker from the Galaxy development team for his assistance
 with this.
 
 These wrappers are available from the Galaxy Tool Shed at:
-
-* http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
+http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
 
 
 Automated Installation

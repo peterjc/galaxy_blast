@@ -76,7 +76,7 @@ the following command from the Galaxy root folder::
 
     $ tar -czf blastxml_to_top_descr.tar.gz tools/ncbi_blast_plus/blastxml_to_top_descr.* tools/ncbi_blast_plus/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular
 
-Check this worked:
+Check this worked::
 
     $ tar -tzf blastxml_to_top_descr.tar.gz
     tools/ncbi_blast_plus/blastxml_to_top_descr.py
