@@ -68,8 +68,11 @@ lines).
 Developers
 ==========
 
-BLAST+ datatypes and wrappers, and other tools are being developed on the
+BLAST+ datatypes and wrappers, and other tools were originally developed on the
 following hg branch: http://bitbucket.org/peterjc/galaxy-central/src/tools
+
+As of July 2013, development is continuing on a dedicated GitHub repository:
+https://github.com/peterjc/galaxy_blast
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy tools/ncbi_blast_plus folder::
