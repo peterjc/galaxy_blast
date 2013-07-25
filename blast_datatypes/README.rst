@@ -18,8 +18,8 @@ assistance with this.
 History
 =======
 
-These versions numbers match those for 'ncbi_blast_plus', but are not used
-explicitly in the datatypes themselves.
+These versions numbers initially matched those for 'ncbi_blast_plus', but are
+not used explicitly in the datatypes themselves.
 
 ======= ======================================================================
 Version Changes
@@ -83,23 +83,20 @@ As of July 2013, development is continuing on a dedicated GitHub repository:
 https://github.com/peterjc/galaxy_blast
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the Galaxy tools/ncbi_blast_plus folder::
+the following command from the blast_datatypes  folder::
 
-    $ tar -czf blast_datatypes.tar.gz blast_datatypes.rst datatypes_conf.xml blast.py
+    $ tar -czf blast_datatypes.tar.gz README.rst datatypes_conf.xml blast.py
 
 Check this worked::
 
     $ tar -tzf blast_datatypes.tar.gz
-    blast_datatypes.rst
+    README.rst
     datatypes_conf.xml
     blast.py
 
-Note that the placement of these three files under tools/ncbi_blast_plus is
-arbitrary - this just puts them next to the tool wrappers which use them.
-
 For development, rather than having a local ToolShed running, I currently
-use a symlink from lib/galaxy/datatypes/blast.py to the actual file
-tools/ncbi_blast_plus/blast.py as described above.
+use a symlink from lib/galaxy/datatypes/blast.py to the actual file as
+described above.
 
 
 Licence (MIT)
