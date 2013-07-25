@@ -135,9 +135,9 @@ As of July 2013, development is continuing on a dedicated GitHub repository:
 https://github.com/peterjc/galaxy_blast
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the Galaxy root folder::
+the following command from the GitHub repository root folder::
 
-    $ ./tools/ncbi_blast_plus/make_ncbi_blast_plus.sh
+    $ ./ncbi_blast_plus/make_ncbi_blast_plus.sh
 
 This simplifies ensuring a consistent set of files is bundled each time,
 including all the relevant test files.
