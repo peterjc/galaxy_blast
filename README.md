@@ -15,16 +15,28 @@ This GitHub repository is for the development of the NCBI BLAST+ command line
 tool wrappers and datatype definitions for Galaxy, published on the Galaxy
 Tool Shed here:
  - http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus/
- - http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes
+ - http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
 
 Development test releases are on the Test Tool Shed here:
  - http://testtoolshed.g2.bx.psu.edu/view/peterjc/ncbi_blast_plus/
- - http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes
+ - http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
 
 Note this this targets the NCBI's C++ rewrite of BLAST called BLAST+,
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/ -- we
 do not support the now deprecated "legacy" BLAST suite written in C, still
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/
+
+
+Other Galaxy BLAST tools
+========================
+
+This repository also contains other BLAST related Galaxy tools, some already
+available on the Galaxy Tool Shed:
+ - http://toolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr 
+
+Any development test releases are on the Test Tool Shed, for example:
+ - http://testtoolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr 
+
 
 History
 =======
@@ -49,3 +61,10 @@ meeting was held in July 2013 during the annual Galaxy Community Conference.
 It was agreed to move the code into a dedicated Git repository on GitHub,
 with the goal of giving the project a clearer identify and making it easier
 for Peter to manage.
+
+
+Folder Structure
+================
+
+There is one folder for each Tool or Tool Suite released on the Galaxy Tool
+Shed, and a shared `test-data` folder used for functional test sample data.
