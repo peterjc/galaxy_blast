@@ -1,0 +1,35 @@
+#This is a sample file distributed with Galaxy that is used to define a
+#list of protein domain databases, using three columns tab separated
+#(longer whitespace are TAB characters):
+#
+#<unique_id>	<database_caption>	<base_name_path>
+#
+#The captions typically contain spaces and might end with the build date.
+#It is important that the actual database name does not have a space in it,
+#and that there are only two tabs on each line.
+#
+#You can download the NCBI provided databases as tar-balls from here:
+#ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/
+#
+#So, for example, if your database is CDD and the path to your base name
+#is /data/blastdb/Cdd, then the blastdb_d.loc entry would look like this:
+#
+#Cdd{tab}NCBI Conserved Domains Database (CDD){tab}/data/blastdb/Cdd
+#
+#and your /data/blastdb directory would contain all of the files associated
+#with the database, /data/blastdb/Cdd.*.
+#
+#Your blastdb_d.loc file should include an entry per line for each "base name"
+#you have stored. For example:
+#
+#Cdd	NCBI CDD	/data/blastdb/domains/Cdd
+#Kog	KOG (eukaryotes)	/data/blastdb/domains/Kog
+#Cog	COG (prokaryotes)	/data/blastdb/domains/Cog
+#Pfam	Pfam-A	/data/blastdb/domains/Pfam
+#Smart	SMART	/data/blastdb/domains/Smart
+#Tigr	TIGR	/data/blastdb/domains/Tigr
+#Prk	Protein Clusters database	/data/blastdb/domains/Prk
+#...etc...
+#
+#See also blastdb.loc which is for any nucleotide BLAST database, and
+#blastdb_p.loc which is for any protein BLAST databases.
