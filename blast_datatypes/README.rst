@@ -32,6 +32,7 @@ v0.0.14 - Includes datatypes for protein and nucleotide BLAST databases
 v0.0.15 - Fixes a MetadataElement bug and includes more of the optional
           BLAST database files (contribution from Nicola Soranzo)
 v0.0.16 - Adopt standard MIT License.
+        - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
 ======= ======================================================================
 
 
@@ -63,6 +64,13 @@ Also create the file lib/galaxy/datatypes/blast.py by moving, copying or linking
 the blast.py file provided in this tar-ball.  Finally add 'import blast' near
 the start of file lib/galaxy/datatypes/registry.py (after the other import
 lines).
+
+
+Bug Reports
+===========
+
+You can file an issue here https://github.com/peterjc/galaxy_blast/issues or ask
+us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
 
 
 Developers

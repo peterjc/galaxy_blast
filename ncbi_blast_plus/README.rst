@@ -113,7 +113,15 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Link to Tool Shed added to help text and this documentation.
         - Tweak dependency on blast_datatypes to also work on Test Tool Shed
         - Adopted standard MIT License.
+        - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
 ======= ======================================================================
+
+
+Bug Reports
+===========
+
+You can file an issue here https://github.com/peterjc/galaxy_blast/issues or ask
+us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
 
 
 Developers
