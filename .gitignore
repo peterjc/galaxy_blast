@@ -3,6 +3,9 @@
 *.swp
 *.bak
 
+#Ignore any tar-balls prepared to upload to Galaxy Tool Shed
+*.tar.gz
+
 #Ignore patches and any original files created by patch command
 *.diff
 *.patch
