@@ -56,7 +56,7 @@ Recognising the growing number of potential contributors, an informal "Birds
 of a Feather" (BoF) http://wiki.galaxyproject.org/Events/GCC2013/BoF/GalaxyBlast
 meeting was held in July 2013 during the annual Galaxy Community Conference.
 It was agreed to move the code into a dedicated Git repository on GitHub,
-with the goal of giving the project a clearer identify and making it easier
+with the goal of giving the project a clearer identity and making it easier
 for Peter to manage.
 
 
@@ -75,7 +75,8 @@ Folder Structure
 ================
 
 There is one folder for each Tool or Tool Suite released on the Galaxy Tool
-Shed, and a shared `test-data` folder used for functional test sample data.
+Shed, a shared `test-data` folder used for functional test sample data, and
+a `tool-data` folder used for configuration files.
 
 
 Bug Reports
