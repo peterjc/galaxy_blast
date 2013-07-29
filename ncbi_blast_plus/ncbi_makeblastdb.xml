@@ -1,4 +1,4 @@
-<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.5">
+<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.6">
   <description>Make BLAST database</description>
     <requirements>
         <requirement type="binary">makeblastdb</requirement>
@@ -14,7 +14,8 @@ $hash_index
 ## some extra spaces, e.g. -in " file1 file2 file3  " but BLAST seems happy:
 -in "
 #for $i in $in
-${i.file} #end for
+${i.file}
+#end for
 "
 #if $title:
 -title "$title"
@@ -23,16 +24,20 @@ ${i.file} #end for
 -title "BLAST Database"
 #end if
 -dbtype $dbtype 
-## #set $sep = '-mask_data '
-## #for $i in $mask_data
-## $sep${i.file}
-## #set $set = ', '
-## #end for 
+#set $mask_string = ''
+#set $sep = '-mask_data '
+#for $i in $mask_data
+#set $mask_string += $sep + str($i.file)
+#set $sep = ','
+#end for
+$mask_string
+## #set $gi_mask_string = ''
 ## #set $sep = '-gi_mask -gi_mask_name '
 ## #for $i in $gi_mask
-## $sep${i.file}
-## #set $set = ', '
-## #end for 
+## #set $gi_mask_string += $sep + str($i.file)
+## #set $sep = ','
+## #end for
+## $gi_mask_string
 ## #if $tax.select == 'id':
 ## -taxid $tax.id
 ## #else if $tax.select == 'map':
@@ -53,8 +58,8 @@ ${i.file} #end for
         <option value="nucl">nucleotide</option>
     </param>
     <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)
-    <repeat name="in" title="Blast or Fasta Database" min="1">
-        <param name="file" type="data" format="fasta,blastdbn,blastdbp" label="Blast or Fasta database" />
+    <repeat name="in" title="BLAST or FASTA Database" min="1">
+        <param name="file" type="data" format="fasta,blastdbn,blastdbp" label="BLAST or FASTA database" />
     </repeat>
     -->
     <repeat name="in" title="FASTA file" min="1">
@@ -65,10 +70,10 @@ ${i.file} #end for
     <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values." help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
 
     <!-- SEQUENCE MASKING OPTIONS -->
-    <!-- TODO
-    <repeat name="mask_data" title="Provide one or more files containing masking data">
-        <param name="file" type="data" format="asnb" label="File containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
+    <repeat name="mask_data" title="Masking data file">
+        <param name="file" type="data" format="asn1,asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
     </repeat>
+    <!-- TODO
     <repeat name="gi_mask" title="Create GI indexed masking data">
         <param name="file" type="data" format="asnb" label="Masking data output file" />
     </repeat>
@@ -97,8 +102,8 @@ ${i.file} #end for
     <!-- If we only accepted one FASTA file, we could use its human name here... -->
     <data name="outfile" format="data" label="${dbtype.value_label} BLAST database from ${on_string}">
         <change_format>
-                <when input="dbtype" value="nucl" format="blastdbn"/>
-                <when input="dbtype" value="prot" format="blastdbp"/>
+            <when input="dbtype" value="nucl" format="blastdbn" />
+            <when input="dbtype" value="prot" format="blastdbp" />
         </change_format>
     </data>
 </outputs>
