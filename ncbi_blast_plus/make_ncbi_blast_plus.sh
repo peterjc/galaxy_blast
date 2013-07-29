@@ -27,6 +27,7 @@ tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastn_wrapper.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastp_wrapper.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastx_wrapper.xml
+tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_dustmasker_wrapper.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_tblastn_wrapper.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_tblastx_wrapper.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_makeblastdb.xml
@@ -73,5 +74,5 @@ tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin_ext.tabula
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 46 files, have:"
+echo "Expect a tar-ball 47 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
