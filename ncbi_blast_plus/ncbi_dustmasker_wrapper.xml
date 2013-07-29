@@ -52,9 +52,8 @@ dustmasker
         <param name="linker" type="integer" value="1" label="DUST linker" help="How close masked intervals should be to get merged together" />
         <param name="outformat" type="select" label="Output format">
 <!-- acclist and maskinfo_xml are listed as possible output formats in
-     "dustmasker -help", but are not recognized by NCBI BLAST up to 2.2.27+.
-     The relative bugs have been fixed in upstream revision 57274
-     ( http://www.ncbi.nlm.nih.gov/viewvc/v1?view=rev&revision=57274 ).
+     "dustmasker -help", but were not recognized by NCBI BLAST up to
+     release 2.2.27+. The relative bugs have been fixed in 2.2.28+.
      seqloc_* formats are not very useful -->
 <!--            <option value="acclist">acclist</option>-->
             <option value="fasta">FASTA</option>
