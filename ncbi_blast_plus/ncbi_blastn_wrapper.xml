@@ -1,4 +1,4 @@
-<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.20">
+<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.21">
     <description>Search nucleotide database with nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
@@ -37,6 +37,7 @@ $adv_opts.strand
 #if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
 -max_target_seqs $adv_opts.max_hits
 #end if
+-perc_identity $adv_opts.identity_cutoff
 #if (str($adv_opts.word_size) and int(str($adv_opts.word_size)) > 0):
 -word_size $adv_opts.word_size
 #end if
@@ -126,6 +127,7 @@ $adv_opts.parse_deflines
                 <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
                     <validator type="in_range" min="0" />
                 </param>
+                <param name="identity_cutoff" type="float" min="0" max="100" value="0" label="Percent identity cutoff (-perc_identity)" help="Use zero for no cutoff" />
                 <!-- I'd like word_size to be optional, with minimum 4 for blastn -->
                 <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 4.">
                     <validator type="in_range" min="0" />
