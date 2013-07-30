@@ -18,7 +18,8 @@ dustmasker
   -in "$fastafile" -infmt fasta
 #end if
 -out "$outfile"
--window $window -level $level -linker $linker -outfmt $outformat</command>
+-window $window -level $level -linker $linker -outfmt $outformat
+    </command>
     <stdio>
         <!-- Anything other than zero is an error -->
         <exit_code range="1:" />
@@ -76,6 +77,24 @@ dustmasker
         </data>
     </outputs>
     <tests>
+        <test>
+            <param name="db_opts_selector" value="file" />
+            <param name="fastafile" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="window" value="64" />
+            <param name="level" value="20" />
+            <param name="linker" value="1" />
+            <param name="outformat" value="fasta" />
+            <output name="outfile" file="dustmasker_three_human.fasta" />
+        </test>
+        <test>
+            <param name="db_opts_selector" value="file" />
+            <param name="fastafile" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="window" value="64" />
+            <param name="level" value="20" />
+            <param name="linker" value="1" />
+            <param name="outformat" value="maskinfo_asn1_bin" />
+            <output name="outfile" file="dustmasker_three_human.asn1-binary" />
+        </test>
     </tests>
     <help>
 **What it does**
