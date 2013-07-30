@@ -37,7 +37,9 @@ $adv_opts.strand
 #if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
 -max_target_seqs $adv_opts.max_hits
 #end if
+#if (str($adv_opts.identity_cutoff) and float(str($adv_opts.identity_cutoff)) > 0 ):
 -perc_identity $adv_opts.identity_cutoff
+#end if
 #if (str($adv_opts.word_size) and int(str($adv_opts.word_size)) > 0):
 -word_size $adv_opts.word_size
 #end if
