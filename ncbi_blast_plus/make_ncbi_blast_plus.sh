@@ -33,6 +33,7 @@ tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_makeblastdb.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastdbcmd_info.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_rpsblast_wrapper.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_rpstblastn_wrapper.xml
+#tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_dustmasker_wrapper.xml 
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/blastxml_to_tabular.xml
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/blastxml_to_tabular.py
 tar -rf ncbi_blast_plus.tar ncbi_blast_plus/tool_dependencies.xml
@@ -68,6 +69,9 @@ tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.html
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.tabular
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.xml
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin_ext.tabular
+#tar -rf ncbi_blast_plus.tar test-data/dustmasker_three_human.asn1-binary
+#tar -rf ncbi_blast_plus.tar test-data/dustmasker_three_human.fasta
+
 
 #Zip the tar file
 gzip ncbi_blast_plus.tar
