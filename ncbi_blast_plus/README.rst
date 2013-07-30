@@ -109,6 +109,7 @@ v0.0.19 - Added wrappers for rpsblast and rpstblastn, and new blastdb_d.loc
           fall-back in case the return code is not set properly).
         - Clearer naming of output files.
 v0.0.20 - Added unit tests for BLASTN and TBLASTX.
+        - Added percentage identity option to BLASTN.
         - Fallback on ElementTree if cElementTree missing in XML to tabular.
         - Link to Tool Shed added to help text and this documentation.
         - Tweak dependency on blast_datatypes to also work on Test Tool Shed
