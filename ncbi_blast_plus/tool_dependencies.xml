@@ -8,6 +8,12 @@
                 <action type="set_environment">
                     <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR/bin</environment_variable>
                 </action>
+                <action type="set_environment">
+                    <environment_variable name="BLAST_SITE_OPTIONS" action="set_to">"-num_threads 8"</environment_variable>
+                </action>
+                <action type="set_environment">
+                    <environment_variable name="RPSBLAST_SITE_OPTIONS" action="set_to">"-num_threads 0"</environment_variable>
+                </action>
             </actions>
         </install>
         <readme>
@@ -17,4 +23,3 @@ http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_
         </readme>
     </package>
 </tool_dependency>
-

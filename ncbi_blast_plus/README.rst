@@ -37,6 +37,12 @@ You can download the NCBI provided databases as tar-balls from here:
 * ftp://ftp.ncbi.nlm.nih.gov/blast/db/ (nucleotide and protein databases like NR)
 * ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/ (domain databases like CDD)
 
+If you want to change the number of threads used by the NCBI BLAST+ tools, you
+should modify the file env.sh which have been created in your
+tool_dependency_dir (as defined in universe_wsgi.ini ) in the subdirectory
+
+blast+/2.2.26+/devteam/ncbi_blast_plus/INSTALLED_REVISION/
+
 
 Manual Installation
 ===================
@@ -69,6 +75,14 @@ about any system level BLAST databases using the tool-data/blastdb*.loc files.
 
 You must install the NCBI BLAST+ standalone tools somewhere on the system
 path. Currently the unit tests are written using "BLAST 2.2.26+".
+
+If you want to change the number of threads used by the NCBI BLAST+ tools, you
+should create a directory blast+/2.2.26+ in your tool_dependency_dir (as
+defined in universe_wsgi.ini ), then add there a file called env.sh containing
+for example:
+
+BLAST_SITE_OPTIONS="-num_threads 8"; export BLAST_SITE_OPTIONS
+RPSBLAST_SITE_OPTIONS="-num_threads 0"; export RPSBLAST_SITE_OPTIONS
 
 Run the functional tests (adjusting the section identifier to match your
 tool_conf.xml.sample file)::
