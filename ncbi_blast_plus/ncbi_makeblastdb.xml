@@ -1,5 +1,5 @@
 <tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.0.5">
-  <description>Make BLAST database</description>
+    <description>Make BLAST database</description>
     <requirements>
         <requirement type="binary">makeblastdb</requirement>
         <requirement type="package" version="2.2.26+">blast+</requirement>
@@ -14,7 +14,8 @@ $hash_index
 ## some extra spaces, e.g. -in " file1 file2 file3  " but BLAST seems happy:
 -in "
 #for $i in $in
-${i.file} #end for
+${i.file}
+#end for
 "
 #if $title:
 -title "$title"
@@ -38,71 +39,73 @@ ${i.file} #end for
 ## #else if $tax.select == 'map':
 ## -taxid_map $tax.map
 ## #end if
-</command>
-<stdio>
-    <!-- Anything other than zero is an error -->
-    <exit_code range="1:" />
-    <exit_code range=":-1" />
-    <!-- In case the return code has not been set propery check stderr too -->
-    <regex match="Error:" />
-    <regex match="Exception:" />
-</stdio>
-<inputs>
-    <param name="dbtype" type="select" display="radio" label="Molecule type of input">
-        <option value="prot">protein</option>
-        <option value="nucl">nucleotide</option>
-    </param>
-    <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)
-    <repeat name="in" title="Blast or Fasta Database" min="1">
-        <param name="file" type="data" format="fasta,blastdbn,blastdbp" label="Blast or Fasta database" />
-    </repeat>
-    -->
-    <repeat name="in" title="FASTA file" min="1">
-        <param name="file" type="data" format="fasta" />
-    </repeat>
-    <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
-    <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
-    <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values." help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
-
-    <!-- SEQUENCE MASKING OPTIONS -->
-    <!-- TODO
-    <repeat name="mask_data" title="Provide one or more files containing masking data">
-        <param name="file" type="data" format="asnb" label="File containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
-    </repeat>
-    <repeat name="gi_mask" title="Create GI indexed masking data">
-        <param name="file" type="data" format="asnb" label="Masking data output file" />
-    </repeat>
-    -->
-
-    <!-- TAXONOMY OPTIONS -->
-    <!-- TODO
-    <conditional name="tax">
-        <param name="select" type="select" label="Taxonomy options">
-            <option value="">Do not assign sequences to Taxonomy IDs</option>
-            <option value="id">Assign all sequences to one Taxonomy ID</option>
-            <option value="map">Supply text file mapping sequence IDs to taxnomy IDs</option>
+    </command>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+        <!-- In case the return code has not been set propery check stderr too -->
+        <regex match="Error:" />
+        <regex match="Exception:" />
+    </stdio>
+    <inputs>
+        <param name="dbtype" type="select" display="radio" label="Molecule type of input">
+            <option value="prot">protein</option>
+            <option value="nucl">nucleotide</option>
         </param>
-        <when value="">
-        </when>
-        <when value="id">
-            <param name="id" type="integer" value="" label="NCBI taxonomy ID" help="Integer &gt;=0" />
-        </when>
-        <when value="map">
-            <param name="file" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
-        </when>
-    </conditional>
-    -->
-</inputs>
-<outputs>
-    <!-- If we only accepted one FASTA file, we could use its human name here... -->
-    <data name="outfile" format="data" label="${dbtype.value_label} BLAST database from ${on_string}">
-        <change_format>
-                <when input="dbtype" value="nucl" format="blastdbn"/>
-                <when input="dbtype" value="prot" format="blastdbp"/>
-        </change_format>
-    </data>
-</outputs>
-<help>
+        <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)
+        <repeat name="in" title="BLAST or FASTA Database" min="1">
+            <param name="file" type="data" format="fasta,blastdbn,blastdbp" label="BLAST or FASTA database" />
+        </repeat>
+        -->
+        <repeat name="in" title="FASTA file" min="1">
+            <param name="file" type="data" format="fasta" />
+        </repeat>
+        <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
+        <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
+        <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values." help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
+
+        <!-- SEQUENCE MASKING OPTIONS -->
+        <!-- TODO
+        <repeat name="mask_data" title="Provide one or more files containing masking data">
+            <param name="file" type="data" format="asnb" label="File containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
+        </repeat>
+        <repeat name="gi_mask" title="Create GI indexed masking data">
+            <param name="file" type="data" format="asnb" label="Masking data output file" />
+        </repeat>
+        -->
+
+        <!-- TAXONOMY OPTIONS -->
+        <!-- TODO
+        <conditional name="tax">
+            <param name="select" type="select" label="Taxonomy options">
+                <option value="">Do not assign sequences to Taxonomy IDs</option>
+                <option value="id">Assign all sequences to one Taxonomy ID</option>
+                <option value="map">Supply text file mapping sequence IDs to taxnomy IDs</option>
+            </param>
+            <when value="">
+            </when>
+            <when value="id">
+                <param name="id" type="integer" value="" label="NCBI taxonomy ID" help="Integer &gt;=0" />
+            </when>
+            <when value="map">
+                <param name="file" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
+            </when>
+        </conditional>
+        -->
+    </inputs>
+    <outputs>
+        <!-- If we only accepted one FASTA file, we could use its human name here... -->
+        <data name="outfile" format="data" label="${dbtype.value_label} BLAST database from ${on_string}">
+            <change_format>
+                <when input="dbtype" value="nucl" format="blastdbn" />
+                <when input="dbtype" value="prot" format="blastdbp" />
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+    </tests>
+    <help>
 **What it does**
 
 Make BLAST database from one or more FASTA files and/or BLAST databases.
@@ -125,5 +128,5 @@ Altschul et al. Gapped BLAST and PSI-BLAST: a new generation of protein database
 
 This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
-</help>
+    </help>
 </tool>
