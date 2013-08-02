@@ -49,8 +49,8 @@ dustmasker
         <data name="outfile" format="interval" label="DUST Masked File">
             <change_format>
                 <when input="outformat" value="fasta" format="fasta" />
-                <when input="outformat" value="maskinfo_asn1_bin" format="asn1-binary" />
-                <when input="outformat" value="maskinfo_asn1_text" format="asn1" />
+                <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
+                <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />
             </change_format>
         </data>
     </outputs>
