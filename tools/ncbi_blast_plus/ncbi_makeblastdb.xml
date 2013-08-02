@@ -27,16 +27,20 @@ ${i.file}
 -title "BLAST Database"
 #end if
 -dbtype $dbtype 
-## #set $sep = '-mask_data '
-## #for $i in $mask_data
-## $sep${i.file}
-## #set $set = ', '
-## #end for 
+#set $mask_string = ''
+#set $sep = '-mask_data '
+#for $i in $mask_data
+#set $mask_string += $sep + str($i.file)
+#set $sep = ','
+#end for
+$mask_string
+## #set $gi_mask_string = ''
 ## #set $sep = '-gi_mask -gi_mask_name '
 ## #for $i in $gi_mask
-## $sep${i.file}
-## #set $set = ', '
-## #end for 
+## #set $gi_mask_string += $sep + str($i.file)
+## #set $sep = ','
+## #end for
+## $gi_mask_string
 ## #if $tax.select == 'id':
 ## -taxid $tax.id
 ## #else if $tax.select == 'map':
@@ -64,10 +68,10 @@ ${i.file}
         <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values." help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
 
         <!-- SEQUENCE MASKING OPTIONS -->
-        <!-- TODO
-        <repeat name="mask_data" title="Provide one or more files containing masking data">
-            <param name="file" type="data" format="asnb" label="File containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
+        <repeat name="mask_data" title="Masking data file">
+            <param name="file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
         </repeat>
+        <!-- TODO
         <repeat name="gi_mask" title="Create GI indexed masking data">
             <param name="file" type="data" format="asnb" label="Masking data output file" />
         </repeat>
