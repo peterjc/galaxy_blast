@@ -33,6 +33,7 @@ v0.0.15 - Fixes a MetadataElement bug and includes more of the optional
           BLAST database files (contribution from Nicola Soranzo)
 v0.0.16 - Adopt standard MIT License.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
+        - Nucleotide database definition aware of MegaBLAST index superheader
 ======= ======================================================================
 
 
