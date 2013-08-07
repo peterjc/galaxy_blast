@@ -112,7 +112,8 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Added percentage identity option to BLASTN.
         - Fallback on ElementTree if cElementTree missing in XML to tabular.
         - Link to Tool Shed added to help text and this documentation.
-        - Tweak dependency on blast_datatypes to also work on Test Tool Shed
+        - Tweak dependency on blast_datatypes to also work on Test Tool Shed.
+        - Dependency on new package_blast_plus_2_2_26 in Tool Shed.
         - Adopted standard MIT License.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
 ======= ======================================================================
