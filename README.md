@@ -12,7 +12,9 @@ line, and via the NCBI website for smaller searches. For more details see
 http://blast.ncbi.nlm.nih.gov/Blast.cgi
 
 This repository is for the development of the main Galaxy wrappers for the
-NCBI BLAST+ suite, associated datatype definitions for use within Galaxy.
+NCBI BLAST+ suite, associated datatype definitions for use within Galaxy,
+and dependency handling within the Galaxy Tool Shed framework.
+
 It also contains additional related Galaxy tools for working with BLAST.
 
 
@@ -28,6 +30,11 @@ Tool Shed here:
 Development test releases are on the Test Tool Shed here:
  - http://testtoolshed.g2.bx.psu.edu/view/peterjc/ncbi_blast_plus/
  - http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
+
+The NCBI BLAST+ binaries were initially included within the Galaxy wrappers
+(ncbi_blast_plus), but are now handled as a Tool Shed package:
+ - http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_26
+ - http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_26
 
 Note this this targets the NCBI's C++ rewrite of BLAST called BLAST+,
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/ -- we
