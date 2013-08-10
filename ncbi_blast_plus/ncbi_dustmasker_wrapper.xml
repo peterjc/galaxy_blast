@@ -6,6 +6,9 @@
         <requirement type="package" version="2.2.26+">blast+</requirement>
     </requirements>
     <version_command>dustmasker -version-full</version_command>
+    <macros>
+        <import>ncbi_macros.xml</import>
+    </macros>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
@@ -20,34 +23,9 @@ dustmasker
 -out "$outfile"
 -window $window -level $level -linker $linker -outfmt $outformat
     </command>
-    <stdio>
-        <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
+    <expand macro="stdio" />
     <inputs>
-        <conditional name="db_opts">
-            <param name="db_opts_selector" type="select" label="Nucleotide database/sequences">
-                <option value="db" selected="true">BLAST database</option>
-                <option value="histdb">BLAST database from your history</option>
-                <option value="file">FASTA file from your history</option>
-            </param>
-            <when value="db">
-                <param name="database" type="select" label="Nucleotide BLAST database">
-                    <options from_file="blastdb.loc">
-                        <column name="value" index="0" />
-                        <column name="name" index="1" />
-                        <column name="path" index="2" />
-                    </options>
-                </param>
-            </when>
-            <when value="histdb">
-                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
-            </when>
-            <when value="file">
-                <param name="fastafile" type="data" format="fasta" label="FASTA file"/> 
-            </when>
-        </conditional>
+        <expand macro="input_conditional_nucleotide_db" />
         <param name="window" type="integer" value="64" label="DUST window length" />
         <param name="level" type="integer" value="20" label="DUST level" help="Score threshold for subwindows" />
         <param name="linker" type="integer" value="1" label="DUST linker" help="How close masked intervals should be to get merged together" />
