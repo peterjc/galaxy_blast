@@ -1,10 +1,19 @@
 <?xml version="1.0"?>
 <tool_dependency>
+    <package name="boost" version="1.53.0">
+        <repository name="package_boost_1_53" owner="bgruening" prior_installation_required="True" />
+    </package>
     <package name="blast+" version="2.2.26+">
         <install version="1.0">
             <actions>
                 <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-src.tar.gz</action>
-                <action type="shell_command">cd c++ &amp;&amp; ./configure --prefix=$INSTALL_DIR &amp;&amp; make &amp;&amp; make install</action>
+                <!-- populate the environment variables from the dependent repos -->
+                <action type="set_environment_for_install">
+                    <repository name="package_boost_1_53" owner="bgruening">
+                        <package name="boost" version="1.53.0" />
+                    </repository>
+                </action>
+                <action type="shell_command">cd c++ &amp;&amp; ./configure --with-boost=$BOOST_ROOT_DIR --prefix=$INSTALL_DIR &amp;&amp; make &amp;&amp; make install</action>
                 <action type="set_environment">
                     <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR/bin</environment_variable>
                 </action>
