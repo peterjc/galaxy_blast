@@ -1,0 +1,220 @@
+<macros>
+    <macro name="output_change_format">
+
+        <change_format>
+            <when input="out_format" value="0" format="txt"/>
+            <when input="out_format" value="0 -html" format="html"/>
+            <when input="out_format" value="2" format="txt"/>
+            <when input="out_format" value="2 -html" format="html"/>
+            <when input="out_format" value="4" format="txt"/>
+            <when input="out_format" value="4 -html" format="html"/>
+            <when input="out_format" value="5" format="blastxml"/>
+        </change_format>
+
+    </macro>
+    <macro name="input_out_format">
+        <param name="out_format" type="select" label="Output format">
+            <option value="6">Tabular (standard 12 columns)</option>
+            <option value="ext" selected="True">Tabular (extended 24 columns)</option>
+            <option value="5">BLAST XML</option>
+            <option value="0">Pairwise text</option>
+            <option value="0 -html">Pairwise HTML</option>
+            <option value="2">Query-anchored text</option>
+            <option value="2 -html">Query-anchored HTML</option>
+            <option value="4">Flat query-anchored text</option>
+            <option value="4 -html">Flat query-anchored HTML</option>
+            <!--
+            <option value="-outfmt 11">BLAST archive format (ASN.1)</option>
+            -->
+        </param>
+    </macro>
+    <macro name="input_scoring_matrix">
+        <param name="matrix" type="select" label="Scoring matrix">
+            <option value="BLOSUM90">BLOSUM90</option>
+            <option value="BLOSUM80">BLOSUM80</option>
+            <option value="BLOSUM62" selected="true">BLOSUM62 (default)</option>
+            <option value="BLOSUM50">BLOSUM50</option> 
+            <option value="BLOSUM45">BLOSUM45</option>
+            <option value="PAM250">PAM250</option>
+            <option value="PAM70">PAM70</option>
+            <option value="PAM30">PAM30</option>
+        </param>
+    </macro>
+    <macro name="stdio">
+        <stdio>
+            <!-- Anything other than zero is an error -->
+            <exit_code range="1:" />
+            <exit_code range=":-1" />
+            <!-- In case the return code has not been set propery check stderr too -->
+            <regex match="Error:" />
+            <regex match="Exception:" />
+        </stdio>
+    </macro>
+    <macro name="input_query_gencode">
+        <param name="query_gencode" type="select" label="Query genetic code">
+            <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
+            <option value="1" select="True">1. Standard</option>
+            <option value="2">2. Vertebrate Mitochondrial</option>
+            <option value="3">3. Yeast Mitochondrial</option>
+            <option value="4">4. Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
+            <option value="5">5. Invertebrate Mitochondrial</option>
+            <option value="6">6. Ciliate, Dasycladacean and Hexamita Nuclear Code</option>
+            <option value="9">9. Echinoderm Mitochondrial</option>
+            <option value="10">10. Euplotid Nuclear</option>
+            <option value="11">11. Bacteria and Archaea</option>
+            <option value="12">12. Alternative Yeast Nuclear</option>
+            <option value="13">13. Ascidian Mitochondrial</option>
+            <option value="14">14. Flatworm Mitochondrial</option>
+            <option value="15">15. Blepharisma Macronuclear</option>
+            <option value="16">16. Chlorophycean Mitochondrial Code</option>
+            <option value="21">21. Trematode Mitochondrial Code</option>
+            <option value="22">22. Scenedesmus obliquus mitochondrial Code</option>
+            <option value="23">23. Thraustochytrium Mitochondrial Code</option>
+            <option value="24">24. Pterobranchia mitochondrial code</option>
+        </param>
+    </macro>
+
+    <macro name="input_db_gencode">
+        <param name="db_gencode" type="select" label="Database/subject genetic code">
+            <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
+            <option value="1" select="True">1. Standard</option>
+            <option value="2">2. Vertebrate Mitochondrial</option>
+            <option value="3">3. Yeast Mitochondrial</option>
+            <option value="4">4. Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
+            <option value="5">5. Invertebrate Mitochondrial</option>
+            <option value="6">6. Ciliate, Dasycladacean and Hexamita Nuclear Code</option>
+            <option value="9">9. Echinoderm Mitochondrial</option>
+            <option value="10">10. Euplotid Nuclear</option>
+            <option value="11">11. Bacteria and Archaea</option>
+            <option value="12">12. Alternative Yeast Nuclear</option>
+            <option value="13">13. Ascidian Mitochondrial</option>
+            <option value="14">14. Flatworm Mitochondrial</option>
+            <option value="15">15. Blepharisma Macronuclear</option>
+            <option value="16">16. Chlorophycean Mitochondrial Code</option>
+            <option value="21">21. Trematode Mitochondrial Code</option>
+            <option value="22">22. Scenedesmus obliquus mitochondrial Code</option>
+            <option value="23">23. Thraustochytrium Mitochondrial Code</option>
+            <option value="24">24. Pterobranchia mitochondrial code</option>
+        </param>
+    </macro>
+
+    <macro name="input_conditional_nucleotide_db">
+        <conditional name="db_opts">
+            <param name="db_opts_selector" type="select" label="Subject database/sequences">
+              <option value="db" selected="True">Locally installed BLAST database</option>
+              <option value="histdb">BLAST database from your history</option>
+              <option value="file">FASTA file from your history (see warning note below)</option>
+            </param>
+            <when value="db">
+                <param name="database" type="select" label="Nucleotide BLAST database">
+                    <options from_file="blastdb.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+                <param name="histdb" type="hidden" value="" />
+                <param name="subject" type="hidden" value="" /> 
+            </when>
+            <when value="histdb">
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+                <param name="subject" type="hidden" value="" />
+            </when>
+            <when value="file">
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" type="hidden" value="" />
+                <param name="subject" type="data" format="fasta" label="Nucleotide FASTA file to use as database"/> 
+            </when>
+        </conditional>
+    </macro>
+
+    <macro name="input_conditional_protein_db">
+        <conditional name="db_opts">
+            <param name="db_opts_selector" type="select" label="Subject database/sequences">
+              <option value="db" selected="True">Locally installed BLAST database</option>
+              <option value="histdb">BLAST database from your history</option>
+              <option value="file">FASTA file from your history (see warning note below)</option>
+            </param>
+            <when value="db">
+                <param name="database" type="select" label="Protein BLAST database">
+                    <options from_file="blastdb_p.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+                <param name="histdb" type="hidden" value="" />
+                <param name="subject" type="hidden" value="" />
+            </when>
+            <when value="histdb">
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
+                <param name="subject" type="hidden" value="" />
+            </when>
+            <when value="file">
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" type="hidden" value="" />
+                <param name="subject" type="data" format="fasta" label="Protein FASTA file to use as database"/> 
+            </when>
+        </conditional>
+    </macro>
+
+    <macro name="input_conditional_pssm">
+        <conditional name="db_opts">
+            <param name="db_opts_selector" type="select" label="Protein domain database (PSSM)">
+              <option value="db" selected="True">Locally installed BLAST database</option>
+              <!-- TODO - define new datatype
+              <option value="histdb">BLAST protein domain database from your history</option>
+              -->
+            </param>
+            <when value="db">
+                <param name="database" type="select" label="Protein domain database">
+                    <options from_file="blastdb_d.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+                <param name="histdb" type="hidden" value="" />
+                <param name="subject" type="hidden" value="" />
+            </when>
+            <!-- TODO - define new datatype
+            <when value="histdb">
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" type="data" format="blastdbd" label="Protein domain database" />
+                <param name="subject" type="hidden" value="" />
+            </when>
+            -->
+        </conditional>
+    </macro>
+
+    <macro name="input_conditional_choose_db_type">
+        <conditional name="db_opts">
+            <param name="db_type" type="select" label="Type of BLAST database">
+              <option value="nucl" selected="True">Nucleotide</option>
+              <option value="prot">Protein</option>
+            </param>
+            <when value="nucl">
+                <param name="database" type="select" label="Nucleotide BLAST database">
+                    <options from_file="blastdb.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+            </when>
+            <when value="prot">
+                <param name="database" type="select" label="Protein BLAST database">
+                    <options from_file="blastdb_p.loc">
+                      <column name="value" index="0"/>
+                      <column name="name" index="1"/>
+                      <column name="path" index="2"/>
+                    </options>
+                </param>
+            </when>
+        </conditional>
+    </macro>
+
+
+</macros>
