@@ -7,6 +7,9 @@
         <requirement type="package" version="2.2.26+">blast+</requirement>
     </requirements>
     <version_command>blastn -version</version_command>
+    <macros>
+        <import>ncbi_macros.xml</import>
+    </macros>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
@@ -48,44 +51,14 @@ $adv_opts.parse_deflines
 ## End of advanced options:
 #end if
     </command>
-    <stdio>
-        <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-        <!-- In case the return code has not been set propery check stderr too -->
-        <regex match="Error:" />
-        <regex match="Exception:" />
-    </stdio>
+
+    <expand macro="stdio" />
+
     <inputs>
         <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
-        <conditional name="db_opts">
-            <param name="db_opts_selector" type="select" label="Subject database/sequences">
-              <option value="db" selected="True">Locally installed BLAST database</option>
-              <option value="histdb">BLAST database from your history</option>
-              <option value="file">FASTA file from your history (see warning note below)</option>
-            </param>
-            <when value="db">
-                <param name="database" type="select" label="Nucleotide BLAST database">
-                    <options from_file="blastdb.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
-                </param>
-                <param name="histdb" type="hidden" value="" />
-                <param name="subject" type="hidden" value="" /> 
-            </when>
-            <when value="histdb">
-                <param name="database" type="hidden" value="" />
-                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
-                <param name="subject" type="hidden" value="" />
-            </when>
-            <when value="file">
-                <param name="database" type="hidden" value="" />
-                <param name="histdb" type="hidden" value="" />
-                <param name="subject" type="data" format="fasta" label="Nucleotide FASTA file to use as database"/> 
-            </when>
-        </conditional>
+
+        <expand macro="input_conditional_nucleotide_db" />
+
         <param name="blast_type" type="select" display="radio" label="Type of BLAST">
             <option value="megablast">megablast</option>
             <option value="blastn">blastn</option>
@@ -97,20 +70,7 @@ $adv_opts.parse_deflines
             -->
         </param>
         <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
-        <param name="out_format" type="select" label="Output format">
-            <option value="6">Tabular (standard 12 columns)</option>
-            <option value="ext" selected="True">Tabular (extended 24 columns)</option>
-            <option value="5">BLAST XML</option>
-            <option value="0">Pairwise text</option>
-            <option value="0 -html">Pairwise HTML</option>
-            <option value="2">Query-anchored text</option>
-            <option value="2 -html">Query-anchored HTML</option>
-            <option value="4">Flat query-anchored text</option>
-            <option value="4 -html">Flat query-anchored HTML</option>
-            <!--
-            <option value="-outfmt 11">BLAST archive format (ASN.1)</option>
-            -->
-        </param>
+        <expand macro="input_out_format" />
         <conditional name="adv_opts">
             <param name="adv_opts_selector" type="select" label="Advanced Options">
               <option value="basic" selected="True">Hide Advanced Options</option>
@@ -141,15 +101,7 @@ $adv_opts.parse_deflines
     </inputs>
     <outputs>
         <data name="output1" format="tabular" label="${blast_type.value_label} on ${on_string}">
-            <change_format>
-                <when input="out_format" value="0" format="txt"/>
-                <when input="out_format" value="0 -html" format="html"/>
-                <when input="out_format" value="2" format="txt"/>
-                <when input="out_format" value="2 -html" format="html"/>
-                <when input="out_format" value="4" format="txt"/>
-                <when input="out_format" value="4 -html" format="html"/>
-                <when input="out_format" value="5" format="blastxml"/>
-            </change_format>
+            <expand macro="output_change_format" />
         </data>
     </outputs>
     <tests>

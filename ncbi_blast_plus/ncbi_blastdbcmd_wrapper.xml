@@ -5,6 +5,9 @@
         <requirement type="package" version="2.2.26+">blast+</requirement>
     </requirements>
     <version_command>blastdbcmd -version</version_command>
+    <macros>
+        <import>ncbi_macros.xml</import>
+    </macros>
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
@@ -47,39 +50,9 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 | sed 's/>\(lcl|\|gnl|BL_ORD_ID|[0-9]* \)/>/1' > "$seq"
 #end if
     </command>
-    <stdio>
-        <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-	<!-- Suspect blastdbcmd sometimes fails to set error level -->
-	<regex match="Error:" />
-	<regex match="Exception:" />
-    </stdio>
+    <expand macro="stdio" />
     <inputs>
-        <conditional name="db_opts">
-            <param name="db_type" type="select" label="Type of BLAST database">
-              <option value="nucl" selected="True">Nucleotide</option>
-              <option value="prot">Protein</option>
-            </param>
-            <when value="nucl">
-                <param name="database" type="select" label="Nucleotide BLAST database">
-                    <options from_file="blastdb.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
-                </param>
-            </when>
-            <when value="prot">
-                <param name="database" type="select" label="Protein BLAST database">
-                    <options from_file="blastdb_p.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
-                </param>
-            </when>
-        </conditional>
+        <expand macro="input_conditional_choose_db_type" />
         <conditional name="id_opts">
             <param name="id_type" type="select" label="Type of identifier list">
               <option value="file">From file</option>
