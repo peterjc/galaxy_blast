@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <tool_dependency>
     <package name="boost" version="1.53.0">
-        <repository name="package_boost_1_53" owner="bgruening" prior_installation_required="True" />
+        <repository name="package_boost_1_53" owner="iuc" prior_installation_required="True" />
     </package>
     <package name="blast+" version="2.2.26+">
         <install version="1.0">
