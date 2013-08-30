@@ -15,7 +15,7 @@
                     if [[ "$(uname)" == "Linux" ]]; then wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/$FILENAME; fi &amp;&amp;
                     if [[ "$(uname)" == "Darwin" ]]; then curl -O ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/$FILENAME; fi &amp;&amp;
                     tar -zxvf $FILENAME &amp;&amp;
-		    echo Downloaded and decompressed
+                    echo Downloaded and decompressed
                 </action>
                 <!-- move the binaries to the installation directory which is now on the $PATH -->
                 <action type="move_directory_files">
