@@ -295,9 +295,18 @@ and differ in how insertions are shown (marked as insertions or with gap charact
 
 **References**
 
-Altschul et al. Gapped BLAST and PSI-BLAST: a new generation of protein database search programs. 1997. Nucleic Acids Res. 25:3389-3402.
+If you use this Galaxy tool in work leading to a scientific publication please
+cite the following papers (a more specific paper covering this wrapper is planned):
 
-Schaffer et al. Improving the accuracy of PSI-BLAST protein database searches with composition-based statistics and other refinements. 2001. Nucleic Acids Res. 29:2994-3005.
+Peter Cock, Bjoern Gruening, Konrad Paszkiewicz and Leighton Pritchard (2013).
+Galaxy tools and workflows for sequence analysis with applications
+in molecular plant pathology. PeerJ 1:e167
+http://dx.doi.org/10.7717/peerj.167
+
+Christiam Camacho et al. (2009).
+BLAST+: architecture and applications.
+BMC Bioinformatics. 15;10:421.
+http://dx.doi.org/10.1186/1471-2105-10-421
 
 This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus

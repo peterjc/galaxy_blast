@@ -62,7 +62,8 @@ v0.0.6  - Check for errors via the script's return code (internal change)
 v0.0.7  - Link to Tool Shed added to help text and this documentation.
         - Tweak dependency on blast_datatypes to also work on Test Tool Shed
         - Adopt standard MIT License.
-        - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
+v0.0.8  - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
+v0.0.9  - Updated citation information (Cock et al. 2013).
 ======= ======================================================================
 
 

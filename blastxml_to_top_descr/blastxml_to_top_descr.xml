@@ -1,4 +1,4 @@
-<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.7">
+<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.9">
     <description>Make a table from BLAST XML</description>
     <version_command interpreter="python">blastxml_to_top_descr.py --version</version_command>
     <command interpreter="python">
@@ -26,7 +26,7 @@
         </test>
     </tests>
     <help>
-    
+
 **What it does**
 
 NCBI BLAST+ (and the older NCBI 'legacy' BLAST) can output in a range of
@@ -49,7 +49,15 @@ can give you a 'quick and dirty' crude annotation, potentially enough
 to spot some problems (e.g. bacterial contaimination could be very
 obvious).
 
-**Citation**
+**References**
+
+If you use this Galaxy tool in work leading to a scientific publication please
+cite:
+
+Peter Cock, Bjoern Gruening, Konrad Paszkiewicz and Leighton Pritchard (2013).
+Galaxy tools and workflows for sequence analysis with applications
+in molecular plant pathology. PeerJ 1:e167
+http://dx.doi.org/10.7717/peerj.167
 
 This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr

@@ -116,6 +116,7 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Dependency on new package_blast_plus_2_2_26 in Tool Shed.
         - Adopted standard MIT License.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
+        - Updated citation information (Cock et al. 2013).
 ======= ======================================================================
 
 
