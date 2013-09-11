@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <repositories description="This requires the BLAST datatype definitions (e.g. the BLAST XML format).">
-
+<!-- Revision 4:f9a7783ed7b6 on the main (and test) tool shed is v0.0.14 which added BLAST databases -->
 <repository changeset_revision="f9a7783ed7b6" name="blast_datatypes" owner="devteam" toolshed="http://testtoolshed.g2.bx.psu.edu" />
 </repositories>
