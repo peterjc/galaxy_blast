@@ -20,7 +20,7 @@ http://dx.doi.org/10.7717/peerj.167
 
 S. Geotz et al. (2008).
 High-throughput functional annotation and data mining with the Blast2GO suite.
-Nucleic Acids Res. 36(10):3420–3435.
+Nucleic Acids Res. 36(10):3420-3435.
 http://dx.doi.org/10.1093/nar/gkn176
 
 A. Conesa and S. Geotz (2008).
