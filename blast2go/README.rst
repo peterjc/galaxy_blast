@@ -18,12 +18,12 @@ Galaxy tools and workflows for sequence analysis with applications
 in molecular plant pathology. PeerJ 1:e167
 http://dx.doi.org/10.7717/peerj.167
 
-S. Götz et al. (2008).
+S. Geotz et al. (2008).
 High-throughput functional annotation and data mining with the Blast2GO suite.
 Nucleic Acids Res. 36(10):3420–3435.
 http://dx.doi.org/10.1093/nar/gkn176
 
-A. Conesa and S. Götz (2008).
+A. Conesa and S. Geotz (2008).
 Blast2GO: A Comprehensive Suite for Functional Analysis in Plant Genomics.
 International Journal of Plant Genomics. 619832.
 http://dx.doi.org/10.1155/2008/619832
