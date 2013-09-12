@@ -110,7 +110,7 @@ More information about DustMasker can be found in the `BLAST Command Line Applic
 If you use this Galaxy tool in work leading to a scientific publication please
 cite the following papers (a more specific paper covering this wrapper is planned):
 
-Peter Cock, Bjoern Gruening, Konrad Paszkiewicz and Leighton Pritchard (2013).
+Peter J.A. Cock, Björn A. Grüning, Konrad Paszkiewicz and Leighton Pritchard (2013).
 Galaxy tools and workflows for sequence analysis with applications
 in molecular plant pathology. PeerJ 1:e167
 http://dx.doi.org/10.7717/peerj.167
