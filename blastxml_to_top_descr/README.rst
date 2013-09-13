@@ -39,7 +39,7 @@ the NCBI BLAST+ tool wrappers.
 You will also need to modify the tools_conf.xml file to tell Galaxy to offer
 the tool. e.g. next to the NCBI BLAST+ tools. Simply add the line::
 
-    <tool file="filters/seq_select_by_id.xml" />
+    <tool file="ncbi_blast_plus/blastxml_to_top_descr.xml" />
 
 To run the tool's tests, also add this line to tools_conf.xml.sample then::
 
