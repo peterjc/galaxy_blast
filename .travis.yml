@@ -1,0 +1,130 @@
+# This is a special configuration file to run tests on Travis-CI via
+# GitHub notifications when changes are committed.
+#
+# See http://travis-ci.org/ for details
+
+
+# We need Python 2.6 or 2.7 to run Galaxy (and some of the wrappers)
+language: python
+python: "2.6"
+
+# Installing Galaxy
+# =================
+#
+# Before installing our Galaxy wrappers, we need to install Galaxy.
+# That may mean using hg to clone it from BitBucket, but too slow?
+#
+# $ time hg clone https://bitbucket.org/galaxy/galaxy-dist
+# ...
+# 3m14s
+#
+# Could use wget to just grab the a specific branch/revision?
+#
+# $ time wget https://bitbucket.org/galaxy/galaxy-dist/get/stable.tar.bz2
+# ...
+# 1m33s
+#
+# We can do better using a GitHub mirror, such as John Chilton's
+#
+# $ time git clone https://github.com/jmchilton/galaxy-central.git
+# ...
+# 44s
+#
+# But better yet seems to be a tar-ball from the GitHub mirror,
+#
+# $ time wget https://github.com/jmchilton/galaxy-central/archive/master.tar.gz
+# ...
+# 22s
+#
+# Note it redirects so wget downloads the tar-ball as a file just called master,
+# https://codeload.github.com/jmchilton/galaxy-central/tar.gz/master
+#
+# However, we might want to focus on the stable release branch?
+#
+#
+# Installing Tool Dependencies
+# ============================
+#
+# We grab Galaxy, and will later make configuration changes specifically
+# for testing our tools. Otherwise we use the default settings such as
+# running with an SQLite database.
+#
+# We also need to install our tool dependencies, e.g. NCBI BLAST+ binaries,
+# which we will do manually rather than via a (local) Galaxy Tool Shed.
+#
+
+before_install:
+ - wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-x64-linux.tar.gz
+ - tar -zxvf ncbi-blast-2.2.26+-x64-linux.tar.gz | tail
+ - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.26+/bin:$PATH"
+ - wget https://codeload.github.com/jmchilton/galaxy-central/tar.gz/master
+ - tar -zxvf master | tail
+ - cd galaxy-central-master
+
+# Configuring tools within Galaxy
+# ===============================
+#
+# We setup a minimal tool_conf.xml and/or tool_conf.xml.sample file to
+# get Galaxy to just test our tools, rather than via a (local) Galaxy
+# Tool Shed.
+#
+# TODO - GALAXY_TEST_TOOL_CONF environment variable rather than symlink?
+#
+# We setup our tools under the Galaxy tool folder by using symlinks.
+# TODO - Restructure this to auto-update in future when add folders?
+#
+# We setup our datatypes by adding blast.py to the Galaxy library, and
+# adding the insert into lib/galaxy/datatypes/registry.py, and replacing
+# the datatypes_conf.xml file.
+#
+# We setup our sample data in the Galaxy test-data folder by copying them
+# (using symlinks might be faster?)
+#
+# We setup out sample *.loc files in the Galaxy tool-data folder by copying
+# them (using symlinks might be faster?)
+#
+# We then want to use run.sh to setup all the sample files, fetch eggs etc,
+# but not actually start running Galaxy. One way to do this is by calling
+# "./run.sh --stop-daemon" but must override its error level 1 return value.
+#
+
+install:
+ - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml
+ - rm tool_conf.xml.sample
+ - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml.sample
+ - ln -s ${TRAVIS_BUILD_DIR}/ncbi_blast_plus/ tools/ncbi_blast_plus
+ - ln -s ${TRAVIS_BUILD_DIR}/blastxml_to_top_descr/ tools/blastxml_to_top_descr
+ - ln -s ${TRAVIS_BUILD_DIR}/reciprocal_best_hits/ tools/reciprocal_best_hits
+ - ln -s ${TRAVIS_BUILD_DIR}/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
+ - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
+ - sed -i '6 i import blast' lib/galaxy/datatypes/registry.py
+ - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
+ - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
+ - ./run.sh --stop-daemon || true
+
+
+# Testing tools in Galaxy
+# =======================
+#
+# Having setup our Galaxy with a minimal tool_conf.xml / tool_conf.xml.sample
+# we call run_functional_tests.sh to run just our tests (grouped under a
+# common section "travis" in the XML file for this purpose).
+#
+# ./run_functional_tests.sh -sid Continuous-Integration-Travis
+#
+# calls:
+#
+# python ./scripts/functional_tests.py --with-nosehtml --html-report-file run_functional_tests.html -v `python tool_list.py Continuous-Integration-Travis`
+#
+# That gives an error sadly under Travis,
+# functional_tests.py: error: no such option: --with-nosehtml
+# And also,
+# functional_tests.py: error: no such option: --html-report-file
+# Perhaps Galaxy's nose egg isn't being fetched?
+
+script:
+ - python ./scripts/functional_tests.py -v `python tool_list.py Continuous-Integration-Travis`
+
+#The email defaults are too talkative while we're getting Travis working nicely.
+notifications:
+  email: false
