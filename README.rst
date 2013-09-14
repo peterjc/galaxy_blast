@@ -91,6 +91,29 @@ Shed, a shared ``test-data`` folder used for functional test sample data, and
 a ``tool-data`` folder used for configuration files.
 
 
+Testing
+=======
+
+Most of there Galaxy tools include a <tests> section in the tool XML files,
+which defines one or more functional tests - listing sample input files and
+user parameters, along with the expected output. If you install the tools,
+you can run these tests via Galaxy's ``run_functional_tests.sh`` script -
+and/or do this automatically if installing the tools via the Tool Shed.
+
+The Galaxy team run nightly tests on all the tools which have been uploaded
+the main Tool Shed and the Test Tool Shed, simulating how they would behave
+in a local Galaxy instance once installed via the Tool Shed.
+
+In addition we are running the same functional tests via TravisCI whenever
+this GitHub repository is updated:
+
+.. image:: https://travis-ci.org/peterjc/galaxy_blast.png?branch=master
+
+This TravisCI integration is still new and experimental, but simulates a
+manual install of these Galaxy Tools and their dependencies. See the
+special ``.travis.yml`` file for more technical details.
+
+
 Bug Reports
 ===========
 
