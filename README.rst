@@ -101,8 +101,8 @@ you can run these tests via Galaxy's ``run_functional_tests.sh`` script -
 and/or do this automatically if installing the tools via the Tool Shed.
 
 The Galaxy team run nightly tests on all the tools which have been uploaded
-the main Tool Shed and the Test Tool Shed, simulating how they would behave
-in a local Galaxy instance once installed via the Tool Shed.
+to the main Tool Shed and the Test Tool Shed, simulating how they would
+behave in a local Galaxy instance once installed via the Tool Shed.
 
 In addition we are running the same functional tests via TravisCI whenever
 this GitHub repository is updated:
