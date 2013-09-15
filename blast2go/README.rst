@@ -131,13 +131,15 @@ v0.0.4  - Include repository_dependencies.xml file for 'blastxml' format
 v0.0.5  - Quote arguments in case of spaces in filenames (internal change)
         - Last release supporting b2g4pipe v2.3.5
 v0.0.6  - Support for b2g4pipe v2.5 instead of v2.3.5
+
           - Now invoked with a class path and es.blast2go.prog.B2GAnnotPipe
             rather then simply calling the jar file
           - Now uses the switch -annot instead of -a (this change breaks
             support for b2g4pipe v2.3.5 unfortunately)
+
         - Catch a few error messages and treat them explicitly as errors.
 v0.0.7  - Update output description in XML file (b2g4pipe v2.3.5 included
-         the sequence description, b2g4pipe v2.5 omits this).
+          the sequence description, b2g4pipe v2.5 omits this).
 v0.0.8  - Automated installation via the Galaxy Tool Shed.
         - Added unit test.
         - Explain how to load the tabular file into the Blast2GO GUI.
