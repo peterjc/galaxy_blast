@@ -7,6 +7,11 @@
                 <!-- The ZIP file decompresses to give a folder b2g4pipe -->
                 <action type="download_by_url">http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip</action>
 		<!-- Galaxy moves into the unzipped folder b2g4pipe -->
+                <action type="shell_command">
+cp b2gPipe.properties Spain_2012_August.properties &&
+sed -i "s/Dbacces.dbname=b2g_apr12/Dbacces.dbname=b2g_aug12/g" Spain_2012_August.properties &&
+sed -i "s/Dbacces.dbhost=10.10.100.203/Dbacces.dbhost=publicdb.blast2go.com/g" Spain_2012_August.properties
+                </action>
                 <action type="move_directory_files"><source_directory>.</source_directory><destination_directory>$INSTALL_DIR/</destination_directory></action>
                 <!-- Set environment variable $B2G4PIPE so Python script knows where to look -->
                 <action type="set_environment">
