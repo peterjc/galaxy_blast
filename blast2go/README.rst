@@ -56,7 +56,7 @@ the current version is b2g4pipe v2.5 which is available here:
 
 * http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
 
-You can change the path by setting the B2G4PIP environement variable to
+You can change the path by setting the B2G4PIPE environement variable to
 the desired folder, but by default the script looks for the JAR file here::
 
     /opt/b2g4pipe_v2.5/blast2go.jar
