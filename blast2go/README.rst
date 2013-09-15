@@ -33,7 +33,7 @@ Blast2GO: A universal tool for annotation, visualization and analysis in functio
 Bioinformatics 21:3674-3676.
 http://dx.doi.org/10.1093/bioinformatics/bti610
 
-See also http://www.blast2go.org/
+See also http://www.blast2go.com/
 
 
 Automated Installation
