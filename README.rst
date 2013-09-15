@@ -108,6 +108,8 @@ In addition we are running the same functional tests via TravisCI whenever
 this GitHub repository is updated:
 
 .. image:: https://travis-ci.org/peterjc/galaxy_blast.png?branch=master
+   :alt: Current status of TravisCI build for master branch
+   :target: https://travis-ci.org/peterjc/galaxy_blast/builds
 
 This TravisCI integration is still new and experimental, but simulates a
 manual install of these Galaxy Tools and their dependencies. See the
