@@ -77,10 +77,12 @@ This repository also contains other BLAST related Galaxy tools, some already
 available on the Galaxy Tool Shed:
 
 * http://toolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr
+* http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 
 Any development test releases are on the Test Tool Shed, for example:
 
 * http://testtoolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr
+* http://testtoolshed.g2.bx.psu.edu/view/peterjc/blast2go
 
 
 Folder Structure
