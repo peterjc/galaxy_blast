@@ -27,7 +27,7 @@
     <tests>
         <test>
             <param name="xml" value="blastp_sample.xml" ftype="blastxml"/>
-            <param name="prop" value="Spain_2012_August"/>
+            <param name="prop" value="Spain_2011_June"/>
             <output name="tab" file="blastp_sample.blast2go.tabular" ftype="tabular"/>
         </test>
     </tests>
