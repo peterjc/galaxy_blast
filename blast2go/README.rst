@@ -154,8 +154,12 @@ v0.0.8  - Automated installation via the Galaxy Tool Shed.
 Developers
 ==========
 
-This script and related tools are being developed on the following hg branch:
-http://bitbucket.org/peterjc/galaxy-central/src/tools
+This script and related tools were originally developed on the 'tools' branch
+of the following BitBucket Mercurial repository:
+https://bitbucket.org/peterjc/galaxy-central/
+
+As of September 2013, development is continuing on a dedicated GitHub repository:
+https://github.com/peterjc/galaxy_blast
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder::
