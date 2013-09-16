@@ -67,6 +67,7 @@ tools/blast2go/ folder:
 
 * blast2go.xml (the Galaxy tool definition)
 * blast2go.py (the Python wrapper script)
+* massage_xml_for_blast2go.py (Python XML reformatting script)
 * README.rst (this file)
 
 For a manual installation of the wrapper you will also need to modify the
@@ -148,6 +149,7 @@ v0.0.8  - Automated installation via the Galaxy Tool Shed.
         - Use reStructuredText for this README file.
         - Updated citation information (Cock et al. 2013).
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
+        - Split out massage_xml_for_blast2go.py as a standalone file.
 ======= ======================================================================
 
 
@@ -164,7 +166,7 @@ https://github.com/peterjc/galaxy_blast
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder::
 
-    $ tar -czf blast2go.tar.gz blast2go/README.rst blast2go/blast2go.xml blast2go/blast2go.py blast2go/repository_dependencies.xml blast2go/tool_dependencies.xml tool-data/blast2go.loc.sample test-data/blastp_sample.xml test-data/blastp_sample.blast2go.tabular
+    $ tar -czf blast2go.tar.gz blast2go/README.rst blast2go/blast2go.xml blast2go/blast2go.py blast2go/massage_xml_for_blast2go.py blast2go/repository_dependencies.xml blast2go/tool_dependencies.xml tool-data/blast2go.loc.sample test-data/blastp_sample.xml test-data/blastp_sample.blast2go.tabular
 
 Check this worked::
 
@@ -172,6 +174,7 @@ Check this worked::
     blast2go/README.rst
     blast2go/blast2go.xml
     blast2go/blast2go.py
+    blast2go/massage_xml_for_blast2go.py
     blast2go/repository_dependencies.xml
     blast2go/tool_dependencies.xml
     tool-data/blast2go.loc.sample
