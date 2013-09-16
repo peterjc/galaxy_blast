@@ -90,13 +90,13 @@ Folder Structure
 
 There is one folder for each Tool or Tool Suite released on the Galaxy Tool
 Shed, a shared ``test-data`` folder used for functional test sample data, and
-a ``tool-data`` folder used for configuration files.
+shared a ``tool-data`` folder used for configuration files.
 
 
 Testing
 =======
 
-Most of there Galaxy tools include a <tests> section in the tool XML files,
+Most of these Galaxy tools include a <tests> section in the tool XML files,
 which defines one or more functional tests - listing sample input files and
 user parameters, along with the expected output. If you install the tools,
 you can run these tests via Galaxy's ``run_functional_tests.sh`` script -
