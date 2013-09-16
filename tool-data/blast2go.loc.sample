@@ -13,7 +13,7 @@
 # "General Settings", "DataAccess setting"). We also strongly recommend
 # configuring a local Blast2GO database.
 #
-# The property filenames can be fullied qualified paths like
+# The property filenames can be fully qualified paths like
 # /opt/b2g4pipe/Spain_2012_August.properties or provided they are
 # in the same folder as the Blast2GO JAR file, just the filename
 # like Spain_2012_August.properties instead. This is intended to
@@ -23,5 +23,5 @@
 #Local_2011_May	Local database (May 2011)	Local_2011_May.properties
 #Spain_2010_May	Database in Spain (May 2010)	Spain_2010_May.properties
 #Spain_2011_June	Database in Spain (June 2011)	Spain_2011_June.properties
-#Spain_2012_August	Database in Spain (August 2012)	Spain_2012_August.properties
-default	Default settings	b2gPipe.properties
+Spain_2012_August	Database in Spain (August 2012)	Spain_2012_August.properties
+#default	Default settings	b2gPipe.properties
