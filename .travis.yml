@@ -5,8 +5,12 @@
 
 
 # We need Python 2.6 or 2.7 to run Galaxy (and some of the wrappers)
-language: python
-python: "2.6"
+# but don't really care which. We also need Java to run Blast2GO,
+# and perhaps the simplest way to get that installed to to run this
+# entire TravisCI build as "java" (which will still have a system
+# python installed).
+#
+language: java
 
 # Installing Galaxy
 # =================
@@ -54,9 +58,21 @@ python: "2.6"
 #
 
 before_install:
+ - echo "Fetching and installing Blast2GO for pipelines (b2g4pipe)..."
+ - wget http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
+ - unzip b2g4pipe_v2.5.zip
+ - cp b2g4pipe/b2gPipe.properties b2g4pipe/Spain_2012_August.properties
+ - sed -i "s/Dbacces.dbname=b2g_apr12/Dbacces.dbname=b2g_aug12/g" b2g4pipe/Spain_2012_August.properties
+ - sed -i "s/Dbacces.dbhost=10.10.100.203/Dbacces.dbhost=publicdb.blast2go.com/g" b2g4pipe/Spain_2012_August.properties
+ - cp b2g4pipe/b2gPipe.properties b2g4pipe/Spain_2011_June.properties
+ - sed -i "s/Dbacces.dbname=b2g_apr12/Dbacces.dbname=b2g_jun11/g" b2g4pipe/Spain_2011_June.properties
+ - sed -i "s/Dbacces.dbhost=10.10.100.203/Dbacces.dbhost=publicdb.blast2go.com/g" b2g4pipe/Spain_2011_June.properties
+ - export B2G4PIPE="${TRAVIS_BUILD_DIR}/b2g4pipe/"
+ - echo "Fetching and installing NCBI BLAST+..."
  - wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-x64-linux.tar.gz
  - tar -zxvf ncbi-blast-2.2.26+-x64-linux.tar.gz | tail
  - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.26+/bin:$PATH"
+ - echo "Fetching Galaxy..."
  - wget https://codeload.github.com/jmchilton/galaxy-central/tar.gz/master
  - tar -zxvf master | tail
  - cd galaxy-central-master
@@ -95,6 +111,7 @@ install:
  - ln -s ${TRAVIS_BUILD_DIR}/ncbi_blast_plus/ tools/ncbi_blast_plus
  - ln -s ${TRAVIS_BUILD_DIR}/blastxml_to_top_descr/ tools/blastxml_to_top_descr
  - ln -s ${TRAVIS_BUILD_DIR}/reciprocal_best_hits/ tools/reciprocal_best_hits
+ - ln -s ${TRAVIS_BUILD_DIR}/blast2go/ tools/blast2go
  - ln -s ${TRAVIS_BUILD_DIR}/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
  - sed -i '6 i import blast' lib/galaxy/datatypes/registry.py

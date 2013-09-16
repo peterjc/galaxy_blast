@@ -21,8 +21,8 @@
     <tool file="ncbi_blast_plus/ncbi_deltablast_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_dustmasker_wrapper.xml" />
     <tool file="reciprocal_best_hits/reciprocal_best_hits.xml" />
-    <tool file="blast2go/blast2go.xml" />
     -->
     <tool file="ncbi_blast_plus/blastxml_to_tabular.xml" />
+    <tool file="blast2go/blast2go.xml" />
   </section>
 </toolbox>
