@@ -86,15 +86,15 @@ https://github.com/peterjc/galaxy_blast
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball use
 the following command from the GitHub repository root folder::
 
-    $ tar -czf blastxml_to_top_descr.tar.gz blastxml_to_top_descr/README.rst blastxml_to_top_descr/blastxml_to_top_descr.* blastxml_to_top_descr/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular
+    $ tar -czf blastxml_to_top_descr.tar.gz tools/blastxml_to_top_descr/README.rst tools/blastxml_to_top_descr/blastxml_to_top_descr.* tools/blastxml_to_top_descr/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular
 
 Check this worked::
 
     $ tar -tzf blastxml_to_top_descr.tar.gz
-    blastxml_to_top_descr/README.rst
-    blastxml_to_top_descr/blastxml_to_top_descr.py
-    blastxml_to_top_descr/blastxml_to_top_descr.xml
-    blastxml_to_top_descr/repository_dependencies.xml
+    tools/blastxml_to_top_descr/README.rst
+    tools/blastxml_to_top_descr/blastxml_to_top_descr.py
+    tools/blastxml_to_top_descr/blastxml_to_top_descr.xml
+    tools/blastxml_to_top_descr/repository_dependencies.xml
     test-data/blastp_four_human_vs_rhodopsin.xml
     test-data/blastp_four_human_vs_rhodopsin_top3.tabular
 

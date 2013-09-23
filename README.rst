@@ -88,9 +88,10 @@ Any development test releases are on the Test Tool Shed, for example:
 Folder Structure
 ================
 
-There is one folder for each Tool or Tool Suite released on the Galaxy Tool
-Shed, a shared ``test-data`` folder used for functional test sample data, and
-shared a ``tool-data`` folder used for configuration files.
+Under the ``tools`` folder there is one folder for each Tool or Tool Suite
+released on the Galaxy Tool Shed, a shared ``test-data`` folder used for
+functional test sample data, and shared a ``tool-data`` folder used for
+configuration files.
 
 
 Testing

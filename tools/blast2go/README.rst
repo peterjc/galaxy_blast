@@ -166,17 +166,17 @@ https://github.com/peterjc/galaxy_blast
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder::
 
-    $ tar -czf blast2go.tar.gz blast2go/README.rst blast2go/blast2go.xml blast2go/blast2go.py blast2go/massage_xml_for_blast2go.py blast2go/repository_dependencies.xml blast2go/tool_dependencies.xml tool-data/blast2go.loc.sample test-data/blastp_sample.xml test-data/blastp_sample.blast2go.tabular
+    $ tar -czf blast2go.tar.gz tools/blast2go/README.rst tools/blast2go/blast2go.xml tools/blast2go/blast2go.py tools/blast2go/massage_xml_for_blast2go.py tools/blast2go/repository_dependencies.xml tools/blast2go/tool_dependencies.xml tool-data/blast2go.loc.sample test-data/blastp_sample.xml test-data/blastp_sample.blast2go.tabular
 
 Check this worked::
 
     $ tar -tzf blast2go.tar.gz
-    blast2go/README.rst
-    blast2go/blast2go.xml
-    blast2go/blast2go.py
-    blast2go/massage_xml_for_blast2go.py
-    blast2go/repository_dependencies.xml
-    blast2go/tool_dependencies.xml
+    tools/blast2go/README.rst
+    tools/blast2go/blast2go.xml
+    tools/blast2go/blast2go.py
+    tools/blast2go/massage_xml_for_blast2go.py
+    tools/blast2go/repository_dependencies.xml
+    tools/blast2go/tool_dependencies.xml
     tool-data/blast2go.loc.sample
     test-data/blastp_sample.xml
     test-data/blastp_sample.blast2go.tabular

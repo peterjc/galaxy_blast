@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "This will create a tar-ball suitable to upload to the toolshed."
 
-if [ -f "ncbi_blast_plus/make_ncbi_blast_plus.sh" ]
+if [ -f "tools/ncbi_blast_plus/make_ncbi_blast_plus.sh" ]
 then
 echo "Good, in the expected directory"
 else
@@ -22,22 +22,22 @@ rm ncbi_blast_plus.tar
 fi
 
 #Create tar file (-cf then -rf to add to it)
-tar -cf ncbi_blast_plus.tar ncbi_blast_plus/repository_dependencies.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastn_wrapper.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastp_wrapper.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastx_wrapper.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_tblastn_wrapper.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_tblastx_wrapper.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_makeblastdb.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_blastdbcmd_info.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_rpsblast_wrapper.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_rpstblastn_wrapper.xml
-#tar -rf ncbi_blast_plus.tar ncbi_blast_plus/ncbi_dustmasker_wrapper.xml 
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/blastxml_to_tabular.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/blastxml_to_tabular.py
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/tool_dependencies.xml
-tar -rf ncbi_blast_plus.tar ncbi_blast_plus/README.rst
+tar -cf ncbi_blast_plus.tar tools/ncbi_blast_plus/repository_dependencies.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastn_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastp_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastx_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_tblastn_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_tblastx_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_makeblastdb.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastdbcmd_info.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_rpsblast_wrapper.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_rpstblastn_wrapper.xml
+#tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_dustmasker_wrapper.xml 
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.py
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/tool_dependencies.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/README.rst
 tar -rf ncbi_blast_plus.tar tool-data/blastdb.loc.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb_p.loc.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb_d.loc.sample
