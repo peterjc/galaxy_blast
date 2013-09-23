@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="blast+" version="2.2.28">
+        <install version="1.0">
+            <actions>
+                <action type="set_environment">
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR</environment_variable>
+                </action>
+                <!-- arch under Linux 32bit includes some variants like i386 and i686, so use as default -->
+                <action type="shell_command">
+                    if [[ "$(uname)" == "Linux" ]]; then export FILENAME="ncbi-blast-2.2.28+-ia32-linux.tar.gz"; fi &amp;&amp;
+                    if [[ "$(arch)" == "x86_64" ]]; then export FILENAME="ncbi-blast-2.2.28+-x64-linux.tar.gz"; fi &amp;&amp;
+                    if [[ "$(uname)" == "Darwin" ]]; then export FILENAME="ncbi-blast-2.2.28+-universal-macosx.tar.gz"; fi &amp;&amp;
+                    echo Fetching $FILENAME &amp;&amp;
+                    if [[ "$(uname)" == "Linux" ]]; then wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/$FILENAME; fi &amp;&amp;
+                    if [[ "$(uname)" == "Darwin" ]]; then curl -O ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/$FILENAME; fi &amp;&amp;
+                    tar -zxvf $FILENAME &amp;&amp;
+                    echo Downloaded and decompressed
+                </action>
+                <!-- move the binaries to the installation directory which is now on the $PATH -->
+                <action type="move_directory_files">
+                    <source_directory>ncbi-blast-2.2.28+/bin</source_directory>
+                    <destination_directory>$INSTALL_DIR</destination_directory>
+                </action>
+            </actions>
+        </install>
+        <readme>
+Downloads the precompiled 32bit Linux, 64bit Linux, or Mac OS X BLAST+
+binaries from the NCBI, which is faster than performing a local compliation,
+avoids any issues with build dependencies, and is more reproducible between
+installations as there is no variability from the compiler or library versions.
+
+For more details, see:
+http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download
+        </readme>
+    </package>
+</tool_dependency>
