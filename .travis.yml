@@ -112,7 +112,7 @@ install:
  - ln -s ${TRAVIS_BUILD_DIR}/tools/blastxml_to_top_descr/ tools/blastxml_to_top_descr
  - ln -s ${TRAVIS_BUILD_DIR}/tools/reciprocal_best_hits/ tools/reciprocal_best_hits
  - ln -s ${TRAVIS_BUILD_DIR}/tools/blast2go/ tools/blast2go
- - ln -s ${TRAVIS_BUILD_DIR}/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
+ - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
  - sed -i '6 i import blast' lib/galaxy/datatypes/registry.py
  - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
