@@ -14,6 +14,9 @@ to the Galaxy Tool Shed as 'blast_datatypes' (and 'ncbi_blast_plus' for the
 wrappers). My thanks to Dannon Baker from the Galaxy development team for his
 assistance with this.
 
+It is available from the Galaxy Tool Shed at:
+http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes
+
 
 History
 =======

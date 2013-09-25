@@ -62,7 +62,9 @@ in order to run the unit tests). For example, use::
 
 You will also need to install 'blast_datatypes' from the Tool Shed. This
 defines the BLAST XML file format ('blastxml') and protein and nucleotide
-BLAST databases composite file formats ('blastdbp' and 'blastdbn').
+BLAST databases composite file formats ('blastdbp' and 'blastdbn'):
+
+* http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes
 
 As described above for an automated installation, you must also tell Galaxy
 about any system level BLAST databases using the tool-data/blastdb*.loc files.
