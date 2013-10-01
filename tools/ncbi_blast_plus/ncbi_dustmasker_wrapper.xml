@@ -1,4 +1,4 @@
-<tool id="ncbi_dustmasker_wrapper" name="NCBI DustMasker" version="0.0.21">
+<tool id="ncbi_dustmasker_wrapper" name="NCBI dustmasker" version="0.0.21">
     <!-- dustmasker wrapper from Edward Kirton and Nicola Soranzo -->
     <description>masks low complexity regions</description>
     <requirements>
@@ -18,7 +18,7 @@ dustmasker
 #elif $db_opts.db_opts_selector == "histdb":
   -in "${os.path.join($db_opts.histdb.extra_files_path, 'blastdb')}" -infmt blastdb
 #else:
-  -in "$fastafile" -infmt fasta
+  -in "$subject" -infmt fasta
 #end if
 -out "$outfile"
 -window $window -level $level -linker $linker -outfmt $outformat
@@ -49,15 +49,15 @@ dustmasker
         <data name="outfile" format="interval" label="DUST Masked File">
             <change_format>
                 <when input="outformat" value="fasta" format="fasta" />
-                <when input="outformat" value="maskinfo_asn1_bin" format="asn1-binary" />
-                <when input="outformat" value="maskinfo_asn1_text" format="asn1" />
+                <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
+                <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />
             </change_format>
         </data>
     </outputs>
     <tests>
         <test>
             <param name="db_opts_selector" value="file" />
-            <param name="fastafile" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />
@@ -66,12 +66,21 @@ dustmasker
         </test>
         <test>
             <param name="db_opts_selector" value="file" />
-            <param name="fastafile" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />
             <param name="outformat" value="maskinfo_asn1_bin" />
-            <output name="outfile" file="dustmasker_three_human.asn1-binary" />
+            <output name="outfile" file="dustmasker_three_human.maskinfo-asn1-binary" />
+        </test>
+        <test>
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="window" value="64" />
+            <param name="level" value="20" />
+            <param name="linker" value="1" />
+            <param name="outformat" value="maskinfo_asn1_text" />
+            <output name="outfile" file="dustmasker_three_human.maskinfo-asn1" />
         </test>
     </tests>
     <help>
@@ -79,7 +88,9 @@ dustmasker
 
 This tool identifies and masks out low complexity regions of a nucleotide database (or sequences in FASTA format) by using the symmetric DUST algorithm.
 
-More information about DustMasker can be found in the `BLAST Command Line Applications User Manual`_.
+If you select *maskinfo ASN.1* (binary or text) as output format, the output file can be used as masking data for NCBI BLAST+ makeblastdb tool.
+
+More information about dustmasker can be found in the `BLAST Command Line Applications User Manual`_.
 
 .. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
 

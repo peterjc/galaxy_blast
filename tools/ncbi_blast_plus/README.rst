@@ -120,6 +120,8 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
         - Updated citation information (Cock et al. 2013).
 v0.0.21 - Use macros to simplify the XML wrappers.
+        - Added wrapper for dustmasker
+        - Enabled masking for makeblastdb
 ======= ======================================================================
 
 
