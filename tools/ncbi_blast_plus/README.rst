@@ -53,6 +53,7 @@ in order to run the unit tests). For example, use::
     <tool file="ncbi_blast_plus/ncbi_tblastn_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_tblastx_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_makeblastdb.xml" />
+    <tool file="ncbi_blast_plus/ncbi_dustmasker_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_info.xml" />
     <tool file="ncbi_blast_plus/ncbi_rpsblast_wrapper.xml" />
