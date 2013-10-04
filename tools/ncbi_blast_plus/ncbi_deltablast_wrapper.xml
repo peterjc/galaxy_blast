@@ -22,7 +22,6 @@ deltablast
 #else:
   -subject "$db_opts.subject"
 #end if
--task $blast_type
 -evalue $evalue_cutoff
 -out "$output1"
 ##Set the extended list here so if/when we add things, saved workflows are not affected
