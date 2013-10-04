@@ -3,7 +3,7 @@
     <description>masks low complexity regions</description>
     <requirements>
         <requirement type="binary">dustmasker</requirement>
-        <requirement type="package" version="2.2.26+">blast+</requirement>
+        <requirement type="package" version="2.2.27">blast+</requirement>
     </requirements>
     <version_command>dustmasker -version-full</version_command>
     <macros>

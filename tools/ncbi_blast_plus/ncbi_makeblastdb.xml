@@ -2,7 +2,7 @@
     <description>Make BLAST database</description>
     <requirements>
         <requirement type="binary">makeblastdb</requirement>
-        <requirement type="package" version="2.2.26+">blast+</requirement>
+        <requirement type="package" version="2.2.27">blast+</requirement>
     </requirements>
     <version_command>makeblastdb -version</version_command>
     <macros>
