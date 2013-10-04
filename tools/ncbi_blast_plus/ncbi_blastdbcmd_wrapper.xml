@@ -2,7 +2,7 @@
     <description>Extract sequence(s) from BLAST database</description>
     <requirements>
         <requirement type="binary">blastdbcmd</requirement>
-        <requirement type="package" version="2.2.26+">blast+</requirement>
+        <requirement type="package" version="2.2.27">blast+</requirement>
     </requirements>
     <version_command>blastdbcmd -version</version_command>
     <macros>

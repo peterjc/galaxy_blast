@@ -4,7 +4,7 @@
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
     <requirements>
         <requirement type="binary">tblastn</requirement>
-        <requirement type="package" version="2.2.26+">blast+</requirement>
+        <requirement type="package" version="2.2.27">blast+</requirement>
     </requirements>
     <version_command>tblastn -version</version_command>
     <macros>
