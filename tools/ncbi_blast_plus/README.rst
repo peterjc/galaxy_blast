@@ -123,6 +123,8 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
 v0.0.21 - Use macros to simplify the XML wrappers.
         - Added wrapper for dustmasker
         - Enabled masking for makeblastdb
+        - Requires 'maskinfo-asn1' and 'maskinfo-asn1-binary' datatypes
+          defined in updated blast_datatypes on Galaxy ToolShed.
         - Tests updated for BLAST+ 2.2.27 instead of BLAST+ 2.2.26
         - Now depends on package_blast_plus_2_2_27 in ToolShed
 ======= ======================================================================
