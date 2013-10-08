@@ -23,7 +23,7 @@ fi
 
 #Create tar file (-cf then -rf to add to it)
 tar -cf ncbi_blast_plus.tar tools/ncbi_blast_plus/repository_dependencies.xml
-tar -cf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_macros.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_macros.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastn_wrapper.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastp_wrapper.xml
