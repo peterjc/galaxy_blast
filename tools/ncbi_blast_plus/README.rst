@@ -5,7 +5,7 @@ These wrappers are copyright 2010-2013 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
-Currently tested with NCBI BLAST 2.2.26+ (i.e. version 2.2.26 of BLAST+),
+Currently tested with NCBI BLAST 2.2.27+ (i.e. version 2.2.27 of BLAST+),
 and does not work with the NCBI 'legacy' BLAST suite (e.g. blastall).
 
 Note that these wrappers (and the associated datatypes) were originally
@@ -71,7 +71,7 @@ As described above for an automated installation, you must also tell Galaxy
 about any system level BLAST databases using the tool-data/blastdb*.loc files.
 
 You must install the NCBI BLAST+ standalone tools somewhere on the system
-path. Currently the unit tests are written using "BLAST 2.2.26+".
+path. Currently the unit tests are written using "BLAST 2.2.27+".
 
 Run the functional tests (adjusting the section identifier to match your
 tool_conf.xml.sample file)::
