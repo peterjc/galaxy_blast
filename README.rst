@@ -34,10 +34,14 @@ Development test releases are on the Test Tool Shed here:
 * http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
 
 The NCBI BLAST+ binaries were initially included within the Galaxy wrappers
-(ncbi_blast_plus), but are now handled as a Tool Shed package:
+(ncbi_blast_plus), but are now handled as Tool Shed packages:
 
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_26
 * http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_26
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_27
+* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_27
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
+* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
 
 Note this this targets the NCBI's C++ rewrite of BLAST called BLAST+,
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/ -- we
