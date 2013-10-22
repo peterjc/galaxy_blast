@@ -14,14 +14,7 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastx
--query "$query"
-#if $db_opts.db_opts_selector == "db":
-  -db "${db_opts.database.fields.path}"
-#elif $db_opts.db_opts_selector == "histdb":
-  -db "${os.path.join($db_opts.histdb.extra_files_path,'blastdb')}"
-#else:
-  -subject "$db_opts.subject"
-#end if
+@BLAST_INPUTS@
 -query_gencode $query_gencode
 -evalue $evalue_cutoff
 -out "$output1"
