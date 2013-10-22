@@ -45,19 +45,10 @@ psiblast
 @THREADS@
 
 #if $adv_opts.adv_opts_selector=="advanced":
-$adv_opts.filter_query
 -matrix $adv_opts.matrix
-## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
-## Note -max_target_seqs overrides -num_descriptions and -num_alignments
-#if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
--max_target_seqs $adv_opts.max_hits
-#end if
-#if (str($adv_opts.word_size) and int(str($adv_opts.word_size)) > 0):
--word_size $adv_opts.word_size
-#end if
+@ADVANCED_OPTIONS@
 ##Ungapped disabled for now - see comments below
 ##$adv_opts.ungapped
-$adv_opts.parse_deflines
 ## End of advanced options:
 #end if
 

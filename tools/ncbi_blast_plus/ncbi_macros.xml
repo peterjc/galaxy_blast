@@ -227,5 +227,16 @@
   -subject "$db_opts.subject"
 #end if
     </token>
+    <token name="@ADVANCED_OPTIONS@">$adv_opts.filter_query
+## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
+## Note -max_target_seqs overrides -num_descriptions and -num_alignments
+#if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
+-max_target_seqs $adv_opts.max_hits
+#end if
+#if (str($adv_opts.word_size) and int(str($adv_opts.word_size)) > 0):
+-word_size $adv_opts.word_size
+#end if
+$adv_opts.parse_deflines
+</token>
 
 </macros>
