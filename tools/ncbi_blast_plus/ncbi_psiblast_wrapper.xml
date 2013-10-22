@@ -42,7 +42,7 @@ psiblast
     -outfmt $out_format
 #end if
 
--num_threads 8
+@THREADS@
 
 #if $adv_opts.adv_opts_selector=="advanced":
 $adv_opts.filter_query

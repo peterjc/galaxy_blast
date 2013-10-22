@@ -216,5 +216,6 @@
         </conditional>
     </macro>
 
+    <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
 
 </macros>

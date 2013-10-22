@@ -30,7 +30,7 @@ tblastn
 #else:
     -outfmt $out_format
 #end if
--num_threads 8
+@THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
 -db_gencode $adv_opts.db_gencode
 $adv_opts.filter_query
