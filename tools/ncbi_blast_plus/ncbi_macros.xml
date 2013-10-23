@@ -1,5 +1,5 @@
 <macros>
-    <macro name="output_change_format">
+    <xml name="output_change_format">
 
         <change_format>
             <when input="out_format" value="0" format="txt"/>
@@ -11,8 +11,8 @@
             <when input="out_format" value="5" format="blastxml"/>
         </change_format>
 
-    </macro>
-    <macro name="input_out_format">
+    </xml>
+    <xml name="input_out_format">
         <param name="out_format" type="select" label="Output format">
             <option value="6">Tabular (standard 12 columns)</option>
             <option value="ext" selected="True">Tabular (extended 24 columns)</option>
@@ -27,8 +27,8 @@
             <option value="-outfmt 11">BLAST archive format (ASN.1)</option>
             -->
         </param>
-    </macro>
-    <macro name="input_scoring_matrix">
+    </xml>
+    <xml name="input_scoring_matrix">
         <param name="matrix" type="select" label="Scoring matrix">
             <option value="BLOSUM90">BLOSUM90</option>
             <option value="BLOSUM80">BLOSUM80</option>
@@ -39,8 +39,8 @@
             <option value="PAM70">PAM70</option>
             <option value="PAM30">PAM30</option>
         </param>
-    </macro>
-    <macro name="stdio">
+    </xml>
+    <xml name="stdio">
         <stdio>
             <!-- Anything other than zero is an error -->
             <exit_code range="1:" />
@@ -49,8 +49,8 @@
             <regex match="Error:" />
             <regex match="Exception:" />
         </stdio>
-    </macro>
-    <macro name="input_query_gencode">
+    </xml>
+    <xml name="input_query_gencode">
         <param name="query_gencode" type="select" label="Query genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
             <option value="1" select="True">1. Standard</option>
@@ -72,9 +72,9 @@
             <option value="23">23. Thraustochytrium Mitochondrial Code</option>
             <option value="24">24. Pterobranchia mitochondrial code</option>
         </param>
-    </macro>
+    </xml>
 
-    <macro name="input_db_gencode">
+    <xml name="input_db_gencode">
         <param name="db_gencode" type="select" label="Database/subject genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
             <option value="1" select="True">1. Standard</option>
@@ -96,9 +96,9 @@
             <option value="23">23. Thraustochytrium Mitochondrial Code</option>
             <option value="24">24. Pterobranchia mitochondrial code</option>
         </param>
-    </macro>
+    </xml>
 
-    <macro name="input_conditional_nucleotide_db">
+    <xml name="input_conditional_nucleotide_db">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="True">Locally installed BLAST database</option>
@@ -127,9 +127,9 @@
                 <param name="subject" type="data" format="fasta" label="Nucleotide FASTA file to use as database"/> 
             </when>
         </conditional>
-    </macro>
+    </xml>
 
-    <macro name="input_conditional_protein_db">
+    <xml name="input_conditional_protein_db">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="True">Locally installed BLAST database</option>
@@ -158,9 +158,9 @@
                 <param name="subject" type="data" format="fasta" label="Protein FASTA file to use as database"/> 
             </when>
         </conditional>
-    </macro>
+    </xml>
 
-    <macro name="input_conditional_pssm">
+    <xml name="input_conditional_pssm">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Protein domain database (PSSM)">
               <option value="db" selected="True">Locally installed BLAST database</option>
@@ -187,9 +187,9 @@
             </when>
             -->
         </conditional>
-    </macro>
+    </xml>
 
-    <macro name="input_conditional_choose_db_type">
+    <xml name="input_conditional_choose_db_type">
         <conditional name="db_opts">
             <param name="db_type" type="select" label="Type of BLAST database">
               <option value="nucl" selected="True">Nucleotide</option>
@@ -214,7 +214,7 @@
                 </param>
             </when>
         </conditional>
-    </macro>
+    </xml>
 
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
 
