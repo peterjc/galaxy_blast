@@ -41,36 +41,28 @@ $adv_opts.ungapped
         <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
 
         <expand macro="input_out_format" />
-
-        <conditional name="adv_opts">
-            <param name="adv_opts_selector" type="select" label="Advanced Options">
-              <option value="basic" selected="True">Hide Advanced Options</option>
-              <option value="advanced">Show Advanced Options</option>
+        <expand macro="advanced_options">
+            <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
+            <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="true" />
+            <param name="strand" type="select" label="Query strand(s) to search against database/subject">
+                <option value="-strand both">Both</option>
+                <option value="-strand plus">Plus (forward)</option>
+                <option value="-strand minus">Minus (reverse complement)</option>
             </param>
-            <when value="basic" />
-            <when value="advanced">
-                <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
-                <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="true" />
-                <param name="strand" type="select" label="Query strand(s) to search against database/subject">
-                    <option value="-strand both">Both</option>
-                    <option value="-strand plus">Plus (forward)</option>
-                    <option value="-strand minus">Minus (reverse complement)</option>
-                </param>
 
-                <expand macro="input_scoring_matrix" />
+            <expand macro="input_scoring_matrix" />
 
-                <!-- Why doesn't optional override a validator? I want to accept an empty string OR a non-negative integer -->
-                <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
-                    <validator type="in_range" min="0" />
-                </param>
-                <!-- I'd like word_size to be optional, with minimum 2 for blastx -->
-                <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
-                    <validator type="in_range" min="0" />
-                </param>
-                <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
-                <param name="parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
-            </when>
-        </conditional>
+            <!-- Why doesn't optional override a validator? I want to accept an empty string OR a non-negative integer -->
+            <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
+                <validator type="in_range" min="0" />
+            </param>
+            <!-- I'd like word_size to be optional, with minimum 2 for blastx -->
+            <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
+                <validator type="in_range" min="0" />
+            </param>
+            <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
+            <param name="parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
+        </expand>
     </inputs>
     <outputs>
         <data name="output1" format="tabular" label="blastx on ${on_string}">

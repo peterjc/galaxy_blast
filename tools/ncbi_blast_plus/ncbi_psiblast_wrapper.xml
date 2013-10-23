@@ -99,36 +99,28 @@ psiblast
                <param name="pseudocount" type="integer" label="Pseudocount value used when constructing PSSM" value="0" help="If zero is specified, then the parameter is automatically determined through a minimum length description principle (PMID 19088134). A value of 30 is suggested in order to obtain the approximate behavior before the minimum length principle was implemented" /> 
             </when>
         </conditional>
+        <expand macro="advanced_options">
+            <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
+            <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="false" />
 
-        <conditional name="adv_opts">
-            <param name="adv_opts_selector" type="select" label="Advanced Options">
-              <option value="basic" selected="True">Hide Advanced Options</option>
-              <option value="advanced">Show Advanced Options</option>
+            <expand macro="input_scoring_matrix" />
+
+            <!-- Why doesn't optional override a validator? I want to accept an empty string OR a non-negative integer -->
+            <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
+                <validator type="in_range" min="0" />
             </param>
-            <when value="basic" />
-            <when value="advanced">
-                <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
-                <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="false" />
-
-                <expand macro="input_scoring_matrix" />
-
-                <!-- Why doesn't optional override a validator? I want to accept an empty string OR a non-negative integer -->
-                <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
-                    <validator type="in_range" min="0" />
-                </param>
-                <!-- I'd like word_size to be optional, with minimum 2 for blastp -->
-                <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
-                    <validator type="in_range" min="0" />
-                </param>
-                <!--
-                Can't use '-ungapped' on its own, error back is:
-                Composition-adjusted searched are not supported with an ungapped search, please add -comp_based_stats F or do a gapped search
-                Tried using '-ungapped -comp_based_stats F' and blastp crashed with 'Attempt to access NULL pointer.'
-                <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
-                -->
-                <param name="parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
-            </when>
-        </conditional>
+            <!-- I'd like word_size to be optional, with minimum 2 for blastp -->
+            <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
+                <validator type="in_range" min="0" />
+            </param>
+            <!--
+            Can't use '-ungapped' on its own, error back is:
+            Composition-adjusted searched are not supported with an ungapped search, please add -comp_based_stats F or do a gapped search
+            Tried using '-ungapped -comp_based_stats F' and blastp crashed with 'Attempt to access NULL pointer.'
+            <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
+            -->
+            <param name="parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
+        </expand>
 
         <conditional name="pssm_output_condition">
             <param name="pssm_output_selector" type="select" label="Generate PSSM output?" >

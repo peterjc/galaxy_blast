@@ -224,6 +224,20 @@
         <version_command>@BINARY@ -version</version_command>
     </xml>
 
+    <xml name="advanced_options">
+        <conditional name="adv_opts">
+            <param name="adv_opts_selector" type="select" label="Advanced Options">
+              <option value="basic" selected="True">Hide Advanced Options</option>
+              <option value="advanced">Show Advanced Options</option>
+            </param>
+            <when value="basic" />
+            <when value="advanced">
+                <yield />
+            </when>
+        </conditional>        
+    </xml>
+
+
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
 
     <token name="@BLAST_INPUTS@">-query "$query"
