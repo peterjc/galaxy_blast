@@ -216,6 +216,14 @@
         </conditional>
     </xml>
 
+    <xml name="requirements">
+        <requirements>
+            <requirement type="binary">@BINARY@</requirement>
+            <requirement type="package" version="2.2.27">blast+</requirement>
+        </requirements>
+        <version_command>@BINARY@ -version</version_command>
+    </xml>
+
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
 
     <token name="@BLAST_INPUTS@">-query "$query"

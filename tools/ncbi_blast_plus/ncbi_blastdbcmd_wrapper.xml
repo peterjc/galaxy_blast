@@ -1,13 +1,10 @@
 <tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.21">
     <description>Extract sequence(s) from BLAST database</description>
-    <requirements>
-        <requirement type="binary">blastdbcmd</requirement>
-        <requirement type="package" version="2.2.27">blast+</requirement>
-    </requirements>
-    <version_command>blastdbcmd -version</version_command>
     <macros>
+        <token name="@BINARY@">blastdbcmd</token>
         <import>ncbi_macros.xml</import>
     </macros>
+    <expand macro="requirements" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces

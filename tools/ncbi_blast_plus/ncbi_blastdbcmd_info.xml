@@ -1,13 +1,10 @@
 <tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="0.0.21">
     <description>Show BLAST database information from blastdbcmd</description>
-    <requirements>
-        <requirement type="binary">blastdbcmd</requirement>
-        <requirement type="package" version="2.2.27">blast+</requirement>
-    </requirements>
-    <version_command>blastdbcmd -version</version_command>
     <macros>
+        <token name="@BINARY@">blastdbcmd</token>
         <import>ncbi_macros.xml</import>
     </macros>
+    <expand macro="requirements" />
     <command>
 blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out "$info"
     </command>
