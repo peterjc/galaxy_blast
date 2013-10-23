@@ -356,7 +356,7 @@ and differ in how insertions are shown (marked as insertions or with gap charact
     </token>
     <token name="@FASTA_WARNING@">.. class:: warningmark
 
-You can also search against a FASTA file of subject protein
+You can also search against a FASTA file of subject (target)
 sequences. This is *not* advised because it is slower (only one
 CPU is used), but more importantly gives e-values for pairwise
 searches (very small e-values which will look overly signficiant).
