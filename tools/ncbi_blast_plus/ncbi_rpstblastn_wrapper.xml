@@ -63,12 +63,7 @@ rpstblastn
     </outputs>
     <help>
     
-.. class:: warningmark
-
-**Note**. Database searches may take a substantial amount of time.
-For large input datasets it is advisable to allow overnight processing.  
-
------
+@SEARCH_TIME_WARNING@
 
 **What it does**
 

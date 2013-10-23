@@ -332,6 +332,24 @@ The two query anchored outputs show a multiple sequence alignment between the qu
 and differ in how insertions are shown (marked as insertions or with gap characters added to the other sequences).
     </token>
 
+    <token name="@FASTA_WARNING@">.. class:: warningmark
+
+You can also search against a FASTA file of subject protein
+sequences. This is *not* advised because it is slower (only one
+CPU is used), but more importantly gives e-values for pairwise
+searches (very small e-values which will look overly signficiant).
+In most cases you should instead turn the other FASTA file into a
+database first using *makeblastdb* and search against that.
+    </token>
+
+    <token name="@SEARCH_TIME_WARNING@">.. class:: warningmark
+
+**Note**. Database searches may take a substantial amount of time.
+For large input datasets it is advisable to allow overnight processing.  
+
+-----
+    </token>
+
 
 
 </macros>

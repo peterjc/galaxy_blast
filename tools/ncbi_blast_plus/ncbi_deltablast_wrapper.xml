@@ -126,12 +126,7 @@ deltablast
     </tests>
     <help>
     
-.. class:: warningmark
-
-**Note**. Database searches may take a substantial amount of time.
-For large input datasets it is advisable to allow overnight processing.  
-
------
+@SEARCH_TIME_WARNING@
 
 **What it does**
 
@@ -143,14 +138,7 @@ DELTA-BLAST constructs a PSSM using the results of a
 Conserved Domain Database (CDD) search and searches a
 sequence database.
 
-.. class:: warningmark
-
-You can also search against a FASTA file of subject protein
-sequences. This is *not* advised because it is slower (only one
-CPU is used), but more importantly gives e-values for pairwise
-searches (very small e-values which will look overly signficiant).
-In most cases you should instead turn the other FASTA file into a
-database first using *makeblastdb* and search against that.
+@FASTA_WARNING@
 
 -----
 
