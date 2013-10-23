@@ -1,4 +1,4 @@
-<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.21">
+<tool id="ncbi_blastdbcmd_wrapper" name="NCBI BLAST+ blastdbcmd entry(s)" version="0.0.22">
     <description>Extract sequence(s) from BLAST database</description>
     <macros>
         <token name="@BINARY@">blastdbcmd</token>

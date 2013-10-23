@@ -127,8 +127,8 @@ v0.0.21 - Use macros to simplify the XML wrappers.
           defined in updated blast_datatypes on Galaxy ToolShed.
         - Tests updated for BLAST+ 2.2.27 instead of BLAST+ 2.2.26
         - Now depends on package_blast_plus_2_2_27 in ToolShed
-        - Utilize GALAXY_SLOTS to dynamically inject number of threads these
-          tools should use.
+v0.0.22 - More use macros to simplify the wrappers
+        - Set number of threads via $GALAXY_SLOTS environment variable
 ======= ======================================================================
 
 

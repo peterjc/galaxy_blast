@@ -1,4 +1,4 @@
-<tool id="ncbi_psiblast_wrapper" name="NCBI BLAST+ psiblast" version="0.0.21">
+<tool id="ncbi_psiblast_wrapper" name="NCBI BLAST+ psiblast" version="0.0.22">
     <!-- Draft wrapper from Luobin Yang, based on the blastp wrapper.
          TODO: Handle datatype definitions -->
     <description>Search protein database with protein query sequence(s)</description>
