@@ -62,8 +62,7 @@ $mask_string
         </repeat>
         <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
         <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
-        <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values." help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
-
+        <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
         <!-- SEQUENCE MASKING OPTIONS -->
         <repeat name="mask_data" title="Masking data file">
             <param name="file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
