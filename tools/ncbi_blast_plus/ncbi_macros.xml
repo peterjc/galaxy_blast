@@ -261,4 +261,77 @@
 $adv_opts.parse_deflines
 </token>
 
+    <token name="@REFERENCES@">
+Peter J.A. Cock, Björn A. Grüning, Konrad Paszkiewicz and Leighton Pritchard (2013).
+Galaxy tools and workflows for sequence analysis with applications
+in molecular plant pathology. PeerJ 1:e167
+http://dx.doi.org/10.7717/peerj.167
+
+Christiam Camacho et al. (2009).
+BLAST+: architecture and applications.
+BMC Bioinformatics. 15;10:421.
+http://dx.doi.org/10.1186/1471-2105-10-421
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
+    </token>
+
+    <token name="@OUTPUT_FORMAT@">**Output format**
+
+Because Galaxy focuses on processing tabular data, the default output of this
+tool is tabular. The standard BLAST+ tabular output contains 12 columns:
+
+====== ========= ============================================
+Column NCBI name Description
+------ --------- --------------------------------------------
+     1 qseqid    Query Seq-id (ID of your sequence)
+     2 sseqid    Subject Seq-id (ID of the database hit)
+     3 pident    Percentage of identical matches
+     4 length    Alignment length
+     5 mismatch  Number of mismatches
+     6 gapopen   Number of gap openings
+     7 qstart    Start of alignment in query
+     8 qend      End of alignment in query
+     9 sstart    Start of alignment in subject (database hit)
+    10 send      End of alignment in subject (database hit)
+    11 evalue    Expectation value (E-value)
+    12 bitscore  Bit score
+====== ========= ============================================
+
+The BLAST+ tools can optionally output additional columns of information,
+but this takes longer to calculate. Most (but not all) of these columns are
+included by selecting the extended tabular output. The extra columns are
+included *after* the standard 12 columns. This is so that you can write
+workflow filtering steps that accept either the 12 or 24 column tabular
+BLAST output. Galaxy now uses this extended 24 column output by default.
+
+====== ============= ===========================================
+Column NCBI name     Description
+------ ------------- -------------------------------------------
+    13 sallseqid     All subject Seq-id(s), separated by a ';'
+    14 score         Raw score
+    15 nident        Number of identical matches
+    16 positive      Number of positive-scoring matches
+    17 gaps          Total number of gaps
+    18 ppos          Percentage of positive-scoring matches
+    19 qframe        Query frame
+    20 sframe        Subject frame
+    21 qseq          Aligned part of query sequence
+    22 sseq          Aligned part of subject sequence
+    23 qlen          Query sequence length
+    24 slen          Subject sequence length
+====== ============= ===========================================
+
+The third option is BLAST XML output, which is designed to be parsed by
+another program, and is understood by some Galaxy tools.
+
+You can also choose several plain text or HTML output formats which are designed to be read by a person (not by another program).
+The HTML versions use basic webpage formatting and can include links to the hits on the NCBI website.
+The pairwise output (the default on the NCBI BLAST website) shows each match as a pairwise alignment with the query.
+The two query anchored outputs show a multiple sequence alignment between the query and all the matches,
+and differ in how insertions are shown (marked as insertions or with gap characters added to the other sequences).
+    </token>
+
+
+
 </macros>
