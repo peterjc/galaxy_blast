@@ -240,6 +240,14 @@
         </param>        
     </xml>
 
+    <xml name="input_strand">
+        <param name="strand" type="select" label="Query strand(s) to search against database/subject">
+            <option value="-strand both">Both</option>
+            <option value="-strand plus">Plus (forward)</option>
+            <option value="-strand minus">Minus (reverse complement)</option>
+        </param>
+    </xml>
+
     <xml name="requirements">
         <requirements>
             <requirement type="binary">@BINARY@</requirement>

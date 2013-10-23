@@ -49,11 +49,7 @@ $adv_opts.ungapped
         <expand macro="advanced_options">
             <!-- Could use a select (yes, no, other) where other allows setting 'level window linker' -->
             <param name="filter_query" type="boolean" label="Filter out low complexity regions (with DUST)" truevalue="-dust yes" falsevalue="-dust no" checked="true" />
-            <param name="strand" type="select" label="Query strand(s) to search against database/subject">
-                <option value="-strand both">Both</option>
-                <option value="-strand plus">Plus (forward)</option>
-                <option value="-strand minus">Minus (reverse complement)</option>
-            </param>
+            <expand macro="input_strand" />
             <expand macro="input_max_hits" />
             <param name="identity_cutoff" type="float" min="0" max="100" value="0" label="Percent identity cutoff (-perc_identity)" help="Use zero for no cutoff" />
             
