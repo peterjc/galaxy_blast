@@ -1,7 +1,7 @@
 <tool id="ncbi_blastp_wrapper" name="NCBI BLAST+ blastp" version="0.0.21">
     <description>Search protein database with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
-    <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" shared_inputs="subject,histdb" merge_outputs="output1"></parallelism>
+    <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
     <requirements>
         <requirement type="binary">blastp</requirement>
         <requirement type="package" version="2.2.27">blast+</requirement>
