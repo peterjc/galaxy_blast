@@ -37,10 +37,7 @@ deltablast
 
             <expand macro="input_scoring_matrix" />
             <expand macro="input_max_hits" />
-            <!-- I'd like word_size to be optional, with minimum 2 for blastp -->
-            <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
-                <validator type="in_range" min="0" />
-            </param>
+            <expand macro="input_word_size" />
             <!--
             Can't use '-ungapped' on its own, error back is:
             Composition-adjusted searched are not supported with an ungapped search, please add -comp_based_stats F or do a gapped search

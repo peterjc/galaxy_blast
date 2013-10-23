@@ -46,10 +46,7 @@ $adv_opts.ungapped
 
             <expand macro="input_scoring_matrix" />
             <expand macro="input_max_hits" />
-            <!-- I'd like word_size to be optional, with minimum 2 for blastx -->
-            <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
-                <validator type="in_range" min="0" />
-            </param>
+            <expand macro="input_word_size" />
             <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
             <expand macro="input_parse_deflines" />
         </expand>

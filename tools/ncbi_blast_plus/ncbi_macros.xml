@@ -234,6 +234,12 @@
         <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
     </xml>
 
+    <xml name="input_word_size">
+        <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
+            <validator type="in_range" min="0" />
+        </param>        
+    </xml>
+
     <xml name="requirements">
         <requirements>
             <requirement type="binary">@BINARY@</requirement>

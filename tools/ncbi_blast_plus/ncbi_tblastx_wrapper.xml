@@ -50,9 +50,7 @@ $adv_opts.strand
             <expand macro="input_scoring_matrix" />
             <expand macro="input_max_hits" />
             <!-- I'd like word_size to be optional, with minimum 2 for tblastx -->
-            <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
-                <validator type="in_range" min="0" />
-            </param>
+            <expand macro="input_word_size" />
             <expand macro="input_parse_deflines" />
         </expand>
     </inputs>
