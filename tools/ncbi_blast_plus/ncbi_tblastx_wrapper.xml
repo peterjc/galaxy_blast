@@ -41,7 +41,7 @@ $adv_opts.strand
             <expand macro="input_db_gencode" />
 
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
-            <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="true" />
+            <expand macro="input_filter_query_default_true" />
             <expand macro="input_strand" />
             <expand macro="input_scoring_matrix" />
             <expand macro="input_max_hits" />

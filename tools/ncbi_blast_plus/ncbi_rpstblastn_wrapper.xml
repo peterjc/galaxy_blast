@@ -38,7 +38,7 @@ rpstblastn
 
         <expand macro="advanced_options">
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
-            <expand macro="input_filter_query" />
+            <expand macro="input_filter_query_default_false" />
             <!-- Why doesn't optional override a validator? I want to accept an empty string OR a non-negative integer -->
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />

@@ -40,8 +40,7 @@ blastp
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
-            <expand macro="input_filter_query" />
-
+            <expand macro="input_filter_query_default_false" />
             <expand macro="input_scoring_matrix" />
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />

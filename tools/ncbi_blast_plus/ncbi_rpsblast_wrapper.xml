@@ -39,7 +39,7 @@ rpsblast
 
         <expand macro="advanced_options">
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
-            <expand macro="input_filter_query" />
+            <expand macro="input_filter_query_default_false" />
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />
             <expand macro="input_parse_deflines" />
