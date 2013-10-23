@@ -1,6 +1,5 @@
 <macros>
     <xml name="output_change_format">
-
         <change_format>
             <when input="out_format" value="0" format="txt"/>
             <when input="out_format" value="0 -html" format="html"/>
@@ -10,7 +9,6 @@
             <when input="out_format" value="4 -html" format="html"/>
             <when input="out_format" value="5" format="blastxml"/>
         </change_format>
-
     </xml>
     <xml name="input_out_format">
         <param name="out_format" type="select" label="Output format">
@@ -73,7 +71,6 @@
             <option value="24">24. Pterobranchia mitochondrial code</option>
         </param>
     </xml>
-
     <xml name="input_db_gencode">
         <param name="db_gencode" type="select" label="Database/subject genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
@@ -97,7 +94,6 @@
             <option value="24">24. Pterobranchia mitochondrial code</option>
         </param>
     </xml>
-
     <xml name="input_conditional_nucleotide_db">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
@@ -128,7 +124,6 @@
             </when>
         </conditional>
     </xml>
-
     <xml name="input_conditional_protein_db">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
@@ -159,7 +154,6 @@
             </when>
         </conditional>
     </xml>
-
     <xml name="input_conditional_pssm">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Protein domain database (PSSM)">
@@ -188,7 +182,6 @@
             -->
         </conditional>
     </xml>
-
     <xml name="input_conditional_choose_db_type">
         <conditional name="db_opts">
             <param name="db_type" type="select" label="Type of BLAST database">
@@ -215,31 +208,25 @@
             </when>
         </conditional>
     </xml>
-
     <xml name="input_parse_deflines">
         <param name="parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
     </xml>
-
     <xml name="input_filter_query">
         <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="false" />
     </xml>
-
     <xml name="input_max_hits">
         <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
             <validator type="in_range" min="0" />
         </param>        
     </xml>
-
     <xml name="input_evalue">
         <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
     </xml>
-
     <xml name="input_word_size">
         <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
             <validator type="in_range" min="0" />
         </param>        
     </xml>
-
     <xml name="input_strand">
         <param name="strand" type="select" label="Query strand(s) to search against database/subject">
             <option value="-strand both">Both</option>
@@ -247,7 +234,6 @@
             <option value="-strand minus">Minus (reverse complement)</option>
         </param>
     </xml>
-
     <xml name="requirements">
         <requirements>
             <requirement type="binary">@BINARY@</requirement>
@@ -255,7 +241,6 @@
         </requirements>
         <version_command>@BINARY@ -version</version_command>
     </xml>
-
     <xml name="advanced_options">
         <conditional name="adv_opts">
             <param name="adv_opts_selector" type="select" label="Advanced Options">
@@ -268,10 +253,7 @@
             </when>
         </conditional>        
     </xml>
-
-
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
-
     <token name="@BLAST_INPUTS@">-query "$query"
 #if $db_opts.db_opts_selector == "db":
   -db "${db_opts.database.fields.path}"
@@ -281,7 +263,6 @@
   -subject "$db_opts.subject"
 #end if
     </token>
-
     <token name="@BLAST_OUTPUT@">-out "$output1"
 ##Set the extended list here so if/when we add things, saved workflows are not affected
 #if str($out_format)=="ext":
@@ -290,7 +271,6 @@
     -outfmt $out_format
 #end if
     </token>
-
     <token name="@ADVANCED_OPTIONS@">$adv_opts.filter_query
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
 ## Note -max_target_seqs overrides -num_descriptions and -num_alignments
@@ -301,8 +281,7 @@
 -word_size $adv_opts.word_size
 #end if
 $adv_opts.parse_deflines
-</token>
-
+    </token>
     <token name="@REFERENCES@">
 Peter J.A. Cock, Björn A. Grüning, Konrad Paszkiewicz and Leighton Pritchard (2013).
 Galaxy tools and workflows for sequence analysis with applications
@@ -317,7 +296,6 @@ http://dx.doi.org/10.1186/1471-2105-10-421
 This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </token>
-
     <token name="@OUTPUT_FORMAT@">**Output format**
 
 Because Galaxy focuses on processing tabular data, the default output of this
@@ -373,7 +351,6 @@ The pairwise output (the default on the NCBI BLAST website) shows each match as 
 The two query anchored outputs show a multiple sequence alignment between the query and all the matches,
 and differ in how insertions are shown (marked as insertions or with gap characters added to the other sequences).
     </token>
-
     <token name="@FASTA_WARNING@">.. class:: warningmark
 
 You can also search against a FASTA file of subject protein
@@ -383,7 +360,6 @@ searches (very small e-values which will look overly signficiant).
 In most cases you should instead turn the other FASTA file into a
 database first using *makeblastdb* and search against that.
     </token>
-
     <token name="@SEARCH_TIME_WARNING@">.. class:: warningmark
 
 **Note**. Database searches may take a substantial amount of time.
@@ -391,7 +367,4 @@ For large input datasets it is advisable to allow overnight processing.
 
 -----
     </token>
-
-
-
 </macros>
