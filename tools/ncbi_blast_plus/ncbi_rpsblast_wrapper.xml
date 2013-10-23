@@ -18,13 +18,7 @@ rpsblast
   -db "${os.path.join($db_opts.histdb.extra_files_path,'blastdb')}"
 #end if
 -evalue $evalue_cutoff
--out "$output1"
-##Set the extended list here so if/when we add things, saved workflows are not affected
-#if str($out_format)=="ext":
-    -outfmt "6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen"
-#else:
-    -outfmt $out_format
-#end if
+@BLAST_OUTPUT@
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
 @ADVANCED_OPTIONS@

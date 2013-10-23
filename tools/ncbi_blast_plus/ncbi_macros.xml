@@ -264,6 +264,16 @@
   -subject "$db_opts.subject"
 #end if
     </token>
+
+    <token name="@BLAST_OUTPUT@">-out "$output1"
+##Set the extended list here so if/when we add things, saved workflows are not affected
+#if str($out_format)=="ext":
+    -outfmt "6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen"
+#else:
+    -outfmt $out_format
+#end if
+    </token>
+
     <token name="@ADVANCED_OPTIONS@">$adv_opts.filter_query
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
 ## Note -max_target_seqs overrides -num_descriptions and -num_alignments
