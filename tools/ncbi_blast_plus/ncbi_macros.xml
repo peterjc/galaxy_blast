@@ -230,6 +230,9 @@
         </param>        
     </xml>
 
+    <xml name="input_evalue">
+        <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
+    </xml>
 
     <xml name="requirements">
         <requirements>

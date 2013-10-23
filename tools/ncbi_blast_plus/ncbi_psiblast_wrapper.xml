@@ -83,7 +83,7 @@ psiblast
         </conditional>
 
         <expand macro="input_conditional_protein_db" />
-        <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
+        <expand macro="input_evalue" />
         <expand macro="input_out_format" />
 
         <conditional name="psiblast_opts">

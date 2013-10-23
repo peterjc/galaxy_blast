@@ -34,7 +34,7 @@ $adv_opts.strand
 
         <expand macro="input_conditional_nucleotide_db" />
         <expand macro="input_query_gencode" />
-        <param name="evalue_cutoff" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
+        <expand macro="input_evalue" />
 
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
