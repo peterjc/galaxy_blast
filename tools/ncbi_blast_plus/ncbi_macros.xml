@@ -216,6 +216,21 @@
         </conditional>
     </xml>
 
+    <xml name="input_parse_deflines">
+        <param name="parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
+    </xml>
+
+    <xml name="input_filter_query">
+        <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="false" />
+    </xml>
+
+    <xml name="input_max_hits">
+        <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
+            <validator type="in_range" min="0" />
+        </param>        
+    </xml>
+
+
     <xml name="requirements">
         <requirements>
             <requirement type="binary">@BINARY@</requirement>

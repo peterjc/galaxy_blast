@@ -46,14 +46,10 @@ blastp
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
-            <param name="filter_query" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="false" />
+            <expand macro="input_filter_query" />
 
             <expand macro="input_scoring_matrix" />
-
-            <!-- Why doesn't optional override a validator? I want to accept an empty string OR a non-negative integer -->
-            <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
-                <validator type="in_range" min="0" />
-            </param>
+            <expand macro="input_max_hits" />
             <!-- I'd like word_size to be optional, with minimum 2 for blastp -->
             <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
                 <validator type="in_range" min="0" />
@@ -64,7 +60,7 @@ blastp
             Tried using '-ungapped -comp_based_stats F' and blastp crashed with 'Attempt to access NULL pointer.'
             <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
             -->
-            <param name="parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
+            <expand macro="input_parse_deflines" />
         </expand>
     </inputs>
     <outputs>
