@@ -63,7 +63,7 @@ import sys
 import re
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.0.12"
+    print "v0.0.22"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
@@ -228,7 +228,10 @@ for event, elem in context:
                           ]
 
                 if extended:
-                    sallseqid = ";".join(name.split(None,1)[0] for name in hit_def.split(">"))
+                    try:
+                        sallseqid = ";".join(name.split(None,1)[0] for name in hit_def.split(" >"))
+                    except IndexError as e:
+                        stop_err("Problem splitting multuple hits?\n%r\n--> %s" % (hit_def, e))
                     #print hit_def, "-->", sallseqid
                     positive = hsp.findtext("Hsp_positive")
                     ppos = "%0.2f" % (100*float(positive)/float(length))
