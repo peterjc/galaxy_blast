@@ -285,6 +285,14 @@
 #end if
 $adv_opts.parse_deflines
     </token>
+    <!-- @ON_DB_SUBJECT@ is for use with @BLAST_DB_SUBJECT@ -->
+    <token name="@ON_DB_SUBJECT@">#if str($db_opts.db_opts_selector)=='db'
+${db_opts.database}
+#elif str($db_opts.db_opts_selector)=='histdb'
+${db_opts.histdb.name}
+#else
+${db_opts.subject.name}
+#end if</token>
     <token name="@REFERENCES@">
 Peter J.A. Cock, Björn A. Grüning, Konrad Paszkiewicz and Leighton Pritchard (2013).
 Galaxy tools and workflows for sequence analysis with applications

@@ -48,10 +48,8 @@ deltablast
         </expand>
     </inputs>
     <outputs>
-        <data name="output1" format="tabular" label="delta-blast on ${on_string}">
-
-        <expand macro="output_change_format" />
-
+        <data name="output1" format="tabular" label="delta-blast $query.name vs @ON_DB_SUBJECT@">
+            <expand macro="output_change_format" />
         </data>
     </outputs>
     <tests>

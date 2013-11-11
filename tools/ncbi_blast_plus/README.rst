@@ -129,6 +129,7 @@ v0.0.21 - Use macros to simplify the XML wrappers.
         - Now depends on package_blast_plus_2_2_27 in ToolShed
 v0.0.22 - More use macros to simplify the wrappers
         - Set number of threads via $GALAXY_SLOTS environment variable
+        - More descriptive default output names
 ======= ======================================================================
 
 

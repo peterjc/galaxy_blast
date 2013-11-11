@@ -114,7 +114,7 @@ psiblast
 
     </inputs>
     <outputs>
-        <data name="output1" format="tabular" label="psiblast on ${db_opts.db_opts_selector} on ${on_string}">
+        <data name="output1" format="tabular" label="psiblast $input_opts.input_opts_selector vs @ON_DB_SUBJECT@">
 
             <expand macro="output_change_format" />
 

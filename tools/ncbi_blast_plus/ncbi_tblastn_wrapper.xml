@@ -52,7 +52,7 @@ tblastn
         </expand>
     </inputs>
     <outputs>
-        <data name="output1" format="tabular" label="tblastn on ${on_string}">
+        <data name="output1" format="tabular" label="tblastn $query.name vs @ON_DB_SUBJECT@">
             <expand macro="output_change_format" />
         </data>
     </outputs>
