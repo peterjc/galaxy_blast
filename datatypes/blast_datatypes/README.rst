@@ -39,6 +39,7 @@ v0.0.16 - Adopt standard MIT License.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
         - Nucleotide database definition aware of MegaBLAST index superheader
 v0.0.17 - Add maskinfo-asn1 and maskinfo-asn1-binary sub-datatypes
+v0.0.18 - Add retries to BLAST XML merge code.
 ======= ======================================================================
 
 

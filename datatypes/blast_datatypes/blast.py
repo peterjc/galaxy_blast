@@ -7,6 +7,10 @@ from galaxy.datatypes.data import Text, Data
 from galaxy.datatypes.xml import GenericXml
 from galaxy.datatypes.metadata import MetadataElement
 
+from time import sleep
+import logging
+
+log = logging.getLogger(__name__)
 
 class BlastXml( GenericXml ):
     """NCBI Blast XML Output data"""
@@ -64,13 +68,26 @@ class BlastXml( GenericXml ):
         out = open(output_file, "w")
         h = None
         for f in split_files:
+            if not os.path.isfile(f):
+                log.warning("BLAST XML file %s missing, retry in 1s..." % f)
+                sleep(1)
+            if not os.path.isfile(f):
+                log.error("BLAST XML file %s missing" % f)
+                raise ValueError("BLAST XML file %s missing" % f)
             h = open(f)
             body = False
             header = h.readline()
             if not header:
                 out.close()
                 h.close()
-                raise ValueError("BLAST XML file %s was empty" % f)
+                #Retry, could be transient error with networked file system...
+                log.warning("BLAST XML file %s empty, retry in 1s..." % f)
+                sleep(1)
+                h = open(f)
+                header = h.readline()
+                if not header:
+                    log.error("BLAST XML file %s was empty" % f)
+                    raise ValueError("BLAST XML file %s was empty" % f)
             if header.strip() != '<?xml version="1.0"?>':
                 out.write(header) #for diagnosis
                 out.close()
