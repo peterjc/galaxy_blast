@@ -11,7 +11,8 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastx
-@BLAST_INPUTS@
+-query "$query"
+@BLAST_DB_SUBJECT@
 -query_gencode $query_gencode
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@

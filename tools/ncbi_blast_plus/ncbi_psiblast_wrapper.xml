@@ -20,15 +20,7 @@ psiblast
 #else if str($input_opts.input_opts_selector) == "msa"
 -in_msa "$in_msa"
 #end if
-
-#if $db_opts.db_opts_selector == "db":
-  -db "${db_opts.database.fields.path}"
-#elif $db_opts.db_opts_selector == "histdb":
-  -db "${os.path.join($db_opts.histdb.extra_files_path,'blastdb')}"
-#else:
-  -subject "$db_opts.subject"
-#end if
-
+@BLAST_DB_SUBJECT@
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@
 @THREADS@
