@@ -8,6 +8,7 @@ from galaxy.datatypes.xml import GenericXml
 from galaxy.datatypes.metadata import MetadataElement
 
 from time import sleep
+import os
 import logging
 
 log = logging.getLogger(__name__)
