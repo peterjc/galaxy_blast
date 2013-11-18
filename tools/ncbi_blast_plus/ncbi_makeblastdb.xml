@@ -65,11 +65,11 @@ $mask_string
         <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
         <!-- SEQUENCE MASKING OPTIONS -->
         <repeat name="mask_data" title="Masking data file">
-            <param name="file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
+            <param name="mask_data_file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
         </repeat>
         <!-- TODO
         <repeat name="gi_mask" title="Create GI indexed masking data">
-            <param name="file" type="data" format="asnb" label="Masking data output file" />
+            <param name="gi_mask_file" type="data" format="asnb" label="Masking data output file" />
         </repeat>
         -->
 
@@ -103,8 +103,7 @@ $mask_string
     </outputs>
     <tests>
         <!-- Note the (two line) PIN file is not reproducible run to run.
-             Note there is an ambiguity problem with multiple "file" parameters:
-             https://trello.com/c/zSTrfDOB/820-disambiguated-conditional-parameters-not-supported-in-functional-tests
+        -->
         <test>
             <param name="dbtype" value="prot" />
             <param name="file" value="four_human_proteins.fasta" ftype="fasta" />
@@ -122,7 +121,6 @@ $mask_string
                 <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
             </output>
         </test>
-        -->
     </tests>
     <help>
 **What it does**
