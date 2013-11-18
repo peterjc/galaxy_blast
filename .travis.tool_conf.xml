@@ -12,8 +12,8 @@
     <tool file="ncbi_blast_plus/ncbi_tblastn_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_tblastx_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_dustmasker_wrapper.xml" />
-    <!-- No tests yet (trying gives an error from the framework)
     <tool file="ncbi_blast_plus/ncbi_makeblastdb.xml" />
+    <!-- No tests yet (trying gives an error from the framework)
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml" />    
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_info.xml" />
     <tool file="ncbi_blast_plus/ncbi_rpsblast_wrapper.xml" />
