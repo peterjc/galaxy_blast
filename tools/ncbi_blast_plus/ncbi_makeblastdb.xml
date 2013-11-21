@@ -44,19 +44,19 @@ $mask_string
 ## -taxid_map $tax.map
 ## #end if
     </command>
-
     <expand macro="stdio" />
-
     <inputs>
         <param name="dbtype" type="select" display="radio" label="Molecule type of input">
             <option value="prot">protein</option>
             <option value="nucl">nucleotide</option>
         </param>
         <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)
+             NOTE Double check the new database would be self contained first
         <repeat name="in" title="BLAST or FASTA Database" min="1">
             <param name="file" type="data" format="fasta,blastdbn,blastdbp" label="BLAST or FASTA database" />
         </repeat>
         -->
+        <!-- TODO Switch this to using <param ... multiple="true" /> instead of <repeat> block? -->
         <repeat name="in" title="FASTA file" min="1">
             <param name="file" type="data" format="fasta" />
         </repeat>
