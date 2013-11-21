@@ -58,6 +58,8 @@ language: java
 #
 
 before_install:
+ - mkdir "$HOME/.python-eggs"
+ - chmod 700 "$HOME/.python-eggs" 
  - echo "Fetching and installing Blast2GO for pipelines (b2g4pipe)..."
  - wget http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
  - unzip b2g4pipe_v2.5.zip
