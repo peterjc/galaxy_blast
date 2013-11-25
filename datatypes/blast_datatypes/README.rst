@@ -40,6 +40,7 @@ v0.0.16 - Adopt standard MIT License.
         - Nucleotide database definition aware of MegaBLAST index superheader
 v0.0.17 - Add maskinfo-asn1 and maskinfo-asn1-binary sub-datatypes
 v0.0.18 - Add retries to BLAST XML merge code.
+        - Modify display_data method to allow unit tests to function.
 ======= ======================================================================
 
 

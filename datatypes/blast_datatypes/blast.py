@@ -168,15 +168,34 @@ class _BlastDb(object):
 
     def display_data(self, trans, data, preview=False, filename=None,
                      to_ext=None, size=None, offset=None, **kwd):
-        """Apparently an old display method, but still gets called.
+        """Documented as an old display method, but still gets called via tests etc
 
         This allows us to format the data shown in the central pane via the "eye" icon.
         """
-        return "This is a BLAST database."
-
-    def get_mime(self):
-        """Returns the mime type of the datatype (pretend it is text for peek)"""
-        return 'text/plain'
+        if filename is not None and filename != "index":
+            #Change nothing - important for the unit tests to access child files:
+            return Data.display_data(self, trans, data, preview, filename,
+                                     to_ext, size, offset, **kwd)
+        if self.file_ext == "blastdbn":
+            title = "This is a nucleotide BLAST database"
+        elif self.file_ext =="blastdbp":
+            title = "This is a protein BLAST database"
+        else:
+            #Error?                                                                                                                                                                     
+            title = "This is a BLAST database."
+        msg = ""
+        try:
+            #Try to use any text recorded in the dummy index file:
+            handle = open(data.file_name, "rU")
+            msg = handle.read().strip()
+            handle.close()
+        except Exception, err:
+            #msg = str(err)
+            pass
+        if not msg:
+            msg = title
+        #Galaxy assumes HTML for the display of composite datatypes,
+        return "<html><head><title>%s</title></head><body><pre>%s</pre></body></html>" % (title, msg)
 
     def merge(split_files, output_file):
         """Merge BLAST databases (not implemented for now)."""
@@ -192,7 +211,8 @@ class _BlastDb(object):
 class BlastNucDb( _BlastDb, Data ):
     """Class for nucleotide BLAST database files."""
     file_ext = 'blastdbn'
-    composite_type ='basic'
+    allow_datatype_change = False
+    composite_type = 'basic'
 
     def __init__(self, **kwd):
         Data.__init__(self, **kwd)
@@ -215,19 +235,12 @@ class BlastNucDb( _BlastDb, Data ):
 #        self.add_composite_file('blastdb.nac', is_binary=True, optional=True) # multiple byte order for a WriteDB column
 # The previous 3 lines should be repeated for each WriteDB column, with filename extensions like ('.nba', '.nbb', '.nbc'), ('.nca', '.ncb', '.ncc'), etc.
 
-    def display_data(self, trans, data, preview=False, filename=None,
-                     to_ext=None, size=None, offset=None, **kwd):
-        """Apparently an old display method, but still gets called.
-
-        This allows us to format the data shown in the central pane via the "eye" icon.
-        """
-        return "This is a BLAST nucleotide database."
-
 
 class BlastProtDb( _BlastDb, Data ):
     """Class for protein BLAST database files."""
     file_ext = 'blastdbp'
-    composite_type ='basic'
+    allow_datatype_change = False
+    composite_type = 'basic'
 
     def __init__(self, **kwd):
         Data.__init__(self, **kwd)
@@ -246,11 +259,3 @@ class BlastProtDb( _BlastDb, Data ):
 #        self.add_composite_file('blastdb.pab', is_binary=True, optional=True)
 #        self.add_composite_file('blastdb.pac', is_binary=True, optional=True)
 # The last 3 lines should be repeated for each WriteDB column, with filename extensions like ('.pba', '.pbb', '.pbc'), ('.pca', '.pcb', '.pcc'), etc.
-
-    def display_data(self, trans, data, preview=False, filename=None,
-                     to_ext=None, size=None, offset=None, **kwd):
-        """Apparently an old display method, but still gets called.
-
-        This allows us to format the data shown in the central pane via the "eye" icon.
-        """
-        return "This is a BLAST protein database."
