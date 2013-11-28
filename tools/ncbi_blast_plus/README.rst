@@ -135,6 +135,7 @@ v0.0.22 - More use macros to simplify the wrappers
         - Pre-check for duplicate identifiers in makeblastdb wrapper.
         - Tests updated for BLAST+ 2.2.28 instead of BLAST+ 2.2.27
         - Now depends on package_blast_plus_2_2_28 in ToolShed
+        - Extended tabular output includes 'salltitles' as column 25.
 ======= ======================================================================
 
 
