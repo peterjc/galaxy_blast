@@ -11,7 +11,7 @@ fi
 
 cd test-data
 
-export EXT="6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen"
+export EXT="6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles"
 
 echo
 echo makeblastdb
