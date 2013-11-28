@@ -131,6 +131,7 @@ v0.0.22 - More use macros to simplify the wrappers
         - Set number of threads via $GALAXY_SLOTS environment variable
         - More descriptive default output names
         - Tests require updated BLAST DB definitions (blast_datatypes v0.0.18)
+        - Pre-check for duplicate identifiers in makeblastdb wrapper.
 ======= ======================================================================
 
 
