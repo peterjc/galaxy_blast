@@ -240,7 +240,7 @@
     <xml name="requirements">
         <requirements>
             <requirement type="binary">@BINARY@</requirement>
-            <requirement type="package" version="2.2.27">blast+</requirement>
+            <requirement type="package" version="2.2.28">blast+</requirement>
         </requirements>
         <version_command>@BINARY@ -version</version_command>
     </xml>
