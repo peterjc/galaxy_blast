@@ -31,7 +31,7 @@ The additional columns offered in the Galaxy BLAST+ wrappers are:
 ====== ============= ===========================================
 Column NCBI name     Description
 ------ ------------- -------------------------------------------
-    13 sallseqid     All subject Seq-id(s), separated by a ';'
+    13 sallseqid     All subject Seq-id(s), separated by ';'
     14 score         Raw score
     15 nident        Number of identical matches
     16 positive      Number of positive-scoring matches
@@ -43,6 +43,7 @@ Column NCBI name     Description
     22 sseq          Aligned part of subject sequence
     23 qlen          Query sequence length
     24 slen          Subject sequence length
+    25 salltitles    All subject titles, separated by '&lt;&gt;'
 ====== ============= ===========================================
 
 Most of these fields are given explicitly in the XML file, others some like
@@ -89,11 +90,11 @@ except:
 if out_fmt == "std":
     extended = False
 elif out_fmt == "x22":
-    stop_err("Format argument x22 has been replaced with ext (extended 24 columns)")
+    stop_err("Format argument x22 has been replaced with ext (extended 25 columns)")
 elif out_fmt == "ext":
     extended = True
 else:
-    stop_err("Format argument should be std (12 column) or ext (extended 24 columns)")
+    stop_err("Format argument should be std (12 column) or ext (extended 25 columns), not: %r" % out_fmt)
 
 
 # get an iterable
@@ -230,6 +231,7 @@ for event, elem in context:
                 if extended:
                     try:
                         sallseqid = ";".join(name.split(None,1)[0] for name in hit_def.split(" >"))
+                        salltitles = "<>".join(name.split(None,1)[1] for name in hit_def.split(" >"))
                     except IndexError as e:
                         stop_err("Problem splitting multuple hits?\n%r\n--> %s" % (hit_def, e))
                     #print hit_def, "-->", sallseqid
@@ -255,6 +257,7 @@ for event, elem in context:
                                    h_seq,
                                    str(qlen),
                                    str(slen),
+                                   salltitles,
                                    ])
                 #print "\t".join(values) 
                 outfile.write("\t".join(values) + "\n")

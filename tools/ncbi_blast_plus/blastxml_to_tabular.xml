@@ -104,13 +104,13 @@ The BLAST+ tools can optionally output additional columns of information,
 but this takes longer to calculate. Most (but not all) of these columns are
 included by selecting the extended tabular output. The extra columns are
 included *after* the standard 12 columns. This is so that you can write
-workflow filtering steps that accept either the 12 or 22 column tabular
-BLAST output. This tool now uses this extended 24 column output by default.
+workflow filtering steps that accept either the 12 or 25 column tabular
+BLAST output. This tool now uses this extended 25 column output by default.
 
 ====== ============= ===========================================
 Column NCBI name     Description
 ------ ------------- -------------------------------------------
-    13 sallseqid     All subject Seq-id(s), separated by a ';'
+    13 sallseqid     All subject Seq-id(s), separated by ';'
     14 score         Raw score
     15 nident        Number of identical matches
     16 positive      Number of positive-scoring matches
@@ -122,6 +122,7 @@ Column NCBI name     Description
     22 sseq          Aligned part of subject sequence
     23 qlen          Query sequence length
     24 slen          Subject sequence length
+    25 salltitles    All subject titles, separated by '&lt;&gt;'
 ====== ============= ===========================================
 
 Beware that the XML file (and thus the conversion) and the tabular output
