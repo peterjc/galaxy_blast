@@ -38,3 +38,20 @@ python /mnt/galaxy/galaxy-central/tools/ncbi_blast_plus/blastxml_to_tabular.py b
 echo "blastx_rhodopsin_vs_four_human_converted_ext.tabular (via our script)"
 python /mnt/galaxy/galaxy-central/tools/ncbi_blast_plus/blastxml_to_tabular.py blastx_rhodopsin_vs_four_human.xml blastx_rhodopsin_vs_four_human_converted_ext.tabular ext
 
+#It will be a problem if the exact version of the cdd_delta database alters the test output...
+#Following (or similar) works for deltablast to find the cdd_delta database automatically:
+#export BLASTDB=/data/blastdb/ncbi/cdd:/data/blastdb/ncbi
+#Or, we can make it explicit (but specific to local setup) via -rpsdb
+export CDD_DELTA=/data/blastdb/ncbi/cdd/cdd_delta
+
+echo "deltablast_four_human_vs_rhodopsin.xml"
+deltablast -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -evalue 1e-08 -out deltablast_four_human_vs_rhodopsin.xml -outfmt 5 -matrix BLOSUM62 -seg no -parse_deflines -rpsdb $CDD_DELTA
+
+echo "deltablast_four_human_vs_rhodopsin.tabular"
+deltablast -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -evalue 1e-08 -out deltablast_four_human_vs_rhodopsin.tabular -outfmt 6 -matrix BLOSUM62 -seg no -parse_deflines -rpsdb $CDD_DELTA
+
+echo "deltablast_four_human_vs_rhodopsin_ext.tabular"
+deltablast -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -evalue 1e-08 -out deltablast_four_human_vs_rhodopsin_ext.tabular -outfmt "6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen" -matrix BLOSUM62 -seg no -parse_deflines -rpsdb $CDD_DELTA
+
+echo "deltablast_rhodopsin_vs_four_human.tabular"
+deltablast -query rhodopsin_proteins.fasta -subject four_human_proteins.fasta -evalue 1e-08 -out deltablast_rhodopsin_vs_four_human.tabular -outfmt 6 -rpsdb $CDD_DELTA
