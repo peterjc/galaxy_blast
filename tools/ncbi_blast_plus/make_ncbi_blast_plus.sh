@@ -65,6 +65,15 @@ tar -rf ncbi_blast_plus.tar test-data/blastx_sample.xml
 tar -rf ncbi_blast_plus.tar test-data/blastx_sample_converted.tabular
 tar -rf ncbi_blast_plus.tar test-data/tblastx_rhodopsin_vs_three_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.log
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.phd
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.phi
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.phr
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.pin
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.pog
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psd
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psi
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psq
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta
 tar -rf ncbi_blast_plus.tar test-data/rhodopsin_nucs.fasta
 tar -rf ncbi_blast_plus.tar test-data/rhodopsin_proteins.fasta
@@ -81,5 +90,5 @@ tar -rf ncbi_blast_plus.tar test-data/dustmasker_three_human.maskinfo-asn1-binar
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 52 files, have:"
+echo "Expect a tar-ball 61 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
