@@ -1,4 +1,4 @@
-<tool id="ncbi_dustmasker_wrapper" name="NCBI dustmasker" version="0.0.22">
+<tool id="ncbi_dustmasker_wrapper" name="NCBI BLAST+ dustmasker" version="0.0.22">
     <!-- dustmasker wrapper from Edward Kirton and Nicola Soranzo -->
     <description>masks low complexity regions</description>
     <macros>
