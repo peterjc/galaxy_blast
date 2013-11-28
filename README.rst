@@ -43,7 +43,7 @@ The NCBI BLAST+ binaries were initially included within the Galaxy wrappers
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
 * http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
 
-Note this this targets the NCBI's C++ rewrite of BLAST called BLAST+,
+Note this targets the NCBI's C++ rewrite of BLAST called BLAST+,
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/ -- we
 do not support the now deprecated "legacy" BLAST suite written in C, still
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/
