@@ -1,4 +1,4 @@
-<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.9">
+<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.10">
     <description>Make a table from BLAST XML</description>
     <version_command interpreter="python">blastxml_to_top_descr.py --version</version_command>
     <command interpreter="python">
@@ -32,8 +32,8 @@
 NCBI BLAST+ (and the older NCBI 'legacy' BLAST) can output in a range of
 formats including text, tabular and a more detailed XML format. You can
 do a lot of things with tabular files in Galaxy (sorting, filtering, joins,
-etc) however currently the BLAST tabular output omits the hit descriptions
-found in the other output formats.
+etc), however until BLAST+ 2.2.28 the tabular output never included the
+hit descriptions (titles) found in the other output formats
 
 This tool turns a BLAST XML file into a simple tabular file containing
 one row per query sequence, containing the query identifier and then

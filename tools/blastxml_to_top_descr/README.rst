@@ -64,6 +64,8 @@ v0.0.7  - Link to Tool Shed added to help text and this documentation.
         - Adopt standard MIT License.
 v0.0.8  - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
 v0.0.9  - Updated citation information (Cock et al. 2013).
+v0.0.10 - Update help text to mention BLAST+ 2.2.28 can produce tabular files
+          including the description/title (via the salltitles field).
 ======= ======================================================================
 
 
