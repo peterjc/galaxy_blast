@@ -6,11 +6,11 @@ These wrappers are copyright 2010-2013 by Peter Cock, The James Hutton Institute
 See the licence text below.
 
 Currently tested with NCBI BLAST 2.2.28+ (i.e. version 2.2.28 of BLAST+),
-and does not work with the NCBI 'legacy' BLAST suite (e.g. blastall).
+and does not work with the NCBI 'legacy' BLAST suite (e.g. ``blastall``).
 
 Note that these wrappers (and the associated datatypes) were originally
 distributed as part of the main Galaxy repository, but as of August 2012
-moved to the Galaxy Tool Shed as 'ncbi_blast_plus' (and 'blast_datatypes').
+moved to the Galaxy Tool Shed as ``ncbi_blast_plus`` (and ``blast_datatypes``).
 My thanks to Dannon Baker from the Galaxy development team for his assistance
 with this.
 
@@ -22,9 +22,9 @@ Automated Installation
 ======================
 
 Galaxy should be able to automatically install the dependencies, i.e. the
-'blast_datatypes' repository which defines the BLAST XML file format
-('blastxml') and protein and nucleotide BLAST databases ('blastdbp' and
-'blastdbn').
+``blast_datatypes`` repository which defines the BLAST XML file format
+(``blastxml``) and protein and nucleotide BLAST databases (``blastdbp`` and
+``blastdbn``).
 
 You must tell Galaxy about any system level BLAST databases using configuration
 files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
@@ -42,9 +42,9 @@ Manual Installation
 ===================
 
 For those not using Galaxy's automated installation from the Tool Shed, put
-the XML and Python files in the tools/ncbi_blast_plus/ folder and add the XML
-files to your tool_conf.xml as normal (and do the same in tool_conf.xml.sample
-in order to run the unit tests). For example, use::
+the XML and Python files in the ``tools/ncbi_blast_plus/`` folder and add the
+XML files to your ``tool_conf.xml`` as normal (and do the same in
+``tool_conf.xml.sample`` in order to run the unit tests). For example, use::
 
   <section name="NCBI BLAST+" id="ncbi_blast_plus_tools">
     <tool file="ncbi_blast_plus/ncbi_blastn_wrapper.xml" />
@@ -61,20 +61,21 @@ in order to run the unit tests). For example, use::
     <tool file="ncbi_blast_plus/blastxml_to_tabular.xml" />
   </section>
 
-You will also need to install 'blast_datatypes' from the Tool Shed. This
-defines the BLAST XML file format ('blastxml') and protein and nucleotide
-BLAST databases composite file formats ('blastdbp' and 'blastdbn'):
+You will also need to install ``blast_datatypes`` from the Tool Shed. This
+defines the BLAST XML file format (``blastxml``) and protein and nucleotide
+BLAST databases composite file formats (``blastdbp`` and ``blastdbn``):
 
 * http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes
 
 As described above for an automated installation, you must also tell Galaxy
-about any system level BLAST databases using the tool-data/blastdb*.loc files.
+about any system level BLAST databases using the ``tool-data/blastdb*.loc``
+files.
 
 You must install the NCBI BLAST+ standalone tools somewhere on the system
 path. Currently the unit tests are written using "BLAST 2.2.28+".
 
 Run the functional tests (adjusting the section identifier to match your
-tool_conf.xml.sample file)::
+``tool_conf.xml.sample`` file)::
 
     ./run_functional_tests.sh -sid NCBI_BLAST+-ncbi_blast_plus_tools
 
@@ -157,10 +158,15 @@ https://github.com/peterjc/galaxy_blast
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the GitHub repository root folder::
 
-    $ ./ncbi_blast_plus/make_ncbi_blast_plus.sh
+    $ tools/ncbi_blast_plus/make_ncbi_blast_plus.sh
 
 This simplifies ensuring a consistent set of files is bundled each time,
 including all the relevant test files.
+
+When updating the version of BLAST+, many of the sample data files used for
+the unit tests must be regenerated. This script automates that task::
+
+    $ tools/ncbi_blast_plus/update_test_files.sh
 
 
 Licence (MIT)
