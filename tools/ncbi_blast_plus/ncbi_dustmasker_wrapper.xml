@@ -1,14 +1,11 @@
 <tool id="ncbi_dustmasker_wrapper" name="NCBI dustmasker" version="0.0.22">
     <!-- dustmasker wrapper from Edward Kirton and Nicola Soranzo -->
     <description>masks low complexity regions</description>
-    <requirements>
-        <requirement type="binary">dustmasker</requirement>
-        <requirement type="package" version="2.2.28">blast+</requirement>
-    </requirements>
-    <version_command>dustmasker -version-full</version_command>
     <macros>
+        <token name="@BINARY@">dustmasker</token>
         <import>ncbi_macros.xml</import>
     </macros>
+    <expand macro="requirements" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
