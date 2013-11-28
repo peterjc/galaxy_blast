@@ -55,16 +55,14 @@ History
 These Galaxy BLAST+ wrappers were originally written by Peter Cock and were
 incorporated into https://bitbucket.org/galaxy/galaxy-central/
 the main Galaxy repository on BitBucket in September 2009, where they were
-maintained via pull requests and patches from Peter's repository fork.
+maintained via pull requests and patches from Peter's repository fork:
 https://bitbucket.org/galaxy/galaxy-central/
 
 In August 2010 Dannon Baker from the Galaxy Team migrated the BLAST+ tools
 and datatypes to the Galaxy Tool Shed (links above). This was part of a long
-term plan to move most tools out of the main Galaxy repository.
-
-Development of the wrappers continued on the 'tools' branch of Peter's
-Galaxy fork on BitBucket https://bitbucket.org/peterjc/galaxy-central/
-with additional contributions via patches and pull requests.
+term plan to move most tools out of the main Galaxy repository. Development
+of the wrappers continued on the 'tools' branch of Peter's Galaxy fork on
+BitBucket with additional contributions via patches and pull requests.
 
 Recognising the growing number of potential contributors, an informal "Birds
 of a Feather" (BoF) http://wiki.galaxyproject.org/Events/GCC2013/BoF/GalaxyBlast
@@ -121,9 +119,9 @@ this GitHub repository is updated:
    :alt: Current status of TravisCI build for master branch
    :target: https://travis-ci.org/peterjc/galaxy_blast/builds
 
-This TravisCI integration is still new and experimental, but simulates a
-manual install of these Galaxy Tools and their dependencies. See the
-special ``.travis.yml`` file for more technical details.
+This TravisCI integration simulates a manual install of these Galaxy Tools
+and their dependencies. See the special ``.travis.yml`` file for more
+technical details.
 
 
 Bug Reports
