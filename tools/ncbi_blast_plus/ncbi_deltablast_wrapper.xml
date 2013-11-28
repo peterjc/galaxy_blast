@@ -23,6 +23,9 @@ deltablast
 ##$adv_opts.ungapped
 ## End of advanced options:
 #end if
+##TODO: Either must install cdd_delta and configure environment variables,
+##or specifcy its location via -rpsdb, in which case Do we need a specific
+##cdd_delta.loc file for this, or is blastdb_d.loc OK?
     </command>
     <expand macro="stdio" />
     <inputs>
