@@ -60,28 +60,28 @@ echo blastxml_to_tabular
 echo ===================
 
 echo "blastp_four_human_vs_rhodopsin_converted.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastp_four_human_vs_rhodopsin.xml blastp_four_human_vs_rhodopsin_converted.tabular std
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastp_four_human_vs_rhodopsin_converted.tabular blastp_four_human_vs_rhodopsin.xml
 
 echo "blastp_four_human_vs_rhodopsin_converted_ext.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastp_four_human_vs_rhodopsin.xml blastp_four_human_vs_rhodopsin_converted_ext.tabular ext
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c ext -o blastp_four_human_vs_rhodopsin_converted_ext.tabular blastp_four_human_vs_rhodopsin.xml
 
 echo "blastp_sample_converted.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastp_sample.xml blastp_sample_converted.tabular std
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastp_sample_converted.tabular blastp_sample.xml
 
 echo "blastx_rhodopsin_vs_four_human_converted.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastx_rhodopsin_vs_four_human.xml blastx_rhodopsin_vs_four_human_converted.tabular std
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastx_rhodopsin_vs_four_human_converted.tabular blastx_rhodopsin_vs_four_human.xml
 
 echo "blastx_rhodopsin_vs_four_human_converted_ext.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastx_rhodopsin_vs_four_human.xml blastx_rhodopsin_vs_four_human_converted_ext.tabular ext
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c ext -o blastx_rhodopsin_vs_four_human_converted_ext.tabular blastx_rhodopsin_vs_four_human.xml
 
 echo "blastx_sample_converted.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastx_sample.xml blastx_sample_converted.tabular std
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastx_sample_converted.tabular blastx_sample.xml
 
 echo "blastp_human_vs_pdb_seg_no_converted_std.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastp_human_vs_pdb_seg_no.xml blastp_human_vs_pdb_seg_no_converted_std.tabular std
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastp_human_vs_pdb_seg_no_converted_std.tabular blastp_human_vs_pdb_seg_no.xml
 
 echo "blastp_human_vs_pdb_seg_no_converted_ext.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py blastp_human_vs_pdb_seg_no.xml blastp_human_vs_pdb_seg_no_converted_ext.tabular ext
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c ext -o blastp_human_vs_pdb_seg_no_converted_ext.tabular blastp_human_vs_pdb_seg_no.xml
 
 echo
 echo deltablast

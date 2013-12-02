@@ -62,9 +62,11 @@ space character (probably a bug).
 """
 import sys
 import re
+import os
+from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.0.22"
+    print "v0.0.23"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
@@ -81,12 +83,22 @@ def stop_err( msg ):
     sys.stderr.write("%s\n" % msg)
     sys.exit(1)
 
-#Parse Command Line
-try:
-    in_file, out_file, out_fmt = sys.argv[1:]
-except:
-    stop_err("Expect 3 arguments: input BLAST XML file, output tabular file, out format (std or ext)")
+if len(sys.argv) == 4 and sys.argv[3] in ["std", "x22", "ext"]:
+    #False positive if user really has a BLAST XML file called 'std' or 'ext'...
+    stop_err("ERROR: The script API has changed, sorry.")
 
+usage = """usage: %prog [options] blastxml[,...]
+
+Convert one (or more) BLAST XML files into a single tabular file."""
+parser = OptionParser(usage=usage)
+parser.add_option('-o', '--output', dest='output', default=None, help='output filename (defaults to stdout)', metavar="FILE")
+parser.add_option("-c", "--columns", dest="columns", default='std', help="[std|ext] std: standard 12 column, ext: extended 25 column")
+(options, args) = parser.parse_args()
+
+if len(args) < 1:
+    stop_err("ERROR: No BLASTXML input files given; run with --help to see options.")
+
+out_fmt = options.columns
 if out_fmt == "std":
     extended = False
 elif out_fmt == "x22":
@@ -96,19 +108,14 @@ elif out_fmt == "ext":
 else:
     stop_err("Format argument should be std (12 column) or ext (extended 25 columns), not: %r" % out_fmt)
 
+for in_file in args:
+    if not os.path.isfile(in_file):
+        stop_err("Input BLAST XML file not found: %s" % in_file)
 
-# get an iterable
-try: 
-    context = ElementTree.iterparse(in_file, events=("start", "end"))
-except:
-    stop_err("Invalid data format.")
-# turn it into an iterator
-context = iter(context)
-# get the root element
-try:
-    event, root = context.next()
-except:
-    stop_err( "Invalid data format." )
+if options.output:
+    outfile = open(options.output, "w")
+else:
+    outfile = sys.stdout
 
 
 re_default_query_id = re.compile("^Query_\d+$")
@@ -121,10 +128,10 @@ assert not re_default_subject_id.match("Subject_")
 assert not re_default_subject_id.match("Subject_12a")
 assert not re_default_subject_id.match("TheSubject_1")
 
-
-outfile = open(out_file, 'w')
 blast_program = None
-for event, elem in context:
+
+def handle_event(event,elem):
+    global blast_program
     if event == "end" and elem.tag == "BlastOutput_program":
         blast_program = elem.text
     # for every <Iteration> tag
@@ -274,4 +281,28 @@ for event, elem in context:
         # prevents ElementTree from growing large datastructure
         root.clear()
         elem.clear()
-outfile.close()
+
+
+for in_file in args:
+    blast_program = None
+    # get an iterable
+    try:
+        context = ElementTree.iterparse(in_file, events=("start", "end"))
+    except:
+        stop_err("Invalid data format (%s)" % in_file)
+    # turn it into an iterator
+    context = iter(context)
+    # get the root element
+    try:
+        event, root = context.next()
+    except:
+        stop_err("Invalid data format (%s)" % in_file)
+    for event, elem in context:
+        handle_event(event, elem)
+
+if options.output:
+    outfile.close()
+else:
+    #Using stdout
+    pass
+

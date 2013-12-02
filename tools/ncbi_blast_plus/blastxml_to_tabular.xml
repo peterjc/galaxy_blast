@@ -1,8 +1,8 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.0.22">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.0.23">
     <description>Convert BLAST XML output to tabular</description>
     <version_command interpreter="python">blastxml_to_tabular.py --version</version_command>
     <command interpreter="python">
-      blastxml_to_tabular.py $blastxml_file $tabular_file $out_format
+      blastxml_to_tabular.py -o "$tabular_file" -c $out_format #for i in $blastxml_file#"${i}" #end for#
     </command>
     <stdio>
         <!-- Anything other than zero is an error -->
@@ -10,14 +10,14 @@
         <exit_code range=":-1" />
     </stdio>
     <inputs>
-        <param name="blastxml_file" type="data" format="blastxml" label="BLAST results as XML"/> 
+        <param name="blastxml_file" type="data" format="blastxml" multiple="true" label="BLAST results as XML"/>
         <param name="out_format" type="select" label="Output format">
             <option value="std">Tabular (standard 12 columns)</option>
             <option value="ext" selected="True">Tabular (extended 24 columns)</option>
         </param>
     </inputs>
     <outputs>
-        <data name="tabular_file" format="tabular" label="$blastxml_file.display_name (as tabular)" />
+        <data name="tabular_file" format="tabular" label="$on_string (as tabular)" />
     </outputs>
     <requirements>
     </requirements>
