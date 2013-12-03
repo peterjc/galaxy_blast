@@ -74,9 +74,30 @@ $adv_opts.ungapped
             <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
             <param name="database" value="" />
             <param name="evalue_cutoff" value="1e-40" />
+            <param name="out_format" value="5" />
+            <param name="adv_opts_selector" value="basic" />
+            <output name="output1" file="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
+        </test>
+        <test>
+            <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="database" value="" />
+            <param name="evalue_cutoff" value="1e-40" />
             <param name="out_format" value="6" />
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastn_rhodopsin_vs_three_human.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="database" value="" />
+            <param name="evalue_cutoff" value="1e-40" />
+            <param name="out_format" value="cols" />
+            <param name="columns" value="qseqid,sseqid,pident,qlen,slen" />
+            <param name="adv_opts_selector" value="basic" />
+            <output name="output1" file="blastn_rhodopsin_vs_three_human.columns.tabular" ftype="tabular" />
         </test>
     </tests>
     <help>
