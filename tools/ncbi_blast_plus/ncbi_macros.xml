@@ -58,13 +58,14 @@
                     <option value="salltitles">25 salltitles All subject title(s), separated by a '&lt;&gt;'</option>
                     <!-- TODO, the other columns, like taxonomy -->
                 </param>
-                <when value="0"/>
-                <when value="0 -html"/>
-                <when value="2"/>
-                <when value="2 -html"/>
-                <when value="4"/>
-                <when value="4 -html"/>
             </when>
+            <when value="5"/>
+            <when value="0"/>
+            <when value="0 -html"/>
+            <when value="2"/>
+            <when value="2 -html"/>
+            <when value="4"/>
+            <when value="4 -html"/>
         </conditional>
     </xml>
     <xml name="input_scoring_matrix">
