@@ -30,7 +30,7 @@
             <when value="6"/>
             <when value="ext"/>
             <when value="cols">
-                <param name="columns" type="select" multiple="true" display="checkboxes" label="Output columns">
+                <param name="std_cols" type="select" multiple="true" display="checkboxes" label="Standard columns">
                     <option value="qseqid">1 qseqid = Query Seq-id (ID of your sequence)</option>
                     <option value="sseqid">2 sseqid = Subject Seq-id (ID of the database hit)</option>
                     <option value="pident">3 pident = Percentage of identical matches</option>
@@ -43,6 +43,8 @@
                     <option value="send">10 send = End of alignment in subject (database hit)</option>
                     <option value="evalue">11 evalue = Expectation value (E-value)</option>
                     <option value="bitscore">12 bitscore = Bit score</option>
+                </param>
+                <param name="ext_cols" type="select" multiple="true" display="checkboxes" label="Extended columns">
                     <option value="sallseqid">13 sallseqid = All subject Seq-id(s), separated by a ';'</option>
                     <option value="score">14 score = Raw score</option>
                     <option value="nident">15 nident = Number of identical matches</option>
@@ -56,8 +58,8 @@
                     <option value="qlen">23 qlen = Query sequence length</option>
                     <option value="slen">24 slen = Subject sequence length</option>
                     <option value="salltitles">25 salltitles = All subject title(s), separated by a '&lt;&gt;'</option>
-                    <!-- TODO, the other columns, like taxonomy -->
                 </param>
+                <!-- TODO, the other columns, like taxonomy -->
             </when>
             <when value="5"/>
             <when value="0"/>
@@ -314,7 +316,8 @@
     -outfmt "6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles"
 #elif str($output.out_format)=="cols"
 ##Pick your own columns. Galaxy gives us it comma separated, BLAST+ wants space separated:
-#set cols = str($output.columns).replace(',', ' ')
+##TODO - Can we catch the user picking no columns and raise an error here?
+#set cols = (str($output.std_cols)+","+str($output.ext_cols)).replace("None", "").replace(",,", ",").replace(",", " ").strip()
     -outfmt "6 $cols"
 #else:
     -outfmt $output.out_format

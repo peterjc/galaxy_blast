@@ -3,10 +3,11 @@
     <version_command interpreter="python">blastxml_to_tabular.py --version</version_command>
     <command interpreter="python">
 blastxml_to_tabular.py -o "$tabular_file"
-#if $output.out_format == 'cols':
--c '$output.columns'
+#if $output.out_format == "cols":
+#set cols = (str($output.std_cols)+","+str($output.ext_cols)).replace("None", " ").replace(",,", ",").replace(",", " ")
+-c "$cols"
 #else
--c '$output.out_format' 
+-c "$output.out_format"
 #end if
 #for i in $blastxml_file#${i} #end for#
     </command>
@@ -26,7 +27,7 @@ blastxml_to_tabular.py -o "$tabular_file"
           <when value="std"/>
           <when value="ext"/>
           <when value="cols">
-            <param name="columns" type="select" multiple="true" display="checkboxes" label="Output columns">
+            <param name="std_cols" type="select" multiple="true" display="checkboxes" label="Standard columns">
               <option value="qseqid">1 qseqid = Query Seq-id (ID of your sequence)</option>
               <option value="sseqid">2 sseqid = Subject Seq-id (ID of the database hit)</option>
               <option value="pident">3 pident = Percentage of identical matches</option>
@@ -39,6 +40,8 @@ blastxml_to_tabular.py -o "$tabular_file"
               <option value="send">10 send = End of alignment in subject (database hit)</option>
               <option value="evalue">11 evalue = Expectation value (E-value)</option>
               <option value="bitscore">12 bitscore = Bit score</option>
+            </param>
+            <param name="ext_cols" type="select" multiple="true" display="checkboxes" label="Extended columns">
               <option value="sallseqid">13 sallseqid = All subject Seq-id(s), separated by a ';'</option>
               <option value="score">14 score = Raw score</option>
               <option value="nident">15 nident = Number of identical matches</option>
@@ -129,7 +132,8 @@ blastxml_to_tabular.py -o "$tabular_file"
         <test>
             <param name="blastxml_file" value="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
             <param name="out_format" value="cols" />
-            <param name="columns" value="qseqid,sseqid,pident,qlen,slen" />
+            <param name="std_cols" value="qseqid,sseqid,pident" />
+            <param name="ext_cols" value="qlen,slen" />
             <output name="tabular_file" file="blastn_rhodopsin_vs_three_human.columns.tabular" ftype="tabular" />
         </test>
     </tests>
