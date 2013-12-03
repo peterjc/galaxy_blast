@@ -70,6 +70,16 @@
             <!-- Note this has some white space differences from the actual blastp output -->
             <output name="tabular_file" file="blastp_human_vs_pdb_seg_no_converted_ext.tabular" ftype="tabular" />
         </test>
+        <test>
+            <param name="blastxml_file" value="blastn_arabidopsis.xml" ftype="blastxml" />
+            <param name="out_format" value="std" />
+            <output name="tabular_file" file="blastn_arabidopsis.standard.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="blastxml_file" value="blastn_arabidopsis.xml" ftype="blastxml" />
+            <param name="out_format" value="ext" />
+            <output name="tabular_file" file="blastn_arabidopsis.extended.tabular" ftype="tabular" />
+        </test>
     </tests>
     <help>
     

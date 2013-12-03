@@ -158,11 +158,21 @@ for event, elem in context:
             # <Hit_accession>Subject_1</Hit_accession>
             #
             #apparently depending on the parse_deflines switch
+            #
+            #Or, with BLAST 2.2.28+ can get this,
+            # <Hit_id>gnl|BL_ORD_ID|2</Hit_id>
+            # <Hit_def>chrIII gi|240255695|ref|NC_003074.8| Arabidopsis thaliana chromosome 3, complete sequence</Hit_def>
+            # <Hit_accession>2</Hit_accession>
             sseqid = hit.findtext("Hit_id").split(None,1)[0]
             hit_def = sseqid + " " + hit.findtext("Hit_def")
             if re_default_subject_id.match(sseqid) \
             and sseqid == hit.findtext("Hit_accession"):
                 #Place holder ID, take the first word of the subject definition
+                hit_def = hit.findtext("Hit_def")
+                sseqid = hit_def.split(None,1)[0]
+            if sseqid.startswith("gnl|BL_ORD_ID|") \
+            and sseqid == "gnl|BL_ORD_ID|" + hit.findtext("Hit_accession"):
+                #Alternative place holder ID, again take the first word of hit_def
                 hit_def = hit.findtext("Hit_def")
                 sseqid = hit_def.split(None,1)[0]
             # for every <Hsp> within <Hit>
