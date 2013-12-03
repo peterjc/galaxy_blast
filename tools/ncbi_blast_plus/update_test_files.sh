@@ -25,8 +25,14 @@ echo
 echo Main
 echo ====
 
+echo "blastn_rhodopsin_vs_three_human.xml"
+blastn -query rhodopsin_nucs.fasta -subject three_human_mRNA.fasta -task megablast -evalue 1e-40 -out blastn_rhodopsin_vs_three_human.xml -outfmt 5
+
 echo "blastn_rhodopsin_vs_three_human.tabular"
 blastn -query rhodopsin_nucs.fasta -subject three_human_mRNA.fasta -task megablast -evalue 1e-40 -out blastn_rhodopsin_vs_three_human.tabular -outfmt 6
+
+echo "blastn_rhodopsin_vs_three_human.columns.tabular"
+blastn -query rhodopsin_nucs.fasta -subject three_human_mRNA.fasta -task megablast -evalue 1e-40 -out blastn_rhodopsin_vs_three_human.columns.tabular -outfmt "6 qseqid sseqid pident qlen slen"
 
 echo "blastp_four_human_vs_rhodopsin.xml"
 blastp -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -task blastp -evalue 1e-08 -out blastp_four_human_vs_rhodopsin.xml -outfmt 5 -seg no -matrix BLOSUM62 -parse_deflines

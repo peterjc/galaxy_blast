@@ -1,0 +1,549 @@
+<?xml version="1.0"?>
+<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
+<BlastOutput>
+  <BlastOutput_program>blastn</BlastOutput_program>
+  <BlastOutput_version>BLASTN 2.2.28+</BlastOutput_version>
+  <BlastOutput_reference>Zheng Zhang, Scott Schwartz, Lukas Wagner, and Webb Miller (2000), &quot;A greedy algorithm for aligning DNA sequences&quot;, J Comput Biol 2000; 7(1-2):203-14.</BlastOutput_reference>
+  <BlastOutput_db></BlastOutput_db>
+  <BlastOutput_query-ID>Query_1</BlastOutput_query-ID>
+  <BlastOutput_query-def>gi|57163782|ref|NM_001009242.1| Felis catus rhodopsin (RHO), mRNA</BlastOutput_query-def>
+  <BlastOutput_query-len>1047</BlastOutput_query-len>
+  <BlastOutput_param>
+    <Parameters>
+      <Parameters_expect>1e-40</Parameters_expect>
+      <Parameters_sc-match>1</Parameters_sc-match>
+      <Parameters_sc-mismatch>-2</Parameters_sc-mismatch>
+      <Parameters_gap-open>0</Parameters_gap-open>
+      <Parameters_gap-extend>0</Parameters_gap-extend>
+      <Parameters_filter>L;m;</Parameters_filter>
+    </Parameters>
+  </BlastOutput_param>
+<BlastOutput_iterations>
+<Iteration>
+  <Iteration_iter-num>1</Iteration_iter-num>
+  <Iteration_query-ID>Query_1</Iteration_query-ID>
+  <Iteration_query-def>gi|57163782|ref|NM_001009242.1| Felis catus rhodopsin (RHO), mRNA</Iteration_query-def>
+  <Iteration_query-len>1047</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1240800</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>2</Iteration_iter-num>
+  <Iteration_query-ID>Query_1</Iteration_query-ID>
+  <Iteration_query-def>gi|57163782|ref|NM_001009242.1| Felis catus rhodopsin (RHO), mRNA</Iteration_query-def>
+  <Iteration_query-len>1047</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1240800</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>3</Iteration_iter-num>
+  <Iteration_query-ID>Query_1</Iteration_query-ID>
+  <Iteration_query-def>gi|57163782|ref|NM_001009242.1| Felis catus rhodopsin (RHO), mRNA</Iteration_query-def>
+  <Iteration_query-len>1047</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>Subject_3</Hit_id>
+  <Hit_def>ENA|BC112106|BC112106.1 Homo sapiens rhodopsin, mRNA (cDNA clone MGC:138311 IMAGE:8327574), complete cds</Hit_def>
+  <Hit_accession>Subject_3</Hit_accession>
+  <Hit_len>1213</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1474.75</Hsp_bit-score>
+      <Hsp_score>798</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>1047</Hsp_query-to>
+      <Hsp_hit-from>88</Hsp_hit-from>
+      <Hsp_hit-to>1134</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>964</Hsp_identity>
+      <Hsp_positive>964</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>1047</Hsp_align-len>
+      <Hsp_qseq>ATGAACGGGACGGAGGGCCCGAACTTCTACGTGCCCTTCTCCAACAAAACGGGTGTGGTACGCAGCCCCTTCGAGTACCCACAGTACTACCTGGCTGAGCCATGGCAGTTCTCCATGCTGGCCGCCTACATGTTCCTGCTCATCGTGCTTGGCTTCCCCATCAACTTCCTCACGCTCTACGTCACGGTCCAGCACAAGAAGCTGCGCACGCCTCTCAACTACATCCTGCTCAACCTGGCCGTGGCTGACCTCTTCATGGTCTTCGGTGGCTTCACCACCACCCTCTACACCTCTCTGCATGGATACTTTGTCTTTGGGCCCACAGGATGCAATTTGGAGGGCTTCTTTGCCACACTGGGCGGTGAAATTGCCCTGTGGTCTTTGGTGGTCCTGGCCATTGAGCGGTACGTGGTGGTGTGTAAGCCCATGAGCAACTTCCGCTTTGGGGAGAACCATGCCATAATGGGCGTCGCTTTCACCTGGGTCATGGCACTGGCCTGCGCTGCACCCCCCCTCGTTGGTTGGTCCAGGTACATCCCTGAAGGCATGCAGTGTTCATGCGGGATCGACTACTACACACTCAAGCCAGAAGTCAACAACGAGTCCTTTGTCATCTACATGTTCGTGGTCCACTTCACCATCCCCATGATCGTCATCTTCTTTTGCTACGGGCAGCTTGTCTTCACAGTCAAGGAGGCGGCAGCCCAGCAGCAGGAGTCAGCCACCACCCAGAAGGCTGAGAAGGAGGTCACTCGCATGGTCATCATCATGGTCATTGCTTTCCTGATCTGTTGGGTGCCCTACGCCAGCGTGGCATTCTACATCTTCACCCACCAGGGGTCCAACTTTGGCCCCATCTTCATGACACTCCCGGCGTTCTTCGCAAAGTCCTCCTCCATCTACAACCCTGTCATCTACATCATGATGAACAAGCAGTTCCGGAACTGCATGCTCACTACCCTCTGCTGTGGCAAGAACCCACTGGGTGATGACGAGGCTTCCACAACCGGTTCCAAGACGGAGACCAGCCAGGTGGCACCGGCCTAA</Hsp_qseq>
+      <Hsp_hseq>ATGAATGGCACAGAAGGCCCTAACTTCTACGTGCCCTTCTCCAATGCGACGGGTGTGGTACGCAGCCCCTTCGAGTACCCACAGTACTACCTGGCTGAGCCATGGCAGTTCTCCATGCTGGCCGCCTACATGTTTCTGCTGATCGTGCTGGGCTTCCCCATCAACTTCCTCACGCTCTACGTCACCGTCCAGCACAAGAAGCTGCGCACGCCTCTCAACTACATCCTGCTCAACCTAGCCGTGGCTGACCTCTTCATGGTCCTAGGTGGCTTCACCAGCACCCTCTACACCTCTCTGCATGGATACTTCGTCTTCGGGCCCACAGGATGCAATTTGGAGGGCTTCTTTGCCACCCTGGGCGGTGAAATTGCCCTGTGGTCCTTGGTGGTCCTGGCCATCGAGCGGTACGTGGTGGTGTGTAAGCCCATGAGCAACTTCCGCTTCGGGGAGAACCATGCCATCATGGGCGTTGCCTTCACCTGGGTCATGGCGCTGGCCTGCGCCGCACCCCCACTCGCCGGCTGGTCCAGGTACATCCCCGAGGGCCTGCAGTGCTCGTGTGGAATCGACTACTACACGCTCAAGCCGGAGGTCAACAACGAGTCTTTTGTCATCTACATGTTCGTGGTCCACTTCACCATCCCCATGATTATCATCTTTTTCTGCTATGGGCAGCTCGTCTTCACCGTCAAGGAGGCCGCTGCCCAGCAGCAGGAGTCAGCCACCACACAGAAGGCAGAGAAGGAGGTCACCCGCATGGTCATCATCATGGTCATCGCTTTCCTGATCTGCTGGGTGCCCTACGCCAGCGTGGCATTCTACATCTTCACCCACCAGGGCTCCAACTTCGGTCCCATCTTCATGACCATCCCAGCGTTCTTTGCCAAGAGCGCCGCCATCTACAACCCTGTCATCTATATCATGATGAACAAGCAGTTCCGGAACTGCATGCTCACCACCATCTGCTGCGGCAAGAACCCACTGGGTGACGATGAGGCCTCTGCTACCGTGTCCAAGACGGAGACGAGCCAGGTGGCCCCGGCCTAA</Hsp_hseq>
+      <Hsp_midline>||||| || || || ||||| |||||||||||||||||||||||    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||| |||||||| ||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||| | ||||||||||||| |||||||||||||||||||||||||||||| ||||| |||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||| ||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||| |||||||| || ||||||||||||||||| ||||||||||| |||||||| ||||  || ||||||||||||||||| || ||| ||||||| || || || |||||||||||||| |||||||| || |||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||  ||||||| || ||||| |||||||| |||||||| ||||||||||| || |||||||||||||||||||||||||| |||||||| |||||||||||||| ||||||||||||||||||||||| |||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||| |||||||| || ||||||||||||||  |||| |||||||| || |||  | || |||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||| ||| ||||||| |||||||||||||||||||| || ||||| ||  | ||||  |||||||||||||| ||||||||||| |||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1240800</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>4</Iteration_iter-num>
+  <Iteration_query-ID>Query_2</Iteration_query-ID>
+  <Iteration_query-def>gi|2734705|gb|U59921.1|BBU59921 Bufo bufo rhodopsin mRNA, complete cds</Iteration_query-def>
+  <Iteration_query-len>1574</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>14</Statistics_hsp-len>
+      <Statistics_eff-space>1870440</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>5</Iteration_iter-num>
+  <Iteration_query-ID>Query_2</Iteration_query-ID>
+  <Iteration_query-def>gi|2734705|gb|U59921.1|BBU59921 Bufo bufo rhodopsin mRNA, complete cds</Iteration_query-def>
+  <Iteration_query-len>1574</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>14</Statistics_hsp-len>
+      <Statistics_eff-space>1870440</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>6</Iteration_iter-num>
+  <Iteration_query-ID>Query_2</Iteration_query-ID>
+  <Iteration_query-def>gi|2734705|gb|U59921.1|BBU59921 Bufo bufo rhodopsin mRNA, complete cds</Iteration_query-def>
+  <Iteration_query-len>1574</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>14</Statistics_hsp-len>
+      <Statistics_eff-space>1870440</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>7</Iteration_iter-num>
+  <Iteration_query-ID>Query_3</Iteration_query-ID>
+  <Iteration_query-def>gi|283855845|gb|GQ290303.1| Cynopterus brachyotis voucher 20020434 rhodopsin (RHO) gene, exons 1 through 5 and partial cds</Iteration_query-def>
+  <Iteration_query-len>4301</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>15</Statistics_hsp-len>
+      <Statistics_eff-space>5134628</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>8</Iteration_iter-num>
+  <Iteration_query-ID>Query_3</Iteration_query-ID>
+  <Iteration_query-def>gi|283855845|gb|GQ290303.1| Cynopterus brachyotis voucher 20020434 rhodopsin (RHO) gene, exons 1 through 5 and partial cds</Iteration_query-def>
+  <Iteration_query-len>4301</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>15</Statistics_hsp-len>
+      <Statistics_eff-space>5134628</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>9</Iteration_iter-num>
+  <Iteration_query-ID>Query_3</Iteration_query-ID>
+  <Iteration_query-def>gi|283855845|gb|GQ290303.1| Cynopterus brachyotis voucher 20020434 rhodopsin (RHO) gene, exons 1 through 5 and partial cds</Iteration_query-def>
+  <Iteration_query-len>4301</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>Subject_3</Hit_id>
+  <Hit_def>ENA|BC112106|BC112106.1 Homo sapiens rhodopsin, mRNA (cDNA clone MGC:138311 IMAGE:8327574), complete cds</Hit_def>
+  <Hit_accession>Subject_3</Hit_accession>
+  <Hit_len>1213</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>460.936</Hsp_bit-score>
+      <Hsp_score>249</Hsp_score>
+      <Hsp_evalue>9.01425e-133</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>333</Hsp_query-to>
+      <Hsp_hit-from>118</Hsp_hit-from>
+      <Hsp_hit-to>450</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>305</Hsp_identity>
+      <Hsp_positive>305</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>333</Hsp_align-len>
+      <Hsp_qseq>GTGCCCTTCTCCAACAAGACAGGCGTGGTGCGCAGTCCCTTCGAGCATCCACAGTACTACCTGGCCGAGCCATGGCAGTTCTCCATGCTGGCCGCCTACATGTTTCTGCTGATCGTGCTCGGCTTCCCCATCAACTTCCTCACGCTCTATGTCACGGTTCAGCACAAGAAGCTGCGTACGCCTCTCAACTACATCCTGCTCAACCTGGCCGTGGCCGACCTCTTCATGGTCTTCGGAGGCTTCACCACCACCCTCTACACCTCCCTGCATGGATACTTTGTCTTCGGGCCTACGGGATGCAATCTGGAGGGCTTTTTTGCCACCCTGGGAGGT</Hsp_qseq>
+      <Hsp_hseq>GTGCCCTTCTCCAATGCGACGGGTGTGGTACGCAGCCCCTTCGAGTACCCACAGTACTACCTGGCTGAGCCATGGCAGTTCTCCATGCTGGCCGCCTACATGTTTCTGCTGATCGTGCTGGGCTTCCCCATCAACTTCCTCACGCTCTACGTCACCGTCCAGCACAAGAAGCTGCGCACGCCTCTCAACTACATCCTGCTCAACCTAGCCGTGGCTGACCTCTTCATGGTCCTAGGTGGCTTCACCAGCACCCTCTACACCTCTCTGCATGGATACTTCGTCTTCGGGCCCACAGGATGCAATTTGGAGGGCTTCTTTGCCACCCTGGGCGGT</Hsp_hseq>
+      <Hsp_midline>||||||||||||||   ||| || ||||| ||||| ||||||||| | ||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||| ||||| || ||||||||||||||||| ||||||||||||||||||||||||||||| |||||||| ||||||||||||||| | || |||||||||| ||||||||||||||| |||||||||||||| ||||||||||| || ||||||||| |||||||||| |||||||||||||| |||</Hsp_midline>
+    </Hsp>
+    <Hsp>
+      <Hsp_num>2</Hsp_num>
+      <Hsp_bit-score>331.671</Hsp_bit-score>
+      <Hsp_score>179</Hsp_score>
+      <Hsp_evalue>7.3742e-94</Hsp_evalue>
+      <Hsp_query-from>3127</Hsp_query-from>
+      <Hsp_query-to>3368</Hsp_query-to>
+      <Hsp_hit-from>782</Hsp_hit-from>
+      <Hsp_hit-to>1023</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>222</Hsp_identity>
+      <Hsp_positive>222</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>243</Hsp_align-len>
+      <Hsp_qseq>AGGCAGCTGCCCAGCAGCAGGAGTCAGCCACCACCCAGAAGGCCGAGAAGGAGGTCACCCGTATGGTCATCATCATGGTCATTGCTTTCCTAATCTGTTGGCTGCCGTATGCCGGCGTGGCATTCTACATCTTCACCCACCAGGGCTCTAACTTTGGCCCCATCTTCATGACCCTCCCGGCATTCTTTGCCAAGT-CGTCCTCCATCTACAACCCTGTCATCTATATCATGATGAACAAGCAG</Hsp_qseq>
+      <Hsp_hseq>AGGCCGCTGCCCAGCAGCAGGAGTCAGCCACCACACAGAAGGCAGAGAAGGAGGTCACCCGCATGGTCATCATCATGGTCATCGCTTTCCTGATCTGCTGGGTGCCCTACGCCAGCGTGGCATTCTACATCTTCACCCACCAGGGCTCCAACTTCGGTCCCATCTTCATGACCATCCCAGCGTTCTTTGCCAAGAGCG-CCGCCATCTACAACCCTGTCATCTATATCATGATGAACAAGCAG</Hsp_hseq>
+      <Hsp_midline>|||| ||||||||||||||||||||||||||||| |||||||| ||||||||||||||||| |||||||||||||||||||| |||||||| ||||| ||| |||| || ||| |||||||||||||||||||||||||||||||||| ||||| || ||||||||||||||| |||| || ||||||||||||  || || |||||||||||||||||||||||||||||||||||||||||</Hsp_midline>
+    </Hsp>
+    <Hsp>
+      <Hsp_num>3</Hsp_num>
+      <Hsp_bit-score>265.191</Hsp_bit-score>
+      <Hsp_score>143</Hsp_score>
+      <Hsp_evalue>7.58586e-74</Hsp_evalue>
+      <Hsp_query-from>1410</Hsp_query-from>
+      <Hsp_query-to>1582</Hsp_query-to>
+      <Hsp_hit-from>448</Hsp_hit-from>
+      <Hsp_hit-to>620</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>163</Hsp_identity>
+      <Hsp_positive>163</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>173</Hsp_align-len>
+      <Hsp_qseq>GGTGAAATTGCCCTGTGGTCCTTGGTGGTCCTGGCCATCGAGCGGTACGTGGTGGTATGCAAGCCCATGAGCAACTTCCGCTTCGGGGAGAACCACGCCATCATGGGCCTTGCCCTCACCTGGGTCATGGCACTGGCCTGCGCCGCGCCCCCGCTAGTCGGCTGGTCCAGGTA</Hsp_qseq>
+      <Hsp_hseq>GGTGAAATTGCCCTGTGGTCCTTGGTGGTCCTGGCCATCGAGCGGTACGTGGTGGTGTGTAAGCCCATGAGCAACTTCCGCTTCGGGGAGAACCATGCCATCATGGGCGTTGCCTTCACCTGGGTCATGGCGCTGGCCTGCGCCGCACCCCCACTCGCCGGCTGGTCCAGGTA</Hsp_hseq>
+      <Hsp_midline>|||||||||||||||||||||||||||||||||||||||||||||||||||||||| || ||||||||||||||||||||||||||||||||||| |||||||||||| ||||| |||||||||||||||| |||||||||||||| ||||| || | |||||||||||||||</Hsp_midline>
+    </Hsp>
+    <Hsp>
+      <Hsp_num>4</Hsp_num>
+      <Hsp_bit-score>248.571</Hsp_bit-score>
+      <Hsp_score>134</Hsp_score>
+      <Hsp_evalue>7.63972e-69</Hsp_evalue>
+      <Hsp_query-from>2854</Hsp_query-from>
+      <Hsp_query-to>3023</Hsp_query-to>
+      <Hsp_hit-from>615</Hsp_hit-from>
+      <Hsp_hit-to>784</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>158</Hsp_identity>
+      <Hsp_positive>158</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>170</Hsp_align-len>
+      <Hsp_qseq>CAGGTACATCCCAGAGGGCATGCAGTGCTCATGTGGAATCGACTACTACACCCTCAAGCCGGAGGTCAACAACGAGTCCTTTGTCATCTACATGTTCGTGGTCCACTTCACCATCCCTATGATTGTCATATTCTTTTGCTATGGACAGCTGGTCTTCACCGTCAAGGAGG</Hsp_qseq>
+      <Hsp_hseq>CAGGTACATCCCCGAGGGCCTGCAGTGCTCGTGTGGAATCGACTACTACACGCTCAAGCCGGAGGTCAACAACGAGTCTTTTGTCATCTACATGTTCGTGGTCCACTTCACCATCCCCATGATTATCATCTTTTTCTGCTATGGGCAGCTCGTCTTCACCGTCAAGGAGG</Hsp_hseq>
+      <Hsp_midline>|||||||||||| |||||| |||||||||| |||||||||||||||||||| |||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||| |||||| |||| || || |||||||| ||||| |||||||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>15</Statistics_hsp-len>
+      <Statistics_eff-space>5134628</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>10</Iteration_iter-num>
+  <Iteration_query-ID>Query_4</Iteration_query-ID>
+  <Iteration_query-def>gi|283855822|gb|GQ290312.1| Myotis ricketti voucher GQX10 rhodopsin (RHO) mRNA, partial cds</Iteration_query-def>
+  <Iteration_query-len>983</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1164000</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>11</Iteration_iter-num>
+  <Iteration_query-ID>Query_4</Iteration_query-ID>
+  <Iteration_query-def>gi|283855822|gb|GQ290312.1| Myotis ricketti voucher GQX10 rhodopsin (RHO) mRNA, partial cds</Iteration_query-def>
+  <Iteration_query-len>983</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1164000</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>12</Iteration_iter-num>
+  <Iteration_query-ID>Query_4</Iteration_query-ID>
+  <Iteration_query-def>gi|283855822|gb|GQ290312.1| Myotis ricketti voucher GQX10 rhodopsin (RHO) mRNA, partial cds</Iteration_query-def>
+  <Iteration_query-len>983</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>Subject_3</Hit_id>
+  <Hit_def>ENA|BC112106|BC112106.1 Homo sapiens rhodopsin, mRNA (cDNA clone MGC:138311 IMAGE:8327574), complete cds</Hit_def>
+  <Hit_accession>Subject_3</Hit_accession>
+  <Hit_len>1213</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1323.32</Hsp_bit-score>
+      <Hsp_score>716</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>959</Hsp_query-to>
+      <Hsp_hit-from>118</Hsp_hit-from>
+      <Hsp_hit-to>1076</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>878</Hsp_identity>
+      <Hsp_positive>878</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>959</Hsp_align-len>
+      <Hsp_qseq>GTGCCCTTCTCCAACAAGACGGGTGTGGTGCGCAGCCCCTTCGAGTACCCGCAGTACTACCTGGCTGAGCCCTGGCAGTTCTCCATGCTGGCTGCCTACATGTTTCTGCTGATCGTGCTCGGATTCCCCATCAACTTCCTCACGCTCTACGTCACCGTCCAGCACAAGAAGCTGCGCACGCCTCTCAACTACATCCTGCTCAACCTGGCTGTGGCCAACCTCTTCATGGTCTTTGGAGGCTTCACCACCACCCTGTATACCTCTATGCATGGATACTTCGTCTTCGGGGCCACGGGATGCAATCTGGAGGGCTTCTTTGCCACGCTGGGCGGTGAAATCGCCCTGTGGTCCCTGGTGGTCCTGGCCATCGAGCGGTATGTGGTGGTCTGCAAGCCCATGAGCAACTTCCGCTTTGGGGAGAACCACGCCATCATGGGCCTCGCCTTCACGTGGGTCATGGCACTGGCCTGCGCTGCACCCCCACTAGCCGGCTGGTCCAGGTACATCCCAGAGGGCATGCAGTGCTCGTGTGGGATTGACTACTACACGCTCAAACCGGAGGTCAACAACGAGTCCTTCGTCATCTACATGTTCGTGGTCCACTTCACCATCCCCATGATTGTCATTTTCTTCTGCTACGGACAGCTGGTGTTCACAGTGAAGGAGGCGGCTGCCCAGCAGCAGGAGTCAGCCACCACCCAGAAGGCCGAGAAGGAAGTCACGCGCATGGTCATCATCATGGTCGTTGCGTTCCTAATCTGTTGGCTGCCCTACGCCAGCGTGGCATTCTACATCTTTACCCACCAGGGCTCTAACTTTGGCCCTGTCTTCATGACCATCCCGGCATTCTTCGCCAAGTCATCCTCCATCTACAACCCGGTCATCTATATCATGATGAACAAGCAGTTCCGGAACTGCATGCTCACCACCCTCTGCTGTGGCAAGAACCCACTGGGTGA</Hsp_qseq>
+      <Hsp_hseq>GTGCCCTTCTCCAATGCGACGGGTGTGGTACGCAGCCCCTTCGAGTACCCACAGTACTACCTGGCTGAGCCATGGCAGTTCTCCATGCTGGCCGCCTACATGTTTCTGCTGATCGTGCTGGGCTTCCCCATCAACTTCCTCACGCTCTACGTCACCGTCCAGCACAAGAAGCTGCGCACGCCTCTCAACTACATCCTGCTCAACCTAGCCGTGGCTGACCTCTTCATGGTCCTAGGTGGCTTCACCAGCACCCTCTACACCTCTCTGCATGGATACTTCGTCTTCGGGCCCACAGGATGCAATTTGGAGGGCTTCTTTGCCACCCTGGGCGGTGAAATTGCCCTGTGGTCCTTGGTGGTCCTGGCCATCGAGCGGTACGTGGTGGTGTGTAAGCCCATGAGCAACTTCCGCTTCGGGGAGAACCATGCCATCATGGGCGTTGCCTTCACCTGGGTCATGGCGCTGGCCTGCGCCGCACCCCCACTCGCCGGCTGGTCCAGGTACATCCCCGAGGGCCTGCAGTGCTCGTGTGGAATCGACTACTACACGCTCAAGCCGGAGGTCAACAACGAGTCTTTTGTCATCTACATGTTCGTGGTCCACTTCACCATCCCCATGATTATCATCTTTTTCTGCTATGGGCAGCTCGTCTTCACCGTCAAGGAGGCCGCTGCCCAGCAGCAGGAGTCAGCCACCACACAGAAGGCAGAGAAGGAGGTCACCCGCATGGTCATCATCATGGTCATCGCTTTCCTGATCTGCTGGGTGCCCTACGCCAGCGTGGCATTCTACATCTTCACCCACCAGGGCTCCAACTTCGGTCCCATCTTCATGACCATCCCAGCGTTCTTTGCCAAGAGCGCCGCCATCTACAACCCTGTCATCTATATCATGATGAACAAGCAGTTCCGGAACTGCATGCTCACCACCATCTGCTGCGGCAAGAACCCACTGGGTGA</Hsp_hseq>
+      <Hsp_midline>||||||||||||||   |||||||||||| |||||||||||||||||||| |||||||||||||||||||| |||||||||||||||||||| |||||||||||||||||||||||||| || ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| || |||||  |||||||||||||| | || |||||||||| |||||| || |||||| ||||||||||||||||||||||| |||| ||||||||| ||||||||||||||||||| |||||||||||||| |||||||||||| ||||||||||||||||||||||||| |||||||| || ||||||||||||||||||||||| ||||||||||| |||||||||||| | |||||||| ||||||||||| ||||||||||| ||||||||||| ||||||||||||||||||||||| |||||| |||||||||||||||| || ||||||||||||||||| |||||||||||||||||||| || |||||||||||||||||||||||||||||||||||||||||| |||| || |||||||| || ||||| || ||||| || |||||||| ||||||||||||||||||||||||||||| |||||||| |||||||| ||||| ||||||||||||||||||||| | || ||||| ||||| ||| ||||||||||||||||||||||||||||||| |||||||||||||| ||||| || ||  |||||||||||||||| || ||||| ||||||    || ||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||| ||||||||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1164000</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>13</Iteration_iter-num>
+  <Iteration_query-ID>Query_5</Iteration_query-ID>
+  <Iteration_query-def>gi|18148870|dbj|AB062417.1| Synthetic construct Bos taurus gene for rhodopsin, complete cds</Iteration_query-def>
+  <Iteration_query-len>1047</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1240800</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>14</Iteration_iter-num>
+  <Iteration_query-ID>Query_5</Iteration_query-ID>
+  <Iteration_query-def>gi|18148870|dbj|AB062417.1| Synthetic construct Bos taurus gene for rhodopsin, complete cds</Iteration_query-def>
+  <Iteration_query-len>1047</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1240800</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>15</Iteration_iter-num>
+  <Iteration_query-ID>Query_5</Iteration_query-ID>
+  <Iteration_query-def>gi|18148870|dbj|AB062417.1| Synthetic construct Bos taurus gene for rhodopsin, complete cds</Iteration_query-def>
+  <Iteration_query-len>1047</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>Subject_3</Hit_id>
+  <Hit_def>ENA|BC112106|BC112106.1 Homo sapiens rhodopsin, mRNA (cDNA clone MGC:138311 IMAGE:8327574), complete cds</Hit_def>
+  <Hit_accession>Subject_3</Hit_accession>
+  <Hit_len>1213</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1208.83</Hsp_bit-score>
+      <Hsp_score>654</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>1047</Hsp_query-to>
+      <Hsp_hit-from>88</Hsp_hit-from>
+      <Hsp_hit-to>1134</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>917</Hsp_identity>
+      <Hsp_positive>917</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>1048</Hsp_align-len>
+      <Hsp_qseq>ATGAACGGGACCGAGGGCCCAAACTTCTACGTGCCTTTCTCCAACAAGACGGGCGTCGTACGCAGCCCCTTCGAGGCGCCGCAGTACTACCTGGCTGAGCCATGGCAGTTCAGCATGCTGGCCGCCTACATGTTCCTGCTGATCATGCTTGGCTTCCCCATCAACTTCCTCACGCTGTACGTCACAGTCCAGCACAAGAAGCTGAGGACCCCCCTCAACTACATCCTGCTCAACCTGGCCGTGGCAGATCTCTTCATGGTGTTCGGGGGCTTCACCACCACCCTGTATACCTCTCTGCACGGGTACTTCGTGTTCGGTCCGACGGGCTGCAACCTCGAGGGCTTCTTTGCCACCTTAGGCGGTGAAATTGCACTGTGGTCCTTGGTGGTGCTAGCCATCGAGCGGTACGTAGTGGTGTGCAAGCCCATGAGCAACTTCCGCTTCGGGGAGAACCACGCCATCATGGGCGTCGCATTCACCTGGGTCATGGCTCTGGCCTGTGCGGCCCCCCCCCTCGTCGGCTGGTCTAGATACATCCCGGAGGGGATGCAGTGCTCGTGCGGGATCGATTACTACACGCCCCACGAGGAGACCAACAATGAGTCGTTCGTCATCTACATGTTCGTTGTACACTTCATCATCCCCCTGATTGTCATATTCTTCTGCTACGGGCAGCTGGTCTTCACCGTCAAGGAGGCTGCAGCCCAGCAGCAGGAGTCGGCCACCACTCAGAAGGCCGAGAAGGAGGTCACGCGTATGGTCATCATCATGGTCATCGCTTTCCTCATATGCTGGCTGCCCTACGCAGGTGTGGCGTTCTACATCTTCACCCATCAGGGATCCGACTTTGGCCCCATCTTCATGACCATCCCGGCTTTCTTTGCCAAGA-CGTCTGCCGTCTATAACCCCGTCATCTACATCATGATGAACAAGCAGTTCCGGAACTGCATGGTCACCACTCTCTGCTGTGGCAAGAACCCCCTAGGTGACGACGAGGCCTCCACGACCGTGTCCAAGACAGAGACCAGCCAAGTGGCCCCTGCCTAA</Hsp_qseq>
+      <Hsp_hseq>ATGAATGGCACAGAAGGCCCTAACTTCTACGTGCCCTTCTCCAATGCGACGGGTGTGGTACGCAGCCCCTTCGAGTACCCACAGTACTACCTGGCTGAGCCATGGCAGTTCTCCATGCTGGCCGCCTACATGTTTCTGCTGATCGTGCTGGGCTTCCCCATCAACTTCCTCACGCTCTACGTCACCGTCCAGCACAAGAAGCTGCGCACGCCTCTCAACTACATCCTGCTCAACCTAGCCGTGGCTGACCTCTTCATGGTCCTAGGTGGCTTCACCAGCACCCTCTACACCTCTCTGCATGGATACTTCGTCTTCGGGCCCACAGGATGCAATTTGGAGGGCTTCTTTGCCACCCTGGGCGGTGAAATTGCCCTGTGGTCCTTGGTGGTCCTGGCCATCGAGCGGTACGTGGTGGTGTGTAAGCCCATGAGCAACTTCCGCTTCGGGGAGAACCATGCCATCATGGGCGTTGCCTTCACCTGGGTCATGGCGCTGGCCTGCGCCGCACCCCCACTCGCCGGCTGGTCCAGGTACATCCCCGAGGGCCTGCAGTGCTCGTGTGGAATCGACTACTACACGCTCAAGCCGGAGGTCAACAACGAGTCTTTTGTCATCTACATGTTCGTGGTCCACTTCACCATCCCCATGATTATCATCTTTTTCTGCTATGGGCAGCTCGTCTTCACCGTCAAGGAGGCCGCTGCCCAGCAGCAGGAGTCAGCCACCACACAGAAGGCAGAGAAGGAGGTCACCCGCATGGTCATCATCATGGTCATCGCTTTCCTGATCTGCTGGGTGCCCTACGCCAGCGTGGCATTCTACATCTTCACCCACCAGGGCTCCAACTTCGGTCCCATCTTCATGACCATCCCAGCGTTCTTTGCCAAGAGCGCC-GCCATCTACAACCCTGTCATCTATATCATGATGAACAAGCAGTTCCGGAACTGCATGCTCACCACCATCTGCTGCGGCAAGAACCCACTGGGTGACGATGAGGCCTCTGCTACCGTGTCCAAGACGGAGACGAGCCAGGTGGCCCCGGCCTAA</Hsp_hseq>
+      <Hsp_midline>||||| || || || ||||| |||||||||||||| ||||||||   |||||| || ||||||||||||||||||   || ||||||||||||||||||||||||||||||  ||||||||||||||||||||| ||||||||| |||| |||||||||||||||||||||||||| |||||||| |||||||||||||||||| | || || ||||||||||||||||||||||| |||||||| || |||||||||||  | || |||||||||| |||||| || ||||||||||| || |||||||| ||||| || || || |||||  | |||||||||||||||||| | |||||||||||||| ||||||||||||||||| || ||||||||||||||||| |||||||| ||||||||||||||||||||||||||||||||||| |||||||||||||| || ||||||||||||||||| |||||||| || || ||||| |||| ||||||||| || |||||||| |||||  ||||||||||||| || ||||| |||||||||| | |   ||||  |||||| ||||| || ||||||||||||||||| || ||||||| ||||||| ||||| |||| || |||||||| |||||||| |||||||||||||||||||| || ||||||||||||||||| |||||||| |||||||| |||||||||||||| || ||||||||||||||||||||||||||||| || |||||| ||||||||||  | ||||| ||||||||||||||||| ||||| ||| |||| || |||||||||||||||||||| || ||||||||||||| || | ||| |||| ||||| |||||||| ||||||||||||||||||||||||||||||||| |||||||  ||||||| ||||||||||| || |||||||| ||||||||  | |||||||||||||| ||||| ||||| |||||||| ||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1240800</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>16</Iteration_iter-num>
+  <Iteration_query-ID>Query_6</Iteration_query-ID>
+  <Iteration_query-def>gi|12583664|dbj|AB043817.1| Conger myriaster conf gene for fresh water form rod opsin, complete cds</Iteration_query-def>
+  <Iteration_query-len>1344</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1597200</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>17</Iteration_iter-num>
+  <Iteration_query-ID>Query_6</Iteration_query-ID>
+  <Iteration_query-def>gi|12583664|dbj|AB043817.1| Conger myriaster conf gene for fresh water form rod opsin, complete cds</Iteration_query-def>
+  <Iteration_query-len>1344</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1597200</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>18</Iteration_iter-num>
+  <Iteration_query-ID>Query_6</Iteration_query-ID>
+  <Iteration_query-def>gi|12583664|dbj|AB043817.1| Conger myriaster conf gene for fresh water form rod opsin, complete cds</Iteration_query-def>
+  <Iteration_query-len>1344</Iteration_query-len>
+<Iteration_hits>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>0</Statistics_db-num>
+      <Statistics_db-len>0</Statistics_db-len>
+      <Statistics_hsp-len>13</Statistics_hsp-len>
+      <Statistics_eff-space>1597200</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+  <Iteration_message>No hits found</Iteration_message>
+</Iteration>
+</BlastOutput_iterations>
+</BlastOutput>
+
