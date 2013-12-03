@@ -116,13 +116,16 @@ elif out_fmt == "ext":
     cols = None
 else:
     cols = out_fmt.replace(" ", ",").split(",") #Allow space or comma separated
+    #Remove any blank entries due to trailing comma,
+    #or annoying "None" dummy value from Galaxy if no columns
+    cols = [c for c in cols if c and c != "None"]
     extra = set(cols).difference(colnames)
     if extra:
         stop_err("These are not recognised column names: %s" % ",".join(sorted(extra)))
     del extra
     assert set(colnames).issuperset(cols), cols
     if not cols:
-        stop_err("No format argument provided")
+        stop_err("No columns selected!")
     extended = max(colnames.index(c) for c in cols) >= 12 #Do we need any higher columns?
 del out_fmt
 
