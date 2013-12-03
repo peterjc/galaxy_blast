@@ -89,11 +89,18 @@ if len(sys.argv) == 4 and sys.argv[3] in ["std", "x22", "ext"]:
 
 usage = """usage: %prog [options] blastxml[,...]
 
-Convert one (or more) BLAST XML files into a single tabular file."""
+Convert one (or more) BLAST XML files into a single tabular file.
+
+The columns option can be 'std' (standard 12 columns), 'ext'
+(extended 25 columns), or a list of BLAST+ column names like
+'qseqid,sseqid,pident' (space or comma separated).
+"""
 parser = OptionParser(usage=usage)
 parser.add_option('-o', '--output', dest='output', default=None, help='output filename (defaults to stdout)', metavar="FILE")
-parser.add_option("-c", "--columns", dest="columns", default='std', help="[std|ext] std: standard 12 column, ext: extended 25 column")
+parser.add_option("-c", "--columns", dest="columns", default='std', help="[std|ext|col1,col2,...] standard 12 columns, extended 25 columns, or list of column names")
 (options, args) = parser.parse_args()
+
+colnames = 'qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,sstart,send,evalue,bitscore,sallseqid,score,nident,positive,gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles'.split(',')
 
 if len(args) < 1:
     stop_err("ERROR: No BLASTXML input files given; run with --help to see options.")
@@ -101,12 +108,23 @@ if len(args) < 1:
 out_fmt = options.columns
 if out_fmt == "std":
     extended = False
+    cols = None
 elif out_fmt == "x22":
     stop_err("Format argument x22 has been replaced with ext (extended 25 columns)")
 elif out_fmt == "ext":
     extended = True
+    cols = None
 else:
-    stop_err("Format argument should be std (12 column) or ext (extended 25 columns), not: %r" % out_fmt)
+    cols = out_fmt.replace(" ", ",").split(",") #Allow space or comma separated
+    extra = set(cols).difference(colnames)
+    if extra:
+        stop_err("These are not recognised column names: %s" % ",".join(sorted(extra)))
+    del extra
+    assert set(colnames).issuperset(cols), cols
+    if not cols:
+        stop_err("No format argument provided")
+    extended = max(colnames.index(c) for c in cols) >= 12 #Do we need any higher columns?
+del out_fmt
 
 for in_file in args:
     if not os.path.isfile(in_file):
@@ -283,6 +301,9 @@ def convert(blastxml_filename, output_handle):
                                        str(slen),
                                        salltitles,
                                        ])
+                    if cols:
+                        #Only a subset of the columns are needed
+                        values = [values[colnames.index(c)] for c in cols]
                     #print "\t".join(values) 
                     outfile.write("\t".join(values) + "\n")
             # prevents ElementTree from growing large datastructure
