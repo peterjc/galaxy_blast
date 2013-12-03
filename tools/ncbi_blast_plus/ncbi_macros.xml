@@ -13,7 +13,7 @@
     <xml name="input_out_format">
         <param name="out_format" type="select" label="Output format">
             <option value="6">Tabular (standard 12 columns)</option>
-            <option value="ext" selected="True">Tabular (extended 24 columns)</option>
+            <option value="ext" selected="True">Tabular (extended 25 columns)</option>
             <option value="5">BLAST XML</option>
             <option value="0">Pairwise text</option>
             <option value="0 -html">Pairwise HTML</option>
