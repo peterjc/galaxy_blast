@@ -120,6 +120,18 @@ blastxml_to_tabular.py -o "$tabular_file"
             <param name="out_format" value="ext" />
             <output name="tabular_file" file="blastn_arabidopsis.extended.tabular" ftype="tabular" />
         </test>
+        <!-- there are some harmless white space differences in our conversion to the BLAST+ output here: -->
+        <test>
+            <param name="blastxml_file" value="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
+            <param name="out_format" value="std" />
+            <output name="tabular_file" file="blastn_rhodopsin_vs_three_human.tabular" ftype="tabular" lines_diff="8" />
+        </test>
+        <test>
+            <param name="blastxml_file" value="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
+            <param name="out_format" value="cols" />
+            <param name="columns" value="qseqid,sseqid,pident,qlen,slen" />
+            <output name="tabular_file" file="blastn_rhodopsin_vs_three_human.columns.tabular" ftype="tabular" />
+        </test>
     </tests>
     <help>
     
