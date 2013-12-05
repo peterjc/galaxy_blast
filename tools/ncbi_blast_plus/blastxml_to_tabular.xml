@@ -28,33 +28,33 @@ blastxml_to_tabular.py -o "$tabular_file"
           <when value="ext"/>
           <when value="cols">
             <param name="std_cols" type="select" multiple="true" display="checkboxes" label="Standard columns">
-              <option selected="true" value="qseqid">1 qseqid = Query Seq-id (ID of your sequence)</option>
-              <option selected="true" value="sseqid">2 sseqid = Subject Seq-id (ID of the database hit)</option>
-              <option selected="true" value="pident">3 pident = Percentage of identical matches</option>
-              <option selected="true" value="length">4 length = Alignment length</option>
-              <option selected="true" value="mismatch">5 mismatch = Number of mismatches</option>
-              <option selected="true" value="gapopen">6 gapopen = Number of gap openings</option>
-              <option selected="true" value="qstart">7 qstart = Start of alignment in query</option>
-              <option selected="true" value="qend">8 qend = End of alignment in query</option>
-              <option selected="true" value="sstart">9 sstart = Start of alignment in subject (database hit)</option>
-              <option selected="true" value="send">10 send = End of alignment in subject (database hit)</option>
-              <option selected="true" value="evalue">11 evalue = Expectation value (E-value)</option>
-              <option selected="true" value="bitscore">12 bitscore = Bit score</option>
+              <option selected="true" value="qseqid">qseqid = Query Seq-id (ID of your sequence)</option>
+              <option selected="true" value="sseqid">sseqid = Subject Seq-id (ID of the database hit)</option>
+              <option selected="true" value="pident">pident = Percentage of identical matches</option>
+              <option selected="true" value="length">length = Alignment length</option>
+              <option selected="true" value="mismatch">mismatch = Number of mismatches</option>
+              <option selected="true" value="gapopen">gapopen = Number of gap openings</option>
+              <option selected="true" value="qstart">qstart = Start of alignment in query</option>
+              <option selected="true" value="qend">qend = End of alignment in query</option>
+              <option selected="true" value="sstart">sstart = Start of alignment in subject (database hit)</option>
+              <option selected="true" value="send">send = End of alignment in subject (database hit)</option>
+              <option selected="true" value="evalue">evalue = Expectation value (E-value)</option>
+              <option selected="true" value="bitscore">bitscore = Bit score</option>
             </param>
             <param name="ext_cols" type="select" multiple="true" display="checkboxes" label="Extended columns">
-              <option value="sallseqid">13 sallseqid = All subject Seq-id(s), separated by a ';'</option>
-              <option value="score">14 score = Raw score</option>
-              <option value="nident">15 nident = Number of identical matches</option>
-              <option value="positive">16 positive = Number of positive-scoring matches</option>
-              <option value="gaps">17 gaps = Total number of gaps</option>
-              <option value="ppos">18 ppos = Percentage of positive-scoring matches</option>
-              <option value="qframe">19 qframe = Query frame</option>
-              <option value="sframe">20 sframe = Subject frame</option>
-              <option value="qseq">21 qseq = Aligned part of query sequence</option>
-              <option value="sseq">22 sseq = Aligned part of subject sequence</option>
-              <option value="qlen">23 qlen = Query sequence length</option>
-              <option value="slen">24 slen = Subject sequence length</option>
-              <option value="salltitles">25 salltitles = All subject title(s), separated by a '&lt;&gt;'</option>
+              <option value="sallseqid">sallseqid = All subject Seq-id(s), separated by a ';'</option>
+              <option value="score">score = Raw score</option>
+              <option value="nident">nident = Number of identical matches</option>
+              <option value="positive">positive = Number of positive-scoring matches</option>
+              <option value="gaps">gaps = Total number of gaps</option>
+              <option value="ppos">ppos = Percentage of positive-scoring matches</option>
+              <option value="qframe">qframe = Query frame</option>
+              <option value="sframe">sframe = Subject frame</option>
+              <option value="qseq">qseq = Aligned part of query sequence</option>
+              <option value="sseq">sseq = Aligned part of subject sequence</option>
+              <option value="qlen">qlen = Query sequence length</option>
+              <option value="slen">slen = Subject sequence length</option>
+              <option value="salltitles">salltitles = All subject title(s), separated by a '&lt;&gt;'</option>
             </param>
           </when>
         </conditional>
