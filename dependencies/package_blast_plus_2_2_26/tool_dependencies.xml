@@ -51,7 +51,7 @@
                     <action type="shell_command">arch</action>
                     <action type="shell_command">echo Please report this via https://github.com/peterjc/galaxy_blast/issues - thank you!</action>
                     <action type="shell_command">false</action>
-		    <!-- The 'false' command will return an error, so Galaxy should treat this as a failed install -->
+                    <!-- The 'false' command will return an error, so Galaxy should treat this as a failed install -->
                 </actions>
                 <!-- The $PATH environment variable is only set if one of the above <actions> tags resulted in a successful installation. -->
                 <action type="set_environment">
