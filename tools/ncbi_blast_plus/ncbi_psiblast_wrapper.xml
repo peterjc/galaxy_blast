@@ -137,10 +137,7 @@ psiblast
 
 **What it does**
 
-Search a *protein database* using a *protein query*,
-using the NCBI BLAST+ blastp command line tool.
-
-@FASTA_WARNING@
+Runs the Position-Specific Initiated BLAST tool ``psiblast``.
 
 -----
 
