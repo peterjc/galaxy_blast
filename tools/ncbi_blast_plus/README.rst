@@ -137,6 +137,7 @@ v0.0.22 - More use macros to simplify the wrappers
         - Extended tabular output includes 'salltitles' as column 25.
 v0.0.23 - Tablar output now includes option to pick specific columns
         - BLAST XML to tabular tool supports multiple input files.
+        - More detailed descriptions for BLASTN and BLASTP task option
 ======= ======================================================================
 
 

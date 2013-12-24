@@ -1,4 +1,4 @@
-<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.22">
+<tool id="ncbi_blastn_wrapper" name="NCBI BLAST+ blastn" version="0.0.23">
     <description>Search nucleotide database with nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1"></parallelism>
@@ -36,14 +36,16 @@ $adv_opts.ungapped
         <expand macro="input_conditional_nucleotide_db" />
 
         <param name="blast_type" type="select" display="radio" label="Type of BLAST">
-            <option value="megablast">megablast</option>
-            <option value="blastn">blastn</option>
-            <option value="blastn-short">blastn-short</option>
-            <option value="dc-megablast">dc-megablast</option>
+            <option value="megablast">megablast - Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences</option>
+            <option value="blastn">blastn - Traditional BLASTN requiring an exact match of 11, for somewhat similar sequences</option>
+            <option value="blastn-short">blastn-short - BLASTN program optimized for sequences shorter than 50 bases</option>
+            <option value="dc-megablast">dc-megablast - Discontiguous megablast used to find more distant (e.g., interspecies) sequences</option>
             <!-- Using BLAST 2.2.24+ this gives an error:
             BLAST engine error: Program type 'vecscreen' not supported
             <option value="vecscreen">vecscreen</option>
+            In any case, vecscreen has gone in BLAST+ 2.2.28
             -->
+            <!-- BLAST+ 2.2.28 also offers rmblastn -->
         </param>
         <expand macro="input_evalue" />
         <expand macro="input_out_format" />

@@ -1,4 +1,4 @@
-<tool id="ncbi_blastp_wrapper" name="NCBI BLAST+ blastp" version="0.0.22">
+<tool id="ncbi_blastp_wrapper" name="NCBI BLAST+ blastp" version="0.0.23">
     <description>Search protein database with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
@@ -34,8 +34,8 @@ blastp
         <expand macro="input_conditional_protein_db" />
 
         <param name="blast_type" type="select" display="radio" label="Type of BLAST">
-            <option value="blastp">blastp</option>
-            <option value="blastp-short">blastp-short</option>
+            <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
+            <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
         </param>
         <expand macro="input_evalue" />
         <expand macro="input_out_format" />
