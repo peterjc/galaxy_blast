@@ -194,7 +194,7 @@ def convert(blastxml_filename, output_handle):
                 #
                 #apparently depending on the parse_deflines switch
                 #
-                #Or, with BLAST 2.2.28+ can get this,
+                #Or, with a local database not using -parse_seqids can get this,
                 # <Hit_id>gnl|BL_ORD_ID|2</Hit_id>
                 # <Hit_def>chrIII gi|240255695|ref|NC_003074.8| Arabidopsis thaliana chromosome 3, complete sequence</Hit_def>
                 # <Hit_accession>2</Hit_accession>
