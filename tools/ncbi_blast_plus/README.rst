@@ -136,7 +136,8 @@ v0.0.22 - More use macros to simplify the wrappers
         - Tests updated for BLAST+ 2.2.28 instead of BLAST+ 2.2.27
         - Now depends on package_blast_plus_2_2_28 in ToolShed
         - Extended tabular output includes 'salltitles' as column 25.
-v0.0.23 - BLAST XML to tabular tool supports multiple input files.
+v0.0.23 - Tablar output now includes option to pick specific columns
+        - BLAST XML to tabular tool supports multiple input files.
 ======= ======================================================================
 
 
