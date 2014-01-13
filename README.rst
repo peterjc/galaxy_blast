@@ -42,6 +42,8 @@ The NCBI BLAST+ binaries were initially included within the Galaxy wrappers
 * http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_27
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
 * http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_29
+* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_29
 
 Note this targets the NCBI's C++ rewrite of BLAST called BLAST+,
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/ -- we
