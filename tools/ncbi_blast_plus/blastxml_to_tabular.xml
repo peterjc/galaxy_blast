@@ -1,4 +1,4 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.0.23">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.1.00">
     <description>Convert BLAST XML output to tabular</description>
     <version_command interpreter="python">blastxml_to_tabular.py --version</version_command>
     <command interpreter="python">
