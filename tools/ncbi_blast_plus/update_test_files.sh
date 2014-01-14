@@ -37,6 +37,9 @@ blastn -query rhodopsin_nucs.fasta -subject three_human_mRNA.fasta -task megabla
 echo "blastp_four_human_vs_rhodopsin.xml"
 blastp -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -task blastp -evalue 1e-08 -out blastp_four_human_vs_rhodopsin.xml -outfmt 5 -seg no -matrix BLOSUM62 -parse_deflines
 
+echo "blastp_four_human_vs_rhodopsin.tabular"
+blastp -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -task blastp -evalue 1e-08 -out blastp_four_human_vs_rhodopsin.tabular -outfmt 6 -seg no -matrix BLOSUM62 -parse_deflines
+
 echo "blastp_four_human_vs_rhodopsin_ext.tabular"
 blastp -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -task blastp -evalue 1e-08 -out blastp_four_human_vs_rhodopsin_ext.tabular -outfmt "$EXT" -seg no -matrix BLOSUM62 -parse_deflines
 
