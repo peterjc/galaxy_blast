@@ -55,7 +55,7 @@ Manual Installation
 
 Normally you would install this via the Galaxy ToolShed, which would move
 the provided ``blast.py`` file into a suitable location and process the
-``datatypes_conf.xml`` entry to be combined with your local configuration.
+``datatypes_conf.xml`` entries to be combined with your local configuration.
 
 However, if you really want to this should work for a manual install. First
 update the ``datatypes_conf.xml`` file in the Galaxy main folder by inserting
