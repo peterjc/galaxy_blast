@@ -105,7 +105,7 @@ v0.0.17 - The BLAST+ search tools now default to extended tabular output
           (all too often our users where having to re-run searches just to
           get one of the missing columns like query or subject length)
 v0.0.18 - Defensive quoting of filenames in case of spaces (where possible,
-          BLAST+ handling of some mult-file arguments is problematic).
+          BLAST+ handling of some multi-file arguments is problematic).
 v0.0.19 - Added wrappers for rpsblast and rpstblastn, and new blastdb_d.loc
           for the domain databases they use (e.g. CDD, PFAM or SMART).
         - Correct case of exception regular expression (for error handling
