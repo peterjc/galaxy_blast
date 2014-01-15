@@ -63,13 +63,13 @@ the contents of the ``<registration>`` and ``<sniffers>`` sections from the
 small ``datatypes_conf.xml`` file provided in the tar-ball.
 
 For the ``<registration>`` section you would add several ``<datatype ... />``
-lines, one per new datatype:
+lines, one per new datatype::
 
     <datatype extension="blastxml" type="galaxy.datatypes.blast:BlastXml" mimetype="application/xml" display_in_upload="true"/>
     ...
 
 Similarly, some of the new dataypes have ``<sniffer ... />`` lines used to
-automatically recognise the datatype when uploaded into Galaxy:
+automatically recognise the datatype when uploaded into Galaxy::
 
     <sniffer type="galaxy.datatypes.blast:BlastXml"/>
     ...
