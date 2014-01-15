@@ -66,7 +66,7 @@ import os
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.0.23"
+    print "v0.1.00"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
