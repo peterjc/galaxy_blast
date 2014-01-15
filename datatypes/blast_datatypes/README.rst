@@ -54,11 +54,11 @@ Manual Installation
 ===================
 
 Normally you would install this via the Galaxy ToolShed, which would move
-the provided blast.py file into a suitable location and process the
-datatypes_conf.xml entry to be combined with your local configuration.
+the provided ``blast.py`` file into a suitable location and process the
+``datatypes_conf.xml`` entry to be combined with your local configuration.
 
-However, if you really want to this should work for a manual install. Add
-the following lines to the datatypes_conf.xml file in the Galaxy main folder::
+However, if you really want to this should work for a manual install. Add the
+following lines to the ``datatypes_conf.xml`` file in the Galaxy main folder::
 
     <datatype extension="blastxml" type="galaxy.datatypes.blast:BlastXml" mimetype="application/xml" display_in_upload="true"/>
     <datatype extension="blastdbn" type="galaxy.datatypes.blast:BlastNucDb" mimetype="text/html" display_in_upload="false"/>
@@ -68,9 +68,9 @@ and later in the sniffer section::
 
     <sniffer type="galaxy.datatypes.blast:BlastXml"/>
 
-Also create the file lib/galaxy/datatypes/blast.py by moving, copying or linking
-the blast.py file provided in this tar-ball.  Finally add 'import blast' near
-the start of file lib/galaxy/datatypes/registry.py (after the other import
+Also create the file ``lib/galaxy/datatypes/blast.py`` by moving, copying or linking
+the ``blast.py`` file provided in this tar-ball.  Finally add ``import blast`` near
+the start of file ``lib/galaxy/datatypes/registry.py`` (after the other import
 lines).
 
 
@@ -84,14 +84,14 @@ us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
 Developers
 ==========
 
-BLAST+ datatypes and wrappers, and other tools were originally developed on the
+These BLAST+ datatypes and associated tools were originally developed on the
 following hg branch: http://bitbucket.org/peterjc/galaxy-central/src/tools
 
 As of July 2013, development is continuing on a dedicated GitHub repository:
 https://github.com/peterjc/galaxy_blast
 
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the blast_datatypes  folder::
+the following command from the ``blast_datatypes`` folder::
 
     $ tar -czf blast_datatypes.tar.gz README.rst datatypes_conf.xml blast.py
 
@@ -103,7 +103,7 @@ Check this worked::
     blast.py
 
 For development, rather than having a local ToolShed running, I currently
-use a symlink from lib/galaxy/datatypes/blast.py to the actual file as
+use a symlink from ``lib/galaxy/datatypes/blast.py`` to the actual file as
 described above.
 
 
