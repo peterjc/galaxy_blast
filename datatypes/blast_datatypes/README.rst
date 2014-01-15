@@ -57,16 +57,22 @@ Normally you would install this via the Galaxy ToolShed, which would move
 the provided ``blast.py`` file into a suitable location and process the
 ``datatypes_conf.xml`` entry to be combined with your local configuration.
 
-However, if you really want to this should work for a manual install. Add the
-following lines to the ``datatypes_conf.xml`` file in the Galaxy main folder::
+However, if you really want to this should work for a manual install. First
+update the ``datatypes_conf.xml`` file in the Galaxy main folder by inserting
+the contents of the ``<registration>`` and ``<sniffers>`` sections from the
+small ``datatypes_conf.xml`` file provided in the tar-ball.
+
+For the ``<registration>`` section you would add several ``<datatype ... />``
+lines, one per new datatype:
 
     <datatype extension="blastxml" type="galaxy.datatypes.blast:BlastXml" mimetype="application/xml" display_in_upload="true"/>
-    <datatype extension="blastdbn" type="galaxy.datatypes.blast:BlastNucDb" mimetype="text/html" display_in_upload="false"/>
-    <datatype extension="blastdbp" type="galaxy.datatypes.blast:BlastProtDb" mimetype="text/html" display_in_upload="false"/>
+    ...
 
-and later in the sniffer section::
+Similarly, some of the new dataypes have ``<sniffer ... />`` lines used to
+automatically recognise the datatype when uploaded into Galaxy:
 
     <sniffer type="galaxy.datatypes.blast:BlastXml"/>
+    ...
 
 Also create the file ``lib/galaxy/datatypes/blast.py`` by moving, copying or linking
 the ``blast.py`` file provided in this tar-ball.  Finally add ``import blast`` near
