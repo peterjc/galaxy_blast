@@ -74,6 +74,9 @@ echo
 echo blastxml_to_tabular
 echo ===================
 
+echo "blastn_rhodopsin_vs_three_human_converted.tabular"
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastn_rhodopsin_vs_three_human_converted.tabular blastn_rhodopsin_vs_three_human.xml
+
 echo "blastp_four_human_vs_rhodopsin_converted.tabular"
 python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastp_four_human_vs_rhodopsin_converted.tabular blastp_four_human_vs_rhodopsin.xml
 

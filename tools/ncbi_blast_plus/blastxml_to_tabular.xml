@@ -127,7 +127,7 @@ blastxml_to_tabular.py -o "$tabular_file"
         <test>
             <param name="blastxml_file" value="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
             <param name="out_format" value="std" />
-            <output name="tabular_file" file="blastn_rhodopsin_vs_three_human.tabular" ftype="tabular" lines_diff="8" />
+            <output name="tabular_file" file="blastn_rhodopsin_vs_three_human_converted.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
