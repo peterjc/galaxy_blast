@@ -1,0 +1,126 @@
+<tool id="ncbi_makeprofiledb" name="NCBI BLAST+ makeprofiledb" version="0.1.00">
+    <description>Make profile database</description>
+    <macros>
+        <token name="@BINARY@">makeprofiledb</token>
+        <import>ncbi_macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <command>
+makeprofiledb -out "${os.path.join($outfile.extra_files_path,'profiledb')}"
+
+-in $infiles
+
+#if $title:
+-title "$title"
+#else:
+##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
+-title "Profile Database"
+#end if
+
+-threshold $threshold
+-dbtype $dbtype 
+
+#if $contain_pssm_scores.contain_pssm_scores_type == 'no':
+    -gapopen $contain_pssm_scores.gapopen
+    -gapextend $contain_pssm_scores.gapextend
+    -scale $contain_pssm_scores.scale
+    -matrix $contain_pssm_scores.matrix
+#end if
+
+-obsr_threshold $obsr_threshold
+$exclude_invalid
+
+## Capture the stdout log information to the primary file (plain text):
+&gt;&gt; "$outfile"
+    </command>
+    <expand macro="stdio" />
+    <inputs>
+        <param name="infile_list" type="data" multiple="true" format="fasta" />
+
+        <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
+        <param name="threshold" type="float" size="5" value="9.82" label="Minimum word score to add a word to the lookup table" />
+
+        <!-- output options -->
+        <param name="dbtype" type="select" display="radio" label="Molecule type of input">
+            <option value="cobalt">Cobalt</option>
+            <option value="delta">Delta</option>
+            <option value="rps" selected="true">RPS</option>
+        </param>
+
+        <conditional name="contain_pssm_scores">
+            <param name="contain_pssm_scores_type" type="select" label="Does your input file contain PSSM scores?">
+              <option value="yes" selected="True">Yes</option>
+              <option value="no">No</option>
+            </param>
+            <when value="yes" />
+            <when value="no">
+                <param name="gapopen" type="integer" size="5" value="" label="Cost to open a gap" />
+                <param name="gapextend" type="integer" size="5" value="" label="Cost to extend a gap" />
+                <param name="scale" type="float" size="5" value="" label="PSSM scale factor" />
+                <expand macro="input_scoring_matrix" />
+            </when>
+        </conditional>
+
+        <!--  Delta Blast Options -->
+        <param name="exclude_invalid" type="boolean" truevalue="-exclude_invalid" falsevalue="" checked="true" 
+            label="Exclude domains with with maximum number of independent observations below this threshold" 
+            help="This affects the formatting of the query/subject ID strings"/>
+        <param name="obsr_threshold" type="float" size="5" value="6.0"
+            label="Exclude domains with with maximum number of independent observations below this threshold" 
+            help="(-obsr_threshold)"/>
+
+    </inputs>
+    <configfiles>
+        <configfile name="infiles">
+#for $infile in $infile_list
+"${infile}"
+#end for
+        </configfile>
+    </configfiles>
+    <outputs>
+    <outputs>
+        <!-- If we only accepted one FASTA file, we could use its human name here... -->
+        <data name="outfile" format="data" label="${dbtype.value_label} profile database from ${on_string}">
+            <change_format>
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="dbtype" value="prot" />
+            <param name="file" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="title" value="Just 4 human proteins" />
+            <param name="parse_seqids" value="" />
+            <param name="hash_index" value="true" />
+            <output name="out_file" file="four_human_proteins.fasta.log" ftype="blastdbp" lines_diff="6">
+                <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
+                <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
+                <extra_files type="file" value="four_human_proteins.fasta.pog" name="blastdb.pog" />
+                <extra_files type="file" value="four_human_proteins.fasta.phd" name="blastdb.phd" />
+                <extra_files type="file" value="four_human_proteins.fasta.phi" name="blastdb.phi" />
+                <extra_files type="file" value="four_human_proteins.fasta.psd" name="blastdb.psd" />
+                <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
+            </output>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+Make profile database from one or more FASTA files and/or BLAST databases.
+
+This is a wrapper for the NCBI BLAST+ tool 'makeprofiledb'.
+
+More information about makeprofiledb can be found in the `BLAST Command Line Applications User Manual`_.
+
+.. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+
+
+**References**
+
+If you use this Galaxy tool in work leading to a scientific publication please
+cite the following papers:
+
+@REFERENCES@
+    </help>
+</tool>
