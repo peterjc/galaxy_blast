@@ -1,7 +1,7 @@
 <tool id="ncbi_segmasker_wrapper" name="NCBI BLAST+ segmasker" version="0.1.00">
     <description>low-complexity regions in protein sequences</description>
     <macros>
-        <token name="@BINARY@">dustmasker</token>
+        <token name="@BINARY@">segmasker</token>
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="requirements" />
