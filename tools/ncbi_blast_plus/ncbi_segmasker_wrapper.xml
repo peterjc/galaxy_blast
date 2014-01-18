@@ -1,0 +1,103 @@
+<tool id="ncbi_segmasker_wrapper" name="NCBI BLAST+ segmasker" version="0.1.00">
+    <description>low-complexity regions in protein sequences</description>
+    <macros>
+        <token name="@BINARY@">dustmasker</token>
+        <import>ncbi_macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <command>
+## The command is a Cheetah template which allows some Python based syntax.
+## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
+segmasker
+#if $db_opts.db_opts_selector == "db":
+  -in "${db_opts.database.fields.path}" -infmt blastdb
+#elif $db_opts.db_opts_selector == "histdb":
+  -in "${os.path.join($db_opts.histdb.extra_files_path, 'blastdb')}" -infmt blastdb
+#else:
+  -in "$subject" -infmt fasta
+#end if
+-out "$outfile"
+-window $window
+-locut $locut
+-hicut $hicut
+-outfmt $outformat
+    </command>
+    <expand macro="stdio" />
+    <inputs>
+        <expand macro="input_conditional_protein_db" />
+        <param name="window" type="integer" value="12" label="SEG window length" help="(-window)" />
+        <param name="locut" type="float" value="2.2" label="SEG low cutoff" help="(-locut)" />
+        <param name="hicut" type="float" value="2.5" label="SEG high cutoff" help="(-hicut)" />
+        <param name="outformat" type="select" label="Output format">
+            <option value="fasta">FASTA</option>
+            <option value="interval" selected="true">interval</option>
+            <option value="maskinfo_asn1_bin">maskinfo ASN.1 binary</option>
+            <option value="maskinfo_asn1_text">maskinfo ASN.1 text</option>
+            <option value="maskinfo_xml">maskinfo_xml</option>
+            <!--
+            seqloc_* formats are not very useful
+            <option value="seqloc_asn1_bin">seqloc_asn1_bin</option>
+            <option value="seqloc_asn1_text">seqloc_asn1_text</option>
+            <option value="seqloc_xml">seqloc_xml</option>
+            -->
+        </param>
+    </inputs>
+    <outputs>
+        <data name="outfile" format="interval" label="SEG Masked File">
+            <change_format>
+                <when input="outformat" value="fasta" format="fasta" />
+                <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
+                <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />
+                <when input="outformat" value="maskinfo_xml" format="xml" />
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="window" value="12" />
+            <param name="locut" value="2.2" />
+            <param name="hicut" value="2.5" />
+            <param name="outformat" value="fasta" />
+            <output name="outfile" file="segmasker_four_human.fasta" />
+        </test>
+        <test>
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="window" value="12" />
+            <param name="level" value="2.2" />
+            <param name="linker" value="2.5" />
+            <param name="outformat" value="maskinfo_asn1_bin" />
+            <output name="outfile" file="segmasker_four_human.maskinfo-asn1-binary" />
+        </test>
+        <test>
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="window" value="12" />
+            <param name="level" value="2.2" />
+            <param name="linker" value="2.5" />
+            <param name="outformat" value="maskinfo_asn1_text" />
+            <output name="outfile" file="seqmasker_four_human.maskinfo-asn1-text" />
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+This tool identifies and masks out low complexity regions of a protein database (or proteins in FASTA format) by using the SEG_ algorithm.
+
+If you select *maskinfo ASN.1* (binary or text) as output format, the output file can be used as masking data for NCBI BLAST+ makeblastdb tool.
+
+More information about segmasker can be found in the `BLAST Command Line Applications User Manual`_.
+
+.. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+.. _SEG: http://www.ncbi.nlm.nih.gov/pubmed/8743706
+
+**References**
+
+If you use this Galaxy tool in work leading to a scientific publication please
+cite the following papers (a more specific paper covering this wrapper is planned):
+
+@REFERENCES@
+    </help>
+</tool>
