@@ -83,13 +83,14 @@ dustmasker
     <help>
 **What it does**
 
-This tool identifies and masks out low complexity regions of a nucleotide database (or sequences in FASTA format) by using the symmetric DUST algorithm.
+This tool identifies and masks out low complexity regions of a nucleotide database (or sequences in FASTA format) by using the symmetric DUST_ algorithm.
 
 If you select *maskinfo ASN.1* (binary or text) as output format, the output file can be used as masking data for NCBI BLAST+ makeblastdb tool.
 
 More information about dustmasker can be found in the `BLAST Command Line Applications User Manual`_.
 
 .. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+.. _DUST: http://www.ncbi.nlm.nih.gov/pubmed/16796549
 
 **References**
 
