@@ -88,19 +88,18 @@ $exclude_invalid
     <tests>
         <test>
             <param name="dbtype" value="prot" />
-            <param name="file" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="title" value="Just 4 human proteins" />
-            <param name="parse_seqids" value="" />
-            <param name="hash_index" value="true" />
-            <output name="out_file" file="four_human_proteins.fasta.log" ftype="blastdbp" lines_diff="6">
-                <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
-                <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
-                <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
-                <extra_files type="file" value="four_human_proteins.fasta.pog" name="blastdb.pog" />
-                <extra_files type="file" value="four_human_proteins.fasta.phd" name="blastdb.phd" />
-                <extra_files type="file" value="four_human_proteins.fasta.phi" name="blastdb.phi" />
-                <extra_files type="file" value="four_human_proteins.fasta.psd" name="blastdb.psd" />
-                <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
+            <param name="file" value="makeprofiledb_input_cd00003.smp,makeprofiledb_input_cd00008.smp" ftype="smp" />
+            <param name="title" value="Just 2 PSSM matrices" />
+            <output name="out_file" file="four_human_proteins.fasta.log" ftype="blastdbd" lines_diff="6">
+                <extra_files type="file" value="four_human_proteins.fasta.phr" name="profiledb.freq" />
+                <extra_files type="file" value="four_human_proteins.fasta.pin" name="profiledb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins.fasta.psq" name="profiledb.loo" />
+                <extra_files type="file" value="four_human_proteins.fasta.pog" name="profiledb.phr" />
+                <extra_files type="file" value="four_human_proteins.fasta.phd" name="profiledb.pin" />
+                <extra_files type="file" value="four_human_proteins.fasta.phi" name="profiledb.psd" />
+                <extra_files type="file" value="four_human_proteins.fasta.psd" name="profiledb.psi" />
+                <extra_files type="file" value="four_human_proteins.fasta.psi" name="profiledb.psq" />
+                <extra_files type="file" value="four_human_proteins.fasta.psi" name="profiledb.rps" />
             </output>
         </test>
     </tests>
