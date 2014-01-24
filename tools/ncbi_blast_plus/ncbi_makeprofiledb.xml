@@ -30,14 +30,13 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'profiledb')}"
 -obsr_threshold $obsr_threshold
 $exclude_invalid
 
-## Capture the stdout log information to the primary file (plain text):
-&gt;&gt; "$outfile"
+-logfile "$outfile"
     </command>
     <expand macro="stdio" />
     <inputs>
-        <param name="infile_list" type="data" multiple="true" format="fasta" />
+        <param name="infile_list" type="data" multiple="true" format="smp" />
 
-        <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
+        <param name="title" type="text" value="" label="Title for the profile database" help="This is the database name shown in BLAST search output" />
         <param name="threshold" type="float" size="5" value="9.82" label="Minimum word score to add a word to the lookup table" />
 
         <!-- output options -->
@@ -79,27 +78,23 @@ $exclude_invalid
     </configfiles>
     <outputs>
     <outputs>
-        <!-- If we only accepted one FASTA file, we could use its human name here... -->
-        <data name="outfile" format="data" label="${dbtype.value_label} profile database from ${on_string}">
-            <change_format>
-            </change_format>
-        </data>
+        <data name="outfile" format="blastdbd" label="${dbtype.value_label} profile database from ${on_string}" />
     </outputs>
     <tests>
         <test>
             <param name="dbtype" value="prot" />
             <param name="file" value="makeprofiledb_input_cd00003.smp,makeprofiledb_input_cd00008.smp" ftype="smp" />
             <param name="title" value="Just 2 PSSM matrices" />
-            <output name="out_file" file="four_human_proteins.fasta.log" ftype="blastdbd" lines_diff="6">
-                <extra_files type="file" value="four_human_proteins.fasta.phr" name="profiledb.freq" />
-                <extra_files type="file" value="four_human_proteins.fasta.pin" name="profiledb.pin" lines_diff="2" />
-                <extra_files type="file" value="four_human_proteins.fasta.psq" name="profiledb.loo" />
-                <extra_files type="file" value="four_human_proteins.fasta.pog" name="profiledb.phr" />
-                <extra_files type="file" value="four_human_proteins.fasta.phd" name="profiledb.pin" />
-                <extra_files type="file" value="four_human_proteins.fasta.phi" name="profiledb.psd" />
-                <extra_files type="file" value="four_human_proteins.fasta.psd" name="profiledb.psi" />
-                <extra_files type="file" value="four_human_proteins.fasta.psi" name="profiledb.psq" />
-                <extra_files type="file" value="four_human_proteins.fasta.psi" name="profiledb.rps" />
+            <output name="out_file" file="profiledb.smp.log" ftype="blastdbd" lines_diff="6">
+                <extra_files type="file" value="profiledb.smp.freq" name="profiledb.freq" />
+                <extra_files type="file" value="profiledb.smp.pin" name="profiledb.pin" lines_diff="2" />
+                <extra_files type="file" value="profiledb.smp.loo" name="profiledb.loo" />
+                <extra_files type="file" value="profiledb.smp.phr" name="profiledb.phr" />
+                <extra_files type="file" value="profiledb.smp.psd" name="profiledb.psd" />
+                <extra_files type="file" value="profiledb.smp.psi" name="profiledb.psi" />
+                <extra_files type="file" value="profiledb.smp.psq" name="profiledb.psq" />
+                <extra_files type="file" value="profiledb.smp.rps" name="profiledb.rps" />
+                <extra_files type="file" value="profiledb.smp.aux" name="profiledb.aux" />
             </output>
         </test>
     </tests>
