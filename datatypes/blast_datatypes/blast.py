@@ -282,3 +282,11 @@ class BlastDomainDb( _BlastDb, Data ):
         self.add_composite_file('profiledb.aux', is_binary=True, optional=True)
 
 
+class SMP( GenericAsn1 ):
+    """
+    Class for SMP data, a PSSM matrix in ASN.1 encoded into a 
+    PssmWithParameters (or 'scoremat') format.
+    """
+    file_ext = 'smp'
+
+
