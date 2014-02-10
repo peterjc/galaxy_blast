@@ -14,6 +14,7 @@
     <tool file="ncbi_blast_plus/ncbi_dustmasker_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_segmasker_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_makeblastdb.xml" />
+    <tool file="ncbi_blast_plus/ncbi_convert2blastmask_wrapper.xml" />
     <!-- No tests yet (trying gives an error from the framework)
          or missing a dependency like cdd_blast database for deltablast
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml" />    
