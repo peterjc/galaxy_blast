@@ -25,17 +25,7 @@ Galaxy should be able to automatically install the dependencies, i.e. the
 (``blastxml``) and protein and nucleotide BLAST databases (``blastdbp`` and
 ``blastdbn``).
 
-You must tell Galaxy about any system level BLAST databases using configuration
-files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
-databases like NR), and blastdb_d.loc (protein domain databases like CDD or
-SMART) which are located in the tool-data/ folder. Sample files are included
-which explain the tab-based format to use.
-
-You can download the NCBI provided databases as tar-balls from here:
-
-* ftp://ftp.ncbi.nlm.nih.gov/blast/db/ (nucleotide and protein databases like NR)
-* ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/ (domain databases like CDD)
-
+See the configuration notes below.
 
 Manual Installation
 ===================
@@ -78,6 +68,31 @@ Run the functional tests (adjusting the section identifier to match your
 
     ./run_functional_tests.sh -sid NCBI_BLAST+-ncbi_blast_plus_tools
 
+Configuration
+=============
+
+You must tell Galaxy about any system level BLAST databases using configuration
+files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
+databases like NR), and blastdb_d.loc (protein domain databases like CDD or
+SMART) which are located in the tool-data/ folder. Sample files are included
+which explain the tab-based format to use.
+
+You can download the NCBI provided databases as tar-balls from here:
+
+* ftp://ftp.ncbi.nlm.nih.gov/blast/db/ (nucleotide and protein databases like NR)
+* ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/ (domain databases like CDD)
+
+The BLAST+ binaries support multi-threaded operation, which is handled via the
+$GALAXY_SLOTS environment variable. This should be set automatically by Galaxy
+via your job runner settings, which allows you to (for example) allocate four
+cores to each BLAST job.
+
+In addition, the BLAST+ wrappers also support high level parallelism by task
+splitting if ``use_tasked_jobs = True`` is enabled in your ``universe_wsgi.ini``
+configuration file. Essentially, the FASTA input query files are broken up into
+batches of 1000 sequences, a separate BLAST child job is run for each chunk,
+and then the BLAST output files are merged (in order). This is transparent
+for the end user.
 
 History
 =======
