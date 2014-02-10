@@ -139,6 +139,7 @@ v0.1.00 - Now depends on package_blast_plus_2_2_29 in ToolShed
         - Tablar output now includes option to pick specific columns
         - BLAST XML to tabular tool supports multiple input files.
         - More detailed descriptions for BLASTN and BLASTP task option
+        - Supports setting a taxonomy ID in makeblastdb wrapper.
 ======= ======================================================================
 
 

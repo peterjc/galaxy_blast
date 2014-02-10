@@ -29,7 +29,10 @@ ${i.file}
 ##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
 -title "BLAST Database"
 #end if
--dbtype $dbtype 
+-dbtype $dbtype
+## --------------------------------------------------------------------
+## Masking
+## --------------------------------------------------------------------
 #set $mask_string = ''
 #set $sep = '-mask_data '
 #for $i in $mask_data
@@ -44,11 +47,15 @@ $mask_string
 ## #set $sep = ','
 ## #end for
 ## $gi_mask_string
-## #if $tax.select == 'id':
-## -taxid $tax.id
-## #else if $tax.select == 'map':
-## -taxid_map $tax.map
-## #end if
+## --------------------------------------------------------------------
+## Taxonomy
+## --------------------------------------------------------------------
+#if $tax.taxselect == 'id':
+-taxid $tax.taxid
+## TODO - Can we use a tabular file for the taxonomy mapping?
+## #else if $tax.taxselect == 'map':
+## -taxid_map $tax.taxmap
+#end if
 ## --------------------------------------------------------------------
 ## Capture the stdout log information to the primary file (plain text):
 &gt;&gt; "$outfile"
@@ -83,23 +90,25 @@ $mask_string
         -->
 
         <!-- TAXONOMY OPTIONS -->
-        <!-- TODO
         <conditional name="tax">
-            <param name="select" type="select" label="Taxonomy options">
-                <option value="">Do not assign sequences to Taxonomy IDs</option>
-                <option value="id">Assign all sequences to one Taxonomy ID</option>
+            <param name="taxselect" type="select" label="Taxonomy options">
+                <option value="">Do not assign a Taxonomy ID to the sequences</option>
+                <option value="id">Assign the same Taxonomy ID to all the sequences</option>
+                <!--
                 <option value="map">Supply text file mapping sequence IDs to taxnomy IDs</option>
+                -->
             </param>
             <when value="">
             </when>
             <when value="id">
-                <param name="id" type="integer" value="" label="NCBI taxonomy ID" help="Integer &gt;=0" />
+                <param name="taxid" type="integer" value="" label="NCBI taxonomy ID" help="Integer &gt;=0, e.g. 9606 for Homo sapiens" min="0" />
             </when>
+            <!-- TODO: File format?
             <when value="map">
-                <param name="file" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
+                <param name="taxmap" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
             </when>
+            -->
         </conditional>
-        -->
     </inputs>
     <outputs>
         <!-- If we only accepted one FASTA file, we could use its human name here... -->
@@ -112,6 +121,8 @@ $mask_string
     </outputs>
     <tests>
         <!-- Note the (two line) PIN file is not reproducible run to run.
+             Likewise there is a datestamp in the log file as well.
+             With and without the taxid the only real difference is in the *.phr file.
         -->
         <test>
             <param name="dbtype" value="prot" />
@@ -128,6 +139,25 @@ $mask_string
                 <extra_files type="file" value="four_human_proteins.fasta.phi" name="blastdb.phi" />
                 <extra_files type="file" value="four_human_proteins.fasta.psd" name="blastdb.psd" />
                 <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
+            </output>
+        </test>
+        <test>
+            <param name="dbtype" value="prot" />
+            <param name="file" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="title" value="Just 4 human proteins" />
+            <param name="parse_seqids" value="" />
+            <param name="hash_index" value="true" />
+            <param name="taxselect" value="id" />
+            <param name="taxid" value="9606" />
+            <output name="out_file" file="four_human_proteins_taxid.fasta.log" ftype="blastdbp" lines_diff="6">
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.phr" name="blastdb.phr" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.psq" name="blastdb.psq" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.pog" name="blastdb.pog" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.phd" name="blastdb.phd" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.phi" name="blastdb.phi" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.psd" name="blastdb.psd" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.psi" name="blastdb.psi" />
             </output>
         </test>
     </tests>

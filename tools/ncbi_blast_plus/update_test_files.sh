@@ -17,9 +17,18 @@ echo
 echo makeblastdb
 echo ===========
 #Doing this first in case future tests use one of the local databases
+#Note we delete any old database to avoid this line in the log:
+#"Deleted existing BLAST database with identical name."
 
 echo "four_human_proteins.fasta"
-makeblastdb -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot
+rm test-data/four_human_proteins.fasta.p*
+makeblastdb -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot > four_human_proteins.fasta.log
+
+echo "four_human_proteins_taxid.fasta"
+#Bar the *.pin file and *.log with trivial differences due to a time stamp,
+#only real difference expected is the TaxID embedded in the *.phr file:
+rm test-data/four_human_proteins_taxid.fasta.p*
+makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
 
 echo
 echo Main
