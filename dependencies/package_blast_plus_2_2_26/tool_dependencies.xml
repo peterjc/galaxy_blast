@@ -45,11 +45,11 @@
                 </actions>
                 <!-- This actions tag is only processed if none of the above tags resulted in a successful installation. -->
                 <actions>
-                    <action type="shell_command">echo ERROR: Automated installation on your operating system and CPU architecture combination is not yet supported.</action>
-                    <action type="shell_command">echo Your machine details (the output from 'uname' and 'arch'):</action>
+                    <action type="shell_command">echo "ERROR: Automated installation on your operating system and CPU architecture combination is not yet supported."</action>
+                    <action type="shell_command">echo "Your machine details (the output from 'uname' and 'arch'):"</action>
                     <action type="shell_command">uname</action>
                     <action type="shell_command">arch</action>
-                    <action type="shell_command">echo Please report this via https://github.com/peterjc/galaxy_blast/issues - thank you!</action>
+                    <action type="shell_command">echo "Please report this via https://github.com/peterjc/galaxy_blast/issues - thank you!"</action>
                     <action type="shell_command">false</action>
                     <!-- The 'false' command will return an error, so Galaxy should treat this as a failed install -->
                 </actions>
