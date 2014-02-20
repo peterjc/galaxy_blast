@@ -111,7 +111,9 @@ Blast2GO server running (which we recommend for speed), and you want this to be
 the default setting, include it as the first line in your blast2go.loc file.
 
 Consult the Blast2GO documentation for details about the property files and
-setting up a local MySQL Blast2GO database.
+setting up a local MySQL Blast2GO database. e.g.
+https://www.blast2go.com/b2gsupport/resources/35-localb2gdb
+
 
 
 History
