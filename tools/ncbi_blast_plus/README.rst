@@ -155,6 +155,8 @@ v0.1.00 - Now depends on package_blast_plus_2_2_29 in ToolShed
         - BLAST XML to tabular tool supports multiple input files.
         - More detailed descriptions for BLASTN and BLASTP task option
         - Supports setting a taxonomy ID in makeblastdb wrapper.
+        - Subtle changes like new conditional settings will require some old
+          workflows be updated to cope. 
 ======= ======================================================================
 
 
