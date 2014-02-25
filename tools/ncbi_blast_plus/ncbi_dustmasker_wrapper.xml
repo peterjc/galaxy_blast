@@ -37,11 +37,13 @@ dustmasker
         </param>
     </inputs>
     <outputs>
-        <data name="outfile" format="maskinfo_asn1_text" label="DUST Masked File">
+        <data name="outfile" format="maskinfo-asn1" label="DUST Masked File">
             <change_format>
                 <when input="outformat" value="fasta" format="fasta" />
                 <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
+		<!--
                 <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />
+		-->
                 <when input="outformat" value="maskinfo_xml" format="xml" />
             </change_format>
         </data>
