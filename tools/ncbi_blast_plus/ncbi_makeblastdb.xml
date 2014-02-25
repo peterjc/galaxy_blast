@@ -15,10 +15,8 @@ $parse_seqids
 $hash_index
 ## Single call to -in with multiple filenames space separated with outer quotes
 ## (presumably any filenames with spaces would be a problem). Note this gives
-## some extra spaces, e.g. -in " file1 file2 file3  " but BLAST seems happy:
--in "
-#for i in $input_file#${i} #end for#
-"
+## some extra spaces, e.g. -in "file1 file2 file3 " but BLAST seems happy:
+-in "#for i in $input_file#${i} #end for#"
 #if $title:
 -title "$title"
 #else:
@@ -70,7 +68,7 @@ $mask_string
         <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
         <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
         <!-- SEQUENCE MASKING OPTIONS -->
-        <!-- TODO - Switch to using multiple="true" here -->
+        <!-- TODO - Switch to using multiple="true" here, but needs to be optional (easy to say no files!) -->
         <repeat name="mask_data" title="Masking data file">
             <param name="mask_data_file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
         </repeat>
