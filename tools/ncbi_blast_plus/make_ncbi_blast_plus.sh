@@ -101,9 +101,9 @@ tar -rf ncbi_blast_plus.tar test-data/dustmasker_three_human.fasta
 tar -rf ncbi_blast_plus.tar test-data/dustmasker_three_human.maskinfo-asn1
 tar -rf ncbi_blast_plus.tar test-data/dustmasker_three_human.maskinfo-asn1-binary
 tar -rf ncbi_blast_plus.tar test-data/segmasker_four_human.fasta
-tar -rf ncbi_blast_plus.tar test-data/segmasker_four_human.maskinfo-asn1-text
+tar -rf ncbi_blast_plus.tar test-data/segmasker_four_human.maskinfo-asn1
 tar -rf ncbi_blast_plus.tar test-data/segmasker_four_human.maskinfo-asn1-binary
-tar -rf ncbi_blast_plus.tar test-data/convert2blastmask_four_human_masked.maskinfo-asn1-text
+tar -rf ncbi_blast_plus.tar test-data/convert2blastmask_four_human_masked.maskinfo-asn1
 tar -rf ncbi_blast_plus.tar test-data/convert2blastmask_four_human_masked.maskinfo-asn1-binary
 
 

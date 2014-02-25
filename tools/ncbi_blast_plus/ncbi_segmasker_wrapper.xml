@@ -76,7 +76,7 @@ segmasker
             <param name="locut" value="2.2" />
             <param name="hicut" value="2.5" />
             <param name="outformat" value="maskinfo_asn1_text" />
-            <output name="outfile" file="seqmasker_four_human.maskinfo-asn1-text" />
+            <output name="outfile" file="seqmasker_four_human.maskinfo-asn1" />
         </test>
     </tests>
     <help>

@@ -38,8 +38,8 @@ echo =======
 echo "segmasker_four_human.fasta"
 segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.fasta -outfmt fasta
 
-echo "segmasker_four_human.maskinfo-asn1-text"
-segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.maskinfo-asn1-text -outfmt maskinfo_asn1_text
+echo "segmasker_four_human.maskinfo-asn1"
+segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.maskinfo-asn1 -outfmt maskinfo_asn1_text
 
 echo "segmasker_four_human.maskinfo-asn1-binary"
 segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.maskinfo-asn1-binary -outfmt maskinfo_asn1_bin

@@ -65,7 +65,7 @@ $parse_seqids
             <param name="masking_options" value="window=12; locut=2.2; hicut=2.5" />
             <param name="parse_seqids" value="True" />
             <param name="outformat" value="maskinfo_asn1_text" />
-            <output name="outfile" file="convert2blastmask_four_human_masked.maskinfo-asn1-text" />
+            <output name="outfile" file="convert2blastmask_four_human_masked.maskinfo-asn1" />
         </test>
     </tests>
     <help>
