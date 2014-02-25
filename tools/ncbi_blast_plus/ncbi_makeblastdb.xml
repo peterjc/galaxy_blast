@@ -34,13 +34,6 @@ $hash_index
 #set $sep = ','
 #end for
 $mask_string
-## #set $gi_mask_string = ''
-## #set $sep = '-gi_mask -gi_mask_name '
-## #for $i in $gi_mask
-## #set $gi_mask_string += $sep + str($i.file)
-## #set $sep = ','
-## #end for
-## $gi_mask_string
 ## --------------------------------------------------------------------
 ## Taxonomy
 ## --------------------------------------------------------------------
@@ -72,12 +65,7 @@ $mask_string
         <repeat name="mask_data" title="Masking data file">
             <param name="mask_data_file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
         </repeat>
-        <!-- TODO - Also switch to using multiple="true" here
-        <repeat name="gi_mask" title="Create GI indexed masking data">
-            <param name="gi_mask_file" type="data" format="asnb" label="Masking data output file" />
-        </repeat>
-        -->
-
+        <!-- TODO - Option to create GI indexed masking data? via -gi_mask and -gi_mask_name? -->
         <!-- TAXONOMY OPTIONS -->
         <conditional name="tax">
             <param name="taxselect" type="select" label="Taxonomy options">
