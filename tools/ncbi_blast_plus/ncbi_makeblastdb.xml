@@ -27,9 +27,13 @@ $hash_index
 ## --------------------------------------------------------------------
 ## Masking
 ## --------------------------------------------------------------------
+## HACK: If no mask files, evaluates as a list with just None in it:
+## See Trello issue https://trello.com/c/lp5YmA1O
+#if ' '.join( map(str, $mask_data_file) ) != 'None':
 #for i in $mask_data_file:
 -mask_data "${i}"
 #end for
+#end if
 ## --------------------------------------------------------------------
 ## Taxonomy
 ## --------------------------------------------------------------------
