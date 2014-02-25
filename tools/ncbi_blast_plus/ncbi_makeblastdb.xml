@@ -27,13 +27,9 @@ $hash_index
 ## --------------------------------------------------------------------
 ## Masking
 ## --------------------------------------------------------------------
-#set $mask_string = ''
-#set $sep = '-mask_data '
-#for $i in $mask_data
-#set $mask_string += $sep + str($i.file)
-#set $sep = ','
+#for i in $mask_data_file:
+-mask_data "${i}"
 #end for
-$mask_string
 ## --------------------------------------------------------------------
 ## Taxonomy
 ## --------------------------------------------------------------------
@@ -56,15 +52,14 @@ $mask_string
         <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)?
              NOTE Double check the new database would be self contained first
         -->
-        <param name="input_file" type="data" multiple="true" format="fasta" label="Input FASTA files(s)" help="One or more FASTA files" />
+        <!-- Note this is a mandatory parameter - default should be most recent FASTA file -->
+        <param name="input_file" type="data" multiple="true" optional="false" format="fasta" label="Input FASTA files(s)" help="One or more FASTA files" />
         <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
         <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
         <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
         <!-- SEQUENCE MASKING OPTIONS -->
-        <!-- TODO - Switch to using multiple="true" here, but needs to be optional (easy to say no files!) -->
-        <repeat name="mask_data" title="Masking data file">
-            <param name="mask_data_file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
-        </repeat>
+        <!-- Note this is an optional parameter - default should be NO files -->
+        <param name="mask_data_file" type="data" multiple="true" optional="true" value="" format="maskinfo-asn1,maskinfo-asn1-binary" label="Optional ASN.1 file(s) containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
         <!-- TODO - Option to create GI indexed masking data? via -gi_mask and -gi_mask_name? -->
         <!-- TAXONOMY OPTIONS -->
         <conditional name="tax">
