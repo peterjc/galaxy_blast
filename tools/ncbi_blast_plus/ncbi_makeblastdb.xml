@@ -63,7 +63,7 @@ $mask_string
         <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)?
              NOTE Double check the new database would be self contained first
         -->
-        <param name="input_file" type="data" multiple="true" format="fasta" />
+        <param name="input_file" type="data" multiple="true" format="fasta" label="Input FASTA files(s)" help="One or more FASTA files" />
         <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
         <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
         <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
