@@ -52,7 +52,7 @@ $mask_string
 #end if
 ## --------------------------------------------------------------------
 ## Capture the stdout log information to the primary file (plain text):
-&gt;&gt; "$outfile"
+&gt; "$outfile"
     </command>
     <expand macro="stdio" />
     <inputs>
