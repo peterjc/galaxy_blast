@@ -1,0 +1,114 @@
+Blast-db-mask-info ::= {
+  algo-id 1,
+  algo-program seg,
+  algo-options "window=12; locut=2.2; hicut=2.5",
+  masks {
+    masks {
+      int {
+        from 6,
+        to 18,
+        id local id 1
+      },
+      packed-int {
+        {
+          from 11,
+          to 46,
+          id local id 2
+        },
+        {
+          from 325,
+          to 332,
+          id local id 2
+        },
+        {
+          from 421,
+          to 443,
+          id local id 2
+        },
+        {
+          from 437,
+          to 450,
+          id local id 2
+        },
+        {
+          from 447,
+          to 496,
+          id local id 2
+        },
+        {
+          from 501,
+          to 516,
+          id local id 2
+        },
+        {
+          from 536,
+          to 554,
+          id local id 2
+        },
+        {
+          from 545,
+          to 558,
+          id local id 2
+        },
+        {
+          from 636,
+          to 648,
+          id local id 2
+        },
+        {
+          from 737,
+          to 762,
+          id local id 2
+        },
+        {
+          from 789,
+          to 806,
+          id local id 2
+        },
+        {
+          from 970,
+          to 983,
+          id local id 2
+        },
+        {
+          from 999,
+          to 1010,
+          id local id 2
+        }
+      },
+      packed-int {
+        {
+          from 3,
+          to 26,
+          id local id 3
+        },
+        {
+          from 372,
+          to 390,
+          id local id 3
+        },
+        {
+          from 766,
+          to 782,
+          id local id 3
+        },
+        {
+          from 780,
+          to 791,
+          id local id 3
+        },
+        {
+          from 1312,
+          to 1324,
+          id local id 3
+        }
+      },
+      int {
+        from 230,
+        to 246,
+        id local id 4
+      }
+    },
+    more FALSE
+  }
+}

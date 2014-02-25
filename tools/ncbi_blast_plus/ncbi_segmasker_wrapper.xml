@@ -62,8 +62,8 @@ segmasker
             <param name="db_opts_selector" value="file" />
             <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
             <param name="window" value="12" />
-            <param name="level" value="2.2" />
-            <param name="linker" value="2.5" />
+            <param name="locut" value="2.2" />
+            <param name="hicut" value="2.5" />
             <param name="outformat" value="maskinfo_asn1_bin" />
             <output name="outfile" file="segmasker_four_human.maskinfo-asn1-binary" />
         </test>
@@ -71,8 +71,8 @@ segmasker
             <param name="db_opts_selector" value="file" />
             <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
             <param name="window" value="12" />
-            <param name="level" value="2.2" />
-            <param name="linker" value="2.5" />
+            <param name="locut" value="2.2" />
+            <param name="hicut" value="2.5" />
             <param name="outformat" value="maskinfo_asn1_text" />
             <output name="outfile" file="seqmasker_four_human.maskinfo-asn1-text" />
         </test>

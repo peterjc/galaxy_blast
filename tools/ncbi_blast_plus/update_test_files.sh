@@ -1,4 +1,5 @@
-OB#!/bin/sh
+#!/bin/sh
+set -e
 echo "This will update test files using the current version of BLAST+"
 
 if [ -f "tools/ncbi_blast_plus/make_ncbi_blast_plus.sh" ]
@@ -21,14 +22,27 @@ echo ===========
 #"Deleted existing BLAST database with identical name."
 
 echo "four_human_proteins.fasta"
-rm test-data/four_human_proteins.fasta.p*
+rm -f test-data/four_human_proteins.fasta.p*
 makeblastdb -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot > four_human_proteins.fasta.log
 
 echo "four_human_proteins_taxid.fasta"
 #Bar the *.pin file and *.log with trivial differences due to a time stamp,
 #only real difference expected is the TaxID embedded in the *.phr file:
-rm test-data/four_human_proteins_taxid.fasta.p*
+rm -f test-data/four_human_proteins_taxid.fasta.p*
 makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
+
+echo
+echo Masking
+echo =======
+
+echo "segmasker_four_human.fasta"
+segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.fasta -outfmt fasta
+
+echo "segmasker_four_human.maskinfo-asn1-text"
+segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.maskinfo-asn1-text -outfmt maskinfo_asn1_text
+
+echo "segmasker_four_human.maskinfo-asn1-binary"
+segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.maskinfo-asn1-binary -outfmt maskinfo_asn1_bin
 
 echo
 echo Main
