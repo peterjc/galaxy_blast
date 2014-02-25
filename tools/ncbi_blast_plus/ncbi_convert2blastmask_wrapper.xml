@@ -19,7 +19,6 @@ $parse_seqids
     <expand macro="stdio" />
     <inputs>
         <param name="infile" type="data" format="fasta" label="masked FASTA file"/> 
-
         <param name="masking_algorithm" type="select" label="Used masking algorithm">
             <option value="dust">DUST</option>
             <option value="seg" selected="true">SEG</option>
@@ -27,25 +26,21 @@ $parse_seqids
             <option value="repeat">repeat</option>
             <option value="other">other</option>
         </param>
-
         <param name="masking_options" type="text" value="" size="20" label="Masking algorithm options to create the masked input" 
             help ="free text to describe the options used to create the masking files. (-masking_options)">
             <sanitizer invalid_char="">
                 <valid initial="string.printable" />
             </sanitizer>
         </param>
-
         <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="true" label="Parse Seq-ids in FASTA input" help="(-parse_seqids)" />
-
         <param name="outformat" type="select" label="Output format">
-            <option value="interval" selected="true">interval</option>
             <option value="maskinfo_asn1_bin">maskinfo ASN.1 binary</option>
-            <option value="maskinfo_asn1_text">maskinfo ASN.1 text</option>
+            <option value="maskinfo_asn1_text" selected="True">maskinfo ASN.1 text</option>
             <option value="maskinfo_xml">maskinfo_xml</option>
         </param>
     </inputs>
     <outputs>
-        <data name="outfile" format="interval" label="SEG Masked File">
+        <data name="outfile" format="maskinfo_asn1_text" label="SEG Masked File">
             <change_format>
                 <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
                 <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />

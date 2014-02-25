@@ -27,27 +27,22 @@ dustmasker
         <param name="level" type="integer" value="20" label="DUST level" help="Score threshold for subwindows" />
         <param name="linker" type="integer" value="1" label="DUST linker" help="How close masked intervals should be to get merged together" />
         <param name="outformat" type="select" label="Output format">
-<!-- acclist and maskinfo_xml are listed as possible output formats in
-     "dustmasker -help", but were not recognized by NCBI BLAST up to
-     release 2.2.27+. Fixed in BLAST 2.2.28+.
-     seqloc_* formats are not very useful -->
-<!--            <option value="acclist">acclist</option>-->
+            <!-- seqloc_* formats are not very useful
+                 and what BLAST+ calls 'interval' is not what Galaxy calls interval format
+            -->
             <option value="fasta">FASTA</option>
-            <option value="interval" selected="true">interval</option>
             <option value="maskinfo_asn1_bin">maskinfo ASN.1 binary</option>
-            <option value="maskinfo_asn1_text">maskinfo ASN.1 text</option>
-<!--            <option value="maskinfo_xml">maskinfo_xml</option>
-            <option value="seqloc_asn1_bin">seqloc_asn1_bin</option>
-            <option value="seqloc_asn1_text">seqloc_asn1_text</option>
-            <option value="seqloc_xml">seqloc_xml</option>-->
+            <option value="maskinfo_asn1_text" selected="true">maskinfo ASN.1 text</option>
+            <option value="maskinfo_xml">maskinfo_xml</option>
         </param>
     </inputs>
     <outputs>
-        <data name="outfile" format="interval" label="DUST Masked File">
+        <data name="outfile" format="maskinfo_asn1_text" label="DUST Masked File">
             <change_format>
                 <when input="outformat" value="fasta" format="fasta" />
                 <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
                 <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />
+                <when input="outformat" value="maskinfo_xml" format="xml" />
             </change_format>
         </data>
     </outputs>

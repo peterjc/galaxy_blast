@@ -29,21 +29,17 @@ segmasker
         <param name="locut" type="float" value="2.2" label="SEG low cutoff" help="(-locut)" />
         <param name="hicut" type="float" value="2.5" label="SEG high cutoff" help="(-hicut)" />
         <param name="outformat" type="select" label="Output format">
-            <option value="fasta">FASTA</option>
-            <option value="interval" selected="true">interval</option>
-            <option value="maskinfo_asn1_bin">maskinfo ASN.1 binary</option>
-            <option value="maskinfo_asn1_text">maskinfo ASN.1 text</option>
-            <option value="maskinfo_xml">maskinfo_xml</option>
-            <!--
-            seqloc_* formats are not very useful
-            <option value="seqloc_asn1_bin">seqloc_asn1_bin</option>
-            <option value="seqloc_asn1_text">seqloc_asn1_text</option>
-            <option value="seqloc_xml">seqloc_xml</option>
+            <!-- seqloc_* formats are not very useful
+                 and what BLAST+ calls 'interval' is not what Galaxy calls interval format
             -->
+            <option value="fasta">FASTA</option>
+            <option value="maskinfo_asn1_bin">maskinfo ASN.1 binary</option>
+            <option value="maskinfo_asn1_text" selected="true">maskinfo ASN.1 text</option>
+            <option value="maskinfo_xml">maskinfo_xml</option>
         </param>
     </inputs>
     <outputs>
-        <data name="outfile" format="interval" label="SEG Masked File">
+        <data name="outfile" format="maskinfo_asn1_text" label="SEG Masked File">
             <change_format>
                 <when input="outformat" value="fasta" format="fasta" />
                 <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
