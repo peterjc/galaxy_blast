@@ -82,6 +82,14 @@ You can download the NCBI provided databases as tar-balls from here:
 * ftp://ftp.ncbi.nlm.nih.gov/blast/db/ (nucleotide and protein databases like NR)
 * ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/ (domain databases like CDD)
 
+If using the optional taxonomy columns, you will also need to download the
+NCBI taxonomy files (``taxdb.btd`` and ``taxdb.bti`` from ``taxdb.tar.gz`` on
+the BLAST database FTP site). Currently explicit version tracking of the
+taxonomy is not supported, and in order to use this you must set the
+``$BLASTDB`` environment variable to include the path where you unzipped the
+taxonomy files. If this is not done, the taxonomy columns like species name
+will appear as ``N/A`` in the tabular output.
+
 The BLAST+ binaries support multi-threaded operation, which is handled via the
 $GALAXY_SLOTS environment variable. This should be set automatically by Galaxy
 via your job runner settings, which allows you to (for example) allocate four
@@ -151,7 +159,8 @@ v0.0.22 - More use macros to simplify the wrappers.
         - Now depends on package_blast_plus_2_2_28 in ToolShed.
         - Extended tabular output includes 'salltitles' as column 25.
 v0.1.00 - Now depends on package_blast_plus_2_2_29 in ToolShed.
-        - Tablar output now includes option to pick specific columns.
+        - Tablar output now includes option to pick specific columns,
+          including previously unavailable taxonomy columns.
         - BLAST XML to tabular tool supports multiple input files.
         - More detailed descriptions for BLASTN and BLASTP task option.
         - Wrappers for segmasker, dustmasker and convert2blastmask.
