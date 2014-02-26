@@ -59,7 +59,15 @@
                     <option value="slen">slen = Subject sequence length</option>
                     <option value="salltitles">salltitles = All subject title(s), separated by a '&lt;&gt;'</option>
                 </param>
-                <!-- TODO, the other columns, like taxonomy -->
+                <!-- TODO, the other columns, like query coverage -->
+                <param name="tax_cols" type="select" multiple="true" display="checkboxes" label="Taxonomy columns">
+                    <option value="staxids">staxids = unique Subject Taxonomy ID(s), separated by a ';' (in numerical order)</option>
+                    <!-- TODO, how to handle the taxonomy data file dependency? If missing these give N/A -->
+                    <option value="sscinames">sscinames = unique Subject Scientific Name(s), separated by a ';'</option>
+                    <option value="scomnames">scomnames = unique Subject Common Name(s), separated by a ';'</option>
+                    <option value="sblastnames">sblastnames = unique Subject Blast Name(s), separated by a ';' (in alphabetical order)</option>
+                    <option value="sskingdoms">sskingdoms = unique Subject Super Kingdom(s), separated by a ';' (in alphabetical order)</option>
+                </param>
             </when>
             <when value="5"/>
             <when value="0"/>
@@ -317,7 +325,7 @@
 #elif str($output.out_format)=="cols"
 ##Pick your own columns. Galaxy gives us it comma separated, BLAST+ wants space separated:
 ##TODO - Can we catch the user picking no columns and raise an error here?
-#set cols = (str($output.std_cols)+","+str($output.ext_cols)).replace("None", "").replace(",,", ",").replace(",", " ").strip()
+#set cols = (str($output.std_cols)+","+str($output.ext_cols)+","+str($output.tax_cols)).replace("None", "").replace(",,", ",").replace(",", " ").strip()
     -outfmt "6 $cols"
 #else:
     -outfmt $output.out_format
