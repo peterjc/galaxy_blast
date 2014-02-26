@@ -63,6 +63,7 @@ tar -rf ncbi_blast_plus.tar test-data/blastn_arabidopsis.standard.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.xml
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.columns.tabular
+tar -rf ncbi_blast_plus.tar blastn_rhodopsin_vs_three_human_converted.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human.xml
 tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human_converted.tabular
@@ -111,5 +112,5 @@ tar -rf ncbi_blast_plus.tar test-data/convert2blastmask_four_human_masked.maskin
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 82 files, have:"
+echo "Expect a tar-ball 83 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
