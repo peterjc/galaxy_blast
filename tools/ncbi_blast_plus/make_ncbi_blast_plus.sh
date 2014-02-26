@@ -63,7 +63,7 @@ tar -rf ncbi_blast_plus.tar test-data/blastn_arabidopsis.standard.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.xml
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.columns.tabular
-tar -rf ncbi_blast_plus.tar blastn_rhodopsin_vs_three_human_converted.tabular
+tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human_converted.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human.xml
 tar -rf ncbi_blast_plus.tar test-data/blastx_rhodopsin_vs_four_human_converted.tabular
