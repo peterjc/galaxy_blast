@@ -406,7 +406,7 @@ Column NCBI name Description
 ====== ========= ============================================
 
 The BLAST+ tools can optionally output additional columns of information,
-but this takes longer to calculate. Most (but not all) of these columns are
+but this takes longer to calculate. Many commonly used extra columns are
 included by selecting the extended tabular output. The extra columns are
 included *after* the standard 12 columns. This is so that you can write
 workflow filtering steps that accept either the 12 or 25 column tabular
@@ -430,7 +430,11 @@ Column NCBI name     Description
     25 salltitles    All subject title(s), separated by a '&lt;&gt;'
 ====== ============= ===========================================
 
-The third option is BLAST XML output, which is designed to be parsed by
+The third option is to customise the tabular output by selecting which
+columns you want, from the standard set of 12, the default set of 25,
+or any of the additional columns BLAST+ offers (including species name).
+
+The fourth option is BLAST XML output, which is designed to be parsed by
 another program, and is understood by some Galaxy tools.
 
 You can also choose several plain text or HTML output formats which are designed to be read by a person (not by another program).
