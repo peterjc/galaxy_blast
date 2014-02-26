@@ -73,7 +73,7 @@ tar -rf ncbi_blast_plus.tar test-data/blastx_sample.xml
 tar -rf ncbi_blast_plus.tar test-data/blastx_sample_converted.tabular
 tar -rf ncbi_blast_plus.tar test-data/tblastx_rhodopsin_vs_three_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta
-tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.log
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.log.txt
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.phd
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.phi
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.phr
@@ -82,7 +82,7 @@ tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.pog
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psd
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psi
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psq
-tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.log
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.log.txt
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.phd
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.phi
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.phr

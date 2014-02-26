@@ -97,7 +97,8 @@ $hash_index
     </outputs>
     <tests>
         <!-- Note the (two line) PIN file is not reproducible run to run.
-             Likewise there is a datestamp in the log file as well.
+             Likewise there is a datestamp in the log file as well, so use contains comparison
+             With and without the masking makes no difference.
              With and without the taxid the only real difference is in the *.phr file.
         -->
         <test>
@@ -106,7 +107,7 @@ $hash_index
             <param name="title" value="Just 4 human proteins" />
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
-            <output name="out_file" file="four_human_proteins.fasta.log" ftype="blastdbp" lines_diff="6">
+            <output name="out_file" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
                 <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
                 <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
@@ -125,7 +126,7 @@ $hash_index
             <param name="hash_index" value="true" />
             <param name="taxselect" value="id" />
             <param name="taxid" value="9606" />
-            <output name="out_file" file="four_human_proteins_taxid.fasta.log" ftype="blastdbp" lines_diff="6">
+            <output name="out_file" compare="contains" file="four_human_proteins_taxid.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.phr" name="blastdb.phr" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.pin" name="blastdb.pin" lines_diff="2" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.psq" name="blastdb.psq" />
@@ -136,7 +137,6 @@ $hash_index
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.psi" name="blastdb.psi" />
             </output>
         </test>
-        <!-- Allow more lines of difference in the log due to extra line about mask file -->	
         <test>
             <param name="dbtype" value="prot" />
             <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
@@ -144,7 +144,7 @@ $hash_index
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
             <param name="mask_data_file" value="segmasker_four_human.maskinfo-asn1" ftype="maskinfo-asn1" />
-            <output name="out_file" file="four_human_proteins.fasta.log" ftype="blastdbp" lines_diff="7">
+            <output name="out_file" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
                 <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
                 <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
