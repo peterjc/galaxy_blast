@@ -78,6 +78,9 @@ blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gen
 echo "blastx_rhodopsin_vs_four_human_ext.tabular"
 blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_vs_four_human_ext.tabular -outfmt "$EXT"
 
+echo "blastx_rhodopsin_vs_four_human_all.tabular"
+blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_vs_four_human_all.tabular -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles qgi qacc qaccver sallseqid sgi sallgi sacc saccver sallacc stitle sstrand frames btop qcovs qcovhsp staxids sscinames scomnames sblastnames sskingdoms"
+
 echo "tblastn_four_human_vs_rhodopsin.xml"
 tblastn -query four_human_proteins.fasta -subject rhodopsin_nucs.fasta -evalue 1e-10 -out tblastn_four_human_vs_rhodopsin.xml -outfmt 5 -db_gencode 1 -seg no -matrix BLOSUM80
 
