@@ -1,13 +1,13 @@
 <macros>
     <xml name="output_change_format">
         <change_format>
-            <when input="out_format" value="0" format="txt"/>
-            <when input="out_format" value="0 -html" format="html"/>
-            <when input="out_format" value="2" format="txt"/>
-            <when input="out_format" value="2 -html" format="html"/>
-            <when input="out_format" value="4" format="txt"/>
-            <when input="out_format" value="4 -html" format="html"/>
-            <when input="out_format" value="5" format="blastxml"/>
+            <when input="output.out_format" value="0" format="txt"/>
+            <when input="output.out_format" value="0 -html" format="html"/>
+            <when input="output.out_format" value="2" format="txt"/>
+            <when input="output.out_format" value="2 -html" format="html"/>
+            <when input="output.out_format" value="4" format="txt"/>
+            <when input="output.out_format" value="4 -html" format="html"/>
+            <when input="output.out_format" value="5" format="blastxml"/>
         </change_format>
     </xml>
     <xml name="input_out_format">
