@@ -3,7 +3,7 @@ BlastXml class
 """
 
 from galaxy.datatypes.data import get_file_peek
-from galaxy.datatypes.data import Text, Data
+from galaxy.datatypes.data import Text, Data, GenericAsn1
 from galaxy.datatypes.xml import GenericXml
 from galaxy.datatypes.metadata import MetadataElement
 
@@ -180,8 +180,10 @@ class _BlastDb(object):
             title = "This is a nucleotide BLAST database"
         elif self.file_ext =="blastdbp":
             title = "This is a protein BLAST database"
+        elif self.file_ext =="blastdbd":
+            title = "This is a domain BLAST database"
         else:
-            #Error?                                                                                                                                                                     
+            #Error?
             title = "This is a BLAST database."
         msg = ""
         try:
@@ -259,3 +261,32 @@ class BlastProtDb( _BlastDb, Data ):
 #        self.add_composite_file('blastdb.pab', is_binary=True, optional=True)
 #        self.add_composite_file('blastdb.pac', is_binary=True, optional=True)
 # The last 3 lines should be repeated for each WriteDB column, with filename extensions like ('.pba', '.pbb', '.pbc'), ('.pca', '.pcb', '.pcc'), etc.
+
+
+class BlastDomainDb( _BlastDb, Data ):
+    """Class for domain BLAST database files."""
+    file_ext = 'blastdbd'
+    allow_datatype_change = False
+    composite_type = 'basic'
+
+    def __init__(self, **kwd):
+        Data.__init__(self, **kwd)
+        self.add_composite_file('profiledb.phr', is_binary=True)
+        self.add_composite_file('profiledb.pin', is_binary=True)
+        self.add_composite_file('profiledb.psq', is_binary=True)
+        self.add_composite_file('profiledb.freq', is_binary=True, optional=True)
+        self.add_composite_file('profiledb.loo', is_binary=True, optional=True)
+        self.add_composite_file('profiledb.psd', is_binary=True, optional=True)
+        self.add_composite_file('profiledb.psi', is_binary=True, optional=True)
+        self.add_composite_file('profiledb.rps', is_binary=True, optional=True)
+        self.add_composite_file('profiledb.aux', is_binary=True, optional=True)
+
+
+class SMP( GenericAsn1 ):
+    """
+    Class for SMP data, a PSSM matrix in ASN.1 encoded into a 
+    PssmWithParameters (or 'scoremat') format.
+    """
+    file_ext = 'smp'
+
+
