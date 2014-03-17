@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Script for reformatting Blast XML to suite Blast2GO.
+"""Script for reformatting Blast XML to suit Blast2GO.
 
 This script takes exactly two command line arguments:
  * Input BLAST XML filename
