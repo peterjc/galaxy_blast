@@ -168,6 +168,9 @@ v0.1.00 - Now depends on ``package_blast_plus_2_2_29`` in ToolShed.
         - Supports setting a taxonomy ID in makeblastdb wrapper.
         - Subtle changes like new conditional settings will require some old
           workflows be updated to cope.
+v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
+        - The RPS-BLAST and RPS-TBLASTN wrappers support using a protein
+          domain database from the user's history.
 ======= ======================================================================
 
 
