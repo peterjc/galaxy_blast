@@ -21,9 +21,9 @@ Automated Installation
 ======================
 
 Galaxy should be able to automatically install the dependencies, i.e. the
-``blast_datatypes`` repository which defines the BLAST XML file format
-(``blastxml``) and protein and nucleotide BLAST databases (``blastdbp`` and
-``blastdbn``).
+BLAST+ binaries and the ``blast_datatypes`` repository which defines the
+BLAST XML file format (``blastxml``), protein and nucleotide BLAST databases
+(``blastdbp`` and ``blastdbn``), and so on.
 
 See the configuration notes below.
 
@@ -61,7 +61,7 @@ about any system level BLAST databases using the ``tool-data/blastdb*.loc``
 files.
 
 You must install the NCBI BLAST+ standalone tools somewhere on the system
-path. Currently the unit tests are written using "BLAST 2.2.28+".
+path. Currently the unit tests are written using "BLAST 2.2.29+".
 
 Run the functional tests (adjusting the section identifier to match your
 ``tool_conf.xml.sample`` file)::
@@ -91,9 +91,9 @@ taxonomy files. If this is not done, the taxonomy columns like species name
 will appear as ``N/A`` in the tabular output.
 
 The BLAST+ binaries support multi-threaded operation, which is handled via the
-$GALAXY_SLOTS environment variable. This should be set automatically by Galaxy
-via your job runner settings, which allows you to (for example) allocate four
-cores to each BLAST job.
+``$GALAXY_SLOTS`` environment variable. This should be set automatically by
+Galaxy via your job runner settings, which allows you to (for example) allocate
+four cores to each BLAST job.
 
 In addition, the BLAST+ wrappers also support high level parallelism by task
 splitting if ``use_tasked_jobs = True`` is enabled in your ``universe_wsgi.ini``
@@ -111,19 +111,19 @@ Version Changes
 v0.0.11 - Final revision as part of the Galaxy main repository, and the
           first release via the Tool Shed
 v0.0.12 - Implements genetic code option for translation searches.
-        - Changes <parallelism> to 1000 sequences at a time (to cope with
+        - Changes ``<parallelism>`` to 1000 sequences at a time (to cope with
           very large sets of queries where BLAST+ can become memory hungry)
         - Include warning that BLAST+ with subject FASTA gives pairwise
           e-values
 v0.0.13 - Use the new error handling options in Galaxy (the previously
-          bundled hide_stderr.py script is no longer needed).
+          bundled ``hide_stderr.py`` script is no longer needed).
 v0.0.14 - Support for makeblastdb and blastdbinfo with local BLAST databases
           in the history (using work from Edward Kirton), requires v0.0.14
-          of the 'blast_datatypes' repository from the Tool Shed.
+          of the ``blast_datatypes`` repository from the Tool Shed.
 v0.0.15 - Stronger warning in help text against searching against subject
           FASTA files (better looking e-values than you might be expecting).
 v0.0.16 - Added repository_dependencies.xml for automates installation of the
-          'blast_datatypes' repository from the Tool Shed.
+          ``blast_datatypes`` repository from the Tool Shed.
 v0.0.17 - The BLAST+ search tools now default to extended tabular output
           (all too often our users where having to re-run searches just to
           get one of the missing columns like query or subject length)
@@ -138,27 +138,27 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Added percentage identity option to BLASTN.
         - Fallback on ElementTree if cElementTree missing in XML to tabular.
         - Link to Tool Shed added to help text and this documentation.
-        - Tweak dependency on blast_datatypes to also work on Test Tool Shed.
-        - Dependency on new package_blast_plus_2_2_26 in Tool Shed.
+        - Tweak dependency on ``blast_datatypes`` to also work on Test Tool Shed.
+        - Dependency on new ``package_blast_plus_2_2_26`` in Tool Shed.
         - Adopted standard MIT License.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
         - Updated citation information (Cock et al. 2013).
 v0.0.21 - Use macros to simplify the XML wrappers.
         - Added wrapper for dustmasker.
         - Enabled masking for makeblastdb.
-        - Requires 'maskinfo-asn1' and 'maskinfo-asn1-binary' datatypes.
-          defined in updated blast_datatypes on Galaxy ToolShed.
+        - Requires ``maskinfo-asn1`` and ``maskinfo-asn1-binary`` datatypes,
+          defined in ``blast_datatypes`` v0.0.17  on Galaxy ToolShed.
         - Tests updated for BLAST+ 2.2.27 instead of BLAST+ 2.2.26.
-        - Now depends on package_blast_plus_2_2_27 in ToolShed.
+        - Now depends on ``package_blast_plus_2_2_27`` in ToolShed.
 v0.0.22 - More use macros to simplify the wrappers.
-        - Set number of threads via $GALAXY_SLOTS environment variable.
+        - Set number of threads via ``$GALAXY_SLOTS`` environment variable.
         - More descriptive default output names.
-        - Tests require updated BLAST DB definitions (blast_datatypes v0.0.18).
+        - Tests require updated BLAST DB definitions (``blast_datatypes`` v0.0.18).
         - Pre-check for duplicate identifiers in makeblastdb wrapper.
         - Tests updated for BLAST+ 2.2.28 instead of BLAST+ 2.2.27.
-        - Now depends on package_blast_plus_2_2_28 in ToolShed.
+        - Now depends on ``package_blast_plus_2_2_28`` in ToolShed.
         - Extended tabular output includes 'salltitles' as column 25.
-v0.1.00 - Now depends on package_blast_plus_2_2_29 in ToolShed.
+v0.1.00 - Now depends on ``package_blast_plus_2_2_29`` in ToolShed.
         - Tabular output now includes option to pick specific columns,
           including previously unavailable taxonomy columns.
         - BLAST XML to tabular tool supports multiple input files.
@@ -167,7 +167,7 @@ v0.1.00 - Now depends on package_blast_plus_2_2_29 in ToolShed.
         - Supports using maskinfo with makeblastdb wrapper.
         - Supports setting a taxonomy ID in makeblastdb wrapper.
         - Subtle changes like new conditional settings will require some old
-          workflows be updated to cope. 
+          workflows be updated to cope.
 ======= ======================================================================
 
 
