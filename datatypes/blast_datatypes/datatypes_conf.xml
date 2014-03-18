@@ -10,6 +10,7 @@
         <datatype extension="blastdbd" type="galaxy.datatypes.blast:BlastDomainDb" mimetype="text/html" display_in_upload="false"/>
         <datatype extension="maskinfo-asn1" type="galaxy.datatypes.data:GenericAsn1" mimetype="text/plain" subclass="True" display_in_upload="true" />
         <datatype extension="maskinfo-asn1-binary" type="galaxy.datatypes.binary:GenericAsn1Binary" mimetype="application/octet-stream" subclass="True" display_in_upload="true" />
+        <datatype extension="pssm-asn1" type="galaxy.datatypes.data:GenericAsn1" mimetype="text/plain" subclass="True" display_in_upload="true" />
     </registration>
     <sniffers>
         <sniffer type="galaxy.datatypes.blast:BlastXml"/>
