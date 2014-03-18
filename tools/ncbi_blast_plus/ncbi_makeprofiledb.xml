@@ -28,7 +28,7 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
 #end if
 
 -obsr_threshold $obsr_threshold
-$exclude_invalid
+-exclude_invalid $exclude_invalid
 
 -logfile "$outfile"
     </command>
@@ -61,7 +61,7 @@ $exclude_invalid
         </conditional>
 
         <!--  Delta Blast Options -->
-        <param name="exclude_invalid" type="boolean" truevalue="-exclude_invalid" falsevalue="" checked="true" 
+        <param name="exclude_invalid" type="boolean" truevalue="true" falsevalue="false" checked="true" 
             label="Exclude domains with with maximum number of independent observations below this threshold" 
             help="This affects the formatting of the query/subject ID strings"/>
         <param name="obsr_threshold" type="float" size="5" value="6.0"
