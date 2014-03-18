@@ -6,9 +6,8 @@
     </macros>
     <expand macro="requirements" />
     <command>
-makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
-
--in $infiles
+echo "#for i in $infile_list#${i} #end for#" | makeprofiledb -in /dev/stdin
+-out "${os.path.join($outfile.extra_files_path,'blastdb')}"
 
 #if $title:
 -title "$title"
