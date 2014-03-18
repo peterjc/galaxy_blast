@@ -32,6 +32,14 @@ rm -f test-data/four_human_proteins_taxid.fasta.p*
 makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
 
 echo
+echo makeprofiledb
+echo =============
+
+echo "cd00003_and_cd00008"
+#Rather than supplying a file listing *.smp inputs, using stdin
+echo "cd00003.smp cd00008.smp" | makeprofiledb -in /dev/stdin -out cd00003_and_cd00008 -title "Just 2 PSSM matrices"
+
+echo
 echo Masking
 echo =======
 
