@@ -20,7 +20,7 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
 -threshold $threshold
 -dbtype $dbtype 
 
-#if $contain_pssm_scores.contain_pssm_scores_type == 'no':
+#if str($contain_pssm_scores.contain_pssm_scores_type) == 'no':
     -gapopen $contain_pssm_scores.gapopen
     -gapextend $contain_pssm_scores.gapextend
     -scale $contain_pssm_scores.scale
@@ -81,9 +81,9 @@ $exclude_invalid
     </outputs>
     <tests>
         <test>
-            <param name="dbtype" value="prot" />
             <param name="file" value="cd00003.smp,cd00008.smp" ftype="pssm-asn1" />
             <param name="title" value="Just 2 PSSM matrices" />
+            <param name="contain_pssm_scores_type" value="yes" />
             <output name="out_file" file="cd00003_and_cd00008.log" ftype="blastdbd" lines_diff="6">
                 <extra_files type="file" value="cd00003_and_cd00008.freq" name="profiledb.freq" />
                 <extra_files type="file" value="cd00003_and_cd00008.pin" name="profiledb.pin" lines_diff="2" />
