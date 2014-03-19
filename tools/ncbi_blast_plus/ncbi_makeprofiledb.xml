@@ -74,7 +74,7 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
     <configfiles>
         <configfile name="infiles">
 #for $infile in $infile_list
-"${infile}"
+${infile}
 #end for
         </configfile>
     </configfiles>
