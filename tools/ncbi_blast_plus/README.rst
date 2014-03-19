@@ -47,6 +47,7 @@ XML files to your ``tool_conf.xml`` as normal (and do the same in
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_info.xml" />
     <tool file="ncbi_blast_plus/ncbi_rpsblast_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_rpstblastn_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_makeprofiledb.xml" />
     <tool file="ncbi_blast_plus/blastxml_to_tabular.xml" />
   </section>
 
@@ -143,14 +144,14 @@ v0.0.20 - Added unit tests for BLASTN and TBLASTX.
         - Adopted standard MIT License.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
         - Updated citation information (Cock et al. 2013).
-v0.0.21 - Use macros to simplify the XML wrappers.
+v0.0.21 - Use macros to simplify the XML wrappers (by John Chilton).
         - Added wrapper for dustmasker.
-        - Enabled masking for makeblastdb.
+        - Enabled masking for makeblastdb (Nicola Soranzo).
         - Requires ``maskinfo-asn1`` and ``maskinfo-asn1-binary`` datatypes,
           defined in ``blast_datatypes`` v0.0.17  on Galaxy ToolShed.
         - Tests updated for BLAST+ 2.2.27 instead of BLAST+ 2.2.26.
         - Now depends on ``package_blast_plus_2_2_27`` in ToolShed.
-v0.0.22 - More use macros to simplify the wrappers.
+v0.0.22 - More use of macros to simplify the wrappers.
         - Set number of threads via ``$GALAXY_SLOTS`` environment variable.
         - More descriptive default output names.
         - Tests require updated BLAST DB definitions (``blast_datatypes`` v0.0.18).
@@ -159,16 +160,21 @@ v0.0.22 - More use macros to simplify the wrappers.
         - Now depends on ``package_blast_plus_2_2_28`` in ToolShed.
         - Extended tabular output includes 'salltitles' as column 25.
 v0.1.00 - Now depends on ``package_blast_plus_2_2_29`` in ToolShed.
-        - Tabular output now includes option to pick specific columns,
-          including previously unavailable taxonomy columns.
-        - BLAST XML to tabular tool supports multiple input files.
+        - Tabular output now includes option to pick specific columns
+          (based on contribution from Jim Johnson), including previously
+          unavailable taxonomy columns.
+        - BLAST XML to tabular tool supports multiple input files
+          (based on contribution from Jim Johnson).
         - More detailed descriptions for BLASTN and BLASTP task option.
-        - Wrappers for segmasker, dustmasker and convert2blastmask.
+        - Wrappers for segmasker, dustmasker and convert2blastmask
+          (contribution from Bjoern Gruening).
         - Supports using maskinfo with makeblastdb wrapper.
         - Supports setting a taxonomy ID in makeblastdb wrapper.
         - Subtle changes like new conditional settings will require some old
           workflows be updated to cope.
 v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
+        - Wrapper for makeprofiledb added to create protein domain databases
+          (based on contribution from Bjoern Gruening).
         - The RPS-BLAST and RPS-TBLASTN wrappers support using a protein
           domain database from the user's history.
 ======= ======================================================================
