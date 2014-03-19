@@ -8,8 +8,10 @@
     <command>
 ##Unlike makeblastdb, makeprofiledb needs directory to exist already:
 mkdir -p $outfile.extra_files_path &amp;&amp;
-echo "#for i in $infile_list#${i} #end for#" | makeprofiledb -in /dev/stdin
--out "${os.path.join($outfile.extra_files_path,'blastdb')}"
+makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
+
+##We turn $infile_list into $infiles with a configfile entry defined below
+-in $infiles
 
 #if $title:
 -title "$title"
