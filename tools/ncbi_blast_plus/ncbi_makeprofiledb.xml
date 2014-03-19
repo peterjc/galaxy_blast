@@ -36,6 +36,9 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
     </command>
     <expand macro="stdio" />
     <inputs>
+        <param name="input_file" type="data" multiple="true" optional="false" format="pssm-asn1"
+	       label="Input PSSM files(s)"
+	       help="One or NCBI PSSM ASN.1 format scoremat files (often named *.smp)" />
         <param name="infile_list" type="data" multiple="true" format="pssm-asn1" />
 
         <param name="title" type="text" value="" label="Title for the profile database" help="This is the database name shown in BLAST search output" />
@@ -74,7 +77,7 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
     </inputs>
     <configfiles>
         <configfile name="infiles">
-#for $infile in $infile_list
+#for $infile in $input_file
 ${infile}
 #end for
         </configfile>
@@ -84,7 +87,7 @@ ${infile}
     </outputs>
     <tests>
         <test>
-            <param name="file" value="cd00003.smp,cd00008.smp" ftype="pssm-asn1" />
+            <param name="input_file" value="cd00003.smp,cd00008.smp" ftype="pssm-asn1" />
             <param name="title" value="Just 2 PSSM matrices" />
             <param name="contain_pssm_scores_type" value="yes" />
             <output name="out_file" file="cd00003_and_cd00008.log" ftype="blastdbd" lines_diff="6">
@@ -103,7 +106,9 @@ ${infile}
     <help>
 **What it does**
 
-Make profile database from one or more FASTA files and/or BLAST databases.
+Make a protein domain profile database (for use with RPS-BLAST or RSP-TBLASTN)
+from one or more Position Specific Scoring Matrices (PSSM) files in the NCBI
+"scoremat" ASN.1 format (usually named ``*.smp``).
 
 This is a wrapper for the NCBI BLAST+ tool 'makeprofiledb'.
 
