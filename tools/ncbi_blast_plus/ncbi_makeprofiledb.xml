@@ -90,7 +90,7 @@ ${infile}
             <param name="input_file" value="cd00003.smp,cd00008.smp" ftype="pssm-asn1" />
             <param name="title" value="Just 2 PSSM matrices" />
             <param name="contain_pssm_scores_type" value="yes" />
-            <output name="out_file" file="cd00003_and_cd00008.log" ftype="blastdbd" lines_diff="6">
+            <output name="out_file" file="empty_file.dat" ftype="blastdbd" >
                 <extra_files type="file" value="cd00003_and_cd00008.freq" name="profiledb.freq" />
                 <extra_files type="file" value="cd00003_and_cd00008.pin" name="profiledb.pin" lines_diff="2" />
                 <extra_files type="file" value="cd00003_and_cd00008.loo" name="profiledb.loo" />
