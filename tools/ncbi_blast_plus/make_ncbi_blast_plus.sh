@@ -31,6 +31,7 @@ tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastx_wrapper.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_tblastn_wrapper.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_tblastx_wrapper.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_makeblastdb.xml
+tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_makeprofiledb.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/check_no_duplicates.py
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_blastdbcmd_info.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/ncbi_rpsblast_wrapper.xml
@@ -108,11 +109,22 @@ tar -rf ncbi_blast_plus.tar test-data/segmasker_four_human.maskinfo-asn1
 tar -rf ncbi_blast_plus.tar test-data/segmasker_four_human.maskinfo-asn1-binary
 tar -rf ncbi_blast_plus.tar test-data/convert2blastmask_four_human_masked.maskinfo-asn1
 tar -rf ncbi_blast_plus.tar test-data/convert2blastmask_four_human_masked.maskinfo-asn1-binary
-
+tar -rf ncbi_blast_plus.tar test-data/cd00003.smp
+tar -rf ncbi_blast_plus.tar test-data/cd00008.smp
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.aux
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.loo
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.pin
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.psi
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.rps
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.freq
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.phr
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.psd
+tar -rf ncbi_blast_plus.tar test-data/cd00003_and_cd00008.psq
+tar -rf ncbi_blast_plus.tar test-data/empty_file.dat
 
 #Zip the tar file
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 85 files, have:"
+echo "Expect a tar-ball 98 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
