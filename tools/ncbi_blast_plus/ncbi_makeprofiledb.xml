@@ -63,12 +63,11 @@ echo "#for i in $infile_list#${i} #end for#" | makeprofiledb -in /dev/stdin
 
         <!--  Delta Blast Options -->
         <param name="exclude_invalid" type="boolean" truevalue="true" falsevalue="false" checked="true" 
-            label="Exclude domains with with maximum number of independent observations below this threshold" 
-            help="This affects the formatting of the query/subject ID strings"/>
+            label="Exclude invalid domains?"
+            help="Exclude domains that do not pass validation test" />
         <param name="obsr_threshold" type="float" size="5" value="6.0"
-            label="Exclude domains with with maximum number of independent observations below this threshold" 
-            help="(-obsr_threshold)"/>
-
+            label="Observation threshold"            
+            help="Exclude domains with with maximum number of independent observations below this threshold" />
     </inputs>
     <configfiles>
         <configfile name="infiles">
