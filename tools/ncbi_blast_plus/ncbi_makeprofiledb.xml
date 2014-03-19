@@ -21,7 +21,6 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
 #end if
 
 -threshold $threshold
--dbtype $dbtype 
 
 #if str($contain_pssm_scores.contain_pssm_scores_type) == 'no':
     -gapopen $contain_pssm_scores.gapopen
@@ -43,11 +42,13 @@ makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
         <param name="threshold" type="float" size="5" value="9.82" label="Minimum word score to add a word to the lookup table" />
 
         <!-- output options -->
-        <param name="dbtype" type="select" display="radio" label="Molecule type of input">
+        <!-- Initially we're only offering the default, RPS databases for use with rpsblast and rpstblastn
+        <param name="dbtype" type="select" display="radio" label="Type of database">
             <option value="cobalt">Cobalt</option>
             <option value="delta">Delta</option>
             <option value="rps" selected="true">RPS</option>
         </param>
+        -->
 
         <conditional name="contain_pssm_scores">
             <param name="contain_pssm_scores_type" type="select" label="Does your input file contain PSSM scores?">
@@ -79,7 +80,7 @@ ${infile}
         </configfile>
     </configfiles>
     <outputs>
-        <data name="outfile" format="blastdbd" label="${dbtype.value_label} profile database from ${on_string}" />
+        <data name="outfile" format="blastdbd" label="RPS database from ${on_string}" />
     </outputs>
     <tests>
         <test>
