@@ -52,8 +52,7 @@ XML files to your ``tool_conf.xml`` as normal (and do the same in
   </section>
 
 You will also need to install ``blast_datatypes`` from the Tool Shed. This
-defines the BLAST XML file format (``blastxml``) and protein and nucleotide
-BLAST databases composite file formats (``blastdbp`` and ``blastdbn``):
+defines the BLAST XML file format (``blastxml``), BLAST databases, etc:
 
 * http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes
 
@@ -62,7 +61,7 @@ about any system level BLAST databases using the ``tool-data/blastdb*.loc``
 files.
 
 You must install the NCBI BLAST+ standalone tools somewhere on the system
-path. Currently the unit tests are written using "BLAST 2.2.29+".
+path. Currently the unit tests are written using BLAST 2.2.29+.
 
 Run the functional tests (adjusting the section identifier to match your
 ``tool_conf.xml.sample`` file)::
@@ -73,10 +72,10 @@ Configuration
 =============
 
 You must tell Galaxy about any system level BLAST databases using configuration
-files blastdb.loc (nucleotide databases like NT) and blastdb_p.loc (protein
-databases like NR), and blastdb_d.loc (protein domain databases like CDD or
-SMART) which are located in the tool-data/ folder. Sample files are included
-which explain the tab-based format to use.
+files ``blastdb.loc`` (nucleotide databases like NT) and ``blastdb_p.loc``
+(protein databases like NR), and ``blastdb_d.loc`` (protein domain databases
+like CDD or SMART) which are located in the ``tool-data/`` folder. Sample
+files are included which explain the tab-based format to use.
 
 You can download the NCBI provided databases as tar-balls from here:
 
