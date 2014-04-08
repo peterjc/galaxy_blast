@@ -1,6 +1,6 @@
 <tool_dependency>
-    <package name="blast+" version="2.2.28">
-        <repository toolshed="http://testtoolshed.g2.bx.psu.edu" name="package_blast_plus_2_2_28" owner="iuc" changeset_revision="5a449da71d08" />
+    <package name="blast+" version="2.2.29">
+        <repository name="package_blast_plus_2_2_29" owner="iuc" />
     </package>
 </tool_dependency>
 

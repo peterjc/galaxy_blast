@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <data_managers>
-    <data_manager tool_file="data_manager/blastdb.xml" id="ncbi_blast_plus_update_blastdb">
+    <data_manager tool_file="blastdb.xml" id="ncbi_blast_plus_update_blastdb">
         <data_table name="blastdb">
             <output>
                 <column name="value" />
