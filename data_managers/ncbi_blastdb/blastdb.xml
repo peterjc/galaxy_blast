@@ -1,0 +1,48 @@
+<tool id="data_manager_blast_db" name="Blast DB" version="0.0.1" tool_type="manage_data">
+    <description>Downloader</description>
+    <command interpreter="python">fetch_blast_db.py --filename "${out_file}" --tool_data_table_name "blastdb"</command>
+    <requirements>
+        <requirement type="package" version="2.2.28">blast+</requirement>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" level="fatal" description="Tool exception" />
+    </stdio>
+    <inputs>
+        <param name="blastdb_name" type="text" label="Blast DB Name" help="try &quot;nt&quot; as an example" optional="False"/>
+        <conditional name="advanced">
+            <param name="advanced_selector" type="select" label="Advanced Options">
+                <option value="basic" selected="True">Basic</option>
+                <option value="advanced">Advanced</option>
+            </param>
+            <when value="basic">
+            </when>
+            <when value="advanced">
+                <param type="text" name="data_description" value="" label="Display name" help="Optional"/>
+                <param type="text" name="data_id" value="" label="ID for sequence" help="Optional"/>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data name="out_file" format="data_manager_json"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="blastdb_name" value="est"/>
+            <param name="advanced_selector" value="basic"/>
+            <output name="out_file" file="est_out.json"/>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+Downloads Blast DBs and updates blastdb tool data tables.
+
+------
+
+
+.. class:: infomark
+
+**Notice:** This is a functional, but basic, tool for fetching preformatted blastdbs.
+
+    </help>
+</tool>
