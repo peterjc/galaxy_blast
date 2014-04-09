@@ -23,9 +23,9 @@ fi
 
 #Create tar file (-cf then -rf to add to it)
 tar -cf  ncbi_blastdb.tar test-data/est_out.json
-tar -rf  ncbi_blastdb.tar test-data/cog.out
-tar -rf  ncbi_blastdb.tar test-data/pataa.out
-tar -rf  ncbi_blastdb.tar test-data/patnt.out
+tar -rf  ncbi_blastdb.tar test-data/cog_out.json
+tar -rf  ncbi_blastdb.tar test-data/pataa_out.json
+tar -rf  ncbi_blastdb.tar test-data/patnt_out.json
 tar -rf  ncbi_blastdb.tar tool-data/blastdb.loc.sample
 tar -rf  ncbi_blastdb.tar tool-data/blastdb_p.loc.sample
 tar -rf  ncbi_blastdb.tar tool-data/blastdb_d.loc.sample
