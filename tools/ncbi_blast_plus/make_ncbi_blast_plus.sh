@@ -126,5 +126,5 @@ tar -rf ncbi_blast_plus.tar test-data/empty_file.dat
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball 98 files, have:"
+echo "Expect a tar-ball with 98 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
