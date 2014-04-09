@@ -174,11 +174,7 @@
             </param>
             <when value="db">
                 <param name="database" type="select" label="Nucleotide BLAST database">
-                    <options from_file="blastdb.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
+                    <options from_data_table="blastdb"/>
                 </param>
                 <param name="histdb" type="hidden" value="" />
                 <param name="subject" type="hidden" value="" /> 
@@ -204,11 +200,7 @@
             </param>
             <when value="db">
                 <param name="database" type="select" label="Protein BLAST database">
-                    <options from_file="blastdb_p.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
+                    <options from_data_table="blastdb_p" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
                 <param name="subject" type="hidden" value="" />
@@ -233,11 +225,7 @@
             </param>
             <when value="db">
                 <param name="database" type="select" label="Protein domain database">
-                    <options from_file="blastdb_d.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
+                    <options from_data_table="blastdb_d" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
                 <param name="subject" type="hidden" value="" />
@@ -257,20 +245,12 @@
             </param>
             <when value="nucl">
                 <param name="database" type="select" label="Nucleotide BLAST database">
-                    <options from_file="blastdb.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
+                    <options from_data_table="blastdb" />
                 </param>
             </when>
             <when value="prot">
                 <param name="database" type="select" label="Protein BLAST database">
-                    <options from_file="blastdb_p.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
+                    <options from_data_table="blastdb_p"/>
                 </param>
             </when>
         </conditional>

@@ -4,9 +4,9 @@ Galaxy Data Manager for NCBI BLAST databases
 Copyright 2014 by Daniel Blankenberg (Penn State University, PA 16802, USA),
 and additional contributors. All rights reserved. See the licence text below.
 
-Downloads and populates blastdb data table. This is just a simple example to
-demonstrate the use of Data Managers for processing BLAST databases, and
-uses the NCBI's ``update_blast.pl`` script internally. See:
+Downloads preformatted NCBI BLAST databases and updates ``blastdb`` and
+``blastdb_p``  data tables accordingly. Uses the NCBI's ``update_blast.pl``
+script internally. See:
 
 Blankenberg et al. (2014) Wrangling Galaxy's reference data
 http://dx.doi.org/10.1093/bioinformatics/btu119
@@ -27,6 +27,10 @@ v0.0.2  - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
         - Updated citation information (Blankenberg et al. 2014).
         - Adopted standard MIT License.
         - Now depends on ``package_blast_plus_2_2_29`` in ToolShed.
+v0.0.3  - Updated fetch_blast_db.py to use the current date as the ID
+        - Tool and script now also updates ``blastdb_p`` data tables as needed
+        - Tool and script now also updates ``blastdb_d`` data tables as needed
+        - Tool now uses a dropdown menu to select the desired database
 ======= ======================================================================
 
 

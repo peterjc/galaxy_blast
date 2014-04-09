@@ -1,6 +1,6 @@
-<tool id="data_manager_blast_db" name="Blast DB" version="0.0.2" tool_type="manage_data">
-    <description>Downloader</description>
-    <command interpreter="python">fetch_blast_db.py --filename "${out_file}" --tool_data_table_name "blastdb"</command>
+<tool id="ncbi_blast_plus_update_db" name="NCBI BLAST databases Data Manager" version="0.0.3" tool_type="manage_data">
+    <description>Download a pre-formatted database from NCBI FTP website</description>
+    <command interpreter="python">fetch_blast_db.py --filename "${out_file}" --tool_data_table_name $db_type.blastdb_type</command>
     <requirements>
         <requirement type="package" version="2.2.29">blast+</requirement>
     </requirements>
@@ -8,7 +8,58 @@
         <exit_code range="1:" level="fatal" description="Tool exception" />
     </stdio>
     <inputs>
-        <param name="blastdb_name" type="text" label="Blast DB Name" help="try &quot;nt&quot; as an example" optional="False"/>
+        <conditional name="db_type">
+            <param name="blastdb_type" type="select" label="Choose database type">
+                <option value="blastdb" selected="true">Nucleotide</option>
+                <option value="blastdb_p">Protein</option>
+                <option value="blastdb_d">Protein Domains</option>
+            </param>
+            <when value="blastdb">
+                <param name="blastdb_name" type="select" label="Blast DB to download" optional="false">
+                    <option value="env_nt">Environmental nucleotide sequences (env_nt)</option>
+                    <option value="16SMicrobial">Microbial 16S sequences (16SMicrobial)</option>
+                    <option value="est">EST sequences (est)</option>
+                    <option value="est_human">Human EST sequences (est_human)</option>
+                    <option value="est_mouse">Mouse EST sequences (est_mouse)</option>
+                    <option value="est_others">Other EST sequences (est_others)</option>
+                    <option value="gss">Genome Survey Sequences (gss)</option>
+                    <option value="gss_annot">Annotated Genome Survey Sequences (gss_annot)</option>
+                    <option value="htgs">High-Throughput Genome Sequences (htgs)</option>
+                    <option value="human_genomic">Human RefSeq chromosome records (human_genomic)</option>
+                    <option value="nt">Nucleotide sequence database from GenBank, EMBL, DDBJ, excludes gss sts, pat, est and htg (nt)</option>
+                    <option value="other_genomic">RefSeq chromosome records other than human (other_genomic)</option>
+                    <option value="patnt">Patent nucleotide sequences (patnt)</option>
+                    <option value="pdbnt">Protein Data Bank Nucleic acid structures (pdbnt)</option>
+                    <option value="refseq_genomic">NCBI genomic reference sequences (refseq_genomic)</option>
+                    <option value="refseq_rna">NCBI transcript reference sequences (refseq_rna)</option>
+                    <option value="refseqgene">NCBI gene reference sequences (refseqgene)</option>
+                    <option value="sts">Sequence Tagged Sites (sts)</option>
+                    <option value="tsa_nt">Transcriptome Shotgun Assembly Sequence (tsa_nt)</option>
+                    <option value="wgs">Whole Genome Shotgun Sequences Assemblies (wgs)</option>
+                </param>
+            </when>
+            <when value="blastdb_p">
+                <param name="blastdb_name" type="select" label="BlastDB to download" optional="false">
+                    <option value="env_nr">Environmental protein sequences (env_nr)</option>
+                    <option value="nr">Non-redundant protein sequence database from GenPept, Swissprot, PIR, PDF, PDB, NCBI RefSeq (nr)</option>
+                    <option value="pataa">Patent protein sequences (pataa)</option>
+                    <option value="pdbaa">Protein Data Bank protein structures (pdbnt)</option>
+                    <option value="refseq_protein">NCBI protein reference sequences (refseq_protein)</option>
+                    <option value="swissprot">Sequences from SwissProt database (swissprot)</option>
+                </param>
+            </when>
+            <when value="blastdb_d">
+                <param name="blastdb_name" type="select" label="BlastDB to download" optional="false">
+                    <option value="Cdd">CDD</option>
+                    <option value="Cog">COG</option>
+                    <option value="Kog">KOG</option>
+                    <option value="Pfam">Pfam</option>
+                    <option value="Prk">PRK</option>
+                    <option value="Smart">Smart</option>
+                    <option value="Tigr">TIGRFAM</option>
+                </param>
+            </when>
+        </conditional>
         <conditional name="advanced">
             <param name="advanced_selector" type="select" label="Advanced Options">
                 <option value="basic" selected="True">Basic</option>
@@ -27,22 +78,68 @@
     </outputs>
     <tests>
         <test>
+            <param name="blastdb_type" value="blastdb"/>
             <param name="blastdb_name" value="est"/>
             <param name="advanced_selector" value="basic"/>
             <output name="out_file" file="est_out.json"/>
+        </test>
+        <test>
+            <param name="blastdb_type" value="blastdb"/>
+            <param name="blastdb_name" value="patnt"/>
+            <param name="advanced_selector" value="basic"/>
+            <output name="out_file" file="patnt.out" compare="re_match"/>
+        </test>
+        <test>
+            <param name="blastdb_type" value="blastdb_p"/>
+            <param name="blastdb_name" value="pataa"/>
+            <param name="advanced_selector" value="basic"/>
+            <output name="out_file" file="pataa.out" compare="re_match"/>
+        </test>
+        <test>
+            <param name="blastdb_type" value="blastdb_d"/>
+            <param name="blastdb_name" value="cog.out"/>
+            <param name="advanced_selector" value="basic"/>
+            <output name="out_file" file="cog.out" compare="re_match"/>
         </test>
     </tests>
     <help>
 **What it does**
 
-Downloads Blast DBs and updates blastdb tool data tables.
+Downloads preformatted Blast DBs and updates blastdb, blastdp_p and blastdb_d tables accordingly.
+Protein and nucleotide databases are retrieved using the update_blastdb.pl script that comes with BLAST.
+Protein domain databases are downloaded from ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/little_endian/.
 
-------
+For more information about these databases refer to:
+
+ftp://ftp.ncbi.nih.gov/pub/mmdb/cdd/README (Protein domains)
+
+ftp://ftp.ncbi.nih.gov/blast/db/README (Nucleotides and proteins)
+
+**Output**
+
+The data manager will download the database from NCBI and add an
+entry to the corresponding data table. The database will be stored at
+$galaxy_data_manager_data_path/$database_type/$blastdb_name/$database_id where,
+
+- $galaxy_data_manager_data_path is defined in universe_wsgi.ini
+
+- $database_type is either blastdb, blastdb_p or blastdb_d
+
+- $blastdb_name is the name of the database you are downloading
+
+- $database_id is either the ID generated from (name)_YYYY_MM_DD or user defined ID.
 
 
-.. class:: infomark
+The data manager will attempt to read the alias file to generate the
+description, but this may fail. Otherwise, it will use the ID.
 
-**Notice:** This is a functional, but basic, tool for fetching preformatted blastdbs.
+.. class:: warningmark
+
+Galaxy and the data manger won't stop you from downloading the same
+database over and over again, even if you use the same ID.
+Multiple entires in the data table should go away upon restart and
+since the ID are the same, it would just overwrite the database you
+already have.
 
 
 -------

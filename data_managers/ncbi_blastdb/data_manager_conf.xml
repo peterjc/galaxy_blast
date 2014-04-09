@@ -9,7 +9,33 @@
                     <move type="directory">
                         <target base="${GALAXY_DATA_MANAGER_DATA_PATH}">blastdb/${path}</target>
                     </move>
-                    <value_translation>${GALAXY_DATA_MANAGER_DATA_PATH}/blastdb/${path}/${nucleotide_alias_name}</value_translation>
+                    <value_translation>${GALAXY_DATA_MANAGER_DATA_PATH}/blastdb/${path}/${database_alias_name}</value_translation>
+                    <value_translation type="function">abspath</value_translation>
+                </column>
+            </output>
+        </data_table>
+        <data_table name="blastdb_p">
+            <output>
+                <column name="value" />
+                <column name="name" />
+                <column name="path" output_ref="out_file" >
+                    <move type="directory">
+                        <target base="${GALAXY_DATA_MANAGER_DATA_PATH}">blastdb_p/${path}</target>
+                    </move>
+                    <value_translation>${GALAXY_DATA_MANAGER_DATA_PATH}/blastdb_p/${path}/${database_alias_name}</value_translation>
+                    <value_translation type="function">abspath</value_translation>
+                </column>
+            </output>
+        </data_table>
+        <data_table name="blastdb_d">
+            <output>
+                <column name="value" />
+                <column name="name" />
+                <column name="path" output_ref="out_file" >
+                    <move type="directory">
+                        <target base="${GALAXY_DATA_MANAGER_DATA_PATH}">blastdb_d/${path}</target>
+                    </move>
+                    <value_translation>${GALAXY_DATA_MANAGER_DATA_PATH}/blastdb_d/${path}/${database_alias_name}</value_translation>
                     <value_translation type="function">abspath</value_translation>
                 </column>
             </output>
