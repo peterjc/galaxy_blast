@@ -15,6 +15,58 @@ This tool is currently available from the Galaxy Test Tool Shed at:
 http://testtoolshed.g2.bx.psu.edu/view/blankenberg/data_manager_example_blastdb_ncbi_update_blastdb
 
 
+Automated Installation
+======================
+
+Galaxy should be able to automatically install this Data Manager and its
+dependencies from the Galaxy ToolShed.
+
+
+Manual Installation
+===================
+
+This is not recommended except for Data Manager development purposes.
+
+First install and test the BLAST+ wrappers, their ``*.loc`` files, and
+the NCBI Perl Script ``update_blastdb.pl``.
+
+Move or copy the following files under the Galaxy ``tools`` folder, the
+instructions below assume the ``tools/ncbi_blastdb`` folder is used:
+
+* ``blastdb.xml`` (the Galaxy tool definition)
+* ``fetch_blast_db.py`` (Python wrapper script)
+* ``README.rst`` (this file)
+
+Inspect the Data Manager settings in ``universe_wsgi.ini`` check the location
+of the configuration file ``data_manager_config_file = data_manager_conf.xml``
+which you must now edit to include the ``data_manager_conf.xml`` content
+provided with this Data Manager.
+
+Note you must alter the ``tool_file`` setting to be a relative path::
+
+    <data_manager tool_file="ncbi_blastdb/blastdb.xml" id="ncbi_blast_plus_update_blastdb">
+
+Move or copy the following files under the Galaxy ``tools`` folder, which
+in these instructions we assume will be ``tools/ncbi_blastdb``:
+
+* ``blastdb.xml`` (the Galaxy tool definition)
+* ``fetch_blast_db.py`` (Python wrapper script)
+* ``README.rst`` (this file)
+
+You will also need to modify the ``tools_conf.xml`` file to tell Galaxy to
+offer this Data Manager. At any sensible location, add this line::
+
+    <tool file="ncbi_blastdb/blastdb.xml" />
+
+If you wish to run the unit tests, also add this to ``tools_conf.xml.sample``
+and move/copy the ``test-data`` files under Galaxy's ``test-data`` folder.
+Then::
+
+    ./run_functional_tests.sh -id data_manager_blast_db -data_managers
+
+That's it.
+
+
 History
 =======
 
