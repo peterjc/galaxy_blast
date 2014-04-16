@@ -123,6 +123,8 @@ install:
  - ln -s ${TRAVIS_BUILD_DIR}/tools/blastxml_to_top_descr/ tools/blastxml_to_top_descr
  - ln -s ${TRAVIS_BUILD_DIR}/tools/reciprocal_best_hits/ tools/reciprocal_best_hits
  - ln -s ${TRAVIS_BUILD_DIR}/tools/blast2go/ tools/blast2go
+ - ln -s ${TRAVIS_BUILD_DIR}/data_managers/ncbi_blastdb tools/ncbi_blastdb
+ - ln -s ${TRAVIS_BUILD_DIR}/.travis.data_manager_conf.xml data_manager_conf.xml
  - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
  - sed -i '6 i import blast' lib/galaxy/datatypes/registry.py
@@ -152,6 +154,7 @@ install:
 
 script:
  - python ./scripts/functional_tests.py -v `python tool_list.py Continuous-Integration-Travis`
+ - python ./scripts/functional_tests.py -v functional.test_data_managers:TestForDataManagerTool_data_manager_blast_db -data_managers
 
 #The email defaults are too talkative while we're getting Travis working nicely.
 notifications:
