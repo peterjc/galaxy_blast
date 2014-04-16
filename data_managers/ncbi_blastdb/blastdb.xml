@@ -91,7 +91,7 @@
         </test>
         <test>
             <param name="blastdb_type" value="blastdb_d"/>
-            <param name="blastdb_name" value="cog.out"/>
+            <param name="blastdb_name" value="Cog"/>
             <param name="advanced_selector" value="basic"/>
             <output name="out_file" file="cog_out.json" compare="re_match"/>
         </test>
