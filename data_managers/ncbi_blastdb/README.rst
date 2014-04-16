@@ -62,7 +62,7 @@ If you wish to run the unit tests, also add this to ``tools_conf.xml.sample``
 and move/copy the ``test-data`` files under Galaxy's ``test-data`` folder.
 Then::
 
-    ./run_functional_tests.sh -id data_manager_blast_db -data_managers
+    ./run_functional_tests.sh -data_managers -id data_manager_blast_db
 
 That's it.
 
