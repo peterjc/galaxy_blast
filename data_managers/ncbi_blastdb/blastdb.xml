@@ -79,21 +79,21 @@
     <tests>
         <test>
             <param name="blastdb_type" value="blastdb"/>
-            <param name="blastdb_name" value="patnt"/>
+            <param name="blastdb_name" value="pdbnt"/>
             <param name="advanced_selector" value="basic"/>
-            <output name="out_file" file="patnt_out.json" compare="re_match"/>
+            <output name="out_file" file="pdbnt_out.json" compare="re_match"/>
         </test>
         <test>
             <param name="blastdb_type" value="blastdb_p"/>
-            <param name="blastdb_name" value="pataa"/>
+            <param name="blastdb_name" value="pdbaa"/>
             <param name="advanced_selector" value="basic"/>
-            <output name="out_file" file="pataa_out.json" compare="re_match"/>
+            <output name="out_file" file="pdbaa_out.json" compare="re_match"/>
         </test>
         <test>
             <param name="blastdb_type" value="blastdb_d"/>
-            <param name="blastdb_name" value="Cog"/>
+            <param name="blastdb_name" value="Smart"/>
             <param name="advanced_selector" value="basic"/>
-            <output name="out_file" file="cog_out.json" compare="re_match"/>
+            <output name="out_file" file="smart_out.json" compare="re_match"/>
         </test>
     </tests>
     <help>

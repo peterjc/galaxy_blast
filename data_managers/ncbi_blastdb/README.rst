@@ -46,13 +46,6 @@ Note you must alter the ``tool_file`` setting to be a relative path::
 
     <data_manager tool_file="ncbi_blastdb/blastdb.xml" id="ncbi_blast_plus_update_blastdb">
 
-Move or copy the following files under the Galaxy ``tools`` folder, which
-in these instructions we assume will be ``tools/ncbi_blastdb``:
-
-* ``blastdb.xml`` (the Galaxy tool definition)
-* ``fetch_blast_db.py`` (Python wrapper script)
-* ``README.rst`` (this file)
-
 You will also need to modify the ``tools_conf.xml`` file to tell Galaxy to
 offer this Data Manager. At any sensible location, add this line::
 

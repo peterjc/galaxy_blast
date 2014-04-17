@@ -9,6 +9,7 @@ import sys
 import subprocess
 import time
 import tarfile
+import ftplib
 from ftplib import FTP
 from galaxy.util.json import from_json_string, to_json_string
 
