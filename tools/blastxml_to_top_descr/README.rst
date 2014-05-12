@@ -67,6 +67,7 @@ v0.0.9  - Updated citation information (Cock et al. 2013).
 v0.0.10 - Update help text to mention BLAST+ 2.2.28 can produce tabular files
           including the description/title (via the salltitles field).
 v0.1.0  - Switch to using an optparse based API for Python script internally.
+        - Support the default 25 column extended tabular BLAST output.
 ======= ======================================================================
 
 

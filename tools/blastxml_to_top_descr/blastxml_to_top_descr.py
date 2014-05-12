@@ -41,6 +41,16 @@ parser.add_option("-t", "--topN", dest="topN", default=3,
 parser.add_option("-o", "--output", dest="out_file", default=None,
                   help="Output filename for tabular file",
                   metavar="FILE")
+parser.add_option("-f", "--format", dest="format", default="blastxml",
+                  help="Input format (blastxml or tabular)")
+parser.add_option("-q", "--qseqid", dest="qseqid", default="1",
+                  help="Column for query 'qseqid' (for tabular input; default 1)")
+parser.add_option("-s", "--sseqid", dest="sseqid", default="2",
+                  help="Column for subject 'sseqid' (for tabular input; default 2)")
+parser.add_option("-b", "--bitscore", dest="bitscore", default="12",
+                  help="Column for bitscore (for tabular input; default 12)")
+parser.add_option("-d", "--salltitles", dest="salltitles", default="25",
+                  help="Column for descriptions 'salltitles' (for tabular input; default 25)")
 (options, args) = parser.parse_args()
 
 if len(sys.argv) == 4 and len(args) == 3 and not options.out_file:
@@ -70,6 +80,9 @@ except ValueError:
 if topN < 1:
     stop_err("Number of hits  argument should be an integer (at least 1)")
 
+
+if options.format != "blastxml":
+    stop_err("Not implemented yet.")
 
 # get an iterable
 try: 
