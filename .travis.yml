@@ -87,6 +87,7 @@ before_install:
  - tar -zxvf master | tail
  - cd galaxy-central-master
 
+
 # Configuring tools within Galaxy
 # ===============================
 #
@@ -129,6 +130,7 @@ install:
  - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
  - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
  - ./run.sh --stop-daemon || true
+ - python scripts/fetch_eggs.py
 
 
 # Testing tools in Galaxy
