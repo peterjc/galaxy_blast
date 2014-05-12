@@ -6,9 +6,10 @@ BLAST filename, number of hits to collect the descriptions of.
 """
 import sys
 import re
+from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.0.5"
+    print "v0.1.0"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
@@ -22,12 +23,45 @@ def stop_err( msg ):
     sys.stderr.write("%s\n" % msg)
     sys.exit(1)
 
-#Parse Command Line
-try:
-    in_file, out_file, topN = sys.argv[1:]
-except:
-    stop_err("Expect 3 arguments: input BLAST XML file, output tabular file, number of hits")
+usage = """Use as follows:
 
+$ blastxml_to_top_descr.py [-t 3] -o example.tabular input.xml
+
+Or,
+
+$ blastxml_to_top_descr.py [--topN 3] --output example.tabular input.xml
+
+This will take the top 3 BLAST descriptions from the input BLAST XML file,
+writing them to the specified output file in tabular format.
+"""
+
+parser = OptionParser(usage=usage)
+parser.add_option("-t", "--topN", dest="topN", default=3,
+                  help="Number of descriptions to collect")
+parser.add_option("-o", "--output", dest="out_file", default=None,
+                  help="Output filename for tabular file",
+                  metavar="FILE")
+(options, args) = parser.parse_args()
+
+if len(sys.argv) == 4 and len(args) == 3 and not options.out_file:
+    stop_err("""The API has changed, replace this:
+
+$ python blastxml_to_top_descr.py input.xml output.tab 3
+
+with:
+
+$ python blastxml_to_top_descr.py -o output.tab -t 3 input.xml
+
+Sorry.
+""")
+
+if not args:
+    stop_err("Input filename missing, try -h")
+if len(args) > 1:
+    stop_err("Expects a single argument, one input filename")
+in_file = args[0]
+out_file = options.out_file
+topN = options.topN
 
 try:
     topN = int(topN)
@@ -35,6 +69,7 @@ except ValueError:
     stop_err("Number of hits  argument should be an integer (at least 1)")
 if topN < 1:
     stop_err("Number of hits  argument should be an integer (at least 1)")
+
 
 # get an iterable
 try: 
@@ -63,7 +98,10 @@ assert not re_default_subject_id.match("TheSubject_1")
 
 count = 0
 pos_count = 0
-outfile = open(out_file, 'w')
+if out_file is None:
+    outfile = sys.stdout
+else:
+    outfile = open(out_file, 'w')
 outfile.write("#Query\t%s\n" % "\t".join("BLAST hit %i" % (i+1) for i in range(topN)))
 for event, elem in context:
     # for every <Iteration> tag
@@ -118,5 +156,6 @@ for event, elem in context:
         # prevents ElementTree from growing large datastructure
         root.clear()
         elem.clear()
-outfile.close()
+if out_file is not None:
+    outfile.close()
 print "Of %i queries, %i had BLAST results" % (count, pos_count)

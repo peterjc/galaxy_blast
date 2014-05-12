@@ -2,7 +2,10 @@
     <description>Make a table from BLAST XML</description>
     <version_command interpreter="python">blastxml_to_top_descr.py --version</version_command>
     <command interpreter="python">
-      blastxml_to_top_descr.py "${blastxml_file}" "${tabular_file}" ${topN}
+blastxml_to_top_descr.py
+-o "${tabular_file}"
+-t ${topN}
+"${blastxml_file}"
     </command>
     <stdio>
         <!-- Assume anything other than zero is an error -->
