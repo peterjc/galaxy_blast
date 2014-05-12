@@ -85,6 +85,68 @@ if not os.path.isfile(in_file):
     stop_err("Missing input file: %r" % in_file)
 
 
+def get_column(value):
+    """Convert column number on command line to Python index."""
+    if value.startswith("c"):
+        # Ignore c prefix, e.g. "c1" for "1"
+        value = value[1:]
+    try:
+        col = int(value)
+    except:
+        stop_err("Expected an integer column number, not %r" % value)
+    if col < 1:
+        stop_err("Expect column numbers to be at least one, not %r" % value)
+    return col - 1 # Python counting!
+
+def best_hits(hits, topN):
+    best_s = []
+    best_d = []
+    for bitscore, subject, description in sorted(hits, reverse=True):
+        if subject in best_s:
+            # Ignore duplicates
+            continue
+        best_s.append(subject)
+        best_d.append(description)
+    if len(best_d) < topN:
+        best_d += [""]*topN
+    return best_d[:topN]
+assert ["Fred", "", ""] == best_hits([(1.0, "X", "Fred"), (2.0, "X", "Fred"), (3.0, "X", "Fred")], 3)
+assert ["Fred", "Bert", ""] == best_hits([(1.0, "X", "Fred"), (2.0, "Y", "Bert"), (3.0, "X", "Fred")], 3)
+
+def tabular_topN(in_file, out_file, topN, qseqid, sseqid, bitscore, salltitles):
+    count = 0
+    if out_file is None:
+        outfile = sys.stdout
+    else:
+        outfile = open(out_file, 'w')    
+    current_query = None
+    current_hits = []
+    with open(in_file) as input:
+        for line in input:
+            parts = line.rstrip("\n").split("\t")
+            query = parts[qseqid]
+            subject = parts[sseqid]
+            score = float(parts[bitscore])
+            description = parts[salltitles]
+            if query == current_query:
+                current_hits.append((bitscore, subject, description))
+            elif current_query is None:
+                current_query = query
+                current_hits = [(bitscore, subject, description)]
+            else:
+                count += 1
+                print current_query, current_hits, "-->", query
+                outfile.write("%s\t%s\n" % (current_query, "\t".join(best_hits(current_hits, topN))))
+                current_query = query
+                current_hits = [(bitscore, subject, description)]
+        if current_hits:
+            count += 1
+            outfile.write("%s\t%s\n" % (current_query, "\t".join(best_hits(current_hits, topN))))
+    if out_file is not None:
+        outfile.close()
+    return count
+
+
 def blastxml_topN(in_file, out_file, topN):
     # get an iterable
     try: 
@@ -179,8 +241,14 @@ def blastxml_topN(in_file, out_file, topN):
 
 if options.format == "blastxml":
     count, pos_count = blastxml_topN(in_file, out_file, topN)
+    print("Of %i queries, %i had BLAST results" % (count, pos_count))
 elif options.format == "tabular":
-    stop_err("Tabular input not supported yet")
+    qseqid = get_column(options.qseqid)
+    sseqid = get_column(options.sseqid)
+    bitscore = get_column(options.bitscore)
+    salltitles = get_column(options.salltitles)
+    pos_count = tabular_topN(in_file, out_file, topN, qseqid, sseqid, bitscore, salltitles)
+    #Queries with no hits are not present in tabular BLAST output
+    print("%i queries with BLAST results" % pos_count)
 else:
     stop_err("Unsupported format: %r" % options.format)
-print "Of %i queries, %i had BLAST results" % (count, pos_count)
