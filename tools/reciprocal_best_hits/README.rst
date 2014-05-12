@@ -1,7 +1,7 @@
 Galaxy tool to find Reciprocal Best Hists (RBH) from BLAST etc
 ==============================================================
 
-This tool is copyright 2011-2013 by Peter Cock, The James Hutton Institute
+This tool is copyright 2011-2014 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
