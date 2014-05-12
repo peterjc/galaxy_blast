@@ -3,6 +3,8 @@
 
 Takes three command line options, input BLAST XML filename, output tabular
 BLAST filename, number of hits to collect the descriptions of.
+
+Assumes the hits are pre-sorted, so "best" 3 hits gives first 3 hits.
 """
 import os
 import sys
@@ -38,7 +40,7 @@ writing them to the specified output file in tabular format.
 
 parser = OptionParser(usage=usage)
 parser.add_option("-t", "--topN", dest="topN", default=3,
-                  help="Number of descriptions to collect")
+                  help="Number of descriptions to collect (in order from file)")
 parser.add_option("-o", "--output", dest="out_file", default=None,
                   help="Output filename for tabular file",
                   metavar="FILE")
@@ -98,58 +100,40 @@ def get_column(value):
         stop_err("Expect column numbers to be at least one, not %r" % value)
     return col - 1 # Python counting!
 
-def best_hits(hits, topN):
-    best_s = []
-    best_d = []
-    for bitscore, subject, description in sorted(hits, reverse=True):
-        if subject in best_s:
-            # Ignore duplicates
-            continue
-        best_s.append(subject)
-        best_d.append(description)
-    if len(best_d) < topN:
-        best_d += [""]*topN
-    return best_d[:topN]
-assert ["Fred", "", ""] == best_hits([(1.0, "X", "Fred"), (2.0, "X", "Fred"), (3.0, "X", "Fred")], 3)
-assert ["Fred", "Bert", ""] == best_hits([(1.0, "X", "Fred"), (2.0, "Y", "Bert"), (3.0, "X", "Fred")], 3)
+def tabular_hits(in_file, qseqid, sseqid, bitscore, salltitles):
+    """Parse key data from tabular BLAST output.
 
-def tabular_topN(in_file, out_file, topN, qseqid, sseqid, bitscore, salltitles):
-    count = 0
-    if out_file is None:
-        outfile = sys.stdout
-    else:
-        outfile = open(out_file, 'w')    
+    Iterator returning tuples (qseqid, list_of_subject_description)
+    """
     current_query = None
     current_hits = []
     with open(in_file) as input:
         for line in input:
             parts = line.rstrip("\n").split("\t")
             query = parts[qseqid]
-            subject = parts[sseqid]
-            score = float(parts[bitscore])
-            description = parts[salltitles]
-            if query == current_query:
-                current_hits.append((bitscore, subject, description))
-            elif current_query is None:
+            descr = "%s %s" % (parts[sseqid], parts[salltitles])
+            if current_query is None:
+                # First hit
                 current_query = query
-                current_hits = [(bitscore, subject, description)]
+                current_hits = [descr]
+            elif current_query == query:
+                # Another hit
+                current_hits.append(descr)
             else:
-                count += 1
-                print current_query, current_hits, "-->", query
-                outfile.write("%s\t%s\n" % (current_query, "\t".join(best_hits(current_hits, topN))))
+                # New query
+                yield current_query, current_hits
                 current_query = query
-                current_hits = [(bitscore, subject, description)]
-        if current_hits:
-            count += 1
-            outfile.write("%s\t%s\n" % (current_query, "\t".join(best_hits(current_hits, topN))))
-    if out_file is not None:
-        outfile.close()
-    return count
+                current_hits = [descr]
+    if current_query is not None:
+        # Final query
+        yield current_query, current_hits
 
+def blastxml_hits(in_file):
+    """Parse key data from BLAST XML output.
 
-def blastxml_topN(in_file, out_file, topN):
-    # get an iterable
-    try: 
+    Iterator returning tuples (qseqid, list_of_subject_description)
+    """
+    try:
         context = ElementTree.iterparse(in_file, events=("start", "end"))
     except:
         with open(in_file) as handle:
@@ -177,11 +161,8 @@ def blastxml_topN(in_file, out_file, topN):
 
     count = 0
     pos_count = 0
-    if out_file is None:
-        outfile = sys.stdout
-    else:
-        outfile = open(out_file, 'w')
-    outfile.write("#Query\t%s\n" % "\t".join("BLAST hit %i" % (i+1) for i in range(topN)))
+    current_query = None
+    hit_descrs = []
     for event, elem in context:
         # for every <Iteration> tag
         if event == "end" and elem.tag == "Iteration":
@@ -202,8 +183,21 @@ def blastxml_topN(in_file, out_file, topN):
             if re_default_query_id.match(qseqid):
                 #Place holder ID, take the first word of the query definition
                 qseqid = elem.findtext("Iteration_query-def").split(None,1)[0]
+            if current_query is None:
+                # First hit
+                current_query = qseqid
+                hit_descrs = []
+            elif current_query != qseqid:
+                # New hit
+                yield current_query, hit_descrs
+                current_query = qseqid
+                hit_descrs = []
+            else:
+                # Continuation of previous query
+                # i.e. This BLAST XML did not use one <Iteration> per query
+                # sys.stderr.write("Multiple <Iteration> blocks for %s\n" % qseqid)
+                pass
             # for every <Hit> within <Iteration>
-            hit_descrs = []
             for hit in elem.findall("Iteration_hits/Hit"):
                 # Expecting either this,
                 # <Hit_id>gi|3024260|sp|P56514.1|OPSD_BUFBU</Hit_id>
@@ -224,31 +218,41 @@ def blastxml_topN(in_file, out_file, topN):
                     sseqid = hit_def.split(None,1)[0]
                 assert hit_def not in hit_descrs
                 hit_descrs.append(hit_def)
-            #print "%r has %i hits" % (qseqid, len(hit_descrs))
-            if hit_descrs:
-                pos_count += 1
-            hit_descrs = hit_descrs[:topN]
-            while len(hit_descrs) < topN:
-                hit_descrs.append("")
-            outfile.write("%s\t%s\n" % (qseqid, "\t".join(hit_descrs)))
-            count += 1
             # prevents ElementTree from growing large datastructure
             root.clear()
             elem.clear()
-    if out_file is not None:
-        outfile.close()
-    return count, pos_count
+    if current_query is not None:
+        # Final query
+        yield current_query, hit_descrs
 
 if options.format == "blastxml":
-    count, pos_count = blastxml_topN(in_file, out_file, topN)
-    print("Of %i queries, %i had BLAST results" % (count, pos_count))
+    hits = blastxml_hits(in_file)
 elif options.format == "tabular":
     qseqid = get_column(options.qseqid)
     sseqid = get_column(options.sseqid)
     bitscore = get_column(options.bitscore)
     salltitles = get_column(options.salltitles)
-    pos_count = tabular_topN(in_file, out_file, topN, qseqid, sseqid, bitscore, salltitles)
-    #Queries with no hits are not present in tabular BLAST output
-    print("%i queries with BLAST results" % pos_count)
+    hits = tabular_hits(in_file, qseqid, sseqid, bitscore, salltitles)
 else:
     stop_err("Unsupported format: %r" % options.format)
+
+
+def best_hits(descriptions, topN):
+    if len(descriptions) < topN:
+        return descriptions +  [""] * (topN - len(descriptions))
+    else:
+        return descriptions[:topN]
+
+count = 0
+if out_file is None:
+    outfile = sys.stdout
+else:
+    outfile = open(out_file, 'w')
+outfile.write("#Query\t%s\n" % "\t".join("BLAST hit %i" % (i+1) for i in range(topN)))
+for query, descrs in hits:
+    count += 1
+    outfile.write("%s\t%s\n" % (query, "\t".join(best_hits(descrs, topN))))
+if out_file is not None:
+    outfile.close()
+# Queries with no hits are not present in tabular BLAST output
+print("%i queries with BLAST results" % count)

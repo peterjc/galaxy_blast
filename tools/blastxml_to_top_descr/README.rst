@@ -67,6 +67,7 @@ v0.0.9  - Updated citation information (Cock et al. 2013).
 v0.0.10 - Update help text to mention BLAST+ 2.2.28 can produce tabular files
           including the description/title (via the salltitles field).
 v0.1.0  - Switch to using an optparse based API for Python script internally.
+        - Support BLAST XML with multiple ``<Iteration>`` blocks per query.
         - Support the default 25 column extended tabular BLAST output.
 ======= ======================================================================
 
@@ -90,7 +91,7 @@ https://github.com/peterjc/galaxy_blast
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball use
 the following command from the GitHub repository root folder::
 
-    $ tar -czf blastxml_to_top_descr.tar.gz tools/blastxml_to_top_descr/README.rst tools/blastxml_to_top_descr/blastxml_to_top_descr.* tools/blastxml_to_top_descr/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular
+    $ tar -czf blastxml_to_top_descr.tar.gz tools/blastxml_to_top_descr/README.rst tools/blastxml_to_top_descr/blastxml_to_top_descr.* tools/blastxml_to_top_descr/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
 
 Check this worked::
 
@@ -101,6 +102,8 @@ Check this worked::
     tools/blastxml_to_top_descr/repository_dependencies.xml
     test-data/blastp_four_human_vs_rhodopsin.xml
     test-data/blastp_four_human_vs_rhodopsin_top3.tabular
+    test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
+    test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
 
 
 Licence (MIT)

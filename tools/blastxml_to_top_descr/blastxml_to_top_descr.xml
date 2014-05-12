@@ -62,14 +62,12 @@ blastxml_to_top_descr.py
             <param name="topN" value="3" />
             <output name="tabular_file" file="blastp_four_human_vs_rhodopsin_top3.tabular" ftype="tabular" />
         </test>
-        <!--
         <test>
             <param name="in_format" value="tabular" />
             <param name="in_file" value="blastp_four_human_vs_rhodopsin_converted_ext.tabular" ftype="tabular" />
             <param name="topN" value="3" />
-            <output name="tabular_file" file="blastp_four_human_vs_rhodopsin_top3.tabular" ftype="tabular" />
+            <output name="tabular_file" file="blastp_four_human_vs_rhodopsin_top3_positive.tabular" ftype="tabular" />
         </test>
-        -->
     </tests>
     <help>
 
