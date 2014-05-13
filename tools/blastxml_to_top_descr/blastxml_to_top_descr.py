@@ -50,8 +50,6 @@ parser.add_option("-q", "--qseqid", dest="qseqid", default="1",
                   help="Column for query 'qseqid' (for tabular input; default 1)")
 parser.add_option("-s", "--sseqid", dest="sseqid", default="2",
                   help="Column for subject 'sseqid' (for tabular input; default 2)")
-parser.add_option("-b", "--bitscore", dest="bitscore", default="12",
-                  help="Column for bitscore (for tabular input; default 12)")
 parser.add_option("-d", "--salltitles", dest="salltitles", default="25",
                   help="Column for descriptions 'salltitles' (for tabular input; default 25)")
 (options, args) = parser.parse_args()
@@ -100,7 +98,7 @@ def get_column(value):
         stop_err("Expect column numbers to be at least one, not %r" % value)
     return col - 1 # Python counting!
 
-def tabular_hits(in_file, qseqid, sseqid, bitscore, salltitles):
+def tabular_hits(in_file, qseqid, sseqid, salltitles):
     """Parse key data from tabular BLAST output.
 
     Iterator returning tuples (qseqid, list_of_subject_description)
@@ -230,9 +228,8 @@ if options.format == "blastxml":
 elif options.format == "tabular":
     qseqid = get_column(options.qseqid)
     sseqid = get_column(options.sseqid)
-    bitscore = get_column(options.bitscore)
     salltitles = get_column(options.salltitles)
-    hits = tabular_hits(in_file, qseqid, sseqid, bitscore, salltitles)
+    hits = tabular_hits(in_file, qseqid, sseqid, salltitles)
 else:
     stop_err("Unsupported format: %r" % options.format)
 

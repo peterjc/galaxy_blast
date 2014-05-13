@@ -7,7 +7,6 @@ blastxml_to_top_descr.py
 #if $input.in_format == "tabular":
     --qseqid $input.qseqid
     --sseqid $input.sseqid
-    --bitscore $input.bitscore
     --salltitles $input.salltitles
 #end if
 -o "${tabular_file}"
@@ -38,10 +37,6 @@ blastxml_to_top_descr.py
 		       multiple="False" numerical="False" default_value="2" value="2"
 		       label="Column containing match ID (sseqid)"
 		       help="This is column 2 in standard BLAST tabular output"/>
-                <param name="bitscore" type="data_column" data_ref="in_file"
-		       multiple="False" numerical="False" default_value="12" value="12"
-		       label="Column containing containing bit-score (bitscore)"
-		       help="The bit score is column 12 in standard BLAST tabular output (highest is best)"/>
                 <param name="salltitles" type="data_column" data_ref="in_file"
 		       multiple="False" numerical="False" default_value="25" value="25"
                        label="Column containing containing descriptions (salltitles)"
@@ -81,13 +76,14 @@ hit descriptions (titles) found in the other output formats
 
 This tool turns a BLAST XML file into a simple tabular file containing
 one row per query sequence, containing the query identifier and then
-the three (by default) top hit descriptions. If a query doesn't have
-that many hits, then these entries are left blank.
+the three (by default) top hit descriptions (i.e. the first three). If
+a query doesn't have that many hits, then these entries are left blank.
 
 This tool can also be used with the tabular output from BLAST+ instead,
 provided the relevant columns are provided. The default settings will
 work with the default 25 column extended output from the BLAST+ tools
-wrapped in Galaxy.
+wrapped in Galaxy. Note if a query has not hits, it does not appear in
+the BLAST tabular output.
 
 **Example Usage**
 
