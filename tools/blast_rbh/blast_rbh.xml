@@ -21,7 +21,7 @@ blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype $seq.blast_type $identity $q_cove
 	       label="Genes/proteins from species B"
 	       description="FASTA file, one sequence per gene/protein." /> 
         <conditional name="seq">
-            <param name="dbtype" type="select" display="radio" label="Molecule type of FASTA inputs">
+            <param name="dbtype" type="select" label="Molecule type of FASTA inputs">
                 <option value="prot">protein</option>
                 <option value="nucl">nucleotide</option>
             </param>
