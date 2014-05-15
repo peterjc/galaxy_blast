@@ -4,10 +4,11 @@
 Takes the following command line options,
 1. FASTA filename of species A
 2. FASTA filename of species B
-3. BLAST type (e.g. blastn, or blastp) from which infer prot/nucl
-4. Minimum BLAST Percentage identity
-5. Minimum BLAST query coverage
-6. Output filename
+3. Sequence type (prot/nucl)
+4. BLAST type (e.g. blastn, or blastp) consistent with sequence type
+5. Minimum BLAST Percentage identity
+6. Minimum BLAST query coverage
+7. Output filename
 """
 
 import os
@@ -24,9 +25,9 @@ def stop_err( msg ):
 #Parse Command Line
 #TODO - optparse
 try:
-    fasta_a, fasta_b, blast_type, min_identity, min_coverage, out_file = sys.argv[1:]
+    fasta_a, fasta_b, dbtype, blast_type, min_identity, min_coverage, out_file = sys.argv[1:]
 except:
-    stop_err("Expect 6 arguments, got %i" % (len(sys.argv) - 1))
+    stop_err("Expect 7 arguments, got %i" % (len(sys.argv) - 1))
 
 if not os.path.isfile(fasta_a):
     stop_err("Missing input file for species A: %r" % fasta_a)
@@ -46,6 +47,17 @@ except ValueError:
 if not (0 <= min_coverage <= 100):
     stop_err("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
 
+
+if dbtype == "nucl":
+    if blast_type not in ["megablast", "blastn", "blastn-short", "dc-megablast"]:
+        stop_err("Invalid BLAST type for BLASTN: %r" % blast_type)
+    blast_exe = "blastn"
+elif dbtype == "prot":
+    if blast_type not in ["blastp", "blastp-short"]:
+        stop_err("Invalid BLAST type for BLASTP: %r" % blast_type)
+    blast_exe = "blastp"
+else:
+    stop_err("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
 
 stop_err("Not implemented yet...")
 
