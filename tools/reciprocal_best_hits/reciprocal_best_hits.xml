@@ -1,7 +1,10 @@
 <tool id="reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.0.5">
     <description>from BLAST output or similar data</description>
+    <version_command interpreter="python">
+reciprocal_best_hits.py --version
+    </version_command>
     <command interpreter="python">
-      reciprocal_best_hits.py "$a_vs_b" "$b_vs_a" $id1 $id2 $score $order "$output"
+reciprocal_best_hits.py "$a_vs_b" "$b_vs_a" $id1 $id2 $score $order "$output"
     </command>
     <inputs>
         <param name="a_vs_b" type="data" format="tabular" label="Hits from querying A against B" description="Tabular file, e.g. BLAST output" /> 
