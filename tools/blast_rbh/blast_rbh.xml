@@ -144,5 +144,17 @@ The defaults are to require 70% sequence identity over the aligned region
 covers at least 50% of the query sequence (using ``qcovhsp`` in the BLAST+
 tabular output).
 
+
+**References**
+
+A specific paper covering this tool is planned, but please also cite:
+
+Christiam Camacho et al. (2009).
+BLAST+: architecture and applications.
+BMC Bioinformatics. 15;10:421.
+http://dx.doi.org/10.1186/1471-2105-10-421
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
     </help>
 </tool>
