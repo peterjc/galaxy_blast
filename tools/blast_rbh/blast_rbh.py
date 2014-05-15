@@ -151,6 +151,5 @@ print "Done, %i RBH found" % count
 
 
 #Remove temp files...
-print "Remove %s" % base_path
-#shutil.rmtree(base_path)
+shutil.rmtree(base_path)
 
