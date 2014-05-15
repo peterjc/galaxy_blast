@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<repositories description="Requires the NCBI BLAST+ binaries.">
+    <repository name="package_blast_plus_2_2_29" owner="iuc" />
+</repositories>
