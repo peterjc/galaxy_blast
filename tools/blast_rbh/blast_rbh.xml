@@ -60,6 +60,15 @@ $identity $q_cover "$output"
     </requirements>
     <tests>
         <test>
+            <param name="fasta_a" value="four_human_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="rhodopsin_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="prot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastp_four_human_vs_rhodopsin_proteins.tabular" ftype="tabular"/>
+        </test>
+        <test>
             <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
             <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
             <param name="dbtype" value="nucl"/>
