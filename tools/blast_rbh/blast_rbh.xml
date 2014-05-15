@@ -10,7 +10,7 @@
 blast_rbh.py --version
     </version_command>
     <command interpreter="python">
-blast_rbh.py "$fasta_a" "$fasta_b" $dbtype $blast_type $identity $q_cover "$output"
+blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype $seq.blast_type $identity $q_cover "$output"
     </command>
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
@@ -48,7 +48,7 @@ blast_rbh.py "$fasta_a" "$fasta_b" $dbtype $blast_type $identity $q_cover "$outp
 	       description="Default is 50%, use 0 for no filtering." />
     </inputs>
     <outputs>
-        <data name="output" format="tabular" label="RBH results: $fasta_a.label vs $fasta_b.label" />
+        <data name="output" format="tabular" label="RBH results: $fasta_a.name vs $fasta_b.name" />
     </outputs>
     <requirements>
     </requirements>
