@@ -71,16 +71,6 @@ else:
     stop_err("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
 makeblastdb_exe = "makeblastdb"
 
-def run(cmd):
-    return_code = os.system(cmd)
-    if return_code:
-        stop_err("Error %i from: %s" % (return_code, cmd))
-
-def makeblastdb(fasta_file, dbtype, output_stem):
-    cmd = "%s -dbtype %s -in %s -out %s" % (makeblastdb_exe, dbtype, fasta_file, output_stem)
-    return run(cmd)
-
-
 base_path = tempfile.mkdtemp()
 db_a = os.path.join(base_path, "SpeciesA")
 db_b = os.path.join(base_path, "SpeciesB")
