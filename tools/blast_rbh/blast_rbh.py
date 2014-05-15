@@ -13,14 +13,22 @@ Takes the following command line options,
 
 import os
 import sys
-
-if "--version" in sys.argv[1:]:
-    print "BLAST RBH v0.1.0"
-    sys.exit(0)
+import tempfile
+import shutil
 
 def stop_err( msg ):
     sys.stderr.write("%s\n" % msg)
     sys.exit(1)
+
+def run(cmd):
+    return_code = os.system(cmd)
+    if return_code:
+        stop_err("Error %i from: %s" % (return_code, cmd))
+
+if "--version" in sys.argv[1:]:
+    #TODO - Capture version of BLAST+ binaries too?
+    print "BLAST RBH v0.1.0"
+    sys.exit(0)
 
 #Parse Command Line
 #TODO - optparse
@@ -61,25 +69,41 @@ elif dbtype == "prot":
     blast_exe = "blastp"
 else:
     stop_err("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
+makeblastdb_exe = "makeblastdb"
 
-stop_err("Not implemented yet...")
+def run(cmd):
+    return_code = os.system(cmd)
+    if return_code:
+        stop_err("Error %i from: %s" % (return_code, cmd))
 
-"""
-def load_best(filename, id1col, id2col):
-    best = dict()
-    for line in open(a_vs_b):
-        if line.startswith("#"): continue
-        parts = line.rstrip("\n").split("\t")
-        id1 = parts[id1col]
-        id2 = parts[id2col]
-        score = float(parts[c_score])
-        if (a not in best_a_vs_b) \
-        or (want_highest and score > best[id1][1]) \
-        or (want_lowest and score < best[id1][1]):
-            best[id1] = (id2, score)
-    return best
-best_a_vs_b = load_best(a_vs_b, c_query, c_match)
-"""
+def makeblastdb(fasta_file, dbtype, output_stem):
+    cmd = "%s -dbtype %s -in %s -out %s" % (makeblastdb_exe, dbtype, fasta_file, output_stem)
+    return run(cmd)
+
+
+base_path = tempfile.mkdtemp()
+db_a = os.path.join(base_path, "SpeciesA")
+db_b = os.path.join(base_path, "SpeciesB")
+a_vs_b = os.path.join(base_path, "A_vs_B.tabular")
+b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
+log = os.path.join(base_path, "blast.log")
+
+cols = "qseqid sseqid bitscore" # plus: pident qcovs qcovhsp
+c_query = 0
+c_match = 1
+c_score = 2
+
+print("Starting...")
+#TODO - Report log in case of error?
+run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
+run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
+print("BLAST databases prepared.")
+run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s"' % (blast_exe, blast_type, fasta_a, db_b, a_vs_b, cols))
+print("BLAST species A vs species B done.")
+run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s"' % (blast_exe, blast_type, fasta_b, db_a, b_vs_a, cols))
+print("BLAST species B vs species A done.")
+
+#TODO - Include identity and coverage filters...
 
 best_a_vs_b = dict()
 for line in open(a_vs_b):
@@ -88,9 +112,7 @@ for line in open(a_vs_b):
     a = parts[c_query]
     b = parts[c_match]
     score = float(parts[c_score])
-    if (a not in best_a_vs_b) \
-    or (want_highest and score > best_a_vs_b[a][1]) \
-    or (want_lowest and score < best_a_vs_b[a][1]):
+    if a not in best_a_vs_b or score > best_a_vs_b[a][1]:
         best_a_vs_b[a] = (b, score, parts[c_score])
 b_short_list = set(b for (b,score, score_str) in best_a_vs_b.values())
 
@@ -105,9 +127,7 @@ for line in open(b_vs_a):
         #stop_err("The A-vs-B file does not have A-ID %r found in B-vs-A file" % a)
     if b not in b_short_list: continue
     score = float(parts[c_score])
-    if (b not in best_b_vs_a) \
-    or (want_highest and score > best_b_vs_a[b][1]) \
-    or (want_lowest and score < best_b_vs_a[b][1]):
+    if b not in best_b_vs_a or score > best_b_vs_a[b][1]:
         best_b_vs_a[b] = (a, score, parts[c_score])
 #TODO - Preserve order from A vs B?
 a_short_list = sorted(set(a for (a,score,score_str) in best_b_vs_a.values()))
@@ -122,3 +142,8 @@ for a in a_short_list:
         count += 1
 outfile.close()
 print "Done, %i RBH found" % count
+
+
+#Remove temp files...
+shutil.rmtree(base_path)
+
