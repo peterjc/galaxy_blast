@@ -48,10 +48,10 @@ $identity $q_cover "$output"
         </conditional>
 	<param name="identity" type="float" value="70" min="0" max="100"
 	       label="Minimum percentage identity for BLAST matches"
-	       description="Default is 70%, use 0 for no filtering." />
+	       help="Default is 70%, use 0 for no filtering." />
         <param name="q_cover" type="float" value="50" min="0" max="100"
 	       label="Minimum percentage query coverage for BLAST matches"
-	       description="Default is 50%, use 0 for no filtering." />
+	       help="Default is 50%, use 0 for no filtering." />
     </inputs>
     <outputs>
         <data name="output" format="tabular" label="BLAST RBH: $fasta_a.name vs $fasta_b.name" />
