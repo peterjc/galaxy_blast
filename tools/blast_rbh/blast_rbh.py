@@ -33,6 +33,9 @@ if not os.path.isfile(fasta_a):
     stop_err("Missing input file for species A: %r" % fasta_a)
 if not os.path.isfile(fasta_b):
     stop_err("Missing input file for species B: %r" % fasta_b)
+if os.path.abspath(fasta_a) == os.path.abspath(fasta_b):
+    #TODO - is this ever useful, e.g. positive control?
+    stop_err("Asked to compare the FASTA file to itself!")
 
 try:
     min_identity = float(min_identity)
