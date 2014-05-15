@@ -10,7 +10,13 @@
 blast_rbh.py --version
     </version_command>
     <command interpreter="python">
-blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype $seq.blast_type $identity $q_cover "$output"
+blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype
+#if $seq.dbtype=="nucl"
+    $seq.nucl_type
+#else
+    $seq.prot_type
+#end if
+$identity $q_cover "$output"
     </command>
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
@@ -26,13 +32,13 @@ blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype $seq.blast_type $identity $q_cove
                 <option value="nucl">nucleotide</option>
             </param>
             <when value="prot">
-                <param name="blast_type" type="select" display="radio" label="Type of BLAST">
+                <param name="prot_type" type="select" display="radio" label="Type of BLAST">
                     <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
                     <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
                 </param>
             </when>
             <when value="nucl">
-                <param name="blast_type" type="select" display="radio" label="Type of BLAST">
+                <param name="nucl_type" type="select" display="radio" label="Type of BLAST">
                     <option value="megablast">megablast - Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences</option>
                     <option value="blastn">blastn - Traditional BLASTN requiring an exact match of 11, for somewhat similar sequences</option>
                     <option value="blastn-short">blastn-short - BLASTN program optimized for sequences shorter than 50 bases</option>
@@ -48,11 +54,29 @@ blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype $seq.blast_type $identity $q_cove
 	       description="Default is 50%, use 0 for no filtering." />
     </inputs>
     <outputs>
-        <data name="output" format="tabular" label="$seq.blast_type.value RBH: $fasta_a.name vs $fasta_b.name" />
+        <data name="output" format="tabular" label="BLAST RBH: $fasta_a.name vs $fasta_b.name" />
     </outputs>
     <requirements>
     </requirements>
     <tests>
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular" ftype="tabular"/>
+        </test>
+        <test>
+            <param name="fasta_a" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="blastn"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular" ftype="tabular"/>
+        </test>
     </tests>
     <help>
 **What it does**
