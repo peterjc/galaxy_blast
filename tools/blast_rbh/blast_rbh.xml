@@ -1,0 +1,76 @@
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.0">
+    <description>from two FASTA files</description>
+    <requirements>
+            <requirement type="binary">makeblastdb</requirement>
+            <requirement type="binary">blastp</requirement>
+            <requirement type="binary">blastn</requirement>
+            <requirement type="package" version="2.2.29">blast+</requirement>
+    </requirements>
+    <version_command interpreter="python">
+blast_rbh.py --version
+    </version_command>
+    <command interpreter="python">
+blast_rbh.py "$fasta_a" "$fasta_b" $blast $identity $q_cover "$output"
+    </command>
+    <inputs>
+        <param name="fasta_a" type="data" format="fasta"
+	       label="Genes/proteins from species A"
+	       description="FASTA file, one sequence per gene/protein." /> 
+        <param name="fasta_b" type="data" format="fasta"
+	       label="Genes/proteins from species B"
+	       description="FASTA file, one sequence per gene/protein." /> 
+        <param name="blast" type="select" label="Type of comparison?">
+            <option value="blastn">blastn (nucleotide vs nucleotide)</option>
+            <option value="blastp">plastn (protein vs protein)</option>
+        </param>
+	<param name="identity" type="float" value="70" min="0" max="100"
+	       label="Minimum percentage identity for BLAST matches"
+	       description="Default is 70%, use 0 for no filtering." />
+        <param name="q_cover" type="float" value="50" min="0" max="100"
+	       label="Minimum percentage query coverage for BLAST matches"
+	       description="Default is 50%, use 0 for no filtering." />
+    </inputs>
+    <outputs>
+        <data name="output" format="tabular" label="RBH results: $fasta_a.label vs $fasta_b.label" />
+    </outputs>
+    <requirements>
+    </requirements>
+    <tests>
+    </tests>
+    <help>
+**What it does**
+
+Takes two FASTA files (species *A* and species *B*), builds a BLAST database
+for each, runs reciprocal BLAST searchs (*A vs B*, and *B vs A*), optionally
+filters these, and then compiles a list of the reciprocal best hits (RBH).
+
+The output from this tool is a tabular file containing four columns, with
+the order taken from input file A:
+
+====== ======================
+Column Description
+------ ----------------------
+     1 ID from species *A*
+     2 ID from species *B*
+     3 Bitscore from *A vs B*
+     4 Bitscore from *B vs A*
+====== ======================
+
+.. class:: warningmark
+
+**Note**
+
+If you are trying to use BLAST RBH matches to identify candidate orthologues
+or transfer annotation, you *must* use a percentage identity and minimum
+coverage threshold or similiar. See also:
+
+Punta and Ofran (2008) The Rough Guide to In Silico Function Prediction,
+or How To Use Sequence and Structure Information To Predict Protein
+Function. PLoS Comput Biol 4(10): e1000160.
+http://dx.doi.org/10.1371/journal.pcbi.1000160
+
+The defaults are to require 70% sequence identity over the aligned region,
+and that the alignment cover at least 50% of the query sequence.
+
+    </help>
+</tool>
