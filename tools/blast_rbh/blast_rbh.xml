@@ -48,7 +48,7 @@ blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype $seq.blast_type $identity $q_cove
 	       description="Default is 50%, use 0 for no filtering." />
     </inputs>
     <outputs>
-        <data name="output" format="tabular" label="RBH results: $fasta_a.name vs $fasta_b.name" />
+        <data name="output" format="tabular" label="$seq.blast_type.value RBH: $fasta_a.name vs $fasta_b.name" />
     </outputs>
     <requirements>
     </requirements>
