@@ -69,6 +69,13 @@ elif dbtype == "prot":
     blast_exe = "blastp"
 else:
     stop_err("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
+
+try:
+    threads = int(os.environ.get("GALAXY_SLOTS", "1"))
+except:
+    threads = 1
+assert 1 <= threads, threads
+
 makeblastdb_exe = "makeblastdb"
 
 base_path = tempfile.mkdtemp()
@@ -90,9 +97,11 @@ print("Starting...")
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
 print("BLAST databases prepared.")
-run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s"' % (blast_exe, blast_type, fasta_a, db_b, a_vs_b, cols))
+run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+    % (blast_exe, blast_type, fasta_a, db_b, a_vs_b, cols, threads))
 print("BLAST species A vs species B done.")
-run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s"' % (blast_exe, blast_type, fasta_b, db_a, b_vs_a, cols))
+run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+    % (blast_exe, blast_type, fasta_b, db_a, b_vs_a, cols, threads))
 print("BLAST species B vs species A done.")
 
 #TODO - Include identity and coverage filters...
