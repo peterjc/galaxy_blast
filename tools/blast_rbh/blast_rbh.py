@@ -88,10 +88,12 @@ a_vs_b = os.path.join(base_path, "A_vs_B.tabular")
 b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
 log = os.path.join(base_path, "blast.log")
 
-cols = "qseqid sseqid bitscore" # plus: pident qcovs qcovhsp
+cols = "qseqid sseqid bitscore pident qcovhsp" #Or qcovs?
 c_query = 0
 c_match = 1
 c_score = 2
+c_identity = 3
+c_coverage = 4
 
 print("Starting...")
 #TODO - Report log in case of error?
@@ -111,6 +113,8 @@ for line in open(a_vs_b):
     parts = line.rstrip("\n").split("\t")
     a = parts[c_query]
     b = parts[c_match]
+    if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
+        continue
     score = float(parts[c_score])
     if a not in best_a_vs_b or score > best_a_vs_b[a][1]:
         best_a_vs_b[a] = (b, score, parts[c_score])
@@ -126,6 +130,8 @@ for line in open(b_vs_a):
         continue
         #stop_err("The A-vs-B file does not have A-ID %r found in B-vs-A file" % a)
     if b not in b_short_list: continue
+    if float(parts[c_identity])< min_identity or float(parts[c_coverage]) < min_coverage:
+        continue
     score = float(parts[c_score])
     if b not in best_b_vs_a or score > best_b_vs_a[b][1]:
         best_b_vs_a[b] = (a, score, parts[c_score])
@@ -145,5 +151,6 @@ print "Done, %i RBH found" % count
 
 
 #Remove temp files...
-shutil.rmtree(base_path)
+print "Remove %s" % base_path
+#shutil.rmtree(base_path)
 

@@ -69,6 +69,35 @@ $identity $q_cover "$output"
             <output name="output" file="rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular" ftype="tabular"/>
         </test>
         <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="92"/>
+            <param name="q_cover" value="86"/>
+            <output name="output" file="rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular" ftype="tabular"/>
+        </test>
+        <!-- push the percentage identity over the 92.07% level -->
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="92.5"/>
+            <param name="q_cover" value="86"/>
+            <output name="output" file="rbh_none.tabular" ftype="tabular"/>
+        </test>
+	<!-- push the coverage over the 86% level -->
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="92"/>
+            <param name="q_cover" value="87"/>
+            <output name="output" file="rbh_none.tabular" ftype="tabular"/>
+        </test>
+        <test>
             <param name="fasta_a" value="three_human_mRNA.fasta" ftype="fasta"/>
             <param name="fasta_b" value="rhodopsin_nucs.fasta" ftype="fasta"/>
             <param name="dbtype" value="nucl"/>
@@ -103,15 +132,17 @@ Column Description
 
 If you are trying to use BLAST RBH matches to identify candidate orthologues
 or transfer annotation, you *must* use a percentage identity and minimum
-coverage threshold or similiar. See also:
+coverage threshold or similiar. See:
 
 Punta and Ofran (2008) The Rough Guide to In Silico Function Prediction,
 or How To Use Sequence and Structure Information To Predict Protein
 Function. PLoS Comput Biol 4(10): e1000160.
 http://dx.doi.org/10.1371/journal.pcbi.1000160
 
-The defaults are to require 70% sequence identity over the aligned region,
-and that the alignment cover at least 50% of the query sequence.
+The defaults are to require 70% sequence identity over the aligned region
+(using ``pident`` in the BLAST+ tabular output), and that the HSP alignment
+covers at least 50% of the query sequence (using ``qcovhsp`` in the BLAST+
+tabular output).
 
     </help>
 </tool>

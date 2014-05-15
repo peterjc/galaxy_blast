@@ -62,7 +62,7 @@ https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder::
 
-    $ tar -czf blast_rbh.tar.gz tools/blast_rbh/README.rst tools/blast_rbh/blast_rbh.xml tools/blast_rbh/blast_rbh.py tools/blast_rbh/repository_dependencies.xml test-data/rhodopsin_nucs.fasta test-data/three_human_mRNA.fasta test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular
+    $ tar -czf blast_rbh.tar.gz tools/blast_rbh/README.rst tools/blast_rbh/blast_rbh.xml tools/blast_rbh/blast_rbh.py tools/blast_rbh/repository_dependencies.xml test-data/rhodopsin_nucs.fasta test-data/three_human_mRNA.fasta test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular test-data/rbh_none.tabular
 
 Check this worked::
 
@@ -75,6 +75,7 @@ Check this worked::
     test-data/three_human_mRNA.fasta
     test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular
     test-data/rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular
+    test-data/rbh_none.tabular
 
 
 Licence (MIT)
