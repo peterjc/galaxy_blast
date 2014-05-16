@@ -119,21 +119,28 @@ $identity $q_cover "$output"
     <help>
 **What it does**
 
-Takes two FASTA files (species *A* and species *B*), builds a BLAST database
+Takes two FASTA files (*species A* and *species B*), builds a BLAST database
 for each, runs reciprocal BLAST searchs (*A vs B*, and *B vs A*), optionally
-filters these, and then compiles a list of the reciprocal best hits (RBH).
+filters the HSPs, and then compiles a list of the reciprocal best hits (RBH).
 
-The output from this tool is a tabular file containing four columns, with
-the order taken from input file A:
+The output from this tool is a tabular file containing eight columns, with
+information about the BLAST matches used:
 
-====== ======================
+====== =================================
 Column Description
------- ----------------------
-     1 ID from species *A*
-     2 ID from species *B*
+------ ---------------------------------
+     1 ID from *species A*
+     2 ID from *species B*
      3 Bitscore from *A vs B*
-     4 Bitscore from *B vs A*
-====== ======================
+     4 Percentage identity from *A vs B*
+     5 Query coverage from *A vs B*
+     6 Bitscore from *B vs A*
+     7 Percentage identity from *B vs A*
+     8 Query coverage from *B vs A*
+====== =================================
+
+These values correspond to the ``bitscore``, ``pident`` and ``qcovhsp``
+values in the BLAST+ tabular output.
 
 .. class:: warningmark
 

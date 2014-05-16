@@ -11,6 +11,8 @@ Takes the following command line options,
 7. Output filename
 """
 
+# TODO - Output more columns, e.g. pident, qcovs, descriptions?
+
 import os
 import sys
 import tempfile
@@ -104,8 +106,6 @@ run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_exe, blast_type, fasta_b, db_a, b_vs_a, cols, threads))
 print("BLAST species B vs species A done.")
 
-#TODO - Include identity and coverage filters...
-
 best_a_vs_b = dict()
 for line in open(a_vs_b):
     if line.startswith("#"): continue
@@ -116,8 +116,9 @@ for line in open(a_vs_b):
         continue
     score = float(parts[c_score])
     if a not in best_a_vs_b or score > best_a_vs_b[a][1]:
-        best_a_vs_b[a] = (b, score, parts[c_score])
-b_short_list = set(b for (b,score, score_str) in best_a_vs_b.values())
+        # Store bitscore as a float for sorting, original string for output
+        best_a_vs_b[a] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage])
+b_short_list = set(v[0] for v in best_a_vs_b.values())
 
 best_b_vs_a = dict()
 for line in open(b_vs_a):
@@ -133,22 +134,23 @@ for line in open(b_vs_a):
         continue
     score = float(parts[c_score])
     if b not in best_b_vs_a or score > best_b_vs_a[b][1]:
-        best_b_vs_a[b] = (a, score, parts[c_score])
+        # Store bitscore as a float for sorting, original string for output
+        best_b_vs_a[b] = (a, score, parts[c_score], parts[c_identity], parts[c_coverage])
 #TODO - Preserve order from A vs B?
-a_short_list = sorted(set(a for (a,score,score_str) in best_b_vs_a.values()))
+a_short_list = sorted(set(v[0] for v in best_b_vs_a.values()))
 
 count = 0
 outfile = open(out_file, 'w')
-outfile.write("#A_id\tB_id\tA_vs_B\tB_vs_A\n")
+outfile.write("#A_id\tB_id\tA_vs_B bitscore\tA_vs_B pident\tA_vs_B qcovhsp\tB_vs_A bitscore\tB_vs_A pident\tB_vs_A qcovhsp\n")
 for a in a_short_list:
     b = best_a_vs_b[a][0]
     if b in best_b_vs_a and a == best_b_vs_a[b][0]:
-        outfile.write("%s\t%s\t%s\t%s\n" % (a, b, best_a_vs_b[a][2], best_b_vs_a[b][2]))
+        #Output the original string versions of the scores
+        values = [a, b] + list(best_a_vs_b[a][2:]) + list(best_b_vs_a[b][2:])
+        outfile.write("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" % tuple(values))
         count += 1
 outfile.close()
 print "Done, %i RBH found" % count
 
-
 #Remove temp files...
 shutil.rmtree(base_path)
-

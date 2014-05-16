@@ -1,2 +1,2 @@
-#A_id	B_id	A_vs_B	B_vs_A
-sp|P08100|OPSD_HUMAN	gi|57163783|ref|NP_001009242.1|	  701	  701
+#A_id	B_id	A_vs_B bitscore	A_vs_B pident	A_vs_B qcovhsp	B_vs_A bitscore	B_vs_A pident	B_vs_A qcovhsp
+sp|P08100|OPSD_HUMAN	gi|57163783|ref|NP_001009242.1|	  701	96.55	100	  701	96.55	100
