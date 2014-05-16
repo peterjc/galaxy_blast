@@ -1,1 +1,1 @@
-#A_id	B_id	A_vs_B	B_vs_A
+#A_id	B_id	A_vs_B bitscore	A_vs_B pident	A_vs_B qcovhsp	B_vs_A bitscore	B_vs_A pident	B_vs_A qcovhsp
