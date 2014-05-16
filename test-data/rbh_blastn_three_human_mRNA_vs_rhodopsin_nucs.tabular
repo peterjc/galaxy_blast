@@ -1,2 +1,2 @@
-#A_id	B_id	A_vs_B bitscore	A_vs_B pident	A_vs_B qcovhsp	B_vs_A bitscore	B_vs_A pident	B_vs_A qcovhsp
-ENA|BC112106|BC112106.1	gi|57163782|ref|NM_001009242.1|	 1514	92.07	86	 1514	92.07	100
+#A_id	B_id	bitscore	pident	A qcovhsp	B qcovhsp
+ENA|BC112106|BC112106.1	gi|57163782|ref|NM_001009242.1|	 1514	92.07	86	100

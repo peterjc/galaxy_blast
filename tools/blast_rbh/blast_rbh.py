@@ -141,13 +141,28 @@ a_short_list = sorted(set(v[0] for v in best_b_vs_a.values()))
 
 count = 0
 outfile = open(out_file, 'w')
-outfile.write("#A_id\tB_id\tA_vs_B bitscore\tA_vs_B pident\tA_vs_B qcovhsp\tB_vs_A bitscore\tB_vs_A pident\tB_vs_A qcovhsp\n")
+outfile.write("#A_id\tB_id\tbitscore\tpident\tA qcovhsp\tB qcovhsp\n")
 for a in a_short_list:
-    b = best_a_vs_b[a][0]
-    if b in best_b_vs_a and a == best_b_vs_a[b][0]:
+    a_values = best_a_vs_b[a]
+    b = a_values[0]
+    b_values = best_b_vs_a[b]
+    if b in best_b_vs_a and a == b_values[0]:
         #Output the original string versions of the scores
-        values = [a, b] + list(best_a_vs_b[a][2:]) + list(best_b_vs_a[b][2:])
-        outfile.write("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" % tuple(values))
+        values = [a,b]
+        #[1] = bitscore as float, [2] = bitscore as original string 
+        if a_values[1] < b_values[1]:
+            values.append(a_values[2])
+        else:
+            values.append(b_values[2])
+        #[3] = identity as string
+        if float(a_values[3]) < float(b_values[3]):
+            values.append(a_values[3])
+        else:
+            values.append(b_values[3])
+        #[4] = coverage
+        values.append(a_values[4])
+        values.append(b_values[4])
+        outfile.write("%s\t%s\t%s\t%s\t%s\t%s\n" % tuple(values))
         count += 1
 outfile.close()
 print "Done, %i RBH found" % count
