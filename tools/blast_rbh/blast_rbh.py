@@ -62,13 +62,16 @@ if not (0 <= min_coverage <= 100):
 
 
 if dbtype == "nucl":
-    if blast_type not in ["megablast", "blastn", "blastn-short", "dc-megablast"]:
+    if blast_type in ["megablast", "blastn", "blastn-short", "dc-megablast"]:
+         blast_cmd = "blastn -task %s" % blast_type
+    elif blast_type == "tblastx":
+        blast_cmd = "tblastx"
+    else:
         stop_err("Invalid BLAST type for BLASTN: %r" % blast_type)
-    blast_exe = "blastn"
 elif dbtype == "prot":
     if blast_type not in ["blastp", "blastp-short"]:
         stop_err("Invalid BLAST type for BLASTP: %r" % blast_type)
-    blast_exe = "blastp"
+    blast_cmd = "blastp -task %s" % blast_type
 else:
     stop_err("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
 
@@ -99,11 +102,11 @@ print("Starting...")
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
 print("BLAST databases prepared.")
-run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-    % (blast_exe, blast_type, fasta_a, db_b, a_vs_b, cols, threads))
+run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+    % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads))
 print("BLAST species A vs species B done.")
-run('%s -task %s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-    % (blast_exe, blast_type, fasta_b, db_a, b_vs_a, cols, threads))
+run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+    % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
 print("BLAST species B vs species A done.")
 
 best_a_vs_b = dict()

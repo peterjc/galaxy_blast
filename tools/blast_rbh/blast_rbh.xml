@@ -43,6 +43,7 @@ $identity $q_cover "$output"
                     <option value="blastn">blastn - Traditional BLASTN requiring an exact match of 11, for somewhat similar sequences</option>
                     <option value="blastn-short">blastn-short - BLASTN program optimized for sequences shorter than 50 bases</option>
                     <option value="dc-megablast">dc-megablast - Discontiguous megablast used to find more distant (e.g., interspecies) sequences</option>
+                    <option value="tblastx">tblastx - TBLASTX program using translated query against translated database (protein level matches)</option>
                 </param>
             </when>
         </conditional>
