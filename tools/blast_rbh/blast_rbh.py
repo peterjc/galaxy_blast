@@ -97,17 +97,17 @@ c_score = 2
 c_identity = 3
 c_coverage = 4
 
-print("Starting...")
+#print("Starting...")
 #TODO - Report log in case of error?
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
-print("BLAST databases prepared.")
+#print("BLAST databases prepared.")
 run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads))
-print("BLAST species A vs species B done.")
+#print("BLAST species A vs species B done.")
 run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
-print("BLAST species B vs species A done.")
+#print("BLAST species B vs species A done.")
 
 best_a_vs_b = dict()
 for line in open(a_vs_b):
