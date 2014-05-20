@@ -1,1 +1,1 @@
-#A_id	B_id	bitscore	pident	A qcovhsp	B qcovhsp
+#A_id	B_id	A_length	B_length	A_qcovhsp	B_qcovhsp	length	pident	bitscore

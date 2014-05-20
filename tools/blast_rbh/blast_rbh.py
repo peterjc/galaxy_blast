@@ -90,12 +90,14 @@ a_vs_b = os.path.join(base_path, "A_vs_B.tabular")
 b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
 log = os.path.join(base_path, "blast.log")
 
-cols = "qseqid sseqid bitscore pident qcovhsp" #Or qcovs?
+cols = "qseqid sseqid bitscore pident qcovhsp qlen length" #Or qcovs?
 c_query = 0
 c_match = 1
 c_score = 2
 c_identity = 3
 c_coverage = 4
+c_qlen = 5
+c_length = 6
 
 #print("Starting...")
 #TODO - Report log in case of error?
@@ -118,9 +120,11 @@ for line in open(a_vs_b):
     if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
         continue
     score = float(parts[c_score])
+    qlen = int(parts[c_qlen])
+    length = int(parts[c_length])
     if a not in best_a_vs_b or score > best_a_vs_b[a][1]:
         # Store bitscore as a float for sorting, original string for output
-        best_a_vs_b[a] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage])
+        best_a_vs_b[a] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
 b_short_list = set(v[0] for v in best_a_vs_b.values())
 
 best_b_vs_a = dict()
@@ -136,36 +140,38 @@ for line in open(b_vs_a):
     if float(parts[c_identity])< min_identity or float(parts[c_coverage]) < min_coverage:
         continue
     score = float(parts[c_score])
+    qlen = int(parts[c_qlen])
+    length = int(parts[c_length])
     if b not in best_b_vs_a or score > best_b_vs_a[b][1]:
         # Store bitscore as a float for sorting, original string for output
-        best_b_vs_a[b] = (a, score, parts[c_score], parts[c_identity], parts[c_coverage])
+        best_b_vs_a[b] = (a, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
 #TODO - Preserve order from A vs B?
 a_short_list = sorted(set(v[0] for v in best_b_vs_a.values()))
 
 count = 0
 outfile = open(out_file, 'w')
-outfile.write("#A_id\tB_id\tbitscore\tpident\tA qcovhsp\tB qcovhsp\n")
+outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
 for a in a_short_list:
     a_values = best_a_vs_b[a]
     b = a_values[0]
     b_values = best_b_vs_a[b]
     if b in best_b_vs_a and a == b_values[0]:
+        #Start with IDs, lengths [5], coverage [4]
+        values = [a, b, a_values[5], b_values[5], a_values[4], b_values[4]]
+        #Length was an integer so don't care about original string
+        values.append(min(a_values[6], b_values[6]))
         #Output the original string versions of the scores
-        values = [a,b]
-        #[1] = bitscore as float, [2] = bitscore as original string 
-        if a_values[1] < b_values[1]:
-            values.append(a_values[2])
-        else:
-            values.append(b_values[2])
         #[3] = identity as string
         if float(a_values[3]) < float(b_values[3]):
             values.append(a_values[3])
         else:
             values.append(b_values[3])
-        #[4] = coverage
-        values.append(a_values[4])
-        values.append(b_values[4])
-        outfile.write("%s\t%s\t%s\t%s\t%s\t%s\n" % tuple(values))
+        #[1] = bitscore as float, [2] = bitscore as original string 
+        if a_values[1] < b_values[1]:
+            values.append(a_values[2])
+        else:
+            values.append(b_values[2])
+        outfile.write("%s\t%s\t%i\t%i\t%s\t%s\t%i\t%s\t%s\n" % tuple(values))
         count += 1
 outfile.close()
 print "Done, %i RBH found" % count

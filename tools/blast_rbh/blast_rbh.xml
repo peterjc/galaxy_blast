@@ -124,24 +124,31 @@ Takes two FASTA files (*species A* and *species B*), builds a BLAST database
 for each, runs reciprocal BLAST searchs (*A vs B*, and *B vs A*), optionally
 filters the HSPs, and then compiles a list of the reciprocal best hits (RBH).
 
-The output from this tool is a tabular file containing eight columns, with
+The output from this tool is a tabular file containing multiple columns, with
 information about the BLAST matches used:
 
-====== =================================
+====== ==================================
 Column Description
------- ---------------------------------
+------ ----------------------------------
      1 ID from *species A*
      2 ID from *species B*
-     3 Bitscore
-     4 Percentage identity
-     5 Query coverage from *A vs B*
-     6 Query coverage from *B vs A*
-====== =================================
+     3 Length of sequence *A*
+     4 Length of sequence *B*
+     5 Percentage of sequence *A* covered
+     6 Percentage of sequence *B* covered
+     7 HSP alignment length
+     8 HSP percentage identity
+     9 HSP bitscore
+====== ==================================
 
-These values correspond to the ``bitscore``, ``pident`` and ``qcovhsp``
-values in the BLAST+ tabular output. For the bitscore and percentage identity
-the values for *A vs B* and *B vs A* are typically the same, so their minimum
-is shown. The coverage values differ according to the query lengths.
+These values correspond to the ``qseqid``/``sseqid``, ``qlen``/``slen``,
+``qcovhsp``, ``length``, ``pident`` and ``bitscore`` values in the BLAST+
+tabular output.
+
+For the alignment length, bitscore and percentage identity the values for
+*A vs B* and *B vs A* are typically the same, so their minimum is shown.
+The coverage values are given by the HSP alignment length divided by the
+sequence length (adjusted by a factor of three for TBLASTX).
 
 .. class:: warningmark
 
