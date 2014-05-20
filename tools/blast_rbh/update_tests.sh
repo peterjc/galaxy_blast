@@ -21,5 +21,8 @@ echo rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular
 echo rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular
 ../tools/blast_rbh/blast_rbh.py rhodopsin_nucs.fasta three_human_mRNA.fasta nucl megablast 0 0 rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular 
 
+echo rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular
+../tools/blast_rbh/blast_rbh.py rhodopsin_nucs.fasta three_human_mRNA.fasta nucl tblastx 0 0 rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular
+
 echo rbh_blastp_four_human_vs_rhodopsin_proteins.tabular
 ../tools/blast_rbh/blast_rbh.py four_human_proteins.fasta rhodopsin_proteins.fasta prot blastp 0 0 rbh_blastp_four_human_vs_rhodopsin_proteins.tabular 

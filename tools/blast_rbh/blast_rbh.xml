@@ -108,6 +108,15 @@ $identity $q_cover "$output"
             <output name="output" file="rbh_none.tabular" ftype="tabular"/>
         </test>
         <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="tblastx"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular" ftype="tabular"/>
+        </test>
+        <test>
             <param name="fasta_a" value="three_human_mRNA.fasta" ftype="fasta"/>
             <param name="fasta_b" value="rhodopsin_nucs.fasta" ftype="fasta"/>
             <param name="dbtype" value="nucl"/>
