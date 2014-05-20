@@ -99,6 +99,39 @@ c_coverage = 4
 c_qlen = 5
 c_length = 6
 
+def best_hits(blast_tabular):
+    """Iterate over BLAST tabular output, returns best hits as tuples."""
+    current = None
+    best = []
+    with open(blast_tabular) as h:
+        for line in h:
+            if line.startswith("#"):
+                continue
+            parts = line.rstrip("\n").split("\t")
+            if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
+                continue
+            a = parts[c_query]
+            b = parts[c_match]
+            score = float(parts[c_score])
+            qlen = int(parts[c_qlen])
+            length = int(parts[c_length])
+            if current is None:
+                #First hit
+                assert not best
+                current = a
+            elif a != current:
+                #New hit
+                yield best
+                current = a
+            elif score <= best[1]:
+                #No improvement
+                continue
+            best = (a, b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
+    #Best hit for final query:
+    if current is not None and best:
+        yield best
+
+
 #print("Starting...")
 #TODO - Report log in case of error?
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
@@ -111,20 +144,7 @@ run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
 #print("BLAST species B vs species A done.")
 
-best_a_vs_b = dict()
-for line in open(a_vs_b):
-    if line.startswith("#"): continue
-    parts = line.rstrip("\n").split("\t")
-    a = parts[c_query]
-    b = parts[c_match]
-    if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
-        continue
-    score = float(parts[c_score])
-    qlen = int(parts[c_qlen])
-    length = int(parts[c_length])
-    if a not in best_a_vs_b or score > best_a_vs_b[a][1]:
-        # Store bitscore as a float for sorting, original string for output
-        best_a_vs_b[a] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
+best_a_vs_b = dict((v[0], v[1:]) for v in best_hits(a_vs_b))
 b_short_list = set(v[0] for v in best_a_vs_b.values())
 
 best_b_vs_a = dict()
