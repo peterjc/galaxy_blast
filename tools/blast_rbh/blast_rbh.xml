@@ -125,6 +125,25 @@ $identity $q_cover "$output"
             <param name="q_cover" value="0.0"/>
             <output name="output" file="rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular" ftype="tabular"/>
         </test>
+        <!-- this pair of examples test tied best hits -->	
+        <test>
+            <param name="fasta_a" value="k12_ten_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nprot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastp_k12.tabular" ftype="tabular"/>
+        </test>
+        <test>
+            <param name="fasta_a" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="k12_ten_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nprot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastp_k12.tabular" ftype="tabular"/>
+        </test>
     </tests>
     <help>
 **What it does**
@@ -158,6 +177,11 @@ For the alignment length, bitscore and percentage identity the values for
 *A vs B* and *B vs A* are typically the same, so their minimum is shown.
 The coverage values are given by the HSP alignment length divided by the
 sequence length (adjusted by a factor of three for TBLASTX).
+
+Note that if a sequence has equally scoring top BLAST matches to multiple
+sequence in the other file, it will not be considered for an RBH. This
+can happen following gene duplication, or for (near) identical gene
+duplicates.
 
 .. class:: warningmark
 

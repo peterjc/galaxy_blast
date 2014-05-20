@@ -100,8 +100,17 @@ c_qlen = 5
 c_length = 6
 
 def best_hits(blast_tabular):
-    """Iterate over BLAST tabular output, returns best hits as tuples."""
+    """Iterate over BLAST tabular output, returns best hits as 2-tuples.
+
+    Each return value is (query name, tuple of value for the best hit).
+
+    Tied best hits to different sequences are NOT returned.
+
+    One hit is returned for tied best hits to the same sequence
+    (e.g. repeated domains).
+    """
     current = None
+    best_score = None
     best = None
     with open(blast_tabular) as h:
         for line in h:
@@ -115,21 +124,43 @@ def best_hits(blast_tabular):
             score = float(parts[c_score])
             qlen = int(parts[c_qlen])
             length = int(parts[c_length])
+            #print("Considering hit for %s to %s with score %s..." % (a, b, score))
             if current is None:
                 #First hit
                 assert best is None
-                current = a
+                assert best_score is None
+                best = dict()
+                #Now append this hit...
             elif a != current:
                 #New hit
-                yield best
-                current = a
-            elif score <= best[1]:
-                #No improvement
+                if len(best) == 1:
+                    #Unambiguous (no tied matches)
+                    yield current, list(best.values())[0]
+                else:
+                    print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+                best = dict()
+                #Now append this hit...
+            elif score < best_score:
+                #print("No improvement for %s, %s < %s" % (a, score, best_score))
                 continue
-            best = (a, b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
-    #Best hit for final query:
-    if current is not None and best:
-        yield best
+            elif score > best_score:
+                #This is better, discard old best
+                best = dict()
+                #Now append this hit...
+            else:
+                #print("Tied best hits for %s" % a)
+                assert best_score == score
+                #Now append this hit...
+            current = a
+            best_score = score
+            #This will collaspe two equally good hits to the same target (e.g. duplicated domain)
+            best[b] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
+    #Best hit for final query, if unambiguous:
+    if current is not None:
+        if len(best)==1:
+            yield current, list(best.values())[0]
+        else:
+            print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
 
 
 #print("Starting...")
@@ -145,12 +176,13 @@ run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
 #print("BLAST species B vs species A done.")
 
 
-best_b_vs_a = dict((v[0], v[1:]) for v in best_hits(b_vs_a))
+best_b_vs_a = dict(best_hits(b_vs_a))
+
 
 count = 0
 outfile = open(out_file, 'w')
 outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
-for a, b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length in best_hits(a_vs_b):
+for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b):
     if b not in best_b_vs_a:
         #Match b has no best hit
         continue
