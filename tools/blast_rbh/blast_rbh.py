@@ -146,7 +146,6 @@ run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
 
 
 best_b_vs_a = dict((v[0], v[1:]) for v in best_hits(b_vs_a))
-a_short_list = sorted(set(v[0] for v in best_b_vs_a.values()))
 
 count = 0
 outfile = open(out_file, 'w')
