@@ -148,23 +148,16 @@ best_a_vs_b = dict((v[0], v[1:]) for v in best_hits(a_vs_b))
 b_short_list = set(v[0] for v in best_a_vs_b.values())
 
 best_b_vs_a = dict()
-for line in open(b_vs_a):
-    if line.startswith("#"): continue
-    parts = line.rstrip("\n").split("\t")
-    b = parts[c_query]
-    a = parts[c_match]
+for v in best_hits(b_vs_a):
+    b = v[0]
+    a = v[1]
     if a not in best_a_vs_b:
         continue
         #stop_err("The A-vs-B file does not have A-ID %r found in B-vs-A file" % a)
-    if b not in b_short_list: continue
-    if float(parts[c_identity])< min_identity or float(parts[c_coverage]) < min_coverage:
+    if b not in b_short_list:
         continue
-    score = float(parts[c_score])
-    qlen = int(parts[c_qlen])
-    length = int(parts[c_length])
-    if b not in best_b_vs_a or score > best_b_vs_a[b][1]:
-        # Store bitscore as a float for sorting, original string for output
-        best_b_vs_a[b] = (a, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
+    # Store bitscore as a float for sorting, original string for output
+    best_b_vs_a[b] = v[1:]
 #TODO - Preserve order from A vs B?
 a_short_list = sorted(set(v[0] for v in best_b_vs_a.values()))
 
