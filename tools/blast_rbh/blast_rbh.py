@@ -102,7 +102,7 @@ c_length = 6
 def best_hits(blast_tabular):
     """Iterate over BLAST tabular output, returns best hits as tuples."""
     current = None
-    best = []
+    best = None
     with open(blast_tabular) as h:
         for line in h:
             if line.startswith("#"):
@@ -117,7 +117,7 @@ def best_hits(blast_tabular):
             length = int(parts[c_length])
             if current is None:
                 #First hit
-                assert not best
+                assert best is None
                 current = a
             elif a != current:
                 #New hit
@@ -144,48 +144,36 @@ run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
 #print("BLAST species B vs species A done.")
 
-best_a_vs_b = dict((v[0], v[1:]) for v in best_hits(a_vs_b))
-b_short_list = set(v[0] for v in best_a_vs_b.values())
 
-best_b_vs_a = dict()
-for v in best_hits(b_vs_a):
-    b = v[0]
-    a = v[1]
-    if a not in best_a_vs_b:
-        continue
-        #stop_err("The A-vs-B file does not have A-ID %r found in B-vs-A file" % a)
-    if b not in b_short_list:
-        continue
-    # Store bitscore as a float for sorting, original string for output
-    best_b_vs_a[b] = v[1:]
-#TODO - Preserve order from A vs B?
+best_b_vs_a = dict((v[0], v[1:]) for v in best_hits(b_vs_a))
 a_short_list = sorted(set(v[0] for v in best_b_vs_a.values()))
 
 count = 0
 outfile = open(out_file, 'w')
 outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
-for a in a_short_list:
-    a_values = best_a_vs_b[a]
-    b = a_values[0]
-    b_values = best_b_vs_a[b]
-    if b in best_b_vs_a and a == b_values[0]:
-        #Start with IDs, lengths [5], coverage [4]
-        values = [a, b, a_values[5], b_values[5], a_values[4], b_values[4]]
-        #Length was an integer so don't care about original string
-        values.append(min(a_values[6], b_values[6]))
-        #Output the original string versions of the scores
-        #[3] = identity as string
-        if float(a_values[3]) < float(b_values[3]):
-            values.append(a_values[3])
-        else:
-            values.append(b_values[3])
-        #[1] = bitscore as float, [2] = bitscore as original string 
-        if a_values[1] < b_values[1]:
-            values.append(a_values[2])
-        else:
-            values.append(b_values[2])
-        outfile.write("%s\t%s\t%i\t%i\t%s\t%s\t%i\t%s\t%s\n" % tuple(values))
-        count += 1
+for a, b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length in best_hits(a_vs_b):
+    if b not in best_b_vs_a:
+        #Match b has no best hit
+        continue
+    a2, b_score_float, b_score_str, b_identity_str, b_coverage_str, b_qlen, b_length = best_b_vs_a[b]
+    if a != a2:
+        #Not an RBH
+        continue
+    #Start with IDs, lengths, coverage
+    values = [a, b, a_qlen, b_qlen, a_coverage_str, b_coverage_str]
+    #Alignment length was an integer so don't care about original string
+    values.append(min(a_length, b_length))
+    #Output the original string versions of the scores
+    if float(a_identity_str) < float(b_identity_str):
+        values.append(a_identity_str)
+    else:
+        values.append(b_identity_str)
+    if a_score_float < b_score_float:
+        values.append(a_score_str)
+    else:
+        values.append(b_score_str)
+    outfile.write("%s\t%s\t%i\t%i\t%s\t%s\t%i\t%s\t%s\n" % tuple(values))
+    count += 1
 outfile.close()
 print "Done, %i RBH found" % count
 
