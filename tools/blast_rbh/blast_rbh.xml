@@ -18,6 +18,11 @@ blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype
 #end if
 $identity $q_cover "$output"
     </command>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
         <param name="fasta_a" type="data" format="fasta"
