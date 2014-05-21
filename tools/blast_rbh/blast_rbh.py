@@ -99,6 +99,8 @@ c_coverage = 4
 c_qlen = 5
 c_length = 6
 
+tie_warning = 0
+
 def best_hits(blast_tabular):
     """Iterate over BLAST tabular output, returns best hits as 2-tuples.
 
@@ -109,6 +111,7 @@ def best_hits(blast_tabular):
     One hit is returned for tied best hits to the same sequence
     (e.g. repeated domains).
     """
+    global tie_warning
     current = None
     best_score = None
     best = None
@@ -137,7 +140,8 @@ def best_hits(blast_tabular):
                     #Unambiguous (no tied matches)
                     yield current, list(best.values())[0]
                 else:
-                    print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+                    #print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+                    tie_warning += 1
                 best = dict()
                 #Now append this hit...
             elif score < best_score:
@@ -153,14 +157,15 @@ def best_hits(blast_tabular):
                 #Now append this hit...
             current = a
             best_score = score
-            #This will collaspe two equally good hits to the same target (e.g. duplicated domain)
+            #This will collapse two equally good hits to the same target (e.g. duplicated domain)
             best[b] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
     #Best hit for final query, if unambiguous:
     if current is not None:
         if len(best)==1:
             yield current, list(best.values())[0]
         else:
-            print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+            #print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+            tie_warning += 1
 
 
 #print("Starting...")
@@ -207,6 +212,8 @@ for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a
     count += 1
 outfile.close()
 print "Done, %i RBH found" % count
+if tie_warning:
+    sys.stderr.write("Warning: Sequencies with tied best hits found, you may have duplicates/clusters\n")
 
 #Remove temp files...
 shutil.rmtree(base_path)
