@@ -1,4 +1,4 @@
-<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.0">
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.1">
     <description>from two FASTA files</description>
     <requirements>
             <requirement type="binary">makeblastdb</requirement>
@@ -148,6 +148,16 @@ $identity $q_cover "$output"
             <param name="identity" value="0.0"/>
             <param name="q_cover" value="0.0"/>
             <output name="output" file="rbh_blastp_k12.tabular" ftype="tabular"/>
+        </test>
+        <!-- this tests self-comparison -->
+        <test>
+            <param name="fasta_a" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nprot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="80.0"/>
+            <param name="q_cover" value="80.0"/>
+            <output name="output" file="rbh_blastp_k12_self.tabular" ftype="tabular"/>
         </test>
     </tests>
     <help>

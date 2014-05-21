@@ -29,3 +29,6 @@ echo rbh_blastp_four_human_vs_rhodopsin_proteins.tabular
 
 echo rbh_blastp_k12.tabular
 ../tools/blast_rbh/blast_rbh.py k12_edited_proteins.fasta k12_ten_proteins.fasta  prot blastp 0 0 rbh_blastp_k12.tabular
+
+echo rbh_blastp_k12_self.tabular
+../tools/blast_rbh/blast_rbh.py k12_edited_proteins.fasta k12_edited_proteins.fasta prot blastp 80 80 rbh_blastp_k12_self.tabular

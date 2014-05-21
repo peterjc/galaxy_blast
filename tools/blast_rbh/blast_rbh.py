@@ -29,7 +29,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.0"
+    print "BLAST RBH v0.1.1"
     sys.exit(0)
 
 #Parse Command Line
@@ -44,8 +44,10 @@ if not os.path.isfile(fasta_a):
 if not os.path.isfile(fasta_b):
     stop_err("Missing input file for species B: %r" % fasta_b)
 if os.path.abspath(fasta_a) == os.path.abspath(fasta_b):
-    #TODO - is this ever useful, e.g. positive control?
-    stop_err("Asked to compare the FASTA file to itself!")
+    self_comparison = True
+    print("Doing self comparison; ignoring self matches.")
+else:
+    self_comparison = False
 
 try:
     min_identity = float(min_identity)
@@ -101,7 +103,7 @@ c_length = 6
 
 tie_warning = 0
 
-def best_hits(blast_tabular):
+def best_hits(blast_tabular, ignore_self=False):
     """Iterate over BLAST tabular output, returns best hits as 2-tuples.
 
     Each return value is (query name, tuple of value for the best hit).
@@ -124,6 +126,8 @@ def best_hits(blast_tabular):
                 continue
             a = parts[c_query]
             b = parts[c_match]
+            if ignore_self and a == b:
+                continue
             score = float(parts[c_score])
             qlen = int(parts[c_qlen])
             length = int(parts[c_length])
@@ -181,13 +185,13 @@ run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
 #print("BLAST species B vs species A done.")
 
 
-best_b_vs_a = dict(best_hits(b_vs_a))
+best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
 
 
 count = 0
 outfile = open(out_file, 'w')
 outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
-for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b):
+for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b, self_comparison):
     if b not in best_b_vs_a:
         #Match b has no best hit
         continue
