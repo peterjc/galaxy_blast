@@ -17,6 +17,7 @@ import os
 import sys
 import tempfile
 import shutil
+from optparse import OptionParser
 
 def stop_err( msg ):
     sys.stderr.write("%s\n" % msg)
@@ -33,12 +34,32 @@ if "--version" in sys.argv[1:]:
     sys.exit(0)
 
 #Parse Command Line
-#TODO - optparse
-try:
-    fasta_a, fasta_b, dbtype, blast_type, min_identity, min_coverage, out_file = sys.argv[1:]
-except:
-    stop_err("Expect 7 arguments, got %i" % (len(sys.argv) - 1))
+usage = """Use as follows:
 
+$ python blast_rbh.py [options] A.fasta B.fasta
+"""
+
+parser = OptionParser(usage=usage)
+parser.add_option("-a", "--alphabet", dest="dbtype",
+                  default=None,
+                  help="Alphabet type (nucl or prot)")
+parser.add_option("-t", "--task", dest="task",
+                  default=None,
+                  help="BLAST task (e.g. blastp, blastn, megablast)")
+parser.add_option("-i","--identity", dest="min_identity",
+                  default="0",
+                  help="Minimum percentage identity (optional, default 0)")
+parser.add_option("-c", "--coverage", dest="min_coverage",
+                  default="0",
+                  help="Minimum HSP coverage (optional, default 0)")
+parser.add_option("-o", "--output", dest="output",
+                  default=None, metavar="FILE",
+                  help="Output filename")
+options, args = parser.parse_args()
+
+if len(args) != 2:
+    stop_err("Expects two input FASTA filenames")
+fasta_a, fasta_b = args
 if not os.path.isfile(fasta_a):
     stop_err("Missing input file for species A: %r" % fasta_a)
 if not os.path.isfile(fasta_b):
@@ -49,20 +70,30 @@ if os.path.abspath(fasta_a) == os.path.abspath(fasta_b):
 else:
     self_comparison = False
 
+if not options.output:
+    stop_err("Output filename required, e.g. -o example.tab")
+out_file = options.output
+
 try:
-    min_identity = float(min_identity)
+    min_identity = float(options.min_identity)
 except ValueError:
     stop_err("Expected number between 0 and 100 for minimum identity, not %r" % min_identity)
 if not (0 <= min_identity <= 100):
     stop_err("Expected minimum identity between 0 and 100, not %0.2f" % min_identity)
 try:
-    min_coverage = float(min_coverage)
+    min_coverage = float(options.min_coverage)
 except ValueError:
     stop_err("Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage)
 if not (0 <= min_coverage <= 100):
     stop_err("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
 
+if not options.task:
+    stop_err("Missing BLAST task, e.g. -t blastp")
+blast_type = options.task
 
+if not options.dbtype:
+    stop_err("Missing database type, -a nucl, or -a prot")
+dbtype = options.dbtype
 if dbtype == "nucl":
     if blast_type in ["megablast", "blastn", "blastn-short", "dc-megablast"]:
          blast_cmd = "blastn -task %s" % blast_type

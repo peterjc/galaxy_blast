@@ -1,4 +1,4 @@
-<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.1">
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.2">
     <description>from two FASTA files</description>
     <requirements>
             <requirement type="binary">makeblastdb</requirement>
@@ -10,13 +10,16 @@
 blast_rbh.py --version
     </version_command>
     <command interpreter="python">
-blast_rbh.py "$fasta_a" "$fasta_b" $seq.dbtype
+blast_rbh.py "$fasta_a" "$fasta_b"
+-a $seq.dbtype
 #if $seq.dbtype=="nucl"
-    $seq.nucl_type
+-t $seq.nucl_type
 #else
-    $seq.prot_type
+-t $seq.prot_type
 #end if
-$identity $q_cover "$output"
+-i $identity
+-c $q_cover
+-o "$output"
     </command>
     <stdio>
         <!-- Anything other than zero is an error -->
