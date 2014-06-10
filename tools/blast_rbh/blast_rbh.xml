@@ -137,7 +137,7 @@ blast_rbh.py "$fasta_a" "$fasta_b"
         <test>
             <param name="fasta_a" value="k12_ten_proteins.fasta" ftype="fasta"/>
             <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>
-            <param name="dbtype" value="nprot"/>
+            <param name="dbtype" value="prot"/>
             <param name="nucl_type" value="blastp"/>
             <param name="identity" value="0.0"/>
             <param name="q_cover" value="0.0"/>
@@ -146,7 +146,7 @@ blast_rbh.py "$fasta_a" "$fasta_b"
         <test>
             <param name="fasta_a" value="k12_edited_proteins.fasta" ftype="fasta"/>
             <param name="fasta_b" value="k12_ten_proteins.fasta" ftype="fasta"/>
-            <param name="dbtype" value="nprot"/>
+            <param name="dbtype" value="prot"/>
             <param name="nucl_type" value="blastp"/>
             <param name="identity" value="0.0"/>
             <param name="q_cover" value="0.0"/>
@@ -156,7 +156,7 @@ blast_rbh.py "$fasta_a" "$fasta_b"
         <test>
             <param name="fasta_a" value="k12_edited_proteins.fasta" ftype="fasta"/>
             <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>
-            <param name="dbtype" value="nprot"/>
+            <param name="dbtype" value="prot"/>
             <param name="nucl_type" value="blastp"/>
             <param name="identity" value="80.0"/>
             <param name="q_cover" value="80.0"/>
