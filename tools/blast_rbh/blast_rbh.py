@@ -30,7 +30,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.1"
+    print "BLAST RBH v0.1.2"
     sys.exit(0)
 
 #Parse Command Line
