@@ -72,7 +72,7 @@ NCBI BLAST+ (and the older NCBI 'legacy' BLAST) can output in a range of
 formats including text, tabular and a more detailed XML format. You can
 do a lot of things with tabular files in Galaxy (sorting, filtering, joins,
 etc), however until BLAST+ 2.2.28 the tabular output never included the
-hit descriptions (titles) found in the other output formats
+hit descriptions (titles) found in the other output formats.
 
 This tool turns a BLAST XML file into a simple tabular file containing
 one row per query sequence, containing the query identifier and then
@@ -82,7 +82,7 @@ a query doesn't have that many hits, then these entries are left blank.
 This tool can also be used with the tabular output from BLAST+ instead,
 provided the relevant columns are provided. The default settings will
 work with the default 25 column extended output from the BLAST+ tools
-wrapped in Galaxy. Note if a query has not hits, it does not appear in
+wrapped in Galaxy. Note if a query has *no* hits, it does not appear in
 the BLAST tabular output.
 
 **Example Usage**
