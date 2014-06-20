@@ -60,7 +60,7 @@ the main Galaxy repository on BitBucket in September 2009, where they were
 maintained via pull requests and patches from Peter's repository fork:
 https://bitbucket.org/galaxy/galaxy-central/
 
-In August 2010 Dannon Baker from the Galaxy Team migrated the BLAST+ tools
+In August 2012 Dannon Baker from the Galaxy Team migrated the BLAST+ tools
 and datatypes to the Galaxy Tool Shed (links above). This was part of a long
 term plan to move most tools out of the main Galaxy repository. Development
 of the wrappers continued on the 'tools' branch of Peter's Galaxy fork on
