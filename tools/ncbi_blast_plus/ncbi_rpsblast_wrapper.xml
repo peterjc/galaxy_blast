@@ -15,7 +15,7 @@ rpsblast
 #if $db_opts.db_opts_selector == "db":
   -db "${db_opts.database.fields.path}"
 #elif $db_opts.db_opts_selector == "histdb":
-  -db "${os.path.join($db_opts.histdb.extra_files_path,'blastdb')}"
+  -db "${os.path.join($db_opts.histdb.files_path,'blastdb')}"
 #end if
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@
