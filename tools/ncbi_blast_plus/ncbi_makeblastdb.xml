@@ -12,7 +12,7 @@
 "${i.file}"
 #end for
 &amp;&amp;
-makeblastdb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
+makeblastdb -out "${os.path.join($outfile.files_path,'blastdb')}"
 $parse_seqids
 $hash_index
 ## Single call to -in with multiple filenames space separated with outer quotes
