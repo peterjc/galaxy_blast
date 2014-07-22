@@ -116,7 +116,7 @@ before_install:
 #
 
 install:
- - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0117.sqlite
+ - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0120.sqlite
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml
  - rm tool_conf.xml.sample
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml.sample
