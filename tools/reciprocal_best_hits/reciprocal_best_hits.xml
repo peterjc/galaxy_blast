@@ -123,4 +123,7 @@ Note for BLASTX or TBLASTN, those expressions may need adjustment for
 converting from nucleotide coordinates to amino acids (factor of 3).
 
     </help>
+    <citations>
+        <!-- TODO -->
+    </citations>
 </tool>

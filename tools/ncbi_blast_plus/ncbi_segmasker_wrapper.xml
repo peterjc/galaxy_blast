@@ -98,4 +98,5 @@ cite the following papers (a more specific paper covering this wrapper is planne
 
 @REFERENCES@
     </help>
+    <expand macro="blast_citations" />
 </tool>

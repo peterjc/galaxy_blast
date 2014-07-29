@@ -209,4 +209,7 @@ http://dx.doi.org/10.7717/peerj.167
 This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
     </help>
+    <citations>
+      <citation type="doi">10.7717/peerj.167</citation>
+    </citations>
 </tool>

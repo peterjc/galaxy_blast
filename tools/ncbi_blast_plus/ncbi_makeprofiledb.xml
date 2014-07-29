@@ -124,4 +124,5 @@ cite the following papers:
 
 @REFERENCES@
     </help>
+    <expand macro="blast_citations" />
 </tool>
