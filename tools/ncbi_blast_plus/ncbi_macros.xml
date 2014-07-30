@@ -384,13 +384,7 @@ Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
         <citations>
             <citation type="doi">10.1186/1471-2105-10-421</citation>
             <citation type="doi">10.7717/peerj.167</citation>
-            <!-- TODO: @peterjc please modify the following in preparation
-                       BibTeX entry as you see fit or eliminate. -->
-            <citation type="bibtex">@article{"galaxy_blast"
-    author = "Cock, Peter J.A. et al.",
-    journal = "*in preparation*", 
-    year = "2014",
-}</citation>
+            <!-- TODO: Add BibTeX entry / preprint DOI for Galaxy BLAST+ paper -->
         </citations>
     </xml>
     <token name="@OUTPUT_FORMAT@">**Output format**
