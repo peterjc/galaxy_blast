@@ -69,6 +69,7 @@ v0.0.10 - Update help text to mention BLAST+ 2.2.28 can produce tabular files
 v0.1.0  - Switch to using an optparse based API for Python script internally.
         - Support BLAST XML with multiple ``<Iteration>`` blocks per query.
         - Support the default 25 column extended tabular BLAST output.
+v0.1.1  - Embed citation information in the tool XML (new Galaxy feature).
 ======= ======================================================================
 
 
