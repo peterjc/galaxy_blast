@@ -49,9 +49,10 @@ History
 ======= ======================================================================
 Version Changes
 ------- ----------------------------------------------------------------------
-v0.1.0  - Initial public release, targetting NCBI BLAST+ 2.2.29
+v0.1.0  - Initial Test Tool Shed release, targetting NCBI BLAST+ 2.2.29
 v0.1.1  - Supports self-comparison, sometimes useful for spotting duplicates.
 v0.1.2  - Using optparse for command line API.
+        - Fixed Tool Shed dependency definition.
 ======= ======================================================================
 
 
@@ -64,7 +65,7 @@ https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
 the following command from the Galaxy root folder::
 
-    $ tar -czf blast_rbh.tar.gz tools/blast_rbh/README.rst tools/blast_rbh/blast_rbh.xml tools/blast_rbh/blast_rbh.py tools/blast_rbh/repository_dependencies.xml test-data/rhodopsin_nucs.fasta test-data/rhodopsin_proteins.fasta test-data/three_human_mRNA.fasta test-data/four_human_proteins.fasta test-data/k12_edited_proteins.fasta test-data/k12_ten_proteins.fasta test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular test-data/rbh_blastp_four_human_vs_rhodopsin_proteins.tabular test-data/rbh_none.tabular test-data/rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastp_k12.tabular test-data/rbh_blastp_k12_self.tabular
+    $ tar -czf blast_rbh.tar.gz tools/blast_rbh/README.rst tools/blast_rbh/blast_rbh.xml tools/blast_rbh/blast_rbh.py tools/blast_rbh/tool_dependencies.xml test-data/rhodopsin_nucs.fasta test-data/rhodopsin_proteins.fasta test-data/three_human_mRNA.fasta test-data/four_human_proteins.fasta test-data/k12_edited_proteins.fasta test-data/k12_ten_proteins.fasta test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular test-data/rbh_blastp_four_human_vs_rhodopsin_proteins.tabular test-data/rbh_none.tabular test-data/rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastp_k12.tabular test-data/rbh_blastp_k12_self.tabular
 
 Check this worked::
 
@@ -72,7 +73,7 @@ Check this worked::
     tools/blast_rbh/README.rst
     tools/blast_rbh/blast_rbh.xml
     tools/blast_rbh/blast_rbh.py
-    tools/blast_rbh/repository_dependencies.xml
+    tools/blast_rbh/tool_dependencies.xml
     test-data/rhodopsin_nucs.fasta
     test-data/rhodopsin_proteins.fasta
     test-data/three_human_mRNA.fasta
