@@ -129,7 +129,7 @@ v0.0.17 - The BLAST+ search tools now default to extended tabular output
           get one of the missing columns like query or subject length)
 v0.0.18 - Defensive quoting of filenames in case of spaces (where possible,
           BLAST+ handling of some multi-file arguments is problematic).
-v0.0.19 - Added wrappers for rpsblast and rpstblastn, and new blastdb_d.loc
+v0.0.19 - Added wrappers for rpsblast and rpstblastn, and new ``blastdb_d.loc``
           for the domain databases they use (e.g. CDD, PFAM or SMART).
         - Correct case of exception regular expression (for error handling
           fall-back in case the return code is not set properly).
@@ -176,6 +176,7 @@ v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
           (based on contribution from Bjoern Gruening).
         - The RPS-BLAST and RPS-TBLASTN wrappers support using a protein
           domain database from the user's history.
+        - Tool definitions now embed citation information (by John Chilton).
 ======= ======================================================================
 
 

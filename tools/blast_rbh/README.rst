@@ -52,6 +52,7 @@ Version Changes
 v0.1.0  - Initial Test Tool Shed release, targetting NCBI BLAST+ 2.2.29
 v0.1.1  - Supports self-comparison, sometimes useful for spotting duplicates.
 v0.1.2  - Using optparse for command line API.
+        - Tool definition now embeds citation information.
         - Fixed Tool Shed dependency definition.
 ======= ======================================================================
 
