@@ -65,7 +65,7 @@ $adv_opts.ungapped
         </expand>
     </inputs>
     <outputs>
-        <data name="output1" format="tabular" label="${blast_type.value_label} $query.name vs @ON_DB_SUBJECT@">
+        <data name="output1" format="tabular" label="${blast_type.value} $query.name vs @ON_DB_SUBJECT@">
             <expand macro="output_change_format" />
         </data>
     </outputs>
@@ -128,4 +128,5 @@ cite the following papers:
 
 @REFERENCES@
     </help>
+    <expand macro="blast_citations" />
 </tool>

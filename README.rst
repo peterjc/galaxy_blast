@@ -60,7 +60,7 @@ the main Galaxy repository on BitBucket in September 2009, where they were
 maintained via pull requests and patches from Peter's repository fork:
 https://bitbucket.org/galaxy/galaxy-central/
 
-In August 2010 Dannon Baker from the Galaxy Team migrated the BLAST+ tools
+In August 2012 Dannon Baker from the Galaxy Team migrated the BLAST+ tools
 and datatypes to the Galaxy Tool Shed (links above). This was part of a long
 term plan to move most tools out of the main Galaxy repository. Development
 of the wrappers continued on the 'tools' branch of Peter's Galaxy fork on
@@ -93,9 +93,12 @@ Folder Structure
 ================
 
 Within the ``tools`` folder is one folder for each Tool or Tool Suite released
-on the Galaxy Tool Shed. Similarly, ``dependencies`` contains packages for
-Galaxy Tool Shed dependency definitions, and ``datatypes`` contains packages
-for Galaxy Tool Shed datatype definitions.
+on the Galaxy Tool Shed (these child folder names match the Tool Shed names).
+
+Similarly, ``dependencies`` contains packages for Galaxy Tool Shed dependency
+definitions, ``datatypes`` contains packages for Galaxy Tool Shed datatype
+definitions, and ``data_managers`` contains Galaxy Data Managers for tasks
+like setting up local copies of NCBI BLAST databases.
 
 Additionally there is a shared ``test-data`` folder used for functional test
 sample data, and a shared ``tool-data`` folder used for configuration files.

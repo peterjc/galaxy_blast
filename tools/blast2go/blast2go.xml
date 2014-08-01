@@ -1,4 +1,4 @@
-<tool id="blast2go" name="Blast2GO" version="0.0.8">
+<tool id="blast2go" name="Blast2GO" version="0.0.9">
     <description>Maps BLAST results to GO annotation terms</description>
     <requirements>
         <requirement type="package" version="2.5">b2g4pipe</requirement>
@@ -115,4 +115,10 @@ This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 
     </help>
+    <citations>
+        <citation type="doi">10.7717/peerj.167</citation>
+        <citation type="doi">10.1093/nar/gkn176</citation>
+        <citation type="doi">10.1155/2008/619832</citation>
+        <citation type="doi">10.1093/bioinformatics/bti610</citation>
+    </citations>
 </tool>

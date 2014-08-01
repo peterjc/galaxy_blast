@@ -1,0 +1,88 @@
+<tool id="ncbi_convert2blastmask_wrapper" name="NCBI BLAST+ convert2blastmask" version="0.1.00">
+    <description>Convert masking information in lower-case masked FASTA input to file formats suitable for makeblastdb</description>
+    <macros>
+        <token name="@BINARY@">convert2blastmask</token>
+        <import>ncbi_macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <command>
+## The command is a Cheetah template which allows some Python based syntax.
+## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
+convert2blastmask
+-in $infile
+-masking_algorithm "$masking_algorithm"
+-masking_options "$masking_options"
+$parse_seqids
+-out "$outfile"
+-outfmt $outformat
+    </command>
+    <expand macro="stdio" />
+    <inputs>
+        <param name="infile" type="data" format="fasta" label="masked FASTA file"/> 
+        <param name="masking_algorithm" type="select" label="Used masking algorithm">
+            <option value="dust">DUST</option>
+            <option value="seg" selected="true">SEG</option>
+            <option value="windowmasker">windowmasker</option>
+            <option value="repeat">repeat</option>
+            <option value="other">other</option>
+        </param>
+        <param name="masking_options" type="text" value="" size="20" label="Masking algorithm options to create the masked input" 
+            help ="free text to describe the options used to create the masking files. (-masking_options)">
+            <sanitizer invalid_char="">
+                <valid initial="string.printable" />
+            </sanitizer>
+        </param>
+        <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="true" label="Parse Seq-ids in FASTA input" help="(-parse_seqids)" />
+        <param name="outformat" type="select" label="Output format">
+            <option value="maskinfo_asn1_bin">maskinfo ASN.1 binary</option>
+            <option value="maskinfo_asn1_text" selected="True">maskinfo ASN.1 text</option>
+            <option value="maskinfo_xml">maskinfo_xml</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="outfile" format="maskinfo-asn1" label="SEG Masked File">
+            <change_format>
+                <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
+		<!--
+                <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />
+		-->
+                <when input="outformat" value="maskinfo_xml" format="xml" />
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="infile" value="four_human_proteins_masked.fasta" ftype="fasta" />
+            <param name="masking_algorithm" value="seg" />
+            <param name="masking_options" value="window=12; locut=2.2; hicut=2.5" />
+            <param name="parse_seqids" value="True" />
+            <param name="outformat" value="maskinfo_asn1_bin" />
+            <output name="outfile" file="convert2blastmask_four_human_masked.maskinfo-asn1-binary" />
+        </test>
+        <test>
+            <param name="infile" value="four_human_proteins_masked.fasta" ftype="fasta" />
+            <param name="masking_algorithm" value="seg" />
+            <param name="masking_options" value="window=12; locut=2.2; hicut=2.5" />
+            <param name="parse_seqids" value="True" />
+            <param name="outformat" value="maskinfo_asn1_text" />
+            <output name="outfile" file="convert2blastmask_four_human_masked.maskinfo-asn1" />
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+Convert masking information in lower-case masked FASTA input to file formats suitable for makeblastdb.
+
+More information about segmasker can be found in the `BLAST Command Line Applications User Manual`_.
+
+.. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+
+**References**
+
+If you use this Galaxy tool in work leading to a scientific publication please
+cite the following papers (a more specific paper covering this wrapper is planned):
+
+@REFERENCES@
+    </help>
+    <expand macro="blast_citations" />
+</tool>

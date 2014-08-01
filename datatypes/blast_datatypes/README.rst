@@ -31,16 +31,22 @@ v0.0.11 - Final revision as part of the Galaxy main repository, and the
           first release via the Tool Shed
 v0.0.13 - Uses blast.py instead of xml.py to define the datatypes
 v0.0.14 - Includes datatypes for protein and nucleotide BLAST databases
-          (based on work by Edward Kirton)
+          (``blastdbp`` and ``blastdbn``, based on work by Edward Kirton)
 v0.0.15 - Fixes a MetadataElement bug and includes more of the optional
           BLAST database files (contribution from Nicola Soranzo)
 v0.0.16 - Adopt standard MIT License.
         - Use reStructuredText for this README file.
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
         - Nucleotide database definition aware of MegaBLAST index superheader
-v0.0.17 - Add maskinfo-asn1 and maskinfo-asn1-binary sub-datatypes
+v0.0.17 - Add ``maskinfo-asn1`` and ``maskinfo-asn1-binary`` sub-datatypes
+          (contribution from Nicola Soranzo)
 v0.0.18 - Add retries to BLAST XML merge code.
         - Modify display_data method to allow unit tests to function.
+v0.0.19 - Add ``blastdbp`` datatype for BLAST protein domain databases, for use
+          with makeprofiledb and rpsblast (contribution from Bjoern Gruening).
+        - Add ``pssm-asn1`` datatype for Position Specific Scoring Matrices
+          (PSSMs) stored in NCBI's "scoremat" ASN.1 format (usually named
+          as *.smp), used as input files for makeprofiledb.
 ======= ======================================================================
 
 
@@ -55,7 +61,7 @@ Manual Installation
 
 Normally you would install this via the Galaxy ToolShed, which would move
 the provided ``blast.py`` file into a suitable location and process the
-``datatypes_conf.xml`` entry to be combined with your local configuration.
+``datatypes_conf.xml`` entries to be combined with your local configuration.
 
 However, if you really want to this should work for a manual install. First
 update the ``datatypes_conf.xml`` file in the Galaxy main folder by inserting

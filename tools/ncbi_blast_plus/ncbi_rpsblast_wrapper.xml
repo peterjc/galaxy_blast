@@ -1,4 +1,4 @@
-<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="0.1.00">
+<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="0.1.01">
     <description>Search protein domain database (PSSMs) with protein query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
@@ -104,4 +104,5 @@ cite the following papers:
 
 @REFERENCES@
     </help>
+    <expand macro="blast_citations" />
 </tool>

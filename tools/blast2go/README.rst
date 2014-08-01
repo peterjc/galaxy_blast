@@ -1,12 +1,18 @@
 Galaxy wrapper for Blast2GO for pipelines, b2g4pipe
 ===================================================
 
-This wrapper is copyright 2011-2013 by Peter Cock, The James Hutton Institute
+This wrapper is copyright 2011-2014 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below (MIT licence).
 
-This is a wrapper for the command line Java tool b2g4pipe v2.5,
-Blast2GO for pipelines. It is available from the Galaxy Tool Shed at:
+This is a wrapper for the command line Java tool b2g4pipe v2.5, Blast2GO for
+pipelines, currently a free to use download available at:
+http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
+
+Note that this has been superceded by a non-free "Blast2GO Command Line (CLI)":
+http://www.blast2go.com/blast2gocli/
+
+This wrapper is freely available from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 
 
@@ -51,8 +57,8 @@ Manual Installation
 
 The main dependency is b2g4pipe which must be installed manually. Also we
 strongly recommend installing a local Blast2GO database as well (see the
-intructions below about the blast2go.loc file). At the time of writing,
-the current version is b2g4pipe v2.5 which is available here:
+intructions below about the ``blast2go.loc`` file). At the time of writing,
+the last free version is b2g4pipe v2.5 which is available here:
 
 * http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
 
@@ -87,31 +93,33 @@ Configuration
 
 As part of setting up b2g4pipe you will need to setup one or more Blast2GO
 property files which tell the tool which database to use etc. The example
-b2gPipe.properties provided with b2g4pipe is often out of date. The current
+``b2gPipe.properties`` provided with b2g4pipe is now out of date. The current
 server IP address and database name may given on the Blast2GO website, or
 can be found by running the latest GUI version via Java web-start, and
 looking under the tools/options menu. These property files can be anywhere
 accessable to the Galaxy Unix user, we put them with the JAR file etc.
 
-You must tell Galaxy about these Blast2GO property files so that they can be
-offered to the user. Copy file blast2go.loc.sample to tool-data/blast2go.loc
-under the Galaxy folder and edit this to match your installation. This must
-be plain text, tab separated, with three columns:
+You must tell Galaxy about these Blast2GO property files so that they can
+be offered to the user. Copy file ``blast2go.loc.sample`` to
+``tool-data/blast2go.loc`` under the Galaxy folder and edit this to match
+your installation. This must be plain text, tab separated, with three columns:
 
-1. ID for the setup, e.g. Spain_2012_August
-2. Description for the setup, e.g. Database in Spain (August 2012)
-3. Properties filename for the setup, e.g. Spain_2012_August.properties
+1. ID for the setup, e.g. ``Spain_2012_August``
+2. Description for the setup, e.g. ``Database in Spain (August 2012)``
+3. Properties filename for the setup, e.g. ``Spain_2012_August.properties``
    relative to the main JAR file, or with a full path
-   e.g. /opt/b2g4pipe/Spain_2012_August.properties
+   e.g. ``/opt/b2g4pipe/Spain_2012_August.properties``
 
 Avoid including "Blast2GO" in the description (column 2) as this text will be
-included in the automatically assigned output dataset name. The blast2go.loc
+included in the automatically assigned output dataset name. The ``blast2go.loc``
 file allows you to customise the database setup. If for example you have a local
 Blast2GO server running (which we recommend for speed), and you want this to be
-the default setting, include it as the first line in your blast2go.loc file.
+the default setting, include it as the first line in your ``blast2go.loc`` file.
 
 Consult the Blast2GO documentation for details about the property files and
-setting up a local MySQL Blast2GO database.
+setting up a local MySQL Blast2GO database. e.g.
+https://www.blast2go.com/b2gsupport/resources/35-localb2gdb
+
 
 
 History
@@ -126,8 +134,8 @@ v0.0.2  - Documentation clarifications, e.g. concatenated BLAST XML is allowed.
         - Reformats the XML to use old NCBI-style concatenated BLAST XML since
           b2g4pipe crashes with heap space error on with large files using
           current NCBI output.
-v0.0.3  - Include sample loc file, tool-data/blast2go.loc.sample
-v0.0.4  - Include repository_dependencies.xml file for 'blastxml' format
+v0.0.3  - Include sample loc file, ``tool-data/blast2go.loc.sample``
+v0.0.4  - Include ``repository_dependencies.xml`` file for ``blastxml`` format
           (previously included in the core Galaxy installation)
 v0.0.5  - Quote arguments in case of spaces in filenames (internal change)
         - Last release supporting b2g4pipe v2.3.5
@@ -135,8 +143,8 @@ v0.0.6  - Support for b2g4pipe v2.5 instead of v2.3.5
 
           - Now invoked with a class path and es.blast2go.prog.B2GAnnotPipe
             rather then simply calling the jar file
-          - Now uses the switch -annot instead of -a (this change breaks
-            support for b2g4pipe v2.3.5 unfortunately)
+          - Now uses the switch ``-annot`` instead of ``-a`` (this change
+            breaks support for b2g4pipe v2.3.5 unfortunately)
 
         - Catch a few error messages and treat them explicitly as errors.
 v0.0.7  - Update output description in XML file (b2g4pipe v2.3.5 included
@@ -149,7 +157,11 @@ v0.0.8  - Automated installation via the Galaxy Tool Shed.
         - Use reStructuredText for this README file.
         - Updated citation information (Cock et al. 2013).
         - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
-        - Split out massage_xml_for_blast2go.py as a standalone file.
+        - Split out ``massage_xml_for_blast2go.py`` as a standalone file.
+v0.0.9  - Update README file now that BioBam are selling the latest version
+          of the Blast2GO command line tool. For now b2g4pipe v2.5 is still
+          available as a free download.
+        - Tool definition now embeds citation information.
 ======= ======================================================================
 
 

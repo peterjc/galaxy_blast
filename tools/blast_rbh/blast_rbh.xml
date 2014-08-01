@@ -1,0 +1,239 @@
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.2">
+    <description>from two FASTA files</description>
+    <requirements>
+            <requirement type="binary">makeblastdb</requirement>
+            <requirement type="binary">blastp</requirement>
+            <requirement type="binary">blastn</requirement>
+            <requirement type="package" version="2.2.29">blast+</requirement>
+    </requirements>
+    <version_command interpreter="python">
+blast_rbh.py --version
+    </version_command>
+    <command interpreter="python">
+blast_rbh.py "$fasta_a" "$fasta_b"
+-a $seq.dbtype
+#if $seq.dbtype=="nucl"
+-t $seq.nucl_type
+#else
+-t $seq.prot_type
+#end if
+-i $identity
+-c $q_cover
+-o "$output"
+    </command>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+    <inputs>
+        <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
+        <param name="fasta_a" type="data" format="fasta"
+	       label="Genes/proteins from species A"
+	       description="FASTA file, one sequence per gene/protein." /> 
+        <param name="fasta_b" type="data" format="fasta"
+	       label="Genes/proteins from species B"
+	       description="FASTA file, one sequence per gene/protein." /> 
+        <conditional name="seq">
+            <param name="dbtype" type="select" label="Molecule type of FASTA inputs">
+                <option value="prot">protein</option>
+                <option value="nucl">nucleotide</option>
+            </param>
+            <when value="prot">
+                <param name="prot_type" type="select" display="radio" label="Type of BLAST">
+                    <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
+                    <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
+                </param>
+            </when>
+            <when value="nucl">
+                <param name="nucl_type" type="select" display="radio" label="Type of BLAST">
+                    <option value="megablast">megablast - Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences</option>
+                    <option value="blastn">blastn - Traditional BLASTN requiring an exact match of 11, for somewhat similar sequences</option>
+                    <option value="blastn-short">blastn-short - BLASTN program optimized for sequences shorter than 50 bases</option>
+                    <option value="dc-megablast">dc-megablast - Discontiguous megablast used to find more distant (e.g., interspecies) sequences</option>
+                    <option value="tblastx">tblastx - TBLASTX program using translated query against translated database (protein level matches)</option>
+                </param>
+            </when>
+        </conditional>
+	<param name="identity" type="float" value="70" min="0" max="100"
+	       label="Minimum percentage identity for BLAST matches"
+	       help="Default is 70%, use 0 for no filtering." />
+        <param name="q_cover" type="float" value="50" min="0" max="100"
+	       label="Minimum percentage query coverage for BLAST matches"
+	       help="Default is 50%, use 0 for no filtering." />
+    </inputs>
+    <outputs>
+        <data name="output" format="tabular" label="BLAST RBH: $fasta_a.name vs $fasta_b.name" />
+    </outputs>
+    <requirements>
+    </requirements>
+    <tests>
+        <test>
+            <param name="fasta_a" value="four_human_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="rhodopsin_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="prot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastp_four_human_vs_rhodopsin_proteins.tabular" ftype="tabular"/>
+        </test>
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular" ftype="tabular"/>
+        </test>
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="92"/>
+            <param name="q_cover" value="86"/>
+            <output name="output" file="rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular" ftype="tabular"/>
+        </test>
+        <!-- push the percentage identity over the 92.07% level -->
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="92.5"/>
+            <param name="q_cover" value="86"/>
+            <output name="output" file="rbh_none.tabular" ftype="tabular"/>
+        </test>
+	<!-- push the coverage over the 86% level -->
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="megablast"/>
+            <param name="identity" value="92"/>
+            <param name="q_cover" value="87"/>
+            <output name="output" file="rbh_none.tabular" ftype="tabular"/>
+        </test>
+        <test>
+            <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="tblastx"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular" ftype="tabular"/>
+        </test>
+        <test>
+            <param name="fasta_a" value="three_human_mRNA.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="rhodopsin_nucs.fasta" ftype="fasta"/>
+            <param name="dbtype" value="nucl"/>
+            <param name="nucl_type" value="blastn"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular" ftype="tabular"/>
+        </test>
+        <!-- this pair of examples test tied best hits -->	
+        <test>
+            <param name="fasta_a" value="k12_ten_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="prot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastp_k12.tabular" ftype="tabular"/>
+        </test>
+        <test>
+            <param name="fasta_a" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="k12_ten_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="prot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="0.0"/>
+            <param name="q_cover" value="0.0"/>
+            <output name="output" file="rbh_blastp_k12.tabular" ftype="tabular"/>
+        </test>
+        <!-- this tests self-comparison -->
+        <test>
+            <param name="fasta_a" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>
+            <param name="dbtype" value="prot"/>
+            <param name="nucl_type" value="blastp"/>
+            <param name="identity" value="80.0"/>
+            <param name="q_cover" value="80.0"/>
+            <output name="output" file="rbh_blastp_k12_self.tabular" ftype="tabular"/>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+Takes two FASTA files (*species A* and *species B*), builds a BLAST database
+for each, runs reciprocal BLAST searchs (*A vs B*, and *B vs A*), optionally
+filters the HSPs, and then compiles a list of the reciprocal best hits (RBH).
+
+The output from this tool is a tabular file containing multiple columns, with
+information about the BLAST matches used:
+
+====== ==================================
+Column Description
+------ ----------------------------------
+     1 ID from *species A*
+     2 ID from *species B*
+     3 Length of sequence *A*
+     4 Length of sequence *B*
+     5 Percentage of sequence *A* covered
+     6 Percentage of sequence *B* covered
+     7 HSP alignment length
+     8 HSP percentage identity
+     9 HSP bitscore
+====== ==================================
+
+These values correspond to the ``qseqid``/``sseqid``, ``qlen``/``slen``,
+``qcovhsp``, ``length``, ``pident`` and ``bitscore`` values in the BLAST+
+tabular output.
+
+For the alignment length, bitscore and percentage identity the values for
+*A vs B* and *B vs A* are typically the same, so their minimum is shown.
+The coverage values are given by the HSP alignment length divided by the
+sequence length (adjusted by a factor of three for TBLASTX).
+
+Note that if a sequence has equally scoring top BLAST matches to multiple
+sequence in the other file, it will not be considered for an RBH. This
+can happen following gene duplication, or for (near) identical gene
+duplicates.
+
+.. class:: warningmark
+
+**Note**
+
+If you are trying to use BLAST RBH matches to identify candidate orthologues
+or transfer annotation, you *must* use a percentage identity and minimum
+coverage threshold or similiar. See:
+
+Punta and Ofran (2008) The Rough Guide to In Silico Function Prediction,
+or How To Use Sequence and Structure Information To Predict Protein
+Function. PLoS Comput Biol 4(10): e1000160.
+http://dx.doi.org/10.1371/journal.pcbi.1000160
+
+The defaults are to require 70% sequence identity over the aligned region
+(using ``pident`` in the BLAST+ tabular output), and that the HSP alignment
+covers at least 50% of the query sequence (using ``qcovhsp`` in the BLAST+
+tabular output).
+
+
+**References**
+
+A specific paper covering this tool is planned, but please also cite:
+
+Christiam Camacho et al. (2009).
+BLAST+: architecture and applications.
+BMC Bioinformatics. 15;10:421.
+http://dx.doi.org/10.1186/1471-2105-10-421
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
+    </help>
+    <citations>
+        <citation type="doi">10.1186/1471-2105-10-421</citation>
+        <!-- TODO: Add BibTeX entry / preprint DOI for Galaxy BLAST+ paper -->
+    </citations>
+</tool>

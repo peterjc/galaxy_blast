@@ -1,0 +1,158 @@
+Blast-db-mask-info ::= {
+  algo-id 0,
+  algo-program seg,
+  algo-options "window=12; locut=2.2; hicut=2.5",
+  masks {
+    masks {
+      int {
+        from 6,
+        to 18,
+        id swissprot {
+          name "ERP44_HUMAN",
+          accession "Q9BS26",
+          release "reviewed"
+        }
+      },
+      packed-int {
+        {
+          from 11,
+          to 46,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 325,
+          to 332,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 421,
+          to 496,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 501,
+          to 516,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 536,
+          to 558,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 636,
+          to 648,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 737,
+          to 762,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 789,
+          to 806,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 970,
+          to 983,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        },
+        {
+          from 999,
+          to 1010,
+          id swissprot {
+            name "BMP2K_HUMAN",
+            accession "Q9NSY1",
+            release "reviewed"
+          }
+        }
+      },
+      packed-int {
+        {
+          from 3,
+          to 26,
+          id swissprot {
+            name "INSR_HUMAN",
+            accession "P06213",
+            release "reviewed"
+          }
+        },
+        {
+          from 372,
+          to 390,
+          id swissprot {
+            name "INSR_HUMAN",
+            accession "P06213",
+            release "reviewed"
+          }
+        },
+        {
+          from 766,
+          to 791,
+          id swissprot {
+            name "INSR_HUMAN",
+            accession "P06213",
+            release "reviewed"
+          }
+        },
+        {
+          from 1312,
+          to 1324,
+          id swissprot {
+            name "INSR_HUMAN",
+            accession "P06213",
+            release "reviewed"
+          }
+        }
+      },
+      int {
+        from 230,
+        to 246,
+        id swissprot {
+          name "OPSD_HUMAN",
+          accession "P08100",
+          release "reviewed"
+        }
+      }
+    },
+    more FALSE
+  }
+}

@@ -66,7 +66,7 @@ import os
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.1.00"
+    print "v0.1.01"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
@@ -85,7 +85,20 @@ def stop_err( msg ):
 
 if len(sys.argv) == 4 and sys.argv[3] in ["std", "x22", "ext"]:
     #False positive if user really has a BLAST XML file called 'std' or 'ext'...
-    stop_err("ERROR: The script API has changed, sorry.")
+    stop_err("""ERROR: The script API has changed, sorry.
+
+Instead of the old style:
+
+$ python blastxml_to_tabular.py input.xml output.tabular std
+
+Please use:
+
+$ python blastxml_to_tabular.py -o output.tabular -c std input.xml
+
+For more information, use:
+
+$ python blastxml_to_tabular.py -h
+""")
 
 usage = """usage: %prog [options] blastxml[,...]
 

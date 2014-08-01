@@ -1,8 +1,17 @@
-<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.0.10">
-    <description>Make a table from BLAST XML</description>
+<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.1.1">
+    <description>Make a table from BLAST output</description>
     <version_command interpreter="python">blastxml_to_top_descr.py --version</version_command>
     <command interpreter="python">
-      blastxml_to_top_descr.py "${blastxml_file}" "${tabular_file}" ${topN}
+blastxml_to_top_descr.py
+-f "$input.in_format"
+#if $input.in_format == "tabular":
+    --qseqid $input.qseqid
+    --sseqid $input.sseqid
+    --salltitles $input.salltitles
+#end if
+-o "${tabular_file}"
+-t ${topN}
+"${in_file}"
     </command>
     <stdio>
         <!-- Assume anything other than zero is an error -->
@@ -10,19 +19,49 @@
         <exit_code range=":-1" />
     </stdio>
     <inputs>
-        <param name="blastxml_file" type="data" format="blastxml" label="BLAST results as XML"/> 
-	<param name="topN" type="integer" min="1" max="100" optional="false" label="Number of descriptions" value="3"/>
+        <conditional name="input">
+            <param name="in_format" type="select" label="Input format">
+                <option value="blastxml" select="True">BLAST XML</option>
+                <option value="tabular">Tabular</option>
+            </param>
+            <when value="blastxml">
+                <param name="in_file" type="data" format="blastxml" label="BLAST results as XML"/>
+            </when>
+            <when value="tabular">
+                <param name="in_file" type="data" format="tabular" label="BLAST results as tabular"/>
+                <param name="qseqid" type="data_column" data_ref="in_file"
+		       multiple="False" numerical="False" default_value="1" value="1"
+		       label="Column containing query ID (qseqid)"
+		       help="This is column 1 in standard BLAST tabular output" />
+		<param name="sseqid" type="data_column" data_ref="in_file"
+		       multiple="False" numerical="False" default_value="2" value="2"
+		       label="Column containing match ID (sseqid)"
+		       help="This is column 2 in standard BLAST tabular output"/>
+                <param name="salltitles" type="data_column" data_ref="in_file"
+		       multiple="False" numerical="False" default_value="25" value="25"
+                       label="Column containing containing descriptions (salltitles)"
+		       help="This is column 25 in the default extended BLAST tabular output"/>
+            </when>
+        </conditional>
+        <param name="topN" type="integer" min="1" max="100" optional="false" label="Number of descriptions" value="3"/>
     </inputs>
     <outputs>
-        <data name="tabular_file" format="tabular" label="Top $topN descriptions from $blastxml_file.name" />
+        <data name="tabular_file" format="tabular" label="Top $topN descriptions from $input.in_file.name" />
     </outputs>
     <requirements>
     </requirements>
     <tests>
         <test>
-            <param name="blastxml_file" value="blastp_four_human_vs_rhodopsin.xml" ftype="blastxml" />
+            <param name="in_format" value="blastxml" />
+            <param name="in_file" value="blastp_four_human_vs_rhodopsin.xml" ftype="blastxml" />
             <param name="topN" value="3" />
             <output name="tabular_file" file="blastp_four_human_vs_rhodopsin_top3.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="in_format" value="tabular" />
+            <param name="in_file" value="blastp_four_human_vs_rhodopsin_converted_ext.tabular" ftype="tabular" />
+            <param name="topN" value="3" />
+            <output name="tabular_file" file="blastp_four_human_vs_rhodopsin_top3_positive.tabular" ftype="tabular" />
         </test>
     </tests>
     <help>
@@ -33,12 +72,18 @@ NCBI BLAST+ (and the older NCBI 'legacy' BLAST) can output in a range of
 formats including text, tabular and a more detailed XML format. You can
 do a lot of things with tabular files in Galaxy (sorting, filtering, joins,
 etc), however until BLAST+ 2.2.28 the tabular output never included the
-hit descriptions (titles) found in the other output formats
+hit descriptions (titles) found in the other output formats.
 
 This tool turns a BLAST XML file into a simple tabular file containing
 one row per query sequence, containing the query identifier and then
-the three (by default) top hit descriptions. If a query doesn't have
-that many hits, then these entries are left blank.
+the three (by default) top hit descriptions (i.e. the first three). If
+a query doesn't have that many hits, then these entries are left blank.
+
+This tool can also be used with the tabular output from BLAST+ instead,
+provided the relevant columns are provided. The default settings will
+work with the default 25 column extended output from the BLAST+ tools
+wrapped in Galaxy. Note if a query has *no* hits, it does not appear in
+the BLAST tabular output.
 
 **Example Usage**
 
@@ -63,4 +108,7 @@ This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blastxml_to_top_descr
 
     </help>
+    <citations>
+        <citation type="doi">10.7717/peerj.167</citation>
+    </citations>
 </tool>

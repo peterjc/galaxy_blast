@@ -12,7 +12,10 @@
     <tool file="ncbi_blast_plus/ncbi_tblastn_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_tblastx_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_dustmasker_wrapper.xml" />
+    <tool file="ncbi_blast_plus/ncbi_segmasker_wrapper.xml" />
     <tool file="ncbi_blast_plus/ncbi_makeblastdb.xml" />
+    <tool file="ncbi_blast_plus/ncbi_makeprofiledb.xml" />
+    <tool file="ncbi_blast_plus/ncbi_convert2blastmask_wrapper.xml" />
     <!-- No tests yet (trying gives an error from the framework)
          or missing a dependency like cdd_blast database for deltablast
     <tool file="ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml" />    
@@ -23,6 +26,7 @@
     <tool file="ncbi_blast_plus/ncbi_deltablast_wrapper.xml" />
     <tool file="reciprocal_best_hits/reciprocal_best_hits.xml" />
     -->
+    <tool file="blast_rbh/blast_rbh.xml" />
     <tool file="ncbi_blast_plus/blastxml_to_tabular.xml" />
     <tool file="blast2go/blast2go.xml" />
   </section>

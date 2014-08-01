@@ -1,0 +1,128 @@
+<tool id="ncbi_makeprofiledb" name="NCBI BLAST+ makeprofiledb" version="0.1.01">
+    <description>Make profile database</description>
+    <macros>
+        <token name="@BINARY@">makeprofiledb</token>
+        <import>ncbi_macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <command>
+##Unlike makeblastdb, makeprofiledb needs directory to exist already:
+mkdir -p $outfile.extra_files_path &amp;&amp;
+makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
+
+##We turn $infile_list into $infiles with a configfile entry defined below
+-in $infiles
+
+#if $title:
+-title "$title"
+#else:
+##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
+-title "Profile Database"
+#end if
+
+-threshold $threshold
+
+#if str($contain_pssm_scores.contain_pssm_scores_type) == 'no':
+    -gapopen $contain_pssm_scores.gapopen
+    -gapextend $contain_pssm_scores.gapextend
+    -scale $contain_pssm_scores.scale
+    -matrix $contain_pssm_scores.matrix
+#end if
+
+-obsr_threshold $obsr_threshold
+-exclude_invalid $exclude_invalid
+
+-logfile "$outfile"
+    </command>
+    <expand macro="stdio" />
+    <inputs>
+        <param name="input_file" type="data" multiple="true" optional="false" format="pssm-asn1"
+	       label="Input PSSM files(s)"
+	       help="One or NCBI PSSM ASN.1 format scoremat files (often named *.smp)" />
+        <param name="infile_list" type="data" multiple="true" format="pssm-asn1" />
+
+        <param name="title" type="text" value="" label="Title for the profile database" help="This is the database name shown in BLAST search output" />
+        <param name="threshold" type="float" size="5" value="9.82" label="Minimum word score to add a word to the lookup table" />
+
+        <!-- output options -->
+        <!-- Initially we're only offering the default, RPS databases for use with rpsblast and rpstblastn
+        <param name="dbtype" type="select" display="radio" label="Type of database">
+            <option value="cobalt">Cobalt</option>
+            <option value="delta">Delta</option>
+            <option value="rps" selected="true">RPS</option>
+        </param>
+        -->
+
+        <conditional name="contain_pssm_scores">
+            <param name="contain_pssm_scores_type" type="select" label="Does your input file contain PSSM scores?">
+              <option value="yes" selected="True">Yes</option>
+              <option value="no">No</option>
+            </param>
+            <when value="yes" />
+            <when value="no">
+                <param name="gapopen" type="integer" size="5" value="" label="Cost to open a gap" />
+                <param name="gapextend" type="integer" size="5" value="" label="Cost to extend a gap" />
+                <param name="scale" type="float" size="5" value="" label="PSSM scale factor" />
+                <expand macro="input_scoring_matrix" />
+            </when>
+        </conditional>
+
+        <!--  Delta Blast Options -->
+        <param name="exclude_invalid" type="boolean" truevalue="true" falsevalue="false" checked="true" 
+            label="Exclude invalid domains?"
+            help="Exclude domains that do not pass validation test" />
+        <param name="obsr_threshold" type="float" size="5" value="6.0"
+            label="Observation threshold"            
+            help="Exclude domains with with maximum number of independent observations below this threshold" />
+    </inputs>
+    <configfiles>
+        <configfile name="infiles">
+#for $infile in $input_file
+${infile}
+#end for
+        </configfile>
+    </configfiles>
+    <outputs>
+        <data name="outfile" format="blastdbd" label="RPS database from ${on_string}" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input_file" value="cd00003.smp,cd00008.smp" ftype="pssm-asn1" />
+            <param name="title" value="Just 2 PSSM matrices" />
+            <param name="contain_pssm_scores_type" value="yes" />
+            <output name="out_file" file="empty_file.dat" ftype="blastdbd" >
+                <extra_files type="file" value="cd00003_and_cd00008.phr" name="blastdb.phr" />
+                <extra_files type="file" value="cd00003_and_cd00008.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="cd00003_and_cd00008.psq" name="blastdb.psq" />
+                <extra_files type="file" value="cd00003_and_cd00008.freq" name="blastdb.freq" />
+                <extra_files type="file" value="cd00003_and_cd00008.loo" name="blastdb.loo" />
+                <extra_files type="file" value="cd00003_and_cd00008.psd" name="blastdb.psd" />
+                <extra_files type="file" value="cd00003_and_cd00008.psi" name="blastdb.psi" />
+                <extra_files type="file" value="cd00003_and_cd00008.rps" name="blastdb.rps" />
+                <extra_files type="file" value="cd00003_and_cd00008.aux" name="blastdb.aux" />
+            </output>
+        </test>
+    </tests>
+    <help>
+**What it does**
+
+Make a protein domain profile database (for use with RPS-BLAST or RSP-TBLASTN)
+from one or more Position Specific Scoring Matrices (PSSM) files in the NCBI
+"scoremat" ASN.1 format (usually named ``*.smp``).
+
+This is a wrapper for the NCBI BLAST+ tool 'makeprofiledb'.
+
+More information about makeprofiledb can be found in the `BLAST Command Line Applications User Manual`_.
+
+.. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+
+
+**References**
+
+If you use this Galaxy tool in work leading to a scientific publication please
+cite the following papers:
+
+@REFERENCES@
+    </help>
+    <expand macro="blast_citations" />
+</tool>

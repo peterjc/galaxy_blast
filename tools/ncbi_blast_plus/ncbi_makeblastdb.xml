@@ -8,50 +8,44 @@
     <command interpreter="python">check_no_duplicates.py
 ##First check for duplicates (since BLAST+ 2.2.28 fails to do so)
 ##and abort (via the ampersand ampersand trick) if any are found.
-#for $i in $in
-"${i.file}"
-#end for
+#for i in $input_file#"${i}" #end for#
 &amp;&amp;
 makeblastdb -out "${os.path.join($outfile.files_path,'blastdb')}"
 $parse_seqids
 $hash_index
 ## Single call to -in with multiple filenames space separated with outer quotes
 ## (presumably any filenames with spaces would be a problem). Note this gives
-## some extra spaces, e.g. -in " file1 file2 file3  " but BLAST seems happy:
--in "
-#for $i in $in
-${i.file}
-#end for
-"
+## some extra spaces, e.g. -in "file1 file2 file3 " but BLAST seems happy:
+-in "#for i in $input_file#${i} #end for#"
 #if $title:
 -title "$title"
 #else:
 ##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
 -title "BLAST Database"
 #end if
--dbtype $dbtype 
-#set $mask_string = ''
-#set $sep = '-mask_data '
-#for $i in $mask_data
-#set $mask_string += $sep + str($i.file)
-#set $sep = ','
+-dbtype $dbtype
+## --------------------------------------------------------------------
+## Masking
+## --------------------------------------------------------------------
+## HACK: If no mask files, evaluates as a list with just None in it:
+## See Trello issue https://trello.com/c/lp5YmA1O
+#if ' '.join( map(str, $mask_data_file) ) != 'None':
+#for i in $mask_data_file:
+-mask_data "${i}"
 #end for
-$mask_string
-## #set $gi_mask_string = ''
-## #set $sep = '-gi_mask -gi_mask_name '
-## #for $i in $gi_mask
-## #set $gi_mask_string += $sep + str($i.file)
-## #set $sep = ','
-## #end for
-## $gi_mask_string
-## #if $tax.select == 'id':
-## -taxid $tax.id
-## #else if $tax.select == 'map':
-## -taxid_map $tax.map
-## #end if
+#end if
+## --------------------------------------------------------------------
+## Taxonomy
+## --------------------------------------------------------------------
+#if $tax.taxselect == 'id':
+-taxid $tax.taxid
+## TODO - Can we use a tabular file for the taxonomy mapping?
+## #else if $tax.taxselect == 'map':
+## -taxid_map $tax.taxmap
+#end if
 ## --------------------------------------------------------------------
 ## Capture the stdout log information to the primary file (plain text):
-&gt;&gt; "$outfile"
+&gt; "$outfile"
     </command>
     <expand macro="stdio" />
     <inputs>
@@ -59,47 +53,38 @@ $mask_string
             <option value="prot">protein</option>
             <option value="nucl">nucleotide</option>
         </param>
-        <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)
+        <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)?
              NOTE Double check the new database would be self contained first
-        <repeat name="in" title="BLAST or FASTA Database" min="1">
-            <param name="file" type="data" format="fasta,blastdbn,blastdbp" label="BLAST or FASTA database" />
-        </repeat>
         -->
-        <!-- TODO Switch this to using <param ... multiple="true" /> instead of <repeat> block? -->
-        <repeat name="in" title="FASTA file" min="1">
-            <param name="file" type="data" format="fasta" />
-        </repeat>
+        <!-- Note this is a mandatory parameter - default should be most recent FASTA file -->
+        <param name="input_file" type="data" multiple="true" optional="false" format="fasta" label="Input FASTA files(s)" help="One or more FASTA files" />
         <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
         <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
         <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
         <!-- SEQUENCE MASKING OPTIONS -->
-        <repeat name="mask_data" title="Masking data file">
-            <param name="mask_data_file" type="data" format="maskinfo-asn1,maskinfo-asn1-binary" label="ASN.1 file containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
-        </repeat>
-        <!-- TODO
-        <repeat name="gi_mask" title="Create GI indexed masking data">
-            <param name="gi_mask_file" type="data" format="asnb" label="Masking data output file" />
-        </repeat>
-        -->
-
+        <!-- Note this is an optional parameter - default should be NO files -->
+        <param name="mask_data_file" type="data" multiple="true" optional="true" value="" format="maskinfo-asn1,maskinfo-asn1-binary" label="Optional ASN.1 file(s) containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
+        <!-- TODO - Option to create GI indexed masking data? via -gi_mask and -gi_mask_name? -->
         <!-- TAXONOMY OPTIONS -->
-        <!-- TODO
         <conditional name="tax">
-            <param name="select" type="select" label="Taxonomy options">
-                <option value="">Do not assign sequences to Taxonomy IDs</option>
-                <option value="id">Assign all sequences to one Taxonomy ID</option>
+            <param name="taxselect" type="select" label="Taxonomy options">
+                <option value="">Do not assign a Taxonomy ID to the sequences</option>
+                <option value="id">Assign the same Taxonomy ID to all the sequences</option>
+                <!--
                 <option value="map">Supply text file mapping sequence IDs to taxnomy IDs</option>
+                -->
             </param>
             <when value="">
             </when>
             <when value="id">
-                <param name="id" type="integer" value="" label="NCBI taxonomy ID" help="Integer &gt;=0" />
+                <param name="taxid" type="integer" value="" label="NCBI taxonomy ID" help="Integer &gt;=0, e.g. 9606 for Homo sapiens" min="0" />
             </when>
+            <!-- TODO: File format?
             <when value="map">
-                <param name="file" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
+                <param name="taxmap" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
             </when>
+            -->
         </conditional>
-        -->
     </inputs>
     <outputs>
         <!-- If we only accepted one FASTA file, we could use its human name here... -->
@@ -112,14 +97,54 @@ $mask_string
     </outputs>
     <tests>
         <!-- Note the (two line) PIN file is not reproducible run to run.
+             Likewise there is a datestamp in the log file as well, so use contains comparison
+             With and without the masking makes no difference.
+             With and without the taxid the only real difference is in the *.phr file.
         -->
         <test>
             <param name="dbtype" value="prot" />
-            <param name="file" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
             <param name="title" value="Just 4 human proteins" />
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
-            <output name="out_file" file="four_human_proteins.fasta.log" ftype="blastdbp" lines_diff="6">
+            <output name="out_file" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
+                <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
+                <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
+                <extra_files type="file" value="four_human_proteins.fasta.pog" name="blastdb.pog" />
+                <extra_files type="file" value="four_human_proteins.fasta.phd" name="blastdb.phd" />
+                <extra_files type="file" value="four_human_proteins.fasta.phi" name="blastdb.phi" />
+                <extra_files type="file" value="four_human_proteins.fasta.psd" name="blastdb.psd" />
+                <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
+            </output>
+        </test>
+        <test>
+            <param name="dbtype" value="prot" />
+            <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="title" value="Just 4 human proteins" />
+            <param name="parse_seqids" value="" />
+            <param name="hash_index" value="true" />
+            <param name="taxselect" value="id" />
+            <param name="taxid" value="9606" />
+            <output name="out_file" compare="contains" file="four_human_proteins_taxid.fasta.log.txt" ftype="blastdbp">
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.phr" name="blastdb.phr" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.psq" name="blastdb.psq" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.pog" name="blastdb.pog" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.phd" name="blastdb.phd" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.phi" name="blastdb.phi" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.psd" name="blastdb.psd" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.psi" name="blastdb.psi" />
+            </output>
+        </test>
+        <test>
+            <param name="dbtype" value="prot" />
+            <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="title" value="Just 4 human proteins" />
+            <param name="parse_seqids" value="" />
+            <param name="hash_index" value="true" />
+            <param name="mask_data_file" value="segmasker_four_human.maskinfo-asn1" ftype="maskinfo-asn1" />
+            <output name="out_file" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
                 <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
                 <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
@@ -155,4 +180,5 @@ cite the following papers:
 
 @REFERENCES@
     </help>
+    <expand macro="blast_citations" />
 </tool>

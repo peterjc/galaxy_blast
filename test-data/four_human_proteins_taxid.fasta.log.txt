@@ -1,0 +1,5 @@
+New DB title:  Just 4 human proteins
+Sequence type: Protein
+Keep Linkouts: T
+Keep MBits: T
+Maximum file size: 1000000000B

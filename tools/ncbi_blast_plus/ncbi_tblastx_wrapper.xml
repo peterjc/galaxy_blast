@@ -74,7 +74,7 @@ $adv_opts.strand
 
 **What it does**
 
-Search a *translated nucleotide database* using a *protein query*,
+Search a *translated nucleotide database* using a *translated nucleotide query*,
 using the NCBI BLAST+ tblastx command line tool.
 
 @FASTA_WARNING@
@@ -92,4 +92,5 @@ cite the following papers:
 
 @REFERENCES@
     </help>
+    <expand macro="blast_citations" />
 </tool>

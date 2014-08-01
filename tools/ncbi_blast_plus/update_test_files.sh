@@ -1,4 +1,5 @@
-OB#!/bin/sh
+#!/bin/sh
+set -e
 echo "This will update test files using the current version of BLAST+"
 
 if [ -f "tools/ncbi_blast_plus/make_ncbi_blast_plus.sh" ]
@@ -17,9 +18,39 @@ echo
 echo makeblastdb
 echo ===========
 #Doing this first in case future tests use one of the local databases
+#Note we delete any old database to avoid this line in the log:
+#"Deleted existing BLAST database with identical name."
 
 echo "four_human_proteins.fasta"
-makeblastdb -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot
+rm -f test-data/four_human_proteins.fasta.p*
+makeblastdb -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot > four_human_proteins.fasta.log
+
+echo "four_human_proteins_taxid.fasta"
+#Bar the *.pin file and *.log with trivial differences due to a time stamp,
+#only real difference expected is the TaxID embedded in the *.phr file:
+rm -f test-data/four_human_proteins_taxid.fasta.p*
+makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
+
+echo
+echo makeprofiledb
+echo =============
+
+echo "cd00003_and_cd00008"
+#Rather than supplying a file listing *.smp inputs, using stdin
+echo "cd00003.smp cd00008.smp" | makeprofiledb -in /dev/stdin -out cd00003_and_cd00008 -title "Just 2 PSSM matrices"
+
+echo
+echo Masking
+echo =======
+
+echo "segmasker_four_human.fasta"
+segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.fasta -outfmt fasta
+
+echo "segmasker_four_human.maskinfo-asn1"
+segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.maskinfo-asn1 -outfmt maskinfo_asn1_text
+
+echo "segmasker_four_human.maskinfo-asn1-binary"
+segmasker -in four_human_proteins.fasta -window 12 -locut 2.2 -hicut 2.5 -out segmasker_four_human.maskinfo-asn1-binary -outfmt maskinfo_asn1_bin
 
 echo
 echo Main
@@ -54,6 +85,9 @@ blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gen
 
 echo "blastx_rhodopsin_vs_four_human_ext.tabular"
 blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_vs_four_human_ext.tabular -outfmt "$EXT"
+
+echo "blastx_rhodopsin_vs_four_human_all.tabular"
+blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_vs_four_human_all.tabular -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles qgi qacc qaccver sallseqid sgi sallgi sacc saccver sallacc stitle sstrand frames btop qcovs qcovhsp staxids sscinames scomnames sblastnames sskingdoms"
 
 echo "tblastn_four_human_vs_rhodopsin.xml"
 tblastn -query four_human_proteins.fasta -subject rhodopsin_nucs.fasta -evalue 1e-10 -out tblastn_four_human_vs_rhodopsin.xml -outfmt 5 -db_gencode 1 -seg no -matrix BLOSUM80

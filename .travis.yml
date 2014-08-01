@@ -12,6 +12,14 @@
 #
 language: java
 
+# We use the TravisCI build matrix to test two versions of the
+# Galaxy test framework, the older Twill based one, and the newer
+# API based one:
+#
+env:
+ - GALAXY_TEST_DEFAULT_INTERACTOR=twill
+ - GALAXY_TEST_DEFAULT_INTERACTOR=api
+
 # Installing Galaxy
 # =================
 #
@@ -79,6 +87,7 @@ before_install:
  - tar -zxvf master | tail
  - cd galaxy-central-master
 
+
 # Configuring tools within Galaxy
 # ===============================
 #
@@ -107,13 +116,14 @@ before_install:
 #
 
 install:
- - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0117.sqlite
+ - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0120.sqlite
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml
  - rm tool_conf.xml.sample
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml.sample
  - ln -s ${TRAVIS_BUILD_DIR}/tools/ncbi_blast_plus/ tools/ncbi_blast_plus
  - ln -s ${TRAVIS_BUILD_DIR}/tools/blastxml_to_top_descr/ tools/blastxml_to_top_descr
  - ln -s ${TRAVIS_BUILD_DIR}/tools/reciprocal_best_hits/ tools/reciprocal_best_hits
+ - ln -s ${TRAVIS_BUILD_DIR}/tools/blast_rbh/ tools/blast_rbh
  - ln -s ${TRAVIS_BUILD_DIR}/tools/blast2go/ tools/blast2go
  - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
@@ -121,6 +131,7 @@ install:
  - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
  - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
  - ./run.sh --stop-daemon || true
+ - python scripts/fetch_eggs.py
 
 
 # Testing tools in Galaxy

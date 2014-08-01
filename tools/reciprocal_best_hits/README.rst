@@ -1,18 +1,25 @@
-Galaxy tool to find Reciprocal Best Hists (RBH) from BLAST etc
-==============================================================
+Galaxy tool to find Reciprocal Best Hits (RBH) from BLAST etc
+=============================================================
 
-This tool is copyright 2011-2013 by Peter Cock, The James Hutton Institute
+This tool is copyright 2011-2014 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
 This tool is a short Python script to parse a BLAST tabular file (or similar),
 and extract the reciprocal best hits.
 
-This is a work in progress. I am considering supporting BLAST XML as input,
+This was an experiment. I was also considering supporting BLAST XML as input,
 which could require extensions to Galaxy ideally so that the current column
 selection parameters can be conditional on tabular input. This would make
 it possible to integrate BLAST filtering into this tool - although that
 might be better done as a separate tool instead.
+
+This tool has been superceded by an integrated BLAST RBH tool taking two
+FASTA files as input instead, see:
+
+* https://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
+* https://testtoolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
+* https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 
 
 Licence (MIT)
