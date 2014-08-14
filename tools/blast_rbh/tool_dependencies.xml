@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <tool_dependency>
+    <package name="biopython" version="1.64">
+        <repository name="package_biopython_1_64" owner="biopython" />
+    </package>
     <package name="blast+" version="2.2.29">
         <repository name="package_blast_plus_2_2_29" owner="iuc" />
     </package>
