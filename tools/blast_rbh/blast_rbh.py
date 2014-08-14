@@ -12,7 +12,6 @@ Takes the following command line options,
 """
 
 # TODO - Output more columns, e.g. pident, qcovs, descriptions?
-# TODO - Make just one database for self mode
 
 import os
 import sys
@@ -122,11 +121,16 @@ makeblastdb_exe = "makeblastdb"
 
 base_path = tempfile.mkdtemp()
 tmp_a = os.path.join(base_path, "SpeciesA.fasta")
-tmp_b = os.path.join(base_path, "SpeciesB.fasta")
 db_a = os.path.join(base_path, "SpeciesA")
-db_b = os.path.join(base_path, "SpeciesB")
 a_vs_b = os.path.join(base_path, "A_vs_B.tabular")
-b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
+if self_comparison:
+    tmp_b = tmp_a
+    db_b = db_a
+    b_vs_a = a_vs_b
+else:
+    tmp_b = os.path.join(base_path, "SpeciesB.fasta")
+    db_b = os.path.join(base_path, "SpeciesB")
+    b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
 log = os.path.join(base_path, "blast.log")
 
 cols = "qseqid sseqid bitscore pident qcovhsp qlen length" #Or qcovs?
@@ -247,20 +251,23 @@ def make_nr(input_fasta, output_fasta, sep=";"):
 #print("Starting...")
 if options.nr:
     make_nr(fasta_a, tmp_a)
-    make_nr(fasta_b, tmp_b)
+    if not self_comparison:
+        make_nr(fasta_b, tmp_b)
     fasta_a = tmp_a
     fasta_b = tmp_b
 
 #TODO - Report log in case of error?
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
-run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
+if not self_comparison:
+    run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
 #print("BLAST databases prepared.")
 run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads))
 #print("BLAST species A vs species B done.")
-run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-    % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
-#print("BLAST species B vs species A done.")
+if not self_comparison:
+    run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+        % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
+    #print("BLAST species B vs species A done.")
 
 
 best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
