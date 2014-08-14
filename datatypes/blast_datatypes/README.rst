@@ -1,10 +1,9 @@
 Galaxy datatypes for NCBI BLAST+ suite
 ======================================
 
-These Galaxy datatypes are copyright 2010-2013 by Peter Cock, The James Hutton
-Institute (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
-Contributions/revisions copyright 2012 Edward Kirton. All rights reserved.
-Contributions/revisions copyright 2013 Nicola Soranzo. All rights reserved.
+These Galaxy datatypes are copyright 2010-2014 by Peter Cock (The James Hutton
+Institute, UK) and additional contributors including Edward Kirton, Nicola
+Soranzo, and Bjoern Gruening.
 
 See the licence text below.
 
@@ -29,7 +28,7 @@ Version Changes
 ------- ----------------------------------------------------------------------
 v0.0.11 - Final revision as part of the Galaxy main repository, and the
           first release via the Tool Shed
-v0.0.13 - Uses blast.py instead of xml.py to define the datatypes
+v0.0.13 - Uses ``blast.py`` instead of ``xml.py`` to define the datatypes
 v0.0.14 - Includes datatypes for protein and nucleotide BLAST databases
           (``blastdbp`` and ``blastdbn``, based on work by Edward Kirton)
 v0.0.15 - Fixes a MetadataElement bug and includes more of the optional

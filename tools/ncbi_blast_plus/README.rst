@@ -2,7 +2,10 @@ Galaxy wrappers for NCBI BLAST+ suite
 =====================================
 
 These wrappers are copyright 2010-2014 by Peter Cock (The James Hutton Institute,
-UK) and additional contributors. All rights reserved. See the licence text below.
+UK) and additional contributors including Edward Kirton, John Chilton,
+Nicola Soranzo, Jim Johnson, and Bjoern Gruening.
+
+See the licence text below.
 
 Currently tested with NCBI BLAST 2.2.29+ (i.e. version 2.2.29 of BLAST+),
 and does not work with the NCBI 'legacy' BLAST suite (e.g. ``blastall``).
