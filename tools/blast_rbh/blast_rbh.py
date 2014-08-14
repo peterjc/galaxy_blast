@@ -47,11 +47,11 @@ parser.add_option("-t", "--task", dest="task",
                   default=None,
                   help="BLAST task (e.g. blastp, blastn, megablast)")
 parser.add_option("-i","--identity", dest="min_identity",
-                  default="0",
-                  help="Minimum percentage identity (optional, default 0)")
+                  default="70",
+                  help="Minimum percentage identity (optional, default 70)")
 parser.add_option("-c", "--coverage", dest="min_coverage",
-                  default="0",
-                  help="Minimum HSP coverage (optional, default 0)")
+                  default="50",
+                  help="Minimum HSP coverage (optional, default 50)")
 parser.add_option("-o", "--output", dest="output",
                   default=None, metavar="FILE",
                   help="Output filename")
