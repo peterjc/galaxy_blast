@@ -54,6 +54,8 @@ v0.1.1  - Supports self-comparison, sometimes useful for spotting duplicates.
 v0.1.2  - Using optparse for command line API.
         - Tool definition now embeds citation information.
         - Fixed Tool Shed dependency definition.
+v0.1.3  - Option to make FASTA files non-redundant (via Biopython dependency).
+        - Avoid extra database and BLAST search in self-comparison mode.
 ======= ======================================================================
 
 

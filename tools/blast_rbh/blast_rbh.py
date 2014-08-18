@@ -30,7 +30,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.2"
+    print "BLAST RBH v0.1.3"
     sys.exit(0)
 
 #Parse Command Line
@@ -47,11 +47,14 @@ parser.add_option("-t", "--task", dest="task",
                   default=None,
                   help="BLAST task (e.g. blastp, blastn, megablast)")
 parser.add_option("-i","--identity", dest="min_identity",
-                  default="0",
-                  help="Minimum percentage identity (optional, default 0)")
+                  default="70",
+                  help="Minimum percentage identity (optional, default 70)")
 parser.add_option("-c", "--coverage", dest="min_coverage",
-                  default="0",
-                  help="Minimum HSP coverage (optional, default 0)")
+                  default="50",
+                  help="Minimum HSP coverage (optional, default 50)")
+parser.add_option("--nr", dest="nr", default=False, action="store_true",
+                  help="Preprocess FASTA files to collapse identifical "
+                  "entries (make sequences non-redundant)")
 parser.add_option("-o", "--output", dest="output",
                   default=None, metavar="FILE",
                   help="Output filename")
@@ -117,10 +120,17 @@ assert 1 <= threads, threads
 makeblastdb_exe = "makeblastdb"
 
 base_path = tempfile.mkdtemp()
+tmp_a = os.path.join(base_path, "SpeciesA.fasta")
 db_a = os.path.join(base_path, "SpeciesA")
-db_b = os.path.join(base_path, "SpeciesB")
 a_vs_b = os.path.join(base_path, "A_vs_B.tabular")
-b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
+if self_comparison:
+    tmp_b = tmp_a
+    db_b = db_a
+    b_vs_a = a_vs_b
+else:
+    tmp_b = os.path.join(base_path, "SpeciesB.fasta")
+    db_b = os.path.join(base_path, "SpeciesB")
+    b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
 log = os.path.join(base_path, "blast.log")
 
 cols = "qseqid sseqid bitscore pident qcovhsp qlen length" #Or qcovs?
@@ -202,18 +212,62 @@ def best_hits(blast_tabular, ignore_self=False):
             #print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
             tie_warning += 1
 
+def make_nr(input_fasta, output_fasta, sep=";"):
+    #TODO - seq-hash based to avoid loading everything into RAM?
+    by_seq = dict()
+    from Bio import SeqIO
+    for record in SeqIO.parse(input_fasta, "fasta"):
+        s = str(record.seq).upper()
+        try:
+            by_seq[s].append(record.id)
+        except KeyError:
+            by_seq[s] = [record.id]
+    unique = 0
+    representatives = dict()
+    duplicates = set()
+    for cluster in by_seq.values():
+        if len(cluster) > 1:
+            representatives[cluster[0]] = cluster
+            duplicates.update(cluster[1:])
+        else:
+            unique += 1
+    del by_seq
+    if duplicates:
+        #TODO - refactor as a generator with single SeqIO.write(...) call
+        with open(output_fasta, "w") as handle:
+            for record in SeqIO.parse(input_fasta, "fasta"):
+                if record.id in representatives:
+                    cluster = representatives[record.id]
+                    record.id = sep.join(cluster)
+                    record.description = "representing %i records" % len(cluster)
+                elif record.id in duplicates:
+                    continue
+                SeqIO.write(record, handle, "fasta")
+        print("%i unique entries; removed %i duplicates leaving %i representative records" % (unique, len(duplicates), len(representatives)))
+    else:
+        os.symlink(os.path.abspath(input_fasta), output_fasta)
+        print("No perfect duplicates in file, %i unique entries" % unique)
 
 #print("Starting...")
+if options.nr:
+    make_nr(fasta_a, tmp_a)
+    if not self_comparison:
+        make_nr(fasta_b, tmp_b)
+    fasta_a = tmp_a
+    fasta_b = tmp_b
+
 #TODO - Report log in case of error?
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
-run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
+if not self_comparison:
+    run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
 #print("BLAST databases prepared.")
 run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads))
 #print("BLAST species A vs species B done.")
-run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-    % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
-#print("BLAST species B vs species A done.")
+if not self_comparison:
+    run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+        % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
+    #print("BLAST species B vs species A done.")
 
 
 best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
