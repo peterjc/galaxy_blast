@@ -24,6 +24,7 @@ $adv_opts.strand
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
 ## Note -max_target_seqs overrides -num_descriptions and -num_alignments
 @ADVANCED_OPTIONS@
+@ADV_ID_LIST_FILTER@
 ## End of advanced options:
 #end if
     </command>
@@ -49,6 +50,7 @@ $adv_opts.strand
             <!-- I'd like word_size to be optional, with minimum 2 for tblastx -->
             <expand macro="input_word_size" />
             <expand macro="input_parse_deflines" />
+            <expand macro="advanced_optional_id_files" />
         </expand>
     </inputs>
     <outputs>
