@@ -22,6 +22,7 @@ $adv_opts.strand
 -matrix $adv_opts.matrix
 @ADVANCED_OPTIONS@
 $adv_opts.ungapped
+@ADV_ID_LIST_FILTER@
 ## End of advanced options:
 #end if
     </command>
@@ -45,6 +46,7 @@ $adv_opts.ungapped
             <expand macro="input_word_size" />
             <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
             <expand macro="input_parse_deflines" />
+            <expand macro="advanced_optional_id_files" />
         </expand>
     </inputs>
     <outputs>

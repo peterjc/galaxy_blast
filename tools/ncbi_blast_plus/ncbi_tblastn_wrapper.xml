@@ -22,6 +22,7 @@ tblastn
 @ADVANCED_OPTIONS@
 ##Ungapped disabled for now - see comments below
 ##$adv_opts.ungapped
+@ADV_ID_LIST_FILTER@
 ## End of advanced options:
 #end if
     </command>
@@ -49,6 +50,7 @@ tblastn
             <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
             -->
             <expand macro="input_parse_deflines" />
+            <expand macro="advanced_optional_id_files" />
         </expand>
     </inputs>
     <outputs>

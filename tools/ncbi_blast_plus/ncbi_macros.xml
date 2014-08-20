@@ -322,8 +322,41 @@
             <when value="advanced">
                 <yield />
             </when>
-        </conditional>        
+        </conditional>
     </xml>
+    <xml name="advanced_optional_id_files">
+        <conditional name="adv_optional_id_files_opts">
+            <param name="adv_optional_id_files_opts_selector" type="select"
+                label="Restrict search of database to a given set of ID's" help="This feature provides a means to exclude ID's from a BLAST database search. The expect values in the BLAST results are based upon the sequences actually searched and not on the underlying database.">
+              <option value="none" selected="True">No restrictoin, search the entire database</option>
+              <option value="gilist">GI identifers</option>
+              <option value="negative_gilist">Negative GI identifers</option>
+              <option value="seqidlist">Sequence identifers (SeqId's)</option>
+            </param>
+            <when value="none" />
+            <when value="gilist">
+                <param name="gilist" type="data" format="txt" label="Restrict search of database to GI's listed in this file"
+                    help="This option is only available for database searches. (-gilist)"/>
+            </when>
+            <when value="negative_gilist">
+                <param name="negative_gilist" type="data" format="txt" label="Restrict search of database to everything except the GI's listed in this file"
+                    help="This option is only available for database searches. (-negative_gilist)"/>
+            </when>
+            <when value="seqidlist">
+                <param name="seqidlist" type="data" format="txt" label=" Restrict search of database to list of SeqId's"
+                    help="This option is only available for database searches. (-seqidlist)"/>
+            </when>
+        </conditional>
+    </xml>
+    <token name="@ADV_ID_LIST_FILTER@">
+#if $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_gilist':
+    -negative_gilist $adv_opts.adv_optional_id_files_opts.negative_gilist
+#elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'gilist':
+    -gilist $adv_opts.adv_optional_id_files_opts.gilist
+#elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'seqidlist':
+    -seqidlist $adv_opts.adv_optional_id_files_opts.seqidlist
+#end if
+    </token>
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
     <token name="@BLAST_DB_SUBJECT@">
 #if $db_opts.db_opts_selector == "db":
