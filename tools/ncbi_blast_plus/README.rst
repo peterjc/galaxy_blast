@@ -180,6 +180,7 @@ v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
         - The RPS-BLAST and RPS-TBLASTN wrappers support using a protein
           domain database from the user's history.
         - Tool definitions now embed citation information (by John Chilton).
+        - BLAST tools support GI and SeqID filters (added by Bjoern Gruening).
 ======= ======================================================================
 
 
