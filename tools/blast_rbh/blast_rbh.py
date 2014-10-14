@@ -215,7 +215,10 @@ def best_hits(blast_tabular, ignore_self=False):
 def make_nr(input_fasta, output_fasta, sep=";"):
     #TODO - seq-hash based to avoid loading everything into RAM?
     by_seq = dict()
-    from Bio import SeqIO
+    try:
+        from Bio import SeqIO
+    except KeyError:
+        stop_err("Missing Biopython")
     for record in SeqIO.parse(input_fasta, "fasta"):
         s = str(record.seq).upper()
         try:

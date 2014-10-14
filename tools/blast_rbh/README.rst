@@ -8,9 +8,8 @@ See the licence text below.
 This tool is a short Python script to run reciprocal BLAST searches on a
 pair of sequence files, and extract the reciprocal best hits.
 
-This is a work in progress, and builds on an earlier implementation which
-prequired the two BLAST searches be prepared in advance. Integration allows
-a much simpler user experience, and can ensure sensible filters are used.
+It is available from the Galaxy Tool Shed at:
+http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 
 
 Automated Installation
