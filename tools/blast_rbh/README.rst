@@ -55,6 +55,8 @@ v0.1.2  - Using optparse for command line API.
         - Fixed Tool Shed dependency definition.
 v0.1.3  - Option to make FASTA files non-redundant (via Biopython dependency).
         - Avoid extra database and BLAST search in self-comparison mode.
+v0.1.4  - Check for duplicate FASTA identifiers (workaround for makeblastdb
+          not treating this as an error, leading to confusing RBH output).
 ======= ======================================================================
 
 

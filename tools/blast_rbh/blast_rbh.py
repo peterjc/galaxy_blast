@@ -30,7 +30,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.3"
+    print "BLAST RBH v0.1.4"
     sys.exit(0)
 
 #Parse Command Line
@@ -212,6 +212,24 @@ def best_hits(blast_tabular, ignore_self=False):
             #print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
             tie_warning += 1
 
+def check_duplicate_ids(filename):
+    # Copied from tools/ncbi_blast_plus/check_no_duplicates.py
+    # TODO - just use Biopython's FASTA parser?
+    if not os.path.isfile(filename):
+        stop_err("Missing FASTA file %r" % filename, 2)
+    identifiers = set()
+    handle = open(filename)
+    for line in handle:
+        if line.startswith(">"):
+        # The split will also take care of the new line character,
+        # e.g. ">test\n" and ">test description here\n" both give "test"
+            seq_id = line[1:].split(None, 1)[0]
+            if seq_id in identifiers:
+                handle.close()
+                stop_err("Repeated identifiers, e.g. %r" % seq_id, 3)
+            identifiers.add(seq_id)
+    handle.close()
+
 def make_nr(input_fasta, output_fasta, sep=";"):
     #TODO - seq-hash based to avoid loading everything into RAM?
     by_seq = dict()
@@ -252,6 +270,10 @@ def make_nr(input_fasta, output_fasta, sep=";"):
         print("No perfect duplicates in file, %i unique entries" % unique)
 
 #print("Starting...")
+check_duplicate_ids(fasta_a)
+if not self_comparison:
+    check_duplicate_ids(fasta_b)
+
 if options.nr:
     make_nr(fasta_a, tmp_a)
     if not self_comparison:
