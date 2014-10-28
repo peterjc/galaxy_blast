@@ -6,14 +6,14 @@
     </macros>
     <expand macro="requirements" />
     <command>
-blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out "$info"
+blastdbcmd -dbtype $db_opts.db_type @BLAST_DB@ -info -out "$info"
     </command>
     <expand macro="stdio" />
     <inputs>
         <expand macro="input_conditional_choose_db_type" />
     </inputs>
     <outputs>
-        <data name="info" format="txt" label="${db_opts.database.fields.name} info" />
+        <data name="info" format="txt" label="@ON_BLAST_DB@ info" />
     </outputs>
     <help>
     

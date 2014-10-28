@@ -8,7 +8,7 @@
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
-blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
+blastdbcmd -dbtype $db_opts.db_type @BLAST_DB@
 
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
@@ -68,7 +68,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
         </param>
     </inputs>
     <outputs>
-        <data name="seq" format="fasta" label="Sequences from ${db_opts.database.fields.name}" />
+        <data name="seq" format="fasta" label="Sequences from @ON_BLAST_DB@" />
     </outputs>
     <help>
     

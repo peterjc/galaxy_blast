@@ -229,8 +229,10 @@
     <xml name="input_conditional_pssm">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Protein domain database (PSSM)">
-              <option value="db" selected="True">Locally installed BLAST protein domain database</option>
+              <option value="db" selected="True">Locally installed BLAST database</option>
+              <!-- TODO - define new datatype
               <option value="histdb">BLAST protein domain database from your history</option>
+              -->
             </param>
             <when value="db">
                 <param name="database" type="select" label="Protein domain database">
@@ -243,11 +245,13 @@
                 <param name="histdb" type="hidden" value="" />
                 <param name="subject" type="hidden" value="" />
             </when>
+            <!-- TODO - define new datatype
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
                 <param name="histdb" type="data" format="blastdbd" label="Protein domain database" />
                 <param name="subject" type="hidden" value="" />
             </when>
+            -->
         </conditional>
     </xml>
     <xml name="input_conditional_choose_db_type">
@@ -257,22 +261,48 @@
               <option value="prot">Protein</option>
             </param>
             <when value="nucl">
-                <param name="database" type="select" label="Nucleotide BLAST database">
-                    <options from_file="blastdb.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
-                </param>
+		<conditional name="db_type_opts">
+		    <param name="db_opts_selector" type="select" label="Subject database/sequences">
+		      <option value="db" selected="True">Locally installed BLAST database</option>
+		      <option value="histdb">BLAST database from your history</option>
+		    </param>
+		    <when value="db">
+			<param name="database" type="select" label="Nucleotide BLAST database">
+			    <options from_file="blastdb.loc">
+			      <column name="value" index="0"/>
+			      <column name="name" index="1"/>
+			      <column name="path" index="2"/>
+			    </options>
+			</param>
+			<param name="histdb" type="hidden" value="" />
+		    </when>
+		    <when value="histdb">
+			<param name="database" type="hidden" value="" />
+			<param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+		    </when>
+		</conditional>
             </when>
             <when value="prot">
-                <param name="database" type="select" label="Protein BLAST database">
-                    <options from_file="blastdb_p.loc">
-                      <column name="value" index="0"/>
-                      <column name="name" index="1"/>
-                      <column name="path" index="2"/>
-                    </options>
-                </param>
+		<conditional name="db_type_opts">
+		    <param name="db_opts_selector" type="select" label="Subject database/sequences">
+		      <option value="db" selected="True">Locally installed BLAST database</option>
+		      <option value="histdb">BLAST database from your history</option>
+		    </param>
+		    <when value="db">
+			<param name="database" type="select" label="Protein BLAST database">
+			    <options from_file="blastdb_p.loc">
+			      <column name="value" index="0"/>
+			      <column name="name" index="1"/>
+			      <column name="path" index="2"/>
+			    </options>
+			</param>
+			<param name="histdb" type="hidden" value="" />
+		    </when>
+		    <when value="histdb">
+			<param name="database" type="hidden" value="" />
+			<param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
+		    </when>
+		</conditional>
             </when>
         </conditional>
     </xml>
@@ -359,6 +389,13 @@
 #end if
     </token>
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
+    <token name="@BLAST_DB@">
+#if $db_opts.db_type_opts.db_opts_selector == "db":
+  -db "${db_opts.db_type_opts.database.fields.path}"
+#elif $db_opts.db_type_opts.db_opts_selector == "histdb":
+  -db "${os.path.join($db_opts.db_type_opts.histdb.extra_files_path,'blastdb')}"
+#end if
+    </token>
     <token name="@BLAST_DB_SUBJECT@">
 #if $db_opts.db_opts_selector == "db":
   -db "${db_opts.database.fields.path}"
@@ -399,6 +436,12 @@ ${db_opts.database}
 ${db_opts.histdb.name}
 #else
 ${db_opts.subject.name}
+#end if</token>
+    <!-- @ON_BLAST_DB@ is for use with @BLAST_DB@ -->
+    <token name="@ON_BLAST_DB@">#if str($db_opts.db_type_opts.db_opts_selector)=='db'
+${db_opts.db_type_opts.database}
+#elif str($db_opts.db_type_opts.db_opts_selector)=='histdb'
+${db_opts.db_type_opts.histdb.name}
 #end if</token>
     <token name="@REFERENCES@">
 Peter J.A. Cock, Björn A. Grüning, Konrad Paszkiewicz and Leighton Pritchard (2013).
