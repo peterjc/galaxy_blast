@@ -12,14 +12,6 @@
 #
 language: java
 
-# We use the TravisCI build matrix to test two versions of the
-# Galaxy test framework, the older Twill based one, and the newer
-# API based one:
-#
-env:
- - GALAXY_TEST_DEFAULT_INTERACTOR=twill
- - GALAXY_TEST_DEFAULT_INTERACTOR=api
-
 # Installing Galaxy
 # =================
 #
