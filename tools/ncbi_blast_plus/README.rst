@@ -105,6 +105,20 @@ batches of 1000 sequences, a separate BLAST child job is run for each chunk,
 and then the BLAST output files are merged (in order). This is transparent
 for the end user.
 
+For public Galaxy deployments the BLAST+ wrappers support limiting the query
+size. Note that this will only protect against accidental overloading of the
+system, it is still very well possible to overload a Galaxy system if
+unauthenticated users can run jobs such as blast. The query size limit is
+implemented in a rather cude way by checking the size of the fasta query
+file. The maximum size is read from the ``GALAXY_BLAST_QUERYSIZE_MAX``
+environment variable. If set, this variable should contain a number, optionally
+suffixed by K, M or G for kilobytes, megabites, or gigabytes. You can set this
+by executing e.g. ``export GALAXY_BLAST_QUERYSIZE_MAX=50K`` in the shell before
+you start the ``run.sh`` that starts Galaxy, or by adding the previous command
+to a startup script if you have configured Galaxy to start automatically at
+system boot.
+
+
 History
 =======
 
