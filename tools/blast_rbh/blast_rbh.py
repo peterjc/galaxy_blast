@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 """BLAST Reciprocal Best Hit (RBH) from two FASTA input files.
 
-Takes the following command line options,
-1. FASTA filename of species A
-2. FASTA filename of species B
-3. Sequence type (prot/nucl)
-4. BLAST type (e.g. blastn, or blastp) consistent with sequence type
-5. Minimum BLAST Percentage identity
-6. Minimum BLAST query coverage
-7. Output filename
+Run "blast_rbh.py -h" to see the help text, or read the associated
+README.rst file which is also available on GitHub at:
+https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
+
+This requires Python and the NCBI BLAST+ tools to be installed
+and on the $PATH.
+
+You can also run this tool via Galaxy using the "blast_rbh.xml"
+definition file. This is available as a package on the Galaxy
+Tool Shed: http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 """
 
 # TODO - Output more columns, e.g. pident, qcovs, descriptions?
@@ -30,7 +32,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.4"
+    print "BLAST RBH v0.1.5"
     sys.exit(0)
 
 #Parse Command Line
