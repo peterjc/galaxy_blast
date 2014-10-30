@@ -35,8 +35,7 @@ Manual Installation
 
 For those not using Galaxy's automated installation from the Tool Shed, put
 the XML and Python files in the ``tools/ncbi_blast_plus/`` folder and add the
-XML files to your ``tool_conf.xml`` as normal (and do the same in
-``tool_conf.xml.sample`` in order to run the unit tests). For example, use::
+XML files to your ``tool_conf.xml`` as normal.  For example, use::
 
   <section name="NCBI BLAST+" id="ncbi_blast_plus_tools">
     <tool file="ncbi_blast_plus/ncbi_blastn_wrapper.xml" />
@@ -69,7 +68,7 @@ path. Currently the unit tests are written using BLAST 2.2.29+.
 Run the functional tests (adjusting the section identifier to match your
 ``tool_conf.xml.sample`` file)::
 
-    ./run_functional_tests.sh -sid NCBI_BLAST+-ncbi_blast_plus_tools
+    ./run_tests.sh -sid NCBI_BLAST+-ncbi_blast_plus_tools
 
 Configuration
 =============
