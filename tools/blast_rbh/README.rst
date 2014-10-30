@@ -1,14 +1,18 @@
-Galaxy tool to find BLAST Reciprocal Best Hits (RBH)
-====================================================
+Find BLAST Reciprocal Best Hits (RBH), with Galaxy wrapper
+==========================================================
 
 This tool is copyright 2011-2014 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
 This tool is a short Python script to run reciprocal BLAST searches on a
-pair of sequence files, and extract the reciprocal best hits.
+pair of sequence files, and extract the reciprocal best hits. The script
+``blast_rbh.py`` can be used directly (without Galaxy) as long as NCBI
+BLAST+ is installed.
 
-It is available from the Galaxy Tool Shed at:
+It comes with an optional Galaxy tool definition file ``blast_rbh.xml``
+allowing the Python script to be run from within Galaxy. It is available
+from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 
 
@@ -57,6 +61,7 @@ v0.1.3  - Option to make FASTA files non-redundant (via Biopython dependency).
         - Avoid extra database and BLAST search in self-comparison mode.
 v0.1.4  - Check for duplicate FASTA identifiers (workaround for makeblastdb
           not treating this as an error, leading to confusing RBH output).
+v0.1.5  - Clarify documentation for using the Python script outside Galaxy.
 ======= ======================================================================
 
 
