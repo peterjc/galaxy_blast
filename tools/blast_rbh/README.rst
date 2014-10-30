@@ -37,11 +37,10 @@ by adding the line::
 
     <tool file="blast_rbh/blast_rbh.xml" />
 
-If you want to run the functional tests, include the same line in your
-``tool_conf.xml.sample`` file, and the sample test files under Galaxy's
-``test-data/`` directory. Then::
+If you want to run the functional tests, copy the sample test files under
+sample test files under Galaxy's ``test-data/`` directory. Then::
 
-    ./run_functional_tests.sh -id blast_reciprocal_best_hits
+    ./run_tests.sh -id blast_reciprocal_best_hits
 
 You will need to have the NCBI BLAST+ binaries installed and on the ``$PATH``.
 
@@ -62,6 +61,7 @@ v0.1.3  - Option to make FASTA files non-redundant (via Biopython dependency).
 v0.1.4  - Check for duplicate FASTA identifiers (workaround for makeblastdb
           not treating this as an error, leading to confusing RBH output).
 v0.1.5  - Clarify documentation for using the Python script outside Galaxy.
+        - Updated to depend on NCBI BLAST+ 2.2.30 via ToolShed install.
 ======= ======================================================================
 
 
