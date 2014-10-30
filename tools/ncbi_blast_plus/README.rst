@@ -7,7 +7,7 @@ Nicola Soranzo, Jim Johnson, and Bjoern Gruening.
 
 See the licence text below.
 
-Currently tested with NCBI BLAST 2.2.29+ (i.e. version 2.2.29 of BLAST+),
+Currently tested with NCBI BLAST 2.2.30+ (i.e. version 2.2.30 of BLAST+),
 and does not work with the NCBI 'legacy' BLAST suite (e.g. ``blastall``).
 
 Note that these wrappers (and the associated datatypes) were originally
@@ -181,6 +181,8 @@ v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
           domain database from the user's history.
         - Tool definitions now embed citation information (by John Chilton).
         - BLAST tools support GI and SeqID filters (added by Bjoern Gruening).
+v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
+        - Tests updated for BLAST+ 2.2.30 instead of BLAST+ 2.2.29.
 ======= ======================================================================
 
 
