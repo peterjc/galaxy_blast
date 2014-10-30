@@ -71,9 +71,9 @@ before_install:
  - sed -i "s/Dbacces.dbhost=10.10.100.203/Dbacces.dbhost=publicdb.blast2go.com/g" b2g4pipe/Spain_2011_June.properties
  - export B2G4PIPE="${TRAVIS_BUILD_DIR}/b2g4pipe/"
  - echo "Fetching and installing NCBI BLAST+..."
- - wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.29/ncbi-blast-2.2.29+-x64-linux.tar.gz
- - tar -zxvf ncbi-blast-2.2.29+-x64-linux.tar.gz | tail
- - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.29+/bin:$PATH"
+ - wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.29/ncbi-blast-2.2.30+-x64-linux.tar.gz
+ - tar -zxvf ncbi-blast-2.2.30+-x64-linux.tar.gz | tail
+ - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.30+/bin:$PATH"
  - echo "Fetching Galaxy..."
  - wget https://codeload.github.com/jmchilton/galaxy-central/tar.gz/master
  - tar -zxvf master | tail
