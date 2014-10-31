@@ -32,7 +32,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.5"
+    print "BLAST RBH v0.1.6"
     sys.exit(0)
 
 #Parse Command Line
@@ -107,7 +107,7 @@ if dbtype == "nucl":
     else:
         stop_err("Invalid BLAST type for BLASTN: %r" % blast_type)
 elif dbtype == "prot":
-    if blast_type not in ["blastp", "blastp-short"]:
+    if blast_type not in ["blastp", "blastp-fast", "blastp-short"]:
         stop_err("Invalid BLAST type for BLASTP: %r" % blast_type)
     blast_cmd = "blastp -task %s" % blast_type
 else:

@@ -1,4 +1,4 @@
-<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.5">
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.6">
     <description>from two FASTA files</description>
     <requirements>
         <requirement type="package" version="1.64">biopython</requirement>
@@ -45,6 +45,7 @@ $make_nr
             <when value="prot">
                 <param name="prot_type" type="select" display="radio" label="Type of BLAST">
                     <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
+                    <option value="blastp-fast">blastp-fast - Uses longer words as described by Shiryev et al (2007)</option>
                     <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
                 </param>
             </when>
@@ -163,7 +164,7 @@ $make_nr
             <param name="fasta_a" value="k12_edited_proteins.fasta" ftype="fasta"/>
             <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>
             <param name="dbtype" value="prot"/>
-            <param name="nucl_type" value="blastp"/>
+            <param name="nucl_type" value="blastp-fast"/>
             <param name="identity" value="80.0"/>
             <param name="q_cover" value="80.0"/>
             <output name="output" file="rbh_blastp_k12_self.tabular" ftype="tabular"/>

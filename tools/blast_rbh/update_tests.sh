@@ -31,4 +31,4 @@ echo rbh_blastp_k12.tabular
 ../tools/blast_rbh/blast_rbh.py k12_edited_proteins.fasta k12_ten_proteins.fasta -a prot -t blastp -i 0 -c 0 -o rbh_blastp_k12.tabular
 
 echo rbh_blastp_k12_self.tabular
-../tools/blast_rbh/blast_rbh.py k12_edited_proteins.fasta k12_edited_proteins.fasta -a prot -t blastp -i 80 -c 80 -o rbh_blastp_k12_self.tabular
+../tools/blast_rbh/blast_rbh.py k12_edited_proteins.fasta k12_edited_proteins.fasta -a prot -t blastp-fast -i 80 -c 80 -o rbh_blastp_k12_self.tabular
