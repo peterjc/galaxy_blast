@@ -82,10 +82,10 @@ it next to the NCBI BLAST+ wrappers. Just add the line::
 
   <tool file="blast2go/blast2go.xml" />
 
-If you wish to run the unit tests, also add this to tools_conf.xml.sample
-and move/copy the test-data files under Galaxy's test-data folder. Then::
+If you wish to run the unit tests, also move/copy the ``test-data/`` files
+under Galaxy's ``test-data/`` folder. Then::
 
-    $ ./run_functional_tests.sh -id blast2go
+    $ ./run_tests.sh -id blast2go
 
 
 Configuration

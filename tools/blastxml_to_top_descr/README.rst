@@ -41,9 +41,10 @@ the tool. e.g. next to the NCBI BLAST+ tools. Simply add the line::
 
     <tool file="ncbi_blast_plus/blastxml_to_top_descr.xml" />
 
-To run the tool's tests, also add this line to tools_conf.xml.sample then::
+If you wish to run the unit tests, alsomove/copy the ``test-data/`` files
+under Galaxy's ``test-data/`` folder. Then::
 
-    $ sh run_functional_tests.sh -id blastxml_to_top_descr
+    $ sh run_tests.sh -id blastxml_to_top_descr
 
 
 History
