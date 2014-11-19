@@ -1,4 +1,4 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.1.02">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.1.03">
     <description>Convert BLAST XML output to tabular</description>
     <version_command interpreter="python">blastxml_to_tabular.py --version</version_command>
     <command interpreter="python">
@@ -9,7 +9,7 @@ blastxml_to_tabular.py -o "$tabular_file"
 #else
 -c "$output.out_format"
 #end if
-#for i in $blastxml_file#${i} #end for#
+#for i in $blastxml_file#"${i}" #end for#
     </command>
     <stdio>
         <!-- Anything other than zero is an error -->
