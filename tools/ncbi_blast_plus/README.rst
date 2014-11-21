@@ -63,7 +63,7 @@ about any system level BLAST databases using the ``tool-data/blastdb*.loc``
 files.
 
 You must install the NCBI BLAST+ standalone tools somewhere on the system
-path. Currently the unit tests are written using BLAST 2.2.29+.
+path. Currently the unit tests are written using BLAST+ 2.2.30.
 
 Run the functional tests (adjusting the section identifier to match your
 ``tool_conf.xml.sample`` file)::
