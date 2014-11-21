@@ -62,22 +62,22 @@ the last free version is b2g4pipe v2.5 which is available here:
 
 * http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
 
-You can change the path by setting the B2G4PIPE environement variable to
+You can change the path by setting the ``$B2G4PIPE`` environement variable to
 the desired folder, but by default the script looks for the JAR file here::
 
     /opt/b2g4pipe_v2.5/blast2go.jar
 
-To install the wrapper manually, first install 'blast_datatypes', then
+To install the wrapper manually, first install ``blast_datatypes``, then
 copy or move the following files under the Galaxy tools folder, e.g. in a
-tools/blast2go/ folder:
+``tools/blast2go/`` folder:
 
-* blast2go.xml (the Galaxy tool definition)
-* blast2go.py (the Python wrapper script)
-* massage_xml_for_blast2go.py (Python XML reformatting script)
-* README.rst (this file)
+- ``blast2go.xml`` (the Galaxy tool definition)
+- ``blast2go.py`` (the Python wrapper script)
+- ``massage_xml_for_blast2go.py`` (Python XML reformatting script)
+- ``README.rst`` (this file)
 
 For a manual installation of the wrapper you will also need to modify the
-tools_conf.xml file to tell Galaxy to offer the tool. We suggest putting
+``tools_conf.xml`` file to tell Galaxy to offer the tool. We suggest putting
 it next to the NCBI BLAST+ wrappers. Just add the line::
 
   <tool file="blast2go/blast2go.xml" />
