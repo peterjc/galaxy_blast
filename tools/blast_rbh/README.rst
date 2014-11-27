@@ -62,7 +62,7 @@ v0.1.4  - Check for duplicate FASTA identifiers (workaround for makeblastdb
           not treating this as an error, leading to confusing RBH output).
 v0.1.5  - Clarify documentation for using the Python script outside Galaxy.
         - Updated to depend on NCBI BLAST+ 2.2.30 via ToolShed install.
-v0.1.6  - Offer the new blastp-fast tasked added in BLAST+ 2.2.30.
+v0.1.6  - Offer the new blastp-fast task added in BLAST+ 2.2.30.
 ======= ======================================================================
 
 
