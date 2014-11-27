@@ -329,7 +329,7 @@ for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a
 outfile.close()
 print "Done, %i RBH found" % count
 if tie_warning:
-    sys.stderr.write("Warning: Sequencies with tied best hits found, you may have duplicates/clusters\n")
+    sys.stderr.write("Warning: Sequences with tied best hits found, you may have duplicates/clusters\n")
 
 #Remove temp files...
 shutil.rmtree(base_path)
