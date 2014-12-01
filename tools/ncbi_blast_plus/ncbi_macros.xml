@@ -353,7 +353,7 @@
         </conditional>
     </xml>
     <token name="@ADV_QCOV_HSP_PERC@">
-#if float(str($adv_opts.qcov_hsp_perc)) > 0:
+#if float(str($adv_opts.qcov_hsp_perc)) &gt; 0:
     -qcov_hsp_perc $adv_opts.qcov_hsp_perc
 #end if
     </token>
