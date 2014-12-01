@@ -78,7 +78,7 @@ psiblast
             </param>
             <when value="basic" />
             <when value="advanced">
-               <param name="num_iterations" type="integer" label="Number of iterations to perform" value="1" />
+               <param name="num_iterations" type="integer" label="Number of iterations to perform" help="Use zero to iterate until convergence." value="1" />
                <param name="inclusion_ethresh" type="float" label="The statistical significance threshold to include a sequence" help="Set the statistical significant threshold to include a sequence in the model used by PSI-BLAST to create the PSSM on the next iteration." value="0.002" />
                <param name="pseudocount" type="integer" label="Pseudocount value used when constructing PSSM" value="0" help="If zero is specified, then the parameter is automatically determined through a minimum length description principle (PMID 19088134). A value of 30 is suggested in order to obtain the approximate behavior before the minimum length principle was implemented" /> 
             </when>
