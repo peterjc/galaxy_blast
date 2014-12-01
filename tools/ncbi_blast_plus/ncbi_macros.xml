@@ -313,7 +313,7 @@
         </param>
     </xml>
     <xml macro="input_qcov_hsp_perc">
-        <param name="qcov_hsp_perc" type="float" value="0" min="0" max="100" label="Minimum query coverage per hsp (percentage, 0 to 100)" help="See also the output column qhspcov">
+        <param name="qcov_hsp_perc" type="float" value="0" min="0" max="100" label="Minimum query coverage per hsp (percentage, 0 to 100)" help="See also the output column qhspcov"/>
     </xml>
     <xml name="advanced_options">
         <conditional name="adv_opts">
