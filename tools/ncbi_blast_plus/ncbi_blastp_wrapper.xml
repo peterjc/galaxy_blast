@@ -79,6 +79,7 @@ blastp
             <param name="max_hits" value="0" />
             <param name="word_size" value="0" />
             <param name="parse_deflines" value="True" />
+            <param name="qcov_hsp_perc" value="25" />
             <output name="output1" file="blastp_four_human_vs_rhodopsin.xml" ftype="blastxml" />
         </test>
         <test>
@@ -95,6 +96,7 @@ blastp
             <param name="max_hits" value="0" />
             <param name="word_size" value="0" />
             <param name="parse_deflines" value="True" />
+            <param name="qcov_hsp_perc" value="25" />
             <output name="output1" file="blastp_four_human_vs_rhodopsin.tabular" ftype="tabular" />
         </test>
         <test>
@@ -111,6 +113,7 @@ blastp
             <param name="max_hits" value="0" />
             <param name="word_size" value="0" />
             <param name="parse_deflines" value="True" />
+            <param name="qcov_hsp_perc" value="25" />
             <output name="output1" file="blastp_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />
         </test>
         <test>
