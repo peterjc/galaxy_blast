@@ -182,6 +182,7 @@ v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
         - BLAST tools support GI and SeqID filters (added by Bjoern Gruening).
 v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - Tests updated for BLAST+ 2.2.30 instead of BLAST+ 2.2.29.
+        - New tasks ``blastp-fast``, ``blastx-fast`` and ``tblastn-fast``.
 ======= ======================================================================
 
 

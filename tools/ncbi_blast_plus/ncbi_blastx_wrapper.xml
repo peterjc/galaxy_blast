@@ -14,6 +14,7 @@ blastx
 -query "$query"
 @BLAST_DB_SUBJECT@
 -query_gencode $query_gencode
+-task $blast_type
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@
 @THREADS@
@@ -34,6 +35,10 @@ $adv_opts.ungapped
 
         <expand macro="input_conditional_protein_db" />
         <expand macro="input_query_gencode" />
+        <param name="blast_type" type="select" display="radio" label="Type of BLAST">
+            <option value="blastx">blastx - Traditional BLASTX to compare translated nucleotide query to protein database</option>
+            <option value="blastx-fast">blastx-fast - Use longer words for seeding, faster but less accurate</option>
+        </param>
         <expand macro="input_evalue" />
 
         <expand macro="input_out_format" />
