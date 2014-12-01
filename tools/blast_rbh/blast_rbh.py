@@ -14,6 +14,9 @@ Tool Shed: http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 """
 
 # TODO - Output more columns, e.g. pident, qcovs, descriptions?
+# TODO - Use new -qcov_hsp_perc option in BLAST+ 2.2.30 to filter
+#        results, rather than doing minimum HSP coverage in Python.
+#        [Not doing this right now as would break on older BLAST+]
 
 import os
 import sys
