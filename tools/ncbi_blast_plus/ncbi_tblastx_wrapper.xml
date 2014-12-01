@@ -14,11 +14,11 @@ tblastx
 -query "$query"
 @BLAST_DB_SUBJECT@
 -query_gencode $query_gencode
+-db_gencode $adv_opts.db_gencode
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
--db_gencode $adv_opts.db_gencode
 $adv_opts.strand
 -matrix $adv_opts.matrix
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
@@ -36,12 +36,11 @@ $adv_opts.strand
 
         <expand macro="input_conditional_nucleotide_db" />
         <expand macro="input_query_gencode" />
+        <expand macro="input_db_gencode" />
         <expand macro="input_evalue" />
 
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
-            <expand macro="input_db_gencode" />
-
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
             <expand macro="input_filter_query_default_true" />
             <expand macro="input_strand" />

@@ -13,12 +13,12 @@
 tblastn
 -query "$query"
 @BLAST_DB_SUBJECT@
+-db_gencode $adv_opts.db_gencode
 -task $blast_type
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
--db_gencode $adv_opts.db_gencode
 -matrix $adv_opts.matrix
 @ADVANCED_OPTIONS@
 ##Ungapped disabled for now - see comments below
@@ -38,11 +38,10 @@ tblastn
             <option value="tblastn">tblastn - Traditional TBLASTN to compare protein query to translated nucleotide database</option>
             <option value="tblastn-fast">tblastn-fast - Use longer words for seeding, faster but less accurate</option>
         </param>
+        <expand macro="input_db_gencode" />
         <expand macro="input_evalue" />
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
-            <expand macro="input_db_gencode" />
-
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
             <expand macro="input_filter_query_default_true" />
             <expand macro="input_scoring_matrix" />
