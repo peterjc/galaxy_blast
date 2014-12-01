@@ -21,9 +21,9 @@ tblastx
 -db_gencode $adv_opts.db_gencode
 $adv_opts.strand
 -matrix $adv_opts.matrix
-## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
-## Note -max_target_seqs overrides -num_descriptions and -num_alignments
-@ADVANCED_OPTIONS@
+@ADV_FILTER_QUERY@
+@ADV_MAX_HITS@
+@ADV_WORD_SIZE@
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
 ## End of advanced options:

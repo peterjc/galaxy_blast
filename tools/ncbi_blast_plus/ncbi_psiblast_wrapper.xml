@@ -27,7 +27,9 @@ psiblast
 
 #if $adv_opts.adv_opts_selector=="advanced":
 -matrix $adv_opts.matrix
-@ADVANCED_OPTIONS@
+@ADV_FILTER_QUERY@
+@ADV_MAX_HITS@
+@ADV_WORD_SIZE@
 ##Ungapped disabled for now - see comments below
 ##$adv_opts.ungapped
 ## End of advanced options:
