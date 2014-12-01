@@ -34,12 +34,12 @@ tblastn
         <param name="query" type="data" format="fasta" label="Protein query sequence(s)"/> 
 
         <expand macro="input_conditional_nucleotide_db" />
-        <expand macro="input_out_format" />
         <param name="blast_type" type="select" display="radio" label="Type of BLAST">
             <option value="tblastn">tblastn - Traditional TBLASTN to compare protein query to translated nucleotide database</option>
             <option value="tblastn-fast">tblastn-fast - Use longer words for seeding, faster but less accurate</option>
         </param>
         <expand macro="input_evalue" />
+        <expand macro="input_out_format" />
         <expand macro="advanced_options">
             <expand macro="input_db_gencode" />
 
