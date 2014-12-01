@@ -23,6 +23,7 @@ rpstblastn
 ##-num_threads 8
 #if $adv_opts.adv_opts_selector=="advanced":
 @ADVANCED_OPTIONS@
+@ADV_QCOV_HSP_PERC@
 ## End of advanced options:
 #end if
     </command>
@@ -43,6 +44,7 @@ rpstblastn
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />
             <expand macro="input_parse_deflines" />
+            <expand macro="input_qcov_hsp_perc" />
         </expand>
     </inputs>
     <outputs>

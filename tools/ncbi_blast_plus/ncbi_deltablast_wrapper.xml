@@ -21,6 +21,7 @@ deltablast
 @ADVANCED_OPTIONS@
 ##Ungapped disabled for now - see comments below
 ##$adv_opts.ungapped
+@ADV_QCOV_HSP_PERC@
 ## End of advanced options:
 #end if
 ##TODO: Either must install cdd_delta and configure environment variables,
@@ -48,6 +49,7 @@ deltablast
             <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
             -->
             <expand macro="input_parse_deflines" />
+            <expand macro="input_qcov_hsp_perc" />
         </expand>
     </inputs>
     <outputs>

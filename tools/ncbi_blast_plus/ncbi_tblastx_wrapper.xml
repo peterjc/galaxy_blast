@@ -25,6 +25,7 @@ $adv_opts.strand
 ## Note -max_target_seqs overrides -num_descriptions and -num_alignments
 @ADVANCED_OPTIONS@
 @ADV_ID_LIST_FILTER@
+@ADV_QCOV_HSP_PERC@
 ## End of advanced options:
 #end if
     </command>
@@ -50,6 +51,7 @@ $adv_opts.strand
             <expand macro="input_word_size" />
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
+            <expand macro="input_qcov_hsp_perc" />
         </expand>
     </inputs>
     <outputs>

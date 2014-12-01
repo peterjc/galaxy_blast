@@ -23,6 +23,7 @@ blastp
 ##Ungapped disabled for now - see comments below
 ##$adv_opts.ungapped
 @ADV_ID_LIST_FILTER@
+@ADV_QCOV_HSP_PERC@
 ## End of advanced options:
 #end if
     </command>
@@ -55,6 +56,7 @@ blastp
             -->
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
+            <expand macro="input_qcov_hsp_perc" />
         </expand>
     </inputs>
     <outputs>

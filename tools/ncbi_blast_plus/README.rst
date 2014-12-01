@@ -156,7 +156,7 @@ v0.0.22 - More use of macros to simplify the wrappers.
         - Set number of threads via ``$GALAXY_SLOTS`` environment variable.
         - More descriptive default output names.
         - Tests require updated BLAST DB definitions (``blast_datatypes`` v0.0.18).
-        - Pre-check for duplicate identifiers in makeblastdb wrapper.
+        - Pre-check for duplicate identifiers in ``makeblastdb`` wrapper.
         - Tests updated for BLAST+ 2.2.28 instead of BLAST+ 2.2.27.
         - Now depends on ``package_blast_plus_2_2_28`` in ToolShed.
         - Extended tabular output includes 'salltitles' as column 25.
@@ -169,8 +169,8 @@ v0.1.00 - Now depends on ``package_blast_plus_2_2_29`` in ToolShed.
         - More detailed descriptions for BLASTN and BLASTP task option.
         - Wrappers for segmasker, dustmasker and convert2blastmask
           (contribution from Bjoern Gruening).
-        - Supports using maskinfo with makeblastdb wrapper.
-        - Supports setting a taxonomy ID in makeblastdb wrapper.
+        - Supports using maskinfo with ``makeblastdb`` wrapper.
+        - Supports setting a taxonomy ID in ``makeblastdb`` wrapper.
         - Subtle changes like new conditional settings will require some old
           workflows be updated to cope.
 v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
@@ -183,6 +183,7 @@ v0.1.01 - Requires ``blastdbd`` datatype (``blast_datatypes`` v0.0.19).
 v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - Tests updated for BLAST+ 2.2.30 instead of BLAST+ 2.2.29.
         - New tasks ``blastp-fast``, ``blastx-fast`` and ``tblastn-fast``.
+        - New minimum query HSP coverage option, ``-qcov_hsp_perc``.
 ======= ======================================================================
 
 
