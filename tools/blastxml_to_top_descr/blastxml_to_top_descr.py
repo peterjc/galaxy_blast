@@ -12,7 +12,7 @@ import re
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.1.0"
+    print "v0.1.1"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
@@ -158,7 +158,6 @@ def blastxml_hits(in_file):
     assert not re_default_subject_id.match("TheSubject_1")
 
     count = 0
-    pos_count = 0
     current_query = None
     hit_descrs = []
     for event, elem in context:
