@@ -184,6 +184,9 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - Tests updated for BLAST+ 2.2.30 instead of BLAST+ 2.2.29.
         - New tasks ``blastp-fast``, ``blastx-fast`` and ``tblastn-fast``.
         - New minimum query HSP coverage option, ``-qcov_hsp_perc``.
+        - Removed ``-word_size`` from RPS-BLAST and RPS-TBLASTN wrappers, this
+          is set during database construction and should not have been offered
+          as a command line option in releases prior to BLAST+ 2.2.30.
 ======= ======================================================================
 
 
