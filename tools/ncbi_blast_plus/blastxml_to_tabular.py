@@ -66,7 +66,7 @@ import os
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.1.01"
+    print "v0.1.04"
     sys.exit(0)
 
 if sys.version_info[:2] >= ( 2, 5 ):
@@ -162,7 +162,7 @@ def convert(blastxml_filename, output_handle):
     blast_program = None
     # get an iterable
     try: 
-        context = ElementTree.iterparse(in_file, events=("start", "end"))
+        context = ElementTree.iterparse(blastxml_filename, events=("start", "end"))
     except:
         stop_err("Invalid data format.")
     # turn it into an iterator
@@ -321,7 +321,7 @@ def convert(blastxml_filename, output_handle):
                         #Only a subset of the columns are needed
                         values = [values[colnames.index(c)] for c in cols]
                     #print "\t".join(values) 
-                    outfile.write("\t".join(values) + "\n")
+                    output_handle.write("\t".join(values) + "\n")
             # prevents ElementTree from growing large datastructure
             root.clear()
             elem.clear()
