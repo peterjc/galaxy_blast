@@ -21,7 +21,6 @@ https://github.com/peterjc/galaxy_blast/tree/master/blast2go
 """
 import sys
 import os
-import subprocess
 
 def stop_err(msg, error_level=1):
     """Print error message to stdout and quit with given error level."""
