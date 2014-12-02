@@ -105,8 +105,8 @@ def tabular_hits(in_file, qseqid, sseqid, salltitles):
     """
     current_query = None
     current_hits = []
-    with open(in_file) as input:
-        for line in input:
+    with open(in_file) as input_handle:
+        for line in input_handle:
             parts = line.rstrip("\n").split("\t")
             query = parts[qseqid]
             descr = "%s %s" % (parts[sseqid], parts[salltitles])
@@ -157,7 +157,6 @@ def blastxml_hits(in_file):
     assert not re_default_subject_id.match("Subject_12a")
     assert not re_default_subject_id.match("TheSubject_1")
 
-    count = 0
     current_query = None
     hit_descrs = []
     for event, elem in context:
