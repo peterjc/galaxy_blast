@@ -1,0 +1,15 @@
+<tables>
+    <!-- test files! -->
+    <table name="blastdb" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="${__HERE__}/blastdb.loc" />
+    </table>
+    <table name="blastdb_p" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="${__HERE__}/blastdb_p.loc" />
+    </table>
+    <table name="blastdb_d" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="${__HERE__}/blastdb_d.loc" />
+    </table>
+</tables>
