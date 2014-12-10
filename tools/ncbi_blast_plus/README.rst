@@ -60,7 +60,8 @@ defines the BLAST XML file format (``blastxml``), BLAST databases, etc:
 
 As described above for an automated installation, you must also tell Galaxy
 about any system level BLAST databases using the ``tool-data/blastdb*.loc``
-files.
+files. Also merge the ``tool-data/tool_data_table_conf.xml.sample`` contents
+into your ``tool_data_table_conf.xml`` file.
 
 You must install the NCBI BLAST+ standalone tools somewhere on the system
 path. Currently the unit tests are written using BLAST+ 2.2.30.
@@ -187,6 +188,9 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - Removed ``-word_size`` from RPS-BLAST and RPS-TBLASTN wrappers, this
           is set during database construction and should not have been offered
           as a command line option in releases prior to BLAST+ 2.2.30.
+        - BLAST database ``blastdb*.loc`` files now accessed via the XML
+          table definitions in Galaxy's ``tool_data_table_conf.xml`` file,
+          setup via ``tool-data/tool_data_table_conf.xml.sample``
 ======= ======================================================================
 
 

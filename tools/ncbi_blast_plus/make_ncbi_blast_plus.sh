@@ -44,6 +44,7 @@ tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/blastxml_to_tabular.py
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/tool_dependencies.xml
 tar -rf ncbi_blast_plus.tar tools/ncbi_blast_plus/README.rst
+tar -rf ncbi_blast_plus.tar tool-data/tool_data_table_conf.xml.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb.loc.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb_p.loc.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb_d.loc.sample
@@ -126,5 +127,5 @@ tar -rf ncbi_blast_plus.tar test-data/empty_file.dat
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball with 98 files, have:"
+echo "Expect a tar-ball with 99 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
