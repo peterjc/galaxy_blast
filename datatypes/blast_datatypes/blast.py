@@ -76,7 +76,6 @@ class BlastXml( GenericXml ):
                 log.error("BLAST XML file %s missing" % f)
                 raise ValueError("BLAST XML file %s missing" % f)
             h = open(f)
-            body = False
             header = h.readline()
             if not header:
                 out.close()
