@@ -48,6 +48,9 @@ tar -rf ncbi_blast_plus.tar tool-data/tool_data_table_conf.xml.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb.loc.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb_p.loc.sample
 tar -rf ncbi_blast_plus.tar tool-data/blastdb_d.loc.sample
+tar -rf ncbi_blast_plus.tar test-data/blastdb.loc
+tar -rf ncbi_blast_plus.tar test-data/blastdb_p.loc
+tar -rf ncbi_blast_plus.tar test-data/blastdb_d.loc
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin.xml
 tar -rf ncbi_blast_plus.tar test-data/blastp_four_human_vs_rhodopsin_converted.tabular
@@ -127,5 +130,5 @@ tar -rf ncbi_blast_plus.tar test-data/empty_file.dat
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball with 99 files, have:"
+echo "Expect a tar-ball with 102 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
