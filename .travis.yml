@@ -132,7 +132,6 @@ install:
  - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
  - ./run.sh --stop-daemon || true
  - python scripts/fetch_eggs.py
- - cat config/tool_data_table_conf.xml
  - cat tool_data_table_conf.xml
  - false
 
