@@ -120,6 +120,10 @@ install:
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml
  - rm -f config/tool_conf.xml.sample
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml config/tool_conf.xml.sample
+ - rm -f tool_data_table_conf.xml
+ - ln -s ${TRAVIS_BUILD_DIR}/tool-data/tool_data_table_conf.xml.sample tool_data_table_conf.xml
+ - rm -f config/tool_data_table_conf.xml
+ - ln -s ${TRAVIS_BUILD_DIR}/tool-data/tool_data_table_conf.xml.sample config/tool_data_table_conf.xm
  - ln -s ${TRAVIS_BUILD_DIR}/tools/ncbi_blast_plus/ tools/ncbi_blast_plus
  - ln -s ${TRAVIS_BUILD_DIR}/tools/blastxml_to_top_descr/ tools/blastxml_to_top_descr
  - ln -s ${TRAVIS_BUILD_DIR}/tools/reciprocal_best_hits/ tools/reciprocal_best_hits
