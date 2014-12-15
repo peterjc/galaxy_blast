@@ -12,7 +12,7 @@ segmasker
 #if $db_opts.db_opts_selector == "db":
   -in "${db_opts.database.fields.path}" -infmt blastdb
 #elif $db_opts.db_opts_selector == "histdb":
-  -in "${os.path.join($db_opts.histdb.extra_files_path, 'blastdb')}" -infmt blastdb
+  -in "${os.path.join($db_opts.histdb.files_path, 'blastdb')}" -infmt blastdb
 #else:
   -in "$subject" -infmt fasta
 #end if

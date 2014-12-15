@@ -191,6 +191,8 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - BLAST database ``blastdb*.loc`` files now accessed via the XML
           table definitions in Galaxy's ``tool_data_table_conf.xml`` file,
           setup via ``tool-data/tool_data_table_conf.xml.sample``
+        - Replace ``.extra_files_path with ``.files_path`` (internal change,
+	  thanks to Bjoern Gruening and John Chilton).
 ======= ======================================================================
 
 

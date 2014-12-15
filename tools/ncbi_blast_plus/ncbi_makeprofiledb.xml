@@ -7,8 +7,8 @@
     <expand macro="requirements" />
     <command>
 ##Unlike makeblastdb, makeprofiledb needs directory to exist already:
-mkdir -p $outfile.extra_files_path &amp;&amp;
-makeprofiledb -out "${os.path.join($outfile.extra_files_path,'blastdb')}"
+mkdir -p $outfile.files_path &amp;&amp;
+makeprofiledb -out "${os.path.join($outfile.files_path,'blastdb')}"
 
 ##We turn $infile_list into $infiles with a configfile entry defined below
 -in $infiles
