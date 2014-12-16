@@ -15,6 +15,13 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
     <outputs>
         <data name="info" format="txt" label="${db_opts.database.fields.name} info" />
     </outputs>
+    <tests>
+        <test>
+            <param name="db_opts|db_type" value="prot" />
+            <param name="db_opts|database" value="four_human_proteins" />
+            <output name="info" file="four_human_proteins.dbinfo.txt" ftype="txt" lines_diff="4" />
+        </test>
+    </tests>
     <help>
     
 **What it does**

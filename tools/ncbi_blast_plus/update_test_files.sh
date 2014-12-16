@@ -31,6 +31,9 @@ echo "four_human_proteins_taxid.fasta"
 rm -f test-data/four_human_proteins_taxid.fasta.p*
 makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
 
+echo "four_human_proteins.dbinfo.txt"
+blastdbcmd -dbtype prot -db four_human_proteins_taxid.fasta -info -out four_human_proteins.dbinfo.txt
+
 echo
 echo makeprofiledb
 echo =============

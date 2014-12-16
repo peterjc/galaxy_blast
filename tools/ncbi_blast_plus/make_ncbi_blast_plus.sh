@@ -90,6 +90,7 @@ tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.pog
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psd
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psi
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psq
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.dbinfo.txt 
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.log.txt
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.phd
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.phi
