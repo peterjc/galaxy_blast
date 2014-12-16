@@ -70,6 +70,16 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
     <outputs>
         <data name="seq" format="fasta" label="Sequences from ${db_opts.database.fields.name}" />
     </outputs>
+    <tests>
+        <test>
+            <param name="db_opts|db_type" value="prot" />
+            <param name="db_opts|database" value="four_human_proteins" />
+            <param name="id_opts|id_type" value="prompt" />
+            <param name="id_opts|entries" value="all" />
+            <param name="outfmt" value="original" />
+            <output name="seq" file="four_human_proteins.fasta" ftype="fasta" />
+        </test>
+    </tests>
     <help>
     
 **What it does**
