@@ -108,6 +108,24 @@ $adv_opts.ungapped
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastn_rhodopsin_vs_three_human.columns.tabular" ftype="tabular" />
         </test>
+        <test>
+            <param name="query" value="chimera.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="db" />
+            <param name="database" value="three_human_mRNA" />
+            <param name="out_format" value="6" />
+            <param name="adv_opts_selector" value="advanced" />
+            <param name="max_hits" value="1" />
+            <output name="output1" file="blastn_chimera_vs_three_human_max1.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="query" value="chimera.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="db" />
+            <param name="database" value="three_human_mRNA" />
+            <param name="out_format" value="0" />
+            <param name="adv_opts_selector" value="advanced" />
+            <param name="max_hits" value="1" />
+            <output name="output1" file="blastn_chimera_vs_three_human_max1.txt" ftype="txt" />
+        </test>
     </tests>
     <help>
     

@@ -66,6 +66,8 @@ tar -rf ncbi_blast_plus.tar test-data/blastp_sample_converted.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_arabidopsis.xml
 tar -rf ncbi_blast_plus.tar test-data/blastn_arabidopsis.extended.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_arabidopsis.standard.tabular
+tar -rf ncbi_blast_plus.tar test-data/blastn_chimera_vs_three_human_max1.txt
+tar -rf ncbi_blast_plus.tar test-data/blastn_chimera_vs_three_human_max1.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.xml
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.tabular
 tar -rf ncbi_blast_plus.tar test-data/blastn_rhodopsin_vs_three_human.columns.tabular
@@ -111,6 +113,7 @@ tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta.nsd
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta.nsi
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta.nsq
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.dbinfo.txt
+tar -rf ncbi_blast_plus.tar test-data/test-data/chimera.fasta
 tar -rf ncbi_blast_plus.tar test-data/rhodopsin_nucs.fasta
 tar -rf ncbi_blast_plus.tar test-data/rhodopsin_proteins.fasta
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.html
@@ -142,5 +145,5 @@ tar -rf ncbi_blast_plus.tar test-data/empty_file.dat
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball with 113 files, have:"
+echo "Expect a tar-ball with 116 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l
