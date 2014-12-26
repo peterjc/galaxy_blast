@@ -381,7 +381,7 @@
 #else
 ## Text and HTML output formats 0-4 currently need this instead:
 -num_descriptions $adv_opts.max_hits -num_alignments $adv_opts.max_hits
-#endif
+#end if
 #end if
     </token>
     <token name="@ADV_WORD_SIZE@">
