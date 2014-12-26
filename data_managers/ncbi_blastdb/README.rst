@@ -26,7 +26,7 @@ v0.0.1  - Initial release as an example Data Manager on the Test ToolShed.
 v0.0.2  - Development moved to GitHub, https://github.com/peterjc/galaxy_blast
         - Updated citation information (Blankenberg et al. 2014).
         - Adopted standard MIT License.
-        - Now depends on ``package_blast_plus_2_2_29`` in ToolShed.
+        - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
 ======= ======================================================================
 
 
