@@ -97,6 +97,7 @@ $hash_index
     </outputs>
     <tests>
         <!-- Note the (two line) PIN file is not reproducible run to run.
+             The same applies to the NIN file for nucleotide database.
              Likewise there is a datestamp in the log file as well, so use contains comparison
              With and without the masking makes no difference.
              With and without the taxid the only real difference is in the *.phr file.
@@ -153,6 +154,25 @@ $hash_index
                 <extra_files type="file" value="four_human_proteins.fasta.phi" name="blastdb.phi" />
                 <extra_files type="file" value="four_human_proteins.fasta.psd" name="blastdb.psd" />
                 <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
+            </output>
+        </test>
+        <test>
+            <param name="dbtype" value="nucl" />
+            <param name="input_file" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="title" value="Just 3 human mRNA sequences" />
+            <param name="parse_seqids" value="" />
+            <param name="hash_index" value="true" />
+            <param name="taxselect" value="id" />
+            <param name="taxid" value="9606" />
+            <output name="out_file" compare="contains" file="three_human_mRNA.fasta.log.txt" ftype="blastdbn">
+                <extra_files type="file" value="three_human_mRNA.fasta.nhr" name="blastdb.nhr" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" lines_diff="2" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nsq" name="blastdb.nsq" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nog" name="blastdb.nog" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nhd" name="blastdb.nhd" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nhi" name="blastdb.nhi" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nsd" name="blastdb.nsd" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nsi" name="blastdb.nsi" />
             </output>
         </test>
     </tests>

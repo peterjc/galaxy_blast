@@ -1,0 +1,5 @@
+New DB title:  Just 3 human mRNA sequences
+Sequence type: Nucleotide
+Keep Linkouts: T
+Keep MBits: T
+Maximum file size: 1000000000B
