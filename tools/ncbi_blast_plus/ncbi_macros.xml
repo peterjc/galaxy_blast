@@ -372,9 +372,16 @@
     <token name="@ADV_FILTER_QUERY@">$adv_opts.filter_query</token>
     <token name="@ADV_MAX_HITS@">
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
-## Note -max_target_seqs overrides -num_descriptions and -num_alignments
+## Note -max_target_seqs used to simply override -num_descriptions and -num_alignments
+## but this was changed in BLAST+ 2.2.27 onwards to force their use (raised with NCBI)
 #if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
+#if str($output.out_format) in ["6", "ext", "cols", "5"]:
+## Most output formats use this, including tabular and XML:
 -max_target_seqs $adv_opts.max_hits
+#else
+## Text and HTML output formats 0-4 currently need this instead:
+-num_descriptions $adv_opts.max_hits -num_alignments $adv_opts.max_hits
+#endif
 #end if
     </token>
     <token name="@ADV_WORD_SIZE@">
