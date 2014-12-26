@@ -1,0 +1,7 @@
+Database: Just 3 human mRNA sequences
+	3 sequences; 10,732 total bases
+
+Date: Dec 26, 2014  5:54 AM	Longest sequence: 4,796 bases
+
+Volumes:
+	/mnt/galaxy/galaxy_blast/test-data/three_human_mRNA.fasta
