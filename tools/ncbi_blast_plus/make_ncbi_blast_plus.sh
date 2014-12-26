@@ -90,7 +90,7 @@ tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.pog
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psd
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psi
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.fasta.psq
-tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.dbinfo.txt 
+tar -rf ncbi_blast_plus.tar test-data/four_human_proteins.dbinfo.txt
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.log.txt
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.phd
 tar -rf ncbi_blast_plus.tar test-data/four_human_proteins_taxid.fasta.phi
@@ -110,6 +110,7 @@ tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta.nog
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta.nsd
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta.nsi
 tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.fasta.nsq
+tar -rf ncbi_blast_plus.tar test-data/three_human_mRNA.dbinfo.txt
 tar -rf ncbi_blast_plus.tar test-data/rhodopsin_nucs.fasta
 tar -rf ncbi_blast_plus.tar test-data/rhodopsin_proteins.fasta
 tar -rf ncbi_blast_plus.tar test-data/tblastn_four_human_vs_rhodopsin.html
@@ -141,5 +142,5 @@ tar -rf ncbi_blast_plus.tar test-data/empty_file.dat
 gzip ncbi_blast_plus.tar
 
 #Check the output
-echo "Expect a tar-ball with 112 files, have:"
+echo "Expect a tar-ball with 113 files, have:"
 tar -tzf ncbi_blast_plus.tar.gz | wc -l

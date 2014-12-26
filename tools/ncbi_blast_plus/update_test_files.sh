@@ -38,6 +38,9 @@ echo "three_human_mRNA.fasta"
 rm -f three_human_mRNA.fasta.n*
 makeblastdb -out three_human_mRNA.fasta -hash_index -in three_human_mRNA.fasta -title "Just 3 human mRNA sequences" -dbtype nucl -taxid 9606 > three_human_mRNA.fasta.log
 
+echo "three_human_mRNA.dbinfo.txt"
+blastdbcmd -dbtype nucl -db three_human_mRNA.fasta -info -out three_human_mRNA.dbinfo.txt
+
 echo
 echo makeprofiledb
 echo =============
