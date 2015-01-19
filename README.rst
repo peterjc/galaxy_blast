@@ -17,6 +17,9 @@ and dependency handling within the Galaxy Tool Shed framework.
 
 It also contains additional related Galaxy tools for working with BLAST.
 
+Each of these Galaxy wrappers, tools, datatypes, etc has its own README
+file.
+
 
 Galaxy wrappers for NCBI BLAST+	
 ===============================
@@ -32,6 +35,11 @@ Development test releases are on the Test Tool Shed here:
 
 * http://testtoolshed.g2.bx.psu.edu/view/peterjc/ncbi_blast_plus/
 * http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
+
+The associated development is on GitHub at:
+
+* https://github.com/peterjc/galaxy_blast/tree/master/tools/ncbi_blast_plus
+* https://github.com/peterjc/galaxy_blast/tree/master/datatypes/blast_datatypes
 
 The NCBI BLAST+ binaries were initially included within the Galaxy wrappers
 (ncbi_blast_plus), but are now handled as Tool Shed packages:
@@ -102,10 +110,42 @@ on the Galaxy Tool Shed (these child folder names match the Tool Shed names).
 Similarly, ``dependencies`` contains packages for Galaxy Tool Shed dependency
 definitions, ``datatypes`` contains packages for Galaxy Tool Shed datatype
 definitions, and ``data_managers`` contains Galaxy Data Managers for tasks
-like setting up local copies of NCBI BLAST databases.
+like setting up local copies of NCBI BLAST databases (currently unfinished).
+
+All of these child folders contain additional README files, which cover
+things like how to install each tool manually or via the Galaxy Tool Shed.
 
 Additionally there is a shared ``test-data`` folder used for functional test
 sample data, and a shared ``tool-data`` folder used for configuration files.
+
+
+Installation
+============
+
+The individual Galaxy tools (under the ``tools/`` folder as descibed above)
+must be installed into a Galaxy instance for use.  In general the easiest
+and recommended way to do this is via the Galaxy Tool Shed which should
+handle the dependencies for you. However, manual installation is possible
+as described in the README file of each tool.
+
+Binary dependencies like NCBI BLAST+ have been packaged for the Galaxy
+ToolShed (links given above), and installing via the Tool Shed allow
+multiple versions to be available under Galaxy's control for full
+reproducibility.  If you opt to install the NCBI BLAST+ simply on the
+system ``$PATH`` outside of Galaxy's control, you are giving up full
+reproducibility as Galaxy has no control over which version of BLAST+
+will be run.
+
+If you wish to use pre-existing BLAST databases, either local to your
+institute or from the NCBI BLAST databases FTP site, they must currently be
+managed by the Galaxy Administrator manually via the ``blastdb*.loc``
+configuration files. In many cases, your system administrator may already
+have automatically updated NCBI BLAST database available centrally. In this
+case, telling Galaxy to use these is a simple solution, but gives up full
+reproducibilty as there is only a single "live" version of each database.
+
+Note that individual Galaxy users may also create their own databases
+within Galaxy from FASTA files using the ``makeblastdb`` wrapper.
 
 
 Testing
@@ -114,10 +154,11 @@ Testing
 Most of these Galaxy tools include a <tests> section in the tool XML files,
 which defines one or more functional tests - listing sample input files and
 user parameters, along with the expected output. If you install the tools,
-you can run these tests via Galaxy's ``run_functional_tests.sh`` script -
-and/or do this automatically if installing the tools via the Tool Shed.
+you can run these tests via Galaxy's ``run_tests.sh`` script - and/or do
+this automatically if installing the tools via the Tool Shed. See the
+README file for each tool for more details.
 
-The Galaxy team run nightly tests on all the tools which have been uploaded
+The Galaxy team run regular tests on all the tools which have been uploaded
 to the main Tool Shed and the Test Tool Shed, simulating how they would
 behave in a local Galaxy instance once installed via the Tool Shed.
 
