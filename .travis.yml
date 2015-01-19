@@ -1,7 +1,11 @@
 # This is a special configuration file to run tests on Travis-CI via
 # GitHub notifications when changes are committed.
 #
-# See http://travis-ci.org/ for details
+# This file is not intended for end users of the Galaxy BLAST+ tools.
+#
+# For technical details, see http://travis-ci.org/ and this blog post
+# for background,
+# http://blastedbio.blogspot.com/2013/09/using-travis-ci-for-testing-galaxy-tools.html
 
 
 # We need Python 2.6 or 2.7 to run Galaxy (and some of the wrappers)
