@@ -122,14 +122,14 @@ sample data, and a shared ``tool-data`` folder used for configuration files.
 Installation
 ============
 
-The individual Galaxy tools (under the ``tools/`` folder as descibed above)
+The individual Galaxy tools (under the ``tools/`` folder as described above)
 must be installed into a Galaxy instance for use.  In general the easiest
 and recommended way to do this is via the Galaxy Tool Shed which should
 handle the dependencies for you. However, manual installation is possible
 as described in the README file of each tool.
 
 Binary dependencies like NCBI BLAST+ have been packaged for the Galaxy
-ToolShed (links given above), and installing via the Tool Shed allow
+Tool Shed (links given above), and installing via the Tool Shed allow
 multiple versions to be available under Galaxy's control for full
 reproducibility.  If you opt to install the NCBI BLAST+ simply on the
 system ``$PATH`` outside of Galaxy's control, you are giving up full
