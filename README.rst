@@ -181,6 +181,24 @@ You can file an issue here https://github.com/peterjc/galaxy_blast/issues or ask
 us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
 
 
+Citation
+========
+
+There should be more specific guidenace in the README file of each folder,
+and in the user-facing help text within the each Galaxy tool. In general,
+please cite the following paper (currently only available as a preprint):
+
+NCBI BLAST+ integrated into Galaxy.
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
+bioRxiv DOI: http://dx.doi.org/10.1101/014043 (preprint)
+
+In most cases, you should also cite the NCBI BLAST+ tools:
+
+BLAST+: architecture and applications.
+C. Camacho et al. BMC Bioinformatics 2009, 10:421.
+DOI: http://dx.doi.org/10.1186/1471-2105-10-421
+
+
 License
 =======
 

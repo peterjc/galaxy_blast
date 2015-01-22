@@ -16,8 +16,10 @@ This wrapper is freely available from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 
 
-References
-==========
+Citation
+========
+
+Please cite the following papers:
 
 Peter Cock, Bjoern Gruening, Konrad Paszkiewicz and Leighton Pritchard (2013).
 Galaxy tools and workflows for sequence analysis with applications

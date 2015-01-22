@@ -20,6 +20,22 @@ These wrappers are available from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
 
 
+Citation
+========
+
+Please cite the following paper (currently available as a preprint):
+
+NCBI BLAST+ integrated into Galaxy.
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
+bioRxiv DOI: http://dx.doi.org/10.1101/014043 (preprint)
+
+You should also cite the NCBI BLAST+ tools:
+
+BLAST+: architecture and applications.
+C. Camacho et al. BMC Bioinformatics 2009, 10:421.
+DOI: http://dx.doi.org/10.1186/1471-2105-10-421
+
+
 Automated Installation
 ======================
 
@@ -193,6 +209,7 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
           setup via ``tool-data/tool_data_table_conf.xml.sample``
         - Replace ``.extra_files_path`` with ``.files_path`` (internal change,
 	  thanks to Bjoern Gruening and John Chilton).
+        - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 ======= ======================================================================
 
 

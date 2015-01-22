@@ -16,6 +16,22 @@ from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 
 
+Citation
+========
+
+Please cite the following paper (currently available as a preprint):
+
+NCBI BLAST+ integrated into Galaxy.
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
+bioRxiv DOI: http://dx.doi.org/10.1101/014043 (preprint)
+
+You should also cite the NCBI BLAST+ tools:
+
+BLAST+: architecture and applications.
+C. Camacho et al. BMC Bioinformatics 2009, 10:421.
+DOI: http://dx.doi.org/10.1186/1471-2105-10-421
+
+
 Automated Installation
 ======================
 
@@ -63,6 +79,7 @@ v0.1.4  - Check for duplicate FASTA identifiers (workaround for makeblastdb
 v0.1.5  - Clarify documentation for using the Python script outside Galaxy.
         - Updated to depend on NCBI BLAST+ 2.2.30 via ToolShed install.
 v0.1.6  - Offer the new blastp-fast task added in BLAST+ 2.2.30.
+        - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 ======= ======================================================================
 
 

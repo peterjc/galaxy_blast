@@ -46,6 +46,7 @@ v0.0.19 - Add ``blastdbp`` datatype for BLAST protein domain databases, for use
         - Add ``pssm-asn1`` datatype for Position Specific Scoring Matrices
           (PSSMs) stored in NCBI's "scoremat" ASN.1 format (usually named
           as ``*.smp``), used as input files for makeprofiledb.
+v0.0.20 - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 ======= ======================================================================
 
 
@@ -116,6 +117,16 @@ Check this worked::
 For development, rather than having a local ToolShed running, I currently
 use a symlink from ``lib/galaxy/datatypes/blast.py`` to the actual file as
 described above.
+
+
+Citation
+========
+
+Please cite the following paper (currently available as a preprint):
+
+NCBI BLAST+ integrated into Galaxy.
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
+bioRxiv DOI: http://dx.doi.org/10.1101/014043 (preprint)
 
 
 Licence (MIT)
