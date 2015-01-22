@@ -184,7 +184,7 @@ us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
 Citation
 ========
 
-There should be more specific guidenace in the README file of each folder,
+There should be more specific guidance in the README file of each folder,
 and in the user-facing help text within the each Galaxy tool. In general,
 please cite the following paper (currently only available as a preprint):
 
