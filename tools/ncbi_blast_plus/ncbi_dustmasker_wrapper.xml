@@ -92,7 +92,7 @@ More information about dustmasker can be found in the `BLAST Command Line Applic
 **References**
 
 If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers (a more specific paper covering this wrapper is planned):
+cite the following papers:
 
 @REFERENCES@
     </help>
