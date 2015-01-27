@@ -399,14 +399,18 @@ ${db_opts.histdb.name}
 ${db_opts.subject.name}
 #end if</token>
     <token name="@REFERENCES@">
+Peter J. A. Cock, John M. Chilton, Björn Grüning, James E. Johnson, Nicola Soranzo (2015).
+NCBI BLAST+ integrated into Galaxy. *BioRxiv* preprint.
+http://dx.doi.org/10.1101/014043
+
 Peter J.A. Cock, Björn A. Grüning, Konrad Paszkiewicz and Leighton Pritchard (2013).
 Galaxy tools and workflows for sequence analysis with applications
-in molecular plant pathology. PeerJ 1:e167
+in molecular plant pathology. *PeerJ* 1:e167
 http://dx.doi.org/10.7717/peerj.167
 
 Christiam Camacho et al. (2009).
 BLAST+: architecture and applications.
-BMC Bioinformatics. 15;10:421.
+*BMC Bioinformatics*. 15;10:421.
 http://dx.doi.org/10.1186/1471-2105-10-421
 
 This wrapper is available to install into other Galaxy Instances via the Galaxy
@@ -416,8 +420,9 @@ Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
         <citations>
             <citation type="doi">10.1186/1471-2105-10-421</citation>
             <citation type="doi">10.7717/peerj.167</citation>
+            <!-- TODO - remove PeerJ paper once "NCBI BLAST+ integrated into Galaxy" formally published? -->
             <citation type="doi">10.1101/014043</citation>
-            <!-- TODO - Update once "NCBI BLAST+ integrated into Galaxy" formally published -->
+            <!-- TODO - Update DOI once "NCBI BLAST+ integrated into Galaxy" formally published -->
         </citations>
     </xml>
     <token name="@OUTPUT_FORMAT@">**Output format**
