@@ -236,7 +236,12 @@ tabular output).
 
 **References**
 
-A specific paper covering this tool is planned, but please also cite:
+Please cite:
+
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo (2015).
+NCBI BLAST+ integrated into Galaxy.
+bioRxiv prepint.
+http://dx.doi.org/10.1101/014043
 
 Christiam Camacho et al. (2009).
 BLAST+: architecture and applications.
