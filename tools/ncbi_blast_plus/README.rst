@@ -19,6 +19,9 @@ with this.
 These wrappers are available from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
 
+In-development test releases are available from the Test Tool Shed at:
+http://testtoolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus/
+
 
 Citation
 ========

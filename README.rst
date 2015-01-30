@@ -33,7 +33,7 @@ Tool Shed here:
 
 Development test releases are on the Test Tool Shed here:
 
-* http://testtoolshed.g2.bx.psu.edu/view/peterjc/ncbi_blast_plus/
+* http://testtoolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus/
 * http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
 
 The associated development is on GitHub at:
