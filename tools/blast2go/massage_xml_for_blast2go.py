@@ -51,9 +51,9 @@ def prepare_xml(original_xml, mangled_xml):
         header += line
 
     if "<BlastOutput_program>blastx</BlastOutput_program>" in header:
-        print "BLASTX output identified"
+        print("BLASTX output identified")
     elif "<BlastOutput_program>blastp</BlastOutput_program>" in header:
-        print "BLASTP output identified"
+        print("BLASTP output identified")
     else:
         in_handle.close()
         stop_err("Expect BLASTP or BLASTX output")
@@ -75,7 +75,7 @@ def prepare_xml(original_xml, mangled_xml):
 
     out_handle.close()
     in_handle.close()
-    print "Input has %i queries" % count
+    print("Input has %i queries" % count)
 
 
 if __name__ == "__main__":
