@@ -48,8 +48,8 @@ Automated Installation
 ======================
 
 Installation via the Galaxy Tool Shed should take care of the Galaxy side of
-things, including the dependency on 'blast_datatypes' which defines the
-'blastxml' file format. However, you will also probably need to configure
+things, including the dependency on ``blast_datatypes`` which defines the
+``blastxml`` file format. However, you will also probably need to configure
 the Blast2GO property file(s), for example if you have a local Blast2GO
 database (which we recommend for speed).
 
@@ -64,7 +64,7 @@ the last free version is b2g4pipe v2.5 which is available here:
 
 * http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
 
-You can change the path by setting the ``$B2G4PIPE`` environement variable to
+You can change the path by setting the ``$B2G4PIPE`` environment variable to
 the desired folder, but by default the script looks for the JAR file here::
 
     /opt/b2g4pipe_v2.5/blast2go.jar
@@ -75,7 +75,7 @@ copy or move the following files under the Galaxy tools folder, e.g. in a
 
 - ``blast2go.xml`` (the Galaxy tool definition)
 - ``blast2go.py`` (the Python wrapper script)
-- ``massage_xml_for_blast2go.py`` (Python XML reformatting script)
+- ``massage_xml_for_blast2go.py`` (Python BLAST XML reformatting script)
 - ``README.rst`` (this file)
 
 For a manual installation of the wrapper you will also need to modify the
