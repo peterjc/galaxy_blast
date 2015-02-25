@@ -41,7 +41,7 @@ v0.0.17 - Add ``maskinfo-asn1`` and ``maskinfo-asn1-binary`` sub-datatypes
           (contribution from Nicola Soranzo)
 v0.0.18 - Add retries to BLAST XML merge code.
         - Modify display_data method to allow unit tests to function.
-v0.0.19 - Add ``blastdbp`` datatype for BLAST protein domain databases, for use
+v0.0.19 - Add ``blastdbd`` datatype for BLAST protein domain databases, for use
           with makeprofiledb and rpsblast (contribution from Bjoern Gruening).
         - Add ``pssm-asn1`` datatype for Position Specific Scoring Matrices
           (PSSMs) stored in NCBI's "scoremat" ASN.1 format (usually named
