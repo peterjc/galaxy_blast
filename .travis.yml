@@ -20,34 +20,14 @@ language: java
 # =================
 #
 # Before installing our Galaxy wrappers, we need to install Galaxy.
-# That may mean using hg to clone it from BitBucket, but too slow?
 #
-# $ time hg clone https://bitbucket.org/galaxy/galaxy-dist
-# ...
-# 3m14s
+# Galaxy used to be developed in hg using BitBucket, but cloning with
+# hg or getting a specific revision with wget was quite slow. Using
+# git clone with a mirror on GitHub was faster, while getting the
+# latest revision with wget from GitHub was even faster.
 #
-# Could use wget to just grab the a specific branch/revision?
-#
-# $ time wget https://bitbucket.org/galaxy/galaxy-dist/get/stable.tar.bz2
-# ...
-# 1m33s
-#
-# We can do better using a GitHub mirror, such as John Chilton's
-#
-# $ time git clone https://github.com/jmchilton/galaxy-central.git
-# ...
-# 44s
-#
-# But better yet seems to be a tar-ball from the GitHub mirror,
-#
-# $ time wget https://github.com/jmchilton/galaxy-central/archive/master.tar.gz
-# ...
-# 22s
-#
-# Note it redirects so wget downloads the tar-ball as a file just called master,
-# https://codeload.github.com/jmchilton/galaxy-central/tar.gz/master
-#
-# However, we might want to focus on the stable release branch?
+# We therefore use wget with the new official Galaxy repository on
+# GitHub, https://github.com/galaxyproject/galaxy
 #
 #
 # Installing Tool Dependencies
@@ -84,7 +64,7 @@ before_install:
  - tar -zxvf ncbi-blast-2.2.30+-x64-linux.tar.gz | tail
  - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.30+/bin:$PATH"
  - echo "Fetching Galaxy..."
- - wget https://codeload.github.com/jmchilton/galaxy-central/tar.gz/master
+ - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/master
  - tar -zxvf master | tail
  - cd galaxy-central-master
 
