@@ -66,7 +66,7 @@ before_install:
  - echo "Fetching Galaxy..."
  - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/master
  - tar -zxvf master | tail
- - cd galaxy-central-master
+ - cd galaxy-master
 
 
 # Configuring tools within Galaxy
