@@ -64,9 +64,9 @@ before_install:
  - tar -zxvf ncbi-blast-2.2.30+-x64-linux.tar.gz | tail
  - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.30+/bin:$PATH"
  - echo "Fetching Galaxy..."
- - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/master
- - tar -zxvf master | tail
- - cd galaxy-master
+ - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/dev
+ - tar -zxvf dev | tail
+ - cd galaxy-dev
 
 
 # Configuring tools within Galaxy
@@ -97,7 +97,7 @@ before_install:
 #
 
 install:
- - cd ${TRAVIS_BUILD_DIR}/galaxy-master
+ - cd ${TRAVIS_BUILD_DIR}/galaxy-dev
  - export GALAXY_TEST_UPLOAD_ASYNC=false
  - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0127.sqlite
  - rm -f tool_conf.xml
