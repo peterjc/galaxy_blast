@@ -99,7 +99,7 @@ before_install:
 install:
  - cd ${TRAVIS_BUILD_DIR}/galaxy-master
  - export GALAXY_TEST_UPLOAD_ASYNC=false
- - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0120.sqlite
+ - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0127.sqlite
  - rm -f tool_conf.xml
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml
  - rm -f config/tool_conf.xml.sample
