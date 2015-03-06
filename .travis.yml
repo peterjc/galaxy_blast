@@ -106,11 +106,7 @@ install:
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml config/tool_conf.xml.sample
  - rm -f config/shed_tool_data_table_conf.xml
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_data_table_conf.xml config/shed_tool_data_table_conf.xml
- - ln -s ${TRAVIS_BUILD_DIR}/tools/ncbi_blast_plus/ tools/ncbi_blast_plus
- - ln -s ${TRAVIS_BUILD_DIR}/tools/blastxml_to_top_descr/ tools/blastxml_to_top_descr
- - ln -s ${TRAVIS_BUILD_DIR}/tools/reciprocal_best_hits/ tools/reciprocal_best_hits
- - ln -s ${TRAVIS_BUILD_DIR}/tools/blast_rbh/ tools/blast_rbh
- - ln -s ${TRAVIS_BUILD_DIR}/tools/blast2go/ tools/blast2go
+ - for i in $( ls ${TRAVIS_BUILD_DIR}/tools/ ); do ln -s ${TRAVIS_BUILD_DIR}/tools/$i/ tools/$i ; done
  - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
  - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
