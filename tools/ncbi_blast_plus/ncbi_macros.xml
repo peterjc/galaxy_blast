@@ -66,7 +66,7 @@
                     <option value="slen">slen = Subject sequence length</option>
                     <option value="salltitles">salltitles = All subject title(s), separated by a '&lt;&gt;'</option>
                 </param>
-                <param name="ids_cols" type="select" multiple="true" display="checkboxes" label="Other identifer columns">
+                <param name="ids_cols" type="select" multiple="true" display="checkboxes" label="Other identifier columns">
                     <option value="qgi">qgi = Query GI</option>
                     <option value="qacc">qacc = Query accesion</option>
                     <option value="qaccver">qaccver = Query accesion.version</option>
@@ -313,9 +313,9 @@
                    label="Restrict search of database to a given set of ID's"
 		   help="This feature provides a means to exclude ID's from a BLAST database search. The expectation values in the BLAST results are based upon the sequences actually searched, and not on the underlying database. Note this cannot be used when comparing against a FASTA file.">
                 <option value="none" selected="True">No restriction, search the entire database</option>
-                <option value="gilist">GI identifers</option>
-                <option value="negative_gilist">Negative GI identifers</option>
-                <option value="seqidlist">Sequence identifers (SeqId's)</option>
+                <option value="gilist">GI identifiers</option>
+                <option value="negative_gilist">Negative GI identifiers</option>
+                <option value="seqidlist">Sequence identifiers (SeqId's)</option>
             </param>
             <when value="none" />
             <when value="gilist">
