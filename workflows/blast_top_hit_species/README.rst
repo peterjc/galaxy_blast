@@ -57,17 +57,19 @@ Running this workflow with a copy of the NCBI non-redundant ``nr`` database
 from 16 Oct 2014 (which did **not** contain this *N. abberans* dataset) gave
 the following results - note 609 out of the 1000 sequences gave no BLAST hit.
 
-| Count | Subject Blast Name |
-| ----- | ------------------ |
-|   609 | None               |
-|   244 | nematodes          |
-|    30 | ascomycetes        |
-|    27 | eukaryotes         |
-|     8 | basidiomycetes     |
-|     6 | aphids             |
-|     5 | eudicots           |
-|     5 | flies              |
-|   ... | ...                |
+===== ==================
+Count Subject Blast Name
+----- ------------------
+  609 None
+  244 nematodes
+   30 ascomycetes
+   27 eukaryotes
+    8 basidiomycetes
+    6 aphids
+    5 eudicots
+    5 flies
+  ... ...
+===== ==================
 
 As you might guess from	the filename ``N.abberans_reference_no_contam.fasta``,
 this transcriptome assembly has already had obvious contamination removed.
