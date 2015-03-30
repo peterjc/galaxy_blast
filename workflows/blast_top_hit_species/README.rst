@@ -42,7 +42,8 @@ In words, the workflow proceeds as follows:
 7. Count the BLAST species names in this file.
 8. Sort the counts.
 
-Finally we would suggest visualising the sorted tally table as a Pie Chart.
+Finally we would suggest visualising the sorted tally table as a Pie Chart,
+as in the example below.
 
 
 Sample Data
