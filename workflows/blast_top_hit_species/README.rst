@@ -20,7 +20,7 @@ Galaxy workflow for counting species of top BLAST hits
 
 This Galaxy workflow (file ``blast_top_hit_species.ga``) is intended for an
 initial assessment of a transcriptome assembly to give a crude indication of
-any major contaimination present based on the species of the top BLAST hit
+any major contamination present based on the species of the top BLAST hit
 of 1000 representative sequences.
 
 .. image:: https://raw.githubusercontent.com/peterjc/galaxy_blast/master/workflows/blast_top_hit_species/blast_top_hit_species.png
@@ -88,8 +88,8 @@ Disclaimer
 ==========
 
 Species assignment by top BLAST hit is not suitable for any in depth
-analysis. It is particularly prone to false positives where contaiminants
-in public datasets are mislabled. See for example Ed Yong (2015),
+analysis. It is particularly prone to false positives where contaminants
+in public datasets are mislabelled. See for example Ed Yong (2015),
 "There's No Plague on the NYC Subway. No Platypuses Either.":
 
 http://phenomena.nationalgeographic.com/2015/02/10/theres-no-plague-on-the-nyc-subway-no-platypuses-either/
