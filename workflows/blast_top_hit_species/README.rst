@@ -98,6 +98,9 @@ http://phenomena.nationalgeographic.com/2015/02/10/theres-no-plague-on-the-nyc-s
 Known Issues
 ============
 
+Counts
+------
+
 This workflow uses the Galaxy "Count" tool, version 1.0.0, as shipped with
 the current stable release (Galaxy v15.03, i.e. March 2015).
 
@@ -113,6 +116,22 @@ the workflow.
 A future update to this workflow will use the revised "Count" tool, once
 this is included in the next stable Galaxy release - or migrated to the
 Galaxy Tool Shed.
+
+NCBI nr database
+----------------
+
+The use of external datasets within Galaxy via the ``*.loc`` configuration
+files undermines provenance tracking within Galaxy. This is exacerbated
+by the lack of officially versioned BLAST database releases by the NCBI.
+
+This workflow assumes that you have an entry ``nr`` in your ``blastdb_p.loc``
+(the configuration file listing locally installed BLAST databases external
+to Galaxy - consult the NCBI BLAST+ wrapper documentation for more details),
+and that this points to a mirror of the latest NCBI "non-redundant" database
+from ftp://ftp.ncbi.nlm.nih.gov/blast/db/
+
+i.e. The workflow is intended to be used against the *latest* nr database,
+and thus is not reproducible over the long term as the database changes.
 
 
 Availability
