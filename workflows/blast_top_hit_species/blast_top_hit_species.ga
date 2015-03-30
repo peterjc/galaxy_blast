@@ -11,7 +11,7 @@
             "inputs": [
                 {
                     "description": "", 
-                    "name": "Input Dataset"
+                    "name": "Transcriptome FASTA file"
                 }
             ], 
             "label": null, 
@@ -23,7 +23,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": null, 
-            "tool_state": "{\"name\": \"Input Dataset\"}", 
+            "tool_state": "{\"name\": \"Transcriptome FASTA file\"}", 
             "tool_version": null, 
             "type": "data_input", 
             "user_outputs": [], 
@@ -51,7 +51,15 @@
                 "left": 435, 
                 "top": 119
             }, 
-            "post_job_actions": {}, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_file": {
+                    "action_arguments": {
+                        "newname": "1000 sequences from #{input_file}"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_file"
+                }
+            }, 
             "tool_errors": null, 
             "tool_id": "toolshed.g2.bx.psu.edu/repos/peterjc/sample_seqs/sample_seqs/0.2.1", 
             "tool_state": "{\"__page__\": 0, \"input_file\": \"null\", \"__rerun_remap_job_id__\": null, \"sampling\": \"{\\\"count\\\": \\\"1000\\\", \\\"type\\\": \\\"desired_count\\\", \\\"__current_case__\\\": 2}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-dist/tool-data/shared/ucsc/chrom/?.len\\\"\", \"interleaved\": \"\\\"False\\\"\"}", 
@@ -82,10 +90,18 @@
                 "left": 489, 
                 "top": 263
             }, 
-            "post_job_actions": {}, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput1": {
+                    "action_arguments": {
+                        "newname": "Top BLAST match"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output1"
+                }
+            }, 
             "tool_errors": null, 
             "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastx_wrapper/0.1.01", 
-            "tool_state": "{\"evalue_cutoff\": \"\\\"0.001\\\"\", \"__page__\": 0, \"adv_opts\": \"{\\\"adv_optional_id_files_opts\\\": {\\\"adv_optional_id_files_opts_selector\\\": \\\"none\\\", \\\"__current_case__\\\": 0}, \\\"matrix\\\": \\\"BLOSUM62\\\", \\\"adv_opts_selector\\\": \\\"advanced\\\", \\\"ungapped\\\": \\\"False\\\", \\\"filter_query\\\": \\\"True\\\", \\\"word_size\\\": \\\"0\\\", \\\"__current_case__\\\": 1, \\\"parse_deflines\\\": \\\"False\\\", \\\"strand\\\": \\\"-strand both\\\", \\\"max_hits\\\": \\\"1\\\"}\", \"__rerun_remap_job_id__\": null, \"db_opts\": \"{\\\"db_opts_selector\\\": \\\"db\\\", \\\"subject\\\": \\\"\\\", \\\"histdb\\\": \\\"\\\", \\\"__current_case__\\\": 0, \\\"database\\\": {\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"nr\\\"}}\", \"query_gencode\": \"\\\"1\\\"\", \"query\": \"null\", \"output\": \"{\\\"out_format\\\": \\\"cols\\\", \\\"std_cols\\\": [\\\"qseqid\\\", \\\"sseqid\\\", \\\"pident\\\", \\\"length\\\", \\\"mismatch\\\", \\\"gapopen\\\", \\\"qstart\\\", \\\"qend\\\", \\\"sstart\\\", \\\"send\\\", \\\"evalue\\\", \\\"bitscore\\\"], \\\"ids_cols\\\": null, \\\"tax_cols\\\": [\\\"staxids\\\", \\\"sscinames\\\", \\\"scomnames\\\", \\\"sblastnames\\\", \\\"sskingdoms\\\"], \\\"__current_case__\\\": 2, \\\"misc_cols\\\": null, \\\"ext_cols\\\": null}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-dist/tool-data/shared/ucsc/chrom/?.len\\\"\"}", 
+            "tool_state": "{\"evalue_cutoff\": \"\\\"0.001\\\"\", \"__page__\": 0, \"adv_opts\": \"{\\\"adv_optional_id_files_opts\\\": {\\\"adv_optional_id_files_opts_selector\\\": \\\"none\\\", \\\"__current_case__\\\": 0}, \\\"matrix\\\": \\\"BLOSUM62\\\", \\\"adv_opts_selector\\\": \\\"advanced\\\", \\\"ungapped\\\": \\\"False\\\", \\\"filter_query\\\": \\\"True\\\", \\\"word_size\\\": \\\"0\\\", \\\"__current_case__\\\": 1, \\\"parse_deflines\\\": \\\"False\\\", \\\"strand\\\": \\\"-strand both\\\", \\\"max_hits\\\": \\\"1\\\"}\", \"__rerun_remap_job_id__\": null, \"db_opts\": \"{\\\"db_opts_selector\\\": \\\"db\\\", \\\"subject\\\": \\\"\\\", \\\"histdb\\\": \\\"\\\", \\\"__current_case__\\\": 0, \\\"database\\\": \\\"nr\\\"}\", \"query_gencode\": \"\\\"1\\\"\", \"query\": \"null\", \"output\": \"{\\\"out_format\\\": \\\"cols\\\", \\\"std_cols\\\": [\\\"qseqid\\\", \\\"sseqid\\\", \\\"pident\\\", \\\"length\\\", \\\"mismatch\\\", \\\"gapopen\\\", \\\"qstart\\\", \\\"qend\\\", \\\"sstart\\\", \\\"send\\\", \\\"evalue\\\", \\\"bitscore\\\"], \\\"ids_cols\\\": null, \\\"tax_cols\\\": [\\\"staxids\\\", \\\"sscinames\\\", \\\"scomnames\\\", \\\"sblastnames\\\", \\\"sskingdoms\\\"], \\\"__current_case__\\\": 2, \\\"misc_cols\\\": null, \\\"ext_cols\\\": null}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-dist/tool-data/shared/ucsc/chrom/?.len\\\"\"}", 
             "tool_version": "0.1.01", 
             "type": "tool", 
             "user_outputs": [], 
@@ -117,6 +133,13 @@
                 "HideDatasetActionoutput": {
                     "action_arguments": {}, 
                     "action_type": "HideDatasetAction", 
+                    "output_name": "output"
+                }, 
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "1000 sequences as tabular"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
                     "output_name": "output"
                 }
             }, 
@@ -154,6 +177,13 @@
                 "HideDatasetActionoutfile": {
                     "action_arguments": {}, 
                     "action_type": "HideDatasetAction", 
+                    "output_name": "outfile"
+                }, 
+                "RenameDatasetActionoutfile": {
+                    "action_arguments": {
+                        "newname": "One HSP per BLAST hit"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
                     "output_name": "outfile"
                 }
             }, 
@@ -196,6 +226,13 @@
                     "action_arguments": {}, 
                     "action_type": "HideDatasetAction", 
                     "output_name": "out_file1"
+                }, 
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "Top BLAST hits or None"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "out_file1"
                 }
             }, 
             "tool_errors": null, 
@@ -233,6 +270,13 @@
                     "action_arguments": {}, 
                     "action_type": "HideDatasetAction", 
                     "output_name": "out_file1"
+                }, 
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "Top BLAST hit species counts (unsorted)"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "out_file1"
                 }
             }, 
             "tool_errors": null, 
@@ -265,7 +309,15 @@
                 "left": 1056, 
                 "top": 506
             }, 
-            "post_job_actions": {}, 
+            "post_job_actions": {
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "Top BLAST hit species counts"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "out_file1"
+                }
+            }, 
             "tool_errors": null, 
             "tool_id": "sort1", 
             "tool_state": "{\"__page__\": 0, \"style\": \"\\\"num\\\"\", \"column\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"1\\\"}\", \"__rerun_remap_job_id__\": null, \"column_set\": \"[]\", \"input\": \"null\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-dist/tool-data/shared/ucsc/chrom/?.len\\\"\", \"order\": \"\\\"DESC\\\"\"}", 
@@ -275,5 +327,5 @@
             "uuid": "c81cc61d-52a3-44ee-b646-b23e0e004c38"
         }
     }, 
-    "uuid": "a779897a-78ba-4b1e-be4b-8e1f20df0b86"
+    "uuid": "28f6da1e-b662-49af-a963-ea3bdeb8f4af"
 }
