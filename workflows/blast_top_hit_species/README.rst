@@ -30,16 +30,16 @@ In words, the workflow proceeds as follows:
 2. Samples 1000 representative sequences, selected uniformly/evenly though
    the file.
 3. Convert the sampled FASTA file into a three column tabular file.
-3. Runs NCBI BLASTX of the sampled FASTA file against the latest NCBI ``nr``
+4. Runs NCBI BLASTX of the sampled FASTA file against the latest NCBI ``nr``
    database (assuming this is already available setup on your local Galaxy
    under the alias ``nr``), requesting tabular output including the taxonomy
    fields, and at most one matching target sequence.
-4. Remove any duplicate alignments (multiple HSPs for the same match).
-5. Combine the filtered BLAST output with the tabular version of the 1000
+5. Remove any duplicate alignments (multiple HSPs for the same match).
+6. Combine the filtered BLAST output with the tabular version of the 1000
    sequences to give a new tabular file with exactly 1000 lines, adding
    ``None`` for sequences missing a BLAST hit.
-6. Count the BLAST species names in this file.
-7. Sort the counts.
+7. Count the BLAST species names in this file.
+8. Sort the counts.
 
 Finally we would suggest visualising the sorted tally table as a Pie Chart.
 
