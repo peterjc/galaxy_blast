@@ -14,6 +14,7 @@ http://blast.ncbi.nlm.nih.gov/Blast.cgi
 This is an example workflow using the Galaxy wrappers for NCBI BLAST+,
 see https://github.com/peterjc/galaxy_blast
 
+
 Galaxy workflow for counting species of top BLAST hits 
 ======================================================
 
@@ -81,6 +82,37 @@ the counts (c1) and labels (c2), like this:
 .. image:: https://raw.githubusercontent.com/peterjc/galaxy_blast/master/workflows/blast_top_hit_species/N_abberans_piechart_mouseover.png
 
 Note the nematode count in this image was shown as a mouse-over effect.
+
+
+Disclaimer
+==========
+
+Species assignment by top BLAST hit is not suitable for any in depth
+analysis. It is particularly prone to false positives where contaiminants
+in public datasets are mislabled. See for example Ed Yong (2015),
+"There's No Plague on the NYC Subway. No Platypuses Either.":
+
+http://phenomena.nationalgeographic.com/2015/02/10/theres-no-plague-on-the-nyc-subway-no-platypuses-either/
+
+
+Known Issues
+============
+
+This workflow uses the Galaxy "Count" tool, version 1.0.0, as shipped with
+the current stable release (Galaxy v15.03, i.e. March 2015).
+
+The updated "Count" tool version 1.0.1 includes a fix not to remove spaces
+in the fields being counted. In the example above, while the top hits are
+not affected, minor entries like "cellular slime molds" are shown as
+"cellularslimemolds" instead (look closely at the Pie Chart key)..
+
+The updated "Count" tool version 1.0.1 also adds a new option to sort the
+output, which avoids the additional sorting step in the current version of
+the workflow.
+
+A future update to this workflow will use the revised "Count" tool, once
+this is included in the next stable Galaxy release - or migrated to the
+Galaxy Tool Shed.
 
 
 Availability
