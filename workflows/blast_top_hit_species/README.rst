@@ -82,3 +82,98 @@ the counts (c1) and labels (c2), like this:
 
 Note the nematode count in this image was shown as a mouse-over effect.
 
+
+Availability
+============
+
+This workflow is available to download and/or install from the main Galaxy Tool Shed:
+
+http://toolshed.g2.bx.psu.edu/view/peterjc/blast_top_hit_species
+
+Test releases (which should not normally be used) are on the Test Tool Shed:
+
+http://testtoolshed.g2.bx.psu.edu/view/peterjc/blast_top_hit_species
+
+Development is being done on github here:
+
+https://github.com/peterjc/galaxy_blast/tree/master/workflows/blast_top_hit_species
+
+
+Citation
+========
+
+Please cite the following paper (currently available as a preprint):
+
+NCBI BLAST+ integrated into Galaxy.
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
+bioRxiv DOI: http://dx.doi.org/10.1101/014043 (preprint)
+
+You should also cite Galaxy, and the NCBI BLAST+ tools:
+
+BLAST+: architecture and applications.
+C. Camacho et al. BMC Bioinformatics 2009, 10:421.
+DOI: http://dx.doi.org/10.1186/1471-2105-10-421
+
+
+Automated Installation
+======================
+
+Installation via the Galaxy Tool Shed should take care of the dependencies
+on Galaxy tools including the NCBI BLAST+ wrappers and associated binaries.
+
+However, this workflow requires a current version of the NCBI nr protein
+BLAST database to be listed in ``blastdb_p.loc`` with the key ``nr`` (lower
+case).
+
+
+History
+=======
+
+======= ======================================================================
+Version Changes
+------- ----------------------------------------------------------------------
+v0.1.0  - Initial Tool Shed release, targetting NCBI BLAST+ 2.2.29
+======= ======================================================================
+
+
+Developers
+==========
+
+This workflow is under source code control here:
+
+https://github.com/peterjc/galaxy_blast/tree/master/workflows/blast_top_hit_species
+
+To prepare the tar-ball for uploading to the Tool Shed, I use this:
+
+    $ tar -cf blast_top_hit_species.tar.gz README.rst repository_dependencies.xml blast_top_hit_species.ga blast_top_hit_species.png N_abberans_piechart_mouseover.png
+
+Check this,
+
+    $ tar -tzf blast_top_hit_species.tar.gz
+    README.rst
+    repository_dependencies.xml
+    blast_top_hit_species.ga
+    blast_top_hit_species.png
+    N_abberans_piechart_mouseover.png
+
+
+Licence (MIT)
+=============
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
