@@ -30,7 +30,7 @@
             "uuid": "e445b44b-02a7-4fd1-8944-cd680f967062"
         }, 
         "1": {
-            "annotation": "", 
+            "annotation": "This workflow is deliberately a simple/crude assessment, and there is no need to run BLASTX on all the sequences - a sample of 1000 should be enough.", 
             "id": 1, 
             "input_connections": {
                 "input_file": {
@@ -69,7 +69,7 @@
             "uuid": "87ce69ef-5fb0-41b0-9575-d3b96544f8be"
         }, 
         "2": {
-            "annotation": "", 
+            "annotation": "We only want one line per query, so limit this to the best scoring target sequence. Assumes current NCBI nr database is available locally as \"nr\".", 
             "id": 2, 
             "input_connections": {
                 "query": {
@@ -108,7 +108,7 @@
             "uuid": "1559a0b0-0b66-40f9-b777-2f062fcda4cc"
         }, 
         "3": {
-            "annotation": "", 
+            "annotation": "Having a tabular file of all 1000 sequences is used in the \"join\" step to count the sequences giving no BLAST hit.", 
             "id": 3, 
             "input_connections": {
                 "input": {
@@ -152,7 +152,7 @@
             "uuid": "31f11208-b2bd-4d9d-9745-dc1a6ed7ccf9"
         }, 
         "4": {
-            "annotation": "", 
+            "annotation": "Some BLAST matches will give multiple HSPs, and thus multiple lines in the tabular output. We only want one line per query.", 
             "id": 4, 
             "input_connections": {
                 "input": {
@@ -196,7 +196,7 @@
             "uuid": "acf948e3-71dc-4f35-8357-3998bd0abdd8"
         }, 
         "5": {
-            "annotation": "", 
+            "annotation": "We don't need all the columns in this join, but the key is to assign \"None\" to the sequences with no BLAST hits.", 
             "id": 5, 
             "input_connections": {
                 "input1": {
@@ -244,7 +244,7 @@
             "uuid": "4c280b0e-b4a6-4ae4-8a81-d6e93932ef71"
         }, 
         "6": {
-            "annotation": "", 
+            "annotation": "Here we make a tally table of the BLAST species name column", 
             "id": 6, 
             "input_connections": {
                 "input": {
@@ -288,7 +288,7 @@
             "uuid": "d3322137-1911-426d-87a7-c82b5fc16825"
         }, 
         "7": {
-            "annotation": "", 
+            "annotation": "Sorting the counts makes the results easier to interpret directly.", 
             "id": 7, 
             "input_connections": {
                 "input": {
@@ -327,5 +327,5 @@
             "uuid": "c81cc61d-52a3-44ee-b646-b23e0e004c38"
         }
     }, 
-    "uuid": "28f6da1e-b662-49af-a963-ea3bdeb8f4af"
+    "uuid": "9fe8754a-3a87-4f6a-89a2-141b02b4793e"
 }
