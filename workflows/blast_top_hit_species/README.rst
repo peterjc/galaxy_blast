@@ -194,11 +194,11 @@ This workflow is under source code control here:
 
 https://github.com/peterjc/galaxy_blast/tree/master/workflows/blast_top_hit_species
 
-To prepare the tar-ball for uploading to the Tool Shed, I use this:
+To prepare the tar-ball for uploading to the Tool Shed, I use this::
 
     $ tar -cf blast_top_hit_species.tar.gz README.rst repository_dependencies.xml blast_top_hit_species.ga blast_top_hit_species.png N_abberans_piechart_mouseover.png
 
-Check this,
+Check this::
 
     $ tar -tzf blast_top_hit_species.tar.gz
     README.rst
