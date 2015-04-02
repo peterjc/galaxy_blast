@@ -53,6 +53,8 @@ rpstblastn
         </data>
     </outputs>
     <tests>
+        <!-- Disable for ToolShed where *.loc tests not yet supported
+             See https://github.com/peterjc/galaxy_blast/issues/53
         <test>
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
             <param name="db_opts_selector" value="db" />
@@ -61,6 +63,7 @@ rpstblastn
             <param name="out_format" value="6" />
             <output name="output1" file="empty_file.dat" ftype="tabular" />
         </test>
+        -->
     </tests>
     <help>
     
