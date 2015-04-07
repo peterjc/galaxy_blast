@@ -101,17 +101,18 @@ Known Issues
 Counts
 ------
 
-This workflow uses the Galaxy "Count" tool, version 1.0.0, as shipped with
-the current stable release (Galaxy v15.03, i.e. March 2015).
+This workflow uses the Galaxy "Count" tool (tool id ``Count1``) version
+1.0.0, as shipped with the current stable release (Galaxy v15.03, i.e.
+March 2015).
 
-The updated "Count" tool version 1.0.1 includes a fix not to remove spaces
+The updated "Count" tool version 1.0.1 included a fix not to remove spaces
 in the fields being counted. In the example above, while the top hits are
 not affected, minor entries like "cellular slime molds" are shown as
-"cellularslimemolds" instead (look closely at the Pie Chart key)..
+"cellularslimemolds" instead (look closely at the Pie Chart key).
 
-The updated "Count" tool version 1.0.1 also adds a new option to sort the
-output, which avoids the additional sorting step in the current version of
-the workflow.
+The updated "Count" tool version 1.0.2 added a new option to sort the
+output, which would allow skipping the final sorting step in the current
+version of this workflow.
 
 A future update to this workflow will use the revised "Count" tool, once
 this is included in the next stable Galaxy release - or migrated to the
