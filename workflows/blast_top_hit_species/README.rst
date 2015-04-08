@@ -143,7 +143,11 @@ a problem with how this is handled: https://trello.com/c/lkYlW14W/
 Availability
 ============
 
-This workflow is available to download and/or install from the main Galaxy Tool Shed:
+This workflow is available from myExperiment:
+
+http://www.myexperiment.org/workflows/4637
+
+You can also download and/or install it from the main Galaxy Tool Shed:
 
 http://toolshed.g2.bx.psu.edu/view/peterjc/blast_top_hit_species
 
@@ -189,7 +193,8 @@ History
 ======= ======================================================================
 Version Changes
 ------- ----------------------------------------------------------------------
-v0.1.0  - Initial Tool Shed release, targetting NCBI BLAST+ 2.2.29
+v0.1.0  - Initial MyExperiment and Tool Shed release.
+        - Targetting NCBI BLAST+ 2.2.29
 ======= ======================================================================
 
 
