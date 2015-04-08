@@ -134,6 +134,10 @@ from ftp://ftp.ncbi.nlm.nih.gov/blast/db/
 i.e. The workflow is intended to be used against the *latest* nr database,
 and thus is not reproducible over the long term as the database changes.
 
+Note that if your ``blastdb_p.loc`` is missing an entry ``nr`` then the
+workflow should abort. However as of Galaxy v15.03 (March 2015) there is
+a problem with how this is handled: https://trello.com/c/lkYlW14W/
+
 
 Availability
 ============
