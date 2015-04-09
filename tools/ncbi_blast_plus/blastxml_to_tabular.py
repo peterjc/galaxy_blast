@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """Convert a BLAST XML file to tabular output.
 
-Takes three command line options, input BLAST XML filename, output tabular
-BLAST filename, output format (std for standard 12 columns, or ext for the
-extended 24 columns offered in the BLAST+ wrappers).
+Designed to convert BLAST XML files into tabular BLAST output (either
+std for standard 12 columns, or ext for the extended 25 columns offered
+in the Galaxy BLAST+ wrappers).
 
 The 12 columns output are 'qseqid sseqid pident length mismatch gapopen qstart
 qend sstart send evalue bitscore' or 'std' at the BLAST+ command line, which
