@@ -1,16 +1,16 @@
-<tool id="reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.0.6">
+<tool id="reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.0.7">
     <description>from BLAST output or similar data</description>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <version_command interpreter="python">
 reciprocal_best_hits.py --version
     </version_command>
     <command interpreter="python">
 reciprocal_best_hits.py "$a_vs_b" "$b_vs_a" $id1 $id2 $score $order "$output"
     </command>
-    <stdio>
-        <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
     <inputs>
         <param name="a_vs_b" type="data" format="tabular" label="Hits from querying A against B" description="Tabular file, e.g. BLAST output" /> 
         <param name="b_vs_a" type="data" format="tabular" label="Hits from querying B against A" description="Tabular file, e.g. BLAST output" /> 
@@ -28,10 +28,6 @@ reciprocal_best_hits.py "$a_vs_b" "$b_vs_a" $id1 $id2 $score $order "$output"
     <outputs>
         <data name="output" format="tabular" label="RBH results" />
     </outputs>
-    <requirements>
-    </requirements>
-    <tests>
-    </tests>
     <help>
 **What it does**
 

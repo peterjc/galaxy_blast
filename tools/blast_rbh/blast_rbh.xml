@@ -1,4 +1,4 @@
-<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.6">
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.7">
     <description>from two FASTA files</description>
     <requirements>
         <requirement type="package" version="1.64">biopython</requirement>
@@ -8,6 +8,11 @@
         <requirement type="binary">blastn</requirement>
         <requirement type="package" version="2.2.30">blast+</requirement>
     </requirements>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <version_command interpreter="python">
 blast_rbh.py --version
     </version_command>
@@ -24,11 +29,6 @@ $make_nr
 -c $q_cover
 -o "$output"
     </command>
-    <stdio>
-        <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
         <param name="fasta_a" type="data" format="fasta"
@@ -72,8 +72,6 @@ $make_nr
     <outputs>
         <data name="output" format="tabular" label="BLAST RBH: $fasta_a.name vs $fasta_b.name" />
     </outputs>
-    <requirements>
-    </requirements>
     <tests>
         <test>
             <param name="fasta_a" value="four_human_proteins.fasta" ftype="fasta"/>

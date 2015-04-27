@@ -1,5 +1,10 @@
-<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.1.1">
+<tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.1.2">
     <description>Make a table from BLAST output</description>
+    <stdio>
+        <!-- Assume anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <version_command interpreter="python">blastxml_to_top_descr.py --version</version_command>
     <command interpreter="python">
 blastxml_to_top_descr.py
@@ -13,11 +18,6 @@ blastxml_to_top_descr.py
 -t ${topN}
 "${in_file}"
     </command>
-    <stdio>
-        <!-- Assume anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
     <inputs>
         <conditional name="input">
             <param name="in_format" type="select" label="Input format">
@@ -48,8 +48,6 @@ blastxml_to_top_descr.py
     <outputs>
         <data name="tabular_file" format="tabular" label="Top $topN descriptions from $input.in_file.name" />
     </outputs>
-    <requirements>
-    </requirements>
     <tests>
         <test>
             <param name="in_format" value="blastxml" />

@@ -1,7 +1,7 @@
 Galaxy tool to extract top BLAST hit descriptions from BLAST XML
 ================================================================
 
-This tool is copyright 2012-2014 by Peter Cock, The James Hutton Institute
+This tool is copyright 2012-2015 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
@@ -71,6 +71,7 @@ v0.1.0  - Switch to using an optparse based API for Python script internally.
         - Support BLAST XML with multiple ``<Iteration>`` blocks per query.
         - Support the default 25 column extended tabular BLAST output.
 v0.1.1  - Embed citation information in the tool XML (new Galaxy feature).
+v0.1.2  - Reorder XML elements (internal change only).
 ======= ======================================================================
 
 

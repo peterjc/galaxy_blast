@@ -1,7 +1,7 @@
 Galaxy wrapper for Blast2GO for pipelines, b2g4pipe
 ===================================================
 
-This wrapper is copyright 2011-2014 by Peter Cock, The James Hutton Institute
+This wrapper is copyright 2011-2015 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below (MIT licence).
 
@@ -164,6 +164,7 @@ v0.0.9  - Update README file now that BioBam are selling the latest version
           of the Blast2GO command line tool. For now b2g4pipe v2.5 is still
           available as a free download.
         - Tool definition now embeds citation information.
+v0.0.10 - Reorder XML elements (internal change only).
 ======= ======================================================================
 
 

@@ -1,7 +1,7 @@
 Galaxy tool to find Reciprocal Best Hits (RBH) from BLAST etc
 =============================================================
 
-This tool is copyright 2011-2014 by Peter Cock, The James Hutton Institute
+This tool is copyright 2011-2015 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
