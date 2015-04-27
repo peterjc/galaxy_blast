@@ -1,10 +1,10 @@
-<tool id="ncbi_makeprofiledb" name="NCBI BLAST+ makeprofiledb" version="0.1.02">
+<tool id="ncbi_makeprofiledb" name="NCBI BLAST+ makeprofiledb" version="0.1.03">
     <description>Make profile database</description>
     <macros>
         <token name="@BINARY@">makeprofiledb</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="preamble" />
     <command>
 ##Unlike makeblastdb, makeprofiledb needs directory to exist already:
 mkdir -p $outfile.files_path &amp;&amp;
@@ -34,7 +34,13 @@ makeprofiledb -out "${os.path.join($outfile.files_path,'blastdb')}"
 
 -logfile "$outfile"
     </command>
-    <expand macro="stdio" />
+    <configfiles>
+        <configfile name="infiles">
+#for $infile in $input_file
+${infile}
+#end for
+        </configfile>
+    </configfiles>
     <inputs>
         <param name="input_file" type="data" multiple="true" optional="false" format="pssm-asn1"
 	       label="Input PSSM files(s)"
@@ -75,13 +81,6 @@ makeprofiledb -out "${os.path.join($outfile.files_path,'blastdb')}"
             label="Observation threshold"            
             help="Exclude domains with with maximum number of independent observations below this threshold" />
     </inputs>
-    <configfiles>
-        <configfile name="infiles">
-#for $infile in $input_file
-${infile}
-#end for
-        </configfile>
-    </configfiles>
     <outputs>
         <data name="outfile" format="blastdbd" label="RPS database from ${on_string}" />
     </outputs>

@@ -1,5 +1,10 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.1.04">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.1.05">
     <description>Convert BLAST XML output to tabular</description>
+    <stdio>
+        <!-- Anything other than zero is an error -->
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
     <version_command interpreter="python">blastxml_to_tabular.py --version</version_command>
     <command interpreter="python">
 blastxml_to_tabular.py -o "$tabular_file"
@@ -11,11 +16,6 @@ blastxml_to_tabular.py -o "$tabular_file"
 #end if
 #for i in $blastxml_file#"${i}" #end for#
     </command>
-    <stdio>
-        <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
     <inputs>
         <param name="blastxml_file" type="data" format="blastxml" multiple="true" label="BLAST results as XML"/>
         <conditional name="output">
@@ -62,8 +62,6 @@ blastxml_to_tabular.py -o "$tabular_file"
     <outputs>
         <data name="tabular_file" format="tabular" label="$on_string (as tabular)" />
     </outputs>
-    <requirements>
-    </requirements>
     <tests>
         <test>
             <param name="blastxml_file" value="blastp_four_human_vs_rhodopsin.xml" ftype="blastxml" />

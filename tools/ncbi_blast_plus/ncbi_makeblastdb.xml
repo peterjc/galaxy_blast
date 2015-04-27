@@ -1,10 +1,10 @@
-<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.1.02">
+<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="0.1.03">
     <description>Make BLAST database</description>
     <macros>
         <token name="@BINARY@">makeblastdb</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="preamble" />
     <command interpreter="python">check_no_duplicates.py
 ##First check for duplicates (since BLAST+ 2.2.28 fails to do so)
 ##and abort (via the ampersand ampersand trick) if any are found.
@@ -47,7 +47,6 @@ $hash_index
 ## Capture the stdout log information to the primary file (plain text):
 &gt; "$outfile"
     </command>
-    <expand macro="stdio" />
     <inputs>
         <param name="dbtype" type="select" display="radio" label="Molecule type of input">
             <option value="prot">protein</option>

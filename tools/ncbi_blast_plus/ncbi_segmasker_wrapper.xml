@@ -1,10 +1,10 @@
-<tool id="ncbi_segmasker_wrapper" name="NCBI BLAST+ segmasker" version="0.1.02">
+<tool id="ncbi_segmasker_wrapper" name="NCBI BLAST+ segmasker" version="0.1.03">
     <description>low-complexity regions in protein sequences</description>
     <macros>
         <token name="@BINARY@">segmasker</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="preamble" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
@@ -22,7 +22,6 @@ segmasker
 -hicut $hicut
 -outfmt $outformat
     </command>
-    <expand macro="stdio" />
     <inputs>
         <expand macro="input_conditional_protein_db" />
         <param name="window" type="integer" value="12" label="SEG window length" help="(-window)" />

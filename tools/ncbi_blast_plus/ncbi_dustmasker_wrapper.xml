@@ -1,11 +1,11 @@
-<tool id="ncbi_dustmasker_wrapper" name="NCBI BLAST+ dustmasker" version="0.1.02">
+<tool id="ncbi_dustmasker_wrapper" name="NCBI BLAST+ dustmasker" version="0.1.03">
     <!-- dustmasker wrapper from Edward Kirton and Nicola Soranzo -->
     <description>masks low complexity regions</description>
     <macros>
         <token name="@BINARY@">dustmasker</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="preamble" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
@@ -20,7 +20,6 @@ dustmasker
 -out "$outfile"
 -window $window -level $level -linker $linker -outfmt $outformat
     </command>
-    <expand macro="stdio" />
     <inputs>
         <expand macro="input_conditional_nucleotide_db" />
         <param name="window" type="integer" value="64" label="DUST window length" />

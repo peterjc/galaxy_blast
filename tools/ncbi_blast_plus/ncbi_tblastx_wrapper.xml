@@ -1,4 +1,4 @@
-<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="0.1.02">
+<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="0.1.03">
     <description>Search translated nucleotide database with translated nucleotide query sequence(s)</description>
     <!-- If job splitting is enabled, break up the query file into parts -->
     <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1"></parallelism>
@@ -6,7 +6,7 @@
         <token name="@BINARY@">tblastx</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="preamble" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
@@ -29,9 +29,6 @@ $adv_opts.strand
 ## End of advanced options:
 #end if
     </command>
-
-    <expand macro="stdio" />
-
     <inputs>
         <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
 

@@ -213,6 +213,7 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - Replace ``.extra_files_path`` with ``.files_path`` (internal change,
 	  thanks to Bjoern Gruening and John Chilton).
         - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
+v0.1.03 - Reorder XML elements (internal change only).
 ======= ======================================================================
 
 

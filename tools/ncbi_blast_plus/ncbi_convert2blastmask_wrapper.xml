@@ -1,10 +1,10 @@
-<tool id="ncbi_convert2blastmask_wrapper" name="NCBI BLAST+ convert2blastmask" version="0.1.02">
+<tool id="ncbi_convert2blastmask_wrapper" name="NCBI BLAST+ convert2blastmask" version="0.1.03">
     <description>Convert masking information in lower-case masked FASTA input to file formats suitable for makeblastdb</description>
     <macros>
         <token name="@BINARY@">convert2blastmask</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="preamble" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
@@ -16,7 +16,6 @@ $parse_seqids
 -out "$outfile"
 -outfmt $outformat
     </command>
-    <expand macro="stdio" />
     <inputs>
         <param name="infile" type="data" format="fasta" label="masked FASTA file"/> 
         <param name="masking_algorithm" type="select" label="Used masking algorithm">
