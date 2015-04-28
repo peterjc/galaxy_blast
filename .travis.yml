@@ -46,6 +46,9 @@ before_install:
  - sudo apt-get install -y python-virtualenv
  - virtualenv .
  - source bin/activate
+ - echo "Using planemo lint to check for obvious tool errors"
+ - pip install git+git://github.com/galaxyproject/planemo.git@master
+ - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/tools/ ${TRAVIS_BUILD_DIR}/data_managers/
  - echo "Fixing permissions on Python eggs cache folder"
  - mkdir -p "$HOME/.python-eggs"
  - chmod 700 "$HOME/.python-eggs" 
