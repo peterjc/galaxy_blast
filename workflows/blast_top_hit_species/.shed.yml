@@ -1,0 +1,11 @@
+name: blast_top_hit_species
+owner: peterjc
+homepage_url: https://github.com/peterjc/galaxy_blast/tree/master/workflows/blast_top_hit_species
+remote_repository_url: https://github.com/peterjc/galaxy_blast/tree/master/workflows/blast_top_hit_species
+description: Workflow to count species of top nr BLASTX hits of a transcriptome
+long_description: |
+  This is a non-trivial example workflow using the NCBI BLAST+ wrappers, intended only
+  for crude crude contamination assessment of a transcriptome assembly.
+
+  This would ideally include a visualisation of the finally tally table as a Pie Chart,
+  currently not possible with the Galaxy Visualization Framework.

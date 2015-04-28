@@ -1,0 +1,17 @@
+name: blast2go
+owner: peterjc
+homepage_url: https://github.com/peterjc/galaxy_blast/tools/blast2go
+remote_repository_url: https://github.com/peterjc/galaxy_blast/tools/blast2go
+description: Maps BLAST results to GO annotation terms
+long_description: |
+  Galaxy wrapper for Java command line tool Blast2GO for pipelines, b2g4pipe v2.5,
+  available from http://blast2go.org/
+
+  The tool takes a single BLAST XML file as input, searched against a protein database
+  such as the NCBI non redundant database (NR). The tool gives a single tabular output
+  file, the annotation file which can be opened with the Blast2GO GUI.
+
+  The wrapper uses a Galaxy loc file to allow the use of one or more Blast2GO property
+  files (e.g. different versions of the database, or different servers, or different
+  evidence weighting settings). We use this to offer both a local Blast2GO database
+  (fast) and the public database hosted in Valencia, Spain.

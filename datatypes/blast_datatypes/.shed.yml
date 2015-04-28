@@ -1,0 +1,8 @@
+name: blast_datatypes
+owner: devteam
+homepage_url: https://github.com/peterjc/galaxy_blast/datatypes/blast_datatypes
+remote_repository_url: https://github.com/peterjc/galaxy_blast/datatypes/blast_datatypes
+description: Datatypes for NCBI BLAST (blastxml, databases, etc)
+long_description: |
+  This is a repository for blastxml and other NCBI BLAST related datatypes
+  such as BLAST databases.
