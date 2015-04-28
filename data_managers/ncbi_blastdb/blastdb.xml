@@ -1,12 +1,12 @@
-<tool id="data_manager_blast_db" name="Blast DB" version="0.0.2" tool_type="manage_data">
+<tool id="data_manager_blast_db" name="Blast DB" version="0.0.3" tool_type="manage_data">
     <description>Downloader</description>
-    <command interpreter="python">fetch_blast_db.py --filename "${out_file}" --tool_data_table_name "blastdb"</command>
     <requirements>
         <requirement type="package" version="2.2.29">blast+</requirement>
     </requirements>
     <stdio>
         <exit_code range="1:" level="fatal" description="Tool exception" />
     </stdio>
+    <command interpreter="python">fetch_blast_db.py --filename "${out_file}" --tool_data_table_name "blastdb"</command>
     <inputs>
         <param name="blastdb_name" type="text" label="Blast DB Name" help="try &quot;nt&quot; as an example" optional="False"/>
         <conditional name="advanced">
