@@ -12,3 +12,6 @@ long_description: |
 
   Development is hosted on GitHub https://github.com/peterjc/galaxy_blast/ which can
   be used for reporting any issues.
+categories:
+- Sequence Analysis
+type: tool_dependency_definition

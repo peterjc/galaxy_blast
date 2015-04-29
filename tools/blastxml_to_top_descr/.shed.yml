@@ -19,3 +19,8 @@ long_description: |
   the relevant columns are provided. The default settings will work with the default
   25 column extended output from the BLAST+ tools wrapped in Galaxy. Note if a query
   has no hits, it does not appear in the BLAST tabular output.
+categories:
+- Convert Formats
+- Sequence Analysis
+- Text Manipulation
+type: unrestricted

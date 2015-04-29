@@ -5,3 +5,6 @@ remote_repository_url: https://github.com/peterjc/galaxy_blast/tools/ncbi_blast_
 description: NCBI BLAST+
 long_description: |
   Repository for NCBI BLAST+ which has been migrated out of the standard galaxy distribution.
+categories:
+- Sequence Analysis
+type: unrestricted

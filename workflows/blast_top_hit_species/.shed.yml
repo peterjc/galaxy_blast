@@ -9,3 +9,6 @@ long_description: |
 
   This would ideally include a visualisation of the finally tally table as a Pie Chart,
   currently not possible with the Galaxy Visualization Framework.
+categories:
+- Sequence Analysis
+type: unrestricted

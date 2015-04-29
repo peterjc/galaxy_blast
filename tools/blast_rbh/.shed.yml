@@ -6,3 +6,7 @@ description: BLAST Reciprocal Best Hits (RBH) from two FASTA files
 long_description: |
   Builds BLAST databases and runs reciprocal searches, filters them,
   and then identifies and reports any reciprocal best hits (RBH).
+categories:
+- Fasta Manipulation
+- Sequence Analysis
+type: unrestricted

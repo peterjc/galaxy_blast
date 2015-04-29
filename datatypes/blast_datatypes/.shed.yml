@@ -6,3 +6,6 @@ description: Datatypes for NCBI BLAST (blastxml, databases, etc)
 long_description: |
   This is a repository for blastxml and other NCBI BLAST related datatypes
   such as BLAST databases.
+categories:
+- Sequence Analysis
+type: unrestricted

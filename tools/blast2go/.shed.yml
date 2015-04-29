@@ -15,3 +15,7 @@ long_description: |
   files (e.g. different versions of the database, or different servers, or different
   evidence weighting settings). We use this to offer both a local Blast2GO database
   (fast) and the public database hosted in Valencia, Spain.
+categories:
+- Ontology Manipulation
+- Sequence Analysis
+type: unrestricted
