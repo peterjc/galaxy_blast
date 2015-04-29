@@ -56,4 +56,7 @@ Blankenberg et al. (2014) Wrangling Galaxy's reference data
 http://dx.doi.org/10.1093/bioinformatics/btu119
 
     </help>
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btu119</citation>
+    </citations>
 </tool>
