@@ -47,7 +47,7 @@ before_install:
  - virtualenv .
  - source bin/activate
  - echo "Using planemo lint to check for obvious tool errors"
- - pip install git+git://github.com/galaxyproject/planemo.git@master
+ - pip install planemo
  - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/tools/ ${TRAVIS_BUILD_DIR}/data_managers/
  - echo "Fixing permissions on Python eggs cache folder"
  - mkdir -p "$HOME/.python-eggs"
