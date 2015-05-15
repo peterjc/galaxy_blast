@@ -214,6 +214,7 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
 	  thanks to Bjoern Gruening and John Chilton).
         - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 v0.1.03 - Reorder XML elements (internal change only).
+        - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
 ======= ======================================================================
 
 
@@ -234,10 +235,28 @@ https://bitbucket.org/peterjc/galaxy-central/
 As of July 2013, development is continuing on a dedicated GitHub repository:
 https://github.com/peterjc/galaxy_blast
 
-For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the GitHub repository root folder::
+For pushing a release to the test or main "Galaxy Tool Shed", use the following
+Planemo commands (which requires you have set your Tool Shed access details in
+``~/.planemo.yml`` and that you have access rights on the Tool Shed)::
 
-    $ tools/ncbi_blast_plus/make_ncbi_blast_plus.sh
+    $ planemo shed_upload --shed_target testtoolshed --check_diff ~/repositories/galaxy_blast/tools/ncbi_blast_plus/
+    ...
+
+or::
+
+    $ planemo shed_upload --shed_target toolshed --check_diff ~/repositories/galaxy_blast/tools/ncbi_blast_plus/
+    ...
+
+To just build and check the tar ball, use::
+
+    $ planemo shed_upload --tar_only  ~/repositories/galaxy_blast/tools/ncbi_blast_plus/
+    ...
+    $ tar -tzf shed_upload.tar.gz 
+    test-data/blastdb.loc
+    ...
+    tools/ncbi_blast_plus/tool_dependencies.xml
+    $ tar -tzf shed_upload.tar.gz | wc -l
+    117
 
 This simplifies ensuring a consistent set of files is bundled each time,
 including all the relevant test files.
