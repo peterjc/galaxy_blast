@@ -1,4 +1,4 @@
-Galaxy tool to extract top BLAST hit descriptions from BLAST XML
+OBGalaxy tool to extract top BLAST hit descriptions from BLAST XML
 ================================================================
 
 This tool is copyright 2012-2015 by Peter Cock, The James Hutton Institute
@@ -72,6 +72,7 @@ v0.1.0  - Switch to using an optparse based API for Python script internally.
         - Support the default 25 column extended tabular BLAST output.
 v0.1.1  - Embed citation information in the tool XML (new Galaxy feature).
 v0.1.2  - Reorder XML elements (internal change only).
+        - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
 ======= ======================================================================
 
 
@@ -91,22 +92,31 @@ the following Mercurial repository: https://bitbucket.org/peterjc/galaxy-central
 As of July 2013, development is continuing on a dedicated GitHub repository:
 https://github.com/peterjc/galaxy_blast
 
-For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball use
-the following command from the GitHub repository root folder::
+For pushing a release to the test or main "Galaxy Tool Shed", use the following
+Planemo commands (which requires you have set your Tool Shed access details in
+``~/.planemo.yml`` and that you have access rights on the Tool Shed)::
 
-    $ tar -czf blastxml_to_top_descr.tar.gz tools/blastxml_to_top_descr/README.rst tools/blastxml_to_top_descr/blastxml_to_top_descr.* tools/blastxml_to_top_descr/repository_dependencies.xml test-data/blastp_four_human_vs_rhodopsin.xml test-data/blastp_four_human_vs_rhodopsin_top3.tabular test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
+    $ planemo shed_upload --shed_target testtoolshed --check_diff ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
+    ...
 
-Check this worked::
+or::
 
-    $ tar -tzf blastxml_to_top_descr.tar.gz
+    $ planemo shed_upload --shed_target toolshed --check_diff ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
+    ...
+
+To just build and check the tar ball, use::
+
+    $ planemo shed_upload --tar_only  ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
+    ...
+    $ tar -tzf shed_upload.tar.gz 
+    test-data/blastp_four_human_vs_rhodopsin.xml
+    test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
+    test-data/blastp_four_human_vs_rhodopsin_top3.tabular
+    test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
     tools/blastxml_to_top_descr/README.rst
     tools/blastxml_to_top_descr/blastxml_to_top_descr.py
     tools/blastxml_to_top_descr/blastxml_to_top_descr.xml
     tools/blastxml_to_top_descr/repository_dependencies.xml
-    test-data/blastp_four_human_vs_rhodopsin.xml
-    test-data/blastp_four_human_vs_rhodopsin_top3.tabular
-    test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
-    test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
 
 
 Licence (MIT)
