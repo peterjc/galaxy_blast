@@ -81,6 +81,7 @@ v0.1.5  - Clarify documentation for using the Python script outside Galaxy.
 v0.1.6  - Offer the new blastp-fast task added in BLAST+ 2.2.30.
         - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 v0.1.7  - Reorder XML elements (internal change only).
+        - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
 ======= ======================================================================
 
 
@@ -90,31 +91,40 @@ Developers
 This tool is developed on the following GitHub repository:
 https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 
-For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the Galaxy root folder::
+For pushing a release to the test or main "Galaxy Tool Shed", use the following
+Planemo commands (which requires you have set your Tool Shed access details in
+``~/.planemo.yml`` and that you have access rights on the Tool Shed)::
 
-    $ tar -czf blast_rbh.tar.gz tools/blast_rbh/README.rst tools/blast_rbh/blast_rbh.xml tools/blast_rbh/blast_rbh.py tools/blast_rbh/tool_dependencies.xml test-data/rhodopsin_nucs.fasta test-data/rhodopsin_proteins.fasta test-data/three_human_mRNA.fasta test-data/four_human_proteins.fasta test-data/k12_edited_proteins.fasta test-data/k12_ten_proteins.fasta test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular test-data/rbh_blastp_four_human_vs_rhodopsin_proteins.tabular test-data/rbh_none.tabular test-data/rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular test-data/rbh_blastp_k12.tabular test-data/rbh_blastp_k12_self.tabular
+    $ planemo shed_upload --shed_target testtoolshed --check_diff ~/repositories/galaxy_blast/tools/blast_rbh/
+    ...
 
-Check this worked::
+or::
 
-    $ tar -tzf blast_rbh.tar.gz
-    tools/blast_rbh/README.rst
-    tools/blast_rbh/blast_rbh.xml
-    tools/blast_rbh/blast_rbh.py
-    tools/blast_rbh/tool_dependencies.xml
-    test-data/rhodopsin_nucs.fasta
-    test-data/rhodopsin_proteins.fasta
-    test-data/three_human_mRNA.fasta
+    $ planemo shed_upload --shed_target toolshed --check_diff ~/repositories/galaxy_blast/tools/blast_rbh/
+    ...
+
+To just build and check the tar ball, use::
+
+    $ planemo shed_upload --tar_only  ~/repositories/galaxy_blast/tools/blast_rbh/
+    ...
+    $ tar -tzf shed_upload.tar.gz 
     test-data/four_human_proteins.fasta
     test-data/k12_edited_proteins.fasta
     test-data/k12_ten_proteins.fasta
-    test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular
     test-data/rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular
     test-data/rbh_blastp_four_human_vs_rhodopsin_proteins.tabular
-    test-data/rbh_none.tabular
-    test-data/rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular
     test-data/rbh_blastp_k12.tabular
     test-data/rbh_blastp_k12_self.tabular
+    test-data/rbh_megablast_rhodopsin_nucs_vs_three_human_mRNA.tabular
+    test-data/rbh_none.tabular
+    test-data/rbh_tblastx_rhodopsin_nucs_vs_three_human_mRNA.tabular
+    test-data/rhodopsin_nucs.fasta
+    test-data/rhodopsin_proteins.fasta
+    test-data/three_human_mRNA.fasta
+    tools/blast_rbh/README.rst
+    tools/blast_rbh/blast_rbh.py
+    tools/blast_rbh/blast_rbh.xml
+    tools/blast_rbh/tool_dependencies.xml
 
 
 Licence (MIT)
