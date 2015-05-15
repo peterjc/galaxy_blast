@@ -48,7 +48,10 @@ before_install:
  - source bin/activate
  - echo "Using planemo lint to check for obvious tool errors"
  - pip install planemo
- - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/tools/ ${TRAVIS_BUILD_DIR}/data_managers/
+ - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/tools/
+ - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/data_managers/
+ - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/dependencies/
+ - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/workflows/
  - echo "Fixing permissions on Python eggs cache folder"
  - mkdir -p "$HOME/.python-eggs"
  - chmod 700 "$HOME/.python-eggs" 
