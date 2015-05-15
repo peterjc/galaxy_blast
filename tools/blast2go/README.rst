@@ -165,6 +165,7 @@ v0.0.9  - Update README file now that BioBam are selling the latest version
           available as a free download.
         - Tool definition now embeds citation information.
 v0.0.10 - Reorder XML elements (internal change only).
+        - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
 ======= ======================================================================
 
 
@@ -178,23 +179,33 @@ https://bitbucket.org/peterjc/galaxy-central/
 As of September 2013, development is continuing on a dedicated GitHub repository:
 https://github.com/peterjc/galaxy_blast
 
-For making the "Galaxy Tool Shed" http://toolshed.g2.bx.psu.edu/ tarball I use
-the following command from the Galaxy root folder::
+For pushing a release to the test or main "Galaxy Tool Shed", use the following
+Planemo commands (which requires you have set your Tool Shed access details in
+``~/.planemo.yml`` and that you have access rights on the Tool Shed)::
 
-    $ tar -czf blast2go.tar.gz tools/blast2go/README.rst tools/blast2go/blast2go.xml tools/blast2go/blast2go.py tools/blast2go/massage_xml_for_blast2go.py tools/blast2go/repository_dependencies.xml tools/blast2go/tool_dependencies.xml tool-data/blast2go.loc.sample test-data/blastp_sample.xml test-data/blastp_sample.blast2go.tabular
+    $ planemo shed_upload --shed_target testtoolshed --check_diff ~/repositories/galaxy_blast/tools/blast2go/
+    ...
 
-Check this worked::
+or::
 
-    $ tar -tzf blast2go.tar.gz
+    $ planemo shed_upload --shed_target toolshed --check_diff ~/repositories/galaxy_blast/tools/blast2go/
+    ...
+
+To just build and check the tar ball, use::
+
+    $ planemo shed_upload --tar_only  ~/repositories/galaxy_blast/tools/blast2go/
+    ...
+    $ tar -tzf shed_upload.tar.gz 
+    test-data/blastp_sample.blast2go.tabular
+    test-data/blastp_sample.xml
+    tool-data/blast2go.loc.sample
     tools/blast2go/README.rst
-    tools/blast2go/blast2go.xml
     tools/blast2go/blast2go.py
+    tools/blast2go/blast2go.xml
     tools/blast2go/massage_xml_for_blast2go.py
     tools/blast2go/repository_dependencies.xml
     tools/blast2go/tool_dependencies.xml
-    tool-data/blast2go.loc.sample
-    test-data/blastp_sample.xml
-    test-data/blastp_sample.blast2go.tabular
+
 
 
 Licence (MIT)
