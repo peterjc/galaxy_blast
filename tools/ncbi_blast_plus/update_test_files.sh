@@ -2,7 +2,7 @@
 set -e
 echo "This will update test files using the current version of BLAST+"
 
-if [ -f "tools/ncbi_blast_plus/make_ncbi_blast_plus.sh" ]
+if [ -f "tools/ncbi_blast_plus/update_test_files.sh" ]
 then
 echo "Good, in the expected directory"
 else
