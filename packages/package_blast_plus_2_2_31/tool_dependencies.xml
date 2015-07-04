@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tool_dependency>
+    <package name="blast+" version="2.2.31">
+        <install version="1.0">
+            <actions_group>
+                <!-- Download the binaries for BLAST+ compatible with 64-bit OSX. -->
+                <actions os="darwin" architecture="x86_64">
+                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.31/ncbi-blast-2.2.31+-universal-macosx.tar.gz</action>
+                    <action type="move_directory_files">
+                         <source_directory>bin</source_directory>
+                         <destination_directory>$INSTALL_DIR</destination_directory>
+                     </action>
+                </actions>
+                <!-- Download the binaries for BLAST+ compatible with 32-bit OSX. -->
+                <actions os="darwin" architecture="i386">
+                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.31/ncbi-blast-2.2.31+-universal-macosx.tar.gz</action>
+                    <action type="move_directory_files">
+                        <source_directory>bin</source_directory>
+                        <destination_directory>$INSTALL_DIR</destination_directory>
+                    </action>
+                </actions>
+                <!-- Download the binaries for BLAST+ compatible with 64-bit Linux. -->
+                <actions os="linux" architecture="x86_64">
+                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.31/ncbi-blast-2.2.31+-x64-linux.tar.gz</action>
+                    <action type="move_directory_files">
+                        <source_directory>bin</source_directory>
+                        <destination_directory>$INSTALL_DIR</destination_directory>
+                    </action>
+                </actions>
+                <!-- Download the binaries for BLAST+ compatible with 32-bit Linux (i386). -->
+                <actions os="linux" architecture="i386">
+                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.31/ncbi-blast-2.2.31+-ia32-linux.tar.gz</action>
+                    <action type="move_directory_files">
+                        <source_directory>bin</source_directory>
+                        <destination_directory>$INSTALL_DIR</destination_directory>
+                    </action>
+                </actions>
+                <!-- Download the binaries for BLAST+ compatible with 32-bit Linux (i686). -->
+                <actions os="linux" architecture="i686">
+                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.31/ncbi-blast-2.2.31+-ia32-linux.tar.gz</action>
+                    <action type="move_directory_files">
+                        <source_directory>bin</source_directory>
+                        <destination_directory>$INSTALL_DIR</destination_directory>
+                    </action>
+                </actions>
+                <!-- This actions tag is only processed if none of the above tags resulted in a successful installation. -->
+                <actions>
+                    <action type="shell_command">echo "ERROR: Automated installation on your operating system and CPU architecture combination is not yet supported."</action>
+                    <action type="shell_command">echo "Your machine details (the output from 'uname' and 'arch'):"</action>
+                    <action type="shell_command">uname</action>
+                    <action type="shell_command">arch</action>
+                    <action type="shell_command">echo "Please report this via https://github.com/peterjc/galaxy_blast/issues - thank you!"</action>
+                    <action type="shell_command">false</action>
+                    <!-- The 'false' command will return an error, so Galaxy should treat this as a failed install -->
+                </actions>
+                <!-- The $PATH environment variable is only set if one of the above <actions> tags resulted in a successful installation. -->
+                <action type="set_environment">
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR</environment_variable>
+                    <environment_variable name="BLAST_ROOT_DIR" action="set_to">$INSTALL_DIR</environment_variable>
+                </action>
+            </actions_group>
+        </install>
+        <readme>
+Downloads the precompiled 32bit Linux, 64bit Linux, or Mac OS X BLAST+
+binaries from the NCBI, which is faster than performing a local compliation,
+avoids any issues with build dependencies, and is more reproducible between
+installations as there is no variability from the compiler or library versions.
+
+For more details, see:
+http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download
+        </readme>
+    </package>
+</tool_dependency>
