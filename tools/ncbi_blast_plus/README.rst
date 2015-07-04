@@ -215,6 +215,8 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 v0.1.03 - Reorder XML elements (internal change only).
         - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
+v0.1.04 - Now depends on ``package_blast_plus_2_2_31`` in ToolShed.
+        - Tests updated for BLAST+ 2.2.31 instead of BLAST+ 2.2.30.
 ======= ======================================================================
 
 

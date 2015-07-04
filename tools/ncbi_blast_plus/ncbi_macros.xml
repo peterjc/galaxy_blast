@@ -2,7 +2,7 @@
     <xml name="preamble">
         <requirements>
             <requirement type="binary">@BINARY@</requirement>
-            <requirement type="package" version="2.2.30">blast+</requirement>
+            <requirement type="package" version="2.2.31">blast+</requirement>
         </requirements>
         <stdio>
             <!-- Anything other than zero is an error -->
