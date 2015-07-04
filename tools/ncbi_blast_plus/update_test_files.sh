@@ -159,8 +159,7 @@ echo ==========
 #Following (or similar) works for deltablast to find the cdd_delta database automatically:
 #export BLASTDB=/data/blastdb/ncbi/cdd:/data/blastdb/ncbi
 #Or, we can make it explicit (but specific to local setup) via -rpsdb
-export CDD_DELTA=/data/blastdb/ncbi/cdd/cdd_delta
-
+: ${CDD_DELTA:=/data/blastdb/ncbi/cdd/cdd_delta}
 echo "deltablast_four_human_vs_rhodopsin.xml"
 deltablast -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -evalue 1e-08 -out deltablast_four_human_vs_rhodopsin.xml -outfmt 5 -matrix BLOSUM62 -seg no -parse_deflines -rpsdb $CDD_DELTA
 

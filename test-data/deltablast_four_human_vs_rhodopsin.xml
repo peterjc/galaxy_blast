@@ -2,7 +2,7 @@
 <!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
 <BlastOutput>
   <BlastOutput_program>deltablast</BlastOutput_program>
-  <BlastOutput_version>DELTABLAST 2.2.30+</BlastOutput_version>
+  <BlastOutput_version>DELTABLAST 2.2.31+</BlastOutput_version>
   <BlastOutput_reference>Grzegorz M. Boratyn, Alejandro A. Schaffer, Richa Agarwala, Stephen F. Altschul, David J. Lipman and Thomas L. Madden (2012) &quot;Domain enhanced lookup time accelerated BLAST&quot;, Biology Direct 7:12.</BlastOutput_reference>
   <BlastOutput_db></BlastOutput_db>
   <BlastOutput_query-ID>sp|Q9BS26|ERP44_HUMAN</BlastOutput_query-ID>
@@ -31,7 +31,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>30</Statistics_hsp-len>
       <Statistics_eff-space>119568</Statistics_eff-space>
-      <Statistics_kappa>0.0457342679100177</Statistics_kappa>
+      <Statistics_kappa>0.045657643382384</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -51,7 +51,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>30</Statistics_hsp-len>
       <Statistics_eff-space>119568</Statistics_eff-space>
-      <Statistics_kappa>0.0457342679100177</Statistics_kappa>
+      <Statistics_kappa>0.045657643382384</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -71,7 +71,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>30</Statistics_hsp-len>
       <Statistics_eff-space>119568</Statistics_eff-space>
-      <Statistics_kappa>0.0457342679100177</Statistics_kappa>
+      <Statistics_kappa>0.045657643382384</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -91,7 +91,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>30</Statistics_hsp-len>
       <Statistics_eff-space>119568</Statistics_eff-space>
-      <Statistics_kappa>0.0457342679100177</Statistics_kappa>
+      <Statistics_kappa>0.045657643382384</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -111,7 +111,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>30</Statistics_hsp-len>
       <Statistics_eff-space>119568</Statistics_eff-space>
-      <Statistics_kappa>0.0457342679100177</Statistics_kappa>
+      <Statistics_kappa>0.045657643382384</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -131,7 +131,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>30</Statistics_hsp-len>
       <Statistics_eff-space>119568</Statistics_eff-space>
-      <Statistics_kappa>0.0457342679100177</Statistics_kappa>
+      <Statistics_kappa>0.045657643382384</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -151,7 +151,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>38</Statistics_hsp-len>
       <Statistics_eff-space>348130</Statistics_eff-space>
-      <Statistics_kappa>0.041056242849278</Statistics_kappa>
+      <Statistics_kappa>0.0410559386905975</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -171,7 +171,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>38</Statistics_hsp-len>
       <Statistics_eff-space>348130</Statistics_eff-space>
-      <Statistics_kappa>0.041056242849278</Statistics_kappa>
+      <Statistics_kappa>0.0410559386905975</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -191,7 +191,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>38</Statistics_hsp-len>
       <Statistics_eff-space>348130</Statistics_eff-space>
-      <Statistics_kappa>0.041056242849278</Statistics_kappa>
+      <Statistics_kappa>0.0410559386905975</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -211,7 +211,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>38</Statistics_hsp-len>
       <Statistics_eff-space>348130</Statistics_eff-space>
-      <Statistics_kappa>0.041056242849278</Statistics_kappa>
+      <Statistics_kappa>0.0410559386905975</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -231,7 +231,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>38</Statistics_hsp-len>
       <Statistics_eff-space>348130</Statistics_eff-space>
-      <Statistics_kappa>0.041056242849278</Statistics_kappa>
+      <Statistics_kappa>0.0410559386905975</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
@@ -251,7 +251,7 @@
       <Statistics_db-len>0</Statistics_db-len>
       <Statistics_hsp-len>38</Statistics_hsp-len>
       <Statistics_eff-space>348130</Statistics_eff-space>
-      <Statistics_kappa>0.041056242849278</Statistics_kappa>
+      <Statistics_kappa>0.0410559386905975</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
     </Statistics>
