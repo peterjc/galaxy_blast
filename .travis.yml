@@ -51,7 +51,7 @@ before_install:
  - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/tools/
  - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/data_managers/
 # - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/packages/
- - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/workflows/
+# - planemo lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/workflows/
  - echo "Fixing permissions on Python eggs cache folder"
  - mkdir -p "$HOME/.python-eggs"
  - chmod 700 "$HOME/.python-eggs" 
