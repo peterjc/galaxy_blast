@@ -221,6 +221,8 @@ v0.1.04 - Fixed regression using BLAST databases from the history. Currently
 v0.1.05 - Define ``parallelism`` tag via a macro (internal change only).
         - Define wrapper versions via a macro (internal change only).
         - Update citation information now GigaScience paper is out.
+v0.1.06 - Now depends on ``package_blast_plus_2_2_31`` in ToolShed.
+        - Tests updated for BLAST+ 2.2.31 instead of BLAST+ 2.2.30.
 ======= ======================================================================
 
 
