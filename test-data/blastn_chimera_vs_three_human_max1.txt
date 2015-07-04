@@ -1,4 +1,4 @@
-BLASTN 2.2.30+
+BLASTN 2.2.31+
 
 
 Reference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and Webb
@@ -18,14 +18,14 @@ Length=9973
                                                                       Score     E
 Sequences producing significant alignments:                          (Bits)  Value
 
-  ENA|AB011145|AB011145.1 Homo sapiens mRNA for KIAA0573 protein,...   8421   0.0  
+  ENA|AB011145|AB011145.1 Homo sapiens mRNA for KIAA0573 protein,...  8421    0.0  
 
 
 > ENA|AB011145|AB011145.1 Homo sapiens mRNA for KIAA0573 protein, 
 partial cds.
 Length=4796
 
- Score =  8421 bits (4560),  Expect = 0.0
+ Score = 8421 bits (4560),  Expect = 0.0
  Identities = 4560/4560 (100%), Gaps = 0/4560 (0%)
  Strand=Plus/Plus
 
@@ -346,7 +346,7 @@ Effective search space used: 106299490
 
 
   Database: Just 3 human mRNA sequences
-    Posted date:  Dec 26, 2014  5:54 AM
+    Posted date:  Jul 4, 2015  3:35 PM
   Number of letters in database: 10,732
   Number of sequences in database:  3
 
