@@ -84,6 +84,7 @@ v0.1.6  - Offer the new blastp-fast task added in BLAST+ 2.2.30.
 v0.1.7  - Reorder XML elements (internal change only).
         - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
         - Updated citation information with GigaScience paper.
+v0.1.8  - Updated to depend on  NCBI BLAST+ 2.2.31 via ToolShed install.
 ======= ======================================================================
 
 

@@ -1,4 +1,4 @@
-<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.7">
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.8">
     <description>from two FASTA files</description>
     <requirements>
         <requirement type="package" version="1.64">biopython</requirement>
@@ -6,7 +6,7 @@
         <requirement type="binary">makeblastdb</requirement>
         <requirement type="binary">blastp</requirement>
         <requirement type="binary">blastn</requirement>
-        <requirement type="package" version="2.2.30">blast+</requirement>
+        <requirement type="package" version="2.2.31">blast+</requirement>
     </requirements>
     <stdio>
         <!-- Anything other than zero is an error -->
