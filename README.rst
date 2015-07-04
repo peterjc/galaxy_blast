@@ -107,7 +107,7 @@ Folder Structure
 Within the ``tools`` folder is one folder for each Tool or Tool Suite released
 on the Galaxy Tool Shed (these child folder names match the Tool Shed names).
 
-Similarly, ``dependencies`` contains packages for Galaxy Tool Shed dependency
+Similarly, ``packages`` contains packages for Galaxy Tool Shed dependency
 definitions, ``datatypes`` contains packages for Galaxy Tool Shed datatype
 definitions, and ``data_managers`` contains Galaxy Data Managers for tasks
 like setting up local copies of NCBI BLAST databases (currently unfinished).
