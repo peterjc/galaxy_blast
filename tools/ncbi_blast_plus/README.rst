@@ -215,6 +215,9 @@ v0.1.02 - Now depends on ``package_blast_plus_2_2_30`` in ToolShed.
         - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 v0.1.03 - Reorder XML elements (internal change only).
         - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
+v0.1.04 - Fixed regression using BLAST databases from the history. Currently
+          Galaxy inputs must still use ``.extra_files_path`` rather than the
+          more consise ``.extra_files`` available for output files (Issue #69)
 ======= ======================================================================
 
 
