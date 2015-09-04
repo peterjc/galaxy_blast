@@ -1,4 +1,4 @@
-<tool id="ncbi_makeprofiledb" name="NCBI BLAST+ makeprofiledb" version="0.1.05">
+<tool id="ncbi_makeprofiledb" name="NCBI BLAST+ makeprofiledb" version="@WRAPPER_VERSION@">
     <description>Make profile database</description>
     <macros>
         <token name="@BINARY@">makeprofiledb</token>

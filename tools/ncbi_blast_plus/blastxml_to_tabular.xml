@@ -1,4 +1,4 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="0.1.05">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="@WRAPPER_VERSION@">
     <description>Convert BLAST XML output to tabular</description>
     <stdio>
         <!-- Anything other than zero is an error -->

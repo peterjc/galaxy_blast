@@ -219,6 +219,7 @@ v0.1.04 - Fixed regression using BLAST databases from the history. Currently
           Galaxy inputs must still use ``.extra_files_path`` rather than the
           more consise ``.extra_files`` available for output files (Issue #69)
 v0.1.05 - Define ``parallelism`` tag via a macro (internal change only).
+        - Define wrapper versions via a macro (internal change only).
         - Update citation information now GigaScience paper is out.
 ======= ======================================================================
 

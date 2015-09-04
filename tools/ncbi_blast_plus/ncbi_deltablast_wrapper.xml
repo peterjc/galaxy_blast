@@ -1,4 +1,4 @@
-<tool id="ncbi_deltablast_wrapper" name="NCBI BLAST+ deltablast" version="0.1.05">
+<tool id="ncbi_deltablast_wrapper" name="NCBI BLAST+ deltablast" version="@WRAPPER_VERSION@">
     <description>Search protein database with protein query sequence(s)</description>
     <macros>
         <token name="@BINARY@">deltablast</token>
