@@ -238,12 +238,12 @@ Please cite:
 
 P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo (2015).
 NCBI BLAST+ integrated into Galaxy.
-bioRxiv prepint.
-http://dx.doi.org/10.1101/014043
+*GigaScience* 4:39
+http://dx.doi.org/10.1186/s13742-015-0080-7
 
 Christiam Camacho et al. (2009).
 BLAST+: architecture and applications.
-BMC Bioinformatics. 15;10:421.
+*BMC Bioinformatics* 15;10:421.
 http://dx.doi.org/10.1186/1471-2105-10-421
 
 This wrapper is available to install into other Galaxy Instances via the Galaxy
@@ -251,7 +251,6 @@ Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
     </help>
     <citations>
         <citation type="doi">10.1186/1471-2105-10-421</citation>
-        <citation type="doi">10.1101/014043</citation>
-        <!-- TODO - Update once "NCBI BLAST+ integrated into Galaxy" formally published -->
+        <citation type="doi">10.1186/s13742-015-0080-7</citation>
     </citations>
 </tool>
