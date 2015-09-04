@@ -26,11 +26,11 @@ http://testtoolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus/
 Citation
 ========
 
-Please cite the following paper (currently available as a preprint):
+Please cite the following paper:
 
 NCBI BLAST+ integrated into Galaxy.
 P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
-bioRxiv DOI: http://dx.doi.org/10.1101/014043 (preprint)
+GigaScience, 2015, 4:39 http://dx.doi.org/10.1186/s13742-015-0080-7
 
 You should also cite the NCBI BLAST+ tools:
 
@@ -219,6 +219,7 @@ v0.1.04 - Fixed regression using BLAST databases from the history. Currently
           Galaxy inputs must still use ``.extra_files_path`` rather than the
           more consise ``.extra_files`` available for output files (Issue #69)
 v0.1.05 - Define ``parallelism`` tag via a macro (internal change only).
+        - Update citation information now GigaScience paper is out.
 ======= ======================================================================
 
 
