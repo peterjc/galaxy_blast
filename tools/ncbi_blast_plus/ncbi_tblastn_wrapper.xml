@@ -1,11 +1,10 @@
-<tool id="ncbi_tblastn_wrapper" name="NCBI BLAST+ tblastn" version="0.1.04">
+<tool id="ncbi_tblastn_wrapper" name="NCBI BLAST+ tblastn" version="0.1.05">
     <description>Search translated nucleotide database with protein query sequence(s)</description>
-    <!-- If job splitting is enabled, break up the query file into parts -->
-    <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1"></parallelism>
     <macros>
         <token name="@BINARY@">tblastn</token>
         <import>ncbi_macros.xml</import>
     </macros>
+    <expand macro="parallelism" />
     <expand macro="preamble" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.

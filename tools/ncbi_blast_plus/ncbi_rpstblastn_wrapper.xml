@@ -1,11 +1,10 @@
-<tool id="ncbi_rpstblastn_wrapper" name="NCBI BLAST+ rpstblastn" version="0.1.04">
+<tool id="ncbi_rpstblastn_wrapper" name="NCBI BLAST+ rpstblastn" version="0.1.05">
     <description>Search protein domain database (PSSMs) with translated nucleotide query sequence(s)</description>
-    <!-- If job splitting is enabled, break up the query file into parts -->
-    <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1"></parallelism>
     <macros>
         <token name="@BINARY@">rpstblastn</token>
         <import>ncbi_macros.xml</import>
     </macros>
+    <expand macro="parallelism" />
     <expand macro="preamble" />
     <command>
 ## The command is a Cheetah template which allows some Python based syntax.

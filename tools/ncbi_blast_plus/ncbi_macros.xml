@@ -1,4 +1,8 @@
 <macros>
+    <xml name="parallelism">
+        <!-- If job splitting is enabled, break up the query file into parts -->
+        <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
+    </xml>
     <xml name="preamble">
         <requirements>
             <requirement type="binary">@BINARY@</requirement>
