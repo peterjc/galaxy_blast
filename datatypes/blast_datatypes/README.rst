@@ -47,6 +47,7 @@ v0.0.19 - Add ``blastdbd`` datatype for BLAST protein domain databases, for use
           (PSSMs) stored in NCBI's "scoremat" ASN.1 format (usually named
           as ``*.smp``), used as input files for makeprofiledb.
 v0.0.20 - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
+v0.0.21 - Updated citation information with GigaScience paper.
 ======= ======================================================================
 
 
@@ -122,11 +123,12 @@ described above.
 Citation
 ========
 
-Please cite the following paper (currently available as a preprint):
+Please cite the following paper:
 
 NCBI BLAST+ integrated into Galaxy.
 P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
-bioRxiv DOI: http://dx.doi.org/10.1101/014043 (preprint)
+*GigaScience* 2015, 4:39
+DOI: http://dx.doi.org/10.1186/s13742-015-0080-7
 
 
 Licence (MIT)
