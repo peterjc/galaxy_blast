@@ -96,12 +96,12 @@ For pushing a release to the test or main "Galaxy Tool Shed", use the following
 Planemo commands (which requires you have set your Tool Shed access details in
 ``~/.planemo.yml`` and that you have access rights on the Tool Shed)::
 
-    $ planemo shed_update --shed_target testtoolshed --check_diff ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
+    $ planemo shed_update -t testtoolshed --check_diff ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
     ...
 
 or::
 
-    $ planemo shed_update --shed_target toolshed --check_diff ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
+    $ planemo shed_update -t toolshed --check_diff ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
     ...
 
 To just build and check the tar ball, use::
