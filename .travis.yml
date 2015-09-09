@@ -18,6 +18,14 @@ python:
  - "2.6"
  - "2.7"
 
+# We use the TravisCI build matrix to test two versions of Galaxy,
+# the current development branch (dev), and as a proxy for the
+# current stable release, master:
+#
+env:
+ - GALAXY_BRANCH=dev
+ - GALAXY_BRANCH=master
+
 # Installing Galaxy
 # =================
 #
@@ -67,10 +75,11 @@ before_install:
  - wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.31/ncbi-blast-2.2.31+-x64-linux.tar.gz
  - tar -zxvf ncbi-blast-2.2.31+-x64-linux.tar.gz | tail
  - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.31+/bin:$PATH"
- - echo "Fetching Galaxy..."
- - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/dev
- - tar -zxvf dev | tail
- - cd galaxy-dev
+ - echo "Fetching Galaxy ${GALAXY_BRANCH} branch..."
+ - cd ${TRAVIS_BUILD_DIR}
+ - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/${GALAXY_BRANCH}
+ - tar -zxvf ${GALAXY_BRANCH} | tail
+ - cd galaxy-${GALAXY_BRANCH}
 
 
 # Configuring tools within Galaxy
@@ -101,7 +110,7 @@ before_install:
 #
 
 install:
- - cd ${TRAVIS_BUILD_DIR}/galaxy-dev
+ - cd ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH}
  - export GALAXY_TEST_UPLOAD_ASYNC=false
  - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0127.sqlite
  - rm -f tool_conf.xml
