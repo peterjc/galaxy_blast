@@ -7,6 +7,8 @@
 # for background,
 # http://blastedbio.blogspot.com/2013/09/using-travis-ci-for-testing-galaxy-tools.html
 
+# We don't need sudo so can avoid slower legacy TravisCI infrastructure
+sudo: false
 
 # We need Python 2.6 or 2.7 to run Galaxy (and some of the wrappers)
 # but don't really care which. We also need Java to run Blast2GO,
