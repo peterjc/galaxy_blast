@@ -56,6 +56,7 @@
                 <!-- The $PATH environment variable is only set if one of the above <actions> tags resulted in a successful installation. -->
                 <action type="set_environment">
                     <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR</environment_variable>
+                    <environment_variable name="BLAST_ROOT_DIR" action="set_to">$INSTALL_DIR</environment_variable>
                 </action>
             </actions_group>
         </install>
