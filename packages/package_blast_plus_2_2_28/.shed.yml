@@ -1,7 +1,7 @@
 name: package_blast_plus_2_2_28
 owner: iuc
-homepage_url: https://github.com/peterjc/galaxy_blast/packages/package_blast_plus_2_2_28
-remote_repository_url: https://github.com/peterjc/galaxy_blast/packages/package_blast_plus_2_2_28
+homepage_url: https://github.com/peterjc/galaxy_blast/
+remote_repository_url: https://github.com/peterjc/galaxy_blast/
 description: NCBI BLAST+ 2.2.28 (binaries only) 
 long_description: |
   This Tool Shed package is intended to be used as a dependency of the Galaxy wrappers
