@@ -1,7 +1,7 @@
 name: blast_rbh
 owner: peterjc
-homepage_url: https://github.com/peterjc/galaxy_blast/tools/blast_rbh
-remote_repository_url: https://github.com/peterjc/galaxy_blast/tools/blast_rbh
+homepage_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
+remote_repository_url: https://github.com/peterjc/galaxy_blast/
 description: BLAST Reciprocal Best Hits (RBH) from two FASTA files
 long_description: |
   Builds BLAST databases and runs reciprocal searches, filters them,

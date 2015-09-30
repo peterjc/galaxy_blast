@@ -1,7 +1,7 @@
 name: ncbi_blast_plus
 owner: devteam
-homepage_url: https://github.com/peterjc/galaxy_blast/tools/ncbi_blast_plus
-remote_repository_url: https://github.com/peterjc/galaxy_blast/tools/ncbi_blast_plus
+homepage_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/ncbi_blast_plus
+remote_repository_url: https://github.com/peterjc/galaxy_blast/
 description: NCBI BLAST+
 long_description: |
   Repository for NCBI BLAST+ which has been migrated out of the standard galaxy distribution.
