@@ -45,7 +45,7 @@
         </install>
         <readme>
 Downloads the precompiled 64 bit Linux, or Mac OS X BLAST+ binaries from the NCBI,
-which is faster than performing a local compliation, avoids any issues with build
+which is faster than performing a local compilation, avoids any issues with build
 dependencies, and is more reproducible between installations as there is no
 variability from the compiler or library versions.
 
