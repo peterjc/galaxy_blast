@@ -61,20 +61,12 @@ before_install:
  - echo "Fixing permissions on Python eggs cache folder"
  - mkdir -p "$HOME/.python-eggs"
  - chmod 700 "$HOME/.python-eggs" 
- - echo "Fetching and installing Blast2GO for pipelines (b2g4pipe)..."
- - wget http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip
- - unzip b2g4pipe_v2.5.zip
- - cp b2g4pipe/b2gPipe.properties b2g4pipe/Spain_2012_August.properties
- - sed -i "s/Dbacces.dbname=b2g_apr12/Dbacces.dbname=b2g_aug12/g" b2g4pipe/Spain_2012_August.properties
- - sed -i "s/Dbacces.dbhost=10.10.100.203/Dbacces.dbhost=publicdb.blast2go.com/g" b2g4pipe/Spain_2012_August.properties
- - cp b2g4pipe/b2gPipe.properties b2g4pipe/Spain_2011_June.properties
- - sed -i "s/Dbacces.dbname=b2g_apr12/Dbacces.dbname=b2g_jun11/g" b2g4pipe/Spain_2011_June.properties
- - sed -i "s/Dbacces.dbhost=10.10.100.203/Dbacces.dbhost=publicdb.blast2go.com/g" b2g4pipe/Spain_2011_June.properties
- - export B2G4PIPE="${TRAVIS_BUILD_DIR}/b2g4pipe/"
- - echo "Fetching and installing NCBI BLAST+..."
- - wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.31/ncbi-blast-2.2.31+-x64-linux.tar.gz
- - tar -zxvf ncbi-blast-2.2.31+-x64-linux.tar.gz | tail
- - export PATH="${TRAVIS_BUILD_DIR}/ncbi-blast-2.2.31+/bin:$PATH"
+ - echo "Downloading and setting up dependencies..."
+ - export INSTALL_DIR=/tmp/dep_install && mkdir $INSTALL_DIR
+ - export DOWNLOAD_CACHE=/tmp/download_cache && mkdir $DOWNLOAD_CACHE
+ - planemo dependency_script ${TRAVIS_BUILD_DIR}/packages/package_blast_plus_2_2_31 ${TRAVIS_BUILD_DIR}/tools/blast2go/
+ - bash dep_install.sh
+ - source env.sh
  - echo "Fetching Galaxy ${GALAXY_BRANCH} branch..."
  - cd ${TRAVIS_BUILD_DIR}
  - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/${GALAXY_BRANCH}
