@@ -20,6 +20,8 @@ Thanks Sebastian!
     <title>${hda.name} | ${visualization_name}</title>
 <%
     root = h.url_for( '/' )
+    history_id = trans.security.encode_id( hda.history_id )
+    hda_id = trans.security.encode_id( hda.id )
 %>
 
 ${h.stylesheet_link( root + 'plugins/visualizations/crossbio_blast/static/css/dc.css')}
@@ -87,7 +89,7 @@ ${h.javascript_link( root + 'plugins/visualizations/crossbio_blast/static/js/bio
 </div>
 
     <script>
-        /* global dc,crossfilter */ 
+        /* global dc,crossfilter */
         require("crossbio");
 
         var lengthChart = dc.barChart('#blast-length');
@@ -99,7 +101,7 @@ ${h.javascript_link( root + 'plugins/visualizations/crossbio_blast/static/js/bio
 
         var Blast = require("biojs-io-blast");
 
-        var url = "${root}api/histories/"+config.dataset_id+"/contents/" +config.dataset_id+ "/display";
+        var url = "${root}api/histories/${history_id}/contents/${hda_id}/display";
         Blast.read(url, display);
 
         function display(err, result) {
