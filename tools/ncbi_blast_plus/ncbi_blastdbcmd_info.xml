@@ -15,8 +15,6 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
         <data name="info" format="txt" label="${db_opts.database.fields.name} info" />
     </outputs>
     <tests>
-        <!-- Disable for ToolShed where *.loc tests not yet supported
-             See https://github.com/peterjc/galaxy_blast/issues/53
         <test>
             <param name="db_opts|db_type" value="prot" />
             <param name="db_opts|database" value="four_human_proteins" />
@@ -27,7 +25,6 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
             <param name="db_opts|database" value="three_human_mRNA" />
             <output name="info" file="three_human_mRNA.dbinfo.txt" ftype="txt" lines_diff="4" />
         </test>
-        -->
     </tests>
     <help>
     

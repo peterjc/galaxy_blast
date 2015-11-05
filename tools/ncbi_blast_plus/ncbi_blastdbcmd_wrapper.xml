@@ -70,8 +70,6 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
         <data name="seq" format="fasta" label="Sequences from ${db_opts.database.fields.name}" />
     </outputs>
     <tests>
-        <!-- Disable for ToolShed where *.loc tests not yet supported
-             See https://github.com/peterjc/galaxy_blast/issues/53
         <test>
             <param name="db_opts|db_type" value="prot" />
             <param name="db_opts|database" value="four_human_proteins" />
@@ -80,7 +78,6 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
             <param name="outfmt" value="original" />
             <output name="seq" file="four_human_proteins.fasta" ftype="fasta" />
         </test>
-        -->
     </tests>
     <help>
     
