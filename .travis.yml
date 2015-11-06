@@ -72,8 +72,6 @@ before_install:
  - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/${GALAXY_BRANCH}
  - tar -zxvf ${GALAXY_BRANCH} | tail
  - cd galaxy-${GALAXY_BRANCH}
-#Up until release 15.10 Galaxy used eggs for Python deps, now uses wheels via pip:
- - if [ -f requirements.txt ]; then pip install --extra-index-url http://wheels.galaxyproject.org/simple/ --trusted-host wheels.galaxyproject.org -r requirements.txt; fi
 
 
 # Configuring tools within Galaxy
@@ -118,9 +116,8 @@ install:
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
  - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
  - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
- - ./run.sh --stop-daemon || true
-#Up until release 15.10 Galaxy used eggs for Python deps, now uses wheels:
- - if [ -f scripts/fetch_eggs.py ]; then python scripts/fetch_eggs.py; fi
+#Older Galaxy versions using eggs (like 15.10) will ignore the extra arguments:
+ - bash scripts/common_startup.sh --skip-venv --dev-wheels
 
 
 # Testing tools in Galaxy
