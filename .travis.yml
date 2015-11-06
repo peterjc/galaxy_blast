@@ -72,6 +72,8 @@ before_install:
  - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/${GALAXY_BRANCH}
  - tar -zxvf ${GALAXY_BRANCH} | tail
  - cd galaxy-${GALAXY_BRANCH}
+#Up until release 15.10 Galaxy used eggs for Python deps, now uses wheels via pip:
+ - if [ -f requirements.txt ]; then pip install --extra-index-url http://wheels.galaxyproject.org/simple/ --trusted-host wheels.galaxyproject.org -r requirements.txt; fi
 
 
 # Configuring tools within Galaxy
