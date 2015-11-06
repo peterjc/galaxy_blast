@@ -117,7 +117,8 @@ install:
  - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
  - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
  - ./run.sh --stop-daemon || true
- - python scripts/fetch_eggs.py
+#Up until release 15.10 Galaxy used eggs for Python deps, now uses wheels:
+ - if [ -f scripts/fetch_eggs.py ]; then python scripts/fetch_eggs.py; fi
 
 
 # Testing tools in Galaxy
