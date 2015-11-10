@@ -1,5 +1,8 @@
 <tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="@WRAPPER_VERSION@">
     <description>Convert BLAST XML output to tabular</description>
+    <macros>
+        <import>ncbi_macros.xml</import>
+    </macros>
     <stdio>
         <!-- Anything other than zero is an error -->
         <exit_code range="1:" />
