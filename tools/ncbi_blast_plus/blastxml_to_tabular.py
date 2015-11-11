@@ -65,7 +65,7 @@ import re
 import os
 from optparse import OptionParser
 
-if "-v" in sys.argv or "--version" in sys.argv:
+if "-v" in sys.argv or "--version" in sys.argv or "-version" in sys.argv:
     print "v0.1.04"
     sys.exit(0)
 
