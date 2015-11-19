@@ -38,6 +38,12 @@ if "--version" in sys.argv[1:]:
     print "BLAST RBH v0.1.9"
     sys.exit(0)
 
+try:
+    threads = int(os.environ.get("GALAXY_SLOTS", "1"))
+except:
+    threads = 1
+assert 1 <= threads, threads
+
 #Parse Command Line
 usage = """Use as follows:
 
@@ -67,6 +73,10 @@ parser.add_option("--nr", dest="nr", default=False, action="store_true",
 parser.add_option("-o", "--output", dest="output",
                   default=None, metavar="FILE",
                   help="Output filename (required)")
+parser.add_option("--threads", dest="threads",
+                  default=threads,
+                  help="Number of threads when running BLAST. Defaults to the "
+                       "$GALAXY_SLOTS environment variable if set, or 1.")
 options, args = parser.parse_args()
 
 if len(args) != 2:
@@ -121,10 +131,11 @@ else:
     stop_err("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
 
 try:
-    threads = int(os.environ.get("GALAXY_SLOTS", "1"))
-except:
-    threads = 1
-assert 1 <= threads, threads
+    threads = int(options.threads)
+except ValueError:
+    stop_err("Expected positive integer for number of threads, not %r" % options.threads)
+if threads < 1:
+     stop_err("Expected positive integer for number of threads, not %r" % threads)
 
 makeblastdb_exe = "makeblastdb"
 
