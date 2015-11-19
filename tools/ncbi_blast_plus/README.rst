@@ -223,6 +223,10 @@ v0.1.05 - Define ``parallelism`` tag via a macro (internal change only).
         - Update citation information now GigaScience paper is out.
 v0.1.06 - Now depends on ``package_blast_plus_2_2_31`` in ToolShed.
         - Tests updated for BLAST+ 2.2.31 instead of BLAST+ 2.2.30.
+v0.1.07 - Re-enabled some ``*.loc`` file tests (these had not been supported
+          on the Tool Shed test framework, but that is not currently in use).
+        - Fixed macro problem with version field in blastxml_to_tabular.xml
+          (contribution from Bjoern Gruening and Daniel Blankenberg).
 ======= ======================================================================
 
 
