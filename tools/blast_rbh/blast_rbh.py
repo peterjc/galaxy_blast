@@ -35,22 +35,26 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.6"
+    print "BLAST RBH v0.1.9"
     sys.exit(0)
 
 #Parse Command Line
 usage = """Use as follows:
 
 $ python blast_rbh.py [options] A.fasta B.fasta
+
+Many of the options are required. Example with proteins and blastp:
+
+$ python blast_rbh.py -a prot -t blasp -o output.tsv protA.fasta protB.fasta
 """
 
 parser = OptionParser(usage=usage)
 parser.add_option("-a", "--alphabet", dest="dbtype",
                   default=None,
-                  help="Alphabet type (nucl or prot)")
+                  help="Alphabet type (nucl or prot; required)")
 parser.add_option("-t", "--task", dest="task",
                   default=None,
-                  help="BLAST task (e.g. blastp, blastn, megablast)")
+                  help="BLAST task (e.g. blastp, blastn, megablast; required)")
 parser.add_option("-i","--identity", dest="min_identity",
                   default="70",
                   help="Minimum percentage identity (optional, default 70)")
@@ -58,11 +62,11 @@ parser.add_option("-c", "--coverage", dest="min_coverage",
                   default="50",
                   help="Minimum HSP coverage (optional, default 50)")
 parser.add_option("--nr", dest="nr", default=False, action="store_true",
-                  help="Preprocess FASTA files to collapse identifical "
+                  help="Preprocess FASTA files to collapse identitical "
                   "entries (make sequences non-redundant)")
 parser.add_option("-o", "--output", dest="output",
                   default=None, metavar="FILE",
-                  help="Output filename")
+                  help="Output filename (required)")
 options, args = parser.parse_args()
 
 if len(args) != 2:
