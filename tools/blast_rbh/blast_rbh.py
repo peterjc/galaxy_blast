@@ -35,7 +35,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.9"
+    print "BLAST RBH v0.1.9 (with evalue in output)"
     sys.exit(0)
 
 try:
@@ -153,7 +153,7 @@ else:
     b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
 log = os.path.join(base_path, "blast.log")
 
-cols = "qseqid sseqid bitscore pident qcovhsp qlen length" #Or qcovs?
+cols = "qseqid sseqid bitscore pident qcovhsp qlen length evalue" #Or qcovs?
 c_query = 0
 c_match = 1
 c_score = 2
@@ -161,6 +161,7 @@ c_identity = 3
 c_coverage = 4
 c_qlen = 5
 c_length = 6
+c_evalue = 7
 
 tie_warning = 0
 
@@ -192,6 +193,7 @@ def best_hits(blast_tabular, ignore_self=False):
             score = float(parts[c_score])
             qlen = int(parts[c_qlen])
             length = int(parts[c_length])
+            evalue = float(parts[c_evalue])
             #print("Considering hit for %s to %s with score %s..." % (a, b, score))
             if current is None:
                 #First hit
@@ -223,7 +225,7 @@ def best_hits(blast_tabular, ignore_self=False):
             current = a
             best_score = score
             #This will collapse two equally good hits to the same target (e.g. duplicated domain)
-            best[b] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
+            best[b] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length, evalue)
     #Best hit for final query, if unambiguous:
     if current is not None:
         if len(best)==1:
@@ -320,12 +322,12 @@ best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
 
 count = 0
 outfile = open(out_file, 'w')
-outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
-for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b, self_comparison):
+outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\tevalue\n")
+for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length, a_evalue) in best_hits(a_vs_b, self_comparison):
     if b not in best_b_vs_a:
         #Match b has no best hit
         continue
-    a2, b_score_float, b_score_str, b_identity_str, b_coverage_str, b_qlen, b_length = best_b_vs_a[b]
+    a2, b_score_float, b_score_str, b_identity_str, b_coverage_str, b_qlen, b_length, b_evalue = best_b_vs_a[b]
     if a != a2:
         #Not an RBH
         continue
@@ -342,7 +344,8 @@ for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a
         values.append(a_score_str)
     else:
         values.append(b_score_str)
-    outfile.write("%s\t%s\t%i\t%i\t%s\t%s\t%i\t%s\t%s\n" % tuple(values))
+    values.append(a_evalue)
+    outfile.write("%s\t%s\t%i\t%i\t%s\t%s\t%i\t%s\t%s\t%.2e\n" % tuple(values))
     count += 1
 outfile.close()
 print "Done, %i RBH found" % count
