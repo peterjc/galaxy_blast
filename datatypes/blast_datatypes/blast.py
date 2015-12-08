@@ -191,8 +191,7 @@ class _BlastDb(object):
             handle = open(data.file_name, "rU")
             msg = handle.read().strip()
             handle.close()
-        except Exception, err:
-            # msg = str(err)
+        except Exception:
             pass
         if not msg:
             msg = title
