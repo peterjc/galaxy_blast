@@ -30,7 +30,7 @@ import sys
 import os
 import subprocess
 
-#You may need to edit this to match your local setup,
+# You may need to edit this to match your local setup,
 blast2go_dir = os.environ.get("B2G4PIPE", "/opt/b2g4pipe_v2.5/")
 blast2go_jar = os.path.join(blast2go_dir, "blast2go.jar")
 
@@ -45,7 +45,7 @@ if len(sys.argv) != 4:
 
 xml_file, prop_file, tabular_file = sys.argv[1:]
 
-#We should have write access here:
+# We should have write access here:
 tmp_xml_file = tabular_file + ".tmp.xml"
 
 if not os.path.isfile(blast2go_jar):
@@ -57,7 +57,7 @@ if not os.path.isfile(xml_file):
 if not os.path.isfile(prop_file):
     tmp = os.path.join(os.path.split(blast2go_jar)[0], prop_file)
     if os.path.isfile(tmp):
-        #The properties file seems to have been given relative to the JAR
+        # The properties file seems to have been given relative to the JAR
         prop_file = tmp
     else:
         sys.exit("Blast2GO configuration file not found: %s" % prop_file)
@@ -65,8 +65,8 @@ if not os.path.isfile(prop_file):
 
 
 def run(cmd):
-    #Avoid using shell=True when we call subprocess to ensure if the Python
-    #script is killed, so too is the child process.
+    # Avoid using shell=True when we call subprocess to ensure if the Python
+    # script is killed, so too is the child process.
     try:
         child = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except Exception, err:
@@ -74,8 +74,8 @@ def run(cmd):
     stdout, stderr = child.communicate()
     return_code = child.returncode
 
-    #keep stdout minimal as shown prominently in Galaxy
-    #Record it in case a silent error needs diagnosis
+    # keep stdout minimal as shown prominently in Galaxy
+    # Record it in case a silent error needs diagnosis
     if stdout:
         sys.stderr.write("Standard out:\n%s\n\n" % stdout)
     if stderr:
@@ -85,9 +85,9 @@ def run(cmd):
     if return_code:
         cmd_str = " ".join(cmd)
         error_msg = "Return code %i from command:\n%s" % (return_code, cmd_str)
-    elif "Database or network connection (timeout) error" in stdout+stderr:
+    elif "Database or network connection (timeout) error" in stdout + stderr:
         error_msg = "Database or network connection (timeout) error"
-    elif "Annotation of 0 seqs with 0 annots finished." in stdout+stderr:
+    elif "Annotation of 0 seqs with 0 annots finished." in stdout + stderr:
         error_msg = "No sequences processed!"
 
     if error_msg:
@@ -100,30 +100,30 @@ assert os.path.isdir(blast2go_classpath)
 blast2go_classpath = "%s/*:%s/ext/*:" % (blast2go_classpath, blast2go_classpath)
 
 prepare_xml(xml_file, tmp_xml_file)
-#print "XML file prepared for Blast2GO"
+# print "XML file prepared for Blast2GO"
 
-#We will have write access wherever the output should be,
-#so we'll ask Blast2GO to use that as the stem for its output
-#(it will append .annot to the filename)
+# We will have write access wherever the output should be,
+# so we'll ask Blast2GO to use that as the stem for its output
+# (it will append .annot to the filename)
 cmd = ["java", "-cp", blast2go_classpath, "es.blast2go.prog.B2GAnnotPipe",
        "-in", tmp_xml_file,
        "-prop", prop_file,
-       "-out", tabular_file, #Used as base name for output files
-       "-annot", # Generate *.annot tabular file
-       #NOTE: For v2.3.5 must use -a, for v2.5 must use -annot instead
-       #"-img", # Generate images, feature not in v2.3.5
+       "-out", tabular_file,  # Used as base name for output files
+       "-annot",  # Generate *.annot tabular file
+       # NOTE: For v2.3.5 must use -a, for v2.5 must use -annot instead
+       # "-img", # Generate images, feature not in v2.3.5
        ]
-#print " ".join(cmd)
+# print " ".join(cmd)
 run(cmd)
 
-#Remove the temp XML file
+# Remove the temp XML file
 os.remove(tmp_xml_file)
 
 out_file = tabular_file + ".annot"
 if not os.path.isfile(out_file):
     sys.exit("ERROR - No output annotation file from Blast2GO")
 
-#Move the output file where Galaxy expects it to be:
+# Move the output file where Galaxy expects it to be:
 os.rename(out_file, tabular_file)
 
 print "Done"

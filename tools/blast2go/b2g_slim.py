@@ -14,8 +14,9 @@ except ValueError:
     print "Bad args"
     sys.exit(1)
 
+
 def gzip_open(filename, mode="rb"):
-    assert mode=="rb", mode
+    assert mode == "rb", mode
     h = open(filename, "rb")
     magic = h.read(2)
     h.seek(0)
@@ -54,34 +55,34 @@ def load_go_mapping(rdf_xml):
 
     go = None
     for line in h:
-        #sys.stderr.write("... %r\n" % line)
+        # sys.stderr.write("... %r\n" % line)
         if "<go:accession>" in line:
             assert go is None, line
-            go = line[line.find("<go:accession>")+14:]
+            go = line[line.find("<go:accession>") + 14:]
             assert "</go:accession>" in line, line
             go = go[:go.find("</go:accession>")]
-        elif "<go:name>" in line:            
+        elif "<go:name>" in line:
             assert go is not None
-            name = line[line.find("<go:name>")+9:]
+            name = line[line.find("<go:name>") + 9:]
             assert "</go:name>" in name, name
             name = name[:name.find("</go:name>")]
             names[go] = name
         elif "<go:synonym>GO:" in line:
             assert go is not None
-            go2 = line[line.find("<go:synonym>GO:")+12:]
+            go2 = line[line.find("<go:synonym>GO:") + 12:]
             assert "</go:synonym>" in line, line
             go2 = go2[:go2.find("</go:synonym>")]
             alias[go2] = go
         elif '<go:is_a rdf:resource="http://www.geneontology.org/go#GO:' in line and go:
             assert go is not None
-            #e.g. <go:is_a rdf:resource="http://www.geneontology.org/go#GO:0008150" />
-            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#GO:')+54:]
+            # e.g. <go:is_a rdf:resource="http://www.geneontology.org/go#GO:0008150" />
+            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#GO:') + 54:]
             thing = thing[:thing.find('"')]
             is_a[go] = thing
         elif '<go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_' in line and go:
-            #i.e. <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_molecular_function" />
-            #or   <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_biological_process" />
-            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#')+54:]
+            # i.e. <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_molecular_function" />
+            # or   <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_biological_process" />
+            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#') + 54:]
             thing = thing[:thing.find('"')]
             is_a[go] = thing
         elif "</go:term>" in line:
@@ -89,8 +90,9 @@ def load_go_mapping(rdf_xml):
     h.close()
     sys.stderr.write("%i names, %i aliases, %i parents\n" % (len(names), len(alias), len(is_a)))
 
-    if "all" in names: del names["all"]
-    
+    if "all" in names:
+        del names["all"]
+
     for go in names:
         yield go, names[go], get_term_class(go, alias, is_a)
     for go in alias:
@@ -103,10 +105,10 @@ def b2g_annot_to_gaf(in_handle, out_handle):
     db = "LOCAL"
     qualifier = "NOT"
     db_ref = ""
-    evidence_code = "ISA" # Inferred from Sequence Alignment
+    evidence_code = "ISA"  # Inferred from Sequence Alignment
     with_or_from = ""
     taxon = ""
-    date = "19700101" # Today?
+    date = "19700101"  # Today?
     assigned_by = "LOCAL"
     annot_ext = ""
     gene_product_form_id = ""
@@ -123,11 +125,11 @@ def b2g_annot_to_gaf(in_handle, out_handle):
 
 go_terms = dict((go, (name, term_class)) for go, name, term_class, in load_go_mapping(term_file))
 
-#Turn the Blast2GO Annotation Table into a minimal GAF file,
+# Turn the Blast2GO Annotation Table into a minimal GAF file,
 in_handle = open(b2g_annot_file)
 out_handle = open(gaf_file, "w")
 b2g_annot_to_gaf(in_handle, out_handle)
 in_handle.close()
 out_handle.close()
 
-#Now, should be able call map2slim, ...
+# Now, should be able call map2slim, ...

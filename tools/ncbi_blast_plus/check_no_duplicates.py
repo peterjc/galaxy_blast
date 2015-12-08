@@ -26,8 +26,8 @@ for filename in sys.argv[1:]:
     handle = open(filename)
     for line in handle:
         if line.startswith(">"):
-            #The split will also take care of the new line character,
-            #e.g. ">test\n" and ">test description here\n" both give "test"
+            # The split will also take care of the new line character,
+            # e.g. ">test\n" and ">test description here\n" both give "test"
             seq_id = line[1:].split(None, 1)[0]
             if seq_id in identifiers:
                 handle.close()

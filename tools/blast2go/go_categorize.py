@@ -3,8 +3,9 @@ import gzip
 
 _gzip_magic = '\x1f\x8b'
 
+
 def gzip_open(filename, mode="rb"):
-    assert mode=="rb", mode
+    assert mode == "rb", mode
     h = open(filename, "rb")
     magic = h.read(2)
     h.seek(0)
@@ -43,34 +44,34 @@ def load_go_mapping(rdf_xml):
 
     go = None
     for line in h:
-        #sys.stderr.write("... %r\n" % line)
+        # sys.stderr.write("... %r\n" % line)
         if "<go:accession>" in line:
             assert go is None, line
-            go = line[line.find("<go:accession>")+14:]
+            go = line[line.find("<go:accession>") + 14:]
             assert "</go:accession>" in line, line
             go = go[:go.find("</go:accession>")]
-        elif "<go:name>" in line:            
+        elif "<go:name>" in line:
             assert go is not None
-            name = line[line.find("<go:name>")+9:]
+            name = line[line.find("<go:name>") + 9:]
             assert "</go:name>" in name, name
             name = name[:name.find("</go:name>")]
             names[go] = name
         elif "<go:synonym>GO:" in line:
             assert go is not None
-            go2 = line[line.find("<go:synonym>GO:")+12:]
+            go2 = line[line.find("<go:synonym>GO:") + 12:]
             assert "</go:synonym>" in line, line
             go2 = go2[:go2.find("</go:synonym>")]
             alias[go2] = go
         elif '<go:is_a rdf:resource="http://www.geneontology.org/go#GO:' in line and go:
             assert go is not None
-            #e.g. <go:is_a rdf:resource="http://www.geneontology.org/go#GO:0008150" />
-            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#GO:')+54:]
+            # e.g. <go:is_a rdf:resource="http://www.geneontology.org/go#GO:0008150" />
+            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#GO:') + 54:]
             thing = thing[:thing.find('"')]
             is_a[go] = thing
         elif '<go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_' in line and go:
-            #i.e. <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_molecular_function" />
-            #or   <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_biological_process" />
-            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#')+54:]
+            # i.e. <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_molecular_function" />
+            # or   <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_biological_process" />
+            thing = line[line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#') + 54:]
             thing = thing[:thing.find('"')]
             is_a[go] = thing
         elif "</go:term>" in line:
@@ -78,7 +79,8 @@ def load_go_mapping(rdf_xml):
     h.close()
     sys.stderr.write("%i names, %i aliases, %i parents\n" % (len(names), len(alias), len(is_a)))
 
-    if "all" in names: del names["all"]
+    if "all" in names:
+        del names["all"]
 
     for go in names:
         yield go, names[go], get_term_class(go, alias, is_a)

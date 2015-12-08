@@ -14,7 +14,7 @@ As part of this reformatting, we check for BLASTP or BLASTX output
 
 This script is called from my Galaxy wrapper for Blast2GO for pipelines,
 available from the Galaxy Tool Shed here:
-http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go 
+http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 
 This script is under version control here:
 https://github.com/peterjc/galaxy_blast/tree/master/blast2go
@@ -63,10 +63,10 @@ def prepare_xml(original_xml, mangled_xml):
         if not line:
             break
         elif line.strip() == "<Iteration>":
-           #Insert footer/header
-           out_handle.write(footer)
-           out_handle.write(header)
-           count += 1
+            # Insert footer/header
+            out_handle.write(footer)
+            out_handle.write(header)
+            count += 1
         out_handle.write(line)
 
     out_handle.close()

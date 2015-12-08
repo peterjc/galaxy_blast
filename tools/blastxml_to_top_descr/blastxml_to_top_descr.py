@@ -15,11 +15,12 @@ if "-v" in sys.argv or "--version" in sys.argv:
     print "v0.1.1"
     sys.exit(0)
 
-if sys.version_info[:2] >= ( 2, 5 ):
+if sys.version_info[:2] >= (2, 5):
     import xml.etree.cElementTree as ElementTree
 else:
     from galaxy import eggs
-    import pkg_resources; pkg_resources.require( "elementtree" )
+    import pkg_resources
+    pkg_resources.require("elementtree")
     from elementtree import ElementTree
 
 
@@ -124,6 +125,7 @@ def tabular_hits(in_file, qseqid, sseqid, salltitles):
         # Final query
         yield current_query, current_hits
 
+
 def blastxml_hits(in_file):
     """Parse key data from BLAST XML output.
 
@@ -175,8 +177,8 @@ def blastxml_hits(in_file):
             if qseqid is None:
                 sys.exit("Missing <Iteration_query-ID> (could be really old BLAST XML data?)")
             if re_default_query_id.match(qseqid):
-                #Place holder ID, take the first word of the query definition
-                qseqid = elem.findtext("Iteration_query-def").split(None,1)[0]
+                # Place holder ID, take the first word of the query definition
+                qseqid = elem.findtext("Iteration_query-def").split(None, 1)[0]
             if current_query is None:
                 # First hit
                 current_query = qseqid
@@ -202,14 +204,14 @@ def blastxml_hits(in_file):
                 # <Hit_def>gi|57163783|ref|NP_001009242.1| rhodopsin [Felis catus]</Hit_def>
                 # <Hit_accession>Subject_1</Hit_accession>
                 #
-                #apparently depending on the parse_deflines switch
-                sseqid = hit.findtext("Hit_id").split(None,1)[0]
+                # apparently depending on the parse_deflines switch
+                sseqid = hit.findtext("Hit_id").split(None, 1)[0]
                 hit_def = sseqid + " " + hit.findtext("Hit_def")
                 if re_default_subject_id.match(sseqid) \
                 and sseqid == hit.findtext("Hit_accession"):
-                    #Place holder ID, take the first word of the subject definition
+                    # Place holder ID, take the first word of the subject definition
                     hit_def = hit.findtext("Hit_def")
-                    sseqid = hit_def.split(None,1)[0]
+                    sseqid = hit_def.split(None, 1)[0]
                 assert hit_def not in hit_descrs
                 hit_descrs.append(hit_def)
             # prevents ElementTree from growing large datastructure
@@ -232,7 +234,7 @@ else:
 
 def best_hits(descriptions, topN):
     if len(descriptions) < topN:
-        return descriptions +  [""] * (topN - len(descriptions))
+        return descriptions + [""] * (topN - len(descriptions))
     else:
         return descriptions[:topN]
 
@@ -241,7 +243,7 @@ if out_file is None:
     outfile = sys.stdout
 else:
     outfile = open(out_file, 'w')
-outfile.write("#Query\t%s\n" % "\t".join("BLAST hit %i" % (i+1) for i in range(topN)))
+outfile.write("#Query\t%s\n" % "\t".join("BLAST hit %i" % (i + 1) for i in range(topN)))
 for query, descrs in hits:
     count += 1
     outfile.write("%s\t%s\n" % (query, "\t".join(best_hits(descrs, topN))))

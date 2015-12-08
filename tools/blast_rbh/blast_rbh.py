@@ -31,7 +31,7 @@ def run(cmd):
         sys.exit("Error %i from: %s" % (return_code, cmd))
 
 if "--version" in sys.argv[1:]:
-    #TODO - Capture version of BLAST+ binaries too?
+    # TODO - Capture version of BLAST+ binaries too?
     print "BLAST RBH v0.1.9"
     sys.exit(0)
 
@@ -41,7 +41,7 @@ except:
     threads = 1
 assert 1 <= threads, threads
 
-#Parse Command Line
+# Parse Command Line
 usage = """Use as follows:
 
 $ python blast_rbh.py [options] A.fasta B.fasta
@@ -58,7 +58,7 @@ parser.add_option("-a", "--alphabet", dest="dbtype",
 parser.add_option("-t", "--task", dest="task",
                   default=None,
                   help="BLAST task (e.g. blastp, blastn, megablast; required)")
-parser.add_option("-i","--identity", dest="min_identity",
+parser.add_option("-i", "--identity", dest="min_identity",
                   default="70",
                   help="Minimum percentage identity (optional, default 70)")
 parser.add_option("-c", "--coverage", dest="min_coverage",
@@ -115,7 +115,7 @@ if not options.dbtype:
 dbtype = options.dbtype
 if dbtype == "nucl":
     if blast_type in ["megablast", "blastn", "blastn-short", "dc-megablast"]:
-         blast_cmd = "blastn -task %s" % blast_type
+        blast_cmd = "blastn -task %s" % blast_type
     elif blast_type == "tblastx":
         blast_cmd = "tblastx"
     else:
@@ -132,7 +132,7 @@ try:
 except ValueError:
     stop_err("Expected positive integer for number of threads, not %r" % options.threads)
 if threads < 1:
-     stop_err("Expected positive integer for number of threads, not %r" % threads)
+    stop_err("Expected positive integer for number of threads, not %r" % threads)
 
 makeblastdb_exe = "makeblastdb"
 
@@ -150,7 +150,7 @@ else:
     b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
 log = os.path.join(base_path, "blast.log")
 
-cols = "qseqid sseqid bitscore pident qcovhsp qlen length" #Or qcovs?
+cols = "qseqid sseqid bitscore pident qcovhsp qlen length"  # Or qcovs?
 c_query = 0
 c_match = 1
 c_score = 2
@@ -160,6 +160,7 @@ c_qlen = 5
 c_length = 6
 
 tie_warning = 0
+
 
 def best_hits(blast_tabular, ignore_self=False):
     """Iterate over BLAST tabular output, returns best hits as 2-tuples.
@@ -189,45 +190,46 @@ def best_hits(blast_tabular, ignore_self=False):
             score = float(parts[c_score])
             qlen = int(parts[c_qlen])
             length = int(parts[c_length])
-            #print("Considering hit for %s to %s with score %s..." % (a, b, score))
+            # print("Considering hit for %s to %s with score %s..." % (a, b, score))
             if current is None:
-                #First hit
+                # First hit
                 assert best is None
                 assert best_score is None
                 best = dict()
-                #Now append this hit...
+                # Now append this hit...
             elif a != current:
-                #New hit
+                # New hit
                 if len(best) == 1:
-                    #Unambiguous (no tied matches)
+                    # Unambiguous (no tied matches)
                     yield current, list(best.values())[0]
                 else:
-                    #print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+                    # print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
                     tie_warning += 1
                 best = dict()
-                #Now append this hit...
+                # Now append this hit...
             elif score < best_score:
-                #print("No improvement for %s, %s < %s" % (a, score, best_score))
+                # print("No improvement for %s, %s < %s" % (a, score, best_score))
                 continue
             elif score > best_score:
-                #This is better, discard old best
+                # This is better, discard old best
                 best = dict()
-                #Now append this hit...
+                # Now append this hit...
             else:
-                #print("Tied best hits for %s" % a)
+                # print("Tied best hits for %s" % a)
                 assert best_score == score
-                #Now append this hit...
+                # Now append this hit...
             current = a
             best_score = score
-            #This will collapse two equally good hits to the same target (e.g. duplicated domain)
+            # This will collapse two equally good hits to the same target (e.g. duplicated domain)
             best[b] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
-    #Best hit for final query, if unambiguous:
+    # Best hit for final query, if unambiguous:
     if current is not None:
-        if len(best)==1:
+        if len(best) == 1:
             yield current, list(best.values())[0]
         else:
-            #print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+            # print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
             tie_warning += 1
+
 
 def check_duplicate_ids(filename):
     # Copied from tools/ncbi_blast_plus/check_no_duplicates.py
@@ -239,8 +241,8 @@ def check_duplicate_ids(filename):
     handle = open(filename)
     for line in handle:
         if line.startswith(">"):
-        # The split will also take care of the new line character,
-        # e.g. ">test\n" and ">test description here\n" both give "test"
+            # The split will also take care of the new line character,
+            # e.g. ">test\n" and ">test description here\n" both give "test"
             seq_id = line[1:].split(None, 1)[0]
             if seq_id in identifiers:
                 handle.close()
@@ -249,8 +251,9 @@ def check_duplicate_ids(filename):
             identifiers.add(seq_id)
     handle.close()
 
+
 def make_nr(input_fasta, output_fasta, sep=";"):
-    #TODO - seq-hash based to avoid loading everything into RAM?
+    # TODO - seq-hash based to avoid loading everything into RAM?
     by_seq = dict()
     try:
         from Bio import SeqIO
@@ -273,7 +276,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
             unique += 1
     del by_seq
     if duplicates:
-        #TODO - refactor as a generator with single SeqIO.write(...) call
+        # TODO - refactor as a generator with single SeqIO.write(...) call
         with open(output_fasta, "w") as handle:
             for record in SeqIO.parse(input_fasta, "fasta"):
                 if record.id in representatives:
@@ -288,7 +291,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
         os.symlink(os.path.abspath(input_fasta), output_fasta)
         print("No perfect duplicates in file, %i unique entries" % unique)
 
-#print("Starting...")
+# print("Starting...")
 check_duplicate_ids(fasta_a)
 if not self_comparison:
     check_duplicate_ids(fasta_b)
@@ -300,18 +303,18 @@ if options.nr:
     fasta_a = tmp_a
     fasta_b = tmp_b
 
-#TODO - Report log in case of error?
+# TODO - Report log in case of error?
 run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
 if not self_comparison:
     run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
-#print("BLAST databases prepared.")
+# print("BLAST databases prepared.")
 run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads))
-#print("BLAST species A vs species B done.")
+# print("BLAST species A vs species B done.")
 if not self_comparison:
     run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
         % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
-    #print("BLAST species B vs species A done.")
+    # print("BLAST species B vs species A done.")
 
 
 best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
@@ -322,17 +325,17 @@ outfile = open(out_file, 'w')
 outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
 for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b, self_comparison):
     if b not in best_b_vs_a:
-        #Match b has no best hit
+        # Match b has no best hit
         continue
     a2, b_score_float, b_score_str, b_identity_str, b_coverage_str, b_qlen, b_length = best_b_vs_a[b]
     if a != a2:
-        #Not an RBH
+        # Not an RBH
         continue
-    #Start with IDs, lengths, coverage
+    # Start with IDs, lengths, coverage
     values = [a, b, a_qlen, b_qlen, a_coverage_str, b_coverage_str]
-    #Alignment length was an integer so don't care about original string
+    # Alignment length was an integer so don't care about original string
     values.append(min(a_length, b_length))
-    #Output the original string versions of the scores
+    # Output the original string versions of the scores
     if float(a_identity_str) < float(b_identity_str):
         values.append(a_identity_str)
     else:
@@ -348,5 +351,5 @@ print "Done, %i RBH found" % count
 if tie_warning:
     sys.stderr.write("Warning: Sequences with tied best hits found, you may have duplicates/clusters\n")
 
-#Remove temp files...
+# Remove temp files...
 shutil.rmtree(base_path)

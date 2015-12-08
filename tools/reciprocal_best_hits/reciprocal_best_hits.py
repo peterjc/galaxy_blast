@@ -37,10 +37,11 @@ if out_file in [a_vs_b, b_vs_a]:
 if "None" in [c_query, c_match, c_score]:
     sys.exit("Three distinct column numbers must be chosen")
 
+
 def get_col_index(col_str):
-    if col_str[0]=="c":
+    if col_str[0] == "c":
         col_str = col_str[1:]
-    return int(col_str)-1
+    return int(col_str) - 1
 
 c_query = get_col_index(c_query)
 c_match = get_col_index(c_match)
@@ -67,7 +68,8 @@ best_a_vs_b = load_best(a_vs_b, c_query, c_match)
 
 best_a_vs_b = dict()
 for line in open(a_vs_b):
-    if line.startswith("#"): continue
+    if line.startswith("#"):
+        continue
     parts = line.rstrip("\n").split("\t")
     a = parts[c_query]
     b = parts[c_match]
@@ -76,11 +78,12 @@ for line in open(a_vs_b):
     or (want_highest and score > best_a_vs_b[a][1]) \
     or (want_lowest and score < best_a_vs_b[a][1]):
         best_a_vs_b[a] = (b, score, parts[c_score])
-b_short_list = set(b for (b,score, score_str) in best_a_vs_b.values())
+b_short_list = set(b for (b, score, score_str) in best_a_vs_b.values())
 
 best_b_vs_a = dict()
 for line in open(b_vs_a):
-    if line.startswith("#"): continue
+    if line.startswith("#"):
+        continue
     parts = line.rstrip("\n").split("\t")
     b = parts[c_query]
     a = parts[c_match]
@@ -94,8 +97,8 @@ for line in open(b_vs_a):
     or (want_highest and score > best_b_vs_a[b][1]) \
     or (want_lowest and score < best_b_vs_a[b][1]):
         best_b_vs_a[b] = (a, score, parts[c_score])
-#TODO - Preserve order from A vs B?
-a_short_list = sorted(set(a for (a,score,score_str) in best_b_vs_a.values()))
+# TODO - Preserve order from A vs B?
+a_short_list = sorted(set(a for (a, score, score_str) in best_b_vs_a.values()))
 
 count = 0
 outfile = open(out_file, 'w')
