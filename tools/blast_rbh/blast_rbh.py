@@ -130,9 +130,9 @@ else:
 try:
     threads = int(options.threads)
 except ValueError:
-    stop_err("Expected positive integer for number of threads, not %r" % options.threads)
+    sys.exit("Expected positive integer for number of threads, not %r" % options.threads)
 if threads < 1:
-    stop_err("Expected positive integer for number of threads, not %r" % threads)
+    sys.exit("Expected positive integer for number of threads, not %r" % threads)
 
 makeblastdb_exe = "makeblastdb"
 
