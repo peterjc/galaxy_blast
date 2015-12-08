@@ -37,7 +37,7 @@ if "--version" in sys.argv[1:]:
 
 try:
     threads = int(os.environ.get("GALAXY_SLOTS", "1"))
-except:
+except ValueError:
     threads = 1
 assert 1 <= threads, threads
 

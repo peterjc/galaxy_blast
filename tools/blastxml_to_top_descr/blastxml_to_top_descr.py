@@ -90,7 +90,7 @@ def get_column(value):
         value = value[1:]
     try:
         col = int(value)
-    except:
+    except ValueError:
         sys.exit("Expected an integer column number, not %r" % value)
     if col < 1:
         sys.exit("Expect column numbers to be at least one, not %r" % value)
@@ -133,7 +133,7 @@ def blastxml_hits(in_file):
     """
     try:
         context = ElementTree.iterparse(in_file, events=("start", "end"))
-    except:
+    except Exception:
         with open(in_file) as handle:
             header = handle.read(100)
         sys.exit("Invalid data format in XML file %r which starts: %r" % (in_file, header))
@@ -142,7 +142,7 @@ def blastxml_hits(in_file):
     # get the root element
     try:
         event, root = context.next()
-    except:
+    except Exception:
         with open(in_file) as handle:
             header = handle.read(100)
         sys.exit("Unable to get root element from XML file %r which starts: %r" % (in_file, header))

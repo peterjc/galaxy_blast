@@ -160,14 +160,14 @@ def convert(blastxml_filename, output_handle):
     # get an iterable
     try:
         context = ElementTree.iterparse(blastxml_filename, events=("start", "end"))
-    except:
+    except Exception:
         sys.exit("Invalid data format.")
     # turn it into an iterator
     context = iter(context)
     # get the root element
     try:
         event, root = context.next()
-    except:
+    except Exception:
         sys.exit("Invalid data format.")
     for event, elem in context:
         if event == "end" and elem.tag == "BlastOutput_program":

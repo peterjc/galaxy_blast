@@ -19,7 +19,7 @@ if "--version" in sys.argv[1:]:
 # Parse Command Line
 try:
     a_vs_b, b_vs_a, c_query, c_match, c_score, sort_order, out_file = sys.argv[1:]
-except:
+except ValueError:
     sys.exit("Expect 7 arguments: two input files, column settings, output file")
 
 
