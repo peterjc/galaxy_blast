@@ -162,7 +162,7 @@ class _BlastDb(object):
         """Create HTML content, used for displaying peek."""
         try:
             return dataset.peek
-        except:
+        except Exception:
             return "BLAST database (multiple files)"
 
     def display_data(self, trans, data, preview=False, filename=None,
