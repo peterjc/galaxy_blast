@@ -34,18 +34,14 @@ import subprocess
 blast2go_dir = os.environ.get("B2G4PIPE", "/opt/b2g4pipe_v2.5/")
 blast2go_jar = os.path.join(blast2go_dir, "blast2go.jar")
 
-def stop_err(msg, error_level=1):
-    """Print error message to stdout and quit with given error level."""
-    sys.stderr.write("%s\n" % msg)
-    sys.exit(error_level)
 
 try:
     from massage_xml_for_blast2go import prepare_xml
 except ImportError:
-    stop_err("Missing sister file massage_xml_for_blast2go.py")
+    sys.exit("Missing sister file massage_xml_for_blast2go.py")
 
 if len(sys.argv) != 4:
-    stop_err("Require three arguments: XML filename, properties filename, output tabular filename")
+    sys.exit("Require three arguments: XML filename, properties filename, output tabular filename")
 
 xml_file, prop_file, tabular_file = sys.argv[1:]
 
@@ -53,10 +49,10 @@ xml_file, prop_file, tabular_file = sys.argv[1:]
 tmp_xml_file = tabular_file + ".tmp.xml"
 
 if not os.path.isfile(blast2go_jar):
-    stop_err("Blast2GO JAR file not found: %s" % blast2go_jar)
+    sys.exit("Blast2GO JAR file not found: %s" % blast2go_jar)
 
 if not os.path.isfile(xml_file):
-    stop_err("Input BLAST XML file not found: %s" % xml_file)
+    sys.exit("Input BLAST XML file not found: %s" % xml_file)
 
 if not os.path.isfile(prop_file):
     tmp = os.path.join(os.path.split(blast2go_jar)[0], prop_file)
@@ -64,7 +60,7 @@ if not os.path.isfile(prop_file):
         #The properties file seems to have been given relative to the JAR
         prop_file = tmp
     else:
-        stop_err("Blast2GO configuration file not found: %s" % prop_file)
+        sys.exit("Blast2GO configuration file not found: %s" % prop_file)
     del tmp
 
 
@@ -74,8 +70,7 @@ def run(cmd):
     try:
         child = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except Exception, err:
-        stop_err("Error invoking command:\n%s\n\n%s\n" % (" ".join(cmd), err))
-    #Use .communicate as can get deadlocks with .wait(),
+        sys.exit("Error invoking command:\n%s\n\n%s\n" % (" ".join(cmd), err))
     stdout, stderr = child.communicate()
     return_code = child.returncode
 
@@ -97,7 +92,7 @@ def run(cmd):
 
     if error_msg:
         print error_msg
-        stop_err(error_msg)
+        sys.exit(error_msg)
 
 
 blast2go_classpath = os.path.split(blast2go_jar)[0]
@@ -126,7 +121,7 @@ os.remove(tmp_xml_file)
 
 out_file = tabular_file + ".annot"
 if not os.path.isfile(out_file):
-    stop_err("ERROR - No output annotation file from Blast2GO")
+    sys.exit("ERROR - No output annotation file from Blast2GO")
 
 #Move the output file where Galaxy expects it to be:
 os.rename(out_file, tabular_file)

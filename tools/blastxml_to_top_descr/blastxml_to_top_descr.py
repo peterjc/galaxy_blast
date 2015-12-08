@@ -22,9 +22,6 @@ else:
     import pkg_resources; pkg_resources.require( "elementtree" )
     from elementtree import ElementTree
 
-def stop_err( msg ):
-    sys.stderr.write("%s\n" % msg)
-    sys.exit(1)
 
 usage = """Use as follows:
 
@@ -55,7 +52,7 @@ parser.add_option("-d", "--salltitles", dest="salltitles", default="25",
 (options, args) = parser.parse_args()
 
 if len(sys.argv) == 4 and len(args) == 3 and not options.out_file:
-    stop_err("""The API has changed, replace this:
+    sys.exit("""The API has changed, replace this:
 
 $ python blastxml_to_top_descr.py input.xml output.tab 3
 
@@ -67,9 +64,9 @@ Sorry.
 """)
 
 if not args:
-    stop_err("Input filename missing, try -h")
+    sys.exit("Input filename missing, try -h")
 if len(args) > 1:
-    stop_err("Expects a single argument, one input filename")
+    sys.exit("Expects a single argument, one input filename")
 in_file = args[0]
 out_file = options.out_file
 topN = options.topN
@@ -77,12 +74,12 @@ topN = options.topN
 try:
     topN = int(topN)
 except ValueError:
-    stop_err("Number of hits  argument should be an integer (at least 1)")
+    sys.exit("Number of hits  argument should be an integer (at least 1)")
 if topN < 1:
-    stop_err("Number of hits  argument should be an integer (at least 1)")
+    sys.exit("Number of hits  argument should be an integer (at least 1)")
 
 if not os.path.isfile(in_file):
-    stop_err("Missing input file: %r" % in_file)
+    sys.exit("Missing input file: %r" % in_file)
 
 
 def get_column(value):
@@ -93,10 +90,11 @@ def get_column(value):
     try:
         col = int(value)
     except:
-        stop_err("Expected an integer column number, not %r" % value)
+        sys.exit("Expected an integer column number, not %r" % value)
     if col < 1:
-        stop_err("Expect column numbers to be at least one, not %r" % value)
-    return col - 1 # Python counting!
+        sys.exit("Expect column numbers to be at least one, not %r" % value)
+    return col - 1  # Python counting!
+
 
 def tabular_hits(in_file, qseqid, sseqid, salltitles):
     """Parse key data from tabular BLAST output.
@@ -136,7 +134,7 @@ def blastxml_hits(in_file):
     except:
         with open(in_file) as handle:
             header = handle.read(100)
-        stop_err("Invalid data format in XML file %r which starts: %r" % (in_file, header))
+        sys.exit("Invalid data format in XML file %r which starts: %r" % (in_file, header))
     # turn it into an iterator
     context = iter(context)
     # get the root element
@@ -145,7 +143,7 @@ def blastxml_hits(in_file):
     except:
         with open(in_file) as handle:
             header = handle.read(100)
-        stop_err("Unable to get root element from XML file %r which starts: %r" % (in_file, header))
+        sys.exit("Unable to get root element from XML file %r which starts: %r" % (in_file, header))
 
     re_default_query_id = re.compile("^Query_\d+$")
     assert re_default_query_id.match("Query_101")
@@ -175,7 +173,7 @@ def blastxml_hits(in_file):
             # <Iteration_hits>...
             qseqid = elem.findtext("Iteration_query-ID")
             if qseqid is None:
-                stop_err("Missing <Iteration_query-ID> (could be really old BLAST XML data?)")
+                sys.exit("Missing <Iteration_query-ID> (could be really old BLAST XML data?)")
             if re_default_query_id.match(qseqid):
                 #Place holder ID, take the first word of the query definition
                 qseqid = elem.findtext("Iteration_query-def").split(None,1)[0]
@@ -229,7 +227,7 @@ elif options.format == "tabular":
     salltitles = get_column(options.salltitles)
     hits = tabular_hits(in_file, qseqid, sseqid, salltitles)
 else:
-    stop_err("Unsupported format: %r" % options.format)
+    sys.exit("Unsupported format: %r" % options.format)
 
 
 def best_hits(descriptions, topN):

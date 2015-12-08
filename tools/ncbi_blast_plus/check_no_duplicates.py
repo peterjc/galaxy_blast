@@ -16,16 +16,12 @@ if "-v" in sys.argv or "--version" in sys.argv:
     print("v0.0.22")
     sys.exit(0)
 
-def stop_err(msg, error=1):
-    sys.stderr.write("%s\n" % msg)
-    sys.exit(error)
-
-
 identifiers = set()
 files = 0
 for filename in sys.argv[1:]:
     if not os.path.isfile(filename):
-        stop_err("Missing FASTA file %r" % filename, 2)
+        sys.stderr.write("Missing FASTA file %r\n" % filename)
+        sys.exit(2)
     files += 1
     handle = open(filename)
     for line in handle:
@@ -35,11 +31,12 @@ for filename in sys.argv[1:]:
             seq_id = line[1:].split(None, 1)[0]
             if seq_id in identifiers:
                 handle.close()
-                stop_err("Repeated identifiers, e.g. %r" % seq_id, 1)
+                sys.exit("Repeated identifiers, e.g. %r" % seq_id)
             identifiers.add(seq_id)
     handle.close()
 if not files:
-    stop_err("No FASTA files given to check for duplicates", 3)
+    sys.stderr.write("No FASTA files given to check for duplicates\n")
+    sys.exit(3)
 elif files == 1:
     print("%i sequences" % len(identifiers))
 else:

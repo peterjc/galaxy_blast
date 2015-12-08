@@ -22,10 +22,6 @@ https://github.com/peterjc/galaxy_blast/tree/master/blast2go
 import sys
 import os
 
-def stop_err(msg, error_level=1):
-    """Print error message to stdout and quit with given error level."""
-    sys.stderr.write("%s\n" % msg)
-    sys.exit(error_level)
 
 def prepare_xml(original_xml, mangled_xml):
     """Reformat BLAST XML to suit Blast2GO.
@@ -44,8 +40,8 @@ def prepare_xml(original_xml, mangled_xml):
     while True:
         line = in_handle.readline()
         if not line:
-            #No hits?
-            stop_err("Problem with XML file?")
+            # No hits?
+            sys.exit("Problem with XML file?")
         if line.strip() == "<Iteration>":
             break
         header += line
@@ -56,7 +52,7 @@ def prepare_xml(original_xml, mangled_xml):
         print("BLASTP output identified")
     else:
         in_handle.close()
-        stop_err("Expect BLASTP or BLASTX output")
+        sys.exit("Expect BLASTP or BLASTX output")
 
     out_handle = open(mangled_xml, "w")
     out_handle.write(header)
@@ -81,11 +77,11 @@ def prepare_xml(original_xml, mangled_xml):
 if __name__ == "__main__":
     # Run the conversion...
     if len(sys.argv) != 3:
-        stop_err("Require two arguments: XML input filename, XML output filename")
+        sys.exit("Require two arguments: XML input filename, XML output filename")
 
     xml_file, out_xml_file = sys.argv[1:]
 
     if not os.path.isfile(xml_file):
-        stop_err("Input BLAST XML file not found: %s" % xml_file)
+        sys.exit("Input BLAST XML file not found: %s" % xml_file)
 
     prepare_xml(xml_file, out_xml_file)

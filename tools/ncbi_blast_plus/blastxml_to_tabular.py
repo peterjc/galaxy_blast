@@ -79,13 +79,9 @@ else:
     import pkg_resources; pkg_resources.require( "elementtree" )
     from elementtree import ElementTree
 
-def stop_err( msg ):
-    sys.stderr.write("%s\n" % msg)
-    sys.exit(1)
-
 if len(sys.argv) == 4 and sys.argv[3] in ["std", "x22", "ext"]:
-    #False positive if user really has a BLAST XML file called 'std' or 'ext'...
-    stop_err("""ERROR: The script API has changed, sorry.
+    # False positive if user really has a BLAST XML file called 'std' or 'ext'...
+    sys.exit("""ERROR: The script API has changed, sorry.
 
 Instead of the old style:
 
@@ -116,14 +112,14 @@ parser.add_option("-c", "--columns", dest="columns", default='std', help="[std|e
 colnames = 'qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,sstart,send,evalue,bitscore,sallseqid,score,nident,positive,gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles'.split(',')
 
 if len(args) < 1:
-    stop_err("ERROR: No BLASTXML input files given; run with --help to see options.")
+    sys.exit("ERROR: No BLASTXML input files given; run with --help to see options.")
 
 out_fmt = options.columns
 if out_fmt == "std":
     extended = False
     cols = None
 elif out_fmt == "x22":
-    stop_err("Format argument x22 has been replaced with ext (extended 25 columns)")
+    sys.exit("Format argument x22 has been replaced with ext (extended 25 columns)")
 elif out_fmt == "ext":
     extended = True
     cols = None
@@ -134,17 +130,17 @@ else:
     cols = [c for c in cols if c and c != "None"]
     extra = set(cols).difference(colnames)
     if extra:
-        stop_err("These are not recognised column names: %s" % ",".join(sorted(extra)))
+        sys.exit("These are not recognised column names: %s" % ",".join(sorted(extra)))
     del extra
     assert set(colnames).issuperset(cols), cols
     if not cols:
-        stop_err("No columns selected!")
-    extended = max(colnames.index(c) for c in cols) >= 12 #Do we need any higher columns?
+        sys.exit("No columns selected!")
+    extended = max(colnames.index(c) for c in cols) >= 12  # Do we need any higher columns?
 del out_fmt
 
 for in_file in args:
     if not os.path.isfile(in_file):
-        stop_err("Input BLAST XML file not found: %s" % in_file)
+        sys.exit("Input BLAST XML file not found: %s" % in_file)
 
 
 re_default_query_id = re.compile("^Query_\d+$")
@@ -164,14 +160,14 @@ def convert(blastxml_filename, output_handle):
     try: 
         context = ElementTree.iterparse(blastxml_filename, events=("start", "end"))
     except:
-        stop_err("Invalid data format.")
+        sys.exit("Invalid data format.")
     # turn it into an iterator
     context = iter(context)
     # get the root element
     try:
         event, root = context.next()
     except:
-        stop_err( "Invalid data format." )
+        sys.exit("Invalid data format.")
     for event, elem in context:
         if event == "end" and elem.tag == "BlastOutput_program":
             blast_program = elem.text
@@ -245,7 +241,7 @@ def convert(blastxml_filename, output_handle):
                                             if q == h or q == "-" or h == "-")
                     xx = sum(1 for q,h in zip(q_seq, h_seq) if q=="X" and h=="X")
                     if not (expected_mismatch - q_seq.count("X") <= int(mismatch) <= expected_mismatch + xx):
-                        stop_err("%s vs %s mismatches, expected %i <= %i <= %i" \
+                        sys.exit("%s vs %s mismatches, expected %i <= %i <= %i"
                                  % (qseqid, sseqid, expected_mismatch - q_seq.count("X"),
                                     int(mismatch), expected_mismatch))
 
@@ -253,7 +249,7 @@ def convert(blastxml_filename, output_handle):
                     #once satisifed there are no problems
                     expected_identity = sum(1 for q,h in zip(q_seq, h_seq) if q == h)
                     if not (expected_identity - xx <= int(nident) <= expected_identity + q_seq.count("X")):
-                        stop_err("%s vs %s identities, expected %i <= %i <= %i" \
+                        sys.exit("%s vs %s identities, expected %i <= %i <= %i"
                                  % (qseqid, sseqid, expected_identity, int(nident),
                                     expected_identity + q_seq.count("X")))
 
@@ -291,8 +287,8 @@ def convert(blastxml_filename, output_handle):
                             sallseqid = ";".join(name.split(None,1)[0] for name in hit_def.split(" >"))
                             salltitles = "<>".join(name.split(None,1)[1] for name in hit_def.split(" >"))
                         except IndexError as e:
-                            stop_err("Problem splitting multuple hits?\n%r\n--> %s" % (hit_def, e))
-                        #print hit_def, "-->", sallseqid
+                            sys.exit("Problem splitting multuple hits?\n%r\n--> %s" % (hit_def, e))
+                        # print hit_def, "-->", sallseqid
                         positive = hsp.findtext("Hsp_positive")
                         ppos = "%0.2f" % (100*float(positive)/float(length))
                         qframe = hsp.findtext("Hsp_query-frame")

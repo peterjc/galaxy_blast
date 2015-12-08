@@ -16,15 +16,11 @@ if "--version" in sys.argv[1:]:
     print "RBH v0.0.3"
     sys.exit(0)
 
-def stop_err( msg ):
-    sys.stderr.write("%s\n" % msg)
-    sys.exit(1)
-
-#Parse Command Line
+# Parse Command Line
 try:
     a_vs_b, b_vs_a, c_query, c_match, c_score, sort_order, out_file = sys.argv[1:]
 except:
-    stop_err("Expect 7 arguments: two input files, column settings, output file")
+    sys.exit("Expect 7 arguments: two input files, column settings, output file")
 
 
 want_highest = want_lowest = False
@@ -33,13 +29,13 @@ if sort_order == "high":
 elif sort_order == "low":
     want_lowest = True
 else:
-    stop_err("Sort order argument should be high or low")
+    sys.exit("Sort order argument should be high or low")
 
 if out_file in [a_vs_b, b_vs_a]:
-    stop_err("Output file would overwrite an input file")
+    sys.exit("Output file would overwrite an input file")
 
 if "None" in [c_query, c_match, c_score]:
-    stop_err("Three distinct column numbers must be chosen")
+    sys.exit("Three distinct column numbers must be chosen")
 
 def get_col_index(col_str):
     if col_str[0]=="c":
@@ -50,7 +46,7 @@ c_query = get_col_index(c_query)
 c_match = get_col_index(c_match)
 c_score = get_col_index(c_score)
 if len(set([c_query, c_match, c_score])) < 3:
-    stop_err("Need three different column numbers!")
+    sys.exit("Need three different column numbers!")
 
 """
 def load_best(filename, id1col, id2col):
@@ -90,8 +86,9 @@ for line in open(b_vs_a):
     a = parts[c_match]
     if a not in best_a_vs_b:
         continue
-        #stop_err("The A-vs-B file does not have A-ID %r found in B-vs-A file" % a)
-    if b not in b_short_list: continue
+        # sys.exit("The A-vs-B file does not have A-ID %r found in B-vs-A file" % a)
+    if b not in b_short_list:
+        continue
     score = float(parts[c_score])
     if (b not in best_b_vs_a) \
     or (want_highest and score > best_b_vs_a[b][1]) \

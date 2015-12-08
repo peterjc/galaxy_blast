@@ -24,14 +24,11 @@ import tempfile
 import shutil
 from optparse import OptionParser
 
-def stop_err( msg ):
-    sys.stderr.write("%s\n" % msg)
-    sys.exit(1)
 
 def run(cmd):
     return_code = os.system(cmd)
     if return_code:
-        stop_err("Error %i from: %s" % (return_code, cmd))
+        sys.exit("Error %i from: %s" % (return_code, cmd))
 
 if "--version" in sys.argv[1:]:
     #TODO - Capture version of BLAST+ binaries too?
@@ -80,12 +77,12 @@ parser.add_option("--threads", dest="threads",
 options, args = parser.parse_args()
 
 if len(args) != 2:
-    stop_err("Expects two input FASTA filenames")
+    sys.exit("Expects two input FASTA filenames")
 fasta_a, fasta_b = args
 if not os.path.isfile(fasta_a):
-    stop_err("Missing input file for species A: %r" % fasta_a)
+    sys.exit("Missing input file for species A: %r" % fasta_a)
 if not os.path.isfile(fasta_b):
-    stop_err("Missing input file for species B: %r" % fasta_b)
+    sys.exit("Missing input file for species B: %r" % fasta_b)
 if os.path.abspath(fasta_a) == os.path.abspath(fasta_b):
     self_comparison = True
     print("Doing self comparison; ignoring self matches.")
@@ -93,28 +90,28 @@ else:
     self_comparison = False
 
 if not options.output:
-    stop_err("Output filename required, e.g. -o example.tab")
+    sys.exit("Output filename required, e.g. -o example.tab")
 out_file = options.output
 
 try:
     min_identity = float(options.min_identity)
 except ValueError:
-    stop_err("Expected number between 0 and 100 for minimum identity, not %r" % min_identity)
+    sys.exit("Expected number between 0 and 100 for minimum identity, not %r" % min_identity)
 if not (0 <= min_identity <= 100):
-    stop_err("Expected minimum identity between 0 and 100, not %0.2f" % min_identity)
+    sys.exit("Expected minimum identity between 0 and 100, not %0.2f" % min_identity)
 try:
     min_coverage = float(options.min_coverage)
 except ValueError:
-    stop_err("Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage)
+    sys.exit("Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage)
 if not (0 <= min_coverage <= 100):
-    stop_err("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
+    sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
 
 if not options.task:
-    stop_err("Missing BLAST task, e.g. -t blastp")
+    sys.exit("Missing BLAST task, e.g. -t blastp")
 blast_type = options.task
 
 if not options.dbtype:
-    stop_err("Missing database type, -a nucl, or -a prot")
+    sys.exit("Missing database type, -a nucl, or -a prot")
 dbtype = options.dbtype
 if dbtype == "nucl":
     if blast_type in ["megablast", "blastn", "blastn-short", "dc-megablast"]:
@@ -122,13 +119,13 @@ if dbtype == "nucl":
     elif blast_type == "tblastx":
         blast_cmd = "tblastx"
     else:
-        stop_err("Invalid BLAST type for BLASTN: %r" % blast_type)
+        sys.exit("Invalid BLAST type for BLASTN: %r" % blast_type)
 elif dbtype == "prot":
     if blast_type not in ["blastp", "blastp-fast", "blastp-short"]:
-        stop_err("Invalid BLAST type for BLASTP: %r" % blast_type)
+        sys.exit("Invalid BLAST type for BLASTP: %r" % blast_type)
     blast_cmd = "blastp -task %s" % blast_type
 else:
-    stop_err("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
+    sys.exit("Expected 'nucl' or 'prot' for BLAST database type, not %r" % blast_type)
 
 try:
     threads = int(options.threads)
@@ -236,7 +233,8 @@ def check_duplicate_ids(filename):
     # Copied from tools/ncbi_blast_plus/check_no_duplicates.py
     # TODO - just use Biopython's FASTA parser?
     if not os.path.isfile(filename):
-        stop_err("Missing FASTA file %r" % filename, 2)
+        sys.stderr.write("Missing FASTA file %r\n" % filename)
+        sys.exit(2)
     identifiers = set()
     handle = open(filename)
     for line in handle:
@@ -246,7 +244,8 @@ def check_duplicate_ids(filename):
             seq_id = line[1:].split(None, 1)[0]
             if seq_id in identifiers:
                 handle.close()
-                stop_err("Repeated identifiers, e.g. %r" % seq_id, 3)
+                sys.stderr.write("Repeated identifiers, e.g. %r\n" % seq_id)
+                sys.exit(3)
             identifiers.add(seq_id)
     handle.close()
 
@@ -256,7 +255,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     try:
         from Bio import SeqIO
     except KeyError:
-        stop_err("Missing Biopython")
+        sys.exit("Missing Biopython")
     for record in SeqIO.parse(input_fasta, "fasta"):
         s = str(record.seq).upper()
         try:
