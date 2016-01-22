@@ -352,8 +352,7 @@
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
     <token name="@BLAST_DB_SUBJECT@">
 #if $db_opts.db_opts_selector == "db":
-  #set $dbl = " ".join(str( $db_opts.db_type.database.fields.path ).split( ',' ))
-  -db "$dbl"
+  -db "${' '.join(str( $db_opts.database.fields.path ).split( ',' ))}"
 #elif $db_opts.db_opts_selector == "histdb":
   -db "${os.path.join($db_opts.histdb.extra_files_path,'blastdb')}"
 #else:
