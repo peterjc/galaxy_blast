@@ -125,6 +125,28 @@ blastp
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastp_rhodopsin_vs_four_human.tabular" ftype="tabular" />
         </test>
+        <test>
+            <param name="query" value="rhodopsin_proteins.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="db" />
+            <param name="database" value="four_human_proteins,four_human_proteins_taxid" />
+            <param name="subject" value="" />
+            <param name="evalue_cutoff" value="0.001" />
+            <param name="blast_type" value="blastp" />
+            <param name="out_format" value="ext" />
+            <param name="adv_opts_selector" value="basic" />
+            <output name="output1" file="blastp_rhodopsin_vs_four_human_and_four_human_taxid.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="query" value="rhodopsin_proteins.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="db" />
+            <param name="database" value="four_human_proteins,four_human_proteins_taxid" />
+            <param name="subject" value="" />
+            <param name="evalue_cutoff" value="0.001" />
+            <param name="blast_type" value="blastp" />
+            <param name="out_format" value="5" />
+            <param name="adv_opts_selector" value="basic" />
+            <output name="output1" file="blastp_rhodopsin_vs_four_human_and_four_human_taxid.xml" ftype="blastxml" />
+        </test>
     </tests>
     <help>
     
