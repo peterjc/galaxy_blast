@@ -116,7 +116,7 @@ install:
  - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
  - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
 #Older Galaxy versions using eggs (like 15.10) will ignore the extra arguments:
- - bash scripts/common_startup.sh --skip-venv --dev-wheels
+ - bash scripts/common_startup.sh --no-create-venv --dev-wheels
 
 
 # Testing tools in Galaxy
