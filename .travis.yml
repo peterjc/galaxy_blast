@@ -10,21 +10,17 @@
 # We don't need sudo so can avoid slower legacy TravisCI infrastructure
 sudo: false
 
-# We need Python 2.6 or 2.7 to run Galaxy (and some of the wrappers)
-# but don't really care which. We also need Java to run Blast2GO,
-# which seems to be included even with TravisCI set to Python :)
+# Galaxy v16.01 (currently represented by their master branch)
+# supports Python 2.6 and 2.7, but there after only Python 2.7
 language: python
-python:
- - "2.6"
- - "2.7"
-
-# We use the TravisCI build matrix to test two versions of Galaxy,
-# the current development branch (dev), and as a proxy for the
-# current stable release, master:
-#
-env:
- - GALAXY_BRANCH=dev
- - GALAXY_BRANCH=master
+matrix:
+  include:
+    - python: "2.6"
+      env: GALAXY_BRANCH=master
+    - python: "2.7"
+      env: GALAXY_BRANCH=master
+    - python: "2.7"
+      env: GALAXY_BRANCH=dev
 
 # Installing Galaxy
 # =================
