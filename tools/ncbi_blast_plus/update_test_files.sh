@@ -127,6 +127,15 @@ blastn -query chimera.fasta -db three_human_mRNA.fasta -outfmt 0 -out blastn_chi
 echo "blastn_chimera_vs_three_human_max1.tabular"
 blastn -query chimera.fasta -db three_human_mRNA.fasta -outfmt 6 -out blastn_chimera_vs_three_human_max1.tabular -max_target_seqs 1
 
+echo "blastn_chimera_vs_rhodopsin_db.tabular"
+blastn -query chimera.fasta -db rhodopsin_nucs.fasta -outfmt 6 -out blastn_chimera_vs_rhodopsin_db.tabular
+
+echo "blastn_chimera_vs_three_human_db.tabular"
+blastn -query chimera.fasta -db three_human_mRNA.fasta -outfmt 6 -out blastn_chimera_vs_three_human_db.tabular
+
+echo "blastn_chimera_vs_three_human_and_rhodopsin_db.tabular"
+blastn -query chimera.fasta -db "three_human_mRNA.fasta rhodopsin_nucs.fasta" -outfmt 6 -out blastn_chimera_vs_three_human_and_rhodopsin_db.tabular
+
 echo
 echo blastxml_to_tabular
 echo ===================
