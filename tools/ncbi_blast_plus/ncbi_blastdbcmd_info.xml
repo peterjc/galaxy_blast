@@ -25,6 +25,11 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
             <param name="db_opts|database" value="three_human_mRNA" />
             <output name="info" file="three_human_mRNA.dbinfo.txt" ftype="txt" lines_diff="4" />
         </test>
+        <test>
+            <param name="db_opts|db_type" value="nucl" />
+            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <output name="info" file="rhodopsin_nucs.dbinfo.txt" ftype="txt" lines_diff="4" />
+        </test>
     </tests>
     <help>
     
