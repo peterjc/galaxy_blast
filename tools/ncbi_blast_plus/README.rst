@@ -227,6 +227,8 @@ v0.1.07 - Re-enabled some ``*.loc`` file tests (these had not been supported
           on the Tool Shed test framework, but that is not currently in use).
         - Fixed macro problem with version field in blastxml_to_tabular.xml
           (contribution from Bjoern Gruening and Daniel Blankenberg).
+v0.1.08 - Allow searching against multiple locally installed databases
+          (contribution from Gildas Le Corguillé and Emma Prudent).
 ======= ======================================================================
 
 
