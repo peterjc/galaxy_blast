@@ -120,6 +120,28 @@ $adv_opts.ungapped
             <param name="max_hits" value="1" />
             <output name="output1" file="blastn_chimera_vs_three_human_max1.txt" ftype="txt" />
         </test>
+        <test>
+            <param name="query" value="chimera.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="db" />
+            <param name="database" value="three_human_mRNA" />
+            <param name="out_format" value="6" />
+            <output name="output1" file="blastn_chimera_vs_three_human_db.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="query" value="chimera.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="db" />
+            <param name="database" value="rhodopsin_nucs" />
+            <param name="out_format" value="6" />
+            <output name="output1" file="blastn_chimera_vs_rhodopsin_db.tabular" ftype="tabular" />
+        </test>
+        <!-- next test is passing in two blast databases -->
+        <test>
+            <param name="query" value="chimera.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="db" />
+            <param name="database" value="three_human_mRNA,rhodopsin_nucs" />
+            <param name="out_format" value="6" />
+            <output name="output1" file="blastn_chimera_vs_three_human_and_rhodopsin_db.tabular" ftype="tabular" />
+        </test>
     </tests>
     <help>
     
