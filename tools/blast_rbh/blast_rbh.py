@@ -2,7 +2,7 @@
 """BLAST Reciprocal Best Hit (RBH) from two FASTA input files.
 
 Run "blast_rbh.py -h" to see the help text, or read the associated
-README.rst file which is also available on GitHub at:
+blast_rbh.xml and README.rst files which are available on GitHub at:
 https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 
 This requires Python and the NCBI BLAST+ tools to be installed
@@ -49,6 +49,9 @@ $ python blast_rbh.py [options] A.fasta B.fasta
 Many of the options are required. Example with proteins and blastp:
 
 $ python blast_rbh.py -a prot -t blasp -o output.tsv protA.fasta protB.fasta
+
+There is additional guideance in the help text in the blast_rbh.xml file,
+which is shown to the user via the Galaxy interface to this tool.
 """
 
 parser = OptionParser(usage=usage)
