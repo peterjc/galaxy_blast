@@ -1,0 +1,10 @@
+
+
+Building a new DB, current time: 03/08/2016 16:58:09
+New DB name:   /mnt/galaxy/repositories/galaxy_blast/test-data/rhodopsin_nucs.fasta
+New DB title:  Rhodopsin nucleotides
+Sequence type: Nucleotide
+Keep Linkouts: T
+Keep MBits: T
+Maximum file size: 1000000000B
+Adding sequences from FASTA; added 6 sequences in 0.00175619 seconds.

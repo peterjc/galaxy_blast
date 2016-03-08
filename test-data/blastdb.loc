@@ -5,3 +5,4 @@
 # See the file tool-data/blastdb.loc.sample for more information.
 #
 three_human_mRNA	Three Human mRNAs	${__HERE__}/three_human_mRNA.fasta
+rhodopsin_nucs	Rhodopsin nucleotides	${__HERE__}/rhodopsin_nucs.fasta

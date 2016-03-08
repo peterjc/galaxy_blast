@@ -41,6 +41,13 @@ makeblastdb -out three_human_mRNA.fasta -hash_index -in three_human_mRNA.fasta -
 echo "three_human_mRNA.dbinfo.txt"
 blastdbcmd -dbtype nucl -db three_human_mRNA.fasta -info -out three_human_mRNA.dbinfo.txt
 
+echo "rhodopsin_nucs.fasta"
+rm -f rhodopsin_nucs.fasta.n*
+makeblastdb -out rhodopsin_nucs.fasta -hash_index -in rhodopsin_nucs.fasta -title "Rhodopsin nucleotides" -dbtype nucl > rhodopsin_nucs.fasta.log
+
+echo "rhodopsin_nucs.fasta.txt"
+blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -info -out rhodopsin_nucs.dbinfo.txt
+
 echo
 echo makeprofiledb
 echo =============
