@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 echo "This will update test files using the current version of BLAST+"
+echo "Note currently manually extracting static core from the"
+echo "makeblastdb *.log files as *.log.txt (should automate or stop this)."
 
 if [ -f "tools/ncbi_blast_plus/update_test_files.sh" ]
 then

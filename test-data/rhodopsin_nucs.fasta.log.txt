@@ -1,0 +1,5 @@
+New DB title:  Rhodopsin nucleotides
+Sequence type: Nucleotide
+Keep Linkouts: T
+Keep MBits: T
+Maximum file size: 1000000000B
