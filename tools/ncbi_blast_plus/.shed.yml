@@ -23,6 +23,9 @@ include:
   - ../../test-data/blastn_rhodopsin_vs_three_human.tabular
   - ../../test-data/blastn_rhodopsin_vs_three_human.xml
   - ../../test-data/blastn_rhodopsin_vs_three_human_converted.tabular
+  - ../../test-data/blastn_chimera_vs_three_human_db.tabular
+  - ../../test-data/blastn_chimera_vs_rhodopsin_db.tabular
+  - ../../test-data/blastn_chimera_vs_three_human_and_rhodopsin_db.tabular
   - ../../test-data/blastp_four_human_vs_rhodopsin.tabular
   - ../../test-data/blastp_four_human_vs_rhodopsin.xml
   - ../../test-data/blastp_four_human_vs_rhodopsin_converted.tabular
@@ -81,7 +84,17 @@ include:
   - ../../test-data/four_human_proteins_taxid.fasta.psd
   - ../../test-data/four_human_proteins_taxid.fasta.psi
   - ../../test-data/four_human_proteins_taxid.fasta.psq
+  - ../../test-data/rhodopsin_nucs.dbinfo.txt
   - ../../test-data/rhodopsin_nucs.fasta
+  - ../../test-data/rhodopsin_nucs.fasta.log.txt
+  - ../../test-data/rhodopsin_nucs.fasta.nhd
+  - ../../test-data/rhodopsin_nucs.fasta.nhi
+  - ../../test-data/rhodopsin_nucs.fasta.nhr
+  - ../../test-data/rhodopsin_nucs.fasta.nin
+  - ../../test-data/rhodopsin_nucs.fasta.nog
+  - ../../test-data/rhodopsin_nucs.fasta.nsd
+  - ../../test-data/rhodopsin_nucs.fasta.nsi
+  - ../../test-data/rhodopsin_nucs.fasta.nsq
   - ../../test-data/rhodopsin_proteins.fasta
   - ../../test-data/segmasker_four_human.fasta
   - ../../test-data/segmasker_four_human.maskinfo-asn1
