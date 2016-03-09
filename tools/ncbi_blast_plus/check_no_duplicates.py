@@ -13,7 +13,7 @@ import sys
 import os
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print("v0.0.22")
+    print("v0.0.23")
     sys.exit(0)
 
 identifiers = set()
