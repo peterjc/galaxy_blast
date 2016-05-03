@@ -118,8 +118,9 @@ Galaxy via your job runner settings, which allows you to (for example) allocate
 four cores to each BLAST job.
 
 In addition, the BLAST+ wrappers also support high level parallelism by task
-splitting if ``use_tasked_jobs = True`` is enabled in your ``universe_wsgi.ini``
-configuration file. Essentially, the FASTA input query files are broken up into
+splitting if ``use_tasked_jobs = True`` is enabled in the ``config/galaxy.ini``
+configuration file (previously ``universe_wsgi.ini`` on older versions of
+Galaxy). Essentially, the FASTA input query files are broken up into
 batches of 1000 sequences, a separate BLAST child job is run for each chunk,
 and then the BLAST output files are merged (in order). This is transparent
 for the end user.
