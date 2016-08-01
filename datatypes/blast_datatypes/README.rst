@@ -48,6 +48,7 @@ v0.0.19 - Add ``blastdbd`` datatype for BLAST protein domain databases, for use
           as ``*.smp``), used as input files for makeprofiledb.
 v0.0.20 - Added "NCBI BLAST+ integrated into Galaxy" preprint citation.
 v0.0.21 - Updated citation information with GigaScience paper.
+v0.0.22 - Removed unused imports in ``blast.py`` (internal change only).
 ======= ======================================================================
 
 
