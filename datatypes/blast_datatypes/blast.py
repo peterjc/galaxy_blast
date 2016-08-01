@@ -1,5 +1,6 @@
-"""
-BlastXml class
+"""NCBI BLAST datatypes.
+
+Covers the ``blastxml`` format and the BLAST databases.
 """
 
 from galaxy.datatypes.data import get_file_peek
