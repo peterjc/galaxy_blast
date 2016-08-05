@@ -59,6 +59,8 @@ before_install:
  - pip install --upgrade pip setuptools
  - pip install planemo
  - planemo shed_lint --fail_level error --ensure_metadata --urls -r ${TRAVIS_BUILD_DIR}
+ - echo "Removing tools we're not going to test"
+ - for line in $(cat .tt_blacklist); do rm -rf $line; done
  - echo "Fixing permissions on Python eggs cache folder"
  - mkdir -p "$HOME/.python-eggs"
  - chmod 700 "$HOME/.python-eggs" 
