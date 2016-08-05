@@ -1,0 +1,14 @@
+name: package_blast_plus_2_4_0
+owner: iuc
+homepage_url: https://github.com/peterjc/galaxy_blast/
+remote_repository_url: https://github.com/peterjc/galaxy_blast/
+description: NCBI BLAST+ 2.4.0 (binaries only) 
+long_description: |
+  This Tool Shed package is intended to be used as a dependency of the Galaxy wrappers
+  for NCBI BLAST+ and any other tools which call the BLAST+ binaries internally.
+
+  Development is hosted on GitHub https://github.com/peterjc/galaxy_blast/ which can
+  be used for reporting any issues.
+categories:
+- Tool Dependency Packages
+type: tool_dependency_definition
