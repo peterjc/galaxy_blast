@@ -56,6 +56,7 @@ sudo: false
 
 before_install:
  - echo "Using planemo shed_lint to check for obvious tool errors"
+ - pip install --upgrade pip setuptools
  - pip install planemo
  - planemo shed_lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/tools/
  - planemo shed_lint --report_level warn --fail_level error --recursive ${TRAVIS_BUILD_DIR}/data_managers/
