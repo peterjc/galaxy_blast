@@ -120,7 +120,8 @@ install:
  - for f in ${TRAVIS_BUILD_DIR}/tool-data/*.loc.sample; do cp "$f" "${f%.sample}"; done
  - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
 #Explicitly prioritise using any test-data/*.loc files
- - cp ${TRAVIS_BUILD_DIR}/test-data/*.loc tool-data/
+#and they may be using ${__HERE__} for relative paths:
+ - cp ${TRAVIS_BUILD_DIR}/test-data/* tool-data/
 #Older Galaxy versions using eggs (like 15.10) will ignore the extra arguments:
  - bash scripts/common_startup.sh --no-create-venv --dev-wheels
 
