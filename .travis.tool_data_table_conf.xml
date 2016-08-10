@@ -1,13 +1,13 @@
 <tables>
-    <table name="blastdb" comment_char="#">
+    <table name="blastdb" comment_char="#" allow_duplicate_entries="False">
         <columns>value, name, path</columns>
         <file path="test-data/blastdb.loc" />
     </table>
-    <table name="blastdb_p" comment_char="#">
+    <table name="blastdb_p" comment_char="#" allow_duplicate_entries="False">
         <columns>value, name, path</columns>
         <file path="test-data/blastdb_p.loc" />
     </table>
-    <table name="blastdb_d" comment_char="#">
+    <table name="blastdb_d" comment_char="#" allow_duplicate_entries="False">
         <columns>value, name, path</columns>
         <file path="test-data/blastdb_d.loc" />
     </table>
