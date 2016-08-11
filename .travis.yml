@@ -7,10 +7,7 @@
 # for background,
 # http://blastedbio.blogspot.com/2013/09/using-travis-ci-for-testing-galaxy-tools.html
 
-# Galaxy v16.01 (currently represented by their master branch)
-# supports Python 2.6 and 2.7, but there after only Python 2.7
-# Meanwhile, planemo only supports Python 2.7 and 3.4+
-# so we're only testing under Python 2.7 for now.
+# Galaxy currently only supports Python 2.6
 language: python
 matrix:
   include:
@@ -32,27 +29,15 @@ sudo: false
 # Installing Galaxy
 # =================
 #
-# Before installing our Galaxy wrappers, we need to install Galaxy.
-#
-# Galaxy used to be developed in hg using BitBucket, but cloning with
-# hg or getting a specific revision with wget was quite slow. Using
-# git clone with a mirror on GitHub was faster, while getting the
-# latest revision with wget from GitHub was even faster.
-#
-# We therefore use wget with the new official Galaxy repository on
-# GitHub, https://github.com/galaxyproject/galaxy
+# We define extra datatypes, and therefore install a Galaxy instance
+# and add the datatypes to it.
 #
 #
 # Installing Tool Dependencies
 # ============================
 #
-# We grab Galaxy, and will later make configuration changes specifically
-# for testing our tools. Otherwise we use the default settings such as
-# running with an SQLite database.
-#
 # We also need to install our tool dependencies, e.g. NCBI BLAST+ binaries,
 # which we will do manually rather than via a (local) Galaxy Tool Shed.
-#
 
 before_install:
  - echo "Using planemo shed_lint to check for obvious tool errors"
@@ -80,59 +65,26 @@ before_install:
 # Configuring tools within Galaxy
 # ===============================
 #
-# We setup a minimal tool_conf.xml and/or tool_conf.xml.sample file to
-# get Galaxy to just test our tools, rather than via a (local) Galaxy
-# Tool Shed.
-#
-# TODO - GALAXY_TEST_TOOL_CONF environment variable rather than symlink?
-#
-# We setup our tools under the Galaxy tool folder by using symlinks.
-# TODO - Restructure this to auto-update in future when add folders?
-#
-# We setup our datatypes by adding blast.py to the Galaxy library, and
-# adding the insert into lib/galaxy/datatypes/registry.py, and replacing
-# the datatypes_conf.xml file.
-#
-# We setup our sample data in the Galaxy test-data folder by copying them
-# (using symlinks might be faster?)
-#
-# We setup out sample *.loc files in the Galaxy tool-data folder by copying
-# them (using symlinks might be faster?)
-#
-# Galaxy now provides a startup script to setup all the sample files,
-# and fetch egg/wheel Python dependecies etc.
-
+# We setup our datatypes by adding blast.py to the Galaxy library folder,
+# and replacing the datatypes_conf.xml file.
 
 install:
  - cd ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH}
  - export GALAXY_TEST_UPLOAD_ASYNC=false
  - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0127.sqlite
- - rm -f tool_conf.xml
- - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml tool_conf.xml
- - rm -f config/tool_conf.xml.sample
- - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_conf.xml config/tool_conf.xml.sample
- - rm -f config/shed_tool_data_table_conf.xml
- - ln -s ${TRAVIS_BUILD_DIR}/.travis.tool_data_table_conf.xml config/shed_tool_data_table_conf.xml
- - for i in $( ls ${TRAVIS_BUILD_DIR}/tools/ ); do ln -s ${TRAVIS_BUILD_DIR}/tools/$i/ tools/$i ; done
  - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
- - cp ${TRAVIS_BUILD_DIR}/test-data/* test-data/
- - cp ${TRAVIS_BUILD_DIR}/tool-data/* tool-data/
-#Older Galaxy versions using eggs (like 15.10) will ignore the extra arguments:
  - bash scripts/common_startup.sh --no-create-venv --dev-wheels
 
 
 # Testing tools in Galaxy
 # =======================
 #
-# Having setup our Galaxy with a minimal tool_conf.xml / tool_conf.xml.sample
-# originally called run_functional_tests.sh to run just our tests - but now
-# just using planemo.
+# Having setup our Galaxy with our datatypes, call planemo test
 
 script:
  - cd ${TRAVIS_BUILD_DIR}
  - planemo test --galaxy_root ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH} --skip_venv tools/
 
-#The email defaults are too talkative while we're getting Travis working nicely.
 notifications:
   email: false
