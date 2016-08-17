@@ -5,7 +5,7 @@
             <actions_group>
                 <!-- Download the binaries for BLAST+ compatible with 64-bit OSX. -->
                 <actions os="darwin" architecture="x86_64">
-                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-universal-macosx.tar.gz</action>
+                    <action type="download_by_url" sha256sum="acd42e73051764cf0cb3889cd551b4a0787d86c1de5851522258fb2074dcea2a">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-universal-macosx.tar.gz</action>
                     <action type="move_directory_files">
                          <source_directory>bin</source_directory>
                          <destination_directory>$INSTALL_DIR</destination_directory>
@@ -13,7 +13,7 @@
                 </actions>
                 <!-- Download the binaries for BLAST+ compatible with 32-bit OSX. -->
                 <actions os="darwin" architecture="i386">
-                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-universal-macosx.tar.gz</action>
+                    <action type="download_by_url" sha256sum="acd42e73051764cf0cb3889cd551b4a0787d86c1de5851522258fb2074dcea2a">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-universal-macosx.tar.gz</action>
                     <action type="move_directory_files">
                         <source_directory>bin</source_directory>
                         <destination_directory>$INSTALL_DIR</destination_directory>
@@ -21,7 +21,7 @@
                 </actions>
                 <!-- Download the binaries for BLAST+ compatible with 64-bit Linux. -->
                 <actions os="linux" architecture="x86_64">
-                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-x64-linux.tar.gz</action>
+                    <action type="download_by_url" sha256sum="816f5d30eddb0ab9337cee949a7a9f767fb1fb6396f987a9bf0a611614744bb9">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-x64-linux.tar.gz</action>
                     <action type="move_directory_files">
                         <source_directory>bin</source_directory>
                         <destination_directory>$INSTALL_DIR</destination_directory>
@@ -29,7 +29,7 @@
                 </actions>
                 <!-- Download the binaries for BLAST+ compatible with 32-bit Linux (i386). -->
                 <actions os="linux" architecture="i386">
-                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-ia32-linux.tar.gz</action>
+                    <action type="download_by_url" sha256sum="70c9dd9e7555271add39d34b27e247cccaa16f3829dbca2864854f7ad696ecbe">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-ia32-linux.tar.gz</action>
                     <action type="move_directory_files">
                         <source_directory>bin</source_directory>
                         <destination_directory>$INSTALL_DIR</destination_directory>
@@ -37,7 +37,7 @@
                 </actions>
                 <!-- Download the binaries for BLAST+ compatible with 32-bit Linux (i686). -->
                 <actions os="linux" architecture="i686">
-                    <action type="download_by_url">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-ia32-linux.tar.gz</action>
+                    <action type="download_by_url" sha256sum="70c9dd9e7555271add39d34b27e247cccaa16f3829dbca2864854f7ad696ecbe">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-ia32-linux.tar.gz</action>
                     <action type="move_directory_files">
                         <source_directory>bin</source_directory>
                         <destination_directory>$INSTALL_DIR</destination_directory>
