@@ -86,6 +86,7 @@ v0.1.7  - Reorder XML elements (internal change only).
         - Updated citation information with GigaScience paper.
 v0.1.8  - Updated to depend on  NCBI BLAST+ 2.2.31 via ToolShed install.
 v0.1.9  - Updates to the command line API for the Python script.
+        - Fix parameter help text which was not being displayed.
 ======= ======================================================================
 
 

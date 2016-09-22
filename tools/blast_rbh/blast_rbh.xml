@@ -1,4 +1,4 @@
-<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.8">
+<tool id="blast_reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.1.9">
     <description>from two FASTA files</description>
     <requirements>
         <requirement type="package" version="1.64">biopython</requirement>
@@ -33,10 +33,10 @@ $make_nr
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
         <param name="fasta_a" type="data" format="fasta"
 	       label="Genes/proteins from species A"
-	       description="FASTA file, one sequence per gene/protein." /> 
+	       help="FASTA file, one sequence per gene/protein." /> 
         <param name="fasta_b" type="data" format="fasta"
 	       label="Genes/proteins from species B"
-	       description="FASTA file, one sequence per gene/protein." /> 
+	       help="FASTA file, one sequence per gene/protein." /> 
         <conditional name="seq">
             <param name="dbtype" type="select" label="Molecule type of FASTA inputs">
                 <option value="prot">protein</option>
