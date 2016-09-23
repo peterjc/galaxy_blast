@@ -5,7 +5,7 @@
             <actions>
                 <!-- If used, download_by_url must be the first action -->	
                 <!-- The ZIP file decompresses to give a folder b2g4pipe -->
-                <action type="download_by_url">http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip</action>
+                <action type="download_by_url" shasum256="b980cb9f70de0a3b3ca6d388dae6bf5a54c70c025680ee26a3d4f7ef4fa4cd7e">http://www.blast2go.com/data/blast2go/b2g4pipe_v2.5.zip</action>
 		<!-- Galaxy moves into the unzipped folder b2g4pipe -->
                 <action type="shell_command">
 cp b2gPipe.properties Spain_2012_August.properties &amp;&amp;
