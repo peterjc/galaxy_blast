@@ -1,7 +1,7 @@
 Galaxy wrapper for Blast2GO for pipelines, b2g4pipe
 ===================================================
 
-This wrapper is copyright 2011-2015 by Peter Cock, The James Hutton Institute
+This wrapper is copyright 2011-2016 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below (MIT licence).
 
@@ -167,6 +167,7 @@ v0.0.9  - Update README file now that BioBam are selling the latest version
 v0.0.10 - Reorder XML elements (internal change only).
         - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
 v0.0.11 - Fix parameter help text which was not being displayed.
+        - PEP8 style updates to the Python script (internal change only).
 ======= ======================================================================
 
 

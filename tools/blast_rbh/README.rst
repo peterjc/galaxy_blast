@@ -1,7 +1,7 @@
 Find BLAST Reciprocal Best Hits (RBH), with Galaxy wrapper
 ==========================================================
 
-This tool is copyright 2011-2015 by Peter Cock, The James Hutton Institute
+This tool is copyright 2011-2016 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
@@ -86,6 +86,7 @@ v0.1.7  - Reorder XML elements (internal change only).
         - Updated citation information with GigaScience paper.
 v0.1.8  - Updated to depend on  NCBI BLAST+ 2.2.31 via ToolShed install.
 v0.1.9  - Updates to the command line API for the Python script.
+        - PEP8 style updates to the Python script (internal change only).
         - Fix parameter help text which was not being displayed.
 ======= ======================================================================
 
