@@ -113,7 +113,7 @@ This is a wrapper for the NCBI BLAST+ tool 'makeprofiledb'.
 
 More information about makeprofiledb can be found in the `BLAST Command Line Applications User Manual`_.
 
-.. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+.. _BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
 
 
 **References**

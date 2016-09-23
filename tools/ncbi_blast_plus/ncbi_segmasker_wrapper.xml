@@ -87,7 +87,7 @@ If you select *maskinfo ASN.1* (binary or text) as output format, the output fil
 
 More information about segmasker can be found in the `BLAST Command Line Applications User Manual`_.
 
-.. _BLAST Command Line Applications User Manual: http://www.ncbi.nlm.nih.gov/books/NBK1763/
+.. _BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
 .. _SEG: http://www.ncbi.nlm.nih.gov/pubmed/8743706
 
 **References**
