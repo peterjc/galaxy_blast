@@ -97,6 +97,8 @@ include:
   - ../../test-data/rhodopsin_nucs.fasta.nsd
   - ../../test-data/rhodopsin_nucs.fasta.nsi
   - ../../test-data/rhodopsin_nucs.fasta.nsq
+  - ../../test-data/rhodopsin_nucs.fasta.nnd
+  - ../../test-data/rhodopsin_nucs.fasta.nni
   - ../../test-data/rhodopsin_proteins.fasta
   - ../../test-data/segmasker_four_human.fasta
   - ../../test-data/segmasker_four_human.maskinfo-asn1
