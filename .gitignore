@@ -24,3 +24,7 @@
 
 #Ignore all Jython class files (present if using Jython)
 *.class
+
+#Ignore planemo test output
+tool_test_output.html
+tool_test_output.json
