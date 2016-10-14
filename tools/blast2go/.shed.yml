@@ -1,7 +1,7 @@
 name: blast2go
 owner: peterjc
 homepage_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/blast2go
-remote_repository_url: https://github.com/peterjc/galaxy_blast/
+remote_repository_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/blast2go
 description: Maps BLAST results to GO annotation terms
 long_description: |
   Galaxy wrapper for Java command line tool Blast2GO for pipelines, b2g4pipe v2.5,

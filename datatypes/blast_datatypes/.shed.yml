@@ -1,7 +1,7 @@
 name: blast_datatypes
 owner: devteam
-homepage_url: https://github.com/peterjc/galaxy_blast/
-remote_repository_url: https://github.com/peterjc/galaxy_blast/
+homepage_url: https://blast.ncbi.nlm.nih.gov/
+remote_repository_url: https://github.com/peterjc/galaxy_blast/tree/master/datatypes/blast_datatypes/
 description: Datatypes for NCBI BLAST (blastxml, databases, etc)
 long_description: |
   This is a repository for blastxml and other NCBI BLAST related datatypes

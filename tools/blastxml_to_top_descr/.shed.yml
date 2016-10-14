@@ -1,7 +1,7 @@
 name: blastxml_to_top_descr
 owner: peterjc
 homepage_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/blastxml_to_top_descr
-remote_repository_url: https://github.com/peterjc/galaxy_blast/
+remote_repository_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/blastxml_to_top_descr
 description: Make table of top BLAST match descriptions
 long_description: |
   NCBI BLAST+ (and the older NCBI "legacy" BLAST) can output in a range of formats
