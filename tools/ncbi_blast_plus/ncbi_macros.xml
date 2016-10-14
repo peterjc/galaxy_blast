@@ -133,7 +133,7 @@
     <xml name="input_query_gencode">
         <param name="query_gencode" type="select" label="Query genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
-            <option value="1" select="True">1. Standard</option>
+            <option value="1" selected="True">1. Standard</option>
             <option value="2">2. Vertebrate Mitochondrial</option>
             <option value="3">3. Yeast Mitochondrial</option>
             <option value="4">4. Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
@@ -156,7 +156,7 @@
     <xml name="input_db_gencode">
         <param name="db_gencode" type="select" label="Database/subject genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
-            <option value="1" select="True">1. Standard</option>
+            <option value="1" selected="True">1. Standard</option>
             <option value="2">2. Vertebrate Mitochondrial</option>
             <option value="3">3. Yeast Mitochondrial</option>
             <option value="4">4. Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
