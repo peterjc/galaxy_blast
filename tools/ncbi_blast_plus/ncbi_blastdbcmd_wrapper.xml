@@ -78,6 +78,14 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
             <param name="outfmt" value="original" />
             <output name="seq" file="four_human_proteins.fasta" ftype="fasta" />
         </test>
+        <test>
+            <param name="db_opts|db_type" value="nucl" />
+            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <param name="id_opts|id_type" value="prompt" />
+            <param name="id_opts|entries" value="all" />
+            <param name="outfmt" value="original" />
+            <output name="seq" file="rhodopsin_nucs.fasta" ftype="fasta" />
+        </test>
     </tests>
     <help>
     
