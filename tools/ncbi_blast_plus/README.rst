@@ -233,6 +233,7 @@ v0.1.08 - Allow searching against multiple locally installed databases
         - Minor Python style changes (internal change only).
         - Set ``allow_duplicate_entries="False"`` in sample configuration file
 	  ``tool_data_table_conf.xml``.
+        - Fix identifers with pipes in ``blastdbcmd`` wrapper (Devon Ryan).
 ======= ======================================================================
 
 

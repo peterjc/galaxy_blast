@@ -16,8 +16,8 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 -entry_batch "$id_opts.entries"
 #else:
 ##Perform some simple search/replaces to remove whitespace
-##and make it comma separated, and escape any pipe characters
--entry "$id_opts.entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',').replace('|','\|')"
+##and make it comma separated. Quoted so don't escape pipes.
+-entry "$id_opts.entries.replace('\r',',').replace('\n',',').replace(' ','').replace(',,',',').replace(',,',',').strip(',')"
 #end if
 
 ##When building a BLAST database, to ensure unique IDs makeblastdb will
