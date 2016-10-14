@@ -2,6 +2,7 @@
 *~
 *.swp
 *.bak
+[#]*[#]
 
 #Ignore any tar-balls prepared to upload to Galaxy Tool Shed
 *.tar.gz
