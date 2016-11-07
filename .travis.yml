@@ -43,7 +43,7 @@ before_install:
  - echo "Using planemo shed_lint to check for obvious tool errors"
  - pip install --upgrade pip setuptools
  - pip install planemo
- - planemo shed_lint --tools --no_xsd --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
+ - planemo shed_lint --tools --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
  - echo "Removing tools we're not going to test"
  - for line in $(cat .tt_blacklist); do rm -rf $line; done
  - echo "Fixing permissions on Python eggs cache folder"
