@@ -67,11 +67,15 @@ before_install:
 #
 # We setup our datatypes by adding blast.py to the Galaxy library folder,
 # and replacing the datatypes_conf.xml file.
+#
+# Note that as of October 2016, the Galaxy datatypes are back in the
+# Galaxy core. Therefore we'll over-write them if needed.
 
 install:
  - cd ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH}
  - export GALAXY_TEST_UPLOAD_ASYNC=false
  - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0127.sqlite
+ - rm -f lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
  - bash scripts/common_startup.sh --no-create-venv --dev-wheels
