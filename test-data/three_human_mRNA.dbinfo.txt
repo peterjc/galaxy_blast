@@ -1,7 +1,7 @@
 Database: Just 3 human mRNA sequences
 	3 sequences; 10,732 total bases
 
-Date: Jul 4, 2015  3:35 PM	Longest sequence: 4,796 bases
+Date: Dec 2, 2016  10:38 AM	Longest sequence: 4,796 bases
 
 Volumes:
-	/mnt/galaxy/repositories/galaxy_blast/test-data/three_human_mRNA.fasta
+	/mnt/shared/users/pc40583/repositories/galaxy_blast/test-data/three_human_mRNA.fasta

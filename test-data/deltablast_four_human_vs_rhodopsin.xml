@@ -2,10 +2,10 @@
 <!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
 <BlastOutput>
   <BlastOutput_program>deltablast</BlastOutput_program>
-  <BlastOutput_version>DELTABLAST 2.2.31+</BlastOutput_version>
+  <BlastOutput_version>DELTABLAST 2.5.0+</BlastOutput_version>
   <BlastOutput_reference>Grzegorz M. Boratyn, Alejandro A. Schaffer, Richa Agarwala, Stephen F. Altschul, David J. Lipman and Thomas L. Madden (2012) &quot;Domain enhanced lookup time accelerated BLAST&quot;, Biology Direct 7:12.</BlastOutput_reference>
   <BlastOutput_db></BlastOutput_db>
-  <BlastOutput_query-ID>sp|Q9BS26|ERP44_HUMAN</BlastOutput_query-ID>
+  <BlastOutput_query-ID>Q9BS26</BlastOutput_query-ID>
   <BlastOutput_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</BlastOutput_query-def>
   <BlastOutput_query-len>406</BlastOutput_query-len>
   <BlastOutput_param>
@@ -20,7 +20,7 @@
 <BlastOutput_iterations>
 <Iteration>
   <Iteration_iter-num>1</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9BS26</Iteration_query-ID>
   <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>406</Iteration_query-len>
 <Iteration_hits>
@@ -29,8 +29,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>30</Statistics_hsp-len>
-      <Statistics_eff-space>119568</Statistics_eff-space>
+      <Statistics_hsp-len>42</Statistics_hsp-len>
+      <Statistics_eff-space>657748</Statistics_eff-space>
       <Statistics_kappa>0.0457342679100177</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -40,7 +40,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>2</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9BS26</Iteration_query-ID>
   <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>406</Iteration_query-len>
 <Iteration_hits>
@@ -49,8 +49,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>30</Statistics_hsp-len>
-      <Statistics_eff-space>119568</Statistics_eff-space>
+      <Statistics_hsp-len>42</Statistics_hsp-len>
+      <Statistics_eff-space>657748</Statistics_eff-space>
       <Statistics_kappa>0.0457342679100177</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -60,7 +60,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>3</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9BS26</Iteration_query-ID>
   <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>406</Iteration_query-len>
 <Iteration_hits>
@@ -69,8 +69,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>30</Statistics_hsp-len>
-      <Statistics_eff-space>119568</Statistics_eff-space>
+      <Statistics_hsp-len>42</Statistics_hsp-len>
+      <Statistics_eff-space>657748</Statistics_eff-space>
       <Statistics_kappa>0.0457342679100177</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -80,7 +80,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>4</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9BS26</Iteration_query-ID>
   <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>406</Iteration_query-len>
 <Iteration_hits>
@@ -89,8 +89,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>30</Statistics_hsp-len>
-      <Statistics_eff-space>119568</Statistics_eff-space>
+      <Statistics_hsp-len>42</Statistics_hsp-len>
+      <Statistics_eff-space>657748</Statistics_eff-space>
       <Statistics_kappa>0.0457342679100177</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -100,7 +100,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>5</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9BS26</Iteration_query-ID>
   <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>406</Iteration_query-len>
 <Iteration_hits>
@@ -109,8 +109,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>30</Statistics_hsp-len>
-      <Statistics_eff-space>119568</Statistics_eff-space>
+      <Statistics_hsp-len>42</Statistics_hsp-len>
+      <Statistics_eff-space>657748</Statistics_eff-space>
       <Statistics_kappa>0.0457342679100177</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -120,7 +120,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>6</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9BS26</Iteration_query-ID>
   <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>406</Iteration_query-len>
 <Iteration_hits>
@@ -129,8 +129,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>30</Statistics_hsp-len>
-      <Statistics_eff-space>119568</Statistics_eff-space>
+      <Statistics_hsp-len>42</Statistics_hsp-len>
+      <Statistics_eff-space>657748</Statistics_eff-space>
       <Statistics_kappa>0.0457342679100177</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -140,7 +140,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>7</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9NSY1|BMP2K_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9NSY1</Iteration_query-ID>
   <Iteration_query-def>BMP-2-inducible protein kinase OS=Homo sapiens GN=BMP2K PE=1 SV=2</Iteration_query-def>
   <Iteration_query-len>1161</Iteration_query-len>
 <Iteration_hits>
@@ -149,8 +149,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>38</Statistics_hsp-len>
-      <Statistics_eff-space>348130</Statistics_eff-space>
+      <Statistics_hsp-len>50</Statistics_hsp-len>
+      <Statistics_eff-space>1954249</Statistics_eff-space>
       <Statistics_kappa>0.041056242849278</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -160,7 +160,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>8</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9NSY1|BMP2K_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9NSY1</Iteration_query-ID>
   <Iteration_query-def>BMP-2-inducible protein kinase OS=Homo sapiens GN=BMP2K PE=1 SV=2</Iteration_query-def>
   <Iteration_query-len>1161</Iteration_query-len>
 <Iteration_hits>
@@ -169,8 +169,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>38</Statistics_hsp-len>
-      <Statistics_eff-space>348130</Statistics_eff-space>
+      <Statistics_hsp-len>50</Statistics_hsp-len>
+      <Statistics_eff-space>1954249</Statistics_eff-space>
       <Statistics_kappa>0.041056242849278</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -180,7 +180,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>9</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9NSY1|BMP2K_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9NSY1</Iteration_query-ID>
   <Iteration_query-def>BMP-2-inducible protein kinase OS=Homo sapiens GN=BMP2K PE=1 SV=2</Iteration_query-def>
   <Iteration_query-len>1161</Iteration_query-len>
 <Iteration_hits>
@@ -189,8 +189,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>38</Statistics_hsp-len>
-      <Statistics_eff-space>348130</Statistics_eff-space>
+      <Statistics_hsp-len>50</Statistics_hsp-len>
+      <Statistics_eff-space>1954249</Statistics_eff-space>
       <Statistics_kappa>0.041056242849278</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -200,7 +200,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>10</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9NSY1|BMP2K_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9NSY1</Iteration_query-ID>
   <Iteration_query-def>BMP-2-inducible protein kinase OS=Homo sapiens GN=BMP2K PE=1 SV=2</Iteration_query-def>
   <Iteration_query-len>1161</Iteration_query-len>
 <Iteration_hits>
@@ -209,8 +209,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>38</Statistics_hsp-len>
-      <Statistics_eff-space>348130</Statistics_eff-space>
+      <Statistics_hsp-len>50</Statistics_hsp-len>
+      <Statistics_eff-space>1954249</Statistics_eff-space>
       <Statistics_kappa>0.041056242849278</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -220,7 +220,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>11</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9NSY1|BMP2K_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9NSY1</Iteration_query-ID>
   <Iteration_query-def>BMP-2-inducible protein kinase OS=Homo sapiens GN=BMP2K PE=1 SV=2</Iteration_query-def>
   <Iteration_query-len>1161</Iteration_query-len>
 <Iteration_hits>
@@ -229,8 +229,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>38</Statistics_hsp-len>
-      <Statistics_eff-space>348130</Statistics_eff-space>
+      <Statistics_hsp-len>50</Statistics_hsp-len>
+      <Statistics_eff-space>1954249</Statistics_eff-space>
       <Statistics_kappa>0.041056242849278</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -240,7 +240,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>12</Iteration_iter-num>
-  <Iteration_query-ID>sp|Q9NSY1|BMP2K_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>Q9NSY1</Iteration_query-ID>
   <Iteration_query-def>BMP-2-inducible protein kinase OS=Homo sapiens GN=BMP2K PE=1 SV=2</Iteration_query-def>
   <Iteration_query-len>1161</Iteration_query-len>
 <Iteration_hits>
@@ -249,8 +249,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>38</Statistics_hsp-len>
-      <Statistics_eff-space>348130</Statistics_eff-space>
+      <Statistics_hsp-len>50</Statistics_hsp-len>
+      <Statistics_eff-space>1954249</Statistics_eff-space>
       <Statistics_kappa>0.041056242849278</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -260,7 +260,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>13</Iteration_iter-num>
-  <Iteration_query-ID>sp|P06213|INSR_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P06213</Iteration_query-ID>
   <Iteration_query-def>Insulin receptor OS=Homo sapiens GN=INSR PE=1 SV=4</Iteration_query-def>
   <Iteration_query-len>1382</Iteration_query-len>
 <Iteration_hits>
@@ -269,8 +269,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>39</Statistics_hsp-len>
-      <Statistics_eff-space>414987</Statistics_eff-space>
+      <Statistics_hsp-len>51</Statistics_hsp-len>
+      <Statistics_eff-space>2333243</Statistics_eff-space>
       <Statistics_kappa>0.043787847140535</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -280,7 +280,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>14</Iteration_iter-num>
-  <Iteration_query-ID>sp|P06213|INSR_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P06213</Iteration_query-ID>
   <Iteration_query-def>Insulin receptor OS=Homo sapiens GN=INSR PE=1 SV=4</Iteration_query-def>
   <Iteration_query-len>1382</Iteration_query-len>
 <Iteration_hits>
@@ -289,8 +289,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>39</Statistics_hsp-len>
-      <Statistics_eff-space>414987</Statistics_eff-space>
+      <Statistics_hsp-len>51</Statistics_hsp-len>
+      <Statistics_eff-space>2333243</Statistics_eff-space>
       <Statistics_kappa>0.043787847140535</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -300,7 +300,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>15</Iteration_iter-num>
-  <Iteration_query-ID>sp|P06213|INSR_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P06213</Iteration_query-ID>
   <Iteration_query-def>Insulin receptor OS=Homo sapiens GN=INSR PE=1 SV=4</Iteration_query-def>
   <Iteration_query-len>1382</Iteration_query-len>
 <Iteration_hits>
@@ -309,8 +309,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>39</Statistics_hsp-len>
-      <Statistics_eff-space>414987</Statistics_eff-space>
+      <Statistics_hsp-len>51</Statistics_hsp-len>
+      <Statistics_eff-space>2333243</Statistics_eff-space>
       <Statistics_kappa>0.043787847140535</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -320,7 +320,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>16</Iteration_iter-num>
-  <Iteration_query-ID>sp|P06213|INSR_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P06213</Iteration_query-ID>
   <Iteration_query-def>Insulin receptor OS=Homo sapiens GN=INSR PE=1 SV=4</Iteration_query-def>
   <Iteration_query-len>1382</Iteration_query-len>
 <Iteration_hits>
@@ -329,8 +329,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>39</Statistics_hsp-len>
-      <Statistics_eff-space>414987</Statistics_eff-space>
+      <Statistics_hsp-len>51</Statistics_hsp-len>
+      <Statistics_eff-space>2333243</Statistics_eff-space>
       <Statistics_kappa>0.043787847140535</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -340,7 +340,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>17</Iteration_iter-num>
-  <Iteration_query-ID>sp|P06213|INSR_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P06213</Iteration_query-ID>
   <Iteration_query-def>Insulin receptor OS=Homo sapiens GN=INSR PE=1 SV=4</Iteration_query-def>
   <Iteration_query-len>1382</Iteration_query-len>
 <Iteration_hits>
@@ -349,8 +349,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>39</Statistics_hsp-len>
-      <Statistics_eff-space>414987</Statistics_eff-space>
+      <Statistics_hsp-len>51</Statistics_hsp-len>
+      <Statistics_eff-space>2333243</Statistics_eff-space>
       <Statistics_kappa>0.043787847140535</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -360,7 +360,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>18</Iteration_iter-num>
-  <Iteration_query-ID>sp|P06213|INSR_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P06213</Iteration_query-ID>
   <Iteration_query-def>Insulin receptor OS=Homo sapiens GN=INSR PE=1 SV=4</Iteration_query-def>
   <Iteration_query-len>1382</Iteration_query-len>
 <Iteration_hits>
@@ -369,8 +369,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>39</Statistics_hsp-len>
-      <Statistics_eff-space>414987</Statistics_eff-space>
+      <Statistics_hsp-len>51</Statistics_hsp-len>
+      <Statistics_eff-space>2333243</Statistics_eff-space>
       <Statistics_kappa>0.043787847140535</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -380,7 +380,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>19</Iteration_iter-num>
-  <Iteration_query-ID>sp|P08100|OPSD_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P08100</Iteration_query-ID>
   <Iteration_query-def>Rhodopsin OS=Homo sapiens GN=RHO PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>348</Iteration_query-len>
 <Iteration_hits>
@@ -395,7 +395,7 @@
       <Hsp_num>1</Hsp_num>
       <Hsp_bit-score>335.369</Hsp_bit-score>
       <Hsp_score>859</Hsp_score>
-      <Hsp_evalue>3.68872e-117</Hsp_evalue>
+      <Hsp_evalue>4.93232e-118</Hsp_evalue>
       <Hsp_query-from>1</Hsp_query-from>
       <Hsp_query-to>348</Hsp_query-to>
       <Hsp_hit-from>1</Hsp_hit-from>
@@ -417,8 +417,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>29</Statistics_hsp-len>
-      <Statistics_eff-space>101761</Statistics_eff-space>
+      <Statistics_hsp-len>41</Statistics_hsp-len>
+      <Statistics_eff-space>556591</Statistics_eff-space>
       <Statistics_kappa>0.0446122655041077</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -427,7 +427,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>20</Iteration_iter-num>
-  <Iteration_query-ID>sp|P08100|OPSD_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P08100</Iteration_query-ID>
   <Iteration_query-def>Rhodopsin OS=Homo sapiens GN=RHO PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>348</Iteration_query-len>
 <Iteration_hits>
@@ -442,7 +442,7 @@
       <Hsp_num>1</Hsp_num>
       <Hsp_bit-score>291.071</Hsp_bit-score>
       <Hsp_score>744</Hsp_score>
-      <Hsp_evalue>9.41609e-100</Hsp_evalue>
+      <Hsp_evalue>1.56455e-100</Hsp_evalue>
       <Hsp_query-from>1</Hsp_query-from>
       <Hsp_query-to>341</Hsp_query-to>
       <Hsp_hit-from>1</Hsp_hit-from>
@@ -464,8 +464,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>29</Statistics_hsp-len>
-      <Statistics_eff-space>101761</Statistics_eff-space>
+      <Statistics_hsp-len>41</Statistics_hsp-len>
+      <Statistics_eff-space>556591</Statistics_eff-space>
       <Statistics_kappa>0.0446122655041077</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -474,7 +474,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>21</Iteration_iter-num>
-  <Iteration_query-ID>sp|P08100|OPSD_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P08100</Iteration_query-ID>
   <Iteration_query-def>Rhodopsin OS=Homo sapiens GN=RHO PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>348</Iteration_query-len>
 <Iteration_hits>
@@ -489,7 +489,7 @@
       <Hsp_num>1</Hsp_num>
       <Hsp_bit-score>294.538</Hsp_bit-score>
       <Hsp_score>753</Hsp_score>
-      <Hsp_evalue>1.6257e-101</Hsp_evalue>
+      <Hsp_evalue>2.7898e-102</Hsp_evalue>
       <Hsp_query-from>11</Hsp_query-from>
       <Hsp_query-to>338</Hsp_query-to>
       <Hsp_hit-from>1</Hsp_hit-from>
@@ -511,8 +511,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>29</Statistics_hsp-len>
-      <Statistics_eff-space>101761</Statistics_eff-space>
+      <Statistics_hsp-len>41</Statistics_hsp-len>
+      <Statistics_eff-space>556591</Statistics_eff-space>
       <Statistics_kappa>0.0446122655041077</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -521,7 +521,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>22</Iteration_iter-num>
-  <Iteration_query-ID>sp|P08100|OPSD_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P08100</Iteration_query-ID>
   <Iteration_query-def>Rhodopsin OS=Homo sapiens GN=RHO PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>348</Iteration_query-len>
 <Iteration_hits>
@@ -536,7 +536,7 @@
       <Hsp_num>1</Hsp_num>
       <Hsp_bit-score>279.9</Hsp_bit-score>
       <Hsp_score>715</Hsp_score>
-      <Hsp_evalue>9.30065e-96</Hsp_evalue>
+      <Hsp_evalue>1.73828e-96</Hsp_evalue>
       <Hsp_query-from>11</Hsp_query-from>
       <Hsp_query-to>338</Hsp_query-to>
       <Hsp_hit-from>1</Hsp_hit-from>
@@ -558,8 +558,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>29</Statistics_hsp-len>
-      <Statistics_eff-space>101761</Statistics_eff-space>
+      <Statistics_hsp-len>41</Statistics_hsp-len>
+      <Statistics_eff-space>556591</Statistics_eff-space>
       <Statistics_kappa>0.0446122655041077</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -568,7 +568,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>23</Iteration_iter-num>
-  <Iteration_query-ID>sp|P08100|OPSD_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P08100</Iteration_query-ID>
   <Iteration_query-def>Rhodopsin OS=Homo sapiens GN=RHO PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>348</Iteration_query-len>
 <Iteration_hits>
@@ -583,7 +583,7 @@
       <Hsp_num>1</Hsp_num>
       <Hsp_bit-score>328.821</Hsp_bit-score>
       <Hsp_score>842</Hsp_score>
-      <Hsp_evalue>1.08687e-114</Hsp_evalue>
+      <Hsp_evalue>1.50053e-115</Hsp_evalue>
       <Hsp_query-from>1</Hsp_query-from>
       <Hsp_query-to>348</Hsp_query-to>
       <Hsp_hit-from>1</Hsp_hit-from>
@@ -605,8 +605,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>29</Statistics_hsp-len>
-      <Statistics_eff-space>101761</Statistics_eff-space>
+      <Statistics_hsp-len>41</Statistics_hsp-len>
+      <Statistics_eff-space>556591</Statistics_eff-space>
       <Statistics_kappa>0.0446122655041077</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
@@ -615,7 +615,7 @@
 </Iteration>
 <Iteration>
   <Iteration_iter-num>24</Iteration_iter-num>
-  <Iteration_query-ID>sp|P08100|OPSD_HUMAN</Iteration_query-ID>
+  <Iteration_query-ID>P08100</Iteration_query-ID>
   <Iteration_query-def>Rhodopsin OS=Homo sapiens GN=RHO PE=1 SV=1</Iteration_query-def>
   <Iteration_query-len>348</Iteration_query-len>
 <Iteration_hits>
@@ -630,7 +630,7 @@
       <Hsp_num>1</Hsp_num>
       <Hsp_bit-score>294.538</Hsp_bit-score>
       <Hsp_score>753</Hsp_score>
-      <Hsp_evalue>3.73787e-101</Hsp_evalue>
+      <Hsp_evalue>6.08437e-102</Hsp_evalue>
       <Hsp_query-from>1</Hsp_query-from>
       <Hsp_query-to>341</Hsp_query-to>
       <Hsp_hit-from>1</Hsp_hit-from>
@@ -652,8 +652,8 @@
     <Statistics>
       <Statistics_db-num>0</Statistics_db-num>
       <Statistics_db-len>0</Statistics_db-len>
-      <Statistics_hsp-len>29</Statistics_hsp-len>
-      <Statistics_eff-space>101761</Statistics_eff-space>
+      <Statistics_hsp-len>41</Statistics_hsp-len>
+      <Statistics_eff-space>556591</Statistics_eff-space>
       <Statistics_kappa>0.0446122655041077</Statistics_kappa>
       <Statistics_lambda>0.267</Statistics_lambda>
       <Statistics_entropy>0.14</Statistics_entropy>
