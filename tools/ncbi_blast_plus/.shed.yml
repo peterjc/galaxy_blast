@@ -106,6 +106,7 @@ include:
   - ../../test-data/segmasker_four_human.maskinfo-asn1-binary
   - ../../test-data/tblastn_four_human_vs_rhodopsin.html
   - ../../test-data/tblastn_four_human_vs_rhodopsin.tabular
+  - ../../test-data/tblastn_four_human_vs_rhodopsin_deflines.tabular
   - ../../test-data/tblastn_four_human_vs_rhodopsin.xml
   - ../../test-data/tblastn_four_human_vs_rhodopsin_ext.tabular
   - ../../test-data/tblastx_rhodopsin_vs_three_human.tabular

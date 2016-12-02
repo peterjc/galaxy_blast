@@ -123,6 +123,9 @@ tblastn -query four_human_proteins.fasta -subject rhodopsin_nucs.fasta -evalue 1
 echo "tblastn_four_human_vs_rhodopsin.tabular"
 tblastn -query four_human_proteins.fasta -subject rhodopsin_nucs.fasta -evalue 1e-10 -out tblastn_four_human_vs_rhodopsin.tabular -outfmt 6 -db_gencode 1 -seg no -matrix BLOSUM80
 
+echo "tblastn_four_human_vs_rhodopsin_deflines.tabular"
+tblastn -query four_human_proteins.fasta -subject rhodopsin_nucs.fasta -evalue 1e-10 -out tblastn_four_human_vs_rhodopsin_deflines.tabular -outfmt 6 -db_gencode 1 -seg no -matrix BLOSUM80 -parse_deflines
+
 echo "tblastn_four_human_vs_rhodopsin_ext.tabular"
 tblastn -query four_human_proteins.fasta -subject rhodopsin_nucs.fasta -evalue 1e-10 -out tblastn_four_human_vs_rhodopsin_ext.tabular -outfmt "$EXT" -db_gencode 1 -seg no -matrix BLOSUM80
 
