@@ -234,6 +234,8 @@ v0.1.08 - Allow searching against multiple locally installed databases
         - Set ``allow_duplicate_entries="False"`` in sample configuration file
 	  ``tool_data_table_conf.xml``.
         - Fix identifers with pipes in ``blastdbcmd`` wrapper (Devon Ryan).
+v0.2.00 - Updated for NCBI BLAST+ 2.5.0
+        - Depends on ``package_blast_plus_2_5_0`` in ToolShed, or BioConda.
 ======= ======================================================================
 
 
