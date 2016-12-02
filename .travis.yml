@@ -52,7 +52,7 @@ before_install:
  - echo "Downloading and setting up dependencies..."
  - export INSTALL_DIR=/tmp/dep_install && mkdir $INSTALL_DIR
  - export DOWNLOAD_CACHE=/tmp/download_cache && mkdir $DOWNLOAD_CACHE
- - planemo dependency_script ${TRAVIS_BUILD_DIR}/packages/package_blast_plus_2_2_31
+ - planemo dependency_script ${TRAVIS_BUILD_DIR}/packages/package_blast_plus_2_5_0
  - bash dep_install.sh
  - source env.sh
  - echo "Fetching Galaxy ${GALAXY_BRANCH} branch..."
