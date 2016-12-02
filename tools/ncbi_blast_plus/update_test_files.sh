@@ -100,7 +100,7 @@ echo "blastp_four_human_vs_rhodopsin_ext.tabular"
 blastp -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -task blastp -evalue 1e-08 -qcov_hsp_perc 25 -out blastp_four_human_vs_rhodopsin_ext.tabular -outfmt "$EXT" -seg no -matrix BLOSUM62 -parse_deflines
 
 echo "blastp_rhodopsin_vs_four_human.tabular"
-blastp -query rhodopsin_proteins.fasta -subject four_human_proteins.fasta -task blastp -evalue 1e-8 -out blastp_rhodopsin_vs_four_human.tabular -outfmt 6 -seg no -matrix BLOSUM62 -parse_deflines
+blastp -query rhodopsin_proteins.fasta -subject four_human_proteins.fasta -task blastp -evalue 1e-8 -out blastp_rhodopsin_vs_four_human.tabular -outfmt 6 -seg no -matrix BLOSUM62
 
 echo "blastx_rhodopsin_vs_four_human.xml"
 blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_vs_four_human.xml -outfmt 5
