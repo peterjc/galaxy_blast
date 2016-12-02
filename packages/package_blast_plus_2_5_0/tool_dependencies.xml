@@ -5,21 +5,12 @@
             <actions_group>
                 <!-- Download the binaries for BLAST+ compatible with 64-bit OSX. -->
                 <actions os="darwin" architecture="x86_64">
-                    <!-- Original URL ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.5.0/ncbi-blast-2.5.0+-universal-macosx.tar.gz -->
-                    <action type="download_by_url" sha256sum="a446a18eec900cfd821a754bd984f6fe7076341801ece5ca40cbcddde7d0ca72" target_filename="ncbi-blast-2.5.0+-universal-macosx.tar.gz">https://depot.galaxyproject.org/software/blast_plus/blast_plus_2.5.0_darwin_all.tar.gz</action>
+                    <!-- Original URL ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.5.0/ncbi-blast-2.5.0+-x64-macosx.tar.gz -->
+                    <action type="download_by_url" sha256sum="a446a18eec900cfd821a754bd984f6fe7076341801ece5ca40cbcddde7d0ca72" target_filename="ncbi-blast-2.5.0+-x64-macosx.tar.gz">https://depot.galaxyproject.org/software/blast_plus/blast_plus_2.5.0_darwin_x64.tar.gz</action>
                     <action type="move_directory_files">
                          <source_directory>bin</source_directory>
                          <destination_directory>$INSTALL_DIR</destination_directory>
                      </action>
-                </actions>
-                <!-- Download the binaries for BLAST+ compatible with 32-bit OSX. -->
-                <actions os="darwin" architecture="i386">
-                    <!-- Original URL ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.5.0/ncbi-blast-2.5.0+-universal-macosx.tar.gz -->
-                    <action type="download_by_url" sha256sum="a446a18eec900cfd821a754bd984f6fe7076341801ece5ca40cbcddde7d0ca72" target_filename="ncbi-blast-2.5.0+-universal-macosx.tar.gz">https://depot.galaxyproject.org/software/blast_plus/blast_plus_2.5.0_darwin_all.tar.gz</action>
-                    <action type="move_directory_files">
-                        <source_directory>bin</source_directory>
-                        <destination_directory>$INSTALL_DIR</destination_directory>
-                    </action>
                 </actions>
                 <!-- Download the binaries for BLAST+ compatible with 64-bit Linux. -->
                 <actions os="linux" architecture="x86_64">
@@ -31,7 +22,7 @@
                     </action>
                 </actions>
                 <actions>
-                    <action type="shell_command">echo "ERROR: Automated installation on your operating system and CPU architecture combination is not yet supported."</action>
+                    <action type="shell_command">echo "ERROR: Automated installation on your operating system and CPU architecture combination is not supported."</action>
                     <action type="shell_command">echo "Your machine details (the output from 'uname' and 'arch'):"</action>
                     <action type="shell_command">uname</action>
                     <action type="shell_command">arch</action>
@@ -52,7 +43,7 @@ which is faster than performing a local compilation, avoids any issues with buil
 dependencies, and is more reproducible between installations as there is no
 variability from the compiler or library versions.
 
-Note that NCBI do not provide 32 bit Linux binaries anymore.
+Note that NCBI do not provide any 32 bit binaries anymore.
 
 For more details, see:
 http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download
