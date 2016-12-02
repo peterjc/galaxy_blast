@@ -127,6 +127,7 @@ tblastn
             <output name="output1" file="tblastn_four_human_vs_rhodopsin_deflines.tabular" ftype="tabular" />
         </test>
         <test>
+            <!-- As of BLAST 2.5.0+ the full path appears twice, so get small diff -->
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
             <param name="db_opts_selector" value="file" />
             <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
@@ -139,7 +140,7 @@ tblastn
             <param name="max_hits" value="0" />
             <param name="word_size" value="0" />
             <param name="parse_deflines" value="false" />
-            <output name="output1" file="tblastn_four_human_vs_rhodopsin.html" ftype="html" />
+            <output name="output1" file="tblastn_four_human_vs_rhodopsin.html" ftype="html" lines_diff="8" />
         </test>
     </tests>
     <help>
