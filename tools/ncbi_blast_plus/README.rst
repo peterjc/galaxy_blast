@@ -234,7 +234,9 @@ v0.1.08 - Allow searching against multiple locally installed databases
         - Set ``allow_duplicate_entries="False"`` in sample configuration file
 	  ``tool_data_table_conf.xml``.
         - Fix identifers with pipes in ``blastdbcmd`` wrapper (Devon Ryan).
-v0.2.00 - Updated for NCBI BLAST+ 2.5.0
+v0.2.00 - Updated for NCBI BLAST+ 2.5.0, where GI numbers are less visible,
+          tabular output changes with `-parse_deflines`, and percentage
+	  identifies are now given to 3dp rather than 2dp.
         - Depends on ``package_blast_plus_2_5_0`` in ToolShed, or BioConda.
         - ``blastxml_to_tabular`` now also gives percentage idenity to 3dp.
 ======= ======================================================================
