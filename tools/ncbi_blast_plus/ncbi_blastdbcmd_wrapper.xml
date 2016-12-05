@@ -79,12 +79,13 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
             <output name="seq" file="four_human_proteins.fasta" ftype="fasta" />
         </test>
         <test>
+            <!-- This used to recover the original FASTA file, but had GI numbers -->
             <param name="db_opts|db_type" value="nucl" />
             <param name="db_opts|database" value="rhodopsin_nucs" />
             <param name="id_opts|id_type" value="prompt" />
             <param name="id_opts|entries" value="all" />
             <param name="outfmt" value="original" />
-            <output name="seq" file="rhodopsin_nucs.fasta" ftype="fasta" />
+            <output name="seq" file="rhodopsin_nucs.no_gi.fasta" ftype="fasta" />
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />

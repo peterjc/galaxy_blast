@@ -53,6 +53,9 @@ grep -A 1 "^New DB title" rhodopsin_nucs.fasta.log > rhodopsin_nucs.fasta.log.tx
 echo "rhodopsin_nucs.fasta.txt"
 blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -info -out rhodopsin_nucs.dbinfo.txt
 
+echo "rhodopsin_nucs.no_gi.fasta (from blastdbcmd)"
+blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -entry all -out rhodopsin_nucs.no_gi.fasta
+
 echo "rhodopsin_bufo.fasta (from blastdbcmd)"
 blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -entry "gi|2734705|gb|U59921.1|BBU59921" -out rhodopsin_bufo.fasta
 
