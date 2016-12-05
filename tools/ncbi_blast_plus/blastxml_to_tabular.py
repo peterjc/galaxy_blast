@@ -66,7 +66,7 @@ import os
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.1.08"
+    print "v0.2.00"
     sys.exit(0)
 
 if sys.version_info[:2] >= (2, 5):
@@ -224,7 +224,8 @@ def convert(blastxml_filename, output_handle):
                 for hsp in hit.findall("Hit_hsps/Hsp"):
                     nident = hsp.findtext("Hsp_identity")
                     length = hsp.findtext("Hsp_align-len")
-                    pident = "%0.2f" % (100 * float(nident) / float(length))
+                    # As of NCBI BLAST+ 2.4.0 this is given to 3dp (not 2dp)
+                    pident = "%0.3f" % (100 * float(nident) / float(length))
 
                     q_seq = hsp.findtext("Hsp_qseq")
                     h_seq = hsp.findtext("Hsp_hseq")

@@ -236,6 +236,7 @@ v0.1.08 - Allow searching against multiple locally installed databases
         - Fix identifers with pipes in ``blastdbcmd`` wrapper (Devon Ryan).
 v0.2.00 - Updated for NCBI BLAST+ 2.5.0
         - Depends on ``package_blast_plus_2_5_0`` in ToolShed, or BioConda.
+        - ``blastxml_to_tabular`` now also gives percentage idenity to 3dp.
 ======= ======================================================================
 
 
