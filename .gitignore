@@ -29,3 +29,7 @@
 #Ignore planemo test output
 tool_test_output.html
 tool_test_output.json
+
+#Ignore any NCBI BLAST taxonomy database present
+taxdb.btd
+taxdb.bti
