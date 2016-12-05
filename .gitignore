@@ -33,3 +33,6 @@ tool_test_output.json
 #Ignore any NCBI BLAST taxonomy database present
 taxdb.btd
 taxdb.bti
+
+#Ignore any log files (e.g. from running makeblastdb etc)
+*.log
