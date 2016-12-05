@@ -1,8 +1,6 @@
 #!/bin/sh
 set -e
 echo "This will update test files using the current version of BLAST+"
-echo "Note currently manually extracting static core from the"
-echo "makeblastdb *.log files as *.log.txt (should automate or stop this)."
 
 if [ -f "tools/ncbi_blast_plus/update_test_files.sh" ]
 then
@@ -26,12 +24,15 @@ echo ===========
 echo "four_human_proteins.fasta"
 rm -f test-data/four_human_proteins.fasta.p*
 makeblastdb -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot > four_human_proteins.fasta.log
+grep -A 1 "^New DB title" four_human_proteins.fasta.log > four_human_proteins.fasta.log.txt
+
 
 echo "four_human_proteins_taxid.fasta"
 #Bar the *.pin file and *.log with trivial differences due to a time stamp,
 #only real difference expected is the TaxID embedded in the *.phr file:
 rm -f test-data/four_human_proteins_taxid.fasta.p*
 makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
+grep -A 1 "^New DB title" four_human_proteins_taxid.fasta.log > four_human_proteins_taxid.fasta.log.txt
 
 echo "four_human_proteins.dbinfo.txt"
 blastdbcmd -dbtype prot -db four_human_proteins_taxid.fasta -info -out four_human_proteins.dbinfo.txt
@@ -39,6 +40,7 @@ blastdbcmd -dbtype prot -db four_human_proteins_taxid.fasta -info -out four_huma
 echo "three_human_mRNA.fasta"
 rm -f three_human_mRNA.fasta.n*
 makeblastdb -out three_human_mRNA.fasta -hash_index -in three_human_mRNA.fasta -title "Just 3 human mRNA sequences" -dbtype nucl -taxid 9606 > three_human_mRNA.fasta.log
+grep -A 1 "^New DB title" three_human_mRNA.fasta.log > three_human_mRNA.fasta.log.txt
 
 echo "three_human_mRNA.dbinfo.txt"
 blastdbcmd -dbtype nucl -db three_human_mRNA.fasta -info -out three_human_mRNA.dbinfo.txt
@@ -46,6 +48,7 @@ blastdbcmd -dbtype nucl -db three_human_mRNA.fasta -info -out three_human_mRNA.d
 echo "rhodopsin_nucs.fasta"
 rm -f rhodopsin_nucs.fasta.n*
 makeblastdb -out rhodopsin_nucs.fasta -hash_index -in rhodopsin_nucs.fasta -title "Rhodopsin nucleotides" -dbtype nucl -parse_seqids > rhodopsin_nucs.fasta.log
+grep -A 1 "^New DB title" rhodopsin_nucs.fasta.log > rhodopsin_nucs.fasta.log.txt
 
 echo "rhodopsin_nucs.fasta.txt"
 blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -info -out rhodopsin_nucs.dbinfo.txt
