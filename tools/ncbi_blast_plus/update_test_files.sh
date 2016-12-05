@@ -151,9 +151,6 @@ echo
 echo blastxml_to_tabular
 echo ===================
 
-echo "blastn_rhodopsin_vs_three_human_converted.tabular"
-python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastn_rhodopsin_vs_three_human_converted.tabular blastn_rhodopsin_vs_three_human.xml
-
 echo "blastp_four_human_vs_rhodopsin_converted.tabular"
 python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastp_four_human_vs_rhodopsin_converted.tabular blastp_four_human_vs_rhodopsin.xml
 
@@ -177,6 +174,24 @@ python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastp_human_vs
 
 echo "blastp_human_vs_pdb_seg_no_converted_ext.tabular"
 python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c ext -o blastp_human_vs_pdb_seg_no_converted_ext.tabular blastp_human_vs_pdb_seg_no.xml
+
+echo "blastp_human_vs_pdb_seg_no_converted_std.tabular"
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastp_human_vs_pdb_seg_no_converted_std.tabular blastp_human_vs_pdb_seg_no.xml
+
+echo "blastp_human_vs_pdb_seg_no_converted_ext.tabular"
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c ext -o blastp_human_vs_pdb_seg_no_converted_ext.tabular blastp_human_vs_pdb_seg_no.xml
+
+echo "blastn_arabidopsis.standard.tabular"
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastn_arabidopsis.standard.tabular blastn_arabidopsis.xml
+
+echo "blastn_arabidopsis.extended.tabular"
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c ext -o blastn_arabidopsis.extended.tabular blastn_arabidopsis.xml
+
+echo "blastn_rhodopsin_vs_three_human_converted.tabular"
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c std -o blastn_rhodopsin_vs_three_human_converted.tabular blastn_rhodopsin_vs_three_human.xml
+
+echo "blastn_rhodopsin_vs_three_human.columns.tabular"
+python ../tools/ncbi_blast_plus/blastxml_to_tabular.py -c qseqid,sseqid,pident,qlen,slen -o blastn_rhodopsin_vs_three_human.columns.tabular blastn_rhodopsin_vs_three_human.xml
 
 echo
 echo deltablast
