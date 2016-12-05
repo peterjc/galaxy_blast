@@ -32,7 +32,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     # TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.9"
+    print "BLAST RBH v0.1.10"
     sys.exit(0)
 
 try:
@@ -179,11 +179,18 @@ def best_hits(blast_tabular, ignore_self=False):
     current = None
     best_score = None
     best = None
+    col_count = len(cols.split())
     with open(blast_tabular) as h:
         for line in h:
             if line.startswith("#"):
                 continue
             parts = line.rstrip("\n").split("\t")
+            if len(parts) != col_count:
+                # Using NCBI BLAST+ 2.2.27 the undefined field is ignored
+                # Even NCBI BLAST+ 2.5.0 silently ignores unknown fields :(
+                sys.exit("Old version of NCBI BLAST? Expected %i columns, got %i:\n%s\n"
+                         "Note the qcovhsp field was only added in version 2.2.28\n"
+                         % (col_count, len(parts), line))
             if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
                 continue
             a = parts[c_query]
