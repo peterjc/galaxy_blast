@@ -12,8 +12,8 @@ reciprocal_best_hits.py --version
 reciprocal_best_hits.py "$a_vs_b" "$b_vs_a" $id1 $id2 $score $order "$output"
     </command>
     <inputs>
-        <param name="a_vs_b" type="data" format="tabular" label="Hits from querying A against B" description="Tabular file, e.g. BLAST output" /> 
-        <param name="b_vs_a" type="data" format="tabular" label="Hits from querying B against A" description="Tabular file, e.g. BLAST output" /> 
+        <param name="a_vs_b" type="data" format="tabular" label="Hits from querying A against B" help="Tabular file, e.g. BLAST output" /> 
+        <param name="b_vs_a" type="data" format="tabular" label="Hits from querying B against A" help="Tabular file, e.g. BLAST output" /> 
 	<!-- Rather than the typical use of "value" for the default,
              the data_column (currently) uses "default_value" instead.
              And the default must be given as a number "2" not "c2". -->
