@@ -7,8 +7,9 @@ Nicola Soranzo, Jim Johnson, and Bjoern Gruening.
 
 See the licence text below.
 
-Currently tested with NCBI BLAST+ 2.2.31, and does not work with the NCBI
-'legacy' BLAST suite (e.g. ``blastall``).
+Note this does not work with the NCBI 'legacy' BLAST suite written in C
+(e.g. binary name ``blastall``), but its replacement BLAST, which is
+written in C++ (e.g. binary name ``blastn``).
 
 Note that these wrappers (and the associated datatypes) were originally
 distributed as part of the main Galaxy repository, but as of August 2012
