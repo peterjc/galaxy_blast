@@ -84,11 +84,12 @@ install:
 # Testing tools in Galaxy
 # =======================
 #
-# Having setup our Galaxy with our datatypes, call planemo test
+# Having setup our Galaxy with our datatypes, and dependencies,
+# call planemo test
 
 script:
  - cd ${TRAVIS_BUILD_DIR}
- - planemo test --galaxy_root ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH} --skip_venv tools/
+ - planemo test --no_conda_auto_install --galaxy_root ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH} --skip_venv tools/
 
 notifications:
   email: false
