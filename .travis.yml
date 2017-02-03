@@ -93,3 +93,19 @@ script:
 
 notifications:
   email: false
+
+
+# Deployment
+# ==========
+# Assumes you have set $TTS_KEY in the TravisCI interface,
+# trusts that other than the blacklist removal (good),
+# everything is still pristine and therefore OK for upload.
+#
+# Would ideally only do this if our tests passed on BOTH
+# Galaxy's stable and dev branches.
+#
+after_success:
+  - |
+    if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$GALAXY_BRANCH" == "dev" ]; then
+      planemo shed_update --shed_target testtoolshed --force_repository_creation --check_diff --shed_key_from_env TTS_KEY -r datatypes/ packages/ tools/ workflows/
+    fi
