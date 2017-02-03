@@ -106,11 +106,16 @@ The columns option can be 'std' (standard 12 columns), 'ext'
 'qseqid,sseqid,pident' (space or comma separated).
 """
 parser = OptionParser(usage=usage)
-parser.add_option('-o', '--output', dest='output', default=None, help='output filename (defaults to stdout)', metavar="FILE")
-parser.add_option("-c", "--columns", dest="columns", default='std', help="[std|ext|col1,col2,...] standard 12 columns, extended 25 columns, or list of column names")
+parser.add_option('-o', '--output', dest='output', default=None,
+                  help='output filename (defaults to stdout)',
+                  metavar="FILE")
+parser.add_option("-c", "--columns", dest="columns", default='std',
+                  help="[std|ext|col1,col2,...] standard 12 columns, extended 25 columns, or list of column names")
 (options, args) = parser.parse_args()
 
-colnames = 'qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,sstart,send,evalue,bitscore,sallseqid,score,nident,positive,gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles'.split(',')
+colnames = ('qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,'
+            'sstart,send,evalue,bitscore,sallseqid,score,nident,positive,'
+            'gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles').split(',')
 
 if len(args) < 1:
     sys.exit("ERROR: No BLASTXML input files given; run with --help to see options.")
@@ -176,7 +181,8 @@ def convert(blastxml_filename, output_handle):
         if event == "end" and elem.tag == "Iteration":
             # Expecting either this, from BLAST 2.2.25+ using FASTA vs FASTA
             # <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
-            # <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
+            # <Iteration_query-def>Endoplasmic reticulum resident protein 44
+            # OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
             # <Iteration_query-len>406</Iteration_query-len>
             # <Iteration_hits></Iteration_hits>
             #
@@ -206,17 +212,16 @@ def convert(blastxml_filename, output_handle):
                 #
                 # Or, with a local database not using -parse_seqids can get this,
                 # <Hit_id>gnl|BL_ORD_ID|2</Hit_id>
-                # <Hit_def>chrIII gi|240255695|ref|NC_003074.8| Arabidopsis thaliana chromosome 3, complete sequence</Hit_def>
+                # <Hit_def>chrIII gi|240255695|ref|NC_003074.8| Arabidopsis
+                # thaliana chromosome 3, complete sequence</Hit_def>
                 # <Hit_accession>2</Hit_accession>
                 sseqid = hit.findtext("Hit_id").split(None, 1)[0]
                 hit_def = sseqid + " " + hit.findtext("Hit_def")
-                if re_default_subject_id.match(sseqid) \
-                and sseqid == hit.findtext("Hit_accession"):
+                if re_default_subject_id.match(sseqid) and sseqid == hit.findtext("Hit_accession"):
                     # Place holder ID, take the first word of the subject definition
                     hit_def = hit.findtext("Hit_def")
                     sseqid = hit_def.split(None, 1)[0]
-                if sseqid.startswith("gnl|BL_ORD_ID|") \
-                and sseqid == "gnl|BL_ORD_ID|" + hit.findtext("Hit_accession"):
+                if sseqid.startswith("gnl|BL_ORD_ID|") and sseqid == "gnl|BL_ORD_ID|" + hit.findtext("Hit_accession"):
                     # Alternative place holder ID, again take the first word of hit_def
                     hit_def = hit.findtext("Hit_def")
                     sseqid = hit_def.split(None, 1)[0]
@@ -234,13 +239,11 @@ def convert(blastxml_filename, output_handle):
                     gapopen = str(len(q_seq.replace('-', ' ').split()) - 1 +
                                   len(h_seq.replace('-', ' ').split()) - 1)
 
-                    mismatch = m_seq.count(' ') + m_seq.count('+') \
-                             - q_seq.count('-') - h_seq.count('-')
+                    mismatch = m_seq.count(' ') + m_seq.count('+') - q_seq.count('-') - h_seq.count('-')
                     # TODO - Remove this alternative mismatch calculation and test
                     # once satisifed there are no problems
-                    expected_mismatch = len(q_seq) \
-                                      - sum(1 for q, h in zip(q_seq, h_seq)
-                                            if q == h or q == "-" or h == "-")
+                    expected_mismatch = len(q_seq) - sum(1 for q, h in zip(q_seq, h_seq)
+                                                         if q == h or q == "-" or h == "-")
                     xx = sum(1 for q, h in zip(q_seq, h_seq) if q == "X" and h == "X")
                     if not (expected_mismatch - q_seq.count("X") <= int(mismatch) <= expected_mismatch + xx):
                         sys.exit("%s vs %s mismatches, expected %i <= %i <= %i"

@@ -164,7 +164,8 @@ def blastxml_hits(in_file):
         if event == "end" and elem.tag == "Iteration":
             # Expecting either this, from BLAST 2.2.25+ using FASTA vs FASTA
             # <Iteration_query-ID>sp|Q9BS26|ERP44_HUMAN</Iteration_query-ID>
-            # <Iteration_query-def>Endoplasmic reticulum resident protein 44 OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
+            # <Iteration_query-def>Endoplasmic reticulum resident protein 44
+            # OS=Homo sapiens GN=ERP44 PE=1 SV=1</Iteration_query-def>
             # <Iteration_query-len>406</Iteration_query-len>
             # <Iteration_hits></Iteration_hits>
             #
@@ -207,8 +208,7 @@ def blastxml_hits(in_file):
                 # apparently depending on the parse_deflines switch
                 sseqid = hit.findtext("Hit_id").split(None, 1)[0]
                 hit_def = sseqid + " " + hit.findtext("Hit_def")
-                if re_default_subject_id.match(sseqid) \
-                and sseqid == hit.findtext("Hit_accession"):
+                if re_default_subject_id.match(sseqid) and sseqid == hit.findtext("Hit_accession"):
                     # Place holder ID, take the first word of the subject definition
                     hit_def = hit.findtext("Hit_def")
                     sseqid = hit_def.split(None, 1)[0]

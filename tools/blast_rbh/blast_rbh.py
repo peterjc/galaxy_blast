@@ -296,7 +296,8 @@ def make_nr(input_fasta, output_fasta, sep=";"):
                 elif record.id in duplicates:
                     continue
                 SeqIO.write(record, handle, "fasta")
-        print("%i unique entries; removed %i duplicates leaving %i representative records" % (unique, len(duplicates), len(representatives)))
+        print("%i unique entries; removed %i duplicates leaving %i representative records"
+              % (unique, len(duplicates), len(representatives)))
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
         print("No perfect duplicates in file, %i unique entries" % unique)
@@ -333,7 +334,8 @@ best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
 count = 0
 outfile = open(out_file, 'w')
 outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
-for a, (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b, self_comparison):
+for a, (b, a_score_float, a_score_str,
+        a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b, self_comparison):
     if b not in best_b_vs_a:
         # Match b has no best hit
         continue
