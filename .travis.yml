@@ -44,9 +44,10 @@ before_install:
  - pip install --upgrade pip setuptools
  - pip install planemo
  - planemo shed_lint --tools --no_xsd --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
- - echo "Using pep8 to check Python code"
- - pip install pep8
+ - echo "Using pep8 and flake8 to check Python code"
+ - pip install pep8 flake8
  - pep8 --max-line-length 120 .
+ - flake8 --max-line-length 120 .
  - echo "Removing tools we're not going to test"
  - for line in $(cat .tt_blacklist); do rm -rf $line; done
  - echo "Fixing permissions on Python eggs cache folder"
