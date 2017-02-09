@@ -43,6 +43,7 @@ def get_col_index(col_str):
         col_str = col_str[1:]
     return int(col_str) - 1
 
+
 c_query = get_col_index(c_query)
 c_match = get_col_index(c_match)
 c_score = get_col_index(c_score)

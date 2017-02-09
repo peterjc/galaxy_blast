@@ -30,6 +30,7 @@ def run(cmd):
     if return_code:
         sys.exit("Error %i from: %s" % (return_code, cmd))
 
+
 if "--version" in sys.argv[1:]:
     # TODO - Capture version of BLAST+ binaries too?
     print "BLAST RBH v0.1.10"
@@ -301,6 +302,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
         print("No perfect duplicates in file, %i unique entries" % unique)
+
 
 # print("Starting...")
 check_duplicate_ids(fasta_a)

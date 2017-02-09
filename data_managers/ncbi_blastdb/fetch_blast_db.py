@@ -100,5 +100,6 @@ def main():
     with open(options.filename, 'wb') as fh:
         fh.write(to_json_string(data_manager_dict))
 
+
 if __name__ == "__main__":
     main()

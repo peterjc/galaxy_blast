@@ -85,5 +85,6 @@ def load_go_mapping(rdf_xml):
     for go in names:
         yield go, names[go], get_term_class(go, alias, is_a)
 
+
 for go, name, term_class, in load_go_mapping(sys.argv[1]):
     print go, term_class, name

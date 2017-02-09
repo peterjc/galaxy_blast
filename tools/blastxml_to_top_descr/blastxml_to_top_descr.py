@@ -221,6 +221,7 @@ def blastxml_hits(in_file):
         # Final query
         yield current_query, hit_descrs
 
+
 if options.format == "blastxml":
     hits = blastxml_hits(in_file)
 elif options.format == "tabular":
@@ -237,6 +238,7 @@ def best_hits(descriptions, topN):
         return descriptions + [""] * (topN - len(descriptions))
     else:
         return descriptions[:topN]
+
 
 count = 0
 if out_file is None:
