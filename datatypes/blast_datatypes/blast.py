@@ -13,6 +13,12 @@ from galaxy.datatypes.xml import GenericXml
 
 log = logging.getLogger(__name__)
 
+# Note implicit string concatenation here to avoid excessively long lines:
+_DOCTYPES = ['<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" '
+             '"http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">',
+             '<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" '
+             '"NCBI_BlastOutput.dtd">']
+
 
 class BlastXml(GenericXml):
     """NCBI Blast XML Output data"""
@@ -48,8 +54,7 @@ class BlastXml(GenericXml):
             handle.close()
             return False
         line = handle.readline()
-        if line.strip() not in ['<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">',
-                                '<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "NCBI_BlastOutput.dtd">']:
+        if line.strip() not in _DOCTYPES:
             handle.close()
             return False
         line = handle.readline()
@@ -96,8 +101,7 @@ class BlastXml(GenericXml):
                 raise ValueError("%s is not an XML file!" % f)
             line = h.readline()
             header += line
-            if line.strip() not in ['<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">',
-                                    '<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "NCBI_BlastOutput.dtd">']:
+            if line.strip() not in _DOCTYPES:
                 out.write(header)  # for diagnosis
                 out.close()
                 h.close()
