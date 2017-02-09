@@ -20,7 +20,7 @@ if "-v" in sys.argv or "--version" in sys.argv:
 if sys.version_info[:2] >= (2, 5):
     import xml.etree.cElementTree as ElementTree
 else:
-    from galaxy import eggs
+    from galaxy import eggs  # noqa - ignore flake8 F401
     import pkg_resources
     pkg_resources.require("elementtree")
     from elementtree import ElementTree
