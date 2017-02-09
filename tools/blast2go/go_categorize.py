@@ -1,5 +1,5 @@
-import sys
 import gzip
+import sys
 
 _gzip_magic = '\x1f\x8b'
 

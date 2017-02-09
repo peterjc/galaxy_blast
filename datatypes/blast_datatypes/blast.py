@@ -7,8 +7,7 @@ import logging
 import os
 from time import sleep
 
-from galaxy.datatypes.data import get_file_peek
-from galaxy.datatypes.data import Data, Text
+from galaxy.datatypes.data import Data, Text, get_file_peek
 from galaxy.datatypes.xml import GenericXml
 
 log = logging.getLogger(__name__)

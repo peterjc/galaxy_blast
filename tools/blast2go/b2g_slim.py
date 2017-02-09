@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Send Blast2GO Annotation Table to map2slim for GO Slim."""
 
-import sys
 import gzip
+import sys
 
 _gzip_magic = '\x1f\x8b'
 

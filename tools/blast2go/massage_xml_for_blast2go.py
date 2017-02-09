@@ -19,8 +19,9 @@ http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 This script is under version control here:
 https://github.com/peterjc/galaxy_blast/tree/master/blast2go
 """
-import sys
+
 import os
+import sys
 
 
 def prepare_xml(original_xml, mangled_xml):

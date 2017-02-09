@@ -26,9 +26,10 @@ http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 This script is under version control here:
 https://github.com/peterjc/galaxy_blast/tree/master/blast2go
 """
-import sys
+
 import os
 import subprocess
+import sys
 
 # You may need to edit this to match your local setup,
 blast2go_dir = os.environ.get("B2G4PIPE", "/opt/b2g4pipe_v2.5/")

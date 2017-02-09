@@ -9,8 +9,9 @@ This script takes one or more FASTA filenames as input, and
 will return a non-zero error if any duplicate identifiers
 are found.
 """
-import sys
+
 import os
+import sys
 
 if "-v" in sys.argv or "--version" in sys.argv:
     print("v0.0.23")

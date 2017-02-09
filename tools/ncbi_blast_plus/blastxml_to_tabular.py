@@ -60,9 +60,12 @@ This script attempts to produce identical output to what BLAST+ would have done.
 However, check this with "diff -b ..." since BLAST+ sometimes includes an extra
 space character (probably a bug).
 """
-import sys
-import re
+
+
 import os
+import re
+import sys
+
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:

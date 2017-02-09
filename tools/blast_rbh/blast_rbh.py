@@ -19,9 +19,10 @@ Tool Shed: http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 #        [Not doing this right now as would break on older BLAST+]
 
 import os
+import shutil
 import sys
 import tempfile
-import shutil
+
 from optparse import OptionParser
 
 

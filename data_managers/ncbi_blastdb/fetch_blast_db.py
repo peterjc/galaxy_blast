@@ -2,11 +2,11 @@
 # Dan Blankenberg
 # Script that calls update_blastdb.pl to download preformatted databases
 
+import hashlib
 import optparse
 import os
-import sys
 import subprocess
-import hashlib
+import sys
 
 from galaxy.util.json import from_json_string, to_json_string
 DEFAULT_ALGORITHM = hashlib.sha512
