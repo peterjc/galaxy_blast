@@ -18,6 +18,8 @@ Tool Shed: http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 #        results, rather than doing minimum HSP coverage in Python.
 #        [Not doing this right now as would break on older BLAST+]
 
+from __future__ import print_function
+
 import os
 import shutil
 import sys
@@ -34,7 +36,7 @@ def run(cmd):
 
 if "--version" in sys.argv[1:]:
     # TODO - Capture version of BLAST+ binaries too?
-    print "BLAST RBH v0.1.10"
+    print("BLAST RBH v0.1.11")
     sys.exit(0)
 
 try:
@@ -362,7 +364,7 @@ for a, (b, a_score_float, a_score_str,
     outfile.write("%s\t%s\t%i\t%i\t%s\t%s\t%i\t%s\t%s\n" % tuple(values))
     count += 1
 outfile.close()
-print "Done, %i RBH found" % count
+print("Done, %i RBH found" % count)
 if tie_warning:
     sys.stderr.write("Warning: Sequences with tied best hits found, you may have duplicates/clusters\n")
 

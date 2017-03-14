@@ -89,6 +89,7 @@ v0.1.9  - Updates to the command line API for the Python script.
         - PEP8 style updates to the Python script (internal change only).
         - Fix parameter help text which was not being displayed.
 v0.1.10 - Updated to depend on NCBI BLAST+ 2.5.0 via ToolShed or BioConda.
+v0.1.11 - Tweak Python script to work under Python 2 or Python 3.
 ======= ======================================================================
 
 
