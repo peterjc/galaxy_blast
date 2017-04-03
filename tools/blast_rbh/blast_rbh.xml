@@ -2,10 +2,6 @@
     <description>from two FASTA files</description>
     <requirements>
         <requirement type="package" version="1.64">biopython</requirement>
-        <requirement type="python-module">Bio</requirement>
-        <requirement type="binary">makeblastdb</requirement>
-        <requirement type="binary">blastp</requirement>
-        <requirement type="binary">blastn</requirement>
         <requirement type="package" version="2.2.31">blast+</requirement>
     </requirements>
     <stdio>
