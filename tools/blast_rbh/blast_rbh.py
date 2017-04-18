@@ -224,7 +224,7 @@ def best_hits(blast_tabular, ignore_self=False):
             elif score < best_score:
                 # print("No improvement for %s, %s < %s" % (a, score, best_score))
                 continue
-            elif score > best_score:
+            elif score >= best_score:
                 # This is better, discard old best
                 best = dict()
                 # Now append this hit...
