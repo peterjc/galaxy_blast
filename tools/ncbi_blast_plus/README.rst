@@ -240,6 +240,8 @@ v0.2.00 - Updated for NCBI BLAST+ 2.5.0, where GI numbers are less visible,
 	  identifies are now given to 3dp rather than 2dp.
         - Depends on ``package_blast_plus_2_5_0`` in ToolShed, or BioConda.
         - ``blastxml_to_tabular`` now also gives percentage idenity to 3dp.
+        - Removed never-used binary and Python module dependency declarations
+          (internal change only).
 ======= ======================================================================
 
 
@@ -264,17 +266,17 @@ For pushing a release to the test or main "Galaxy Tool Shed", use the following
 Planemo commands (which requires you have set your Tool Shed access details in
 ``~/.planemo.yml`` and that you have access rights on the Tool Shed)::
 
-    $ planemo shed_update -t testtoolshed --check_diff ~/repositories/galaxy_blast/tools/ncbi_blast_plus/
+    $ planemo shed_update -t testtoolshed --check_diff tools/ncbi_blast_plus/
     ...
 
 or::
 
-    $ planemo shed_update -t toolshed --check_diff ~/repositories/galaxy_blast/tools/ncbi_blast_plus/
+    $ planemo shed_update -t toolshed --check_diff tools/ncbi_blast_plus/
     ...
 
 To just build and check the tar ball, use::
 
-    $ planemo shed_upload --tar_only  ~/repositories/galaxy_blast/tools/ncbi_blast_plus/
+    $ planemo shed_upload --tar_only tools/ncbi_blast_plus/
     ...
     $ tar -tzf shed_upload.tar.gz 
     test-data/blastdb.loc
