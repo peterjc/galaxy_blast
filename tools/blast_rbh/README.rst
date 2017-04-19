@@ -1,7 +1,7 @@
 Find BLAST Reciprocal Best Hits (RBH), with Galaxy wrapper
 ==========================================================
 
-This tool is copyright 2011-2016 by Peter Cock, The James Hutton Institute
+This tool is copyright 2011-2017 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 

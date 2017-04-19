@@ -1,7 +1,7 @@
 Galaxy wrappers for NCBI BLAST+ suite
 =====================================
 
-These wrappers are copyright 2010-2016 by Peter Cock (The James Hutton Institute,
+These wrappers are copyright 2010-2017 by Peter Cock (The James Hutton Institute,
 UK) and additional contributors including Edward Kirton, John Chilton,
 Nicola Soranzo, Jim Johnson, and Bjoern Gruening.
 
