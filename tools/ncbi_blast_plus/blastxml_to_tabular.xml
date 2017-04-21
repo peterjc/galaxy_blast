@@ -3,14 +3,9 @@
     <macros>
         <import>ncbi_macros.xml</import>
     </macros>
-    <stdio>
-        <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
-    <version_command interpreter="python">blastxml_to_tabular.py --version</version_command>
-    <command interpreter="python">
-blastxml_to_tabular.py -o "$tabular_file"
+    <version_command>python blastxml_to_tabular.py --version</version_command>
+    <command detect_errors="aggressive">
+python blastxml_to_tabular.py -o "$tabular_file"
 #if $output.out_format == "cols":
 #set cols = (str($output.std_cols)+","+str($output.ext_cols)).replace("None", " ").replace(",,", ",").replace(",", " ")
 -c "$cols"

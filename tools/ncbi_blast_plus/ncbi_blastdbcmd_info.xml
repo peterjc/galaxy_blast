@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command>
+    <command detect_errors="aggressive">
 blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out "$info"
     </command>
     <inputs>

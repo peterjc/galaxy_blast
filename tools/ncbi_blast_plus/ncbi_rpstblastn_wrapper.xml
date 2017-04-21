@@ -6,7 +6,7 @@
     </macros>
     <expand macro="parallelism" />
     <expand macro="preamble" />
-    <command>
+    <command detect_errors="aggressive">
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 rpstblastn

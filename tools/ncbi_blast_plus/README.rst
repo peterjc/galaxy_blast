@@ -242,6 +242,7 @@ v0.2.00 - Updated for NCBI BLAST+ 2.5.0, where GI numbers are less visible,
         - ``blastxml_to_tabular`` now also gives percentage idenity to 3dp.
         - Removed never-used binary and Python module dependency declarations
           (internal change only).
+v0.2.01 - Use ``<command detect_errors="aggressive">`` (internal change only).
 ======= ======================================================================
 
 
