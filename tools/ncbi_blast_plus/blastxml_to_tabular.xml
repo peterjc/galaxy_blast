@@ -3,9 +3,9 @@
     <macros>
         <import>ncbi_macros.xml</import>
     </macros>
-    <version_command>python blastxml_to_tabular.py --version</version_command>
+    <version_command>python $__tool_directory__/blastxml_to_tabular.py --version</version_command>
     <command detect_errors="aggressive">
-python blastxml_to_tabular.py -o '$tabular_file'
+python $__tool_directory__/blastxml_to_tabular.py -o '$tabular_file'
 #if $output.out_format == "cols":
 #set cols = (str($output.std_cols)+","+str($output.ext_cols)).replace("None", " ").replace(",,", ",").replace(",", " ")
 -c '$cols'
