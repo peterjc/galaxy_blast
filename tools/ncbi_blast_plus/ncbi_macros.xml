@@ -339,7 +339,7 @@
     -seqidlist $adv_opts.adv_optional_id_files_opts.seqidlist
 #end if
     </token>
-    <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
+    <token name="@THREADS@">-num_threads '\${GALAXY_SLOTS:-8}'</token>
     <token name="@BLAST_DB_SUBJECT@">
 #if $db_opts.db_opts_selector == "db":
   -db '${" ".join(str($db_opts.database.fields.path).split(","))}'
@@ -349,7 +349,7 @@
   -subject '$db_opts.subject'
 #end if
     </token>
-    <token name="@BLAST_OUTPUT@">-out "$output1"
+    <token name="@BLAST_OUTPUT@">-out '$output1'
 ##Set the extended list here so when we add things, saved workflows are not affected
 #if str($output.out_format)=="ext":
     -outfmt '6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles'
@@ -359,7 +359,8 @@
 #set cols = (str($output.std_cols)+","+str($output.ext_cols)+","+str($output.ids_cols)+","+str($output.misc_cols)+","+str($output.tax_cols)).replace("None", "").replace(",,", ",").replace(",", " ").strip()
     -outfmt '6 $cols'
 #else:
-    -outfmt '$output.out_format'
+## Note do not quote this as can be '0 -html' which is really two arguments
+    -outfmt $output.out_format
 #end if
     </token>
     <token name="@ADV_FILTER_QUERY@">$adv_opts.filter_query</token>
