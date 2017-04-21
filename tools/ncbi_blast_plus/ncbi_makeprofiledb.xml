@@ -5,19 +5,19 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive" strict="True">
 ##Unlike makeblastdb, makeprofiledb needs directory to exist already:
 mkdir -p $outfile.files_path &amp;&amp;
-makeprofiledb -out "${os.path.join($outfile.files_path,'blastdb')}"
+makeprofiledb -out '${os.path.join($outfile.files_path, "blastdb")}'
 
 ##We turn $infile_list into $infiles with a configfile entry defined below
--in $infiles
+-in '$infiles'
 
 #if $title:
--title "$title"
+-title '$title'
 #else:
 ##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
--title "Profile Database"
+-title 'Profile Database'
 #end if
 
 -threshold $threshold
@@ -32,7 +32,7 @@ makeprofiledb -out "${os.path.join($outfile.files_path,'blastdb')}"
 -obsr_threshold $obsr_threshold
 -exclude_invalid $exclude_invalid
 
--logfile "$outfile"
+-logfile '$outfile'
     </command>
     <configfiles>
         <configfile name="infiles">

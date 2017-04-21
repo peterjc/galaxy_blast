@@ -9,20 +9,20 @@
 python check_no_duplicates.py
 ##First check for duplicates (since BLAST+ 2.2.28 fails to do so)
 ##and abort (via the ampersand ampersand trick) if any are found.
-#for i in $input_file#"${i}" #end for#
+#for i in $input_file#'${i}' #end for#
 &amp;&amp;
-makeblastdb -out "${os.path.join($outfile.files_path,'blastdb')}"
+makeblastdb -out '${os.path.join($outfile.files_path, "blastdb")}'
 $parse_seqids
 $hash_index
 ## Single call to -in with multiple filenames space separated with outer quotes
 ## (presumably any filenames with spaces would be a problem). Note this gives
 ## some extra spaces, e.g. -in "file1 file2 file3 " but BLAST seems happy:
--in "#for i in $input_file#${i} #end for#"
+-in '#for i in $input_file#${i} #end for#'
 #if $title:
--title "$title"
+-title '$title'
 #else:
 ##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
--title "BLAST Database"
+-title 'BLAST Database'
 #end if
 -dbtype $dbtype
 ## --------------------------------------------------------------------
@@ -32,7 +32,7 @@ $hash_index
 ## See Trello issue https://trello.com/c/lp5YmA1O
 #if ' '.join( map(str, $mask_data_file) ) != 'None':
 #for i in $mask_data_file:
--mask_data "${i}"
+-mask_data '${i}'
 #end for
 #end if
 ## --------------------------------------------------------------------

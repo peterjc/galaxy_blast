@@ -10,7 +10,7 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 tblastn
--query "$query"
+-query '$query'
 @BLAST_DB_SUBJECT@
 -task $blast_type
 -evalue $evalue_cutoff

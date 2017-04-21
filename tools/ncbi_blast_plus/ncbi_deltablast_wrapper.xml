@@ -10,7 +10,7 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 deltablast
--query "$query"
+-query '$query'
 @BLAST_DB_SUBJECT@
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@

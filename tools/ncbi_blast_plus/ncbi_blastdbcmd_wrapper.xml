@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive" strict="True">
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
@@ -13,7 +13,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
 #if $id_opts.id_type=="file":
--entry_batch "$id_opts.entries"
+-entry_batch '$id_opts.entries'
 #else:
 ##Perform some simple search/replaces to remove whitespace
 ##and make it comma separated. Quoted so don't escape pipes.
@@ -40,7 +40,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 ##using sed, however the exact syntax differs for Mac OS X's sed
 
 #if str($outfmt)=="blastid":
--out "$seq"
+-out '$seq'
 #else if sys.platform == "darwin":
 | sed -E 's/^>(lcl\||gnl\|BL_ORD_ID\|[0-9]* )/>/1' > "$seq"
 #else:

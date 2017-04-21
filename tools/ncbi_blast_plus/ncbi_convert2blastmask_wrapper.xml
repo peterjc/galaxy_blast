@@ -9,11 +9,11 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 convert2blastmask
--in $infile
--masking_algorithm "$masking_algorithm"
--masking_options "$masking_options"
+-in '$infile'
+-masking_algorithm '$masking_algorithm'
+-masking_options '$masking_options'
 $parse_seqids
--out "$outfile"
+-out '$outfile'
 -outfmt $outformat
     </command>
     <inputs>

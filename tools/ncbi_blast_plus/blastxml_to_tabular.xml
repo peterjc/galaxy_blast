@@ -5,14 +5,14 @@
     </macros>
     <version_command>python blastxml_to_tabular.py --version</version_command>
     <command detect_errors="aggressive">
-python blastxml_to_tabular.py -o "$tabular_file"
+python blastxml_to_tabular.py -o '$tabular_file'
 #if $output.out_format == "cols":
 #set cols = (str($output.std_cols)+","+str($output.ext_cols)).replace("None", " ").replace(",,", ",").replace(",", " ")
--c "$cols"
+-c '$cols'
 #else
--c "$output.out_format"
+-c '$output.out_format'
 #end if
-#for i in $blastxml_file#"${i}" #end for#
+#for i in $blastxml_file#'${i}' #end for#
     </command>
     <inputs>
         <param name="blastxml_file" type="data" format="blastxml" multiple="true" label="BLAST results as XML"/>

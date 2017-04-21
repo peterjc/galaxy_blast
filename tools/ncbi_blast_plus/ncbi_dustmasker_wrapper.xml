@@ -11,13 +11,13 @@
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 dustmasker
 #if $db_opts.db_opts_selector == "db":
-  -in "${db_opts.database.fields.path}" -infmt blastdb
+  -in '${db_opts.database.fields.path}' -infmt blastdb
 #elif $db_opts.db_opts_selector == "histdb":
-  -in "${os.path.join($db_opts.histdb.files_path, 'blastdb')}" -infmt blastdb
+  -in '${os.path.join($db_opts.histdb.files_path, "blastdb")}' -infmt blastdb
 #else:
-  -in "$subject" -infmt fasta
+  -in '$subject' -infmt fasta
 #end if
--out "$outfile"
+-out '$outfile'
 -window $window -level $level -linker $linker -outfmt $outformat
     </command>
     <inputs>

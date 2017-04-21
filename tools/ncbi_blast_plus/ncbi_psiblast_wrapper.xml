@@ -13,11 +13,11 @@
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 psiblast
 #if str($input_opts.input_opts_selector) == "query"
--query "$query"
+-query '$query'
 #else if str($input_opts.input_opts_selector) == "pssm"
--in_pssm "$in_pssm"
+-in_pssm '$in_pssm'
 #else if str($input_opts.input_opts_selector) == "msa"
--in_msa "$in_msa"
+-in_msa '$in_msa'
 #end if
 @BLAST_DB_SUBJECT@
 -evalue $evalue_cutoff
@@ -41,13 +41,12 @@ psiblast
 #end if
 
 #if $pssm_output_condition.pssm_output_selector == "yes" 
--out_pssm $pssm_output
+-out_pssm '$pssm_output'
 #end if
 
 #if $pssm_ascii_output_condition.pssm_ascii_output_selector == "yes" 
--out_ascii_pssm $pssm_ascii_output
+-out_ascii_pssm '$pssm_ascii_output'
 #end if
-
     </command>
     <inputs>
         <conditional name="input_opts">
