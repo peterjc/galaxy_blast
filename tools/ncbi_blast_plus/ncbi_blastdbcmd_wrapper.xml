@@ -42,9 +42,9 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 #if str($outfmt)=="blastid":
 -out '$seq'
 #else if sys.platform == "darwin":
-| sed -E 's/^>(lcl\||gnl\|BL_ORD_ID\|[0-9]* )/>/1' > "$seq"
+| sed -E 's/^&gt;(lcl\||gnl\|BL_ORD_ID\|[0-9]* )/&gt;/1' &gt; "$seq"
 #else:
-| sed 's/>\(lcl|\|gnl|BL_ORD_ID|[0-9]* \)/>/1' > "$seq"
+| sed 's/&gt;\(lcl|\|gnl|BL_ORD_ID|[0-9]* \)/&gt;/1' &gt; "$seq"
 #end if
     </command>
     <inputs>
