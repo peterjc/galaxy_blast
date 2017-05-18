@@ -28,7 +28,7 @@ jobs:
         - pip install --upgrade pip setuptools
         - pip install planemo
       script:
-        - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then planemo shed_update --shed_target testtoolshed --force_repository_creation --check_diff --shed_key_from_env TTS_KEY -r datatypes/ tools/ packages/ workflows/; fi
+        - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then planemo shed_update --shed_target testtoolshed --force_repository_creation --check_diff --shed_key_from_env TTS_KEY -r datatypes/ tools/ packages/ workflows/; true; fi
 
 # Deployment
 # ==========
@@ -39,6 +39,10 @@ jobs:
 # and that the test stage passed.
 #
 # As the deploy is run on a new VM, remove black-listed tools.
+#
+# Note use of "true" after the "planemo shed_update" which is
+# a work-around for a Tool Shed administration rights issue, see
+# https://github.com/galaxyproject/planemo/issues/543
 #
 #
 # Planemo Lint
