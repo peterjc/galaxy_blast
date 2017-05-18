@@ -43,8 +43,8 @@ ${infile}
     </configfiles>
     <inputs>
         <param name="input_file" type="data" multiple="true" optional="false" format="pssm-asn1"
-	       label="Input PSSM files(s)"
-	       help="One or NCBI PSSM ASN.1 format scoremat files (often named *.smp)" />
+               label="Input PSSM files(s)"
+               help="One or NCBI PSSM ASN.1 format scoremat files (often named *.smp)" />
         <param name="infile_list" type="data" multiple="true" format="pssm-asn1" />
 
         <param name="title" type="text" value="" label="Title for the profile database" help="This is the database name shown in BLAST search output" />

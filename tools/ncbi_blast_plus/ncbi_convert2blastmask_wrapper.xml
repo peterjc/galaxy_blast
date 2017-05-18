@@ -42,9 +42,9 @@ $parse_seqids
         <data name="outfile" format="maskinfo-asn1" label="SEG Masked File">
             <change_format>
                 <when input="outformat" value="maskinfo_asn1_bin" format="maskinfo-asn1-binary" />
-		<!--
+                <!--
                 <when input="outformat" value="maskinfo_asn1_text" format="maskinfo-asn1" />
-		-->
+                -->
                 <when input="outformat" value="maskinfo_xml" format="xml" />
             </change_format>
         </data>

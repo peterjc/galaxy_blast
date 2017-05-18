@@ -28,11 +28,11 @@ $make_nr
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
         <param name="fasta_a" type="data" format="fasta"
-	       label="Genes/proteins from species A"
-	       help="FASTA file, one sequence per gene/protein." /> 
+               label="Genes/proteins from species A"
+               help="FASTA file, one sequence per gene/protein."/>
         <param name="fasta_b" type="data" format="fasta"
-	       label="Genes/proteins from species B"
-	       help="FASTA file, one sequence per gene/protein." /> 
+               label="Genes/proteins from species B"
+               help="FASTA file, one sequence per gene/protein."/>
         <conditional name="seq">
             <param name="dbtype" type="select" label="Molecule type of FASTA inputs">
                 <option value="prot">protein</option>
@@ -55,14 +55,14 @@ $make_nr
                 </param>
             </when>
         </conditional>
-	<param name="identity" type="float" value="70" min="0" max="100"
-	       label="Minimum percentage identity for BLAST matches"
-	       help="Default is 70%, use 0 for no filtering." />
+        <param name="identity" type="float" value="70" min="0" max="100"
+               label="Minimum percentage identity for BLAST matches"
+               help="Default is 70%, use 0 for no filtering." />
         <param name="q_cover" type="float" value="50" min="0" max="100"
-	       label="Minimum percentage query coverage for BLAST matches"
-	       help="Default is 50%, use 0 for no filtering." />
+               label="Minimum percentage query coverage for BLAST matches"
+               help="Default is 50%, use 0 for no filtering." />
         <param name="make_nr" type="boolean" checked="false" truevalue="--nr" falsevalue=""
-	       label="Process input FASTA files to collapse identical sequences"
+               label="Process input FASTA files to collapse identical sequences"
                help="i.e. First make the input non-redundant" />
     </inputs>
     <outputs>
@@ -106,7 +106,7 @@ $make_nr
             <param name="q_cover" value="86"/>
             <output name="output" file="rbh_none.tabular" ftype="tabular"/>
         </test>
-	<!-- push the coverage over the 86% level -->
+        <!-- push the coverage over the 86% level -->
         <test>
             <param name="fasta_a" value="rhodopsin_nucs.fasta" ftype="fasta"/>
             <param name="fasta_b" value="three_human_mRNA.fasta" ftype="fasta"/>
@@ -134,7 +134,7 @@ $make_nr
             <param name="q_cover" value="0.0"/>
             <output name="output" file="rbh_blastn_three_human_mRNA_vs_rhodopsin_nucs.tabular" ftype="tabular"/>
         </test>
-        <!-- this pair of examples test tied best hits -->	
+        <!-- this pair of examples test tied best hits -->
         <test>
             <param name="fasta_a" value="k12_ten_proteins.fasta" ftype="fasta"/>
             <param name="fasta_b" value="k12_edited_proteins.fasta" ftype="fasta"/>

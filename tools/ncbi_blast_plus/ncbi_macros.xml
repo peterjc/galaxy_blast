@@ -304,7 +304,7 @@
         <conditional name="adv_optional_id_files_opts">
             <param name="adv_optional_id_files_opts_selector" type="select"
                    label="Restrict search of database to a given set of ID's"
-		   help="This feature provides a means to exclude ID's from a BLAST database search. The expectation values in the BLAST results are based upon the sequences actually searched, and not on the underlying database. Note this cannot be used when comparing against a FASTA file.">
+                   help="This feature provides a means to exclude ID's from a BLAST database search. The expectation values in the BLAST results are based upon the sequences actually searched, and not on the underlying database. Note this cannot be used when comparing against a FASTA file.">
                 <option value="none" selected="True">No restriction, search the entire database</option>
                 <option value="gilist">GI identifiers</option>
                 <option value="negative_gilist">Negative GI identifiers</option>

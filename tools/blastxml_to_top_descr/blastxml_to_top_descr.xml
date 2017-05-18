@@ -30,17 +30,17 @@ blastxml_to_top_descr.py
             <when value="tabular">
                 <param name="in_file" type="data" format="tabular" label="BLAST results as tabular"/>
                 <param name="qseqid" type="data_column" data_ref="in_file"
-		       multiple="False" numerical="False" default_value="1" value="1"
-		       label="Column containing query ID (qseqid)"
-		       help="This is column 1 in standard BLAST tabular output" />
-		<param name="sseqid" type="data_column" data_ref="in_file"
-		       multiple="False" numerical="False" default_value="2" value="2"
-		       label="Column containing match ID (sseqid)"
-		       help="This is column 2 in standard BLAST tabular output"/>
+                       multiple="False" numerical="False" default_value="1" value="1"
+                       label="Column containing query ID (qseqid)"
+                       help="This is column 1 in standard BLAST tabular output" />
+                <param name="sseqid" type="data_column" data_ref="in_file"
+                       multiple="False" numerical="False" default_value="2" value="2"
+                       label="Column containing match ID (sseqid)"
+                       help="This is column 2 in standard BLAST tabular output"/>
                 <param name="salltitles" type="data_column" data_ref="in_file"
-		       multiple="False" numerical="False" default_value="25" value="25"
+                       multiple="False" numerical="False" default_value="25" value="25"
                        label="Column containing containing descriptions (salltitles)"
-		       help="This is column 25 in the default extended BLAST tabular output"/>
+                       help="This is column 25 in the default extended BLAST tabular output"/>
             </when>
         </conditional>
         <param name="topN" type="integer" min="1" max="100" optional="false" label="Number of descriptions" value="3"/>
