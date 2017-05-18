@@ -21,7 +21,7 @@ blastxml_to_top_descr.py
     <inputs>
         <conditional name="input">
             <param name="in_format" type="select" label="Input format">
-                <option value="blastxml" select="true">BLAST XML</option>
+                <option value="blastxml" selected="true">BLAST XML</option>
                 <option value="tabular">Tabular</option>
             </param>
             <when value="blastxml">
