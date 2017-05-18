@@ -28,7 +28,7 @@ jobs:
         - pip install --upgrade pip setuptools
         - pip install planemo
       script:
-        - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then planemo shed_update --shed_target testtoolshed --force_repository_creation--check_diff --shed_key_from_env TTS_KEY -r datatypes/ tools/ workflows/; fi
+        - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then planemo shed_update --shed_target testtoolshed --force_repository_creation --check_diff --shed_key_from_env TTS_KEY -r datatypes/ tools/ packages/ workflows/; fi
 
 # Deployment
 # ==========
