@@ -91,6 +91,8 @@ v0.1.9  - Updates to the command line API for the Python script.
 v0.1.11 - Updated to depend on NCBI BLAST+ 2.5.0 via ToolShed or BioConda.
         - Update Biopython dependency.
         - Tweak Python script to work under Python 2 or Python 3.
+v0.1.12 - Use ``<command detect_errors="aggressive">`` (internal change only).
+        - Single quote command line arguments (internal change only).
 ======= ======================================================================
 
 

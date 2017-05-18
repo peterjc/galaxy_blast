@@ -73,6 +73,8 @@ v0.1.0  - Switch to using an optparse based API for Python script internally.
 v0.1.1  - Embed citation information in the tool XML (new Galaxy feature).
 v0.1.2  - Reorder XML elements (internal change only).
         - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
+        - Use ``<command detect_errors="aggressive">`` (internal change only).
+        - Single quote command line arguments (internal change only).
 ======= ======================================================================
 
 

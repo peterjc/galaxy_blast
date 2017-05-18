@@ -168,6 +168,8 @@ v0.0.10 - Reorder XML elements (internal change only).
         - Planemo for Tool Shed upload (``.shed.yml``, internal change only).
 v0.0.11 - Fix parameter help text which was not being displayed.
         - PEP8 style updates to the Python script (internal change only).
+        - Use ``<command detect_errors="aggressive">`` (internal change only).
+        - Single quote command line arguments (internal change only).
 ======= ======================================================================
 
 
