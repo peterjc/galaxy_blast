@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive" strict="True">
+    <command detect_errors="aggressive" strict="true">
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
@@ -58,7 +58,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
                 <param name="entries" type="data" format="txt,tabular" label="Sequence identifier(s)" help="Plain text file with one ID per line (i.e. single column tabular file)"/>
             </when>
             <when value="prompt">
-                <param name="entries" type="text" label="Sequence identifier(s)" help="Comma or new line separated list." optional="False" area="True" size="10x30"/>
+                <param name="entries" type="text" label="Sequence identifier(s)" help="Comma or new line separated list." optional="false" area="true" size="10x30"/>
             </when>
         </conditional>
         <param name="outfmt" type="select" label="Output format">

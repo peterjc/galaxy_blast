@@ -34,7 +34,7 @@ $parse_seqids
         <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="true" label="Parse Seq-ids in FASTA input" help="(-parse_seqids)" />
         <param name="outformat" type="select" label="Output format">
             <option value="maskinfo_asn1_bin">maskinfo ASN.1 binary</option>
-            <option value="maskinfo_asn1_text" selected="True">maskinfo ASN.1 text</option>
+            <option value="maskinfo_asn1_text" selected="true">maskinfo ASN.1 text</option>
             <option value="maskinfo_xml">maskinfo_xml</option>
         </param>
     </inputs>
@@ -54,7 +54,7 @@ $parse_seqids
             <param name="infile" value="four_human_proteins_masked.fasta" ftype="fasta" />
             <param name="masking_algorithm" value="seg" />
             <param name="masking_options" value="window=12; locut=2.2; hicut=2.5" />
-            <param name="parse_seqids" value="True" />
+            <param name="parse_seqids" value="true" />
             <param name="outformat" value="maskinfo_asn1_bin" />
             <output name="outfile" file="convert2blastmask_four_human_masked.maskinfo-asn1-binary" />
         </test>
@@ -62,7 +62,7 @@ $parse_seqids
             <param name="infile" value="four_human_proteins_masked.fasta" ftype="fasta" />
             <param name="masking_algorithm" value="seg" />
             <param name="masking_options" value="window=12; locut=2.2; hicut=2.5" />
-            <param name="parse_seqids" value="True" />
+            <param name="parse_seqids" value="true" />
             <param name="outformat" value="maskinfo_asn1_text" />
             <output name="outfile" file="convert2blastmask_four_human_masked.maskinfo-asn1" />
         </test>

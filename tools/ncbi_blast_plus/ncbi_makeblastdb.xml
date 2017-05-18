@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive" strict="True">
+    <command detect_errors="aggressive" strict="true">
 python $__tool_directory__/check_no_duplicates.py
 ##First check for duplicates (since BLAST+ 2.2.28 fails to do so)
 ##and abort (via the ampersand ampersand trick) if any are found.
@@ -59,7 +59,7 @@ $hash_index
         <!-- Note this is a mandatory parameter - default should be most recent FASTA file -->
         <param name="input_file" type="data" multiple="true" optional="false" format="fasta" label="Input FASTA files(s)" help="One or more FASTA files" />
         <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
-        <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="False" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
+        <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="false" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
         <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
         <!-- SEQUENCE MASKING OPTIONS -->
         <!-- Note this is an optional parameter - default should be NO files -->

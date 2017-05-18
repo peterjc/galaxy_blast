@@ -18,7 +18,7 @@ python $__tool_directory__/blastxml_to_tabular.py -o '$tabular_file'
         <param name="blastxml_file" type="data" format="blastxml" multiple="true" label="BLAST results as XML"/>
         <conditional name="output">
           <param name="out_format" type="select" label="Output format">
-            <option value="std" selected="True">Tabular (standard 12 columns)</option>
+            <option value="std" selected="true">Tabular (standard 12 columns)</option>
             <option value="ext">Tabular (extended 25 columns)</option>
             <option value="cols">Tabular (select columns to output)</option>
           </param>

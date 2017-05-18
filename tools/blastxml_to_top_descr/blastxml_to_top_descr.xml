@@ -21,7 +21,7 @@ blastxml_to_top_descr.py
     <inputs>
         <conditional name="input">
             <param name="in_format" type="select" label="Input format">
-                <option value="blastxml" select="True">BLAST XML</option>
+                <option value="blastxml" select="true">BLAST XML</option>
                 <option value="tabular">Tabular</option>
             </param>
             <when value="blastxml">
@@ -30,15 +30,15 @@ blastxml_to_top_descr.py
             <when value="tabular">
                 <param name="in_file" type="data" format="tabular" label="BLAST results as tabular"/>
                 <param name="qseqid" type="data_column" data_ref="in_file"
-                       multiple="False" numerical="False" default_value="1" value="1"
+                       multiple="false" numerical="false" default_value="1" value="1"
                        label="Column containing query ID (qseqid)"
                        help="This is column 1 in standard BLAST tabular output" />
                 <param name="sseqid" type="data_column" data_ref="in_file"
-                       multiple="False" numerical="False" default_value="2" value="2"
+                       multiple="false" numerical="false" default_value="2" value="2"
                        label="Column containing match ID (sseqid)"
                        help="This is column 2 in standard BLAST tabular output"/>
                 <param name="salltitles" type="data_column" data_ref="in_file"
-                       multiple="False" numerical="False" default_value="25" value="25"
+                       multiple="false" numerical="false" default_value="25" value="25"
                        label="Column containing containing descriptions (salltitles)"
                        help="This is column 25 in the default extended BLAST tabular output"/>
             </when>

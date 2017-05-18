@@ -72,7 +72,7 @@ psiblast
 
         <conditional name="psiblast_opts">
             <param name="psiblast_opts_selector" type="select" label="PSI-BLAST options">
-                <option value="basic" selected="True">Hide PSI-BLAST Options</option>
+                <option value="basic" selected="true">Hide PSI-BLAST Options</option>
                 <option value="advanced">Show PSI-BLAST Options</option>
             </param>
             <when value="basic" />

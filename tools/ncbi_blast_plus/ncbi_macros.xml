@@ -25,7 +25,7 @@
         <conditional name="output">
             <param name="out_format" type="select" label="Output format">
                 <option value="6">Tabular (standard 12 columns)</option>
-                <option value="ext" selected="True">Tabular (extended 25 columns)</option>
+                <option value="ext" selected="true">Tabular (extended 25 columns)</option>
                 <option value="cols">Tabular (select which columns)</option>
                 <option value="5">BLAST XML</option>
                 <option value="0">Pairwise text</option>
@@ -123,7 +123,7 @@
     <xml name="input_query_gencode">
         <param name="query_gencode" type="select" label="Query genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
-            <option value="1" selected="True">1. Standard</option>
+            <option value="1" selected="true">1. Standard</option>
             <option value="2">2. Vertebrate Mitochondrial</option>
             <option value="3">3. Yeast Mitochondrial</option>
             <option value="4">4. Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
@@ -146,7 +146,7 @@
     <xml name="input_db_gencode">
         <param name="db_gencode" type="select" label="Database/subject genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
-            <option value="1" selected="True">1. Standard</option>
+            <option value="1" selected="true">1. Standard</option>
             <option value="2">2. Vertebrate Mitochondrial</option>
             <option value="3">3. Yeast Mitochondrial</option>
             <option value="4">4. Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
@@ -169,7 +169,7 @@
     <xml name="input_conditional_nucleotide_db">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
-              <option value="db" selected="True">Locally installed BLAST database</option>
+              <option value="db" selected="true">Locally installed BLAST database</option>
               <option value="histdb">BLAST database from your history</option>
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
@@ -195,7 +195,7 @@
     <xml name="input_conditional_protein_db">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
-              <option value="db" selected="True">Locally installed BLAST database</option>
+              <option value="db" selected="true">Locally installed BLAST database</option>
               <option value="histdb">BLAST database from your history</option>
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
@@ -221,7 +221,7 @@
     <xml name="input_conditional_pssm">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Protein domain database (PSSM)">
-              <option value="db" selected="True">Locally installed BLAST protein domain database</option>
+              <option value="db" selected="true">Locally installed BLAST protein domain database</option>
               <option value="histdb">BLAST protein domain database from your history</option>
             </param>
             <when value="db">
@@ -241,7 +241,7 @@
     <xml name="input_conditional_choose_db_type">
         <conditional name="db_opts">
             <param name="db_type" type="select" label="Type of BLAST database">
-              <option value="nucl" selected="True">Nucleotide</option>
+              <option value="nucl" selected="true">Nucleotide</option>
               <option value="prot">Protein</option>
             </param>
             <when value="nucl">
@@ -291,7 +291,7 @@
     <xml name="advanced_options">
         <conditional name="adv_opts">
             <param name="adv_opts_selector" type="select" label="Advanced Options">
-              <option value="basic" selected="True">Hide Advanced Options</option>
+              <option value="basic" selected="true">Hide Advanced Options</option>
               <option value="advanced">Show Advanced Options</option>
             </param>
             <when value="basic" />
@@ -305,7 +305,7 @@
             <param name="adv_optional_id_files_opts_selector" type="select"
                    label="Restrict search of database to a given set of ID's"
                    help="This feature provides a means to exclude ID's from a BLAST database search. The expectation values in the BLAST results are based upon the sequences actually searched, and not on the underlying database. Note this cannot be used when comparing against a FASTA file.">
-                <option value="none" selected="True">No restriction, search the entire database</option>
+                <option value="none" selected="true">No restriction, search the entire database</option>
                 <option value="gilist">GI identifiers</option>
                 <option value="negative_gilist">Negative GI identifiers</option>
                 <option value="seqidlist">Sequence identifiers (SeqId's)</option>

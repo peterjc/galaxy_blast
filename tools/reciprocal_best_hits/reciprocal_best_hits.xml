@@ -17,9 +17,9 @@ reciprocal_best_hits.py "$a_vs_b" "$b_vs_a" $id1 $id2 $score $order "$output"
         <!-- Rather than the typical use of "value" for the default,
              the data_column (currently) uses "default_value" instead.
              And the default must be given as a number "2" not "c2". -->
-        <param name="id1" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" default_value="1" value="1" label="Column containing query ID" help="This is column 1 in standard BLAST tabular output" />
-        <param name="id2" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" default_value="2" value="2" label="Column containing match ID" help="This is column 2 in standard BLAST tabular output"/>
-        <param name="score" type="data_column" data_ref="a_vs_b" multiple="False" numerical="False" default_value="12" value="12" label="Column containing containing score to rank on" help="The bit score is column 12 in standard BLAST tabular output (highest is best), while e-value is column 11 (lowest is best)"/>
+        <param name="id1" type="data_column" data_ref="a_vs_b" multiple="false" numerical="false" default_value="1" value="1" label="Column containing query ID" help="This is column 1 in standard BLAST tabular output" />
+        <param name="id2" type="data_column" data_ref="a_vs_b" multiple="false" numerical="false" default_value="2" value="2" label="Column containing match ID" help="This is column 2 in standard BLAST tabular output"/>
+        <param name="score" type="data_column" data_ref="a_vs_b" multiple="false" numerical="false" default_value="12" value="12" label="Column containing containing score to rank on" help="The bit score is column 12 in standard BLAST tabular output (highest is best), while e-value is column 11 (lowest is best)"/>
         <param name="order" type="select" label="Highest or lowest score is best?">
             <option value="high">Highest is best (e.g. BLAST bitscore)</option>
             <option value="low">Lowest is best (e.g. BLAST e-value)</option>
