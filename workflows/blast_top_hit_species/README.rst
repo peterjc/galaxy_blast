@@ -73,7 +73,7 @@ Count Subject Blast Name
   ... ...
 ===== ==================
 
-As you might guess from	the filename ``N.abberans_reference_no_contam.fasta``,
+As you might guess from the filename ``N.abberans_reference_no_contam.fasta``,
 this transcriptome assembly has already had obvious contamination removed.
 
 At the time of writing, Galaxy's visualizations could not be included in

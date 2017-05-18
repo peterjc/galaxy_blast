@@ -21,7 +21,7 @@ Each of these Galaxy wrappers, tools, datatypes, etc has its own README
 file.
 
 
-Galaxy wrappers for NCBI BLAST+	
+Galaxy wrappers for NCBI BLAST+
 ===============================
 
 The main focus of this work is the development of the NCBI BLAST+ command line
