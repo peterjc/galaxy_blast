@@ -7,18 +7,40 @@
 # for background,
 # http://blastedbio.blogspot.com/2013/09/using-travis-ci-for-testing-galaxy-tools.html
 
-# Galaxy currently only supports Python 2.6
-language: python
-matrix:
-  include:
-    - python: "2.7"
-      env: GALAXY_BRANCH=master
-    - python: "2.7"
-      env: GALAXY_BRANCH=dev
-
 # We don't need sudo so can avoid slower legacy TravisCI infrastructure
 sudo: false
 
+# Galaxy currently only supports Python 2.7
+language: python
+jobs:
+  include:
+    - stage: test
+      python: "2.7"
+      env: GALAXY_BRANCH=master
+    - stage: test
+      python: "2.7"
+      env: GALAXY_BRANCH=dev
+    - stage: deploy
+      before_install:
+        - echo "Removing tools we're not testing"
+        - for line in $(cat .tt_blacklist); do rm -rf $line; done
+      install:
+        - pip install --upgrade pip setuptools
+        - pip install planemo
+      script:
+        - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then planemo shed_update --shed_target testtoolshed --force_repository_creation--check_diff --shed_key_from_env TTS_KEY -r datatypes/ tools/ workflows/; fi
+
+# Deployment
+# ==========
+# This is done with the new TravisCI stages feature, see
+# https://blog.travis-ci.com/2017-05-11-introducing-build-stages
+#
+# Assumes you have set $TTS_KEY in the TravisCI interface,
+# and that the test stage passed.
+#
+# As the deploy is run on a new VM, remove black-listed tools.
+#
+#
 # Planemo Lint
 # ============
 #
@@ -100,19 +122,3 @@ script:
 
 notifications:
   email: false
-
-
-# Deployment
-# ==========
-# Assumes you have set $TTS_KEY in the TravisCI interface,
-# trusts that other than the blacklist removal (good),
-# everything is still pristine and therefore OK for upload.
-#
-# Would ideally only do this if our tests passed on BOTH
-# Galaxy's stable and dev branches.
-#
-after_success:
-  - |
-    if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$GALAXY_BRANCH" == "dev" ]; then
-      planemo shed_update --shed_target testtoolshed --force_repository_creation --check_diff --shed_key_from_env TTS_KEY -r datatypes/ packages/ tools/ workflows/
-    fi
