@@ -77,7 +77,7 @@ before_install:
  - restructuredtext-lint *.rst */*/*.rst
  - pip install planemo
  - echo "Using planemo lint to check for obvious tool errors"
- - planemo shed_lint --tools --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
+ - planemo shed_lint --tools --fail_level error --ensure_metadata --urls -r ${TRAVIS_BUILD_DIR}
  - echo "Removing tools we're not going to test"
  - for line in $(cat .tt_blacklist); do rm -rf $line; done
  - echo "Fixing permissions on Python eggs cache folder"
