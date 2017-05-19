@@ -11,9 +11,13 @@ Takes seven command line options,
 7. Output filename
 
 """
+
+from __future__ import print_function
+
 import sys
+
 if "--version" in sys.argv[1:]:
-    print "RBH v0.0.3"
+    print("RBH v0.0.4")
     sys.exit(0)
 
 # Parse Command Line
@@ -108,4 +112,4 @@ for a in a_short_list:
         outfile.write("%s\t%s\t%s\t%s\n" % (a, b, best_a_vs_b[a][2], best_b_vs_a[b][2]))
         count += 1
 outfile.close()
-print "Done, %i RBH found" % count
+print("Done, %i RBH found" % count)

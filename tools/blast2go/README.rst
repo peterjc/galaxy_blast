@@ -1,7 +1,7 @@
 Galaxy wrapper for Blast2GO for pipelines, b2g4pipe
 ===================================================
 
-This wrapper is copyright 2011-2016 by Peter Cock, The James Hutton Institute
+This wrapper is copyright 2011-2017 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below (MIT licence).
 
@@ -170,6 +170,7 @@ v0.0.11 - Fix parameter help text which was not being displayed.
         - PEP8 style updates to the Python script (internal change only).
         - Use ``<command detect_errors="aggressive">`` (internal change only).
         - Single quote command line arguments (internal change only).
+        - Python 3 compatible syntax.
 ======= ======================================================================
 
 

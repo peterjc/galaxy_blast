@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """Send Blast2GO Annotation Table to map2slim for GO Slim."""
 
+from __future__ import print_function
+
 import gzip
 import sys
 
@@ -11,8 +13,7 @@ try:
     b2g_annot_file = sys.argv[2]
     gaf_file = sys.argv[3]
 except ValueError:
-    print "Bad args"
-    sys.exit(1)
+    sys.exit("Bad args")
 
 
 def gzip_open(filename, mode="rb"):

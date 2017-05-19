@@ -2,6 +2,8 @@
 # Dan Blankenberg
 # Script that calls update_blastdb.pl to download preformatted databases
 
+from __future__ import print_function
+
 import hashlib
 import optparse
 import os
@@ -66,8 +68,7 @@ def main():
     proc = subprocess.Popen(args=args, shell=False, cwd=target_directory)
     return_code = proc.wait()
     if return_code != 1:
-        print >> sys.stderr, "Error obtaining blastdb (%s)" % return_code
-        sys.exit(1)
+        sys.exit("Error obtaining blastdb (%s)" % return_code)
 
     if not data_id:
         data_id = "%s_%s" % (blastdb_name, get_dir_hash(target_directory))
@@ -82,9 +83,8 @@ def main():
                 if line.startswith('TITLE'):
                     data_description = line.split(None, 1)[1].strip()
                     break
-        except Exception, e:
-            print >> sys.stderr, "Error Parsing Alias file for TITLE and date: %s" % (
-                e)
+        except Exception as e:
+            sys.stderr.write("Error Parsing Alias file for TITLE and date: %s\n" % e)
         if alias_date and data_description:
             data_description = "%s (%s)" % (data_description, alias_date)
 

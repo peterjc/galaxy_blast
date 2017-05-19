@@ -27,6 +27,8 @@ This script is under version control here:
 https://github.com/peterjc/galaxy_blast/tree/master/blast2go
 """
 
+from __future__ import print_function
+
 import os
 import subprocess
 import sys
@@ -70,7 +72,7 @@ def run(cmd):
     # script is killed, so too is the child process.
     try:
         child = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except Exception, err:
+    except Exception as err:
         sys.exit("Error invoking command:\n%s\n\n%s\n" % (" ".join(cmd), err))
     stdout, stderr = child.communicate()
     return_code = child.returncode
@@ -92,7 +94,7 @@ def run(cmd):
         error_msg = "No sequences processed!"
 
     if error_msg:
-        print error_msg
+        print(error_msg)
         sys.exit(error_msg)
 
 
@@ -127,4 +129,4 @@ if not os.path.isfile(out_file):
 # Move the output file where Galaxy expects it to be:
 os.rename(out_file, tabular_file)
 
-print "Done"
+print("Done")

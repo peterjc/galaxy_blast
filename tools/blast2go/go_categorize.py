@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import gzip
 import sys
 
@@ -87,4 +89,4 @@ def load_go_mapping(rdf_xml):
 
 
 for go, name, term_class, in load_go_mapping(sys.argv[1]):
-    print go, term_class, name
+    print(go, term_class, name)

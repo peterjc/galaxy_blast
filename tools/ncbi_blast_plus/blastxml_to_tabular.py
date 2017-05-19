@@ -61,6 +61,7 @@ However, check this with "diff -b ..." since BLAST+ sometimes includes an extra
 space character (probably a bug).
 """
 
+from __future__ import print_function
 
 import os
 import re
@@ -69,7 +70,7 @@ import sys
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print "v0.2.00"
+    print("v0.2.01")
     sys.exit(0)
 
 if sys.version_info[:2] >= (2, 5):
@@ -295,7 +296,7 @@ def convert(blastxml_filename, output_handle):
                             salltitles = "<>".join(name.split(None, 1)[1] for name in hit_def.split(" >"))
                         except IndexError as e:
                             sys.exit("Problem splitting multuple hits?\n%r\n--> %s" % (hit_def, e))
-                        # print hit_def, "-->", sallseqid
+                        # print(hit_def, "-->", sallseqid)
                         positive = hsp.findtext("Hsp_positive")
                         ppos = "%0.2f" % (100 * float(positive) / float(length))
                         qframe = hsp.findtext("Hsp_query-frame")
@@ -325,7 +326,7 @@ def convert(blastxml_filename, output_handle):
                     if cols:
                         # Only a subset of the columns are needed
                         values = [values[colnames.index(c)] for c in cols]
-                    # print "\t".join(values)
+                    # print("\t".join(values))
                     output_handle.write("\t".join(values) + "\n")
             # prevents ElementTree from growing large datastructure
             root.clear()
