@@ -72,7 +72,7 @@ before_install:
  - pip install --upgrade pip setuptools
  - pip install flake8 restructuredtext-lint
  - echo "Using flake8 to check Python code"
- - flake8 --max-line-length 252 --ignore E402 .
+ - flake8 --max-line-length 120 .
  - echo "Using restructuredtext-lint to check our RST files"
  - restructuredtext-lint *.rst */*/*.rst
  - pip install planemo
