@@ -70,7 +70,7 @@ before_install:
  - "if grep -P '\t' */*/*.xml; then echo 'Tabs are bad, please use four spaces.'; false; fi"
  - "if grep -P '\t' */*/.shed.yml; then echo 'Tabs are bad, please use four spaces.'; false; fi"
  - pip install --upgrade pip setuptools
- - pip install flake8 restructuredtext-lint
+ - pip install flake8 flake8-blind-except restructuredtext-lint
  - echo "Using flake8 to check Python code"
  - flake8 --max-line-length 120 .
  - echo "Using restructuredtext-lint to check our RST files"
