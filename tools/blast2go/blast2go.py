@@ -71,7 +71,8 @@ def run(cmd):
     # Avoid using shell=True when we call subprocess to ensure if the Python
     # script is killed, so too is the child process.
     try:
-        child = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        child = subprocess.Popen(cmd, universal_newlines=True,
+                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except Exception as err:
         sys.exit("Error invoking command:\n%s\n\n%s\n" % (" ".join(cmd), err))
     stdout, stderr = child.communicate()
