@@ -41,21 +41,31 @@ The associated development is on GitHub at:
 * https://github.com/peterjc/galaxy_blast/tree/master/tools/ncbi_blast_plus
 * https://github.com/peterjc/galaxy_blast/tree/master/datatypes/blast_datatypes
 
+
+Galaxy Packages
+===============
+
 The NCBI BLAST+ binaries were initially included within the Galaxy wrappers
-(ncbi_blast_plus), but are now handled as Tool Shed packages:
+Tool Shed package (``ncbi_blast_plus``), but were then handled as individual
+Tool Shed packages:
 
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_26
-* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_26
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_27
-* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_27
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
-* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_28
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_29
-* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_29
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_30
-* http://testtoolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_30
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_2_31
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_3_0
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_4_0
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_5_0
+* http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_6_0
 
-Note this targets the NCBI's C++ rewrite of BLAST called BLAST+,
+However, in line with current Galaxy policy, hereafter we assume Galaxy
+will be fetching packages from Conda, specifically the BioConda channel:
+
+* https://anaconda.org/bioconda/blast
+
+Note all of these packages target the NCBI's C++ rewrite of BLAST called BLAST+,
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/ -- we
 do not support the now deprecated "legacy" BLAST suite written in C, still
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/
