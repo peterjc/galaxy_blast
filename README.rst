@@ -1,3 +1,10 @@
+.. image:: https://img.shields.io/travis/peterjc/galaxy_blast/master.svg
+   :alt: Linux testing with TravisCI
+   :target: https://travis-ci.org/peterjc/galaxy_blast/branches
+.. image:: https://landscape.io/github/peterjc/galaxy_blast/master/landscape.svg?style=flat
+   :alt: Landscape Code Metrics
+   :target: https://landscape.io/github/peterjc/galaxy_blast
+
 Introduction
 ============
 
