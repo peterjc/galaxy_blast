@@ -26,6 +26,7 @@ tblastn
 ##$adv_opts.ungapped
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
+@ADV_WINDOW_SIZE@
 ## End of advanced options:
 #end if
     </command>
@@ -56,6 +57,7 @@ tblastn
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
+            <expand macro="input_window_size" />
         </expand>
     </inputs>
     <outputs>
