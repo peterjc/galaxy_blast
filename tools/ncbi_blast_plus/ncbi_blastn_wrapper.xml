@@ -55,9 +55,7 @@ $adv_opts.ungapped
             <param name="identity_cutoff" argument="-perc_identity" type="float" min="0" max="100" value="0" label="Percent identity cutoff" help="Use zero for no cutoff" />
 
             <!-- I'd like word_size to be optional, with minimum 4 for blastn -->
-            <param argument="-word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 4.">
-                <validator type="in_range" min="0" />
-            </param>
+            <param argument="-word_size" type="integer" min="0" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 4" />
             <param argument="-ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />

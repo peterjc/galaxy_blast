@@ -266,17 +266,13 @@
         <param name="filter_query" argument="-seg" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="true" />
     </xml>
     <xml name="input_max_hits">
-        <param name="max_hits" type="integer" value="0" label="Maximum hits to show" help="Use zero for default limits">
-            <validator type="in_range" min="0" />
-        </param>
+        <param name="max_hits" type="integer" min="0" value="0" label="Maximum hits to show" help="Use zero for default limits" />
     </xml>
     <xml name="input_evalue">
         <param name="evalue_cutoff" argument="-evalue" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
     </xml>
     <xml name="input_word_size">
-        <param argument="-word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2.">
-            <validator type="in_range" min="0" />
-        </param>
+        <param argument="-word_size" type="integer" min="0" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2" />
     </xml>
     <xml name="input_strand">
         <param argument="-strand" type="select" label="Query strand(s) to search against database/subject">
