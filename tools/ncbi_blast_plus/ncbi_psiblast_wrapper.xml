@@ -40,11 +40,11 @@ psiblast
 -inclusion_ethresh $psiblast_opts.inclusion_ethresh
 #end if
 
-#if $pssm_output_condition.pssm_output_selector == "yes" 
+#if $pssm_output_condition.pssm_output_selector == "yes"
 -out_pssm '$pssm_output'
 #end if
 
-#if $pssm_ascii_output_condition.pssm_ascii_output_selector == "yes" 
+#if $pssm_ascii_output_condition.pssm_ascii_output_selector == "yes"
 -out_ascii_pssm '$pssm_ascii_output'
 #end if
     </command>
@@ -56,13 +56,13 @@ psiblast
                 <option value="pssm">PSI-BLAST checkpoint file</option>
             </param>
             <when value="query">
-                <param name="query" type="data" format="fasta" label="Protein query sequence(s)"/> 
+                <param argument="-query" type="data" format="fasta" label="Protein query sequence(s)"/>
             </when>
             <when value="msa">
-                <param name="in_msa" type="data" format="msa,phylip" label="Multiple Sequence Alignment File" />
+                <param argument="-in_msa" type="data" format="msa,phylip" label="Multiple Sequence Alignment File" />
             </when>
             <when value="pssm">
-                <param name="in_pssm" type="data" format="pssm" label="PSI-BLAST checkpoint file" />
+                <param argument="-in_pssm" type="data" format="pssm" label="PSI-BLAST checkpoint file" />
             </when>
         </conditional>
 
@@ -77,9 +77,9 @@ psiblast
             </param>
             <when value="basic" />
             <when value="advanced">
-               <param name="num_iterations" type="integer" label="Number of iterations to perform" help="Use zero to iterate until convergence." value="1" />
-               <param name="inclusion_ethresh" type="float" label="The statistical significance threshold to include a sequence" help="Set the statistical significant threshold to include a sequence in the model used by PSI-BLAST to create the PSSM on the next iteration." value="0.002" />
-               <param name="pseudocount" type="integer" label="Pseudocount value used when constructing PSSM" value="0" help="If zero is specified, then the parameter is automatically determined through a minimum length description principle (PMID 19088134). A value of 30 is suggested in order to obtain the approximate behavior before the minimum length principle was implemented" /> 
+               <param argument="-num_iterations" type="integer" label="Number of iterations to perform" help="Use zero to iterate until convergence." value="1" />
+               <param argument="-inclusion_ethresh" type="float" label="The statistical significance threshold to include a sequence" help="Set the statistical significant threshold to include a sequence in the model used by PSI-BLAST to create the PSSM on the next iteration." value="0.002" />
+               <param argument="-pseudocount" type="integer" label="Pseudocount value used when constructing PSSM" value="0" help="If zero is specified, then the parameter is automatically determined through a minimum length description principle (PMID 19088134). A value of 30 is suggested in order to obtain the approximate behavior before the minimum length principle was implemented" />
             </when>
         </conditional>
         <expand macro="advanced_options">
@@ -92,22 +92,22 @@ psiblast
             Can't use '-ungapped' on its own, error back is:
             Composition-adjusted searched are not supported with an ungapped search, please add -comp_based_stats F or do a gapped search
             Tried using '-ungapped -comp_based_stats F' and blastp crashed with 'Attempt to access NULL pointer.'
-            <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
+            <param argument="-ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
             -->
             <expand macro="input_parse_deflines" />
         </expand>
 
         <conditional name="pssm_output_condition">
-            <param name="pssm_output_selector" type="select" label="Generate PSSM output?" >
+            <param name="pssm_output_selector" argument="-out_pssm" type="select" label="Generate PSSM output?" >
                 <option value="yes">Yes</option>
                 <option value="no" selected="true">No</option>
             </param>
         </conditional>
 
         <conditional name="pssm_ascii_output_condition">
-            <param name="pssm_ascii_output_selector" type="select" label="Generate PSSM text output?" >
+            <param name="pssm_ascii_output_selector" argument="-out_ascii_pssm" type="select" label="Generate PSSM text output?" >
                 <option value="yes">Yes</option>
-                <option value="no" selected="true">No</option> 
+                <option value="no" selected="true">No</option>
             </param>
         </conditional>
 
@@ -131,7 +131,7 @@ psiblast
     <tests>
     </tests>
     <help>
-    
+
 @SEARCH_TIME_WARNING@
 
 **What it does**

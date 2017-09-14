@@ -42,12 +42,12 @@ ${infile}
         </configfile>
     </configfiles>
     <inputs>
-        <param name="input_file" type="data" multiple="true" optional="false" format="pssm-asn1"
+        <param name="input_file" argument="-in" type="data" multiple="true" optional="false" format="pssm-asn1"
                label="Input PSSM files(s)"
                help="One or NCBI PSSM ASN.1 format scoremat files (often named *.smp)" />
 
-        <param name="title" type="text" value="" label="Title for the profile database" help="This is the database name shown in BLAST search output" />
-        <param name="threshold" type="float" size="5" value="9.82" label="Minimum word score to add a word to the lookup table" />
+        <param argument="-title" type="text" value="" label="Title for the profile database" help="This is the database name shown in BLAST search output" />
+        <param argument="-threshold" type="float" size="5" value="9.82" label="Minimum word score to add a word to the lookup table" />
 
         <!-- output options -->
         <!-- Initially we're only offering the default, RPS databases for use with rpsblast and rpstblastn
@@ -65,19 +65,19 @@ ${infile}
             </param>
             <when value="yes" />
             <when value="no">
-                <param name="gapopen" type="integer" size="5" value="" label="Cost to open a gap" />
-                <param name="gapextend" type="integer" size="5" value="" label="Cost to extend a gap" />
-                <param name="scale" type="float" size="5" value="" label="PSSM scale factor" />
+                <param argument="-gapopen" type="integer" size="5" value="" label="Cost to open a gap" />
+                <param argument="-gapextend" type="integer" size="5" value="" label="Cost to extend a gap" />
+                <param argument="-scale" type="float" size="5" value="" label="PSSM scale factor" />
                 <expand macro="input_scoring_matrix" />
             </when>
         </conditional>
 
         <!--  Delta Blast Options -->
-        <param name="exclude_invalid" type="boolean" truevalue="true" falsevalue="false" checked="true" 
+        <param argument="-exclude_invalid" type="boolean" truevalue="true" falsevalue="false" checked="true"
             label="Exclude invalid domains?"
             help="Exclude domains that do not pass validation test" />
-        <param name="obsr_threshold" type="float" size="5" value="6.0"
-            label="Observation threshold"            
+        <param argument="-obsr_threshold" type="float" size="5" value="6.0"
+            label="Observation threshold"
             help="Exclude domains with with maximum number of independent observations below this threshold" />
     </inputs>
     <outputs>
