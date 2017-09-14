@@ -292,6 +292,11 @@
     </xml>    
     <xml name="input_threshold">
         <param name="threshold" type="integer" optional="true" min="0" label="Minimum score to add a word to the BLAST lookup table." help="Leave blank for default, which changes based on application."/>
+    </xml>
+    <xml name="input_comp_based_stats">
+        <param name="comp_based_stats" type="integer" optional="true" min="0" max="3"
+            label="Composition-based statistics"
+            help="Leave blank for default, which varies based on application and task. Most common default is 2."/>
     </xml>    
     <xml name="advanced_options">
         <conditional name="adv_opts">
@@ -400,6 +405,11 @@ $adv_opts.parse_deflines
     <token name="@ADV_THRESHOLD@">
 #if (str($adv_opts.threshold) and int(str($adv_opts.threshold)) >= 0):
 -threshold $adv_opts.threshold
+#end if
+    </token>
+    <token name="@ADV_COMP_BASED_STATS@">
+#if (str($adv_opts.comp_based_stats)):
+-comp_based_stats $adv_opts.comp_based_stats
 #end if
     </token>
     <!-- @ON_DB_SUBJECT@ is for use with @BLAST_DB_SUBJECT@ -->

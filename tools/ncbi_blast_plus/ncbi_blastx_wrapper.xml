@@ -28,6 +28,7 @@ $adv_opts.ungapped
 @ADV_QCOV_HSP_PERC@
 @ADV_WINDOW_SIZE@
 @ADV_THRESHOLD@
+@ADV_COMP_BASED_STATS@
 ## End of advanced options:
 #end if
     </command>
@@ -56,6 +57,7 @@ $adv_opts.ungapped
             <expand macro="input_qcov_hsp_perc" />
             <expand macro="input_window_size" />
             <expand macro="input_threshold" />
+            <expand macro="input_comp_based_stats" />
         </expand>
     </inputs>
     <outputs>
