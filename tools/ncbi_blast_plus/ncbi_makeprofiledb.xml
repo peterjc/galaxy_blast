@@ -10,7 +10,7 @@
 mkdir -p $outfile.files_path &amp;&amp;
 makeprofiledb -out '${os.path.join($outfile.files_path, "blastdb")}'
 
-##We turn $infile_list into $infiles with a configfile entry defined below
+##We turn $input_file into $infiles with a configfile entry defined below
 -in '$infiles'
 
 #if $title:
@@ -45,7 +45,6 @@ ${infile}
         <param name="input_file" type="data" multiple="true" optional="false" format="pssm-asn1"
                label="Input PSSM files(s)"
                help="One or NCBI PSSM ASN.1 format scoremat files (often named *.smp)" />
-        <param name="infile_list" type="data" multiple="true" format="pssm-asn1" />
 
         <param name="title" type="text" value="" label="Title for the profile database" help="This is the database name shown in BLAST search output" />
         <param name="threshold" type="float" size="5" value="9.82" label="Minimum word score to add a word to the lookup table" />
