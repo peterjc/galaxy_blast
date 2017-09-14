@@ -40,12 +40,12 @@ psiblast
 -inclusion_ethresh $psiblast_opts.inclusion_ethresh
 #end if
 
-#if $pssm_output_condition.pssm_output_selector == "yes"
--out_pssm '$pssm_output'
+#if $pssm_output_selector == "yes"
+    -out_pssm '$pssm_output'
 #end if
 
-#if $pssm_ascii_output_condition.pssm_ascii_output_selector == "yes"
--out_ascii_pssm '$pssm_ascii_output'
+#if $pssm_ascii_output_selector == "yes"
+    -out_ascii_pssm '$pssm_ascii_output'
 #end if
     </command>
     <inputs>
@@ -97,20 +97,15 @@ psiblast
             <expand macro="input_parse_deflines" />
         </expand>
 
-        <conditional name="pssm_output_condition">
-            <param name="pssm_output_selector" argument="-out_pssm" type="select" label="Generate PSSM output?" >
-                <option value="yes">Yes</option>
-                <option value="no" selected="true">No</option>
-            </param>
-        </conditional>
+        <param name="pssm_output_selector" argument="-out_pssm" type="select" label="Generate PSSM output?" >
+            <option value="yes">Yes</option>
+            <option value="no" selected="true">No</option>
+        </param>
 
-        <conditional name="pssm_ascii_output_condition">
-            <param name="pssm_ascii_output_selector" argument="-out_ascii_pssm" type="select" label="Generate PSSM text output?" >
-                <option value="yes">Yes</option>
-                <option value="no" selected="true">No</option>
-            </param>
-        </conditional>
-
+        <param name="pssm_ascii_output_selector" argument="-out_ascii_pssm" type="select" label="Generate PSSM text output?" >
+            <option value="yes">Yes</option>
+            <option value="no" selected="true">No</option>
+        </param>
     </inputs>
     <outputs>
         <data name="output1" format="tabular" label="psiblast $input_opts.input_opts_selector vs @ON_DB_SUBJECT@">
@@ -120,13 +115,12 @@ psiblast
         </data>
 
         <data name="pssm_ascii_output" format="txt" label="psiblast.pssm.txt" >
-            <filter>pssm_ascii_output_condition['pssm_ascii_output_selector'] == "yes" </filter>
+            <filter>pssm_ascii_output_selector == "yes" </filter>
         </data>
 
         <data name="pssm_output" format="pssm" label="psiblast.pssm" >
-            <filter>pssm_output_condition['pssm_output_selector'] == "yes"</filter>
+            <filter>pssm_output_selector == "yes"</filter>
         </data>
-
     </outputs>
     <tests>
     </tests>
