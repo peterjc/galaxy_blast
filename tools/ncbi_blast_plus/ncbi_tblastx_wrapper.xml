@@ -25,6 +25,7 @@ $adv_opts.strand
 @ADV_WORD_SIZE@
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
+@ADV_THRESHOLD@
 ## End of advanced options:
 #end if
     </command>
@@ -49,6 +50,7 @@ $adv_opts.strand
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
+            <expand macro="input_threshold" />
         </expand>
     </inputs>
     <outputs>

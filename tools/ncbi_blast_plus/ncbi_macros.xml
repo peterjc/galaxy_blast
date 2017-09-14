@@ -290,6 +290,9 @@
     <xml name="input_window_size">
         <param name="window_size" type="integer" optional="true" min="0" label="Multiple hits window size: use 0 to specify 1-hit algorithm, leave blank for default" help="Default window size changes with substitution matrix and BLAST type. Entering a non-negative integer will override the default."/> 
     </xml>    
+    <xml name="input_threshold">
+        <param name="threshold" type="integer" optional="true" min="0" label="Minimum score to add a word to the BLAST lookup table." help="Leave blank for default, which changes based on application."/>
+    </xml>    
     <xml name="advanced_options">
         <conditional name="adv_opts">
             <param name="adv_opts_selector" type="select" label="Advanced Options">
@@ -394,6 +397,11 @@ $adv_opts.parse_deflines
 -window_size $adv_opts.window_size
 #end if
     </token>    
+    <token name="@ADV_THRESHOLD@">
+#if (str($adv_opts.threshold) and int(str($adv_opts.threshold)) >= 0):
+-threshold $adv_opts.threshold
+#end if
+    </token>
     <!-- @ON_DB_SUBJECT@ is for use with @BLAST_DB_SUBJECT@ -->
     <token name="@ON_DB_SUBJECT@">#if str($db_opts.db_opts_selector)=='db'
 '${db_opts.database}'

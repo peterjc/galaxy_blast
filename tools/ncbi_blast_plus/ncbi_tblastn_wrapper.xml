@@ -27,6 +27,7 @@ tblastn
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
 @ADV_WINDOW_SIZE@
+@ADV_THRESHOLD@
 ## End of advanced options:
 #end if
     </command>
@@ -58,6 +59,7 @@ tblastn
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
             <expand macro="input_window_size" />
+            <expand macro="input_threshold" />
         </expand>
     </inputs>
     <outputs>
