@@ -22,10 +22,10 @@ dustmasker
     </command>
     <inputs>
         <expand macro="input_conditional_nucleotide_db" />
-        <param name="window" type="integer" value="64" label="DUST window length" />
-        <param name="level" type="integer" value="20" label="DUST level" help="Score threshold for subwindows" />
-        <param name="linker" type="integer" value="1" label="DUST linker" help="How close masked intervals should be to get merged together" />
-        <param name="outformat" type="select" label="Output format">
+        <param argument="-window" type="integer" value="64" label="DUST window length" />
+        <param argument="-level" type="integer" value="20" label="DUST level" help="Score threshold for subwindows" />
+        <param argument="-linker" type="integer" value="1" label="DUST linker" help="How close masked intervals should be to get merged together" />
+        <param name="outformat" argument="-outfmt" type="select" label="Output format">
             <!-- seqloc_* formats are not very useful
                  and what BLAST+ calls 'interval' is not what Galaxy calls interval format
             -->

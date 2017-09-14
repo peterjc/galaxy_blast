@@ -28,7 +28,7 @@ rpstblastn
 #end if
     </command>
     <inputs>
-        <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
+        <param argument="-query" type="data" format="fasta" label="Nucleotide query sequence(s)"/>
 
         <expand macro="input_conditional_pssm" />
 
@@ -61,7 +61,7 @@ rpstblastn
         </test>
     </tests>
     <help>
-    
+
 @SEARCH_TIME_WARNING@
 
 **What it does**
@@ -76,7 +76,7 @@ The protein domain databases use position-specific scoring matrices
 http://www.ncbi.nlm.nih.gov/Structure/cdd/cdd_help.shtml#NCBI_curated_domains
 
 *Kog* - PSSMs from automatically aligned sequences and sequence
-fragments classified in the KOGs resource, the eukaryotic 
+fragments classified in the KOGs resource, the eukaryotic
 counterpart to COGs, see http://www.ncbi.nlm.nih.gov/COG/
 
 *Cog* - PSSMs from automatically aligned sequences and sequence

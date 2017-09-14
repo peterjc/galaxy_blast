@@ -31,9 +31,9 @@ $adv_opts.ungapped
 #end if
     </command>
     <inputs>
-        <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
+        <param argument="-query" type="data" format="fasta" label="Nucleotide query sequence(s)"/>
         <expand macro="input_conditional_nucleotide_db" />
-        <param name="blast_type" type="select" display="radio" label="Type of BLAST">
+        <param name="blast_type" argument="-task" type="select" display="radio" label="Type of BLAST">
             <option value="megablast">megablast - Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences</option>
             <option value="blastn">blastn - Traditional BLASTN requiring an exact match of 11, for somewhat similar sequences</option>
             <option value="blastn-short">blastn-short - BLASTN program optimized for sequences shorter than 50 bases</option>
@@ -49,16 +49,16 @@ $adv_opts.ungapped
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
             <!-- Could use a select (yes, no, other) where other allows setting 'level window linker' -->
-            <param name="filter_query" type="boolean" label="Filter out low complexity regions (with DUST)" truevalue="-dust yes" falsevalue="-dust no" checked="true" />
+            <param name="filter_query" argument="-dust" type="boolean" label="Filter out low complexity regions (with DUST)" truevalue="-dust yes" falsevalue="-dust no" checked="true" />
             <expand macro="input_strand" />
             <expand macro="input_max_hits" />
-            <param name="identity_cutoff" type="float" min="0" max="100" value="0" label="Percent identity cutoff (-perc_identity)" help="Use zero for no cutoff" />
-            
+            <param name="identity_cutoff" argument="-perc_identity" type="float" min="0" max="100" value="0" label="Percent identity cutoff" help="Use zero for no cutoff" />
+
             <!-- I'd like word_size to be optional, with minimum 4 for blastn -->
-            <param name="word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 4.">
+            <param argument="-word_size" type="integer" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 4.">
                 <validator type="in_range" min="0" />
             </param>
-            <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
+            <param argument="-ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
@@ -144,7 +144,7 @@ $adv_opts.ungapped
         </test>
     </tests>
     <help>
-    
+
 @SEARCH_TIME_WARNING@
 
 **What it does**

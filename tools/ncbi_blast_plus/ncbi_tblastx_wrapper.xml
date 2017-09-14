@@ -29,7 +29,7 @@ $adv_opts.strand
 #end if
     </command>
     <inputs>
-        <param name="query" type="data" format="fasta" label="Nucleotide query sequence(s)"/> 
+        <param argument="-query" type="data" format="fasta" label="Nucleotide query sequence(s)"/>
 
         <expand macro="input_conditional_nucleotide_db" />
         <expand macro="input_query_gencode" />
@@ -69,7 +69,7 @@ $adv_opts.strand
         </test>
     </tests>
     <help>
-    
+
 @SEARCH_TIME_WARNING@
 
 **What it does**

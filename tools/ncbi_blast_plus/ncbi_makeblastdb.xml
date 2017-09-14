@@ -49,7 +49,7 @@ $hash_index
 &gt; "$outfile"
     </command>
     <inputs>
-        <param name="dbtype" type="select" display="radio" label="Molecule type of input">
+        <param argument="-dbtype" type="select" display="radio" label="Molecule type of input">
             <option value="prot">protein</option>
             <option value="nucl">nucleotide</option>
         </param>
@@ -57,13 +57,13 @@ $hash_index
              NOTE Double check the new database would be self contained first
         -->
         <!-- Note this is a mandatory parameter - default should be most recent FASTA file -->
-        <param name="input_file" type="data" multiple="true" optional="false" format="fasta" label="Input FASTA files(s)" help="One or more FASTA files" />
-        <param name="title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
-        <param name="parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="false" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
-        <param name="hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
+        <param name="input_file" argument="-in" type="data" multiple="true" optional="false" format="fasta" label="Input FASTA files(s)" help="One or more FASTA files" />
+        <param argument="-title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
+        <param argument="-parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="false" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
+        <param argument="-hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
         <!-- SEQUENCE MASKING OPTIONS -->
         <!-- Note this is an optional parameter - default should be NO files -->
-        <param name="mask_data_file" type="data" multiple="true" optional="true" value="" format="maskinfo-asn1,maskinfo-asn1-binary" label="Optional ASN.1 file(s) containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
+        <param name="mask_data_file" argument="-mask_data" type="data" multiple="true" optional="true" value="" format="maskinfo-asn1,maskinfo-asn1-binary" label="Optional ASN.1 file(s) containing masking data" help="As produced by NCBI masking applications (e.g. dustmasker, segmasker, windowmasker)" />
         <!-- TODO - Option to create GI indexed masking data? via -gi_mask and -gi_mask_name? -->
         <!-- TAXONOMY OPTIONS -->
         <conditional name="tax">
@@ -77,11 +77,11 @@ $hash_index
             <when value="">
             </when>
             <when value="id">
-                <param name="taxid" type="integer" value="" label="NCBI taxonomy ID" help="Integer &gt;=0, e.g. 9606 for Homo sapiens" min="0" />
+                <param argument="-taxid" type="integer" min="0" value="" label="NCBI taxonomy ID" help="Integer &gt;=0, e.g. 9606 for Homo sapiens" />
             </when>
             <!-- TODO: File format?
             <when value="map">
-                <param name="taxmap" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
+                <param name="taxmap" argument="-taxid_map" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
             </when>
             -->
         </conditional>

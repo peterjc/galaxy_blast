@@ -29,11 +29,11 @@ blastp
 #end if
     </command>
     <inputs>
-        <param name="query" type="data" format="fasta" label="Protein query sequence(s)"/> 
+        <param argument="-query" type="data" format="fasta" label="Protein query sequence(s)"/>
 
         <expand macro="input_conditional_protein_db" />
 
-        <param name="blast_type" type="select" display="radio" label="Type of BLAST">
+        <param name="blast_type" argument="-task" type="select" display="radio" label="Type of BLAST">
             <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
             <option value="blastp-fast">blastp-fast - Use longer words for seeding, faster but less accurate</option>
             <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
@@ -50,7 +50,7 @@ blastp
             Can't use '-ungapped' on its own, error back is:
             Composition-adjusted searched are not supported with an ungapped search, please add -comp_based_stats F or do a gapped search
             Tried using '-ungapped -comp_based_stats F' and blastp crashed with 'Attempt to access NULL pointer.'
-            <param name="ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
+            <param argument="-ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped -comp_based_stats F" falsevalue="" checked="false" />
             -->
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
@@ -127,7 +127,7 @@ blastp
         </test>
     </tests>
     <help>
-    
+
 @SEARCH_TIME_WARNING@
 
 **What it does**
@@ -150,5 +150,5 @@ cite the following papers:
 
 @REFERENCES@
     </help>
-    <expand macro="blast_citations" />    
+    <expand macro="blast_citations" />
 </tool>
