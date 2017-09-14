@@ -267,6 +267,7 @@
     </xml>
     <xml name="input_max_hits">
         <param name="max_hits" type="integer" min="0" value="0" label="Maximum hits to show" help="Use zero for default limits" />
+        <param argument="-max_hsps" type="integer" min="1" optional="true" value="" label="Maximum number of HSPs (alignments) to keep for any single query-subject pair" help="The HSPs shown will be the best as judged by expect value. If this option is not set, BLAST shows all HSPs meeting the expect value criteria" />
     </xml>
     <xml name="input_evalue">
         <param name="evalue_cutoff" argument="-evalue" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
@@ -365,13 +366,16 @@
 ## Note -max_target_seqs used to simply override -num_descriptions and -num_alignments
 ## but this was changed in BLAST+ 2.2.27 onwards to force their use (raised with NCBI)
 #if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
-#if str($output.out_format) in ["6", "ext", "cols", "5"]:
-## Most output formats use this, including tabular and XML:
--max_target_seqs $adv_opts.max_hits
-#else
-## Text and HTML output formats 0-4 currently need this instead:
--num_descriptions $adv_opts.max_hits -num_alignments $adv_opts.max_hits
+    #if str($output.out_format) in ["6", "ext", "cols", "5"]:
+        ## Most output formats use this, including tabular and XML:
+        -max_target_seqs $adv_opts.max_hits
+    #else
+        ## Text and HTML output formats 0-4 currently need this instead:
+        -num_descriptions $adv_opts.max_hits -num_alignments $adv_opts.max_hits
+    #end if
 #end if
+#if str($adv_opts.max_hsps)
+    -max_hsps $adv_opts.max_hsps
 #end if
     </token>
     <token name="@ADV_WORD_SIZE@">
