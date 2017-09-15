@@ -134,7 +134,7 @@ python $__tool_directory__/blastxml_to_tabular.py -o '$tabular_file'
         </test>
     </tests>
     <help>
-    
+
 **What it does**
 
 NCBI BLAST+ (and the older NCBI 'legacy' BLAST) can output in a range of

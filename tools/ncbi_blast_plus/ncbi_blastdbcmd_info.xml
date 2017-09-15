@@ -32,7 +32,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
         </test>
     </tests>
     <help>
-    
+
 **What it does**
 
 Calls the NCBI BLAST+ blastdbcmd command line tool with the -info

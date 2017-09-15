@@ -105,7 +105,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
         </test>
     </tests>
     <help>
-    
+
 **What it does**
 
 Extracts FASTA formatted sequences from a BLAST database
@@ -138,5 +138,5 @@ cite the following papers:
 
 @REFERENCES@
     </help>
-    <expand macro="blast_citations" />    
+    <expand macro="blast_citations" />
 </tool>
