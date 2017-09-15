@@ -17,15 +17,15 @@ blastp
 @BLAST_OUTPUT@
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
--matrix $adv_opts.matrix
-@ADV_FILTER_QUERY@
-@ADV_MAX_HITS@
-@ADV_WORD_SIZE@
-##Ungapped disabled for now - see comments below
-##$adv_opts.ungapped
-@ADV_ID_LIST_FILTER@
-@ADV_QCOV_HSP_PERC@
-## End of advanced options:
+    -matrix $adv_opts.matrix
+    @ADV_FILTER_QUERY@
+    @ADV_MAX_HITS@
+    @ADV_WORD_SIZE@
+    ##Ungapped disabled for now - see comments below
+    ##$adv_opts.ungapped
+    @ADV_ID_LIST_FILTER@
+    @ADV_QCOV_HSP_PERC@
+    $adv_opts.use_sw_tback
 #end if
     </command>
     <inputs>
@@ -55,6 +55,7 @@ blastp
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
+            <param argument="-use_sw_tback" type="boolean" truevalue="-use_sw_tback" falsevalue="" label="Compute locally optimal Smith-Waterman alignments" />
         </expand>
     </inputs>
     <outputs>
