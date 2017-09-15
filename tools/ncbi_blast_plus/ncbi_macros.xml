@@ -4,12 +4,14 @@
         <!-- If job splitting is enabled, break up the query file into parts -->
         <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
     </xml>
+
     <xml name="preamble">
         <requirements>
             <requirement type="package" version="2.5.0">blast</requirement>
         </requirements>
         <version_command>@BINARY@ -version</version_command>
     </xml>
+
     <xml name="output_change_format">
         <change_format>
             <when input="output.out_format" value="0" format="txt"/>
@@ -21,6 +23,7 @@
             <when input="output.out_format" value="5" format="blastxml"/>
         </change_format>
     </xml>
+
     <xml name="input_out_format">
         <conditional name="output">
             <param name="out_format" argument="-outfmt" type="select" label="Output format">
@@ -108,6 +111,154 @@
             <when value="4 -html"/>
         </conditional>
     </xml>
+
+    <xml name="input_matrix_gapcosts">
+        <conditional name="matrix_gapcosts">
+            <param argument="-matrix" type="select" label="Scoring matrix">
+                <option value="" selected="true">Use Defaults</option>
+                <option value="BLOSUM90">BLOSUM90</option>
+                <option value="BLOSUM80">BLOSUM80</option>
+                <option value="BLOSUM62">BLOSUM62</option>
+                <option value="BLOSUM50">BLOSUM50</option>
+                <option value="BLOSUM45">BLOSUM45</option>
+                <option value="PAM250">PAM250</option>
+                <option value="PAM70">PAM70</option>
+                <option value="PAM30">PAM30</option>
+            </param>
+            <when value="">
+            <!-- do nothing -->   
+            </when>
+            <when value="BLOSUM90">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 9 -gapextend 2">Existence: 9  Extension: 2</option>
+                    <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
+                    <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
+                    <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
+                    <option value="-gapopen 11 -gapextend 1">Existence: 11  Extension: 1</option>
+                    <option value="-gapopen 10 -gapextend 1" selected="true">Existence: 10  Extension: 1 (default)</option>
+                    <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
+                </param>
+
+            </when>
+            <when value="BLOSUM80">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
+                    <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
+                    <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
+                    <option value="-gapopen 11 -gapextend 1">Existence: 11  Extension: 1</option>
+                    <option value="-gapopen 10 -gapextend 1" selected="true">Existence: 10  Extension: 1 (default)</option>
+                    <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
+                </param>
+            </when>
+            <when value="BLOSUM62">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 11 -gapextend 2">Existence: 11  Extension: 2</option>
+                    <option value="-gapopen 10 -gapextend 2">Existence: 10  Extension: 2</option>
+                    <option value="-gapopen 9 -gapextend 2">Existence: 9  Extension: 2</option>
+                    <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
+                    <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
+                    <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
+                    <option value="-gapopen 13 -gapextend 1">Existence: 13  Extension: 1</option>
+                    <option value="-gapopen 12 -gapextend 1">Existence: 12  Extension: 1</option>
+                    <option value="-gapopen 11 -gapextend 1" selected="true">Existence: 11  Extension: 1 (default)</option>
+                    <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
+                    <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
+                </param>
+
+            </when>
+            <when value="BLOSUM50">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 13 -gapextend 3">Existence: 13  Extension: 3</option>
+                    <option value="-gapopen 12 -gapextend 3">Existence: 12  Extension: 3</option>
+                    <option value="-gapopen 11 -gapextend 3">Existence: 11  Extension: 3</option>
+                    <option value="-gapopen 10 -gapextend 3">Existence: 10  Extension: 3</option>
+                    <option value="-gapopen 9 -gapextend 3">Existence: 9  Extension: 3</option>
+                    <option value="-gapopen 16 -gapextend 2">Existence: 16  Extension: 2</option>
+                    <option value="-gapopen 15 -gapextend 2">Existence: 15  Extension: 2</option>
+                    <option value="-gapopen 14 -gapextend 2">Existence: 14  Extension: 2</option>
+                    <option value="-gapopen 13 -gapextend 2" selected="true">Existence: 13  Extension: 2 (default)</option>
+                    <option value="-gapopen 12 -gapextend 2">Existence: 12  Extension: 2</option>
+                    <option value="-gapopen 19 -gapextend 1">Existence: 19  Extension: 1</option>
+                    <option value="-gapopen 18 -gapextend 1">Existence: 18  Extension: 1</option>
+                    <option value="-gapopen 17 -gapextend 1">Existence: 17  Extension: 1</option>
+                    <option value="-gapopen 16 -gapextend 1">Existence: 16  Extension: 1</option>
+                    <option value="-gapopen 15 -gapextend 1">Existence: 15  Extension: 1</option>
+                </param>
+
+            </when>
+            <when value="BLOSUM45">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 13 -gapextend 3">Existence: 13  Extension: 3</option>
+                    <option value="-gapopen 12 -gapextend 3">Existence: 12  Extension: 3</option>
+                    <option value="-gapopen 11 -gapextend 3">Existence: 11  Extension: 3</option>
+                    <option value="-gapopen 10 -gapextend 3">Existence: 10  Extension: 3</option>
+                    <option value="-gapopen 15 -gapextend 2" selected="true">Existence: 15  Extension: 2 (default)</option>
+                    <option value="-gapopen 14 -gapextend 2">Existence: 14  Extension: 2</option>
+                    <option value="-gapopen 13 -gapextend 2">Existence: 13  Extension: 2</option>
+                    <option value="-gapopen 12 -gapextend 2">Existence: 12  Extension: 2</option>
+                    <option value="-gapopen 19 -gapextend 1">Existence: 19  Extension: 1</option>
+                    <option value="-gapopen 18 -gapextend 1">Existence: 18  Extension: 1</option>
+                    <option value="-gapopen 17 -gapextend 1">Existence: 17  Extension: 1</option>
+                    <option value="-gapopen 16 -gapextend 1">Existence: 16  Extension: 1</option>
+                </param>
+            </when>
+            <when value="PAM250">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 15 -gapextend 3">Existence: 15  Extension: 3</option>
+                    <option value="-gapopen 14 -gapextend 3">Existence: 14  Extension: 3</option>
+                    <option value="-gapopen 13 -gapextend 3">Existence: 13  Extension: 3</option>
+                    <option value="-gapopen 12 -gapextend 3">Existence: 12  Extension: 3</option>
+                    <option value="-gapopen 17 -gapextend 2">Existence: 17  Extension: 2</option>
+                    <option value="-gapopen 16 -gapextend 2">Existence: 16  Extension: 2</option>
+                    <option value="-gapopen 15 -gapextend 2">Existence: 15  Extension: 2</option>
+                    <option value="-gapopen 14 -gapextend 2" selected="true">Existence: 14  Extension: 2 (default)</option>
+                    <option value="-gapopen 13 -gapextend 2">Existence: 13  Extension: 2</option>
+                    <option value="-gapopen 21 -gapextend 1">Existence: 21  Extension: 1</option>
+                    <option value="-gapopen 20 -gapextend 1">Existence: 20  Extension: 1</option>
+                    <option value="-gapopen 19 -gapextend 1">Existence: 19  Extension: 1</option>
+                    <option value="-gapopen 18 -gapextend 1">Existence: 18  Extension: 1</option>
+                    <option value="-gapopen 17 -gapextend 1">Existence: 17  Extension: 1</option>
+                </param>
+
+            </when>
+            <when value="PAM70">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
+                    <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
+                    <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
+                    <option value="-gapopen 11 -gapextend 1">Existence: 11  Extension: 1</option>
+                    <option value="-gapopen 10 -gapextend 1" selected="true">Existence: 10  Extension: 1 (default)</option>
+                    <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
+                </param>
+
+            </when>
+            <when value="PAM30">
+                <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
+                    <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
+                    <option value="-gapopen 5 -gapextend 2">Existence: 5  Extension: 2</option>
+                    <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
+                    <option value="-gapopen 9 -gapextend 1" selected="true">Existence: 9  Extension: 1 (default)</option>
+                    <option value="-gapopen 8 -gapextend 1">Existence: 8  Extension: 1</option>
+                </param>
+            </when>
+        </conditional>
+    </xml>
+
+    <!-- these are still used and needed for blastn, tblastx, 
+      otherwise, the combined matrix/gapcosts macro is used -->
+    <xml name="input_gapopen">
+        <param name="gapopen" type="integer" optional="true" min="1"
+            label="Cost to open a gap"
+            help="Leave blank for default. See tool help for defaults."/>
+    </xml>
+
+    <xml name="input_gapextend">
+        <param name="gapextend" type="integer" optional="true" min="1"
+            label="Cost to extend a gap"
+            help="Leave blank for default. See tool help for defaults."/>
+    </xml>
+
     <xml name="input_scoring_matrix">
         <param argument="-matrix" type="select" label="Scoring matrix">
             <option value="BLOSUM90">BLOSUM90</option>
@@ -120,6 +271,8 @@
             <option value="PAM30">PAM30</option>
         </param>
     </xml>
+
+
     <xml name="input_query_gencode">
         <param argument="-query_gencode" type="select" label="Query genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
@@ -143,6 +296,7 @@
             <option value="24">24. Pterobranchia mitochondrial code</option>
         </param>
     </xml>
+
     <xml name="input_db_gencode">
         <param argument="-db_gencode" type="select" label="Database/subject genetic code">
             <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
@@ -166,6 +320,7 @@
             <option value="24">24. Pterobranchia mitochondrial code</option>
         </param>
     </xml>
+
     <xml name="input_conditional_nucleotide_db">
         <!-- Usually database argument mapped to -db, but -in in dustmasker -->
         <conditional name="db_opts">
@@ -193,6 +348,7 @@
             </when>
         </conditional>
     </xml>
+
     <xml name="input_conditional_protein_db">
         <!-- Usually database argument mapped to -db, but -in in segmasker -->
         <conditional name="db_opts">
@@ -220,6 +376,7 @@
             </when>
         </conditional>
     </xml>
+
     <xml name="input_conditional_pssm">
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Protein domain database (PSSM)">
@@ -240,6 +397,7 @@
             </when>
         </conditional>
     </xml>
+
     <xml name="input_conditional_choose_db_type">
         <conditional name="db_opts">
             <param argument="-db_type" type="select" label="Type of BLAST database">
@@ -258,25 +416,32 @@
             </when>
         </conditional>
     </xml>
+
     <xml name="input_parse_deflines">
         <param argument="-parse_deflines" type="boolean" label="Should the query and subject defline(s) be parsed?" truevalue="-parse_deflines" falsevalue="" checked="false" help="This affects the formatting of the query/subject ID strings"/>
     </xml>
+
     <xml name="input_filter_query_default_false">
         <param name="filter_query" argument="-seg" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="false" />
     </xml>
+
     <xml name="input_filter_query_default_true">
         <param name="filter_query" argument="-seg" type="boolean" label="Filter out low complexity regions (with SEG)" truevalue="-seg yes" falsevalue="-seg no" checked="true" />
     </xml>
+
     <xml name="input_max_hits">
         <param name="max_hits" type="integer" min="0" value="0" label="Maximum hits to show" help="Use zero for default limits" />
         <param argument="-max_hsps" type="integer" min="1" optional="true" value="" label="Maximum number of HSPs (alignments) to keep for any single query-subject pair" help="The HSPs shown will be the best as judged by expect value. If this option is not set, BLAST shows all HSPs meeting the expect value criteria" />
     </xml>
+
     <xml name="input_evalue">
         <param name="evalue_cutoff" argument="-evalue" type="float" size="15" value="0.001" label="Set expectation value cutoff" />
     </xml>
+
     <xml name="input_word_size">
         <param argument="-word_size" type="integer" min="0" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2" />
     </xml>
+
     <xml name="input_strand">
         <param argument="-strand" type="select" label="Query strand(s) to search against database/subject">
             <option value="-strand both">Both</option>
@@ -284,19 +449,23 @@
             <option value="-strand minus">Minus (reverse complement)</option>
         </param>
     </xml>
+
     <xml name="input_qcov_hsp_perc">
         <param argument="-qcov_hsp_perc" type="float" value="0" min="0" max="100" label="Minimum query coverage per hsp (percentage, 0 to 100)" help="See also the output column qcovhsp"/>
     </xml>
+
     <xml name="input_window_size">
         <param name="window_size" type="integer" optional="true" min="0"
             label="Multiple hits window size: use 0 to specify 1-hit algorithm, leave blank for default"
             help="Default window size varies with substitution matrix and BLAST type. Enter an integer to override the default."/>
-    </xml>    
+    </xml>  
+
     <xml name="input_threshold">
         <param name="threshold" type="integer" optional="true" min="0"
             label="Minimum score to add a word to the BLAST lookup table."
             help="Leave blank for default, which varies based on application."/>
     </xml>
+
     <xml name="input_comp_based_stats">
         <param name="comp_based_stats" type="select" optional="true"
             label="Composition-based statistics"
@@ -308,16 +477,8 @@
             <option value="3">3: Composition-based score adjustment as in Bioinformatics 21:902-911, 2005, unconditionally</option>
         </param>
     </xml>
-    <xml name="input_gapopen">
-        <param name="gapopen" type="integer" optional="true" min="1"
-            label="Cost to open a gap"
-            help="Leave blank for default. See tool help for defaults."/>
-    </xml>
-    <xml name="input_gapextend">
-        <param name="gapextend" type="integer" optional="true" min="1"
-            label="Cost to extend a gap"
-            help="Leave blank for default. See tool help for defaults."/>
-    </xml>
+
+    
     <xml name="advanced_options">
         <conditional name="adv_opts">
             <param name="adv_opts_selector" type="select" label="Advanced Options">
@@ -330,6 +491,7 @@
             </when>
         </conditional>
     </xml>
+
     <xml name="advanced_optional_id_files">
         <conditional name="adv_optional_id_files_opts">
             <param name="adv_optional_id_files_opts_selector" type="select"
@@ -356,6 +518,17 @@
         </conditional>
     </xml>
     
+
+
+<!--Tokens-->
+
+    <token name="@ADV_MATRIX_GAPCOSTS@">
+#if str($adv_opts.matrix_gapcosts.matrix):
+    -matrix $adv_opts.matrix_gapcosts.matrix
+    $adv_opts.matrix_gapcosts.gap_costs
+#end if
+    </token>
+
     <token name="@ADV_QCOV_HSP_PERC@">
 #if float(str($adv_opts.qcov_hsp_perc)) &gt; 0:
     -qcov_hsp_perc $adv_opts.qcov_hsp_perc

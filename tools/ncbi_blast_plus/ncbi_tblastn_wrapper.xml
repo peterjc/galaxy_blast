@@ -18,10 +18,10 @@ tblastn
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
 -db_gencode $adv_opts.db_gencode
--matrix $adv_opts.matrix
 @ADV_FILTER_QUERY@
 @ADV_MAX_HITS@
 @ADV_WORD_SIZE@
+@ADV_MATRIX_GAPCOSTS@
 ##Ungapped disabled for now - see comments below
 ##$adv_opts.ungapped
 @ADV_ID_LIST_FILTER@
@@ -29,8 +29,6 @@ tblastn
 @ADV_WINDOW_SIZE@
 @ADV_THRESHOLD@
 @ADV_COMP_BASED_STATS@
-@ADV_GAPOPEN@
-@ADV_GAPEXTEND@
 ## End of advanced options:
 #end if
     </command>
@@ -49,7 +47,7 @@ tblastn
 
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
             <expand macro="input_filter_query_default_true" />
-            <expand macro="input_scoring_matrix" />
+            <expand macro="input_matrix_gapcosts" />
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />
             <!--
@@ -64,8 +62,6 @@ tblastn
             <expand macro="input_window_size" />
             <expand macro="input_threshold" />
             <expand macro="input_comp_based_stats" />
-            <expand macro="input_gapopen" />
-            <expand macro="input_gapextend" />
         </expand>
     </inputs>
     <outputs>

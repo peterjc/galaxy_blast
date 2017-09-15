@@ -69,6 +69,8 @@ ${infile}
                 <param argument="-gapextend" type="integer" size="5" value="" label="Cost to extend a gap" />
                 <param argument="-scale" type="float" size="5" value="" label="PSSM scale factor" />
                 <expand macro="input_scoring_matrix" />
+                <expand macro="input_gapopen" />
+                <expand macro="input_gapextend" />
             </when>
         </conditional>
 
