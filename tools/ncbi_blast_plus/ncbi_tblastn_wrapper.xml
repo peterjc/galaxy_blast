@@ -29,6 +29,8 @@ tblastn
 @ADV_WINDOW_SIZE@
 @ADV_THRESHOLD@
 @ADV_COMP_BASED_STATS@
+@ADV_GAPOPEN@
+@ADV_GAPEXTEND@
 ## End of advanced options:
 #end if
     </command>
@@ -62,6 +64,8 @@ tblastn
             <expand macro="input_window_size" />
             <expand macro="input_threshold" />
             <expand macro="input_comp_based_stats" />
+            <expand macro="input_gapopen" />
+            <expand macro="input_gapextend" />
         </expand>
     </inputs>
     <outputs>

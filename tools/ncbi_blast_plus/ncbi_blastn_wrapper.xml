@@ -31,6 +31,8 @@ $adv_opts.ungapped
 #if ($blast_type == "dc-megablast"):
 -window_size @ADV_WINDOW_SIZE@ 
 #end if
+@ADV_GAPOPEN@
+@ADV_GAPEXTEND@
 ## End of advanced options:
 #end if
     </command>
@@ -66,9 +68,11 @@ $adv_opts.ungapped
             <expand macro="input_qcov_hsp_perc" />
             <param name="window_size" type="integer" optional="true" min="0" 
                 label="Multiple hits window size: use 0 to specify 1-hit algorithm, leave blank for default"
-                help="Only relevant for dc-megablast. Default window size changes with substitution matrix and BLAST type.
+                help="Only relevant for dc-megablast, and otherwise ignored. Default window size changes with substitution matrix and BLAST type.
                     Entering a non-negative integer will override the default."> 
             </param>
+            <expand macro="input_gapopen"/>
+            <expand macro="input_gapextend"/>
         </expand>
     </inputs>
     <outputs>

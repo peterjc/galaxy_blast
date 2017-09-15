@@ -29,6 +29,8 @@ blastp
     @ADV_WINDOW_SIZE@
     @ADV_THRESHOLD@
     @ADV_COMP_BASED_STATS@
+    @ADV_GAPOPEN@
+    @ADV_GAPEXTEND@
 ## End of advanced options:
 #end if
     </command>
@@ -52,7 +54,9 @@ blastp
             <expand macro="input_word_size" />
             <expand macro="input_window_size" />
             <expand macro="input_threshold" />
-            <expand macro="input_comp_based_stats" />    
+            <expand macro="input_comp_based_stats" />
+            <expand macro="input_gapopen" />
+            <expand macro="input_gapextend" />
             <!--
             Can't use '-ungapped' on its own, error back is:
             Composition-adjusted searched are not supported with an ungapped search, please add -comp_based_stats F or do a gapped search
