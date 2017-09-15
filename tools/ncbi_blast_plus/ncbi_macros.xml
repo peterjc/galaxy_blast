@@ -242,7 +242,7 @@
     </xml>
     <xml name="input_conditional_choose_db_type">
         <conditional name="db_opts">
-            <param name="db_type" type="select" label="Type of BLAST database">
+            <param argument="-db_type" type="select" label="Type of BLAST database">
               <option value="nucl" selected="true">Nucleotide</option>
               <option value="prot">Protein</option>
             </param>
