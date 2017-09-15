@@ -87,6 +87,10 @@ using the NCBI BLAST+ tblastx command line tool.
 
 -------
 
+@CLI_OPTIONS@
+
+-------
+
 **References**
 
 If you use this Galaxy tool in work leading to a scientific publication please

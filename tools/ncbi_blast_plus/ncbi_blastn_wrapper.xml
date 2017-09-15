@@ -181,6 +181,10 @@ Algorithms include blastn, megablast, and discontiguous megablast.
 
 -------
 
+@CLI_OPTIONS@
+
+-------
+
 **References**
 
 If you use this Galaxy tool in work leading to a scientific publication please

@@ -164,11 +164,19 @@ using the NCBI BLAST+ tblastn command line tool.
 
 @FASTA_WARNING@
 
------
+------
 
 @OUTPUT_FORMAT@
 
--------
+------
+
+@CLI_OPTIONS
+
+------
+
+@SUBSTITUTION_MATRIX_PROTEIN@
+
+------
 
 **References**
 

@@ -127,9 +127,17 @@ using the NCBI BLAST+ blastx command line tool.
 
 @FASTA_WARNING@
 
------
+-------
 
 @OUTPUT_FORMAT@
+
+-------
+
+@CLI_OPTIONS@
+
+-------
+
+@SUBSTITUTION_MATRIX_PROTEIN@
 
 -------
 
