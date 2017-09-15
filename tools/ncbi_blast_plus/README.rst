@@ -244,6 +244,9 @@ v0.2.00 - Updated for NCBI BLAST+ 2.5.0, where GI numbers are less visible,
           (internal change only).
 v0.2.01 - Use ``<command detect_errors="aggressive">`` (internal change only).
         - Single quote command line arguments (internal change only).
+        - Show the BLAST option corresponding to each tool parameter
+        - Add ``-max_hsps`` option
+        - Add ``-use_sw_tback`` option for BLASTP
 ======= ======================================================================
 
 
@@ -280,7 +283,7 @@ To just build and check the tar ball, use::
 
     $ planemo shed_upload --tar_only tools/ncbi_blast_plus/
     ...
-    $ tar -tzf shed_upload.tar.gz 
+    $ tar -tzf shed_upload.tar.gz
     test-data/blastdb.loc
     ...
     tools/ncbi_blast_plus/tool_dependencies.xml
