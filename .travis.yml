@@ -67,9 +67,12 @@ jobs:
 # which we will do manually rather than via a (local) Galaxy Tool Shed.
 
 before_install:
- - "if grep -P '\t' *.rst */*/*.rst; then echo 'Tabs are bad, please use four spaces.'; false; fi"
- - "if grep -P '\t' */*/*.xml; then echo 'Tabs are bad, please use four spaces.'; false; fi"
- - "if grep -P '\t' */*/.shed.yml; then echo 'Tabs are bad, please use four spaces.'; false; fi"
+ - "if grep -P '\t' *.rst */*.rst */*/*.rst; then echo 'Tabs are bad, please use four spaces in RST files.'; false; fi"
+ - "if grep -P '\t' */*/*.xml; then echo 'Tabs are bad, please use four spaces in XML files.'; false; fi"
+ - "if grep -P '\t' */*/.shed.yml; then echo 'Tabs are bad, please use four spaces in shed YAML files.'; false; fi"
+ - "if grep -n -r '[[:blank:]]$' *.rst */*.rst */*/*.rst; then echo 'Please remove trailing whitespace in RST files.'; false; fi"
+ - "if grep -n -r '[[:blank:]]$' */*/*.xml; then echo 'Please remove trailing whitespace in XML files.'; false; fi"
+ - "if grep -n -r '[[:blank:]]$' */*/.shed.yml; then echo 'Please remove trailing whitespace in shed YAML files.'; false; fi"
  - pip install --upgrade pip setuptools
  - pip install flake8 flake8-blind-except restructuredtext-lint
  - echo "Using flake8 to check Python code"
