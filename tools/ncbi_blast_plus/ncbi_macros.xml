@@ -174,7 +174,7 @@
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
             <when value="db">
-                <param name="database" type="select" multiple="true" label="Nucleotide BLAST database">
+                <param name="database" argument="-db" type="select" multiple="true" label="Nucleotide BLAST database">
                     <options from_data_table="blastdb" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
@@ -182,13 +182,13 @@
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+                <param name="histdb" argument="-db" type="data" format="blastdbn" label="Nucleotide BLAST database" />
                 <param name="subject" type="hidden" value="" />
             </when>
             <when value="file">
                 <param name="database" type="hidden" value="" />
                 <param name="histdb" type="hidden" value="" />
-                <param name="subject" type="data" format="fasta" label="Nucleotide FASTA file to use as database"/>
+                <param argument="subject" type="data" format="fasta" label="Nucleotide FASTA subject file to use instead of a database"/>
             </when>
         </conditional>
     </xml>
@@ -200,7 +200,7 @@
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
             <when value="db">
-                <param name="database" type="select" multiple="true" label="Protein BLAST database">
+                <param name="database" argument="db" type="select" multiple="true" label="Protein BLAST database">
                     <options from_data_table="blastdb_p" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
@@ -208,13 +208,13 @@
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
+                <param name="histdb" argument="db" type="data" format="blastdbp" label="Protein BLAST database" />
                 <param name="subject" type="hidden" value="" />
             </when>
             <when value="file">
                 <param name="database" type="hidden" value="" />
                 <param name="histdb" type="hidden" value="" />
-                <param name="subject" type="data" format="fasta" label="Protein FASTA file to use as database"/>
+                <param argument="subject" type="data" format="fasta" label="Protein FASTA subject file to use instead of a database"/>
             </when>
         </conditional>
     </xml>
