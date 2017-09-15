@@ -111,7 +111,7 @@ To just build and check the tar ball, use::
 
     $ planemo shed_upload --tar_only  ~/repositories/galaxy_blast/tools/blastxml_to_top_descr/
     ...
-    $ tar -tzf shed_upload.tar.gz 
+    $ tar -tzf shed_upload.tar.gz
     test-data/blastp_four_human_vs_rhodopsin.xml
     test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
     test-data/blastp_four_human_vs_rhodopsin_top3.tabular

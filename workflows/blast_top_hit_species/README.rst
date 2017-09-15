@@ -15,7 +15,7 @@ This is an example workflow using the Galaxy wrappers for NCBI BLAST+,
 see https://github.com/peterjc/galaxy_blast
 
 
-Galaxy workflow for counting species of top BLAST hits 
+Galaxy workflow for counting species of top BLAST hits
 ======================================================
 
 This Galaxy workflow (file ``blast_top_hit_species.ga``) is intended for an

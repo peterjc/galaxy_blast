@@ -118,7 +118,7 @@ To just build and check the tar ball, use::
 
     $ planemo shed_upload --tar_only tools/blast_rbh/
     ...
-    $ tar -tzf shed_upload.tar.gz 
+    $ tar -tzf shed_upload.tar.gz
     test-data/four_human_proteins.fasta
     test-data/k12_edited_proteins.fasta
     test-data/k12_ten_proteins.fasta

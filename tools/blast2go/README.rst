@@ -200,7 +200,7 @@ To just build and check the tar ball, use::
 
     $ planemo shed_upload --tar_only  ~/repositories/galaxy_blast/tools/blast2go/
     ...
-    $ tar -tzf shed_upload.tar.gz 
+    $ tar -tzf shed_upload.tar.gz
     test-data/blastp_sample.blast2go.tabular
     test-data/blastp_sample.xml
     tool-data/blast2go.loc.sample
