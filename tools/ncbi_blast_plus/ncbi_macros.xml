@@ -167,6 +167,7 @@
         </param>
     </xml>
     <xml name="input_conditional_nucleotide_db">
+        <!-- Usually database argument mapped to -db, but -in in dustmasker -->
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="true">Locally installed BLAST database</option>
@@ -174,7 +175,7 @@
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
             <when value="db">
-                <param name="database" argument="-db" type="select" multiple="true" label="Nucleotide BLAST database">
+                <param name="database" type="select" multiple="true" label="Nucleotide BLAST database">
                     <options from_data_table="blastdb" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
@@ -182,7 +183,7 @@
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" argument="-db" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
                 <param name="subject" type="hidden" value="" />
             </when>
             <when value="file">
@@ -193,6 +194,7 @@
         </conditional>
     </xml>
     <xml name="input_conditional_protein_db">
+        <!-- Usually database argument mapped to -db, but -in in segmasker -->
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="true">Locally installed BLAST database</option>
@@ -200,7 +202,7 @@
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
             <when value="db">
-                <param name="database" argument="-db" type="select" multiple="true" label="Protein BLAST database">
+                <param name="database" type="select" multiple="true" label="Protein BLAST database">
                     <options from_data_table="blastdb_p" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
@@ -208,7 +210,7 @@
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" argument="-db" type="data" format="blastdbp" label="Protein BLAST database" />
+                <param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
                 <param name="subject" type="hidden" value="" />
             </when>
             <when value="file">
