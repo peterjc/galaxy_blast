@@ -244,9 +244,10 @@ v0.2.00 - Updated for NCBI BLAST+ 2.5.0, where GI numbers are less visible,
           (internal change only).
 v0.2.01 - Use ``<command detect_errors="aggressive">`` (internal change only).
         - Single quote command line arguments (internal change only).
-        - Show the BLAST option corresponding to each tool parameter
-        - Add ``-max_hsps`` option
-        - Add ``-use_sw_tback`` option for BLASTP
+        - Show BLAST command line argument corresponding to each tool
+          parameter (contribution from Nicola Soranzo).
+        - Add ``-max_hsps`` option (contribution from Nicola Soranzo).
+        - Add ``-use_sw_tback`` option for BLASTP (Nicola Soranzo).
 ======= ======================================================================
 
 
