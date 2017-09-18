@@ -93,6 +93,9 @@ blastn -query rhodopsin_nucs.fasta -subject three_human_mRNA.fasta -task megabla
 echo "blastn_rhodopsin_vs_three_human.columns.tabular"
 blastn -query rhodopsin_nucs.fasta -subject three_human_mRNA.fasta -task megablast -evalue 1e-40 -out blastn_rhodopsin_vs_three_human.columns.tabular -outfmt "6 qseqid sseqid pident qlen slen"
 
+echo "blastn_chimera_vs_rhodopsin_db_max_hsps1.tabular"
+blastn -query chimera.fasta -db rhodopsin_nucs.fasta -out blastn_chimera_vs_rhodopsin_db_max_hsps1.tabular -outfmt 6 -max_hsps 1
+
 echo "blastp_four_human_vs_rhodopsin.xml"
 blastp -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -task blastp -evalue 1e-08 -qcov_hsp_perc 25 -out blastp_four_human_vs_rhodopsin.xml -outfmt 5 -seg no -matrix BLOSUM62 -parse_deflines
 
