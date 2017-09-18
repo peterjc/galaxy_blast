@@ -42,8 +42,9 @@
             <when value="ext"/>
             <when value="cols">
                 <param name="std_cols" type="select" multiple="true" display="checkboxes" label="Standard columns">
-                    <option selected="true" value="qseqid">qseqid = Query Seq-id (ID of your sequence)</option>
-                    <option selected="true" value="sseqid">sseqid = Subject Seq-id (ID of the database hit)</option>
+                    <!-- Columns 1 and 2 were qseqid,sseqid -> qacc,sacc in v2.5.0 -> qaccver,saccver in v2.6.0 -->
+                    <option selected="true" value="qaccver">qaccver = Query accesion.version (ID of your sequence)</option>
+                    <option selected="true" value="saccver">saccver = Subject accession.version (ID of database hit)</option>
                     <option selected="true" value="pident">pident = Percentage of identical matches</option>
                     <option selected="true" value="length">length = Alignment length</option>
                     <option selected="true" value="mismatch">mismatch = Number of mismatches</option>
@@ -71,14 +72,20 @@
                     <option value="salltitles">salltitles = All subject title(s), separated by a '&lt;&gt;'</option>
                 </param>
                 <param name="ids_cols" type="select" multiple="true" display="checkboxes" label="Other identifier columns">
+                    <option selected="true" value="qseqid">qseqid = Query Seq-id (default column one until BLAST+ 2.5.0)</option>
                     <option value="qgi">qgi = Query GI</option>
-                    <option value="qacc">qacc = Query accesion</option>
+                    <option value="qacc">qacc = Query accesion (default column one in BLAST+ 2.5.0)</option>
+                    <!-- This is now the default column one as of BLAST+ 2.6.0,
                     <option value="qaccver">qaccver = Query accesion.version</option>
+                    -->
+                    <option selected="true" value="sseqid">sseqid = Subject Seq-id (default column two until BLAST+ 2.5.0)</option>
                     <option value="sallseqid">sallseqid = All subject Seq-id(s), separated by a ';'</option>
                     <option value="sgi">sgi = Subject GI</option>
                     <option value="sallgi">sallgi = All subject GIs</option>
-                    <option value="sacc">sacc = Subject accession</option>
+                    <option value="sacc">sacc = Subject accession (default column two in BLAST+ 2.5.0)</option>
+                    <!-- This is now the default column two as of BLAST+ 2.6.0,
                     <option value="saccver">saccver = Subject accession.version</option>
+                    -->
                     <option value="sallacc">sallacc = All subject accessions</option>
                     <option value="stitle">stitle = Subject Title</option>
                 </param>
@@ -421,8 +428,8 @@ tool is tabular. The standard BLAST+ tabular output contains 12 columns:
 ====== ========= ============================================
 Column NCBI name Description
 ------ --------- --------------------------------------------
-     1 qseqid    Query Seq-id (ID of your sequence)
-     2 sseqid    Subject Seq-id (ID of the database hit)
+     1 qaccver   Query accesion.version (ID of your sequence)
+     2 saccver   Subject accesion.version (database hit)
      3 pident    Percentage of identical matches
      4 length    Alignment length
      5 mismatch  Number of mismatches
@@ -434,6 +441,10 @@ Column NCBI name Description
     11 evalue    Expectation value (E-value)
     12 bitscore  Bit score
 ====== ========= ============================================
+
+Note that originally columns one and two were ``qseqid`` and ``sseqid``,
+then ``qacc`` and ``sacc`` in BLAST+ 2.5.0, and then ``qaccver`` and
+``saccver`` in BLAST+ 2.6.0.
 
 The BLAST+ tools can optionally output additional columns of information,
 but this takes longer to calculate. Many commonly used extra columns are

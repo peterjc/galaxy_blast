@@ -95,7 +95,7 @@ $adv_opts.ungapped
             <param name="database" value="" />
             <param name="evalue_cutoff" value="1e-40" />
             <param name="out_format" value="cols" />
-            <param name="std_cols" value="qseqid,sseqid,pident" />
+            <param name="std_cols" value="qaccver,saccver,pident" />
             <param name="ext_cols" value="qlen,slen" />
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastn_rhodopsin_vs_three_human.columns.tabular" ftype="tabular" />

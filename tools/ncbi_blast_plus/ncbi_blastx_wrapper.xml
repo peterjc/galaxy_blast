@@ -97,11 +97,12 @@ $adv_opts.ungapped
             <param name="database" value="" />
             <param name="evalue_cutoff" value="1e-10" />
             <param name="out_format" value="cols" />
-            <param name="std_cols" value="qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,sstart,send,evalue,bitscore" />
+            <param name="std_cols" value="qaccver,saccver,pident,length,mismatch,gapopen,qstart,qend,sstart,send,evalue,bitscore" />
             <param name="ext_cols" value="sallseqid,score,nident,positive,gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles" />
             <param name="ids_cols" value="qgi,qacc,qaccver,sallseqid,sgi,sallgi,sacc,saccver,sallacc,stitle" />
             <param name="misc_cols" value="sstrand,frames,btop,qcovs,qcovhsp" />
             <param name="tax_cols" value="staxids,sscinames,scomnames,sblastnames,sskingdoms" />
+            <param name="legacy_cols" value="qseqid,sseqid" />
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastx_rhodopsin_vs_four_human_all.tabular" ftype="tabular" />
         </test>
