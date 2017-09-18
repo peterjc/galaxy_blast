@@ -1,0 +1,3 @@
+# Binary files (no line-ending conversions)
+*.pin binary diff=hex
+*.nin binary diff=hex
