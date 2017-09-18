@@ -612,19 +612,22 @@ $adv_opts.parse_deflines
     </token>
     
     <token name="@ADV_COMP_BASED_STATS@">
-#if (str($adv_opts.comp_based_stats)):
+#if (str($adv_opts.comp_based_stats)
+        and int(str($adv_opts.comp_based_stats)) >= 0):
 -comp_based_stats $adv_opts.comp_based_stats
 #end if
     </token>
     
     <token name="@ADV_GAPOPEN@">
-#if (str($adv_opts.gapopen)):
+#if (str($adv_opts.gapopen)
+    and int(str($adv_opts.gapopen)) >= 0):
 -gapopen $adv_opts.gapopen
 #end if
     </token>
 
     <token name="@ADV_GAPEXTEND@">
-#if (str($adv_opts.gapextend)):
+#if (str($adv_opts.gapextend)
+    and int(str($adv_opts.gapextend)) >= 0):
 -gapextend $adv_opts.gapextend
 #end if
     </token>
