@@ -250,6 +250,11 @@ v0.2.01 - Use ``<command detect_errors="aggressive">`` (internal change only).
         - Add ``-use_sw_tback`` option for BLASTP (Nicola Soranzo).
 v0.2.02 - Document the BLAST+ 2.5.0 change in the standard 12 column output
           from ``qseqid,sseqid,...`` to ``qacc,sacc,...`` instead.
+v0.2.03 - Updated for NCBI BLAST+ 2.6.0, which shows accessions with version
+          numbers in the tabular output.
+        - Depends on BioConda or legacy ToolShed ``package_blast_plus_2_6_0``.
+        - Document the BLAST+ 2.6.0 change in the standard 12 column output
+          from ``qacc,sacc,...`` to ``qaccver,saccver,...`` instead.
 ======= ======================================================================
 
 
