@@ -248,6 +248,9 @@ v0.2.01 - Use ``<command detect_errors="aggressive">`` (internal change only).
           parameter (contribution from Nicola Soranzo).
         - Add ``-max_hsps`` option (contribution from Nicola Soranzo).
         - Add ``-use_sw_tback`` option for BLASTP (Nicola Soranzo).
+v0.2.02 - Updated for NCBI BLAST+ 2.6.0, which shows accessions with version
+          numbers in the tabular output.
+        - Depends on BioConda or legacy ToolShed ``package_blast_plus_2_6_0``.
 ======= ======================================================================
 
 
