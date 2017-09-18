@@ -108,6 +108,9 @@ Convert one (or more) BLAST XML files into a single tabular file.
 The columns option can be 'std' (standard 12 columns), 'ext'
 (extended 25 columns), or a list of BLAST+ column names like
 'qseqid,sseqid,pident' (space or comma separated).
+
+Note if using a list of column names, currently ONLY the 25
+extended column names are supported.
 """
 parser = OptionParser(usage=usage)
 parser.add_option('-o', '--output', dest='output', default=None,
