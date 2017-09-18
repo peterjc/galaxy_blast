@@ -2,7 +2,7 @@
 <!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
 <BlastOutput>
   <BlastOutput_program>deltablast</BlastOutput_program>
-  <BlastOutput_version>DELTABLAST 2.5.0+</BlastOutput_version>
+  <BlastOutput_version>DELTABLAST 2.6.0+</BlastOutput_version>
   <BlastOutput_reference>Grzegorz M. Boratyn, Alejandro A. Schaffer, Richa Agarwala, Stephen F. Altschul, David J. Lipman and Thomas L. Madden (2012) &quot;Domain enhanced lookup time accelerated BLAST&quot;, Biology Direct 7:12.</BlastOutput_reference>
   <BlastOutput_db></BlastOutput_db>
   <BlastOutput_query-ID>Q9BS26</BlastOutput_query-ID>
