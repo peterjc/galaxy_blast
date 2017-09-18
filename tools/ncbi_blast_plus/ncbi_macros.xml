@@ -469,9 +469,10 @@
     </xml>
 
     <xml name="input_comp_based_stats">
-        <param name="comp_based_stats" type="select" optional="true"
+        <param name="comp_based_stats" type="select"
             label="Composition-based statistics"
-            help="Leave blank for default, which varies based on application and task. Most common default is 2.">
+            help="The default value varies based on application and task. Most common default is 2.">
+            <option value="-1">Use default</option>
             <option value="0">0: No composition-based statistics</option>
             <option value="1">1: Composition-based statistics as in NAR 29:2994-3005, 2001</option>
             <option value="2">2: Composition-based score adjustment as in Bioinformatics
@@ -587,37 +588,37 @@
 #end if
     </token>
     <token name="@ADV_WORD_SIZE@">
-#if $adv_opts.word_size is not None:
+#if str($adv_opts.word_size) != "":
 -word_size $adv_opts.word_size
 #end if
 $adv_opts.parse_deflines
     </token>
     <token name="@ADV_WINDOW_SIZE@">
-#if $adv_opts.window_size is not None:
+#if str($adv_opts.window_size) != "":
 -window_size $adv_opts.window_size
 #end if
     </token>
 
     <token name="@ADV_THRESHOLD@">
-#if $adv_opts.threshold is not None:
+#if str($adv_opts.threshold) != "":
 -threshold $adv_opts.threshold
 #end if
     </token>
 
     <token name="@ADV_COMP_BASED_STATS@">
-#if $adv_opts.comp_based_stats is not None:
+#if str($adv_opts.comp_based_stats) and int(str($adv_opts.comp_based_stats)) > 0:
 -comp_based_stats $adv_opts.comp_based_stats
 #end if
     </token>
 
     <token name="@ADV_GAPOPEN@">
-#if $adv_opts.gapopen is not None:
+#if str($adv_opts.gapopen) != "":
 -gapopen $adv_opts.gapopen
 #end if
     </token>
 
     <token name="@ADV_GAPEXTEND@">
-#if $adv_opts.gapextend is not None:
+#if $adv_opts.gapextend != "":
 -gapextend $adv_opts.gapextend
 #end if
     </token>
