@@ -126,7 +126,7 @@
                 <option value="PAM30">PAM30</option>
             </param>
             <when value="">
-            <!-- do nothing -->   
+            <!-- do nothing -->
             </when>
             <when value="BLOSUM90">
                 <param name="gap_costs" type="select" label="Gap Costs">
@@ -245,8 +245,8 @@
         </conditional>
     </xml>
 
-    <!-- these are still used and needed for blastn, tblastx, 
-      otherwise, the combined matrix/gapcosts macro is used -->
+    <!-- these are still used and needed for blastn, tblastx -->
+    <!-- otherwise, the combined matrix/gapcosts macro is used -->
     <xml name="input_gapopen">
         <param name="gapopen" type="integer" optional="true" min="1"
             label="Cost to open a gap"
@@ -458,7 +458,7 @@
         <param name="window_size" type="integer" optional="true" min="0"
             label="Multiple hits window size: use 0 to specify 1-hit algorithm, leave blank for default"
             help="Default window size varies with substitution matrix and BLAST type. Enter an integer to override the default."/>
-    </xml>  
+    </xml>
 
     <xml name="input_threshold">
         <param name="threshold" type="integer" optional="true" min="0"
@@ -478,7 +478,6 @@
         </param>
     </xml>
 
-    
     <xml name="advanced_options">
         <conditional name="adv_opts">
             <param name="adv_opts_selector" type="select" label="Advanced Options">
@@ -517,11 +516,7 @@
             </when>
         </conditional>
     </xml>
-    
-
-
 <!--Tokens-->
-
     <token name="@ADV_MATRIX_GAPCOSTS@">
 #if str($adv_opts.matrix_gapcosts.matrix):
     -matrix $adv_opts.matrix_gapcosts.matrix
@@ -534,7 +529,7 @@
     -qcov_hsp_perc $adv_opts.qcov_hsp_perc
 #end if
     </token>
-    
+
     <token name="@ADV_ID_LIST_FILTER@">
 #if $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_gilist':
     -negative_gilist $adv_opts.adv_optional_id_files_opts.negative_gilist
@@ -544,9 +539,9 @@
     -seqidlist $adv_opts.adv_optional_id_files_opts.seqidlist
 #end if
     </token>
-    
+
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
-    
+
     <token name="@BLAST_DB_SUBJECT@">
 #if $db_opts.db_opts_selector == "db":
   -db '${" ".join(str($db_opts.database.fields.path).split(","))}'
@@ -556,7 +551,7 @@
   -subject '$db_opts.subject'
 #end if
     </token>
-    
+
     <token name="@BLAST_OUTPUT@">-out '$output1'
 ##Set the extended list here so when we add things, saved workflows are not affected
 #if str($output.out_format)=="ext":
@@ -571,9 +566,7 @@
     -outfmt $output.out_format
 #end if
     </token>
-    
     <token name="@ADV_FILTER_QUERY@">$adv_opts.filter_query</token>
-    
     <token name="@ADV_MAX_HITS@">
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
 ## Note -max_target_seqs used to simply override -num_descriptions and -num_alignments
@@ -591,33 +584,31 @@
     -max_hsps $adv_opts.max_hsps
 #end if
     </token>
-    
     <token name="@ADV_WORD_SIZE@">
 #if (str($adv_opts.word_size) and int(str($adv_opts.word_size)) > 0):
 -word_size $adv_opts.word_size
 #end if
 $adv_opts.parse_deflines
     </token>
-    
     <token name="@ADV_WINDOW_SIZE@">
 #if (str($adv_opts.window_size) and int(str($adv_opts.window_size)) >= 0):
 -window_size $adv_opts.window_size
 #end if
-    </token>    
-    
+    </token>
+
     <token name="@ADV_THRESHOLD@">
 #if (str($adv_opts.threshold) and int(str($adv_opts.threshold)) >= 0):
 -threshold $adv_opts.threshold
 #end if
     </token>
-    
+
     <token name="@ADV_COMP_BASED_STATS@">
 #if (str($adv_opts.comp_based_stats)
         and int(str($adv_opts.comp_based_stats)) >= 0):
 -comp_based_stats $adv_opts.comp_based_stats
 #end if
     </token>
-    
+
     <token name="@ADV_GAPOPEN@">
 #if (str($adv_opts.gapopen)
     and int(str($adv_opts.gapopen)) >= 0):
@@ -631,9 +622,8 @@ $adv_opts.parse_deflines
 -gapextend $adv_opts.gapextend
 #end if
     </token>
-    
-    <!-- @ON_DB_SUBJECT@ is for use with @BLAST_DB_SUBJECT@ -->
 
+    <!-- @ON_DB_SUBJECT@ is for use with @BLAST_DB_SUBJECT@ -->
     <token name="@ON_DB_SUBJECT@">#if str($db_opts.db_opts_selector)=='db'
 '${db_opts.database}'
 #elif str($db_opts.db_opts_selector)=='histdb'
@@ -641,7 +631,7 @@ $adv_opts.parse_deflines
 #else
 '${db_opts.subject.name}'
 #end if</token>
-    
+
     <token name="@REFERENCES@">
 Peter J. A. Cock, John M. Chilton, Björn Grüning, James E. Johnson, Nicola Soranzo (2015).
 NCBI BLAST+ integrated into Galaxy. *GigaScience* 4:39
@@ -743,7 +733,7 @@ For large input datasets it is advisable to allow overnight processing.
 
 -----
     </token>
-   
+
     <token name="@CLI_OPTIONS@">**Advanced Options**
 
 For help with advanced options and their default values, visit the `NCBI BLAST® Command Line Applications User Manual &lt;https://www.ncbi.nlm.nih.gov/books/NBK279675/&gt;`_.
@@ -751,7 +741,7 @@ For help with advanced options and their default values, visit the `NCBI BLAST®
     </token>
 
     <token name="@SUBSTITUTION_MATRIX_PROTEIN@">**Substitution Matrices**
-        
+
 For more information on the substitution matrices, see the BLAST User Manual page at https://www.ncbi.nlm.nih.gov/books/NBK379667/.
 That page contains the following table of recommended matrices and gap costs for protein searches:
 
