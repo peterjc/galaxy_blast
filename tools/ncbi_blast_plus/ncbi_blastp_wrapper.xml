@@ -85,7 +85,7 @@ blastp
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="window_size" value="40" />
             <param name="parse_deflines" value="true" />
             <param name="qcov_hsp_perc" value="25" />
@@ -103,7 +103,7 @@ blastp
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="window_size" value="40" />
             <param name="parse_deflines" value="true" />
             <param name="qcov_hsp_perc" value="25" />
@@ -121,7 +121,7 @@ blastp
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="true" />
             <param name="qcov_hsp_perc" value="25" />
             <output name="output1" file="blastp_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />

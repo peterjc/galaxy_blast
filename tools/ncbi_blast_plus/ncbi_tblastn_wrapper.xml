@@ -81,7 +81,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.xml" ftype="blastxml" />
         </test>
@@ -96,7 +96,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />
         </test>
@@ -111,7 +111,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.tabular" ftype="tabular" />
         </test>
@@ -128,7 +128,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="true" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin_deflines.tabular" ftype="tabular" />
         </test>
@@ -144,7 +144,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.html" ftype="html" lines_diff="8" />
         </test>

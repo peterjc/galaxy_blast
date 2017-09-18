@@ -69,7 +69,7 @@ deltablast
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="true" />
             <output name="output1" file="deltablast_four_human_vs_rhodopsin.xml" ftype="blastxml" />
         </test>
@@ -84,7 +84,7 @@ deltablast
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="true" />
             <output name="output1" file="deltablast_four_human_vs_rhodopsin.tabular" ftype="tabular" />
         </test>
@@ -99,7 +99,7 @@ deltablast
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="true" />
             <output name="output1" file="deltablast_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />
         </test>

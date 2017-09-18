@@ -439,7 +439,9 @@
     </xml>
 
     <xml name="input_word_size">
-        <param argument="-word_size" type="integer" min="0" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 2" />
+        <param argument="-word_size" type="integer" min="2" optional="true"
+        label="Word size for wordfinder algorithm"
+        help="Leave blank for default, otherwise minimum 2" />
     </xml>
 
     <xml name="input_strand">
@@ -585,40 +587,37 @@
 #end if
     </token>
     <token name="@ADV_WORD_SIZE@">
-#if (str($adv_opts.word_size) and int(str($adv_opts.word_size)) > 0):
+#if $adv_opts.word_size is not None:
 -word_size $adv_opts.word_size
 #end if
 $adv_opts.parse_deflines
     </token>
     <token name="@ADV_WINDOW_SIZE@">
-#if (str($adv_opts.window_size) and int(str($adv_opts.window_size)) >= 0):
+#if $adv_opts.window_size is not None:
 -window_size $adv_opts.window_size
 #end if
     </token>
 
     <token name="@ADV_THRESHOLD@">
-#if (str($adv_opts.threshold) and int(str($adv_opts.threshold)) >= 0):
+#if $adv_opts.threshold is not None:
 -threshold $adv_opts.threshold
 #end if
     </token>
 
     <token name="@ADV_COMP_BASED_STATS@">
-#if (str($adv_opts.comp_based_stats)
-        and int(str($adv_opts.comp_based_stats)) >= 0):
+#if $adv_opts.comp_based_stats is not None:
 -comp_based_stats $adv_opts.comp_based_stats
 #end if
     </token>
 
     <token name="@ADV_GAPOPEN@">
-#if (str($adv_opts.gapopen)
-    and int(str($adv_opts.gapopen)) >= 0):
+#if $adv_opts.gapopen is not None:
 -gapopen $adv_opts.gapopen
 #end if
     </token>
 
     <token name="@ADV_GAPEXTEND@">
-#if (str($adv_opts.gapextend)
-    and int(str($adv_opts.gapextend)) >= 0):
+#if $adv_opts.gapextend is not None:
 -gapextend $adv_opts.gapextend
 #end if
     </token>
