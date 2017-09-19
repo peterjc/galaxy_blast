@@ -248,13 +248,13 @@
     <!-- these are still used and needed for blastn, tblastx -->
     <!-- otherwise, the combined matrix/gapcosts macro is used -->
     <xml name="input_gapopen">
-        <param name="gapopen" type="integer" optional="true" min="1"
+        <param argument="-gapopen" type="integer" optional="true" min="1"
             label="Cost to open a gap"
             help="Leave blank for default. See tool help for defaults."/>
     </xml>
 
     <xml name="input_gapextend">
-        <param name="gapextend" type="integer" optional="true" min="1"
+        <param argument="-gapextend" type="integer" optional="true" min="1"
             label="Cost to extend a gap"
             help="Leave blank for default. See tool help for defaults."/>
     </xml>
@@ -457,19 +457,19 @@
     </xml>
 
     <xml name="input_window_size">
-        <param name="window_size" type="integer" optional="true" min="0"
+        <param argument="-window_size" type="integer" optional="true" min="0"
             label="Multiple hits window size: use 0 to specify 1-hit algorithm, leave blank for default"
             help="Default window size varies with substitution matrix and BLAST type. Enter an integer to override the default."/>
     </xml>
 
     <xml name="input_threshold">
-        <param name="threshold" type="integer" optional="true" min="0"
+        <param argument="-threshold" type="integer" optional="true" min="0"
             label="Minimum score to add a word to the BLAST lookup table."
             help="Leave blank for default, which varies based on application."/>
     </xml>
 
     <xml name="input_comp_based_stats">
-        <param name="comp_based_stats" type="select"
+        <param argument="-comp_based_stats" type="select"
             label="Composition-based statistics"
             help="The default value varies based on application and task. Most common default is 2.">
             <option value="-1">Use default</option>
