@@ -1,5 +1,5 @@
 <macros>
-    <token name="@WRAPPER_VERSION@">0.2.01</token>
+    <token name="@WRAPPER_VERSION@">0.2.02</token>
     <xml name="parallelism">
         <!-- If job splitting is enabled, break up the query file into parts -->
         <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
@@ -421,8 +421,8 @@ tool is tabular. The standard BLAST+ tabular output contains 12 columns:
 ====== ========= ============================================
 Column NCBI name Description
 ------ --------- --------------------------------------------
-     1 qseqid    Query Seq-id (ID of your sequence)
-     2 sseqid    Subject Seq-id (ID of the database hit)
+     1 qacc      Query accession
+     2 sacc      Subject accession (database hit)
      3 pident    Percentage of identical matches
      4 length    Alignment length
      5 mismatch  Number of mismatches
@@ -434,6 +434,12 @@ Column NCBI name Description
     11 evalue    Expectation value (E-value)
     12 bitscore  Bit score
 ====== ========= ============================================
+
+Until BLAST+ 2.5.0, the first two columns were ``qseqid`` and ``sseqid``,
+which were usually strings contained multiple pipe-separated entries.
+In BLAST+ 2.5.0, the first two columns became ``qacc`` and ``sacc``
+(accesion only), while in BLAST+ 2.6.0 this was changed again to use
+``qaccver`` and ``saccver`` (accession dot version).
 
 The BLAST+ tools can optionally output additional columns of information,
 but this takes longer to calculate. Many commonly used extra columns are
