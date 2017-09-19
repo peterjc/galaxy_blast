@@ -43,7 +43,7 @@ blastp
             <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
             <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
             <option value="blastp-fast">blastp-fast - Use longer words for seeding, faster but less accurate</option>
-                    </param>
+        </param>
         <expand macro="input_evalue" />
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
