@@ -37,11 +37,13 @@ blastp
 
         <expand macro="input_conditional_protein_db" />
 
-        <param name="blast_type" argument="-task" type="select" display="radio" label="Type of BLAST">
+        <param name="blast_type" argument="-task" type="select" display="radio"
+            label="Type of BLAST"
+            help="See help text for default parameter values for each BLAST type.">
             <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
-            <option value="blastp-fast">blastp-fast - Use longer words for seeding, faster but less accurate</option>
             <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
-        </param>
+            <option value="blastp-fast">blastp-fast - Use longer words for seeding, faster but less accurate</option>
+                    </param>
         <expand macro="input_evalue" />
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
@@ -149,7 +151,43 @@ using the NCBI BLAST+ blastp command line tool.
 
 -----
 
-@OUTPUT_FORMAT@
+**Default parameters for each type of BLAST**
+
++-------------+-------------------+-------------+
+|BLAST Type   | Option            |Default Value|
++=============+===================+=============+
+|blastp       |word\_size         |  3          |
+|             +-------------------+-------------+
+|             |gapopen            |  11         |
+|             +-------------------+-------------+
+|             |gapextend          |  1          |
+|             +-------------------+-------------+
+|             |matrix             |  BLOSUM62   |
+|             +-------------------+-------------+
+|             |threshold          |  11         |
+|             +-------------------+-------------+
+|             |comp\_based\_stats | 2           |
+|             +-------------------+-------------+
+|             |window\_size       | 40          |
++-------------+-------------------+-------------+
+|blastp-short |word\_size         |  2          |
+|             +-------------------+-------------+
+|             |gapopen            |  9          |
+|             +-------------------+-------------+
+|             |gapextend          |  1          |
+|             +-------------------+-------------+
+|             |matrix             |  PAM30      |
+|             +-------------------+-------------+
+|             |threshold          |  16         |
+|             +-------------------+-------------+
+|             |comp\_based\_stats | 0           |
+|             +-------------------+-------------+
+|             |window\_size       | 15          |
++-------------+-------------------+-------------+
+
+
+As of 9/19/2017, the defaults for blastp-fast are not documented.
+See `this paper &lt;https://www.ncbi.nlm.nih.gov/pubmed/17921491/&gt;`_ for details.
 
 -------
 
@@ -157,7 +195,7 @@ using the NCBI BLAST+ blastp command line tool.
 
 -------
 
-@SUBSTITUTION_MATRIX_PROTEIN@
+@OUTPUT_FORMAT@
 
 ------
 
