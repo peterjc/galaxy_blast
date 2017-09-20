@@ -618,8 +618,14 @@ $adv_opts.parse_deflines
     </token>
 
     <token name="@ADV_GAPEXTEND@">
-#if $adv_opts.gapextend:
+#if str($adv_opts.gapextend):
 -gapextend $adv_opts.gapextend
+#end if
+    </token>
+
+    <token name="@ADV_MATRIX@">
+#if str($adv_opts.matrix):
+-matrix $adv_opts.matrix
 #end if
     </token>
 
