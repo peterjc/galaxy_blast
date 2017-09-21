@@ -149,15 +149,15 @@ using the NCBI BLAST+ blastp command line tool.
 
 @FASTA_WARNING@
 
------
-
-@CLI_OPTIONS@
-
 -------
 
 @OUTPUT_FORMAT@
 
 ------
+
+@CLI_OPTIONS@
+
+-------
 
 **References**
 

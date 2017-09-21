@@ -133,10 +133,6 @@ using the NCBI BLAST+ blastx command line tool.
 
 -------
 
-@SUBSTITUTION_MATRIX_PROTEIN@
-
--------
-
 **References**
 
 If you use this Galaxy tool in work leading to a scientific publication please
