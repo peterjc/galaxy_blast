@@ -114,7 +114,7 @@
 
     <xml name="input_matrix_gapcosts">
         <conditional name="matrix_gapcosts">
-            <param argument="-matrix" type="select" label="Scoring matrix">
+            <param argument="-matrix" type="select" label="Scoring matrix and gap costs">
                 <option value="" selected="true">Use Defaults</option>
                 <option value="BLOSUM90">BLOSUM90</option>
                 <option value="BLOSUM80">BLOSUM80</option>
@@ -223,6 +223,8 @@
             </when>
             <when value="PAM70">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 12 -gapextend 3">Existence: 12 Extension: 3</option>
+                    <option value="-gapopen 11 -gapextend 2">Existence: 11 Extension: 2</option>
                     <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
                     <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
                     <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
@@ -234,9 +236,13 @@
             </when>
             <when value="PAM30">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="-gapopen 15 -gapextend 3">Existence: 15 Extension: 3</option>
+                    <option value="-gapopen 13 -gapextend 3">Existence: 13 Extension: 3</option>
+                    <option value="-gapopen 14 -gapextend 2">Existence: 14 Extension: 2</option>
                     <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
                     <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
                     <option value="-gapopen 5 -gapextend 2">Existence: 5  Extension: 2</option>
+                    <option value="-gapopen 14 -gapextend 1">Existence: 14 Extension: 1</option>
                     <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
                     <option value="-gapopen 9 -gapextend 1" selected="true">Existence: 9  Extension: 1 (default)</option>
                     <option value="-gapopen 8 -gapextend 1">Existence: 8  Extension: 1</option>
@@ -244,9 +250,8 @@
             </when>
         </conditional>
     </xml>
-
-    <!-- these are still used and needed for blastn, tblastx -->
     <!-- otherwise, the combined matrix/gapcosts macro is used -->
+    <!-- these gapopen and gapextend macros are only used in blastn -->
     <xml name="input_gapopen">
         <param argument="-gapopen" type="integer" optional="true" min="1"
             label="Cost to open a gap"
@@ -259,6 +264,7 @@
             help="Leave blank for default. See tool help for defaults."/>
     </xml>
 
+    <!-- this matrix macro is used in deltablast, makeprofiledb, psiblast, and tblastx -->
     <xml name="input_scoring_matrix">
         <param argument="-matrix" type="select" label="Scoring matrix">
             <option value="BLOSUM90">BLOSUM90</option>
@@ -271,7 +277,6 @@
             <option value="PAM30">PAM30</option>
         </param>
     </xml>
-
 
     <xml name="input_query_gencode">
         <param argument="-query_gencode" type="select" label="Query genetic code">
