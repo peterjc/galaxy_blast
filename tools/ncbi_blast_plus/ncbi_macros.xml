@@ -250,8 +250,8 @@
             </when>
         </conditional>
     </xml>
-    <!-- otherwise, the combined matrix/gapcosts macro is used -->
-    <!-- these gapopen and gapextend macros are only used in blastn -->
+    <!-- these gapopen and gapextend macros are only used in blastn.
+        otherwise, the combined matrix/gapcosts macro is used -->
     <xml name="input_gapopen">
         <param argument="-gapopen" type="integer" optional="true" min="0"
             label="Cost to open a gap"
