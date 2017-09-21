@@ -748,22 +748,7 @@ For large input datasets it is advisable to allow overnight processing.
     <token name="@CLI_OPTIONS@">**Advanced Options**
 
 For help with advanced options and their default values, visit the `NCBI BLAST® Command Line Applications User Manual &lt;https://www.ncbi.nlm.nih.gov/books/NBK279675/&gt;`_.
-
-    </token>
-
-    <token name="@SUBSTITUTION_MATRIX_PROTEIN@">**Substitution Matrices**
-
-For more information on the substitution matrices, see the BLAST User Manual page at https://www.ncbi.nlm.nih.gov/books/NBK379667/.
-That page contains the following table of recommended matrices and gap costs for protein searches:
-
-=============  ===================  ==========================
-Query Length   Substitution Matrix  Gap costs (open, extend)
--------------  -------------------  --------------------------
-&lt; 30            PAM-30               (9, 1)
-35-50              PAM-70               (10, 1)
-50-85              BLOSUM-80            (10, 1)
-&gt; 85            BLOSUM-62            (11, 1)
-=============  ===================  ==========================
+For amino acid substitution matrices, the NCBI User Manual page is `here &lt;https://www.ncbi.nlm.nih.gov/books/NBK379667/&gt;`_.
 
     </token>
 </macros>
