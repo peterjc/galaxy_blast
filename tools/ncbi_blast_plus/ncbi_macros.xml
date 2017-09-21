@@ -253,7 +253,7 @@
     <!-- otherwise, the combined matrix/gapcosts macro is used -->
     <!-- these gapopen and gapextend macros are only used in blastn -->
     <xml name="input_gapopen">
-        <param argument="-gapopen" type="integer" optional="true" min="1"
+        <param argument="-gapopen" type="integer" optional="true" min="0"
             label="Cost to open a gap"
             help="Leave blank for default. See tool help for defaults."/>
     </xml>
