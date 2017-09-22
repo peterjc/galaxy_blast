@@ -111,6 +111,17 @@ $adv_opts.ungapped
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastx_rhodopsin_vs_four_human_all.tabular" ftype="tabular" />
         </test>
+        <test>
+            <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="database" value="" />
+            <param name="evalue_cutoff" value="1e-10" />
+            <param name="out_format" value="6" />
+            <param name="adv_opts_selector" value="advanced" />
+            <param name="matrix" value="BLOSUM62" />
+            <output name="output1" file="blastx_rhodopsin_adv_vs_four_human.tabular" ftype="tabular" />
+        </test>
     </tests>
     <help>
 
