@@ -130,28 +130,31 @@
             </when>
             <when value="BLOSUM90">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 9 -gapextend 2">Existence: 9  Extension: 2</option>
                     <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
                     <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
                     <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
                     <option value="-gapopen 11 -gapextend 1">Existence: 11  Extension: 1</option>
-                    <option value="-gapopen 10 -gapextend 1" selected="true">Existence: 10  Extension: 1 (default)</option>
+                    <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
                     <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
                 </param>
 
             </when>
             <when value="BLOSUM80">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
                     <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
                     <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
                     <option value="-gapopen 11 -gapextend 1">Existence: 11  Extension: 1</option>
-                    <option value="-gapopen 10 -gapextend 1" selected="true">Existence: 10  Extension: 1 (default)</option>
+                    <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
                     <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
                 </param>
             </when>
             <when value="BLOSUM62">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 11 -gapextend 2">Existence: 11  Extension: 2</option>
                     <option value="-gapopen 10 -gapextend 2">Existence: 10  Extension: 2</option>
                     <option value="-gapopen 9 -gapextend 2">Existence: 9  Extension: 2</option>
@@ -160,7 +163,7 @@
                     <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
                     <option value="-gapopen 13 -gapextend 1">Existence: 13  Extension: 1</option>
                     <option value="-gapopen 12 -gapextend 1">Existence: 12  Extension: 1</option>
-                    <option value="-gapopen 11 -gapextend 1" selected="true">Existence: 11  Extension: 1 (default)</option>
+                    <option value="-gapopen 11 -gapextend 1">Existence: 11  Extension: 1</option>
                     <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
                     <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
                 </param>
@@ -168,6 +171,7 @@
             </when>
             <when value="BLOSUM50">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 13 -gapextend 3">Existence: 13  Extension: 3</option>
                     <option value="-gapopen 12 -gapextend 3">Existence: 12  Extension: 3</option>
                     <option value="-gapopen 11 -gapextend 3">Existence: 11  Extension: 3</option>
@@ -176,7 +180,7 @@
                     <option value="-gapopen 16 -gapextend 2">Existence: 16  Extension: 2</option>
                     <option value="-gapopen 15 -gapextend 2">Existence: 15  Extension: 2</option>
                     <option value="-gapopen 14 -gapextend 2">Existence: 14  Extension: 2</option>
-                    <option value="-gapopen 13 -gapextend 2" selected="true">Existence: 13  Extension: 2 (default)</option>
+                    <option value="-gapopen 13 -gapextend 2">Existence: 13  Extension: 2</option>
                     <option value="-gapopen 12 -gapextend 2">Existence: 12  Extension: 2</option>
                     <option value="-gapopen 19 -gapextend 1">Existence: 19  Extension: 1</option>
                     <option value="-gapopen 18 -gapextend 1">Existence: 18  Extension: 1</option>
@@ -188,11 +192,12 @@
             </when>
             <when value="BLOSUM45">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 13 -gapextend 3">Existence: 13  Extension: 3</option>
                     <option value="-gapopen 12 -gapextend 3">Existence: 12  Extension: 3</option>
                     <option value="-gapopen 11 -gapextend 3">Existence: 11  Extension: 3</option>
                     <option value="-gapopen 10 -gapextend 3">Existence: 10  Extension: 3</option>
-                    <option value="-gapopen 15 -gapextend 2" selected="true">Existence: 15  Extension: 2 (default)</option>
+                    <option value="-gapopen 15 -gapextend 2">Existence: 15  Extension: 2</option>
                     <option value="-gapopen 14 -gapextend 2">Existence: 14  Extension: 2</option>
                     <option value="-gapopen 13 -gapextend 2">Existence: 13  Extension: 2</option>
                     <option value="-gapopen 12 -gapextend 2">Existence: 12  Extension: 2</option>
@@ -204,6 +209,7 @@
             </when>
             <when value="PAM250">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 15 -gapextend 3">Existence: 15  Extension: 3</option>
                     <option value="-gapopen 14 -gapextend 3">Existence: 14  Extension: 3</option>
                     <option value="-gapopen 13 -gapextend 3">Existence: 13  Extension: 3</option>
@@ -211,7 +217,7 @@
                     <option value="-gapopen 17 -gapextend 2">Existence: 17  Extension: 2</option>
                     <option value="-gapopen 16 -gapextend 2">Existence: 16  Extension: 2</option>
                     <option value="-gapopen 15 -gapextend 2">Existence: 15  Extension: 2</option>
-                    <option value="-gapopen 14 -gapextend 2" selected="true">Existence: 14  Extension: 2 (default)</option>
+                    <option value="-gapopen 14 -gapextend 2">Existence: 14  Extension: 2</option>
                     <option value="-gapopen 13 -gapextend 2">Existence: 13  Extension: 2</option>
                     <option value="-gapopen 21 -gapextend 1">Existence: 21  Extension: 1</option>
                     <option value="-gapopen 20 -gapextend 1">Existence: 20  Extension: 1</option>
@@ -223,19 +229,21 @@
             </when>
             <when value="PAM70">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 12 -gapextend 3">Existence: 12 Extension: 3</option>
                     <option value="-gapopen 11 -gapextend 2">Existence: 11 Extension: 2</option>
                     <option value="-gapopen 8 -gapextend 2">Existence: 8  Extension: 2</option>
                     <option value="-gapopen 7 -gapextend 2">Existence: 7  Extension: 2</option>
                     <option value="-gapopen 6 -gapextend 2">Existence: 6  Extension: 2</option>
                     <option value="-gapopen 11 -gapextend 1">Existence: 11  Extension: 1</option>
-                    <option value="-gapopen 10 -gapextend 1" selected="true">Existence: 10  Extension: 1 (default)</option>
+                    <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
                     <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
                 </param>
 
             </when>
             <when value="PAM30">
                 <param name="gap_costs" type="select" label="Gap Costs">
+                    <option value="" selected="true">Use defaults</option>
                     <option value="-gapopen 15 -gapextend 3">Existence: 15 Extension: 3</option>
                     <option value="-gapopen 13 -gapextend 3">Existence: 13 Extension: 3</option>
                     <option value="-gapopen 14 -gapextend 2">Existence: 14 Extension: 2</option>
@@ -244,7 +252,7 @@
                     <option value="-gapopen 5 -gapextend 2">Existence: 5  Extension: 2</option>
                     <option value="-gapopen 14 -gapextend 1">Existence: 14 Extension: 1</option>
                     <option value="-gapopen 10 -gapextend 1">Existence: 10  Extension: 1</option>
-                    <option value="-gapopen 9 -gapextend 1" selected="true">Existence: 9  Extension: 1 (default)</option>
+                    <option value="-gapopen 9 -gapextend 1">Existence: 9  Extension: 1</option>
                     <option value="-gapopen 8 -gapextend 1">Existence: 8  Extension: 1</option>
                 </param>
             </when>
