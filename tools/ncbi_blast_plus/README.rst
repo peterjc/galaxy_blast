@@ -3,7 +3,7 @@ Galaxy wrappers for NCBI BLAST+ suite
 
 These wrappers are copyright 2010-2017 by Peter Cock (The James Hutton Institute,
 UK) and additional contributors including Edward Kirton, John Chilton,
-Nicola Soranzo, Jim Johnson, and Bjoern Gruening.
+Nicola Soranzo, Jim Johnson, Bjoern Gruening, and Caleb Easterly.
 
 See the licence text below.
 
@@ -250,6 +250,11 @@ v0.2.01 - Use ``<command detect_errors="aggressive">`` (internal change only).
         - Add ``-use_sw_tback`` option for BLASTP (Nicola Soranzo).
 v0.2.02 - Document the BLAST+ 2.5.0 change in the standard 12 column output
           from ``qseqid,sseqid,...`` to ``qacc,sacc,...`` instead.
+        - Support for per-matrix recommended gaps settings (``-gapopen`` and
+          ``-gapextend``, contribution from Caleb Easterly and Jim Johnson).
+        - Support for ``-window_size``, ``-threshold``, ``-comp_based_stats``
+          and revising ``-word_size`` to avoid using zero to mean  default
+      	  (contribution from Caleb Easterly).
 ======= ======================================================================
 
 
