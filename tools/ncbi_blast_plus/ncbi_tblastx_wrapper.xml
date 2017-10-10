@@ -17,14 +17,15 @@ tblastx
 @BLAST_OUTPUT@
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
--db_gencode $adv_opts.db_gencode
-$adv_opts.strand
--matrix $adv_opts.matrix
-@ADV_FILTER_QUERY@
-@ADV_MAX_HITS@
-@ADV_WORD_SIZE@
-@ADV_ID_LIST_FILTER@
-@ADV_QCOV_HSP_PERC@
+    -db_gencode $adv_opts.db_gencode
+    $adv_opts.strand
+    @ADV_MATRIX@
+    @ADV_FILTER_QUERY@
+    @ADV_MAX_HITS@
+    @ADV_WORD_SIZE@
+    @ADV_ID_LIST_FILTER@
+    @ADV_QCOV_HSP_PERC@
+    @ADV_THRESHOLD@
 ## End of advanced options:
 #end if
     </command>
@@ -49,6 +50,7 @@ $adv_opts.strand
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
+            <expand macro="input_threshold" />
         </expand>
     </inputs>
     <outputs>
@@ -82,6 +84,10 @@ using the NCBI BLAST+ tblastx command line tool.
 -----
 
 @OUTPUT_FORMAT@
+
+-------
+
+@CLI_OPTIONS@
 
 -------
 

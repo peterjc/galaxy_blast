@@ -19,13 +19,16 @@ blastx
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
 $adv_opts.strand
--matrix $adv_opts.matrix
+@ADV_MATRIX_GAPCOSTS@
 @ADV_FILTER_QUERY@
 @ADV_MAX_HITS@
 @ADV_WORD_SIZE@
 $adv_opts.ungapped
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
+@ADV_WINDOW_SIZE@
+@ADV_THRESHOLD@
+@ADV_COMP_BASED_STATS@
 ## End of advanced options:
 #end if
     </command>
@@ -45,13 +48,16 @@ $adv_opts.ungapped
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
             <expand macro="input_filter_query_default_true" />
             <expand macro="input_strand" />
-            <expand macro="input_scoring_matrix" />
+            <expand macro="input_matrix_gapcosts" />
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />
             <param argument="-ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
+            <expand macro="input_window_size" />
+            <expand macro="input_threshold" />
+            <expand macro="input_comp_based_stats" />
         </expand>
     </inputs>
     <outputs>
@@ -105,6 +111,17 @@ $adv_opts.ungapped
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastx_rhodopsin_vs_four_human_all.tabular" ftype="tabular" />
         </test>
+        <test>
+            <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="database" value="" />
+            <param name="evalue_cutoff" value="1e-10" />
+            <param name="out_format" value="6" />
+            <param name="adv_opts_selector" value="advanced" />
+            <param name="matrix" value="BLOSUM62" />
+            <output name="output1" file="blastx_rhodopsin_adv_vs_four_human.tabular" ftype="tabular" />
+        </test>
     </tests>
     <help>
 
@@ -117,9 +134,13 @@ using the NCBI BLAST+ blastx command line tool.
 
 @FASTA_WARNING@
 
------
+-------
 
 @OUTPUT_FORMAT@
+
+-------
+
+@CLI_OPTIONS@
 
 -------
 

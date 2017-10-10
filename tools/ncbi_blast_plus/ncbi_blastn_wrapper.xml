@@ -27,6 +27,12 @@ $adv_opts.strand
 $adv_opts.ungapped
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
+## only use window size if dc-megablast mode is used
+#if ($blast_type == "dc-megablast"):
+-window_size @ADV_WINDOW_SIZE@
+#end if
+@ADV_GAPOPEN@
+@ADV_GAPEXTEND@
 ## End of advanced options:
 #end if
     </command>
@@ -53,13 +59,18 @@ $adv_opts.ungapped
             <expand macro="input_strand" />
             <expand macro="input_max_hits" />
             <param name="identity_cutoff" argument="-perc_identity" type="float" min="0" max="100" value="0" label="Percent identity cutoff" help="Use zero for no cutoff" />
-
-            <!-- I'd like word_size to be optional, with minimum 4 for blastn -->
-            <param argument="-word_size" type="integer" min="0" value="0" label="Word size for wordfinder algorithm" help="Use zero for default, otherwise minimum 4" />
+            <expand macro="input_word_size" />
             <param argument="-ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
+            <!-- the help text here is unique to the blastx application, so macro not used -->
+            <param name="window_size" type="integer" optional="true" min="0"
+                label="Multiple hits window size: use 0 to specify 1-hit algorithm, leave blank for default"
+                help="Only relevant for dc-megablast, and otherwise ignored. Default window size changes with substitution matrix and BLAST type.
+                    Entering a non-negative integer will override the default."/>
+            <expand macro="input_gapopen"/>
+            <expand macro="input_gapextend"/>
         </expand>
     </inputs>
     <outputs>
@@ -165,6 +176,10 @@ Algorithms include blastn, megablast, and discontiguous megablast.
 -----
 
 @OUTPUT_FORMAT@
+
+-------
+
+@CLI_OPTIONS@
 
 -------
 

@@ -17,7 +17,7 @@ blastp
 @BLAST_OUTPUT@
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
-    -matrix $adv_opts.matrix
+    @ADV_MATRIX_GAPCOSTS@
     @ADV_FILTER_QUERY@
     @ADV_MAX_HITS@
     @ADV_WORD_SIZE@
@@ -26,6 +26,10 @@ blastp
     @ADV_ID_LIST_FILTER@
     @ADV_QCOV_HSP_PERC@
     $adv_opts.use_sw_tback
+    @ADV_WINDOW_SIZE@
+    @ADV_THRESHOLD@
+    @ADV_COMP_BASED_STATS@
+## End of advanced options:
 #end if
     </command>
     <inputs>
@@ -33,19 +37,24 @@ blastp
 
         <expand macro="input_conditional_protein_db" />
 
-        <param name="blast_type" argument="-task" type="select" display="radio" label="Type of BLAST">
+        <param name="blast_type" argument="-task" type="select" display="radio"
+            label="Type of BLAST"
+            help="See help text for default parameter values for each BLAST type.">
             <option value="blastp">blastp - Traditional BLASTP to compare a protein query to a protein database</option>
-            <option value="blastp-fast">blastp-fast - Use longer words for seeding, faster but less accurate</option>
             <option value="blastp-short">blastp-short - BLASTP optimized for queries shorter than 30 residues</option>
+            <option value="blastp-fast">blastp-fast - Use longer words for seeding, faster but less accurate</option>
         </param>
         <expand macro="input_evalue" />
         <expand macro="input_out_format" />
         <expand macro="advanced_options">
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
             <expand macro="input_filter_query_default_false" />
-            <expand macro="input_scoring_matrix" />
+            <expand macro="input_matrix_gapcosts" />
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />
+            <expand macro="input_window_size" />
+            <expand macro="input_threshold" />
+            <expand macro="input_comp_based_stats" />
             <!--
             Can't use '-ungapped' on its own, error back is:
             Composition-adjusted searched are not supported with an ungapped search, please add -comp_based_stats F or do a gapped search
@@ -76,7 +85,8 @@ blastp
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
+            <param name="window_size" value="40" />
             <param name="parse_deflines" value="true" />
             <param name="qcov_hsp_perc" value="25" />
             <output name="output1" file="blastp_four_human_vs_rhodopsin.xml" ftype="blastxml" />
@@ -93,7 +103,8 @@ blastp
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
+            <param name="window_size" value="40" />
             <param name="parse_deflines" value="true" />
             <param name="qcov_hsp_perc" value="25" />
             <output name="output1" file="blastp_four_human_vs_rhodopsin.tabular" ftype="tabular" />
@@ -110,7 +121,7 @@ blastp
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM62" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="true" />
             <param name="qcov_hsp_perc" value="25" />
             <output name="output1" file="blastp_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />
@@ -126,6 +137,32 @@ blastp
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="blastp_rhodopsin_vs_four_human.tabular" ftype="tabular" />
         </test>
+        <test>
+            <param name="query" value="rhodopsin_peptides.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="database" value="" />
+            <param name="evalue_cutoff" value="200000" />
+            <param name="blast_type" value="blastp-short" />
+            <param name="out_format" value="6" />
+            <param name="adv_opts_selector" value="basic" />
+            <output name="output1" file="blastp_rhodopsin_peptides_vs_four_human.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="query" value="rhodopsin_proteins.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <param name="database value=" />
+            <param name="evalue_cutoff" value="1e-8"/>
+            <param name="blast_type" value="blastp" />
+            <param name="out_format" value="6"/>
+            <param name="adv_opts_selector" value="advanced"/>
+            <param name="window_size" value="35" />
+            <param name="matrix" value="BLOSUM62" />
+            <param name="gap_costs" value="-gapopen 11 -gapextend 1"/>
+            <param name="comp_based_stats" value="3" />
+            <output name="output1" file="blastp_rhodopsin_adv_vs_four_human.tabular" ftype="tabular" />
+        </test>
     </tests>
     <help>
 
@@ -138,9 +175,13 @@ using the NCBI BLAST+ blastp command line tool.
 
 @FASTA_WARNING@
 
------
+-------
 
 @OUTPUT_FORMAT@
+
+------
+
+@CLI_OPTIONS@
 
 -------
 

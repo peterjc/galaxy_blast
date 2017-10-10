@@ -108,6 +108,12 @@ blastp -query four_human_proteins.fasta -subject rhodopsin_proteins.fasta -task 
 echo "blastp_rhodopsin_vs_four_human.tabular"
 blastp -query rhodopsin_proteins.fasta -subject four_human_proteins.fasta -task blastp -evalue 1e-8 -out blastp_rhodopsin_vs_four_human.tabular -outfmt 6 -seg no -matrix BLOSUM62
 
+echo "blastp_rhodopsin_peptides_vs_four_human.tabular"
+blastp -query rhodopsin_peptides.fasta -subject four_human_proteins.fasta -task blastp-short -evalue 200000 -out blastp_rhodopsin_peptides_vs_four_human.tabular -outfmt 6
+
+echo "blastp_rhodopsin_adv_vs_four_human.tabular"
+blastp -query rhodopsin_proteins.fasta -subject four_human_proteins.fasta -task blastp -evalue 1e-08 -out blastp_rhodopsin_adv_vs_four_human.tabular -outfmt 6 -gapopen 11 -gapextend 1 -window_size 35 -comp_based_stats 3
+
 echo "blastx_rhodopsin_vs_four_human.xml"
 blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_vs_four_human.xml -outfmt 5
 
@@ -119,6 +125,9 @@ blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gen
 
 echo "blastx_rhodopsin_vs_four_human_all.tabular"
 blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_vs_four_human_all.tabular -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles qgi qacc qaccver sallseqid sgi sallgi sacc saccver sallacc stitle sstrand frames btop qcovs qcovhsp staxids sscinames scomnames sblastnames sskingdoms"
+
+echo "blastx_rhodopsin_adv_vs_four_human.tabular"
+blastx -query rhodopsin_nucs.fasta -subject four_human_proteins.fasta -query_gencode 1 -evalue 1e-10 -out blastx_rhodopsin_adv_vs_four_human.tabular -outfmt 6 -matrix BLOSUM62
 
 echo "tblastn_four_human_vs_rhodopsin.xml"
 tblastn -query four_human_proteins.fasta -subject rhodopsin_nucs.fasta -evalue 1e-10 -out tblastn_four_human_vs_rhodopsin.xml -outfmt 5 -db_gencode 1 -seg no -matrix BLOSUM80

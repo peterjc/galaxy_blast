@@ -18,14 +18,17 @@ tblastn
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
 -db_gencode $adv_opts.db_gencode
--matrix $adv_opts.matrix
 @ADV_FILTER_QUERY@
 @ADV_MAX_HITS@
 @ADV_WORD_SIZE@
+@ADV_MATRIX_GAPCOSTS@
 ##Ungapped disabled for now - see comments below
 ##$adv_opts.ungapped
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
+@ADV_WINDOW_SIZE@
+@ADV_THRESHOLD@
+@ADV_COMP_BASED_STATS@
 ## End of advanced options:
 #end if
     </command>
@@ -44,7 +47,7 @@ tblastn
 
             <!-- Could use a select (yes, no, other) where other allows setting 'window locut hicut' -->
             <expand macro="input_filter_query_default_true" />
-            <expand macro="input_scoring_matrix" />
+            <expand macro="input_matrix_gapcosts" />
             <expand macro="input_max_hits" />
             <expand macro="input_word_size" />
             <!--
@@ -56,6 +59,9 @@ tblastn
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
             <expand macro="input_qcov_hsp_perc" />
+            <expand macro="input_window_size" />
+            <expand macro="input_threshold" />
+            <expand macro="input_comp_based_stats" />
         </expand>
     </inputs>
     <outputs>
@@ -75,7 +81,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.xml" ftype="blastxml" />
         </test>
@@ -90,7 +96,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />
         </test>
@@ -105,7 +111,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.tabular" ftype="tabular" />
         </test>
@@ -122,7 +128,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="true" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin_deflines.tabular" ftype="tabular" />
         </test>
@@ -138,7 +144,7 @@ tblastn
             <param name="filter_query" value="false" />
             <param name="matrix" value="BLOSUM80" />
             <param name="max_hits" value="0" />
-            <param name="word_size" value="0" />
+            <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.html" ftype="html" lines_diff="8" />
         </test>
@@ -154,11 +160,15 @@ using the NCBI BLAST+ tblastn command line tool.
 
 @FASTA_WARNING@
 
------
+------
 
 @OUTPUT_FORMAT@
 
--------
+------
+
+@CLI_OPTIONS
+
+------
 
 **References**
 

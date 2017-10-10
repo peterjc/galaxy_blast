@@ -23,6 +23,7 @@ rpsblast
 @ADV_FILTER_QUERY@
 @ADV_MAX_HITS@
 @ADV_QCOV_HSP_PERC@
+@ADV_WINDOW_SIZE@
 ## End of advanced options:
 #end if
     </command>
@@ -41,6 +42,7 @@ rpsblast
             <expand macro="input_max_hits" />
             <expand macro="input_parse_deflines" />
             <expand macro="input_qcov_hsp_perc" />
+            <expand macro="input_window_size" />
         </expand>
     </inputs>
     <outputs>
@@ -102,6 +104,10 @@ local Galaxy has been configured.
 -----
 
 @OUTPUT_FORMAT@
+
+-------
+
+@CLI_OPTIONS@
 
 -------
 
