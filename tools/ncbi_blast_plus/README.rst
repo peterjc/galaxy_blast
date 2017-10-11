@@ -254,7 +254,7 @@ v0.2.02 - Document the BLAST+ 2.5.0 change in the standard 12 column output
           ``-gapextend``, contribution from Caleb Easterly and Jim Johnson).
         - Support for ``-window_size``, ``-threshold``, ``-comp_based_stats``
           and revising ``-word_size`` to avoid using zero to mean  default
-      	  (contribution from Caleb Easterly).
+          (contribution from Caleb Easterly).
 ======= ======================================================================
 
 
