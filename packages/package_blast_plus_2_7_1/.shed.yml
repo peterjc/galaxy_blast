@@ -1,0 +1,16 @@
+name: package_blast_plus_2_7_1
+owner: iuc
+homepage_url: https://blast.ncbi.nlm.nih.gov/
+remote_repository_url: https://github.com/peterjc/galaxy_blast/tree/master/packages/package_blast_plus_2_7_1/
+description: NCBI BLAST+ 2.7.1 (binaries only)
+long_description: |
+  This Tool Shed package is intended to be used as a dependency
+  of the Galaxy wrappers for NCBI BLAST+ and any other tools which
+  call the BLAST+ binaries internally.
+
+  Note that for compatibility with BioConda, internally this is now
+  called "blast" rather than "blast+" as in the older Galaxy BLAST+
+  packages.
+categories:
+- Tool Dependency Packages
+type: tool_dependency_definition
