@@ -1,4 +1,4 @@
-<macros>
+macros>
     <token name="@WRAPPER_VERSION@">0.2.02</token>
     <xml name="parallelism">
         <!-- If job splitting is enabled, break up the query file into parts -->
@@ -755,8 +755,14 @@ For large input datasets it is advisable to allow overnight processing.
 
     <token name="@CLI_OPTIONS@">**Advanced Options**
 
-For help with advanced options and their default values, visit the `NCBI BLAST® Command Line Applications User Manual &lt;https://www.ncbi.nlm.nih.gov/books/NBK279675/&gt;`_.
-For amino acid substitution matrices, the NCBI User Manual page is `here &lt;https://www.ncbi.nlm.nih.gov/books/NBK379667/&gt;`_.
+For help with advanced options and their default values, visit the
+NCBI BLAST® Command Line Applications User Manual, Appendices,
+`Options for the command-line applications
+&lt;https://www.ncbi.nlm.nih.gov/books/NBK279684/#_appendices_Options_for_the_commandline_a_&gt;`_.
+
+For amino acid substitution matrices, see `BLAST Substitution Matrices
+&lt;https://www.ncbi.nlm.nih.gov/books/NBK279684/#_appendices_BLAST_Substitution_Matrices_&gt;`_ in the same
+appendices.
 
     </token>
 </macros>
