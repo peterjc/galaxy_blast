@@ -1,4 +1,4 @@
-BLASTN 2.6.0+
+BLASTN 2.7.1+
 
 
 Reference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and Webb
@@ -346,7 +346,7 @@ Effective search space used: 106299490
 
 
   Database: Just 3 human mRNA sequences
-    Posted date:  Sep 18, 2017  11:37 AM
+    Posted date:  Oct 31, 2017  4:23 PM
   Number of letters in database: 10,732
   Number of sequences in database:  3
 
