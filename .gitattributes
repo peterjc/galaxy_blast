@@ -1,3 +1,10 @@
 # Binary files (no line-ending conversions)
+#
+# Enable hexdump-diff by adding this to .git/config
+#
+# [diff "hex"]
+# 	textconv = hexdump -v -C
+# 	binary = true
+#
 *.pin binary diff=hex
 *.nin binary diff=hex
