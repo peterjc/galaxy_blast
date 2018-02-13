@@ -288,7 +288,7 @@
 
     <xml name="input_query_gencode">
         <param argument="-query_gencode" type="select" label="Query genetic code">
-            <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
+            <!-- See https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
             <option value="1" selected="true">1. Standard</option>
             <option value="2">2. Vertebrate Mitochondrial</option>
             <option value="3">3. Yeast Mitochondrial</option>
@@ -312,7 +312,7 @@
 
     <xml name="input_db_gencode">
         <param argument="-db_gencode" type="select" label="Database/subject genetic code">
-            <!-- See http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
+            <!-- See https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details -->
             <option value="1" selected="true">1. Standard</option>
             <option value="2">2. Vertebrate Mitochondrial</option>
             <option value="3">3. Yeast Mitochondrial</option>

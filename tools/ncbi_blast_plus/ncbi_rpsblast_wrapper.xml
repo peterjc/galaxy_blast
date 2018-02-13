@@ -75,15 +75,15 @@ The protein domain databases use position-specific scoring matrices
 (PSSMs) and are available for a number of domain collections including:
 
 *CDD* - NCBI curarated meta-collection of domains, see
-http://www.ncbi.nlm.nih.gov/Structure/cdd/cdd_help.shtml#NCBI_curated_domains
+https://www.ncbi.nlm.nih.gov/Structure/cdd/cdd_help.shtml#NCBI_curated_domains
 
 *Kog* - PSSMs from automatically aligned sequences and sequence
 fragments classified in the KOGs resource, the eukaryotic
-counterpart to COGs, see http://www.ncbi.nlm.nih.gov/COG/
+counterpart to COGs, see https://www.ncbi.nlm.nih.gov/COG/
 
 *Cog* - PSSMs from automatically aligned sequences and sequence
 fragments classified in the COGs resource, which focuses primarily
-on prokaryotes, see http://www.ncbi.nlm.nih.gov/COG/
+on prokaryotes, see https://www.ncbi.nlm.nih.gov/COG/
 
 *Pfam* - PSSMs from Pfam-A seed alignment database, see
 http://xfam.org/
@@ -96,7 +96,7 @@ http://www.jcvi.org/cms/research/projects/tigrfams/overview/
 
 *Prk* - PSSms from automatically aligned stable clusters in the
 Protein Clusters database, see
-http://www.ncbi.nlm.nih.gov/proteinclusters?cmd=search&amp;db=proteinclusters
+https://www.ncbi.nlm.nih.gov/proteinclusters?cmd=search&amp;db=proteinclusters
 
 The exact list of domain databases offered will depend on how your
 local Galaxy has been configured.
