@@ -5,8 +5,8 @@ This tool is copyright 2011-2015 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
 See the licence text below.
 
-This tool is a short Python script to parse a BLAST tabular file (or similar),
-and extract the reciprocal best hits.
+This tool is a short Python script to parse a pair of BLAST tabular files
+(or similar), and extract the reciprocal best hits.
 
 This was an experiment. I was also considering supporting BLAST XML as input,
 which could require extensions to Galaxy ideally so that the current column
