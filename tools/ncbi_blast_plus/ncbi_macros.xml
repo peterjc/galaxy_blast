@@ -357,7 +357,7 @@
             <when value="file">
                 <param name="database" type="hidden" value="" />
                 <param name="histdb" type="hidden" value="" />
-                <param argument="-subject" type="data" format="fasta" label="Nucleotide FASTA subject file to use instead of a database"/>
+                <param argument="-subject" type="data" format="fasta,fasta.gz" label="Nucleotide FASTA subject file to use instead of a database"/>
             </when>
         </conditional>
     </xml>
@@ -533,42 +533,46 @@
         </conditional>
     </xml>
 <!--Tokens-->
-    <token name="@ADV_MATRIX_GAPCOSTS@">
+    <token name="@ADV_MATRIX_GAPCOSTS@"><![CDATA[
 #if str($adv_opts.matrix_gapcosts.matrix):
-    -matrix $adv_opts.matrix_gapcosts.matrix
-    $adv_opts.matrix_gapcosts.gap_costs
+    -matrix '${adv_opts.matrix_gapcosts.matrix}'
+    '${adv_opts.matrix_gapcosts.gap_costs}'
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@ADV_QCOV_HSP_PERC@">
-#if float(str($adv_opts.qcov_hsp_perc)) &gt; 0:
-    -qcov_hsp_perc $adv_opts.qcov_hsp_perc
+    <token name="@ADV_QCOV_HSP_PERC@"><![CDATA[
+#if float(str($adv_opts.qcov_hsp_perc)) > 0:
+    -qcov_hsp_perc '${adv_opts.qcov_hsp_perc}'
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@ADV_ID_LIST_FILTER@">
+    <token name="@ADV_ID_LIST_FILTER@"><![CDATA[
 #if $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_gilist':
-    -negative_gilist $adv_opts.adv_optional_id_files_opts.negative_gilist
+    -negative_gilist '${adv_opts.adv_optional_id_files_opts.negative_gilist}'
 #elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'gilist':
-    -gilist $adv_opts.adv_optional_id_files_opts.gilist
+    -gilist '{$adv_opts.adv_optional_id_files_opts.gilist}'
 #elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'seqidlist':
-    -seqidlist $adv_opts.adv_optional_id_files_opts.seqidlist
+    -seqidlist '${adv_opts.adv_optional_id_files_opts.seqidlist}'
 #end if
-    </token>
+    ]]></token>
 
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
 
-    <token name="@BLAST_DB_SUBJECT@">
+    <token name="@BLAST_DB_SUBJECT@"><![CDATA[
 #if $db_opts.db_opts_selector == "db":
   -db '${" ".join(str($db_opts.database.fields.path).split(","))}'
 #elif $db_opts.db_opts_selector == "histdb":
   -db '${os.path.join($db_opts.histdb.extra_files_path, "blastdb")}'
 #else:
-  -subject '$db_opts.subject'
+    #if $db_opts.subject.is_of_type('fasta.gz'):
+        -subject <(gunzip -c '${$db_opts.subject}')
+    #else:
+        -subject '${db_opts.subject}'
+    #end if
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@BLAST_OUTPUT@">-out '$output1'
+    <token name="@BLAST_OUTPUT@"><![CDATA[ -out '$output1'
 ##Set the extended list here so when we add things, saved workflows are not affected
 #if str($output.out_format)=="ext":
     -outfmt '6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles'
@@ -579,79 +583,81 @@
     -outfmt '6 $cols'
 #else:
 ## Note do not quote this as can be '0 -html' which is really two arguments
-    -outfmt $output.out_format
+    -outfmt '${output.out_format}'
 #end if
-    </token>
+    ]]></token>
     <token name="@ADV_FILTER_QUERY@">$adv_opts.filter_query</token>
-    <token name="@ADV_MAX_HITS@">
+    <token name="@ADV_MAX_HITS@"><![CDATA[
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
 ## Note -max_target_seqs used to simply override -num_descriptions and -num_alignments
 ## but this was changed in BLAST+ 2.2.27 onwards to force their use (raised with NCBI)
 #if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
     #if str($output.out_format) in ["6", "ext", "cols", "5"]:
         ## Most output formats use this, including tabular and XML:
-        -max_target_seqs $adv_opts.max_hits
+        -max_target_seqs '${adv_opts.max_hits}'
     #else
         ## Text and HTML output formats 0-4 currently need this instead:
         -num_descriptions $adv_opts.max_hits -num_alignments $adv_opts.max_hits
     #end if
 #end if
 #if str($adv_opts.max_hsps)
-    -max_hsps $adv_opts.max_hsps
+    -max_hsps '${adv_opts.max_hsps}'
 #end if
-    </token>
-    <token name="@ADV_WORD_SIZE@">
+    ]]></token>
+    <token name="@ADV_WORD_SIZE@"><![CDATA[
 #if str($adv_opts.word_size):
--word_size $adv_opts.word_size
+-word_size '${adv_opts.word_size}'
 #end if
 $adv_opts.parse_deflines
-    </token>
-    <token name="@ADV_WINDOW_SIZE@">
+    ]]></token>
+    <token name="@ADV_WINDOW_SIZE@"><![CDATA[
 #if str($adv_opts.window_size):
--window_size $adv_opts.window_size
+-window_size '${adv_opts.window_size}'
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@ADV_THRESHOLD@">
+    <token name="@ADV_THRESHOLD@"><![CDATA[
 #if str($adv_opts.threshold):
--threshold $adv_opts.threshold
+-threshold '${adv_opts.threshold}'
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@ADV_COMP_BASED_STATS@">
+    <token name="@ADV_COMP_BASED_STATS@"><![CDATA[
 #if str($adv_opts.comp_based_stats):
--comp_based_stats $adv_opts.comp_based_stats
+-comp_based_stats '${adv_opts.comp_based_stats}'
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@ADV_GAPOPEN@">
+    <token name="@ADV_GAPOPEN@"><![CDATA[
 #if str($adv_opts.gapopen):
--gapopen $adv_opts.gapopen
+-gapopen '${adv_opts.gapopen}'
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@ADV_GAPEXTEND@">
+    <token name="@ADV_GAPEXTEND@"><![CDATA[
 #if str($adv_opts.gapextend):
--gapextend $adv_opts.gapextend
+-gapextend '${adv_opts.gapextend}'
 #end if
-    </token>
+    ]]></token>
 
-    <token name="@ADV_MATRIX@">
+    <token name="@ADV_MATRIX@"><![CDATA[
 #if str($adv_opts.matrix):
--matrix $adv_opts.matrix
+-matrix '${adv_opts.matrix}'
 #end if
-    </token>
+    ]]></token>
 
     <!-- @ON_DB_SUBJECT@ is for use with @BLAST_DB_SUBJECT@ -->
-    <token name="@ON_DB_SUBJECT@">#if str($db_opts.db_opts_selector)=='db'
+    <token name="@ON_DB_SUBJECT@"><![CDATA[
+#if str($db_opts.db_opts_selector)=='db'
 '${db_opts.database}'
 #elif str($db_opts.db_opts_selector)=='histdb'
 '${db_opts.histdb.name}'
 #else
 '${db_opts.subject.name}'
-#end if</token>
+#end if
+]]></token>
 
-    <token name="@REFERENCES@">
+    <token name="@REFERENCES@"><![CDATA[
 Peter J. A. Cock, John M. Chilton, Björn Grüning, James E. Johnson, Nicola Soranzo (2015).
 NCBI BLAST+ integrated into Galaxy. *GigaScience* 4:39
 http://dx.doi.org/10.1186/s13742-015-0080-7
@@ -663,14 +669,16 @@ http://dx.doi.org/10.1186/1471-2105-10-421
 
 This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
-    </token>
+    ]]></token>
     <xml name="blast_citations">
         <citations>
+            <citation type="doi">10.1093/nar/25.17.3389</citation>
             <citation type="doi">10.1186/1471-2105-10-421</citation>
             <citation type="doi">10.1186/s13742-015-0080-7</citation>
         </citations>
     </xml>
-    <token name="@OUTPUT_FORMAT@">**Output format**
+    <token name="@OUTPUT_FORMAT@"><![CDATA[
+**Output format**
 
 Because Galaxy focuses on processing tabular data, the default output of this
 tool is tabular. The standard BLAST+ tabular output contains 12 columns:
@@ -720,7 +728,7 @@ Column NCBI name     Description
     22 sseq          Aligned part of subject sequence
     23 qlen          Query sequence length
     24 slen          Subject sequence length
-    25 salltitles    All subject title(s), separated by a '&lt;&gt;'
+    25 salltitles    All subject title(s), separated by a '<>'
 ====== ============= ===========================================
 
 The third option is to customise the tabular output by selecting which
@@ -735,8 +743,9 @@ The HTML versions use basic webpage formatting and can include links to the hits
 The pairwise output (the default on the NCBI BLAST website) shows each match as a pairwise alignment with the query.
 The two query anchored outputs show a multiple sequence alignment between the query and all the matches,
 and differ in how insertions are shown (marked as insertions or with gap characters added to the other sequences).
-    </token>
-    <token name="@FASTA_WARNING@">.. class:: warningmark
+    ]]></token>
+    <token name="@FASTA_WARNING@"><![CDATA[
+.. class:: warningmark
 
 You can also search against a FASTA file of subject (target)
 sequences. This is *not* advised because it is slower (only one
@@ -744,25 +753,27 @@ CPU is used), but more importantly gives e-values for pairwise
 searches (very small e-values which will look overly signficiant).
 In most cases you should instead turn the other FASTA file into a
 database first using *makeblastdb* and search against that.
-    </token>
-    <token name="@SEARCH_TIME_WARNING@">.. class:: warningmark
+    ]]></token>
+    <token name="@SEARCH_TIME_WARNING@"><![CDATA[
+.. class:: warningmark
 
 **Note**. Database searches may take a substantial amount of time.
 For large input datasets it is advisable to allow overnight processing.
 
 -----
-    </token>
+    ]]></token>
 
-    <token name="@CLI_OPTIONS@">**Advanced Options**
+    <token name="@CLI_OPTIONS@"><![CDATA[
+**Advanced Options**
 
 For help with advanced options and their default values, visit the
 NCBI BLAST® Command Line Applications User Manual, Appendices,
 `Options for the command-line applications
-&lt;https://www.ncbi.nlm.nih.gov/books/NBK279684/#_appendices_Options_for_the_commandline_a_&gt;`_.
+<https://www.ncbi.nlm.nih.gov/books/NBK279684/#_appendices_Options_for_the_commandline_a_>`_.
 
 For amino acid substitution matrices, see `BLAST Substitution Matrices
-&lt;https://www.ncbi.nlm.nih.gov/books/NBK279684/#_appendices_BLAST_Substitution_Matrices_&gt;`_ in the same
+<https://www.ncbi.nlm.nih.gov/books/NBK279684/#_appendices_BLAST_Substitution_Matrices_>`_ in the same
 appendices.
 
-    </token>
+    ]]></token>
 </macros>

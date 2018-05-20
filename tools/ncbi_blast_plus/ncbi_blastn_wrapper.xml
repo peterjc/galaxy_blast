@@ -7,24 +7,29 @@
     <expand macro="parallelism" />
     <expand macro="preamble" />
     <command detect_errors="aggressive">
+<![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastn
--query '$query'
+#if $query.is_of_type('fasta.gz'):
+-query <(gunzip -c '${query}')
+#else:
+-query '${query}'
+#end if
 @BLAST_DB_SUBJECT@
--task $blast_type
--evalue $evalue_cutoff
+-task '${blast_type}'
+-evalue '${evalue_cutoff}'
 @BLAST_OUTPUT@
 @THREADS@
 #if $adv_opts.adv_opts_selector=="advanced":
-$adv_opts.strand
+${adv_opts.strand}
 @ADV_FILTER_QUERY@
 @ADV_MAX_HITS@
 @ADV_WORD_SIZE@
 #if (str($adv_opts.identity_cutoff) and float(str($adv_opts.identity_cutoff)) > 0 ):
--perc_identity $adv_opts.identity_cutoff
+-perc_identity '${adv_opts.identity_cutoff}'
 #end if
-$adv_opts.ungapped
+${adv_opts.ungapped}
 @ADV_ID_LIST_FILTER@
 @ADV_QCOV_HSP_PERC@
 ## only use window size if dc-megablast mode is used
@@ -35,9 +40,10 @@ $adv_opts.ungapped
 @ADV_GAPEXTEND@
 ## End of advanced options:
 #end if
+]]>
     </command>
     <inputs>
-        <param argument="-query" type="data" format="fasta" label="Nucleotide query sequence(s)"/>
+        <param argument="-query" type="data" format="fasta,fasta.gz" label="Nucleotide query sequence(s)"/>
         <expand macro="input_conditional_nucleotide_db" />
         <param name="blast_type" argument="-task" type="select" display="radio" label="Type of BLAST">
             <option value="megablast">megablast - Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences</option>
@@ -93,6 +99,16 @@ $adv_opts.ungapped
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
             <param name="db_opts_selector" value="file" />
             <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="database" value="" />
+            <param name="evalue_cutoff" value="1e-40" />
+            <param name="out_format" value="6" />
+            <param name="adv_opts_selector" value="basic" />
+            <output name="output1" file="blastn_rhodopsin_vs_three_human.tabular" ftype="tabular" />
+        </test>
+        <test>
+            <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
+            <param name="db_opts_selector" value="file" />
+            <param name="subject" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
             <param name="database" value="" />
             <param name="evalue_cutoff" value="1e-40" />
             <param name="out_format" value="6" />
