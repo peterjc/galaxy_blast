@@ -110,7 +110,7 @@ $hash_index
             <param name="hash_index" value="true" />
             <output name="outfile" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
-                <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" compare="sim_size" delta="0" />
                 <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
                 <extra_files type="file" value="four_human_proteins.fasta.pog" name="blastdb.pog" />
                 <extra_files type="file" value="four_human_proteins.fasta.phd" name="blastdb.phd" />
@@ -129,7 +129,7 @@ $hash_index
             <param name="taxid" value="9606" />
             <output name="outfile" compare="contains" file="four_human_proteins_taxid.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.phr" name="blastdb.phr" />
-                <extra_files type="file" value="four_human_proteins_taxid.fasta.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins_taxid.fasta.pin" name="blastdb.pin" compare="sim_size" delta="0" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.psq" name="blastdb.psq" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.pog" name="blastdb.pog" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.phd" name="blastdb.phd" />
@@ -147,7 +147,7 @@ $hash_index
             <param name="mask_data_file" value="segmasker_four_human.maskinfo-asn1" ftype="maskinfo-asn1" />
             <output name="outfile" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
-                <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="four_human_proteins.fasta.pin" name="blastdb.pin" compare="sim_size" delta="0" />
                 <extra_files type="file" value="four_human_proteins.fasta.psq" name="blastdb.psq" />
                 <extra_files type="file" value="four_human_proteins.fasta.pog" name="blastdb.pog" />
                 <extra_files type="file" value="four_human_proteins.fasta.phd" name="blastdb.phd" />
@@ -166,7 +166,7 @@ $hash_index
             <param name="taxid" value="9606" />
             <output name="outfile" compare="contains" file="three_human_mRNA.fasta.log.txt" ftype="blastdbn">
                 <extra_files type="file" value="three_human_mRNA.fasta.nhr" name="blastdb.nhr" />
-                <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" lines_diff="2" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" compare="sim_size" delta="0" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nsq" name="blastdb.nsq" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nog" name="blastdb.nog" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nhd" name="blastdb.nhd" />
