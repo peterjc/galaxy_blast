@@ -166,7 +166,7 @@ $hash_index
             <param name="taxid" value="9606" />
             <output name="outfile" compare="contains" file="three_human_mRNA.fasta.log.txt" ftype="blastdbn">
                 <extra_files type="file" value="three_human_mRNA.fasta.nhr" name="blastdb.nhr" />
-                <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" compare="sim_size" delta="0" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" compare="sim_size" delta="8" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nsq" name="blastdb.nsq" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nog" name="blastdb.nog" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nhd" name="blastdb.nhd" />
