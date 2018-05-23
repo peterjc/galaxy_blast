@@ -102,6 +102,11 @@ def merge(split_files, output_file):
         else:
             first_line = True
         for line in h:
+            # the first <Iteration> happens right after the header, thus we set and check first_line
+            # to know if we are in a <Iteration> section. The rest of these sections we find by
+            # looking for a <Iteration> in the text itself - they always have the same structure
+            # so we look at the first 3 lines of these blocks for find where to update the
+            # iter_num
             if first_line or "<Iteration>" in line:
                 if "<Iteration>" in line:
                     line = next(h)
