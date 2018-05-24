@@ -29,7 +29,7 @@ for filename in sys.argv[1:]:
     f_type = magic.from_file(filename, mime=True)
     if f_type == 'text/plain':
         handle = open(filename, "r")
-    elif f_type == 'application/gzip' or f_type == 'application/x-gzip' :
+    elif f_type == 'application/gzip' or f_type == 'application/x-gzip':
         handle = gzip.open(filename, "rt")
     else:
         sys.exit("Cannot process file of type {}. Only plain or gzip'ed files are accepted ".format(f_type))
