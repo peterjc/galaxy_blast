@@ -1,10 +1,9 @@
 Galaxy wrappers for NCBI BLAST+ suite
 =====================================
 
-These wrappers are copyright 2010-2017 by Peter Cock (The James Hutton Institute,
-UK) and additional contributors including Edward Kirton, John Chilton,
-Nicola Soranzo, Jim Johnson, Bjoern Gruening, and Caleb Easterly.
-
+These wrappers are copyright 2010-2018 by Peter Cock (James Hutton Institute,
+UK) and additional contributors including Edward Kirton, John Chilton, Nicola
+Soranzo, Jim Johnson, Bjoern Gruening, Caleb Easterly, and Anton Nekrutenko.
 See the licence text below.
 
 Note this does not work with the NCBI 'legacy' BLAST suite written in C
@@ -259,6 +258,7 @@ v0.3.0  - Updated for NCBI BLAST+ 2.7.1,
         - Depends on BioConda or legacy ToolShed ``package_blast_plus_2_7_1``.
         - Document the BLAST+ 2.6.0 change in the standard 12 column output
           from ``qacc,sacc,...`` to ``qaccver,saccver,...`` instead.
+        - Accept gzipped FASTA inputs (contribution from Anton Nekrutenko).
 ======= ======================================================================
 
 
