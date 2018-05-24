@@ -290,7 +290,6 @@ def make_nr(input_fasta, output_fasta, sep=";"):
             unique += 1
     del by_seq
     if duplicates:
-        # TODO - refactor as a generator with single SeqIO.write(...) call
         with open(output_fasta, "w") as handle:
             for record in SeqIO.parse(input_fasta, "fasta"):
                 if record.id in representatives:
@@ -299,7 +298,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
                     record.description = "representing %i records" % len(cluster)
                 elif record.id in duplicates:
                     continue
-                SeqIO.write(record, handle, "fasta")
+                yield SeqIO.write(record, handle, "fasta")
         print("%i unique entries; removed %i duplicates leaving %i representative records"
               % (unique, len(duplicates), len(representatives)))
     else:
