@@ -59,6 +59,7 @@ include:
   - ../../test-data/cd00003_and_cd00008.rps
   - ../../test-data/cd00008.smp
   - ../../test-data/chimera.fasta
+  - ../../test-data/chimera.fasta.gz
   - ../../test-data/convert2blastmask_four_human_masked.maskinfo-asn1
   - ../../test-data/convert2blastmask_four_human_masked.maskinfo-asn1-binary
   - ../../test-data/dustmasker_three_human.fasta
@@ -88,6 +89,7 @@ include:
   - ../../test-data/four_human_proteins_taxid.fasta.psq
   - ../../test-data/rhodopsin_nucs.dbinfo.txt
   - ../../test-data/rhodopsin_nucs.fasta
+  - ../../test-data/rhodopsin_nucs.fasta.gz
   - ../../test-data/rhodopsin_nucs.fasta.log.txt
   - ../../test-data/rhodopsin_nucs.fasta.nhd
   - ../../test-data/rhodopsin_nucs.fasta.nhi
@@ -113,6 +115,7 @@ include:
   - ../../test-data/tblastx_rhodopsin_vs_three_human.tabular
   - ../../test-data/three_human_mRNA.dbinfo.txt
   - ../../test-data/three_human_mRNA.fasta
+  - ../../test-data/three_human_mRNA.fasta.gz
   - ../../test-data/three_human_mRNA.fasta.log.txt
   - ../../test-data/three_human_mRNA.fasta.nhd
   - ../../test-data/three_human_mRNA.fasta.nhi
