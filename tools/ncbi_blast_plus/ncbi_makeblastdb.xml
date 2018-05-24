@@ -167,7 +167,7 @@ $hash_index
         </test>
         <test>
             <param name="dbtype" value="nucl" />
-            <param name="input_file" value="three_human_mRNA.fasta" ftype="fasta" />
+            <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
             <param name="title" value="Just 3 human mRNA sequences" />
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
