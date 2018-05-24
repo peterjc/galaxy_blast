@@ -13,7 +13,6 @@ import gzip
 import os
 import sys
 
-import magic
 
 if "-v" in sys.argv or "--version" in sys.argv:
     print("v0.0.23")
@@ -26,13 +25,19 @@ for filename in sys.argv[1:]:
         sys.stderr.write("Missing FASTA file %r\n" % filename)
         sys.exit(2)
     files += 1
-    f_type = magic.from_file(filename, mime=True)
-    if f_type == 'text/plain':
-        handle = open(filename, "r")
-    elif f_type == 'application/gzip' or f_type == 'application/x-gzip':
+
+    with open(filename, "rb") as binary_handle:
+        magic = binary_handle.read(2)
+    if not magic:
+        # Empty file, special case
+        continue
+    elif magic == b'\x1f\x8b':
+        # Gzipped
         handle = gzip.open(filename, "rt")
-    else:
-        sys.exit("Cannot process file of type {}. Only plain or gzip'ed files are accepted ".format(f_type))
+    elif magic[0:1] == b">":
+        # Not gzipped, shoudl be plain FASTA
+        handle = open(filename, "r")
+
     for line in handle:
         if line.startswith(">"):
             # The split will also take care of the new line character,
