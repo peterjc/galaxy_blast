@@ -18,17 +18,14 @@ python $__tool_directory__/check_no_duplicates.py
 cat
 #for i in $input_file:
     #if $i.is_of_type('fasta.gz'):
-        <(gunzip -c ${i}) 
+        <(gunzip -c ${i})
     #else:
         ${i}
-    #end if 
+    #end if
 #end for
 | makeblastdb -out '${os.path.join($outfile.files_path, "blastdb")}'
 $parse_seqids
 $hash_index
-## Single call to -in with multiple filenames space separated with outer quotes
-## (presumably any filenames with spaces would be a problem). Note this gives
-## some extra spaces, e.g. -in "file1 file2 file3 " but BLAST seems happy:
 -in -
 #if $title:
 -title '${title}'
