@@ -45,6 +45,11 @@ except ValueError:
     threads = 1
 assert 1 <= threads, threads
 
+try:
+    from Bio import SeqIO
+except KeyError:
+    sys.exit("Missing Biopython")
+
 # Parse Command Line
 usage = """Use as follows:
 
@@ -266,13 +271,20 @@ def check_duplicate_ids(filename):
     handle.close()
 
 
+def seqio_write_record(record, representatives, duplicates, sep, handle):
+    if record.id in representatives:
+        cluster = representatives[record.id]
+        record.id = sep.join(cluster)
+        record.description = "representing %i records" % len(cluster)
+    elif record.id in duplicates:
+        continue
+    yield SeqIO.write(record, handle, "fasta")
+
+
 def make_nr(input_fasta, output_fasta, sep=";"):
     # TODO - seq-hash based to avoid loading everything into RAM?
     by_seq = dict()
-    try:
-        from Bio import SeqIO
-    except KeyError:
-        sys.exit("Missing Biopython")
+
     for record in SeqIO.parse(input_fasta, "fasta"):
         s = str(record.seq).upper()
         try:
@@ -292,13 +304,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     if duplicates:
         with open(output_fasta, "w") as handle:
             for record in SeqIO.parse(input_fasta, "fasta"):
-                if record.id in representatives:
-                    cluster = representatives[record.id]
-                    record.id = sep.join(cluster)
-                    record.description = "representing %i records" % len(cluster)
-                elif record.id in duplicates:
-                    continue
-                yield SeqIO.write(record, handle, "fasta")
+                seqio_write_record(record, representatives, duplicates, sep, handle)
         print("%i unique entries; removed %i duplicates leaving %i representative records"
               % (unique, len(duplicates), len(representatives)))
     else:
