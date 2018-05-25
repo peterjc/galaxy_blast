@@ -536,7 +536,7 @@
     <token name="@ADV_MATRIX_GAPCOSTS@"><![CDATA[
 #if str($adv_opts.matrix_gapcosts.matrix):
     -matrix '${adv_opts.matrix_gapcosts.matrix}'
-    '${adv_opts.matrix_gapcosts.gap_costs}'
+    ${adv_opts.matrix_gapcosts.gap_costs}
 #end if
     ]]></token>
 
