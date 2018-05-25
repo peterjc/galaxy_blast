@@ -277,7 +277,7 @@ def seqio_write_record(record, representatives, duplicates, sep, handle):
         record.id = sep.join(cluster)
         record.description = "representing %i records" % len(cluster)
     elif record.id in duplicates:
-        continue
+        return
     yield SeqIO.write(record, handle, "fasta")
 
 
