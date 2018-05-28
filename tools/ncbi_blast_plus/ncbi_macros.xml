@@ -583,7 +583,7 @@
     -outfmt '6 $cols'
 #else:
 ## Note do not quote this as can be '0 -html' which is really two arguments
-    -outfmt '${output.out_format}'
+    -outfmt ${output.out_format}
 #end if
     ]]></token>
     <token name="@ADV_FILTER_QUERY@">$adv_opts.filter_query</token>
