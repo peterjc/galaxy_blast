@@ -37,7 +37,7 @@ You should also cite the NCBI BLAST+ tools:
 
 BLAST+: architecture and applications.
 C. Camacho et al. BMC Bioinformatics 2009, 10:421.
-DOI: https://doi.org/10.1186/1471-2105-10-421
+https://doi.org/10.1186/1471-2105-10-421
 
 
 Automated Installation

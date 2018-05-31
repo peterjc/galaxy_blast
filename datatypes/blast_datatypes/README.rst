@@ -129,7 +129,7 @@ Please cite the following paper:
 NCBI BLAST+ integrated into Galaxy.
 P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
 *GigaScience* 2015, 4:39
-DOI: https://doi.org/10.1186/s13742-015-0080-7
+https://doi.org/10.1186/s13742-015-0080-7
 
 
 Licence (MIT)
