@@ -163,17 +163,18 @@ https://github.com/peterjc/galaxy_blast/tree/master/workflows/blast_top_hit_spec
 Citation
 ========
 
-Please cite the following paper (currently available as a preprint):
+Please cite the following paper:
 
 NCBI BLAST+ integrated into Galaxy.
-P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo
-bioRxiv DOI: https://doi.org/10.1101/014043 (preprint)
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo.
+GigaScience 2015, 4:1.
+https://doi.org/10.1186/s13742-015-0080-7
 
 You should also cite Galaxy, and the NCBI BLAST+ tools:
 
 BLAST+: architecture and applications.
 C. Camacho et al. BMC Bioinformatics 2009, 10:421.
-DOI: https://doi.org/10.1186/1471-2105-10-421
+https://doi.org/10.1186/1471-2105-10-421
 
 
 Automated Installation
