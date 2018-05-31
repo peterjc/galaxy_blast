@@ -215,7 +215,7 @@ coverage threshold or similiar. See:
 Punta and Ofran (2008) The Rough Guide to In Silico Function Prediction,
 or How To Use Sequence and Structure Information To Predict Protein
 Function. PLoS Comput Biol 4(10): e1000160.
-http://dx.doi.org/10.1371/journal.pcbi.1000160
+https://doi.org/10.1371/journal.pcbi.1000160
 
 The defaults are to require 70% sequence identity over the aligned region
 (using ``pident`` in the BLAST+ tabular output), and that the HSP alignment
@@ -230,12 +230,12 @@ Please cite:
 P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo (2015).
 NCBI BLAST+ integrated into Galaxy.
 *GigaScience* 4:39
-http://dx.doi.org/10.1186/s13742-015-0080-7
+https://doi.org/10.1186/s13742-015-0080-7
 
 Christiam Camacho et al. (2009).
 BLAST+: architecture and applications.
 *BMC Bioinformatics* 15;10:421.
-http://dx.doi.org/10.1186/1471-2105-10-421
+https://doi.org/10.1186/1471-2105-10-421
 
 This wrapper is available to install into other Galaxy Instances via the Galaxy
 Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh

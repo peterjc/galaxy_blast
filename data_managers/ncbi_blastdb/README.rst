@@ -9,7 +9,7 @@ demonstrate the use of Data Managers for processing BLAST databases, and
 uses the NCBI's ``update_blast.pl`` script internally. See:
 
 Blankenberg et al. (2014) Wrangling Galaxy's reference data
-http://dx.doi.org/10.1093/bioinformatics/btu119
+https://doi.org/10.1093/bioinformatics/btu119
 
 This tool is currently available from the Galaxy Test Tool Shed at:
 http://testtoolshed.g2.bx.psu.edu/view/blankenberg/data_manager_example_blastdb_ncbi_update_blastdb
