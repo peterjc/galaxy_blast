@@ -55,7 +55,7 @@ $hash_index
 #end if
 ## --------------------------------------------------------------------
 ## Capture the stdout log information to the primary file (plain text):
-> "$outfile"
+> '$outfile'
     ]]></command>
     <inputs>
         <param argument="-dbtype" type="select" display="radio" label="Molecule type of input">
