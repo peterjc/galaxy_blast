@@ -69,7 +69,10 @@ Many of the options are required. Example with three assembly's gene files:
 $ python blast_heterozygosity_plot.py -a nucl -t blastn -o output.pdf \\
                               genes_A.fasta genes_B.fasta genes_C.fasta
 
-There is additional guideance in the help text in the associated XML file,
+By default a minimum HSP coverage of 50% is used via the BLAST+ command
+line argument -qcov_hsp_perc.
+
+There is additional guidance in the help text in the associated XML file,
 blast_heterozygosity_plot.xml, which is shown to the user via the Galaxy
 interface to this tool.
 """
@@ -83,7 +86,7 @@ parser.add_option("-t", "--task", dest="task",
                   help="BLAST task (e.g. blastp, blastn, megablast; required)")
 parser.add_option("-c", "--coverage", dest="min_coverage",
                   default="50",
-                  help="Minimum HSP coverage (optional, default 50)")
+                  help="Minimum HSP query coverage (optional, default 50)")
 parser.add_option("-o", "--output", dest="output",
                   default=None, metavar="FILE",
                   help="Output PDF filename (required)")
@@ -178,6 +181,7 @@ def generate_histogram(fasta, hits, histo, min_cover):
                          "Note the qcovhsp field was only added in version 2.2.28\n"
                          % (col_count, len(parts), line))
             if float(parts[c_coverage]) < min_coverage:
+                sys.stderr.write("WARNING: Check -qcov_hsp_perc worked?: %r\n" % line)
                 continue
             a = parts[c_query]
             b = parts[c_match]
@@ -206,8 +210,8 @@ for i, fasta in enumerate(args):
     hits = os.path.join(base_path, "hits_%s_vs_self.tsv" % i)
     # For testing during development, skip re-generation
     if not os.path.isfile(hits):
-        run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i -num_alignments 2'
-            % (blast_cmd, fasta, db, hits, cols, threads))
+        run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i -num_alignments 2 -qcov_hsp_perc %s'
+            % (blast_cmd, fasta, db, hits, cols, threads, options.min_coverage))
 
 sys.stderr.write("Computing histogram data\n")
 for i, fasta in enumerate(args):
@@ -215,7 +219,7 @@ for i, fasta in enumerate(args):
     histo = os.path.join(base_path, "histogram_%s.tsv" % i)
     # For testing during development, skip re-generation 
     if not os.path.isfile(histo):
-        generate_histogram(fasta, hits, histo, options.min_coverage)
+        generate_histogram(fasta, hits, histo, min_coverage)
 
 sys.stderr.write("Producing plot\n")
 
