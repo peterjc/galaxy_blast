@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="blast" version="2.5.0">
+        <repository name="package_blast_plus_2_5_0" owner="iuc" />
+    </package>
+</tool_dependency>
