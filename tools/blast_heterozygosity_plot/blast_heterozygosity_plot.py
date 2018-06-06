@@ -69,8 +69,17 @@ Many of the options are required. Example with three assembly's gene files:
 $ python blast_heterozygosity_plot.py -a nucl -t blastn -o output.pdf \\
                               genes_A.fasta genes_B.fasta genes_C.fasta
 
-By default a minimum HSP coverage of 50% is used via the BLAST+ command
-line argument -qcov_hsp_perc.
+
+For each FASTA input file, a temporary BLAST database is built and used
+to run a search of the genes against themselves. By default a minimum HSP
+coverage of 50% is applied using the BLAST+ command line argument
+-qcov_hsp_perc. The BLAST results are filtered to exclude self-matches
+and look at the second best hit, recording the percentage identity
+relative to the query sequence length.
+
+Then a histogram is drawn using the 2nd best hit's percentage identifies
+(ranging from zero if there was no hit, up to 100% for a duplicated gene)
+for each of the input FASTA files.
 
 There is additional guidance in the help text in the associated XML file,
 blast_heterozygosity_plot.xml, which is shown to the user via the Galaxy
@@ -147,7 +156,7 @@ makeblastdb_exe = "makeblastdb"
 base_path = "."
 log = os.path.join(base_path, "blast.log")
 
-cols = "qseqid sseqid bitscore pident qcovhsp qlen length"  # Or qcovs?
+cols = "qseqid sseqid bitscore pident qcovhsp qlen length nident"  # Or qcovs?
 c_query = 0
 c_match = 1
 c_score = 2
@@ -155,7 +164,7 @@ c_identity = 3
 c_coverage = 4
 c_qlen = 5
 c_length = 6
-
+c_nident = 7
 
 def generate_histogram(fasta, hits, histo, min_cover):
     col_count = len(cols.split())
@@ -187,11 +196,13 @@ def generate_histogram(fasta, hits, histo, min_cover):
             b = parts[c_match]
             if a == b:
                 continue
-            answer[a] = max(answer[a], float(parts[c_identity]))
+            # BLAST's pident is number of identites relative to alignment length
+            percent_identity = int(parts[c_nident]) * 100.0 / int(parts[c_qlen])
+            answer[a] = max(answer[a], percent_identity)
     with open(histo, "w") as handle:
         handle.write("#Identifier\tSecond-best-hit-identity\n")
         for a, v in answer.items():
-            handle.write("%s\t%i\n" % (a, v))
+            handle.write("%s\t%0.1f\n" % (a, v))
     return sorted(answer.values())
 
 
