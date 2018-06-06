@@ -5,7 +5,7 @@ Run "blast_heterozygosity_plot.py -h" to see the help text, or read
 the associated blast_heterozygosity_plot.xml and README.rst files
 which are available on GitHub at:
 
- https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_heterozygosity_plot.py
+https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_heterozygosity_plot.py
 
 This requires Python and the NCBI BLAST+ tools to be installed
 and on the $PATH.
@@ -42,6 +42,21 @@ else:
     from collections import OrderedDict as ordered_dict
 
 
+try:
+    import matplotlib
+    # Force matplotlib to not use any Xwindows backend.
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+except ImportError:
+    sys.exit("ERROR: Python is missing matplotlib")
+
+
+try:
+    import numpy as np
+except ImportError:
+    sys.exit("ERROR: Python is missing numpy")
+
+
 def run(cmd):
     return_code = os.system(cmd)
     if return_code:
@@ -69,7 +84,6 @@ Many of the options are required. Example with three assembly's gene files:
 $ python blast_heterozygosity_plot.py -a nucl -t blastn -o output.pdf \\
                               genes_A.fasta genes_B.fasta genes_C.fasta
 
-
 For each FASTA input file, a temporary BLAST database is built and used
 to run a search of the genes against themselves. By default a minimum HSP
 coverage of 50% is applied using the BLAST+ command line argument
@@ -78,8 +92,8 @@ and look at the second best hit, recording the percentage identity
 relative to the query sequence length.
 
 Then a histogram is drawn using the 2nd best hit's percentage identifies
-(ranging from zero if there was no hit, up to 100% for a duplicated gene)
-for each of the input FASTA files.
+for each of the input FASTA files (this does not start at zero, the
+minimum depends on the worst second best hit that BLAST reports).
 
 There is additional guidance in the help text in the associated XML file,
 blast_heterozygosity_plot.xml, which is shown to the user via the Galaxy
@@ -225,14 +239,42 @@ for i, fasta in enumerate(args):
             % (blast_cmd, fasta, db, hits, cols, threads, options.min_coverage))
 
 sys.stderr.write("Computing histogram data\n")
+values = ordered_dict()
 for i, fasta in enumerate(args):
     hits = os.path.join(base_path, "hits_%s_vs_self.tsv" % i)
     histo = os.path.join(base_path, "histogram_%s.tsv" % i)
     # For testing during development, skip re-generation 
     if not os.path.isfile(histo):
-        generate_histogram(fasta, hits, histo, min_coverage)
+        values[fasta] = generate_histogram(fasta, hits, histo, min_coverage)
 
 sys.stderr.write("Producing plot\n")
+
+bins = np.arange(101, dtype=int) # 0 to 100 inclusive
+
+figure = plt.figure()
+for fasta, values in values.items():
+    print("%s has percentage identities from %0.1f to %0.1f for second best hit"
+          % (fasta, min(values), max(values)))
+    counts = np.zeros(101, int)
+    for v in values:
+        assert 0 <= v <= 100
+        counts[int(v)] += 1
+    print(counts)
+    counts[0] = 0  # Ignore zero percentage identical for the plot
+    plt.plot(bins, counts, label=fasta)
+
+# Set the x and y boundaries of the figure
+plt.xlim([0, 100])
+#plt.ylim([0, 10])
+
+# Set the title and labels
+plt.title('BLAST Heterozygosity Plot')
+plt.xlabel('Percentage identity of second best self-BLAST hit')
+plt.ylabel('Count')
+plt.legend(loc='upper left')
+
+plt.show()
+figure.savefig(options.output, bbox_inches='tight')
 
 sys.stderr.write("Done, plot of %i histograms produced\n" % len(args))
 
