@@ -47,6 +47,7 @@ try:
     # Force matplotlib to not use any Xwindows backend.
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
+    plt.style.context('ggplot')
 except ImportError:
     sys.exit("ERROR: Python is missing matplotlib")
 
@@ -220,6 +221,33 @@ def generate_histogram(fasta, hits, histo, min_cover):
     return sorted(answer.values())
 
 
+def plot_histograms(dict_of_values, pdf_filename):
+    bins = np.arange(101, dtype=int) # 0 to 100 inclusive
+    figure = plt.figure()
+    for fasta, values in dict_of_values.items():
+        print("%s has percentage identities from %0.1f to %0.1f for second best hit"
+              % (fasta, min(values), max(values)))
+        counts = np.zeros(101, int)
+        for v in values:
+            assert 0 <= v <= 100
+            counts[int(v)] += 1
+        # print(counts)
+        counts[0] = 0  # Ignore zero percentage identical for the plot
+        plt.plot(bins, counts, label=fasta)
+
+    plt.xlim([0, 100])
+    #plt.ylim([0, 10])
+
+    # Set the title and labels
+    plt.title('BLAST Heterozygosity Plot')
+    plt.xlabel('Percentage identity of second best self-BLAST hit')
+    plt.ylabel('Count')
+    plt.legend(loc='upper left')
+
+    plt.show()
+    figure.savefig(pdf_filename, bbox_inches='tight')
+
+
 sys.stderr.write("Generating %i BLAST databases\n" % len(args))
 for i, fasta in enumerate(args):
     # TODO - Report log in case of error?
@@ -246,35 +274,11 @@ for i, fasta in enumerate(args):
     # For testing during development, skip re-generation 
     if not os.path.isfile(histo):
         values[fasta] = generate_histogram(fasta, hits, histo, min_coverage)
+    else:
+        values[fasta] = [float(line.rstrip("\n").split("\t")[1]) for line in open(histo) if not line.startswith("#")]
 
 sys.stderr.write("Producing plot\n")
-
-bins = np.arange(101, dtype=int) # 0 to 100 inclusive
-
-figure = plt.figure()
-for fasta, values in values.items():
-    print("%s has percentage identities from %0.1f to %0.1f for second best hit"
-          % (fasta, min(values), max(values)))
-    counts = np.zeros(101, int)
-    for v in values:
-        assert 0 <= v <= 100
-        counts[int(v)] += 1
-    print(counts)
-    counts[0] = 0  # Ignore zero percentage identical for the plot
-    plt.plot(bins, counts, label=fasta)
-
-# Set the x and y boundaries of the figure
-plt.xlim([0, 100])
-#plt.ylim([0, 10])
-
-# Set the title and labels
-plt.title('BLAST Heterozygosity Plot')
-plt.xlabel('Percentage identity of second best self-BLAST hit')
-plt.ylabel('Count')
-plt.legend(loc='upper left')
-
-plt.show()
-figure.savefig(options.output, bbox_inches='tight')
+plot_histograms(values, options.output)
 
 sys.stderr.write("Done, plot of %i histograms produced\n" % len(args))
 
