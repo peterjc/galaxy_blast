@@ -251,7 +251,11 @@ def plot_histograms(dict_of_values, pdf_filename):
 sys.stderr.write("Generating %i BLAST databases\n" % len(args))
 for i, fasta in enumerate(args):
     # TODO - Report log in case of error?
-    db = os.path.join(base_path, "db_%s" % i)
+    if base_path == ".":
+        fasta_name_only = os.path.split(fasta)[1]
+        db = os.path.join(base_path, fasta_name_only)
+    else:
+        db = os.path.join(base_path, "db_%s" % i)
     # For testing during development, skip re-generation
     if not os.path.isfile(db + ".nin") and not os.path.isfile(db + ".pin"):
         run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"'
@@ -259,8 +263,13 @@ for i, fasta in enumerate(args):
 
 sys.stderr.write("Running self BLAST searches\n")
 for i, fasta in enumerate(args):
-    db = os.path.join(base_path, "db_%s" % i)
-    hits = os.path.join(base_path, "hits_%s_vs_self.tsv" % i)
+    if base_path == ".":
+        fasta_name_only = os.path.split(fasta)[1]
+        db = os.path.join(base_path, fasta_name_only)
+        hits = os.path.join(base_path, fasta_name_only + "_vs_self.tsv")
+    else:
+        db = os.path.join(base_path, "db_%s" % i)
+        hits = os.path.join(base_path, "hits_%s_vs_self.tsv" % i)
     # For testing during development, skip re-generation
     if not os.path.isfile(hits):
         run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i -num_alignments 2 -qcov_hsp_perc %s'
@@ -269,8 +278,13 @@ for i, fasta in enumerate(args):
 sys.stderr.write("Computing histogram data\n")
 values = ordered_dict()
 for i, fasta in enumerate(args):
-    hits = os.path.join(base_path, "hits_%s_vs_self.tsv" % i)
-    histo = os.path.join(base_path, "histogram_%s.tsv" % i)
+    if base_path == ".":
+        fasta_name_only = os.path.split(fasta)[1]
+        hits = os.path.join(base_path, fasta_name_only + "_vs_self.tsv")
+        histo = os.path.join(base_path, fasta_name_only + "_histograms.tsv")
+    else:
+        hits = os.path.join(base_path, "hits_%s_vs_self.tsv" % i)
+        histo = os.path.join(base_path, "histogram_%s.tsv" % i)
     # For testing during development, skip re-generation 
     if not os.path.isfile(histo):
         values[fasta] = generate_histogram(fasta, hits, histo, min_coverage)
