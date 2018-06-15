@@ -266,11 +266,22 @@ def plot_histograms(dict_of_values, pdf_filename):
 sys.stderr.write("Generating %i BLAST databases\n" % len(fasta_list))
 for i, fasta in enumerate(fasta_list):
     # TODO - Report log in case of error?
+    fasta_name_only = os.path.split(fasta)[1]
+    if fasta_name_only.endswith(".gz"):
+        # We'll need to unzip this at least three times
+        # (makeblastdb, running blast, during analysis)
+        # so simpler to create temp unzipped file.
+        fasta_name_only = fasta_name_only[:-3]  # remove .gz
+        tmp = os.path.join(base_path, fasta_name_only)
+        if not os.path.isfile(tmp):
+            run("gunzip -c '%s' > '%s'" % (fasta, tmp))
+        fasta = tmp
+        fasta_list[i] = tmp  # updating list in place!
     if base_path == ".":
-        fasta_name_only = os.path.split(fasta)[1]
         db = os.path.join(base_path, fasta_name_only)
     else:
         db = os.path.join(base_path, "db_%s" % i)
+
     # For testing during development, skip re-generation
     if not os.path.isfile(db + ".nin") and not os.path.isfile(db + ".pin"):
         run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"'
