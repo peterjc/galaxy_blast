@@ -220,13 +220,16 @@ def generate_histogram(fasta, hits, histo, min_cover):
             b = parts[c_match]
             if a == b:
                 continue
-            # BLAST's pident is number of identites relative to alignment length
+            # BLAST's pident (percentage identify) is number of identites divided
+            # by alignment length - we're doing this relative to query length
+            # (so should in general be lower, unless happen to get a near full
+            # length but very gapped alignment).
             percent_identity = int(parts[c_nident]) * 100.0 / int(parts[c_qlen])
             answer[a] = max(answer[a], percent_identity)
     with open(histo, "w") as handle:
         handle.write("#Identifier\tSecond-best-hit-identity\n")
         for a, v in answer.items():
-            handle.write("%s\t%0.1f\n" % (a, v))
+            handle.write("%s\t%0.3f\n" % (a, v))
     return sorted(answer.values())
 
 
