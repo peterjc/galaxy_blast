@@ -127,11 +127,11 @@ parser.add_option("-z", "--zero", dest="show_zero", action="store_true",
                        "This is usually a very high spike, so the scaling "
                        "will hide the more interesting data at high identity, "
                         "and is therefore not plotted by default")
-options, args = parser.parse_args()
+options, fasta_list = parser.parse_args()
 
-if len(args) < 1:
+if len(fasta_list) < 1:
     sys.exit("Expects at least one input FASTA filename")
-for fasta in args:
+for fasta in fasta_list:
     if not os.path.isfile(fasta):
         sys.exit("Missing specified input file: %r" % fasta)
 
@@ -263,8 +263,8 @@ def plot_histograms(dict_of_values, pdf_filename):
     figure.savefig(pdf_filename, bbox_inches='tight')
 
 
-sys.stderr.write("Generating %i BLAST databases\n" % len(args))
-for i, fasta in enumerate(args):
+sys.stderr.write("Generating %i BLAST databases\n" % len(fasta_list))
+for i, fasta in enumerate(fasta_list):
     # TODO - Report log in case of error?
     if base_path == ".":
         fasta_name_only = os.path.split(fasta)[1]
@@ -277,7 +277,7 @@ for i, fasta in enumerate(args):
             % (makeblastdb_exe, dbtype, fasta, db, log))
 
 sys.stderr.write("Running self BLAST searches\n")
-for i, fasta in enumerate(args):
+for i, fasta in enumerate(fasta_list):
     if base_path == ".":
         fasta_name_only = os.path.split(fasta)[1]
         db = os.path.join(base_path, fasta_name_only)
@@ -292,7 +292,7 @@ for i, fasta in enumerate(args):
 
 sys.stderr.write("Computing histogram data\n")
 values = ordered_dict()
-for i, fasta in enumerate(args):
+for i, fasta in enumerate(fasta_list):
     if base_path == ".":
         fasta_name_only = os.path.split(fasta)[1]
         hits = os.path.join(base_path, fasta_name_only + "_vs_self.tsv")
@@ -309,7 +309,7 @@ for i, fasta in enumerate(args):
 sys.stderr.write("Producing plot\n")
 plot_histograms(values, options.output)
 
-sys.stderr.write("Done, plot of %i histograms produced\n" % len(args))
+sys.stderr.write("Done, plot of %i histograms produced\n" % len(fasta_list))
 
 # Remove temp files...
 if base_path != ".":
