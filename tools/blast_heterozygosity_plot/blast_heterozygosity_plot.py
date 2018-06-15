@@ -122,6 +122,11 @@ parser.add_option("--threads", dest="threads",
                        "$GALAXY_SLOTS environment variable if set, or 1.")
 parser.add_option("--verbose", dest="verbose", action="store_true",
                   help="More logging to terminal.")
+parser.add_option("-z", "--zero", dest="show_zero", action="store_true",
+                  help="Include the 0% identical entry from the plot. "
+                       "This is usually a very high spike, so the scaling "
+                       "will hide the more interesting data at high identity, "
+                        "and is therefore not plotted by default")
 options, args = parser.parse_args()
 
 if len(args) < 1:
@@ -237,7 +242,8 @@ def plot_histograms(dict_of_values, pdf_filename):
             counts[int(v)] += 1
         if options.verbose:
             print(counts)
-        counts[0] = 0  # Ignore zero percentage identical for the plot
+        if not options.show_zero:
+            counts[0] = 0  # Ignore zero percentage identical for the plot
         plt.plot(bins, counts, label=fasta)
 
     plt.xlim([0, 100])
