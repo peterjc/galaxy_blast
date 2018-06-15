@@ -59,6 +59,8 @@ except ImportError:
 
 
 def run(cmd):
+    if options.verbose:
+        sys.stderr.write("Running: %s\n" % cmd)
     return_code = os.system(cmd)
     if return_code:
         sys.exit("Error %i from: %s" % (return_code, cmd))
@@ -118,6 +120,8 @@ parser.add_option("--threads", dest="threads",
                   default=threads,
                   help="Number of threads when running BLAST. Defaults to the "
                        "$GALAXY_SLOTS environment variable if set, or 1.")
+parser.add_option("--verbose", dest="verbose", action="store_true",
+                  help="More logging to terminal.")
 options, args = parser.parse_args()
 
 if len(args) < 1:
@@ -231,7 +235,8 @@ def plot_histograms(dict_of_values, pdf_filename):
         for v in values:
             assert 0 <= v <= 100
             counts[int(v)] += 1
-        # print(counts)
+        if options.verbose:
+            print(counts)
         counts[0] = 0  # Ignore zero percentage identical for the plot
         plt.plot(bins, counts, label=fasta)
 
