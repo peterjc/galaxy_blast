@@ -237,8 +237,9 @@ def plot_histograms(dict_of_values, pdf_filename):
     bins = np.arange(101, dtype=int) # 0 to 100 inclusive
     figure = plt.figure()
     for fasta, values in dict_of_values.items():
-        print("%s has percentage identities from %0.1f to %0.1f for second best hit"
-              % (fasta, min(values), max(values)))
+        gene_count = len(values)
+        print("%s has %i genes with percentage identities from %0.1f to %0.1f for second best hit"
+              % (fasta, gene_count, min(values), max(values)))
         counts = np.zeros(101, int)
         for v in values:
             assert 0 <= v <= 100
@@ -247,7 +248,7 @@ def plot_histograms(dict_of_values, pdf_filename):
             print(counts)
         if not options.show_zero:
             counts[0] = 0  # Ignore zero percentage identical for the plot
-        plt.plot(bins, counts, label=fasta)
+        plt.plot(bins, counts * 100.0 / gene_count, label="%s (%i)" % (fasta, gene_count))
 
     plt.xlim([0, 100])
     #plt.ylim([0, 10])
@@ -255,7 +256,7 @@ def plot_histograms(dict_of_values, pdf_filename):
     # Set the title and labels
     plt.title('BLAST Heterozygosity Plot')
     plt.xlabel('Percentage identity of second best self-BLAST hit')
-    plt.ylabel('Count')
+    plt.ylabel('Percentage of genes')
     plt.legend(loc='upper left')
 
     plt.show()
