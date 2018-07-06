@@ -178,7 +178,7 @@ def convert(blastxml_filename, output_handle):
     context = iter(context)
     # get the root element
     try:
-        event, root = context.next()
+        event, root = next(context)
     except Exception:
         sys.exit("Invalid data format.")
     for event, elem in context:

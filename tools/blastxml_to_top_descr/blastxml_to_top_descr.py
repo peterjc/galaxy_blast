@@ -145,7 +145,7 @@ def blastxml_hits(in_file):
     context = iter(context)
     # get the root element
     try:
-        event, root = context.next()
+        event, root = next(context)
     except Exception:
         with open(in_file) as handle:
             header = handle.read(100)
