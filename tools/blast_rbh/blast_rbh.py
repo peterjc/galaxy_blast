@@ -45,6 +45,11 @@ except ValueError:
     threads = 1
 assert 1 <= threads, threads
 
+try:
+    from Bio import SeqIO
+except KeyError:
+    sys.exit("Missing Biopython")
+
 # Parse Command Line
 usage = """Use as follows:
 
@@ -167,6 +172,8 @@ c_qlen = 5
 c_length = 6
 
 tie_warning = 0
+representatives = None
+duplicates = None
 
 
 def best_hits(blast_tabular, ignore_self=False):
@@ -266,13 +273,24 @@ def check_duplicate_ids(filename):
     handle.close()
 
 
+def pick_records(input_fasta_file, sep):
+    global representatives
+    global duplicates
+    for record in SeqIO.parse(input_fasta_file, "fasta"):
+        if record.id in representatives:
+            cluster = representatives[record.id]
+            record.id = sep.join(cluster)
+            record.description = "representing %i records" % len(cluster)
+        elif record.id in duplicates:
+            continue
+        yield record
+
+
 def make_nr(input_fasta, output_fasta, sep=";"):
+    global representatives
+    global duplicates
     # TODO - seq-hash based to avoid loading everything into RAM?
     by_seq = dict()
-    try:
-        from Bio import SeqIO
-    except KeyError:
-        sys.exit("Missing Biopython")
     for record in SeqIO.parse(input_fasta, "fasta"):
         s = str(record.seq).upper()
         try:
@@ -290,18 +308,10 @@ def make_nr(input_fasta, output_fasta, sep=";"):
             unique += 1
     del by_seq
     if duplicates:
-        # TODO - refactor as a generator with single SeqIO.write(...) call
-        with open(output_fasta, "w") as handle:
-            for record in SeqIO.parse(input_fasta, "fasta"):
-                if record.id in representatives:
-                    cluster = representatives[record.id]
-                    record.id = sep.join(cluster)
-                    record.description = "representing %i records" % len(cluster)
-                elif record.id in duplicates:
-                    continue
-                SeqIO.write(record, handle, "fasta")
+        count = SeqIO.write(pick_records(input_fasta, sep), output_fasta, "fasta")
         print("%i unique entries; removed %i duplicates leaving %i representative records"
               % (unique, len(duplicates), len(representatives)))
+        assert count == unique + len(representatives)
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
         print("No perfect duplicates in file, %i unique entries" % unique)
