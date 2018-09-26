@@ -623,7 +623,7 @@
         -max_target_seqs '${adv_opts.max_hits}'
     #else
         ## Text and HTML output formats 0-4 currently need this instead:
-        -num_descriptions '${adv_opts.max_hits}' -num_alignments '${adv_opts.max_hits}#
+        -num_descriptions '${adv_opts.max_hits}' -num_alignments '${adv_opts.max_hits}'
     #end if
 #end if
 #if str($adv_opts.max_hsps)
