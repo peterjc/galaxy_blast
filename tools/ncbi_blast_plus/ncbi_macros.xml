@@ -443,7 +443,7 @@
     </xml>
 
     <xml name="input_max_hits">
-        <param name="max_hits" type="integer" min="0" value="0" label="Maximum hits to consider/show" help="Use zero for default limits. For HTML and plain text output this value is passed -num_descriptions and -num_alignments and used as a final output limit. For XML and tabular etc, this is used with -max_target_seqs which is also used as an internal limit during the search, which can in some cases exclude matches would otherwise become the best hit." />
+        <param name="max_hits" type="integer" min="0" value="0" label="Maximum hits to consider/show" help="Use zero for default limits. For HTML and plain text output this value is passed -num_descriptions and -num_alignments and used as a final output limit. For XML and tabular etc, this is used with -max_target_seqs which is also used as an internal limit during the search, which can in some cases exclude matches which would otherwise become the best hit." />
         <param argument="-max_hsps" type="integer" min="1" optional="true" value="" label="Maximum number of HSPs (alignments) to keep for any single query-subject pair" help="The HSPs shown will be the best as judged by expect value. If this option is not set, BLAST shows all HSPs meeting the expect value criteria" />
     </xml>
 
