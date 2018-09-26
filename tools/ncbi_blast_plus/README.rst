@@ -259,6 +259,10 @@ v0.3.0  - Updated for NCBI BLAST+ 2.7.1,
         - Document the BLAST+ 2.6.0 change in the standard 12 column output
           from ``qacc,sacc,...`` to ``qaccver,saccver,...`` instead.
         - Accept gzipped FASTA inputs (contribution from Anton Nekrutenko).
+v0.3.1  - Clarify help text for max hits option, confusing as depending on the
+          output format it must be mapped to different command line arguments.
+          Except for text and HTML outputs, must use ``-max_target_seqs``
+          which does not just apply as an output limit.
 ======= ======================================================================
 
 
