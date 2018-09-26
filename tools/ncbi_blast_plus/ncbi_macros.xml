@@ -1,5 +1,5 @@
 <macros>
-    <token name="@WRAPPER_VERSION@">0.3.0</token>
+    <token name="@WRAPPER_VERSION@">0.3.1</token>
     <xml name="parallelism">
         <!-- If job splitting is enabled, break up the query file into parts -->
         <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
@@ -443,7 +443,7 @@
     </xml>
 
     <xml name="input_max_hits">
-        <param name="max_hits" type="integer" min="0" value="0" label="Maximum hits to show" help="Use zero for default limits" />
+        <param name="max_hits" type="integer" min="0" value="0" label="Maximum hits to consider/show" help="Use zero for default limits. For HTML and plain text output this value is passed -num_descriptions and -num_alignments and used as a final output limit. For XML and tabular etc, this is used with -max_target_seqs which is also used as an internal limit during the search, which can in some cases exclude matches would otherwise become the best hit." />
         <param argument="-max_hsps" type="integer" min="1" optional="true" value="" label="Maximum number of HSPs (alignments) to keep for any single query-subject pair" help="The HSPs shown will be the best as judged by expect value. If this option is not set, BLAST shows all HSPs meeting the expect value criteria" />
     </xml>
 
@@ -589,15 +589,41 @@
     <token name="@ADV_FILTER_QUERY@">$adv_opts.filter_query</token>
     <token name="@ADV_MAX_HITS@"><![CDATA[
 ## Need int(str(...)) because $adv_opts.max_hits is an InputValueWrapper object not a string
-## Note -max_target_seqs used to simply override -num_descriptions and -num_alignments
-## but this was changed in BLAST+ 2.2.27 onwards to force their use (raised with NCBI)
+##
+## Quoting BLAST 2.7.1+ output from "blastp --help" or "blastn --help":
+##
+##  *** Formatting options
+##   -num_descriptions <Integer, >=0>
+##    Number of database sequences to show one-line descriptions for
+##    Not applicable for outfmt > 4
+##    Default = `500'
+##     * Incompatible with:  max_target_seqs
+##  -num_alignments <Integer, >=0>
+##    Number of database sequences to show alignments for
+##    Default = `250'
+##     * Incompatible with:  max_target_seqs
+##
+##  *** Restrict search or results
+##
+##  -max_target_seqs <Integer, >=1>
+##   Maximum number of aligned sequences to keep
+##   Not applicable for outfmt <= 4
+##   Default = `500'
+##    * Incompatible with:  num_descriptions, num_alignments
+##
+## So, taken at face value we do still need to treat the Text and HTML output
+## differently from the Tabular and XML, yet the treatment of these limits is
+## different (during search or after the search when writing the output):
+## https://blastedbio.blogspot.com/2015/12/blast-max-target-sequences-bug.html
+##
+## See also our user-facing help text.
 #if (str($adv_opts.max_hits) and int(str($adv_opts.max_hits)) > 0):
     #if str($output.out_format) in ["6", "ext", "cols", "5"]:
         ## Most output formats use this, including tabular and XML:
         -max_target_seqs '${adv_opts.max_hits}'
     #else
         ## Text and HTML output formats 0-4 currently need this instead:
-        -num_descriptions $adv_opts.max_hits -num_alignments $adv_opts.max_hits
+        -num_descriptions '${adv_opts.max_hits}' -num_alignments '${adv_opts.max_hits}#
     #end if
 #end if
 #if str($adv_opts.max_hsps)
