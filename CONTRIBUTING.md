@@ -16,5 +16,4 @@ discuss potential solution before proceeding with development.
 * Fork the repository on [GitHub](https://github.com/peterjc/galaxy_blast/fork)
 * Make the desired modifications - consider using a [feature branch](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches).
 * Make sure you have added the necessary tests for your changes and they pass. See [TESTING](https://github.com/peterjc/galaxy_blast#testing) for more information.
-* Open a [pull request](https://help.github.com/articles/using-pull-requests)
-  with these changes.
+* Open a [pull request](https://help.github.com/articles/using-pull-requests) with these changes.
