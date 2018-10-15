@@ -24,7 +24,7 @@ jobs:
     - stage: deploy
       before_install:
         - echo "Removing tools we're not testing"
-        - for line in $(cat .tt_blacklist); do rm -rf $line; done
+        - for line in $(cat .tt_skip); do rm -rf $line; done
       install:
         - pip install --upgrade pip setuptools
         - pip install planemo
