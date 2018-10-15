@@ -54,23 +54,6 @@ c_score = get_col_index(c_score)
 if len(set([c_query, c_match, c_score])) < 3:
     sys.exit("Need three different column numbers!")
 
-"""
-def load_best(filename, id1col, id2col):
-    best = dict()
-    for line in open(a_vs_b):
-        if line.startswith("#"): continue
-        parts = line.rstrip("\n").split("\t")
-        id1 = parts[id1col]
-        id2 = parts[id2col]
-        score = float(parts[c_score])
-        if (a not in best_a_vs_b) \
-        or (want_highest and score > best[id1][1]) \
-        or (want_lowest and score < best[id1][1]):
-            best[id1] = (id2, score)
-    return best
-best_a_vs_b = load_best(a_vs_b, c_query, c_match)
-"""
-
 best_a_vs_b = dict()
 for line in open(a_vs_b):
     if line.startswith("#"):
