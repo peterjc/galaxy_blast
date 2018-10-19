@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Reciprocal Best Hit (RBH) using BLAST style tabular input
+"""Reciprocal Best Hit (RBH) using BLAST style tabular input.
 
 Takes seven command line options,
 1. Tabular filename of A against B
@@ -43,6 +43,7 @@ if "None" in [c_query, c_match, c_score]:
 
 
 def get_col_index(col_str):
+    """Return integer index from a column name string."""
     if col_str[0] == "c":
         col_str = col_str[1:]
     return int(col_str) - 1

@@ -168,6 +168,7 @@ assert not re_default_subject_id.match("TheSubject_1")
 
 
 def convert(blastxml_filename, output_handle):
+    """Convert BLAST XML input from a file to tabular on given handle."""
     blast_program = None
     # get an iterable
     try:

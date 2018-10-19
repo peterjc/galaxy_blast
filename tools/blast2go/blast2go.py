@@ -68,6 +68,7 @@ if not os.path.isfile(prop_file):
 
 
 def run(cmd):
+    """Run the given command line string via subprocess."""
     # Avoid using shell=True when we call subprocess to ensure if the Python
     # script is killed, so too is the child process.
     try:

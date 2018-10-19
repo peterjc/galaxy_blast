@@ -20,11 +20,12 @@ _DOCTYPES = ['<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" '
 
 
 class BlastXml(GenericXml):
-    """NCBI Blast XML Output data"""
+    """NCBI Blast XML Output data."""
+
     file_ext = "blastxml"
 
     def set_peek(self, dataset, is_multi_byte=False):
-        """Set the peek and blurb text"""
+        """Set the peek and blurb text."""
         if not dataset.dataset.purged:
             dataset.peek = get_file_peek(dataset.file_name, is_multi_byte=is_multi_byte)
             dataset.blurb = 'NCBI Blast XML data'
@@ -33,7 +34,7 @@ class BlastXml(GenericXml):
             dataset.blurb = 'file purged from disk'
 
     def sniff(self, filename):
-        """Determines whether the file is blastxml
+        """Determine from the contents if the file is blastxml.
 
         >>> from galaxy.datatypes.sniff import get_test_fname
         >>> fname = get_test_fname('megablast_xml_parser_test1.blastxml')
@@ -64,7 +65,11 @@ class BlastXml(GenericXml):
         return True
 
     def merge(split_files, output_file):
-        """Merging multiple XML files is non-trivial and must be done in subclasses."""
+        """Merge muliple BLAST XML files into one.
+
+        Merging multiple XML files is non-trivial and must be done in
+        subclasses, rather than the generic parent base XML class.
+        """
         if len(split_files) == 1:
             # For one file only, use base class method (move/copy)
             return Text.merge(split_files, output_file)
@@ -171,7 +176,7 @@ class _BlastDb(object):
 
     def display_data(self, trans, data, preview=False, filename=None,
                      to_ext=None, size=None, offset=None, **kwd):
-        """Documented as an old display method, but still gets called via tests etc
+        """Documented as an old display method, but still gets called via tests etc.
 
         This allows us to format the data shown in the central pane via the "eye" icon.
         """
@@ -214,11 +219,13 @@ class _BlastDb(object):
 
 class BlastNucDb(_BlastDb, Data):
     """Class for nucleotide BLAST database files."""
+
     file_ext = 'blastdbn'
     allow_datatype_change = False
     composite_type = 'basic'
 
     def __init__(self, **kwd):
+        """Initialize the class."""
         Data.__init__(self, **kwd)
         self.add_composite_file('blastdb.nhr', is_binary=True)  # sequence headers
         self.add_composite_file('blastdb.nin', is_binary=True)  # index file
@@ -271,11 +278,13 @@ class BlastNucDb(_BlastDb, Data):
 
 class BlastProtDb(_BlastDb, Data):
     """Class for protein BLAST database files."""
+
     file_ext = 'blastdbp'
     allow_datatype_change = False
     composite_type = 'basic'
 
     def __init__(self, **kwd):
+        """Initialize the class."""
         Data.__init__(self, **kwd)
         # Component file comments are as in BlastNucDb except where noted
         self.add_composite_file('blastdb.phr', is_binary=True)
@@ -297,11 +306,13 @@ class BlastProtDb(_BlastDb, Data):
 
 class BlastDomainDb(_BlastDb, Data):
     """Class for domain BLAST database files."""
+
     file_ext = 'blastdbd'
     allow_datatype_change = False
     composite_type = 'basic'
 
     def __init__(self, **kwd):
+        """Initialize the class."""
         Data.__init__(self, **kwd)
         self.add_composite_file('blastdb.phr', is_binary=True)
         self.add_composite_file('blastdb.pin', is_binary=True)

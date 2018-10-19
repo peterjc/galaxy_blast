@@ -17,6 +17,7 @@ except ValueError:
 
 
 def gzip_open(filename, mode="rb"):
+    """Open a possibly gzipped file."""
     assert mode == "rb", mode
     h = open(filename, "rb")
     magic = h.read(2)
@@ -31,6 +32,7 @@ def gzip_open(filename, mode="rb"):
 
 
 def get_term_class(go, alias, is_a):
+    """Find the class (P, C or F) of the given GO term."""
     x = alias.get(go, go)
     while x:
         if x in ["GO:0008150", "obsolete_biological_process"]:
@@ -103,6 +105,7 @@ def load_go_mapping(rdf_xml):
 
 
 def b2g_annot_to_gaf(in_handle, out_handle):
+    """Convert blast2go annotation file to GAF."""
     db = "LOCAL"
     qualifier = "NOT"
     db_ref = ""

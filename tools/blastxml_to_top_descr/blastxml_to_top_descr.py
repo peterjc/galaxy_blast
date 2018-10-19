@@ -238,6 +238,7 @@ else:
 
 
 def best_hits(descriptions, topN):
+    """Truncate given descriptions list to at most N entries."""
     if len(descriptions) < topN:
         return descriptions + [""] * (topN - len(descriptions))
     else:

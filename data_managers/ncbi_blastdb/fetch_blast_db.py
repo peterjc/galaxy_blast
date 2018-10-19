@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Dan Blankenberg
-# Script that calls update_blastdb.pl to download preformatted databases
+"""Script that calls update_blastdb.pl to download preformatted databases."""
 
 from __future__ import print_function
 
@@ -16,6 +16,7 @@ CHUNK_SIZE = 2**20  # 1mb
 
 
 def get_dir_hash(directory, algorithm=None, followlinks=True, chunk_size=None):
+    """Get hash of directory contents."""
     chunk_size = chunk_size or CHUNK_SIZE
     algorithm = algorithm or DEFAULT_ALGORITHM
     if isinstance(algorithm, basestring):
@@ -45,7 +46,7 @@ def get_dir_hash(directory, algorithm=None, followlinks=True, chunk_size=None):
 
 
 def main():
-    # Parse Command Line
+    """Parse and execute the arguments from the command line."""
     parser = optparse.OptionParser()
     parser.add_option('-f', '--filename', dest='filename',
                       action='store', type='string', default=None, help='filename')

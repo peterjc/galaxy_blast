@@ -29,6 +29,7 @@ from optparse import OptionParser
 
 
 def run(cmd):
+    """Run the given command line string."""
     return_code = os.system(cmd)
     if return_code:
         sys.exit("Error %i from: %s" % (return_code, cmd))
@@ -246,6 +247,7 @@ def best_hits(blast_tabular, ignore_self=False):
 
 
 def check_duplicate_ids(filename):
+    """Check for duplicate identifiers in a FASTA file."""
     # Copied from tools/ncbi_blast_plus/check_no_duplicates.py
     # TODO - just use Biopython's FASTA parser?
     if not os.path.isfile(filename):
@@ -267,6 +269,7 @@ def check_duplicate_ids(filename):
 
 
 def make_nr(input_fasta, output_fasta, sep=";"):
+    """Make the sequences in a FASTA file non-redundant."""
     # TODO - seq-hash based to avoid loading everything into RAM?
     by_seq = dict()
     try:
