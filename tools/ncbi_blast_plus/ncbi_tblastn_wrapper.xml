@@ -33,7 +33,7 @@ tblastn
 #end if
     </command>
     <inputs>
-        <param argument="-query" type="data" format="fasta" label="Protein query sequence(s)"/>
+        <expand macro="prot_query" />
 
         <expand macro="input_conditional_nucleotide_db" />
         <param name="blast_type" argument="-task" type="select" display="radio" label="Type of BLAST">

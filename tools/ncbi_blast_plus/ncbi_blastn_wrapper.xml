@@ -39,7 +39,7 @@ ${adv_opts.ungapped}
 ]]>
     </command>
     <inputs>
-        <param argument="-query" type="data" format="fasta,fasta.gz" label="Nucleotide query sequence(s)"/>
+        <expand macro="nucl_query" />
         <expand macro="input_conditional_nucleotide_db" />
         <param name="blast_type" argument="-task" type="select" display="radio" label="Type of BLAST">
             <option value="megablast">megablast - Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences</option>

@@ -30,7 +30,7 @@ deltablast
 ##cdd_delta.loc file for this, or is blastdb_d.loc OK?
     </command>
     <inputs>
-        <param argument="-query" type="data" format="fasta" label="Protein query sequence(s)"/>
+        <expand macro="prot_query" />
 
         <expand macro="input_conditional_protein_db" />
         <expand macro="input_evalue" />

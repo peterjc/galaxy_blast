@@ -12,6 +12,14 @@
         <version_command>@BINARY@ -version</version_command>
     </xml>
 
+    <xml name="nucl_query">
+        <param argument="-query" type="data" format="fasta,fasta.gz" label="Nucleotide query sequence(s)"/>
+    </xml>
+
+    <xml name="prot_query">
+        <param argument="-query" type="data" format="fasta,fasta.gz" label="Protein query sequence(s)"/>
+    </xml>
+
     <xml name="output_change_format">
         <change_format>
             <when input="output.out_format" value="0" format="txt"/>

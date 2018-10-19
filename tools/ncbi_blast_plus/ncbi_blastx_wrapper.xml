@@ -33,7 +33,7 @@ $adv_opts.ungapped
 #end if
     </command>
     <inputs>
-        <param argument="-query" type="data" format="fasta" label="Nucleotide query sequence(s)"/>
+        <expand macro="nucl_query" />
 
         <expand macro="input_conditional_protein_db" />
         <expand macro="input_query_gencode" />

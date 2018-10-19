@@ -33,7 +33,7 @@ blastp
 #end if
     </command>
     <inputs>
-        <param argument="-query" type="data" format="fasta" label="Protein query sequence(s)"/>
+        <expand macro="prot_query" />
 
         <expand macro="input_conditional_protein_db" />
 

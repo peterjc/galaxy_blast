@@ -56,7 +56,7 @@ psiblast
                 <option value="pssm">PSI-BLAST checkpoint file</option>
             </param>
             <when value="query">
-                <param argument="-query" type="data" format="fasta" label="Protein query sequence(s)"/>
+                <expand macro="prot_query" />
             </when>
             <when value="msa">
                 <param argument="-in_msa" type="data" format="msa,phylip" label="Multiple Sequence Alignment File" />
