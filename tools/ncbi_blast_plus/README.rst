@@ -258,9 +258,12 @@ v0.3.0  - Updated for NCBI BLAST+ 2.7.1,
         - Depends on BioConda or legacy ToolShed ``package_blast_plus_2_7_1``.
         - Document the BLAST+ 2.6.0 change in the standard 12 column output
           from ``qacc,sacc,...`` to ``qaccver,saccver,...`` instead.
-        - Accept gzipped FASTA inputs (contribution from Anton Nekrutenko).
+        - Accept gzipped FASTA inputs for subject files, queries to ``blastn``
+	  and input to ``makeblastdb`` (contribution from Anton Nekrutenko).
 v0.3.1  - Clarify help text for max hits option, confusing as depending on the
           output format it must be mapped to different command line arguments.
+        - Extend gzipped query support to all the command line tools.
+        - Workaround for gzipped support under Galaxy release 16.01 or older.
 ======= ======================================================================
 
 
