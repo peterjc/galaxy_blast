@@ -17,7 +17,7 @@ python $__tool_directory__/check_no_duplicates.py
 ##into a single cat command below
 cat
 #for i in $input_file:
-    #if $i.is_of_type('fasta.gz'):
+    #if $i.is_of_type('fasta.gz') and $i.ext != "fasta":
         <(gunzip -c ${i})
     #else:
         ${i}

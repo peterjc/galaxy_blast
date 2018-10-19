@@ -567,7 +567,7 @@
     <token name="@THREADS@">-num_threads "\${GALAXY_SLOTS:-8}"</token>
 
     <token name="@QUERY@"><![CDATA[
-#if $query.is_of_type('fasta.gz'):
+#if $query.is_of_type('fasta.gz') and $query.ext != "fasta":
   -query <(gunzip -c '${query}')
 #else:
   -query '${query}'
@@ -580,7 +580,7 @@
 #elif $db_opts.db_opts_selector == "histdb":
   -db '${os.path.join($db_opts.histdb.extra_files_path, "blastdb")}'
 #else:
-    #if $db_opts.subject.is_of_type('fasta.gz'):
+    #if $db_opts.subject.is_of_type('fasta.gz') and $db_opts.subject.ext != "fasta":
         -subject <(gunzip -c '${$db_opts.subject}')
     #else:
         -subject '${db_opts.subject}'
