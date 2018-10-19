@@ -15,6 +15,26 @@ language: python
 cache: pip
 jobs:
   include:
+    - stage: lint
+      python: "2.7"
+      before_install:
+        - "if grep -P '\t' *.rst */*.rst */*/*.rst; then echo 'Tabs are bad, please use four spaces in RST files.'; false; fi"
+        - "if grep -P '\t' */*/*.xml; then echo 'Tabs are bad, please use four spaces in XML files.'; false; fi"
+        - "if grep -P '\t' */*/.shed.yml; then echo 'Tabs are bad, please use four spaces in shed YAML files.'; false; fi"
+        - "if grep -n -r '[[:blank:]]$' *.rst */*.rst */*/*.rst; then echo 'Please remove trailing whitespace in RST files.'; false; fi"
+        - "if grep -n -r '[[:blank:]]$' */*/*.xml; then echo 'Please remove trailing whitespace in XML files.'; false; fi"
+        - "if grep -n -r '[[:blank:]]$' */*/.shed.yml; then echo 'Please remove trailing whitespace in shed YAML files.'; false; fi"
+      install:
+        - pip install --upgrade pip setuptools
+        - pip install flake8 flake8-blind-except restructuredtext-lint
+        - echo "Using flake8 to check Python code"
+        - flake8 --max-line-length 120 .
+        - echo "Using restructuredtext-lint to check our RST files"
+        - restructuredtext-lint *.rst */*/*.rst
+        - pip install planemo
+      script:
+        - echo "Using planemo lint to check for obvious tool errors"
+        - planemo shed_lint --tools --fail_level error --ensure_metadata --urls -r ${TRAVIS_BUILD_DIR}
     - stage: test
       python: "2.7"
       env: GALAXY_BRANCH=master
@@ -67,21 +87,8 @@ jobs:
 # which we will do manually rather than via a (local) Galaxy Tool Shed.
 
 before_install:
- - "if grep -P '\t' *.rst */*.rst */*/*.rst; then echo 'Tabs are bad, please use four spaces in RST files.'; false; fi"
- - "if grep -P '\t' */*/*.xml; then echo 'Tabs are bad, please use four spaces in XML files.'; false; fi"
- - "if grep -P '\t' */*/.shed.yml; then echo 'Tabs are bad, please use four spaces in shed YAML files.'; false; fi"
- - "if grep -n -r '[[:blank:]]$' *.rst */*.rst */*/*.rst; then echo 'Please remove trailing whitespace in RST files.'; false; fi"
- - "if grep -n -r '[[:blank:]]$' */*/*.xml; then echo 'Please remove trailing whitespace in XML files.'; false; fi"
- - "if grep -n -r '[[:blank:]]$' */*/.shed.yml; then echo 'Please remove trailing whitespace in shed YAML files.'; false; fi"
  - pip install --upgrade pip setuptools
- - pip install flake8 flake8-blind-except restructuredtext-lint
- - echo "Using flake8 to check Python code"
- - flake8 --max-line-length 120 .
- - echo "Using restructuredtext-lint to check our RST files"
- - restructuredtext-lint *.rst */*/*.rst
  - pip install planemo
- - echo "Using planemo lint to check for obvious tool errors"
- - planemo shed_lint --tools --fail_level error --ensure_metadata --urls -r ${TRAVIS_BUILD_DIR}
  - echo "Removing tools we're not going to test"
  - for line in $(cat .tt_blacklist); do rm -rf $line; done
  - echo "Fixing permissions on Python eggs cache folder"
