@@ -13,7 +13,7 @@
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 psiblast
 #if str($input_opts.input_opts_selector) == "query"
--query '$query'
+@QUERY@
 #else if str($input_opts.input_opts_selector) == "pssm"
 -in_pssm '$in_pssm'
 #else if str($input_opts.input_opts_selector) == "msa"

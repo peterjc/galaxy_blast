@@ -10,7 +10,7 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 rpsblast
--query '$query'
+@QUERY@
 #if $db_opts.db_opts_selector == "db":
   -db '${db_opts.database.fields.path}'
 #elif $db_opts.db_opts_selector == "histdb":

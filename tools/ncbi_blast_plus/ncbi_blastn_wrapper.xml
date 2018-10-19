@@ -11,11 +11,7 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastn
-#if $query.is_of_type('fasta.gz'):
--query <(gunzip -c '${query}')
-#else:
--query '${query}'
-#end if
+@QUERY@
 @BLAST_DB_SUBJECT@
 -task '${blast_type}'
 -evalue '${evalue_cutoff}'
