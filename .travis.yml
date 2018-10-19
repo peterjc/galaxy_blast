@@ -34,7 +34,7 @@ jobs:
         - pip install planemo
       script:
         - echo "Using planemo lint to check for obvious tool errors"
-        - planemo shed_lint --tools --fail_level error --ensure_metadata --urls -r ${TRAVIS_BUILD_DIR}
+        - planemo shed_lint --tools --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
     - stage: test
       python: "2.7"
       env: GALAXY_BRANCH=master
