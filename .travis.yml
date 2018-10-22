@@ -59,7 +59,7 @@ jobs:
 # Assumes you have set $TTS_KEY in the TravisCI interface,
 # and that the test stage passed.
 #
-# As the deploy is run on a new VM, remove black-listed tools.
+# As the deploy is run on a new VM, again remove skipped tools.
 #
 # Note use of "true" after the "planemo shed_update" which is
 # a work-around for a Tool Shed administration rights issue, see
@@ -90,7 +90,7 @@ before_install:
  - pip install --upgrade pip setuptools
  - pip install planemo
  - echo "Removing tools we're not going to test"
- - for line in $(cat .tt_blacklist); do rm -rf $line; done
+ - for line in $(cat .tt_skip); do rm -rf $line; done
  - echo "Fixing permissions on Python eggs cache folder"
  - mkdir -p "$HOME/.python-eggs"
  - chmod 700 "$HOME/.python-eggs" 
