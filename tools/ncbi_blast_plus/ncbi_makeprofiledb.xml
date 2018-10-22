@@ -90,7 +90,7 @@ ${infile}
             <param name="contain_pssm_scores_type" value="yes" />
             <output name="outfile" file="empty_file.dat" ftype="blastdbd" >
                 <extra_files type="file" value="cd00003_and_cd00008.phr" name="blastdb.phr" />
-                <extra_files type="file" value="cd00003_and_cd00008.pin" name="blastdb.pin" lines_diff="2" />
+                <extra_files type="file" value="cd00003_and_cd00008.pin" name="blastdb.pin" compare="sim_size" delta="0" />
                 <extra_files type="file" value="cd00003_and_cd00008.psq" name="blastdb.psq" />
                 <extra_files type="file" value="cd00003_and_cd00008.freq" name="blastdb.freq" />
                 <extra_files type="file" value="cd00003_and_cd00008.loo" name="blastdb.loo" />
