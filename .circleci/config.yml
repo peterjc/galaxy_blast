@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:2.7-stretch-node-browsers-legacy1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv .venv
+            source .venv/bin/activate
+            pip install --upgrade pip setuptools
+            pip install flake8 flake8-blind-except flake8-docstrings flake8-rst-docstrings restructuredtext-lint
+            pip install planemo
+            # TODO:  Get Galaxy's venv setup and cached too?
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+        
+      - run:
+          name: lint
+          command: |
+            source .venv/bin/activate
+            echo "Using flake8 to check Python code"
+            flake8 --max-line-length 120 .
+            echo "Using restructuredtext-lint to check our RST files"
+            restructuredtext-lint *.rst */*/*.rst
+            echo "Using planemo lint to check for obvious tool errors"
+            planemo shed_lint --tools --fail_level error --ensure_metadata -r .
