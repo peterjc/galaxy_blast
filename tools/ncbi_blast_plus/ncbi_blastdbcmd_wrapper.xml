@@ -55,7 +55,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
               <option value="prompt">User entered</option>
             </param>
             <when value="file">
-                <param name="entries" argument="-entry_batch" type="data" format="txt,tabular" label="Sequence identifier(s)" help="Plain text file with one ID per line (i.e. single column tabular file)"/>
+                <param name="entries" argument="-entry_batch" type="data" format="txt,tabular" label="Sequence identifier(s)" help="Plain text file with one ID per line, optionally with space separated range, strand, and algorithm."/>
             </when>
             <when value="prompt">
                 <param name="entries" argument="-entry" type="text" optional="false" area="true" size="10x30" label="Sequence identifier(s)" help="Comma or new line separated list"/>
@@ -88,6 +88,15 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
             <output name="seq" file="rhodopsin_nucs.no_gi.fasta" ftype="fasta" />
         </test>
         <test>
+            <!-- This uses various start end frame combinations but all recover full sequence -->
+            <param name="db_opts|db_type" value="nucl" />
+            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <param name="id_opts|id_type" value="file" />
+            <param name="id_opts|entries" value="rhodopsin_nucs.blastdbcmd.txt" ftype="txt" />
+            <param name="outfmt" value="original" />
+            <output name="seq" file="rhodopsin_nucs.no_gi.fasta" ftype="fasta" />
+        </test>
+        <test>
             <param name="db_opts|db_type" value="nucl" />
             <param name="db_opts|database" value="rhodopsin_nucs" />
             <param name="id_opts|id_type" value="prompt" />
@@ -110,6 +119,12 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
 
 Extracts FASTA formatted sequences from a BLAST database
 using the NCBI BLAST+ blastdbcmd command line tool.
+
+When giving a text file of entries, use one line per sequence.
+Optional valies should be space separate - the simplest syntax
+is ``identifier start-end`` (where ``end`` can be just ``-``),
+or ``identifier start-end strand`` (wheere the strand given as
+either ``+`` or ``-``).
 
 .. class:: warningmark
 
