@@ -102,6 +102,7 @@ include:
   - ../../test-data/rhodopsin_nucs.fasta.nnd
   - ../../test-data/rhodopsin_nucs.fasta.nni
   - ../../test-data/rhodopsin_nucs.no_gi.fasta
+  - ../../test-data/rhodopsin_nucs.blastdbcmd.txt
   - ../../test-data/rhodopsin_bufo.fasta
   - ../../test-data/rhodopsin_proteins.fasta
   - ../../test-data/segmasker_four_human.fasta
