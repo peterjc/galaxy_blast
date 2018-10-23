@@ -252,7 +252,7 @@ v0.2.02 - Document the BLAST+ 2.5.0 change in the standard 12 column output
         - Support for per-matrix recommended gaps settings (``-gapopen`` and
           ``-gapextend``, contribution from Caleb Easterly and Jim Johnson).
         - Support for ``-window_size``, ``-threshold``, ``-comp_based_stats``
-          and revising ``-word_size`` to avoid using zero to mean  default
+          and revising ``-word_size`` to avoid using zero to mean default
           (contribution from Caleb Easterly).
 v0.3.0  - Updated for NCBI BLAST+ 2.7.1,
         - Depends on BioConda or legacy ToolShed ``package_blast_plus_2_7_1``.
