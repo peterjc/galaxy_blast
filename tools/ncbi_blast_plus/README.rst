@@ -264,7 +264,7 @@ v0.3.1  - Clarify help text for max hits option, confusing as depending on the
           output format it must be mapped to different command line arguments.
         - Extend gzipped query support to all the command line tools.
         - Workaround for gzipped support under Galaxy release 16.01 or older.
-v0.3.2	- Fixed incomplete ``@CLI_OPTIONS@`` macro in the help text for the
+v0.3.2  - Fixed incomplete ``@CLI_OPTIONS@`` macro in the help text for the
           ``tblastn`` and ``blastdbcmd`` wrappers.
 ======= ======================================================================
 
