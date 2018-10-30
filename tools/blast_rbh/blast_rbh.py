@@ -55,7 +55,7 @@ Many of the options are required. Example with proteins and blastp:
 
 $ python blast_rbh.py -a prot -t blasp -o output.tsv protA.fasta protB.fasta
 
-There is additional guideance in the help text in the blast_rbh.xml file,
+There is additional guidance in the help text in the blast_rbh.xml file,
 which is shown to the user via the Galaxy interface to this tool.
 """
 
