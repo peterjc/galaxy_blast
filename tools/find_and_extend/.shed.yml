@@ -1,0 +1,21 @@
+name: find_and_extend
+owner: peterjc
+homepage_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/find_and_extend
+repository_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/find_and_extend
+description: BLAST find and extend
+long_description: |
+  Given query sequences(), finds their best full length hit in a BLAST database,
+  and returns the matching sequences extended upstream and downstream. Intended
+  for use in extracting target regions for tasks like primer or KASP marker design
+  given a short marker like candidate alleles from genotyping by sequencing.
+categories:
+- Fasta Manipulation
+- Sequence Analysis
+type: unrestricted
+include:
+- strip_components: 2
+  source:
+  - ../../tools/find_and_extend/README.rst
+  - ../../tools/find_and_extend/find_and_extend.py
+  - ../../tools/find_and_extend/find_and_extend.xml
+  - ../../tools/find_and_extend/tool_dependencies.xml

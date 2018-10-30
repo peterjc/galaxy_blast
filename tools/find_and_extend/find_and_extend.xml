@@ -1,0 +1,88 @@
+<tool id="blast_find_and_extend" name="BLAST find and extend" version="0.0.1">
+    <description>sequence matches in a BLAST database</description>
+    <requirements>
+        <requirement type="package" version="1.67">biopython</requirement>
+        <requirement type="package" version="2.5.0">blast</requirement>
+    </requirements>
+    <version_command>
+python $__tool_directory__/find_and_extend.py --version
+    </version_command>
+    <command detect_errors="aggressive">
+python $__tool_directory__/find_and_extend.py
+-q '$query'
+-i '$identity'
+-c '$coverage'
+-u '$up'
+-d '$down'
+-o '$output'
+    </command>
+    <inputs>
+        <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
+        <param arg="--query" type="data" format="fasta"
+               label="Input query nucleotide FASTA file"
+               help="Short sequences to find in and extend."/>
+        <param arg="--identity" type="float" value="95" min="0" max="100"
+               label="Minimum percentage identity for BLAST matches"
+               help="Default is 95%, use 0 for no filtering." />
+        <param arg="--coverage" type="float" value="95" min="0" max="100"
+               label="Minimum percentage query coverage for BLAST matches"
+               help="Default is 95%, use 0 for no filtering." />
+        <param arg="--up" type="int" value="50" min="0"
+	       label="Up-stream match extension in base pairs (i.e. start of the sequence)" />
+        <param arg="--down" type="int" value="50" min="0"
+               label="Down-stream match extension in base pairs (i.e. end of the sequence)" />
+    </inputs>
+    <outputs>
+        <data name="output" format="fasta" label="Extended matches to $query.name" />
+    </outputs>
+    <tests>
+        <!-- TODO -->
+    </tests>
+    <help>
+**What it does**
+
+Takes a FASTA input of short query sequences, and a nucletide BLAST database
+which they are expected to match. Runs ``blastn`` to find the best match for
+each query, then uses ``blastdbcmd`` to pull out of the database the matching
+sequence extended with flanking sequence.
+
+The output is a new FASTA file, hopefully with one sequence for each query.
+If any of your query sequences are not found (with the thresholds set), then
+they will not have an entry in the output file, but a note will be reported
+in the tools output (see ``stdout`` via the output details).
+
+Note that if a sequence has equally scoring top BLAST matches to multiple
+sequence in the database, multple outputs will be present in the output FASTA
+file.
+
+The defaults are to require 95% sequence identity over the aligned region
+(using ``pident`` in the BLAST+ tabular output), and that the HSP alignment
+covers at least 95% of the query sequence (using ``qcovhsp`` in the BLAST+
+tabular output).
+
+
+**References**
+
+In the absense of a more precise citation, please cite the tool directly,
+or if you need to use a formal paper:
+
+P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo (2015).
+NCBI BLAST+ integrated into Galaxy.
+*GigaScience* 4:39
+https://doi.org/10.1186/s13742-015-0080-7
+
+You should also cite the BLAST+ paper:
+
+Christiam Camacho et al. (2009).
+BLAST+: architecture and applications.
+*BMC Bioinformatics* 15;10:421.
+https://doi.org/10.1186/1471-2105-10-421
+
+This wrapper is available to install into other Galaxy Instances via the Galaxy
+Tool Shed at http://toolshed.g2.bx.psu.edu/view/peterjc/find_and_extend
+    </help>
+    <citations>
+        <citation type="doi">10.1186/1471-2105-10-421</citation>
+        <citation type="doi">10.1186/s13742-015-0080-7</citation>
+    </citations>
+</tool>
