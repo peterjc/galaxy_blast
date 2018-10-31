@@ -51,27 +51,30 @@ file, which is shown to the user via the Galaxy interface to this tool.
 """
 
 parser = OptionParser(usage=usage)
-parser.add_option("-i", "--identity", dest="min_identity",
-                  default="95",
-                  help="Minimum percentage identity (optional, default 95)")
-parser.add_option("-c", "--coverage", dest="min_coverage",
-                  default="95",
-                  help="Minimum HSP coverage (optional, default 95)")
 parser.add_option("-q", "--query", dest="query",
                   default=None, metavar="FILE",
                   help="Input query FASTA filename (required)")
-parser.add_option("--up", dest="up",
-                  default="50",
-                  help="Extend upstream (start) by this many base pairs (optional, default 50)")
-parser.add_option("--down", dest="down",
-                  default="50",
-                  help="Extend downstream (end) by this many base pairs (optional, default 50)")
 parser.add_option("-d", "--database", dest="database",
                   default=None, metavar="FILE",
                   help="Input BLAST nucleotide database (required)")
 parser.add_option("-o", "--output", dest="output",
                   default=None, metavar="FILE",
                   help="Output FASTA filename (required)")
+parser.add_option("-i", "--identity", dest="min_identity",
+                  default="95",
+                  help="Minimum percentage identity (optional, default 95)")
+parser.add_option("-c", "--coverage", dest="min_coverage",
+                  default="95",
+                  help="Minimum HSP coverage (optional, default 95)")
+parser.add_option("-x", "--max_target_seqs", dest="max_target_seqs",
+                  default="1",
+                  help="How many matches to return (BLAST+ setting -max_target_seqs, default 1)")
+parser.add_option("--up", dest="up",
+                  default="50",
+                  help="Extend upstream (start) by this many base pairs (optional, default 50)")
+parser.add_option("--down", dest="down",
+                  default="50",
+                  help="Extend downstream (end) by this many base pairs (optional, default 50)")
 parser.add_option("-t", "--threads", dest="threads",
                   default=threads,
                   help="Number of threads when running BLAST. Defaults to the "
@@ -104,11 +107,18 @@ if not (0 <= min_coverage <= 100):
     sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
 
 try:
+    max_target_seqs = int(options.max_target_seqs)
+except ValueError:
+    sys.exit("Expected positive integer for maximum matches (max_target_seqs), not %r" % max_target_seqs)
+if max_target_seqs < 0:
+    sys.exit("Expected positive integer for maximum matches (max_target_seqs), not %r" % max_target_seqs)
+
+try:
     up_extend = int(options.up)
 except ValueError:
-    sys.exit("Expected positive or zero integer for number bases to extend upstream, not %r" % options.up)
+    sys.exit("Expected positive or zero integer for number of bases to extend upstream, not %r" % options.up)
 if up_extend < 0:
-    sys.exit("Expected positive integer for number of bases to extend upstream, not %r" % up_extend)
+    sys.exit("Expected positive or zero integer for number of bases to extend upstream, not %r" % up_extend)
 
 try:
     down_extend = int(options.down)
