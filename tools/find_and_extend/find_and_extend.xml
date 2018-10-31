@@ -11,17 +11,17 @@ python $__tool_directory__/find_and_extend.py --version
 python $__tool_directory__/find_and_extend.py
 -q '$query'
 #if str($db_opts.db_opts_selector)=='db'
-'${db_opts.database}'
+-d '${db_opts.database}'
 #elif str($db_opts.db_opts_selector)=='histdb'
-'${db_opts.histdb.name}'
+-d '${db_opts.histdb.name}'
 #end if
 -i '$identity'
 -c '$coverage'
 -x '$max_target_seqs'
--u '$up'
--d '$down'
+--up '$up'
+--down '$down'
 -o '$output'
--t '$blast_output'
+-b '$blast_output'
     </command>
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
