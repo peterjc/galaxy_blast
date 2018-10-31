@@ -21,6 +21,7 @@ python $__tool_directory__/find_and_extend.py
 -u '$up'
 -d '$down'
 -o '$output'
+-t '$blast_output'
     </command>
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
@@ -61,6 +62,7 @@ python $__tool_directory__/find_and_extend.py
                label="Down-stream match extension in base pairs (i.e. end of the sequence)" />
     </inputs>
     <outputs>
+        <data name="output_blast" format="tabular" label="BLAST matches to $query.name" />
         <data name="output" format="fasta" label="Extended matches to $query.name" />
     </outputs>
     <tests>
