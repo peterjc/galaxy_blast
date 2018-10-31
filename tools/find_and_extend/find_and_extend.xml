@@ -10,6 +10,11 @@ python $__tool_directory__/find_and_extend.py --version
     <command detect_errors="aggressive">
 python $__tool_directory__/find_and_extend.py
 -q '$query'
+#if str($db_opts.db_opts_selector)=='db'
+'${db_opts.database}'
+#elif str($db_opts.db_opts_selector)=='histdb'
+'${db_opts.histdb.name}'
+#end if
 -i '$identity'
 -c '$coverage'
 -x '$max_target_seqs'
@@ -22,6 +27,25 @@ python $__tool_directory__/find_and_extend.py
         <param argument="--query" type="data" format="fasta"
                label="Input query nucleotide FASTA file"
                help="Short sequences to find in and extend."/>
+        <conditional name="db_opts">
+            <param name="db_opts_selector" type="select" label="Subject database/sequences">
+              <option value="db" selected="true">Locally installed BLAST database</option>
+              <option value="histdb">BLAST database from your history</option>
+	      <!-- TODO?
+              <option value="file">FASTA file from your history</option>
+	      -->
+            </param>
+            <when value="db">
+                <param name="database" argument="--database" type="select" multiple="true" label="Nucleotide BLAST database">
+                    <options from_data_table="blastdb" />
+                </param>
+                <param name="histdb" type="hidden" value="" />
+            </when>
+            <when value="histdb">
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" argument="--database" type="data" format="blastdbn" label="Nucleotide BLAST database"/>
+            </when>
+        </conditional>
         <param argument="--identity" type="float" value="95" min="0" max="100"
                label="Minimum percentage identity for BLAST matches"
                help="Default is 95%, use 0 for no filtering." />
