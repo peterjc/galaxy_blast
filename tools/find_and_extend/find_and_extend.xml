@@ -28,12 +28,12 @@ python $__tool_directory__/find_and_extend.py
         <param arg="--coverage" type="float" value="95" min="0" max="100"
                label="Minimum percentage query coverage for BLAST matches"
                help="Default is 95%, use 0 for no filtering." />
-        <param arg="--max_target_seqs" type="int" value="1" min="1"
+        <param arg="--max_target_seqs" type="integer" value="1" min="1"
 	       label="Maximum number of matches to return for each query"
 	       help="This is mapped to the BLAST+ -max_target_seqs option" />
-        <param arg="--up" type="int" value="50" min="0"
+        <param arg="--up" type="integer" value="50" min="0"
 	       label="Up-stream match extension in base pairs (i.e. start of the sequence)" />
-        <param arg="--down" type="int" value="50" min="0"
+        <param arg="--down" type="integer" value="50" min="0"
                label="Down-stream match extension in base pairs (i.e. end of the sequence)" />
     </inputs>
     <outputs>
