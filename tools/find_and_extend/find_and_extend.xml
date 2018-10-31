@@ -62,11 +62,15 @@ python $__tool_directory__/find_and_extend.py
                label="Down-stream match extension in base pairs (i.e. end of the sequence)" />
     </inputs>
     <outputs>
-        <data name="output_blast" format="tabular" label="BLAST matches to $query.name" />
+        <data name="blast_output" format="tabular" label="BLAST matches to $query.name" />
         <data name="output" format="fasta" label="Extended matches to $query.name" />
     </outputs>
     <tests>
-        <!-- TODO -->
+        <test>
+            <param name="query" value="rhodopsin_fragment.fasta" ftype="fasta" />
+	    <param name="db_opts|database" value="rhodopsin_nucs" />
+	    <output name="output_blast" file="rhodopsin_fragment.tabular" ftype="tabular" />
+        </test>
     </tests>
     <help>
 **What it does**
