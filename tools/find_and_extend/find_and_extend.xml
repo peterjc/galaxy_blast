@@ -69,7 +69,7 @@ python $__tool_directory__/find_and_extend.py
         <test>
             <param name="query" value="rhodopsin_fragment.fasta" ftype="fasta" />
             <param name="db_opts|database" value="rhodopsin_nucs" />
-            <output name="output_blast" file="rhodopsin_fragment.tabular" ftype="tabular" />
+            <output name="blast_output" file="rhodopsin_fragment.tabular" ftype="tabular" />
         </test>
     </tests>
     <help>
