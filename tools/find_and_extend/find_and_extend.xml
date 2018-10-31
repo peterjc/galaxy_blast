@@ -32,9 +32,9 @@ python $__tool_directory__/find_and_extend.py
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="true">Locally installed BLAST database</option>
               <option value="histdb">BLAST database from your history</option>
-	      <!-- TODO?
+              <!-- TODO?
               <option value="file">FASTA file from your history</option>
-	      -->
+              -->
             </param>
             <when value="db">
                 <param name="database" argument="--database" type="select" multiple="true" label="Nucleotide BLAST database">
@@ -54,12 +54,12 @@ python $__tool_directory__/find_and_extend.py
                label="Minimum percentage query coverage for BLAST matches"
                help="Default is 95%, use 0 for no filtering." />
         <param argument="--max_target_seqs" type="integer" value="1" min="1"
-	       label="Maximum number of matches to return for each query"
-	       help="This is mapped to the BLAST+ -max_target_seqs option" />
+               label="Maximum number of matches to return for each query"
+               help="This is mapped to the BLAST+ -max_target_seqs option" />
         <param argument="--up" type="integer" value="50" min="0"
-	       label="Up-stream match extension in base pairs (i.e. start of the sequence)" />
+               label="Upstream match extension in base pairs (i.e. start of the sequence)" />
         <param argument="--down" type="integer" value="50" min="0"
-               label="Down-stream match extension in base pairs (i.e. end of the sequence)" />
+               label="Downstream match extension in base pairs (i.e. end of the sequence)" />
     </inputs>
     <outputs>
         <data name="blast_output" format="tabular" label="BLAST matches to $query.name" />
@@ -68,8 +68,8 @@ python $__tool_directory__/find_and_extend.py
     <tests>
         <test>
             <param name="query" value="rhodopsin_fragment.fasta" ftype="fasta" />
-	    <param name="db_opts|database" value="rhodopsin_nucs" />
-	    <output name="output_blast" file="rhodopsin_fragment.tabular" ftype="tabular" />
+            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <output name="output_blast" file="rhodopsin_fragment.tabular" ftype="tabular" />
         </test>
     </tests>
     <help>
