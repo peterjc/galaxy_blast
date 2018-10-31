@@ -19,3 +19,15 @@ include:
   - ../../tools/find_and_extend/find_and_extend.py
   - ../../tools/find_and_extend/find_and_extend.xml
   - ../../tools/find_and_extend/tool_dependencies.xml
+  - ../../test-data/rhodopsin_fragment.fasta
+  - ../../test-data/rhodopsin_fragment.tabular
+  - ../../test-data/rhodopsin_nucs.fasta.nhd
+  - ../../test-data/rhodopsin_nucs.fasta.nhi
+  - ../../test-data/rhodopsin_nucs.fasta.nhr
+  - ../../test-data/rhodopsin_nucs.fasta.nin
+  - ../../test-data/rhodopsin_nucs.fasta.nog
+  - ../../test-data/rhodopsin_nucs.fasta.nsd
+  - ../../test-data/rhodopsin_nucs.fasta.nsi
+  - ../../test-data/rhodopsin_nucs.fasta.nsq
+  - ../../test-data/rhodopsin_nucs.fasta.nnd
+  - ../../test-data/rhodopsin_nucs.fasta.nni
