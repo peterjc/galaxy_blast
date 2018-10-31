@@ -151,15 +151,15 @@ def blastxml_hits(in_file):
             header = handle.read(100)
         sys.exit("Unable to get root element from XML file %r which starts: %r" % (in_file, header))
 
-    re_default_query_id = re.compile("^Query_\d+$")
-    assert re_default_query_id.match("Query_101")
-    assert not re_default_query_id.match("Query_101a")
-    assert not re_default_query_id.match("MyQuery_101")
-    re_default_subject_id = re.compile("^Subject_\d+$")
-    assert re_default_subject_id.match("Subject_1")
-    assert not re_default_subject_id.match("Subject_")
-    assert not re_default_subject_id.match("Subject_12a")
-    assert not re_default_subject_id.match("TheSubject_1")
+    re_default_query_id = re.compile(r"^Query_\d+$")
+    assert re_default_query_id.match(r"Query_101")
+    assert not re_default_query_id.match(r"Query_101a")
+    assert not re_default_query_id.match(r"MyQuery_101")
+    re_default_subject_id = re.compile(r"^Subject_\d+$")
+    assert re_default_subject_id.match(r"Subject_1")
+    assert not re_default_subject_id.match(r"Subject_")
+    assert not re_default_subject_id.match(r"Subject_12a")
+    assert not re_default_subject_id.match(r"TheSubject_1")
 
     current_query = None
     hit_descrs = []
