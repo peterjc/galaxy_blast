@@ -1,0 +1,23 @@
+name: make_nr
+owner: peterjc
+homepage_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/make_nr
+remote_repository_url: https://github.com/peterjc/galaxy_blast/tree/master/tools/make_nr
+description: Make a FASTA file non-redundant
+long_description: |
+  Python script intended to be run prior to calling the NCBI BLAST+
+  command line tool ``makeblastdb`` or in other settings where you
+  want to collapse duplicated sequences in a FASTA file to a single
+  representative.
+categories:
+- Fasta Manipulation
+- Sequence Analysis
+type: unrestricted
+include:
+- strip_components: 2
+  source:
+  - ../../tools/make_nr/README.rst
+  - ../../tools/make_nr/make_nr.py
+  - ../../tools/make_nr/make_nr.xml
+  - ../../tools/make_nr/tool_dependencies.xml
+  - ../../test-data/duplicates.fasta
+  - ../../test-data/duplicates.nr.fasta
