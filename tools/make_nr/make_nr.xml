@@ -67,7 +67,7 @@ and ``6``. Entry ``3`` is renamed as ``3;6`` and entry ``4`` is omitted:
 
 This means that the representative records take the position and sequence case
 from the first entry with that sequence.
-    
+
 Notice the unique sequences are preserved as they were with any description
 or mixed case.
 
