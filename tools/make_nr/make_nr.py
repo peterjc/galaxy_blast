@@ -69,7 +69,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     by_seq = dict()
     try:
         from Bio.SeqIO.FastaIO import SimpleFastaParser
-    except KeyError:
+    except ImportError:
         sys.exit("Missing Biopython")
     for f in input_fasta:
         with gzip_open(f) as handle:
