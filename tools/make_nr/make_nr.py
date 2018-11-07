@@ -91,11 +91,13 @@ def make_nr(input_fasta, output_fasta, sep=";"):
                             continue
                         # TODO - line wrapping
                         handle.write(">%s\n%s\n" % (title, seq))
-        print("%i unique entries; removed %i duplicates leaving %i representative records"
-              % (unique, len(duplicates), len(representatives)))
+        sys.stderr.write("%i unique entries; removed %i duplicates "
+                          "leaving %i representative records\n"
+                          % (unique, len(duplicates), len(representatives)))
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
-        print("No perfect duplicates in file, %i unique entries" % unique)
+        sys.stderr.write("No perfect duplicates in file, %i unique entries\n"
+                         % unique)
 
 
 make_nr(args, options.output, options.sep)
