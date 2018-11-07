@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Check for combining duplicate sequence in FASTA files.
 
-This script takes one or more FASTA filenames as input, and
-will return a non-zero error if any duplicate identifiers
-are found. Writes output to stdout.
+This script takes one or more (optionally gzipped) FASTA
+filenames as input, and will return a non-zero error if
+any duplicate identifiers are found.
+
+Writes output to stdout by default.
 
 Keeps all the sequences in memory, beware!
 """
@@ -30,6 +32,8 @@ For example,
 
 $ python make_nr.py -o dedup.fasta -s ";" input1.fasta input2.fasta
 
+The input files should be plain text FASTA format, optionally gzipped.
+
 There is additional guidance in the help text in the make_nr.xml file,
 which is shown to the user via the Galaxy interface to this tool.
 """
@@ -47,6 +51,16 @@ if not args:
     sys.exit("Expects at least one input FASTA filename")
 
 
+def gzip_open(filename):
+    """Open a possibly gzipped text file."""
+    with open(filename, "rb") as h:
+        magic = h.read(2)
+    if magic == b'\x1f\x8b':
+        return gzip.open(filename, "rt")
+    else:
+        return open(filename)
+
+
 def make_nr(input_fasta, output_fasta, sep=";"):
     """Make the sequences in FASTA files non-redundant.
 
@@ -58,7 +72,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     except KeyError:
         sys.exit("Missing Biopython")
     for f in input_fasta:
-        with open(f) as handle:
+        with gzip_open(f) as handle:
             for title, seq in SimpleFastaParser(handle):
                 idn = title.split(None, 1)[0]  # first word only
                 seq = seq.upper()
@@ -80,7 +94,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
         # TODO - refactor as a generator with single SeqIO.write(...) call
         with open(output_fasta, "w") as handle:
             for f in input_fasta:
-                with open(f) as in_handle:
+                with gzip_open(f) as in_handle:
                     for title, seq in SimpleFastaParser(in_handle):
                         idn = title.split(None, 1)[0]  # first word only
                         if idn in representatives:

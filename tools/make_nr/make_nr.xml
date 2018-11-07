@@ -24,6 +24,10 @@ python $__tool_directory__/make_nr.py -s ";" -o '$output'
             <param name="input" value="duplicates.fasta" ftype="fasta"/>
             <output name="output" file="duplicates.nr.fasta" ftype="fasta"/>
         </test>
+        <test>
+            <param name="input" value="duplicates.fasta.gz" ftype="fasta.gz"/>
+            <output name="output" file="duplicates.nr.fasta" ftype="fasta"/>
+        </test>
     </tests>
     <help>
 **What it does**
