@@ -274,7 +274,7 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     by_seq = dict()
     try:
         from Bio import SeqIO
-    except KeyError:
+    except ImportError:
         sys.exit("Missing Biopython")
     for record in SeqIO.parse(input_fasta, "fasta"):
         s = str(record.seq).upper()
