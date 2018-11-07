@@ -77,7 +77,6 @@ History
 
 TODO:
 
- - Support multiple FASTA inputs
  - Option to sort the merged identifiers?
  - Option to follow BLAST NR style with ctrl+a separator?
  - Option to give representative sequences in upper case?
@@ -85,7 +84,7 @@ TODO:
 ======= ======================================================================
 Version Changes
 ------- ----------------------------------------------------------------------
-v0.0.0  - Initial version, only supports a single input FASTA file.
+v0.0.0  - Initial version
 ======= ======================================================================
 
 

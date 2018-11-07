@@ -15,7 +15,6 @@ import sys
 
 from optparse import OptionParser
 
-from Bio.SeqIO.FastaIO import SimpleFastaParser
 
 if "-v" in sys.argv or "--version" in sys.argv:
     print("v0.0.0")
@@ -49,18 +48,24 @@ if not args:
 
 
 def make_nr(input_fasta, output_fasta, sep=";"):
-    """Make the sequences in a FASTA file non-redundant."""
+    """Make the sequences in FASTA files non-redundant.
+
+    Argument input_fasta is a list of filenames.
+    """
     by_seq = dict()
     try:
-        from Bio import SeqIO
+        from Bio.SeqIO.FastaIO import SimpleFastaParser
     except KeyError:
         sys.exit("Missing Biopython")
-    for record in SeqIO.parse(input_fasta, "fasta"):
-        s = str(record.seq).upper()
-        try:
-            by_seq[s].append(record.id)
-        except KeyError:
-            by_seq[s] = [record.id]
+    for f in input_fasta:
+        with open(f) as handle:
+            for title, seq in SimpleFastaParser(handle):
+                idn = title.split(None, 1)[0]  # first word only
+                seq = seq.upper()
+                try:
+                    by_seq[seq].append(idn)
+                except KeyError:
+                    by_seq[seq] = [idn]
     unique = 0
     representatives = dict()
     duplicates = set()
@@ -74,20 +79,23 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     if duplicates:
         # TODO - refactor as a generator with single SeqIO.write(...) call
         with open(output_fasta, "w") as handle:
-            for record in SeqIO.parse(input_fasta, "fasta"):
-                if record.id in representatives:
-                    cluster = representatives[record.id]
-                    record.id = sep.join(cluster)
-                    record.description = "representing %i records" % len(cluster)
-                elif record.id in duplicates:
-                    continue
-                SeqIO.write(record, handle, "fasta")
+            for f in input_fasta:
+                with open(f) as in_handle:
+                    for title, seq in SimpleFastaParser(in_handle):
+                        idn = title.split(None, 1)[0]  # first word only
+                        if idn in representatives:
+                            cluster = representatives[idn]
+                            idn = sep.join(cluster)
+                            title = "%s representing %i records" % (idn, len(cluster))
+                        elif idn in duplicates:
+                            continue
+                        # TODO - line wrapping
+                        handle.write(">%s\n%s\n" % (title, seq))
         print("%i unique entries; removed %i duplicates leaving %i representative records"
               % (unique, len(duplicates), len(representatives)))
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
         print("No perfect duplicates in file, %i unique entries" % unique)
 
-if len(args) > 1:
-    sys.exit("Sorry, currently only one input FASTA file is supported.")
-make_nr(args[0], options.output, options.sep)
+
+make_nr(args, options.output, options.sep)
