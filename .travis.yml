@@ -105,6 +105,7 @@ before_install:
  - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/${GALAXY_BRANCH}
  - tar -zxvf ${GALAXY_BRANCH} | tail
  - cd galaxy-${GALAXY_BRANCH}
+ - pip install biopython
 
 
 # Configuring tools within Galaxy
