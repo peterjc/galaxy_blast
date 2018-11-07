@@ -39,8 +39,8 @@ https://doi.org/10.1186/s13742-015-0080-7
 Standalone Installation (outside Galaxy)
 ========================================
 
-Outside	of Galaxy, you will need Python	and Biopython, the later can usually
-be installed with ``pip install biopython`` or if you are using	Conda, try
+Outside of Galaxy, you will need Python and Biopython, the later can usually
+be installed with ``pip install biopython`` or if you are using Conda, try
 ``conda install biopython`` instead. Then to run the script, simply call it
 using ``python /full/path/to/make_nr.py -h`` or similar.
 
