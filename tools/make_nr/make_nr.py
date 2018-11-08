@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Check for combining duplicate sequence in FASTA files.
+"""Make FASTA files non-redundant by combining duplicated sequences.
 
-This script takes one or more (optionally gzipped) FASTA
-filenames as input, and will return a non-zero error if
-any duplicate identifiers are found.
+This script takes one or more (optionally gzipped) FASTA filenames as input,
+and will return a non-zero error if any duplicate identifiers are found.
 
 Writes output to stdout by default.
 
