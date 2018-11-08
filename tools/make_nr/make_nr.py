@@ -34,6 +34,13 @@ $ python make_nr.py -o dedup.fasta -s ";" input1.fasta input2.fasta
 
 The input files should be plain text FASTA format, optionally gzipped.
 
+The -a option controls how the representative replacement record for
+duplicated records are named. By default the identifiers are taken
+in the input file order, combined with the specifier. If the -a or
+alphasort option is picked, the identifiers are alphabetically sorted
+first. This ensures the same names are used even if the input file
+order (or the record order within the input files) is randomised.
+
 There is additional guidance in the help text in the make_nr.xml file,
 which is shown to the user via the Galaxy interface to this tool.
 """
@@ -42,6 +49,8 @@ parser = OptionParser(usage=usage)
 parser.add_option("-s", "--sep", dest="sep",
                   default=";",
                   help="Separator character for combining identifiers of duplicated records e.g. '|' or ';' (required)")
+parser.add_option("-a", "--alphasort", action="store_true",
+                  help="When merging duplicated records sort their identifiers alphabetically before combining them. Default is input file order.")
 parser.add_option("-o", "--output", dest="output",
                   default="/dev/stdout", metavar="FILE",
                   help="Output filename (defaults to stdout)")
@@ -61,7 +70,7 @@ def gzip_open(filename):
         return open(filename)
 
 
-def make_nr(input_fasta, output_fasta, sep=";"):
+def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
     """Make the sequences in FASTA files non-redundant.
 
     Argument input_fasta is a list of filenames.
@@ -85,6 +94,9 @@ def make_nr(input_fasta, output_fasta, sep=";"):
     duplicates = set()
     for cluster in by_seq.values():
         if len(cluster) > 1:
+            # Is it useful to offer to sort here?
+            # if sort_ids:
+            #     cluster.sort()
             representatives[cluster[0]] = cluster
             duplicates.update(cluster[1:])
         else:
@@ -99,6 +111,8 @@ def make_nr(input_fasta, output_fasta, sep=";"):
                         idn = title.split(None, 1)[0]  # first word only
                         if idn in representatives:
                             cluster = representatives[idn]
+                            if sort_ids:
+                                cluster.sort()
                             idn = sep.join(cluster)
                             title = "%s representing %i records" % (idn, len(cluster))
                         elif idn in duplicates:
@@ -114,4 +128,4 @@ def make_nr(input_fasta, output_fasta, sep=";"):
                          % unique)
 
 
-make_nr(args, options.output, options.sep)
+make_nr(args, options.output, options.sep, options.alphasort)
