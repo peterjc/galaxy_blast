@@ -19,7 +19,7 @@ from optparse import OptionParser
 
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print("v0.0.0")
+    print("v0.0.1")
     sys.exit(0)
 
 
@@ -36,7 +36,7 @@ The input files should be plain text FASTA format, optionally gzipped.
 
 The -a option controls how the representative replacement record for
 duplicated records are named. By default the identifiers are taken
-in the input file order, combined with the specifier. If the -a or
+in the input file order, combined with the separator. If the -a or
 alphasort option is picked, the identifiers are alphabetically sorted
 first. This ensures the same names are used even if the input file
 order (or the record order within the input files) is randomised.
