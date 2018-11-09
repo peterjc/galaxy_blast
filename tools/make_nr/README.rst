@@ -77,7 +77,6 @@ History
 
 TODO:
 
- - Option to sort the merged identifiers?
  - Option to follow BLAST NR style with ctrl+a separator?
  - Option to give representative sequences in upper case?
 
