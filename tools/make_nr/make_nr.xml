@@ -1,4 +1,4 @@
-<tool id="make_nr" name="Make FASTA non-redundant" version="0.0.0">
+<tool id="make_nr" name="Make FASTA non-redundant" version="0.0.1">
     <description>by combining duplicated sequences</description>
     <requirements>
         <requirement type="package" version="1.67">biopython</requirement>
@@ -7,7 +7,7 @@
 python $__tool_directory__/make_nr.py --version
     </version_command>
     <command detect_errors="aggressive">
-python $__tool_directory__/make_nr.py -s ";" -o '$output'
+python $__tool_directory__/make_nr.py $alphasort -s '$separator' -o '$output'
 #for $f in $input
 '$f'
 #end for
@@ -15,6 +15,20 @@ python $__tool_directory__/make_nr.py -s ";" -o '$output'
     <inputs>
         <param name="input" type="data" format="fasta,fasta.gz" multiple="True"
                label="Input FASTA sequence file(s)"/>
+        <param argument="separator" type="text" size="10" area="False" value=";"
+               label="Separator string to use when combining the identifiers of duplicate sequences"
+               help="A single character is recommended, e.g. the semi-colon, or comma">
+            <sanitizer>
+                <valid initial="default">
+                    <add value=";"/>
+                    <add value="|"/>
+                </valid>
+            </sanitizer>
+        </param>
+        <param argument="alphasort" type="select" label="Treatment of identifiers when combining duplicates with the separator">
+            <option value="">Use the order they appear in the input file(s)</option>
+            <option value="-a">Sort alphabetically before combining them</option>
+        </param>
     </inputs>
     <outputs>
         <data name="output" format="fasta" label="$on_string (NR)" />
@@ -32,6 +46,11 @@ python $__tool_directory__/make_nr.py -s ";" -o '$output'
             <param name="input" value="more_duplicates.fasta,duplicates.fasta" ftype="fasta"/>
             <output name="output" file="deduplicate.nosortids.fasta" ftype="fasta"/>
         </test>
+        <test>
+            <param name="input" value="more_duplicates.fasta,duplicates.fasta" ftype="fasta"/>
+            <param name="alphasort" value="-a"/>
+            <output name="output" file="deduplicate.sortids.fasta" ftype="fasta"/>
+        </test>
     </tests>
     <help>
 **What it does**
@@ -40,7 +59,7 @@ Takes one or more input FASTA files, checks them to find any duplicate sequences
 (ignoring the case), and writes an output FASTA file where any duplicates appear
 once with combined identifier.
 
-For example::
+For example, using the default separator of a semi-colon::
 
     >1 first entry
     act
@@ -62,7 +81,7 @@ and ``6``. Entry ``3`` is renamed as ``3;6`` and entry ``4`` is omitted:
     act
     >2 The A-Team
     AAaa
-    >3;5 representing 2 records
+    >3;6 representing 2 records
     ACgt
     >4
     CCCC
@@ -72,9 +91,13 @@ and ``6``. Entry ``3`` is renamed as ``3;6`` and entry ``4`` is omitted:
 This means that the representative records take the position and sequence case
 from the first entry with that sequence.
 
+In this case the combined entry is labelled as ``3;6``, so the sort option
+has no effect. However, if the records appears in the file with ``6`` before
+``3`` you can choose to get ``6;3`` (order from file, default) or ``3;6``
+(ordered alphabetically).
+
 Notice the unique sequences are preserved as they were with any description
 or mixed case.
-
 
 
 **References**
