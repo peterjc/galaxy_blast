@@ -47,9 +47,12 @@ which is shown to the user via the Galaxy interface to this tool.
 parser = OptionParser(usage=usage)
 parser.add_option("-s", "--sep", dest="sep",
                   default=";",
-                  help="Separator character for combining identifiers of duplicated records e.g. '|' or ';' (required)")
+                  help="Separator character for combining identifiers "
+                  "of duplicated records e.g. '|' or ';' (required)")
 parser.add_option("-a", "--alphasort", action="store_true",
-                  help="When merging duplicated records sort their identifiers alphabetically before combining them. Default is input file order.")
+                  help="When merging duplicated records sort their "
+                  "identifiers alphabetically before combining them. "
+                  "Default is input file order.")
 parser.add_option("-o", "--output", dest="output",
                   default="/dev/stdout", metavar="FILE",
                   help="Output filename (defaults to stdout)")
