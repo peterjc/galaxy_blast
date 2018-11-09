@@ -21,7 +21,7 @@ http://toolshed.g2.bx.psu.edu/view/peterjc/make_nr
 Citation
 ========
 
-If you cannot cite this repository directly, please cite one of the
+If you cannot cite the GitHub repository directly, please cite one of the
 following papers:
 
 Cock et al 2009. Biopython: freely available Python tools for computational
