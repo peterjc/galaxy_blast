@@ -196,9 +196,16 @@ def extract_candidates(blast_tabular_filename):
 
 count = 0
 for idn, start, end, length in extract_candidates(tabular_file):
+    count += 1
     print(idn, start, end, length)
     assert 1 <= start < end <= length, "Reverse strand?"
-    count += 1
+
+    req_start = max(1, start - up_extend)
+    req_end = min(end + down_extend, length)
+
+    run('blastdbcmd -db %s -entry "%s" -range "%i-%i"'
+        % (options.database, idn, req_start, req_end))
+
 sys.stderr.write("%i candidates\n" % count)
 
 # Remove temp files...
