@@ -22,3 +22,6 @@ include:
   - ../../test-data/duplicates.fasta
   - ../../test-data/duplicates.fasta.gz
   - ../../test-data/duplicates.nr.fasta
+  - ../../test-data/more_duplicates.fasta
+  - ../../test-data/deduplicate.nosortids.fasta
+  - ../../test-data/deduplicate.sortids.fasta
