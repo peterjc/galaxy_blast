@@ -102,7 +102,9 @@ or mixed case.
 
 **References**
 
-Please cite:
+If you cannot cite this tool directly via the GitHub URL
+https://github.com/peterjc/galaxy_blast/tree/master/tools/make_nr
+and need a traditional paper, then please cite:
 
 P.J.A. Cock, J.M. Chilton, B. Gruening, J.E. Johnson, N. Soranzo (2015).
 NCBI BLAST+ integrated into Galaxy.
