@@ -149,28 +149,19 @@ if threads < 1:
 base_path = tempfile.mkdtemp()
 if options.output_blast:
     tabular_file = options.output_blast
-    # Use minimal custom set of fields
-    cols = "qseqid sseqid pident qcovhsp sstart send slen"  # Or qcovs?
-    c_query = 0
-    c_match = 1
-    c_identity = 2
-    c_coverage = 3
-    c_sstart = 4
-    c_send = 5
-    c_slen = 6
 else:
     tabular_file = os.path.join(base_path, "matches.tabular")
-    #Use the same 25 columns as the Galaxy BLAST+ wrapper defaults,
-    std = "qaccver saccver pident length mismatch gapopen qstart qend sstart send evalue bitscore"
-    cols = std + " sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles"
-    c_query = 0
-    c_match = 1
-    c_identity = 2
-    c_coverage = None
-    c_sstart = 8
-    c_send = 9
-    c_slen = 23
 log = os.path.join(base_path, "blast.log")
+
+
+cols = "qseqid sseqid pident qcovhsp sstart send slen"  # Or qcovs?
+c_query = 0
+c_match = 1
+c_identity = 2
+c_coverage = 3
+c_sstart = 4
+c_send = 5
+c_slen = 6
 
 # print("Starting...")
 
