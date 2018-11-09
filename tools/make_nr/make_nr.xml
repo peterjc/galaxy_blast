@@ -75,7 +75,7 @@ For example, using the default separator of a semi-colon::
     GGGG
 
 In this simple example ``ACGT`` appears twice (ignoring case) as entries ``3``
-and ``6``. Entry ``3`` is renamed as ``3;6`` and entry ``4`` is omitted:
+and ``6``. Entry ``3`` is renamed as ``3;6`` and entry ``4`` is omitted::
 
     >1 first entry
     act
