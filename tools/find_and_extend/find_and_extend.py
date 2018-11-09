@@ -154,14 +154,14 @@ else:
 log = os.path.join(base_path, "blast.log")
 
 
-cols = "qseqid sseqid bitscore pident qcovhsp qlen length"  # Or qcovs?
+cols = "qseqid sseqid pident qcovhsp sstart send slen"  # Or qcovs?
 c_query = 0
 c_match = 1
-c_score = 2
-c_identity = 3
-c_coverage = 4
-c_qlen = 5
-c_length = 6
+c_identity = 2
+c_coverage = 3
+c_sstart = 4
+c_send = 5
+c_slen = 6
 
 # print("Starting...")
 
@@ -171,6 +171,35 @@ run('blastn -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
     % (options.query, options.database, tabular_file, cols, threads))
 # print("BLAST search done.")
 
+
+def extract_candidates(blast_tabular_filename):
+    """Iterate over BLAST tabular, returning (accession, start, end, length) tuples.
+
+    Will apply the filters set at the command line.
+    """
+    col_count = len(cols.split())
+    with open(blast_tabular_filename) as h:
+        for line in h:
+            if line.startswith("#"):
+                continue
+            parts = line.rstrip("\n").split("\t")
+            if len(parts) != col_count:
+                # Using NCBI BLAST+ 2.2.27 the undefined field is ignored
+                # Even NCBI BLAST+ 2.5.0 silently ignores unknown fields :(
+                sys.exit("Old version of NCBI BLAST? Expected %i columns, got %i:\n%s\n"
+                         "Note the qcovhsp field was only added in version 2.2.28\n"
+                         % (col_count, len(parts), line))
+            if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
+                continue
+            yield parts[c_match], int(parts[c_sstart]), int(parts[c_send]), int(parts[c_slen])
+
+
+count = 0
+for idn, start, end, length in extract_candidates(tabular_file):
+    print(idn, start, end, length)
+    assert 1 <= start < end <= length, "Reverse strand?"
+    count += 1
+sys.stderr.write("%i candidates\n" % count)
 
 # Remove temp files...
 shutil.rmtree(base_path)
