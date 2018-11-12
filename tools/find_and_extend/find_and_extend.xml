@@ -21,7 +21,6 @@ python $__tool_directory__/find_and_extend.py
 --up '$up'
 --down '$down'
 -o '$output'
--b '$blast_output'
     </command>
     <inputs>
         <!-- Galaxy does not have sub-types for protein vs nucletide FASTA -->
@@ -62,7 +61,6 @@ python $__tool_directory__/find_and_extend.py
                label="Downstream match extension in base pairs (i.e. end of the sequence)" />
     </inputs>
     <outputs>
-        <data name="blast_output" format="tabular" label="BLAST matches to $query.name" />
         <data name="output" format="fasta" label="Extended matches to $query.name" />
     </outputs>
     <tests>
@@ -71,7 +69,6 @@ python $__tool_directory__/find_and_extend.py
             <param name="up" value="80" />
             <param name="down" value="160" />
             <param name="db_opts|database" value="rhodopsin_nucs" />
-            <output name="blast_output" file="rhodopsin_fragment.tabular" ftype="tabular" />
             <output name="output" file="rhodopsin_fragment_extended.fasta" ftype="fasta" />
         </test>
     </tests>
