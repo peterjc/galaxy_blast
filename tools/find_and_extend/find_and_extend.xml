@@ -14,6 +14,8 @@ python $__tool_directory__/find_and_extend.py
 -d '${db_opts.database}'
 #elif str($db_opts.db_opts_selector)=='histdb'
 -d '${db_opts.histdb.name}'
+#elif str($db_opts.db_opts_selector)=='file'
+-f '${db_opts.dbfasta}
 #end if
 -i '$identity'
 -c '$coverage'
@@ -31,19 +33,24 @@ python $__tool_directory__/find_and_extend.py
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
               <option value="db" selected="true">Locally installed BLAST database</option>
               <option value="histdb">BLAST database from your history</option>
-              <!-- TODO?
               <option value="file">FASTA file from your history</option>
-              -->
             </param>
             <when value="db">
                 <param name="database" argument="--database" type="select" multiple="true" label="Nucleotide BLAST database">
                     <options from_data_table="blastdb" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
+		<param name="dbfasta" type="hidden" value="" />
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
                 <param name="histdb" argument="--database" type="data" format="blastdbn" label="Nucleotide BLAST database"/>
+		<param name="dbfasta" type="hidden" value="" />
+            </when>
+            <when value="file">
+              <param name="database" type="hidden" value="" />
+	      <param name="histdb" type="hidden" value="" />
+	      <param name="dbfasta" argument="--dbfasta" type="data" format="fasta" label="Nucleotide FASTA file (a tempoary BLAST database will be built)"/>
             </when>
         </conditional>
         <param argument="--identity" type="float" value="95" min="0" max="100"
@@ -69,6 +76,14 @@ python $__tool_directory__/find_and_extend.py
             <param name="up" value="80" />
             <param name="down" value="160" />
             <param name="db_opts|database" value="rhodopsin_nucs" />
+            <output name="output" file="rhodopsin_fragment_extended.fasta" ftype="fasta" />
+        </test>
+        <test>
+            <param name="query" value="rhodopsin_fragment.fasta" ftype="fasta" />
+            <param name="up" value="80" />
+            <param name="down" value="160" />
+            <param name="db_opts|db_opts_selector" value="file" />
+            <param name="db_opts|dbfasta" value="rhodopsin_nucs.fasta" />
             <output name="output" file="rhodopsin_fragment_extended.fasta" ftype="fasta" />
         </test>
     </tests>
