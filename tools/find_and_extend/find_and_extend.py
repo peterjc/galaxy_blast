@@ -67,7 +67,7 @@ parser.add_option("-o", "--output", dest="output",
                   help="Output FASTA filename (required)")
 parser.add_option("-b", "--output_blast", dest="output_blast",
                   default=None, metavar="FILE",
-                  help="Output BLAST tabular results (optional)")
+                  help="Output BLAST tabular results (optional, for debugging)")
 parser.add_option("-i", "--identity", dest="min_identity",
                   default="95",
                   help="Minimum percentage identity (optional, default 95)")
@@ -90,6 +90,7 @@ parser.add_option("-t", "--threads", dest="threads",
 options, args = parser.parse_args()
 
 try:
+    from Bio.SeqRecord import SeqRecord
     from Bio import SeqIO
 except ImportError:
     sys.exit("Missing Biopython")
@@ -215,7 +216,9 @@ run('blastn -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
 
 
 def extract_candidates(blast_tabular_filename):
-    """Iterate over BLAST tabular, returning (accession, start, end, length) tuples.
+    """Iterate over BLAST tabular, returning tuple.
+
+    Yields tuple of (qseqid, sseqid, sstart, send, slen)
 
     Will apply the filters set at the command line.
     """
@@ -233,43 +236,47 @@ def extract_candidates(blast_tabular_filename):
                          % (col_count, len(parts), line))
             if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
                 continue
-            yield parts[c_match], int(parts[c_sstart]), int(parts[c_send]), int(parts[c_slen])
+            yield parts[c_query], parts[c_match], int(parts[c_sstart]), int(parts[c_send]), int(parts[c_slen])
 
 
 count = 0
-for idn, start, end, length in extract_candidates(tabular_file):
-    count += 1
-    print(idn, start, end, length)
+with open(out_file, "w") as out_handle:
+    for query, match, start, end, length in extract_candidates(tabular_file):
+        count += 1
+        # print(query, match, start, end, length)
 
-    if start <= end:
-        assert 1 <= start < end <= length
-        reverse_comp = False
-        left_cut = max(1, start - up_extend) - 1  # Python counting!
-        right_cut = min(end + down_extend, length)
-    else:
-        assert 1<= end < start <= length
-        reverse_comp = True
-        left_cut = max(1, end - down_extend) - 1  # Python counting!
-        right_cut = min(start + up_extend, length)
+        if start <= end:
+            assert 1 <= start < end <= length
+            reverse_comp = False
+            left_cut = max(1, start - up_extend) - 1  # Python counting!
+            right_cut = min(end + down_extend, length)
+        else:
+            assert 1<= end < start <= length
+            reverse_comp = True
+            left_cut = max(1, end - down_extend) - 1  # Python counting!
+            right_cut = min(start + up_extend, length)
 
-    # This is what I wanted to do, but NCBI BLAST+ suite does not
-    # allow this workflow unless you are using NCBI style naming:
-    #
-    # run('blastdbcmd -db %s -entry "%s" -range "%i-%i"'
-    #     % (options.database, idn, req_start, req_end))
-    try:
-        record = db_dict[idn]
-    except KeyError:
-        sys.exit("Inconsistency, can't find %s from BLAST result in FASTA file" % idn)
-    if len(record) != length:
-        sys.exit("Inconsistent length for %s from FASTA entry and BLAST result, %i vs %i"
-                 % (idn, len(record), length))
+        # This is what I wanted to do, but NCBI BLAST+ suite does not
+        # allow this workflow unless you are using NCBI style naming:
+        #
+        # run('blastdbcmd -db %s -entry "%s" -range "%i-%i"'
+        #     % (options.database, match, req_start, req_end))
+        try:
+            seq = db_dict[match].seq
+        except KeyError:
+            sys.exit("Inconsistency, can't find %s from BLAST result in FASTA file" % match)
+        if len(seq) != length:
+            sys.exit("Inconsistent length for %s from FASTA entry and BLAST result, %i vs %i"
+                     % (match, len(seq), length))
 
-    seq = record.seq[left_cut:right_cut]
-    if reverse_comp:
-        seq = seq.reverse_complement()
+        seq = seq[left_cut:right_cut]
+        if reverse_comp:
+            seq = seq.reverse_complement()
 
-    print(seq)
+        record = SeqRecord(id="%s_plus_%s" % (query, match),
+                           description="",
+                           seq=seq)
+        SeqIO.write(record, out_handle, "fasta")
 
 
 sys.stderr.write("%i candidates\n" % count)
