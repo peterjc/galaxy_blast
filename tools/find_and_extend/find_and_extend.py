@@ -46,6 +46,11 @@ usage = """Use as follows:
 
 $ python find_and_extend.py [options] -q query.fasta -d blast_database -o matches.fasta
 
+You must supply a nucleotide BLAST database, and/or FASTA file to search.
+If the FASTA file is ommitted, and it cannot be infered from the database
+name, it will be regenerated with blastdbcmd. If the database is ommitted,
+it will be created with makeblastdb.
+
 There is additional guidance in the help text in the find_and_extend.xml
 file, which is shown to the user via the Galaxy interface to this tool.
 """
@@ -55,8 +60,8 @@ parser.add_option("-q", "--query", dest="query",
                   default=None, metavar="FILE",  # required=True,
                   help="Input query FASTA filename (required)")
 parser.add_option("-d", "--database", dest="database",
-                  default=None, metavar="FILE",  # required=True,
-                  help="Input BLAST nucleotide database (required)")
+                  default=None, metavar="FILE",
+                  help="Input BLAST nucleotide database (recommended)")
 parser.add_option("-f", "--dbfasta", dest="dbfasta",
                   default=None, metavar="FILE",
                   help="FASTA file the database was made from. "
@@ -99,8 +104,8 @@ if args:
     sys.exit("No positional arguments expected.")
 if not options.query:
     sys.exit("Missing required argument for input FASTA file")
-if not options.database:
-    sys.exit("Missing required argument for BLAST database")
+if not options.database and not options.dbfasta:
+    sys.exit("Missing required argument for BLAST database or FASTA file")
 if options.query == options.dbfasta:
     sys.exit("Check your arguments, query & database FASTA files should be different.")
 
@@ -170,6 +175,7 @@ else:
     tabular_file = os.path.join(base_path, "matches.tabular")
 log = os.path.join(base_path, "blast.log")
 
+
 db_fasta = None
 if options.dbfasta:
     db_fasta = options.dbfasta
@@ -197,6 +203,17 @@ if not db_fasta:
     sys.stderr.write("Indexed %i entries from database\n" % len(db_dict))
 
 
+blast_db = options.database
+if not blast_db:
+    assert options.dbfasta
+    # Do this now after sanity testing the FASTA file by indexing it
+    blast_db = os.path.join(base_path, "database")
+    sys.stderr.write("Calling makeblastdb to create temporary BLAST database\n")
+    run("makeblastdb -dbtype nucl -in '%s' -out '%s' "
+        "-title 'Temporary BLAST database for find_and_extend'"
+        % (options.dbfasta, blast_db))
+
+
 cols = "qseqid sseqid pident qcovhsp sstart send slen"  # Or qcovs?
 c_query = 0
 c_match = 1
@@ -211,7 +228,7 @@ c_slen = 6
 # TODO - Report log in case of error?
 # print("BLAST databases prepared.")
 run('blastn -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-    % (options.query, options.database, tabular_file, cols, threads))
+    % (options.query, blast_db, tabular_file, cols, threads))
 # print("BLAST search done.")
 
 
@@ -236,7 +253,10 @@ def extract_candidates(blast_tabular_filename):
                          % (col_count, len(parts), line))
             if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
                 continue
-            yield parts[c_query], parts[c_match], int(parts[c_sstart]), int(parts[c_send]), int(parts[c_slen])
+            yield (parts[c_query], parts[c_match],
+                   int(parts[c_sstart]),
+                   int(parts[c_send]),
+                   int(parts[c_slen]))
 
 
 def generate_extended_records(tabular_file):
