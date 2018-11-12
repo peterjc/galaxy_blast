@@ -240,7 +240,7 @@ def extract_candidates(blast_tabular_filename):
 
 
 def generate_extended_records(tabular_file):
-    """Yields SeqRecord objects based on BLAST hits."""
+    """Yield SeqRecord objects based on BLAST hits."""
     for query, match, start, end, length in extract_candidates(tabular_file):
         # print(query, match, start, end, length)
 
@@ -250,7 +250,7 @@ def generate_extended_records(tabular_file):
             left_cut = max(1, start - up_extend) - 1  # Python counting!
             right_cut = min(end + down_extend, length)
         else:
-            assert 1<= end < start <= length
+            assert 1 <= end < start <= length
             reverse_comp = True
             left_cut = max(1, end - down_extend) - 1  # Python counting!
             right_cut = min(start + up_extend, length)
