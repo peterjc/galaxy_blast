@@ -52,13 +52,13 @@ file, which is shown to the user via the Galaxy interface to this tool.
 
 parser = OptionParser(usage=usage)
 parser.add_option("-q", "--query", dest="query",
-                  default=None, metavar="FILE",
+                  default=None, metavar="FILE",  # required=True,
                   help="Input query FASTA filename (required)")
 parser.add_option("-d", "--database", dest="database",
-                  default=None, metavar="FILE",
+                  default=None, metavar="FILE",  # required=True,
                   help="Input BLAST nucleotide database (required)")
 parser.add_option("-o", "--output", dest="output",
-                  default=None, metavar="FILE",
+                  default=None, metavar="FILE",  # required=True,
                   help="Output FASTA filename (required)")
 parser.add_option("-b", "--output_blast", dest="output_blast",
                   default=None, metavar="FILE",
@@ -86,6 +86,10 @@ options, args = parser.parse_args()
 
 if args:
     sys.exit("No positional arguments expected.")
+if not options.query:
+    sys.exit("Missing required argument for input FASTA file")
+if not options.database:
+    sys.exit("Missing required argument for BLAST database")
 
 if not os.path.isfile(options.query):
     sys.exit("Missing input query FASTA file: %r" % options.query)
