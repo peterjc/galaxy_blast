@@ -40,17 +40,17 @@ python $__tool_directory__/find_and_extend.py
                     <options from_data_table="blastdb" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
-		<param name="dbfasta" type="hidden" value="" />
+                <param name="dbfasta" type="hidden" value="" />
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
                 <param name="histdb" argument="--database" type="data" format="blastdbn" label="Nucleotide BLAST database"/>
-		<param name="dbfasta" type="hidden" value="" />
+                <param name="dbfasta" type="hidden" value="" />
             </when>
             <when value="file">
-              <param name="database" type="hidden" value="" />
-	      <param name="histdb" type="hidden" value="" />
-	      <param name="dbfasta" argument="--dbfasta" type="data" format="fasta" label="Nucleotide FASTA file (a tempoary BLAST database will be built)"/>
+                <param name="database" type="hidden" value="" />
+                <param name="histdb" type="hidden" value="" />
+                <param name="dbfasta" argument="--dbfasta" type="data" format="fasta" label="Nucleotide FASTA file (a tempoary BLAST database will be built)"/>
             </when>
         </conditional>
         <param argument="--identity" type="float" value="95" min="0" max="100"
