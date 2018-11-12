@@ -240,10 +240,17 @@ count = 0
 for idn, start, end, length in extract_candidates(tabular_file):
     count += 1
     print(idn, start, end, length)
-    assert 1 <= start < end <= length, "Reverse strand?"
 
-    req_start = max(1, start - up_extend)
-    req_end = min(end + down_extend, length)
+    if start <= end:
+        assert 1 <= start < end <= length
+        reverse_comp = False
+        left_cut = max(1, start - up_extend) - 1  # Python counting!
+        right_cut = min(end + down_extend, length)
+    else:
+        assert 1<= end < start <= length
+        reverse_comp = True
+        left_cut = max(1, end - down_extend) - 1  # Python counting!
+        right_cut = min(start + up_extend, length)
 
     # This is what I wanted to do, but NCBI BLAST+ suite does not
     # allow this workflow unless you are using NCBI style naming:
@@ -257,8 +264,12 @@ for idn, start, end, length in extract_candidates(tabular_file):
     if len(record) != length:
         sys.exit("Inconsistent length for %s from FASTA entry and BLAST result, %i vs %i"
                  % (idn, len(record), length))
-    record = record[req_start - 1: req_end]
-    print(record.format("fasta"))
+
+    seq = record.seq[left_cut:right_cut]
+    if reverse_comp:
+        seq = seq.reverse_complement()
+
+    print(seq)
 
 
 sys.stderr.write("%i candidates\n" % count)
