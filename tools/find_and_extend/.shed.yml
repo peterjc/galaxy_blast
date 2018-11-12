@@ -22,6 +22,8 @@ include:
   - ../../test-data/blastdb.loc
   - ../../test-data/rhodopsin_fragment.fasta
   - ../../test-data/rhodopsin_fragment.tabular
+  - ../../test-data/rhodopsin_fragment_extended.fasta
+  - ../../test-data/rhodopsin_nucs.fasta
   - ../../test-data/rhodopsin_nucs.fasta.nhd
   - ../../test-data/rhodopsin_nucs.fasta.nhi
   - ../../test-data/rhodopsin_nucs.fasta.nhr
