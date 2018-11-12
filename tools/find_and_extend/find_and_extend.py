@@ -245,8 +245,21 @@ for idn, start, end, length in extract_candidates(tabular_file):
     req_start = max(1, start - up_extend)
     req_end = min(end + down_extend, length)
 
-    run('blastdbcmd -db %s -entry "%s" -range "%i-%i"'
-        % (options.database, idn, req_start, req_end))
+    # This is what I wanted to do, but NCBI BLAST+ suite does not
+    # allow this workflow unless you are using NCBI style naming:
+    #
+    # run('blastdbcmd -db %s -entry "%s" -range "%i-%i"'
+    #     % (options.database, idn, req_start, req_end))
+    try:
+        record = db_dict[idn]
+    except KeyError:
+        sys.exit("Inconsistency, can't find %s from BLAST result in FASTA file" % idn)
+    if len(record) != length:
+        sys.exit("Inconsistent length for %s from FASTA entry and BLAST result, %i vs %i"
+                 % (idn, len(record), length))
+    record = record[req_start - 1: req_end]
+    print(record.format("fasta"))
+
 
 sys.stderr.write("%i candidates\n" % count)
 
