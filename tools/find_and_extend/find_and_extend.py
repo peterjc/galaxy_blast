@@ -57,6 +57,11 @@ parser.add_option("-q", "--query", dest="query",
 parser.add_option("-d", "--database", dest="database",
                   default=None, metavar="FILE",  # required=True,
                   help="Input BLAST nucleotide database (required)")
+parser.add_option("-f", "--dbfasta", dest="dbfasta",
+                  default=None, metavar="FILE",
+                  help="FASTA file the database was made from. "
+                  "If ommitted, looks for based on the DB name, "
+                  "and failing that regenerates it with blastdbcmd.")
 parser.add_option("-o", "--output", dest="output",
                   default=None, metavar="FILE",  # required=True,
                   help="Output FASTA filename (required)")
@@ -95,6 +100,8 @@ if not options.query:
     sys.exit("Missing required argument for input FASTA file")
 if not options.database:
     sys.exit("Missing required argument for BLAST database")
+if options.query == options.dbfasta:
+    sys.exit("Check your arguments, query & database FASTA files should be different.")
 
 if not os.path.isfile(options.query):
     sys.exit("Missing input query FASTA file: %r" % options.query)
@@ -162,20 +169,28 @@ else:
     tabular_file = os.path.join(base_path, "matches.tabular")
 log = os.path.join(base_path, "blast.log")
 
-# TODO - Allow setting this at the command line
 db_fasta = None
-for ext in ("", ".fasta", ".fa", ".ffn", ".fna", ".faa"):
-    tmp = options.database + ext
-    if os.path.isfile(tmp):
-        db_fasta = tmp
-        db_dict = SeqIO.index(db_fasta, "fasta")
-        if db_dict:
-            sys.stderr.write("Indexed %i entries in %s\n" % (len(db_dict), db_fasta))
-            break
-        else:
-            sys.stderr.write("WARNING: %s does not seem to be a FASTA file, ignoring it" % tmp)
+if options.dbfasta:
+    db_fasta = options.dbfasta
+    db_dict = SeqIO.index(db_fasta, "fasta")
+    if db_dict:
+        sys.stderr.write("Indexed %i entries in %s\n" % (len(db_dict), db_fasta))
+    else:
+        sys.stderr.write("ERROR: %s does not seem to be a FASTA file (or is empty)" % db_fasta)
+if not db_fasta:
+    for ext in ("", ".fasta", ".fa", ".ffn", ".fna", ".faa"):
+        tmp = options.database + ext
+        if os.path.isfile(tmp):
+            db_fasta = tmp
+            db_dict = SeqIO.index(db_fasta, "fasta")
+            if db_dict:
+                sys.stderr.write("Indexed %i entries in %s\n" % (len(db_dict), db_fasta))
+                break
+            else:
+                sys.stderr.write("WARNING: %s does not seem to be a FASTA file, ignoring it" % tmp)
 if not db_fasta:
     db_fasta = os.path.join(base_path, "database.fasta")
+    sys.stderr.write("Calling blastdbcmd to convert DB to a temporary FASTA files\n")
     run("blastdbcmd -db '%s' -entry all -out '%s'" % (options.database, db_fasta))
     db_dict = SeqIO.index(db_fasta, "fasta")
     sys.stderr.write("Indexed %i entries from database\n" % len(db_dict))
