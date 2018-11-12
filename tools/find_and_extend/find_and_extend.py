@@ -239,10 +239,9 @@ def extract_candidates(blast_tabular_filename):
             yield parts[c_query], parts[c_match], int(parts[c_sstart]), int(parts[c_send]), int(parts[c_slen])
 
 
-count = 0
-with open(out_file, "w") as out_handle:
+def generate_extended_records(tabular_file):
+    """Yields SeqRecord objects based on BLAST hits."""
     for query, match, start, end, length in extract_candidates(tabular_file):
-        count += 1
         # print(query, match, start, end, length)
 
         if start <= end:
@@ -273,11 +272,12 @@ with open(out_file, "w") as out_handle:
         if reverse_comp:
             seq = seq.reverse_complement()
 
-        record = SeqRecord(id="%s_plus_%s" % (query, match),
-                           description="",
-                           seq=seq)
-        SeqIO.write(record, out_handle, "fasta")
+        yield SeqRecord(id="%s_plus_%s" % (query, match),
+                        description="",
+                        seq=seq)
 
+
+count = SeqIO.write(generate_extended_records(tabular_file), out_file, "fasta")
 
 sys.stderr.write("%i candidates\n" % count)
 
