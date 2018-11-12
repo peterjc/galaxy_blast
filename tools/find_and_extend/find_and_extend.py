@@ -84,6 +84,11 @@ parser.add_option("-t", "--threads", dest="threads",
                        "$GALAXY_SLOTS environment variable if set, or 1.")
 options, args = parser.parse_args()
 
+try:
+    from Bio import SeqIO
+except ImportError:
+    sys.exit("Missing Biopython")
+
 if args:
     sys.exit("No positional arguments expected.")
 if not options.query:
@@ -156,6 +161,24 @@ if options.output_blast:
 else:
     tabular_file = os.path.join(base_path, "matches.tabular")
 log = os.path.join(base_path, "blast.log")
+
+# TODO - Allow setting this at the command line
+db_fasta = None
+for ext in ("", ".fasta", ".fa", ".ffn", ".fna", ".faa"):
+    tmp = options.database + ext
+    if os.path.isfile(tmp):
+        db_fasta = tmp
+        db_dict = SeqIO.index(db_fasta, "fasta")
+        if db_dict:
+            sys.stderr.write("Indexed %i entries in %s\n" % (len(db_dict), db_fasta))
+            break
+        else:
+            sys.stderr.write("WARNING: %s does not seem to be a FASTA file, ignoring it" % tmp)
+if not db_fasta:
+    db_fasta = os.path.join(base_path, "database.fasta")
+    run("blastdbcmd -db '%s' -entry all -out '%s'" % (options.database, db_fasta))
+    db_dict = SeqIO.index(db_fasta, "fasta")
+    sys.stderr.write("Indexed %i entries from database\n" % len(db_dict))
 
 
 cols = "qseqid sseqid pident qcovhsp sstart send slen"  # Or qcovs?
