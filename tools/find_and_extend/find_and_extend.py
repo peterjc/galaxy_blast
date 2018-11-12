@@ -44,7 +44,7 @@ assert 1 <= threads, threads
 # Parse Command Line
 usage = """Use as follows:
 
-$ python find_and_extend.py [options] -q query.fasta -d draft_genome -o matches.fasta
+$ python find_and_extend.py [options] -q query.fasta -d blast_database -o matches.fasta
 
 There is additional guidance in the help text in the find_and_extend.xml
 file, which is shown to the user via the Galaxy interface to this tool.
