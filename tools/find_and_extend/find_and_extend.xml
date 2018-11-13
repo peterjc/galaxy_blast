@@ -15,7 +15,7 @@ python $__tool_directory__/find_and_extend.py
 #elif str($db_opts.db_opts_selector)=='histdb'
 -d '${db_opts.histdb.name}'
 #elif str($db_opts.db_opts_selector)=='file'
--f '${db_opts.dbfasta}
+-f '${db_opts.dbfasta}'
 #end if
 -i '$identity'
 -c '$coverage'
