@@ -30,7 +30,7 @@ jobs:
         - echo "Using flake8 to check Python code"
         - flake8 --max-line-length 120 .
         - echo "Using restructuredtext-lint to check our RST files"
-        - restructuredtext-lint *.rst */*/*.rst
+        - restructuredtext-lint .
         - pip install planemo
       script:
         - echo "Using planemo lint to check for obvious tool errors"
