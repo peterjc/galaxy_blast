@@ -7,9 +7,6 @@
 # for background,
 # http://blastedbio.blogspot.com/2013/09/using-travis-ci-for-testing-galaxy-tools.html
 
-# We don't need sudo so can avoid slower legacy TravisCI infrastructure
-sudo: false
-
 # Galaxy currently only supports Python 2.7
 language: python
 cache: pip
