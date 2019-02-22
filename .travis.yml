@@ -25,7 +25,7 @@ jobs:
         - pip install --upgrade pip setuptools
         - pip install flake8 flake8-blind-except flake8-docstrings flake8-rst-docstrings restructuredtext-lint
         - echo "Using flake8 to check Python code"
-        - flake8 --max-line-length 120 .
+        - flake8 .
         - echo "Using restructuredtext-lint to check our RST files"
         - restructuredtext-lint .
         - pip install planemo
