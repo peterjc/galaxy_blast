@@ -246,7 +246,8 @@ def blastxml_hits(in_file):
                 # <Hit_accession>P56514</Hit_accession>
                 # or,
                 # <Hit_id>Subject_1</Hit_id>
-                # <Hit_def>gi|57163783|ref|NP_001009242.1| rhodopsin [Felis catus]</Hit_def>
+                # <Hit_def>gi|57163783|ref|NP_001009242.1|
+                # rhodopsin [Felis catus]</Hit_def>
                 # <Hit_accession>Subject_1</Hit_accession>
                 #
                 # apparently depending on the parse_deflines switch

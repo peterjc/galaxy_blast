@@ -89,8 +89,12 @@ def load_go_mapping(rdf_xml):
             '<go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_' in line
             and go
         ):
-            # i.e. <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_molecular_function" />
-            # or   <go:is_a rdf:resource="http://www.geneontology.org/go#obsolete_biological_process" />
+            # i.e.<go:is_a
+            # rdf:resource="http://www.geneontology.org/go#obsolete_molecular_function"
+            # />
+            # or <go:is_a
+            # rdf:resource="http://www.geneontology.org/go#obsolete_biological_process"
+            # />
             thing = line[
                 line.find('<go:is_a rdf:resource="http://www.geneontology.org/go#')
                 + 54 :

@@ -129,7 +129,8 @@ parser.add_option(
     "--columns",
     dest="columns",
     default="std",
-    help="[std|ext|col1,col2,...] standard 12 columns, extended 25 columns, or list of column names",
+    help="[std|ext|col1,col2,...] standard 12 columns, "
+    "extended 25 columns, or list of column names",
 )
 (options, args) = parser.parse_args()
 
@@ -230,7 +231,8 @@ def convert(blastxml_filename, output_handle):
                 # <Hit_accession>P56514</Hit_accession>
                 # or,
                 # <Hit_id>Subject_1</Hit_id>
-                # <Hit_def>gi|57163783|ref|NP_001009242.1| rhodopsin [Felis catus]</Hit_def>
+                # <Hit_def>gi|57163783|ref|NP_001009242.1|
+                # rhodopsin [Felis catus]</Hit_def>
                 # <Hit_accession>Subject_1</Hit_accession>
                 #
                 # apparently depending on the parse_deflines switch
@@ -369,7 +371,8 @@ def convert(blastxml_filename, output_handle):
                         qframe = hsp.findtext("Hsp_query-frame")
                         sframe = hsp.findtext("Hsp_hit-frame")
                         if blast_program == "blastp":
-                            # Probably a bug in BLASTP that they use 0 or 1 depending on format
+                            # Probably a bug in BLASTP that they use 0 or 1
+                            # depending on format
                             if qframe == "0":
                                 qframe = "1"
                             if sframe == "0":
@@ -385,7 +388,8 @@ def convert(blastxml_filename, output_handle):
                                 ppos,
                                 qframe,
                                 sframe,
-                                # NOTE - for blastp, XML shows original seq, tabular uses XXX masking
+                                # NOTE - for blastp, XML shows original seq,
+                                # tabular uses XXX masking
                                 q_seq,
                                 h_seq,
                                 str(qlen),

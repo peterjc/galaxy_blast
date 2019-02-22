@@ -45,7 +45,8 @@ except ImportError:
 
 if len(sys.argv) != 4:
     sys.exit(
-        "Require three arguments: XML filename, properties filename, output tabular filename"
+        "Require three arguments: XML filename, "
+        "properties filename, output tabular filename"
     )
 
 xml_file, prop_file, tabular_file = sys.argv[1:]

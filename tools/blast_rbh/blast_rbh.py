@@ -258,7 +258,8 @@ def best_hits(blast_tabular, ignore_self=False):
                     # Unambiguous (no tied matches)
                     yield current, list(best.values())[0]
                 else:
-                    # print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+                    # print("%s has %i equally good hits: %s"
+                    #       % (a, len(best), ", ".join(best)))
                     tie_warning += 1
                 best = dict()
                 # Now append this hit...
@@ -275,7 +276,8 @@ def best_hits(blast_tabular, ignore_self=False):
                 # Now append this hit...
             current = a
             best_score = score
-            # This will collapse two equally good hits to the same target (e.g. duplicated domain)
+            # This will collapse two equally good hits
+            # to the same target (e.g. duplicated domain)
             best[b] = (
                 b,
                 score,
@@ -290,7 +292,8 @@ def best_hits(blast_tabular, ignore_self=False):
         if len(best) == 1:
             yield current, list(best.values())[0]
         else:
-            # print("%s has %i equally good hits: %s" % (a, len(best), ", ".join(best)))
+            # print("%s has %i equally good hits: %s"
+            # % (a, len(best), ", ".join(best)))
             tie_warning += 1
 
 
@@ -411,9 +414,15 @@ for (
     if b not in best_b_vs_a:
         # Match b has no best hit
         continue
-    a2, b_score_float, b_score_str, b_identity_str, b_coverage_str, b_qlen, b_length = best_b_vs_a[
-        b
-    ]
+    (
+        a2,
+        b_score_float,
+        b_score_str,
+        b_identity_str,
+        b_coverage_str,
+        b_qlen,
+        b_length,
+    ) = best_b_vs_a[b]
     if a != a2:
         # Not an RBH
         continue
@@ -436,7 +445,8 @@ outfile.close()
 print("Done, %i RBH found" % count)
 if tie_warning:
     sys.stderr.write(
-        "Warning: Sequences with tied best hits found, you may have duplicates/clusters\n"
+        "Warning: Sequences with tied best hits found, "
+        "you may have duplicates/clusters\n"
     )
 
 # Remove temp files...
