@@ -11,6 +11,11 @@ import subprocess
 import sys
 
 from galaxy.util.json import from_json_string, to_json_string
+
+
+if sys.version_info[0] >= 3:
+    basestring = str
+
 DEFAULT_ALGORITHM = hashlib.sha512
 CHUNK_SIZE = 2**20  # 1mb
 
