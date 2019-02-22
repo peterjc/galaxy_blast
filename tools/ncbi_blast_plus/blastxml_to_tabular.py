@@ -81,12 +81,14 @@ if sys.version_info[:2] >= (2, 5):
 else:
     from galaxy import eggs  # noqa - ignore flake8 F401
     import pkg_resources
+
     pkg_resources.require("elementtree")
     from elementtree import ElementTree
 
 if len(sys.argv) == 4 and sys.argv[3] in ["std", "x22", "ext"]:
     # False positive if user really has a BLAST XML file called 'std' or 'ext'...
-    sys.exit("""ERROR: The script API has changed, sorry.
+    sys.exit(
+        """ERROR: The script API has changed, sorry.
 
 Instead of the old style:
 
@@ -99,7 +101,8 @@ $ python blastxml_to_tabular.py -o output.tabular -c std input.xml
 For more information, use:
 
 $ python blastxml_to_tabular.py -h
-""")
+"""
+    )
 
 usage = """usage: %prog [options] blastxml[,...]
 
@@ -113,16 +116,28 @@ Note if using a list of column names, currently ONLY the 25
 extended column names are supported.
 """
 parser = OptionParser(usage=usage)
-parser.add_option('-o', '--output', dest='output', default=None,
-                  help='output filename (defaults to stdout)',
-                  metavar="FILE")
-parser.add_option("-c", "--columns", dest="columns", default='std',
-                  help="[std|ext|col1,col2,...] standard 12 columns, extended 25 columns, or list of column names")
+parser.add_option(
+    "-o",
+    "--output",
+    dest="output",
+    default=None,
+    help="output filename (defaults to stdout)",
+    metavar="FILE",
+)
+parser.add_option(
+    "-c",
+    "--columns",
+    dest="columns",
+    default="std",
+    help="[std|ext|col1,col2,...] standard 12 columns, extended 25 columns, or list of column names",
+)
 (options, args) = parser.parse_args()
 
-colnames = ('qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,'
-            'sstart,send,evalue,bitscore,sallseqid,score,nident,positive,'
-            'gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles').split(',')
+colnames = (
+    "qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,"
+    "sstart,send,evalue,bitscore,sallseqid,score,nident,positive,"
+    "gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles"
+).split(",")
 
 if len(args) < 1:
     sys.exit("ERROR: No BLASTXML input files given; run with --help to see options.")
@@ -148,7 +163,9 @@ else:
     assert set(colnames).issuperset(cols), cols
     if not cols:
         sys.exit("No columns selected!")
-    extended = max(colnames.index(c) for c in cols) >= 12  # Do we need any higher columns?
+    extended = (
+        max(colnames.index(c) for c in cols) >= 12
+    )  # Do we need any higher columns?
 del out_fmt
 
 for in_file in args:
@@ -225,11 +242,15 @@ def convert(blastxml_filename, output_handle):
                 # <Hit_accession>2</Hit_accession>
                 sseqid = hit.findtext("Hit_id").split(None, 1)[0]
                 hit_def = sseqid + " " + hit.findtext("Hit_def")
-                if re_default_subject_id.match(sseqid) and sseqid == hit.findtext("Hit_accession"):
+                if re_default_subject_id.match(sseqid) and sseqid == hit.findtext(
+                    "Hit_accession"
+                ):
                     # Place holder ID, take the first word of the subject definition
                     hit_def = hit.findtext("Hit_def")
                     sseqid = hit_def.split(None, 1)[0]
-                if sseqid.startswith("gnl|BL_ORD_ID|") and sseqid == "gnl|BL_ORD_ID|" + hit.findtext("Hit_accession"):
+                if sseqid.startswith(
+                    "gnl|BL_ORD_ID|"
+                ) and sseqid == "gnl|BL_ORD_ID|" + hit.findtext("Hit_accession"):
                     # Alternative place holder ID, again take the first word of hit_def
                     hit_def = hit.findtext("Hit_def")
                     sseqid = hit_def.split(None, 1)[0]
@@ -244,27 +265,61 @@ def convert(blastxml_filename, output_handle):
                     h_seq = hsp.findtext("Hsp_hseq")
                     m_seq = hsp.findtext("Hsp_midline")
                     assert len(q_seq) == len(h_seq) == len(m_seq) == int(length)
-                    gapopen = str(len(q_seq.replace('-', ' ').split()) - 1 +
-                                  len(h_seq.replace('-', ' ').split()) - 1)
+                    gapopen = str(
+                        len(q_seq.replace("-", " ").split())
+                        - 1
+                        + len(h_seq.replace("-", " ").split())
+                        - 1
+                    )
 
-                    mismatch = m_seq.count(' ') + m_seq.count('+') - q_seq.count('-') - h_seq.count('-')
+                    mismatch = (
+                        m_seq.count(" ")
+                        + m_seq.count("+")
+                        - q_seq.count("-")
+                        - h_seq.count("-")
+                    )
                     # TODO - Remove this alternative mismatch calculation and test
                     # once satisifed there are no problems
-                    expected_mismatch = len(q_seq) - sum(1 for q, h in zip(q_seq, h_seq)
-                                                         if q == h or q == "-" or h == "-")
+                    expected_mismatch = len(q_seq) - sum(
+                        1
+                        for q, h in zip(q_seq, h_seq)
+                        if q == h or q == "-" or h == "-"
+                    )
                     xx = sum(1 for q, h in zip(q_seq, h_seq) if q == "X" and h == "X")
-                    if not (expected_mismatch - q_seq.count("X") <= int(mismatch) <= expected_mismatch + xx):
-                        sys.exit("%s vs %s mismatches, expected %i <= %i <= %i"
-                                 % (qseqid, sseqid, expected_mismatch - q_seq.count("X"),
-                                    int(mismatch), expected_mismatch))
+                    if not (
+                        expected_mismatch - q_seq.count("X")
+                        <= int(mismatch)
+                        <= expected_mismatch + xx
+                    ):
+                        sys.exit(
+                            "%s vs %s mismatches, expected %i <= %i <= %i"
+                            % (
+                                qseqid,
+                                sseqid,
+                                expected_mismatch - q_seq.count("X"),
+                                int(mismatch),
+                                expected_mismatch,
+                            )
+                        )
 
                     # TODO - Remove this alternative identity calculation and test
                     # once satisifed there are no problems
                     expected_identity = sum(1 for q, h in zip(q_seq, h_seq) if q == h)
-                    if not (expected_identity - xx <= int(nident) <= expected_identity + q_seq.count("X")):
-                        sys.exit("%s vs %s identities, expected %i <= %i <= %i"
-                                 % (qseqid, sseqid, expected_identity, int(nident),
-                                    expected_identity + q_seq.count("X")))
+                    if not (
+                        expected_identity - xx
+                        <= int(nident)
+                        <= expected_identity + q_seq.count("X")
+                    ):
+                        sys.exit(
+                            "%s vs %s identities, expected %i <= %i <= %i"
+                            % (
+                                qseqid,
+                                sseqid,
+                                expected_identity,
+                                int(nident),
+                                expected_identity + q_seq.count("X"),
+                            )
+                        )
 
                     evalue = hsp.findtext("Hsp_evalue")
                     if evalue == "0":
@@ -280,26 +335,34 @@ def convert(blastxml_filename, output_handle):
                         # Note BLAST does not round to nearest int, it truncates
                         bitscore = "%i" % bitscore
 
-                    values = [qseqid,
-                              sseqid,
-                              pident,
-                              length,  # hsp.findtext("Hsp_align-len")
-                              str(mismatch),
-                              gapopen,
-                              hsp.findtext("Hsp_query-from"),  # qstart,
-                              hsp.findtext("Hsp_query-to"),  # qend,
-                              hsp.findtext("Hsp_hit-from"),  # sstart,
-                              hsp.findtext("Hsp_hit-to"),  # send,
-                              evalue,  # hsp.findtext("Hsp_evalue") in scientific notation
-                              bitscore,  # hsp.findtext("Hsp_bit-score") rounded
-                              ]
+                    values = [
+                        qseqid,
+                        sseqid,
+                        pident,
+                        length,  # hsp.findtext("Hsp_align-len")
+                        str(mismatch),
+                        gapopen,
+                        hsp.findtext("Hsp_query-from"),  # qstart,
+                        hsp.findtext("Hsp_query-to"),  # qend,
+                        hsp.findtext("Hsp_hit-from"),  # sstart,
+                        hsp.findtext("Hsp_hit-to"),  # send,
+                        evalue,  # hsp.findtext("Hsp_evalue") in scientific notation
+                        bitscore,  # hsp.findtext("Hsp_bit-score") rounded
+                    ]
 
                     if extended:
                         try:
-                            sallseqid = ";".join(name.split(None, 1)[0] for name in hit_def.split(" >"))
-                            salltitles = "<>".join(name.split(None, 1)[1] for name in hit_def.split(" >"))
+                            sallseqid = ";".join(
+                                name.split(None, 1)[0] for name in hit_def.split(" >")
+                            )
+                            salltitles = "<>".join(
+                                name.split(None, 1)[1] for name in hit_def.split(" >")
+                            )
                         except IndexError as e:
-                            sys.exit("Problem splitting multuple hits?\n%r\n--> %s" % (hit_def, e))
+                            sys.exit(
+                                "Problem splitting multuple hits?\n%r\n--> %s"
+                                % (hit_def, e)
+                            )
                         # print(hit_def, "-->", sallseqid)
                         positive = hsp.findtext("Hsp_positive")
                         ppos = "%0.2f" % (100 * float(positive) / float(length))
@@ -312,21 +375,24 @@ def convert(blastxml_filename, output_handle):
                             if sframe == "0":
                                 sframe = "1"
                         slen = int(hit.findtext("Hit_len"))
-                        values.extend([sallseqid,
-                                       hsp.findtext("Hsp_score"),  # score,
-                                       nident,
-                                       positive,
-                                       hsp.findtext("Hsp_gaps"),  # gaps,
-                                       ppos,
-                                       qframe,
-                                       sframe,
-                                       # NOTE - for blastp, XML shows original seq, tabular uses XXX masking
-                                       q_seq,
-                                       h_seq,
-                                       str(qlen),
-                                       str(slen),
-                                       salltitles,
-                                       ])
+                        values.extend(
+                            [
+                                sallseqid,
+                                hsp.findtext("Hsp_score"),  # score,
+                                nident,
+                                positive,
+                                hsp.findtext("Hsp_gaps"),  # gaps,
+                                ppos,
+                                qframe,
+                                sframe,
+                                # NOTE - for blastp, XML shows original seq, tabular uses XXX masking
+                                q_seq,
+                                h_seq,
+                                str(qlen),
+                                str(slen),
+                                salltitles,
+                            ]
+                        )
                     if cols:
                         # Only a subset of the columns are needed
                         values = [values[colnames.index(c)] for c in cols]

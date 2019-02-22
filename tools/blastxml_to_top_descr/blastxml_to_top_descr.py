@@ -24,6 +24,7 @@ if sys.version_info[:2] >= (2, 5):
 else:
     from galaxy import eggs  # noqa - ignore flake8 F401
     import pkg_resources
+
     pkg_resources.require("elementtree")
     from elementtree import ElementTree
 
@@ -41,23 +42,54 @@ writing them to the specified output file in tabular format.
 """
 
 parser = OptionParser(usage=usage)
-parser.add_option("-t", "--topN", dest="topN", default=3,
-                  help="Number of descriptions to collect (in order from file)")
-parser.add_option("-o", "--output", dest="out_file", default=None,
-                  help="Output filename for tabular file",
-                  metavar="FILE")
-parser.add_option("-f", "--format", dest="format", default="blastxml",
-                  help="Input format (blastxml or tabular)")
-parser.add_option("-q", "--qseqid", dest="qseqid", default="1",
-                  help="Column for query 'qseqid' (for tabular input; default 1)")
-parser.add_option("-s", "--sseqid", dest="sseqid", default="2",
-                  help="Column for subject 'sseqid' (for tabular input; default 2)")
-parser.add_option("-d", "--salltitles", dest="salltitles", default="25",
-                  help="Column for descriptions 'salltitles' (for tabular input; default 25)")
+parser.add_option(
+    "-t",
+    "--topN",
+    dest="topN",
+    default=3,
+    help="Number of descriptions to collect (in order from file)",
+)
+parser.add_option(
+    "-o",
+    "--output",
+    dest="out_file",
+    default=None,
+    help="Output filename for tabular file",
+    metavar="FILE",
+)
+parser.add_option(
+    "-f",
+    "--format",
+    dest="format",
+    default="blastxml",
+    help="Input format (blastxml or tabular)",
+)
+parser.add_option(
+    "-q",
+    "--qseqid",
+    dest="qseqid",
+    default="1",
+    help="Column for query 'qseqid' (for tabular input; default 1)",
+)
+parser.add_option(
+    "-s",
+    "--sseqid",
+    dest="sseqid",
+    default="2",
+    help="Column for subject 'sseqid' (for tabular input; default 2)",
+)
+parser.add_option(
+    "-d",
+    "--salltitles",
+    dest="salltitles",
+    default="25",
+    help="Column for descriptions 'salltitles' (for tabular input; default 25)",
+)
 (options, args) = parser.parse_args()
 
 if len(sys.argv) == 4 and len(args) == 3 and not options.out_file:
-    sys.exit("""The API has changed, replace this:
+    sys.exit(
+        """The API has changed, replace this:
 
 $ python blastxml_to_top_descr.py input.xml output.tab 3
 
@@ -66,7 +98,8 @@ with:
 $ python blastxml_to_top_descr.py -o output.tab -t 3 input.xml
 
 Sorry.
-""")
+"""
+    )
 
 if not args:
     sys.exit("Input filename missing, try -h")
@@ -140,7 +173,9 @@ def blastxml_hits(in_file):
     except Exception:
         with open(in_file) as handle:
             header = handle.read(100)
-        sys.exit("Invalid data format in XML file %r which starts: %r" % (in_file, header))
+        sys.exit(
+            "Invalid data format in XML file %r which starts: %r" % (in_file, header)
+        )
     # turn it into an iterator
     context = iter(context)
     # get the root element
@@ -149,7 +184,10 @@ def blastxml_hits(in_file):
     except Exception:
         with open(in_file) as handle:
             header = handle.read(100)
-        sys.exit("Unable to get root element from XML file %r which starts: %r" % (in_file, header))
+        sys.exit(
+            "Unable to get root element from XML file %r which starts: %r"
+            % (in_file, header)
+        )
 
     re_default_query_id = re.compile(r"^Query_\d+$")
     assert re_default_query_id.match(r"Query_101")
@@ -180,7 +218,9 @@ def blastxml_hits(in_file):
             # <Iteration_hits>...
             qseqid = elem.findtext("Iteration_query-ID")
             if qseqid is None:
-                sys.exit("Missing <Iteration_query-ID> (could be really old BLAST XML data?)")
+                sys.exit(
+                    "Missing <Iteration_query-ID> (could be really old BLAST XML data?)"
+                )
             if re_default_query_id.match(qseqid):
                 # Place holder ID, take the first word of the query definition
                 qseqid = elem.findtext("Iteration_query-def").split(None, 1)[0]
@@ -212,7 +252,9 @@ def blastxml_hits(in_file):
                 # apparently depending on the parse_deflines switch
                 sseqid = hit.findtext("Hit_id").split(None, 1)[0]
                 hit_def = sseqid + " " + hit.findtext("Hit_def")
-                if re_default_subject_id.match(sseqid) and sseqid == hit.findtext("Hit_accession"):
+                if re_default_subject_id.match(sseqid) and sseqid == hit.findtext(
+                    "Hit_accession"
+                ):
                     # Place holder ID, take the first word of the subject definition
                     hit_def = hit.findtext("Hit_def")
                     sseqid = hit_def.split(None, 1)[0]
@@ -249,7 +291,7 @@ count = 0
 if out_file is None:
     outfile = sys.stdout
 else:
-    outfile = open(out_file, 'w')
+    outfile = open(out_file, "w")
 outfile.write("#Query\t%s\n" % "\t".join("BLAST hit %i" % (i + 1) for i in range(topN)))
 for query, descrs in hits:
     count += 1

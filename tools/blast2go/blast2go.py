@@ -44,7 +44,9 @@ except ImportError:
     sys.exit("Missing sister file massage_xml_for_blast2go.py")
 
 if len(sys.argv) != 4:
-    sys.exit("Require three arguments: XML filename, properties filename, output tabular filename")
+    sys.exit(
+        "Require three arguments: XML filename, properties filename, output tabular filename"
+    )
 
 xml_file, prop_file, tabular_file = sys.argv[1:]
 
@@ -72,8 +74,9 @@ def run(cmd):
     # Avoid using shell=True when we call subprocess to ensure if the Python
     # script is killed, so too is the child process.
     try:
-        child = subprocess.Popen(cmd, universal_newlines=True,
-                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        child = subprocess.Popen(
+            cmd, universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
     except Exception as err:
         sys.exit("Error invoking command:\n%s\n\n%s\n" % (" ".join(cmd), err))
     stdout, stderr = child.communicate()
@@ -110,14 +113,21 @@ prepare_xml(xml_file, tmp_xml_file)
 # We will have write access wherever the output should be,
 # so we'll ask Blast2GO to use that as the stem for its output
 # (it will append .annot to the filename)
-cmd = ["java", "-cp", blast2go_classpath, "es.blast2go.prog.B2GAnnotPipe",
-       "-in", tmp_xml_file,
-       "-prop", prop_file,
-       "-out", tabular_file,  # Used as base name for output files
-       "-annot",  # Generate *.annot tabular file
-       # NOTE: For v2.3.5 must use -a, for v2.5 must use -annot instead
-       # "-img", # Generate images, feature not in v2.3.5
-       ]
+cmd = [
+    "java",
+    "-cp",
+    blast2go_classpath,
+    "es.blast2go.prog.B2GAnnotPipe",
+    "-in",
+    tmp_xml_file,
+    "-prop",
+    prop_file,
+    "-out",
+    tabular_file,  # Used as base name for output files
+    "-annot",  # Generate *.annot tabular file
+    # NOTE: For v2.3.5 must use -a, for v2.5 must use -annot instead
+    # "-img", # Generate images, feature not in v2.3.5
+]
 # print " ".join(cmd)
 run(cmd)
 

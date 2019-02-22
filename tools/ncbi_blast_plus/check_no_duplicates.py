@@ -31,7 +31,7 @@ for filename in sys.argv[1:]:
     if not magic:
         # Empty file, special case
         continue
-    elif magic == b'\x1f\x8b':
+    elif magic == b"\x1f\x8b":
         # Gzipped
         handle = gzip.open(filename, "rt")
     elif magic[0:1] == b">":

@@ -60,28 +60,57 @@ which is shown to the user via the Galaxy interface to this tool.
 """
 
 parser = OptionParser(usage=usage)
-parser.add_option("-a", "--alphabet", dest="dbtype",
-                  default=None,
-                  help="Alphabet type (nucl or prot; required)")
-parser.add_option("-t", "--task", dest="task",
-                  default=None,
-                  help="BLAST task (e.g. blastp, blastn, megablast; required)")
-parser.add_option("-i", "--identity", dest="min_identity",
-                  default="70",
-                  help="Minimum percentage identity (optional, default 70)")
-parser.add_option("-c", "--coverage", dest="min_coverage",
-                  default="50",
-                  help="Minimum HSP coverage (optional, default 50)")
-parser.add_option("--nr", dest="nr", default=False, action="store_true",
-                  help="Preprocess FASTA files to collapse identitical "
-                  "entries (make sequences non-redundant)")
-parser.add_option("-o", "--output", dest="output",
-                  default=None, metavar="FILE",
-                  help="Output filename (required)")
-parser.add_option("--threads", dest="threads",
-                  default=threads,
-                  help="Number of threads when running BLAST. Defaults to the "
-                       "$GALAXY_SLOTS environment variable if set, or 1.")
+parser.add_option(
+    "-a",
+    "--alphabet",
+    dest="dbtype",
+    default=None,
+    help="Alphabet type (nucl or prot; required)",
+)
+parser.add_option(
+    "-t",
+    "--task",
+    dest="task",
+    default=None,
+    help="BLAST task (e.g. blastp, blastn, megablast; required)",
+)
+parser.add_option(
+    "-i",
+    "--identity",
+    dest="min_identity",
+    default="70",
+    help="Minimum percentage identity (optional, default 70)",
+)
+parser.add_option(
+    "-c",
+    "--coverage",
+    dest="min_coverage",
+    default="50",
+    help="Minimum HSP coverage (optional, default 50)",
+)
+parser.add_option(
+    "--nr",
+    dest="nr",
+    default=False,
+    action="store_true",
+    help="Preprocess FASTA files to collapse identitical "
+    "entries (make sequences non-redundant)",
+)
+parser.add_option(
+    "-o",
+    "--output",
+    dest="output",
+    default=None,
+    metavar="FILE",
+    help="Output filename (required)",
+)
+parser.add_option(
+    "--threads",
+    dest="threads",
+    default=threads,
+    help="Number of threads when running BLAST. Defaults to the "
+    "$GALAXY_SLOTS environment variable if set, or 1.",
+)
 options, args = parser.parse_args()
 
 if len(args) != 2:
@@ -104,13 +133,17 @@ out_file = options.output
 try:
     min_identity = float(options.min_identity)
 except ValueError:
-    sys.exit("Expected number between 0 and 100 for minimum identity, not %r" % min_identity)
+    sys.exit(
+        "Expected number between 0 and 100 for minimum identity, not %r" % min_identity
+    )
 if not (0 <= min_identity <= 100):
     sys.exit("Expected minimum identity between 0 and 100, not %0.2f" % min_identity)
 try:
     min_coverage = float(options.min_coverage)
 except ValueError:
-    sys.exit("Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage)
+    sys.exit(
+        "Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage
+    )
 if not (0 <= min_coverage <= 100):
     sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
 
@@ -138,7 +171,9 @@ else:
 try:
     threads = int(options.threads)
 except ValueError:
-    sys.exit("Expected positive integer for number of threads, not %r" % options.threads)
+    sys.exit(
+        "Expected positive integer for number of threads, not %r" % options.threads
+    )
 if threads < 1:
     sys.exit("Expected positive integer for number of threads, not %r" % threads)
 
@@ -193,10 +228,15 @@ def best_hits(blast_tabular, ignore_self=False):
             if len(parts) != col_count:
                 # Using NCBI BLAST+ 2.2.27 the undefined field is ignored
                 # Even NCBI BLAST+ 2.5.0 silently ignores unknown fields :(
-                sys.exit("Old version of NCBI BLAST? Expected %i columns, got %i:\n%s\n"
-                         "Note the qcovhsp field was only added in version 2.2.28\n"
-                         % (col_count, len(parts), line))
-            if float(parts[c_identity]) < min_identity or float(parts[c_coverage]) < min_coverage:
+                sys.exit(
+                    "Old version of NCBI BLAST? Expected %i columns, got %i:\n%s\n"
+                    "Note the qcovhsp field was only added in version 2.2.28\n"
+                    % (col_count, len(parts), line)
+                )
+            if (
+                float(parts[c_identity]) < min_identity
+                or float(parts[c_coverage]) < min_coverage
+            ):
                 continue
             a = parts[c_query]
             b = parts[c_match]
@@ -236,7 +276,15 @@ def best_hits(blast_tabular, ignore_self=False):
             current = a
             best_score = score
             # This will collapse two equally good hits to the same target (e.g. duplicated domain)
-            best[b] = (b, score, parts[c_score], parts[c_identity], parts[c_coverage], qlen, length)
+            best[b] = (
+                b,
+                score,
+                parts[c_score],
+                parts[c_identity],
+                parts[c_coverage],
+                qlen,
+                length,
+            )
     # Best hit for final query, if unambiguous:
     if current is not None:
         if len(best) == 1:
@@ -303,8 +351,10 @@ def make_nr(input_fasta, output_fasta, sep=";"):
                 elif record.id in duplicates:
                     continue
                 SeqIO.write(record, handle, "fasta")
-        print("%i unique entries; removed %i duplicates leaving %i representative records"
-              % (unique, len(duplicates), len(representatives)))
+        print(
+            "%i unique entries; removed %i duplicates leaving %i representative records"
+            % (unique, len(duplicates), len(representatives))
+        )
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
         print("No perfect duplicates in file, %i unique entries" % unique)
@@ -323,16 +373,26 @@ if options.nr:
     fasta_b = tmp_b
 
 # TODO - Report log in case of error?
-run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_a, db_a, log))
+run(
+    '%s -dbtype %s -in "%s" -out "%s" -logfile "%s"'
+    % (makeblastdb_exe, dbtype, fasta_a, db_a, log)
+)
 if not self_comparison:
-    run('%s -dbtype %s -in "%s" -out "%s" -logfile "%s"' % (makeblastdb_exe, dbtype, fasta_b, db_b, log))
+    run(
+        '%s -dbtype %s -in "%s" -out "%s" -logfile "%s"'
+        % (makeblastdb_exe, dbtype, fasta_b, db_b, log)
+    )
 # print("BLAST databases prepared.")
-run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-    % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads))
+run(
+    '%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+    % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads)
+)
 # print("BLAST species A vs species B done.")
 if not self_comparison:
-    run('%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-        % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads))
+    run(
+        '%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
+        % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads)
+    )
     # print("BLAST species B vs species A done.")
 
 
@@ -340,14 +400,20 @@ best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
 
 
 count = 0
-outfile = open(out_file, 'w')
-outfile.write("#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n")
-for a, (b, a_score_float, a_score_str,
-        a_identity_str, a_coverage_str, a_qlen, a_length) in best_hits(a_vs_b, self_comparison):
+outfile = open(out_file, "w")
+outfile.write(
+    "#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n"
+)
+for (
+    a,
+    (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length),
+) in best_hits(a_vs_b, self_comparison):
     if b not in best_b_vs_a:
         # Match b has no best hit
         continue
-    a2, b_score_float, b_score_str, b_identity_str, b_coverage_str, b_qlen, b_length = best_b_vs_a[b]
+    a2, b_score_float, b_score_str, b_identity_str, b_coverage_str, b_qlen, b_length = best_b_vs_a[
+        b
+    ]
     if a != a2:
         # Not an RBH
         continue
@@ -369,7 +435,9 @@ for a, (b, a_score_float, a_score_str,
 outfile.close()
 print("Done, %i RBH found" % count)
 if tie_warning:
-    sys.stderr.write("Warning: Sequences with tied best hits found, you may have duplicates/clusters\n")
+    sys.stderr.write(
+        "Warning: Sequences with tied best hits found, you may have duplicates/clusters\n"
+    )
 
 # Remove temp files...
 shutil.rmtree(base_path)

@@ -63,8 +63,11 @@ for line in open(a_vs_b):
     a = parts[c_query]
     b = parts[c_match]
     score = float(parts[c_score])
-    if ((a not in best_a_vs_b) or (want_highest and score > best_a_vs_b[a][1]) or
-                                  (want_lowest and score < best_a_vs_b[a][1])):
+    if (
+        (a not in best_a_vs_b)
+        or (want_highest and score > best_a_vs_b[a][1])
+        or (want_lowest and score < best_a_vs_b[a][1])
+    ):
         best_a_vs_b[a] = (b, score, parts[c_score])
 b_short_list = set(b for (b, score, score_str) in best_a_vs_b.values())
 
@@ -81,14 +84,17 @@ for line in open(b_vs_a):
     if b not in b_short_list:
         continue
     score = float(parts[c_score])
-    if ((b not in best_b_vs_a) or (want_highest and score > best_b_vs_a[b][1]) or
-                                  (want_lowest and score < best_b_vs_a[b][1])):
+    if (
+        (b not in best_b_vs_a)
+        or (want_highest and score > best_b_vs_a[b][1])
+        or (want_lowest and score < best_b_vs_a[b][1])
+    ):
         best_b_vs_a[b] = (a, score, parts[c_score])
 # TODO - Preserve order from A vs B?
 a_short_list = sorted(set(a for (a, score, score_str) in best_b_vs_a.values()))
 
 count = 0
-outfile = open(out_file, 'w')
+outfile = open(out_file, "w")
 outfile.write("#A_id\tB_id\tA_vs_B\tB_vs_A\n")
 for a in a_short_list:
     b = best_a_vs_b[a][0]
