@@ -24,6 +24,8 @@ import os
 import shutil
 import sys
 import tempfile
+import best_hits
+
 
 from optparse import OptionParser
 
@@ -131,21 +133,21 @@ if not options.output:
 out_file = options.output
 
 try:
-    min_identity = float(options.min_identity)
+    best_hits.min_identity = float(options.min_identity)
 except ValueError:
     sys.exit(
-        "Expected number between 0 and 100 for minimum identity, not %r" % min_identity
+        "Expected number between 0 and 100 for minimum identity, not %r" % best_hits.min_identity
     )
-if not (0 <= min_identity <= 100):
-    sys.exit("Expected minimum identity between 0 and 100, not %0.2f" % min_identity)
+if not (0 <= best_hits.min_identity <= 100):
+    sys.exit("Expected minimum identity between 0 and 100, not %0.2f" % best_hits.min_identity)
 try:
-    min_coverage = float(options.min_coverage)
+    best_hits.min_coverage = float(options.min_coverage)
 except ValueError:
     sys.exit(
-        "Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage
+        "Expected number between 0 and 100 for minimum coverage, not %r" % best_hits.min_coverage
     )
-if not (0 <= min_coverage <= 100):
-    sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
+if not (0 <= best_hits.min_coverage <= 100):
+    sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % best_hits.min_coverage)
 
 if not options.task:
     sys.exit("Missing BLAST task, e.g. -t blastp")
@@ -192,109 +194,6 @@ else:
     db_b = os.path.join(base_path, "SpeciesB")
     b_vs_a = os.path.join(base_path, "B_vs_A.tabular")
 log = os.path.join(base_path, "blast.log")
-
-cols = "qseqid sseqid bitscore pident qcovhsp qlen length"  # Or qcovs?
-c_query = 0
-c_match = 1
-c_score = 2
-c_identity = 3
-c_coverage = 4
-c_qlen = 5
-c_length = 6
-
-tie_warning = 0
-
-
-def best_hits(blast_tabular, ignore_self=False):
-    """Iterate over BLAST tabular output, returns best hits as 2-tuples.
-
-    Each return value is (query name, tuple of value for the best hit).
-
-    Tied best hits to different sequences are NOT returned.
-
-    One hit is returned for tied best hits to the same sequence
-    (e.g. repeated domains).
-    """
-    global tie_warning
-    current = None
-    best_score = None
-    best = None
-    col_count = len(cols.split())
-    with open(blast_tabular) as h:
-        for line in h:
-            if line.startswith("#"):
-                continue
-            parts = line.rstrip("\n").split("\t")
-            if len(parts) != col_count:
-                # Using NCBI BLAST+ 2.2.27 the undefined field is ignored
-                # Even NCBI BLAST+ 2.5.0 silently ignores unknown fields :(
-                sys.exit(
-                    "Old version of NCBI BLAST? Expected %i columns, got %i:\n%s\n"
-                    "Note the qcovhsp field was only added in version 2.2.28\n"
-                    % (col_count, len(parts), line)
-                )
-            if (
-                float(parts[c_identity]) < min_identity
-                or float(parts[c_coverage]) < min_coverage
-            ):
-                continue
-            a = parts[c_query]
-            b = parts[c_match]
-            if ignore_self and a == b:
-                continue
-            score = float(parts[c_score])
-            qlen = int(parts[c_qlen])
-            length = int(parts[c_length])
-            # print("Considering hit for %s to %s with score %s..." % (a, b, score))
-            if current is None:
-                # First hit
-                assert best is None
-                assert best_score is None
-                best = dict()
-                # Now append this hit...
-            elif a != current:
-                # New hit
-                if len(best) == 1:
-                    # Unambiguous (no tied matches)
-                    yield current, list(best.values())[0]
-                else:
-                    # print("%s has %i equally good hits: %s"
-                    #       % (a, len(best), ", ".join(best)))
-                    tie_warning += 1
-                best = dict()
-                # Now append this hit...
-            elif score < best_score:
-                # print("No improvement for %s, %s < %s" % (a, score, best_score))
-                continue
-            elif score > best_score:
-                # This is better, discard old best
-                best = dict()
-                # Now append this hit...
-            else:
-                # print("Tied best hits for %s" % a)
-                assert best_score == score
-                # Now append this hit...
-            current = a
-            best_score = score
-            # This will collapse two equally good hits
-            # to the same target (e.g. duplicated domain)
-            best[b] = (
-                b,
-                score,
-                parts[c_score],
-                parts[c_identity],
-                parts[c_coverage],
-                qlen,
-                length,
-            )
-    # Best hit for final query, if unambiguous:
-    if current is not None:
-        if len(best) == 1:
-            yield current, list(best.values())[0]
-        else:
-            # print("%s has %i equally good hits: %s"
-            # % (a, len(best), ", ".join(best)))
-            tie_warning += 1
 
 
 def check_duplicate_ids(filename):
@@ -388,18 +287,18 @@ if not self_comparison:
 # print("BLAST databases prepared.")
 run(
     '%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-    % (blast_cmd, fasta_a, db_b, a_vs_b, cols, threads)
+    % (blast_cmd, fasta_a, db_b, a_vs_b, best_hits.cols, threads)
 )
 # print("BLAST species A vs species B done.")
 if not self_comparison:
     run(
         '%s -query "%s" -db "%s" -out "%s" -outfmt "6 %s" -num_threads %i'
-        % (blast_cmd, fasta_b, db_a, b_vs_a, cols, threads)
+        % (blast_cmd, fasta_b, db_a, b_vs_a, best_hits.cols, threads)
     )
     # print("BLAST species B vs species A done.")
 
 
-best_b_vs_a = dict(best_hits(b_vs_a, self_comparison))
+best_b_vs_a = dict(best_hits.best_hits(b_vs_a, self_comparison))
 
 
 count = 0
@@ -410,7 +309,7 @@ outfile.write(
 for (
     a,
     (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length),
-) in best_hits(a_vs_b, self_comparison):
+) in best_hits.best_hits(a_vs_b, self_comparison):
     if b not in best_b_vs_a:
         # Match b has no best hit
         continue
@@ -443,7 +342,7 @@ for (
     count += 1
 outfile.close()
 print("Done, %i RBH found" % count)
-if tie_warning:
+if best_hits.tie_warning:
     sys.stderr.write(
         "Warning: Sequences with tied best hits found, "
         "you may have duplicates/clusters\n"
