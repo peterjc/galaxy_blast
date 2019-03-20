@@ -14,10 +14,10 @@
    One hit is returned for tied best hits to the same sequence
    (e.g. repeated domains).
 
-   The code in this module originated from blast_rbh.py in 
-   https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh  
+   The code in this module originated from blast_rbh.py in
+   https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 
-   Please cite the author per instructions in 
+   Please cite the author per instructions in
    https://github.com/peterjc/galaxy_blast/blob/master/tools/blast_rbh/README.rst
 """
 
