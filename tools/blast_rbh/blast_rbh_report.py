@@ -89,23 +89,23 @@ def main():
     out_file = options.output
 
     try:
-        best_hits.min_identity = float(options.min_identity)
+        min_identity = float(options.min_identity)
     except ValueError:
         sys.exit(
-            "Expected number between 0 and 100 for minimum identity, not %r" % best_hits.min_identity
+            "Expected number between 0 and 100 for minimum identity, not %r" % min_identity
         )
-    if not (0 <= best_hits.min_identity <= 100):
-        sys.exit("Expected minimum identity between 0 and 100, not %0.2f" % best_hits.min_identity)
+    if not (0 <= min_identity <= 100):
+        sys.exit("Expected minimum identity between 0 and 100, not %0.2f" % min_identity)
     try:
-        best_hits.min_coverage = float(options.min_coverage)
+        min_coverage = float(options.min_coverage)
     except ValueError:
         sys.exit(
-            "Expected number between 0 and 100 for minimum coverage, not %r" % best_hits.min_coverage
+            "Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage
         )
-    if not (0 <= best_hits.min_coverage <= 100):
-        sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % best_hits.min_coverage)
+    if not (0 <= min_coverage <= 100):
+        sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
 
-    best_b_vs_a = dict(best_hits.best_hits(b_vs_a, self_comparison))
+    best_b_vs_a = dict(best_hits.best_hits(b_vs_a, min_identity, min_coverage, self_comparison))
 
 
     count = 0
@@ -116,7 +116,7 @@ def main():
         for (
             a,
             (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length),
-        ) in best_hits.best_hits(a_vs_b, self_comparison):
+        ) in best_hits.best_hits(a_vs_b, min_identity, min_coverage, self_comparison):
             if b not in best_b_vs_a:
                 # Match b has no best hit
                 continue

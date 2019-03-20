@@ -24,8 +24,6 @@
 import sys
 
 tie_warning=0
-min_identity=70
-min_coverage=50
 
 c_query = 0
 c_match = 1
@@ -37,7 +35,7 @@ c_length = 6
 
 cols = "qseqid sseqid bitscore pident qcovhsp qlen length"
 
-def best_hits(blast_tabular, ignore_self=False):
+def best_hits(blast_tabular, min_identity=70, min_coverage=50, ignore_self=False):
     global tie_warning
     current = None
     best_score = None
