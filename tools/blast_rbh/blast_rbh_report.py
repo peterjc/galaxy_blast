@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """BLAST Reciprocal Best Hit (RBH) from two BLAST tabular files.
 
-Run "blast_rbh_main.py -h" to see the help text.  Also, look at 
+Run "blast_rbh_report.py -h" to see the help text.  Also, look at
 blast_rbh.xml and README.rst files which are available on GitHub at:
 https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 
@@ -20,9 +20,7 @@ Tool Shed: http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 from __future__ import print_function
 
 import os
-import shutil
 import sys
-import tempfile
 import best_hits
 
 
@@ -37,9 +35,9 @@ def main():
     # Parse Command Line
     usage = """Use as follows:
 
-    $ python blast_rbh_main.py [options] A.tabular B.tabular
+    $ python blast_rbh_report.py [options] A.tabular B.tabular
 
-    $ python blast_rbh_main.py -o output.tsv A.tabular B.tabular
+    $ python blast_rbh_report.py -o output.tsv A.tabular B.tabular
 
     Use the outfmt arg when you run BLAST:
        -outfmt "6 qseqid sseqid bitscore pident qcovhsp qlen length"
@@ -155,7 +153,7 @@ def main():
             "Warning: Sequences with tied best hits found, "
             "you may have duplicates/clusters\n"
         )
-    
+ 
 if __name__ == '__main__':
     main()
 
