@@ -298,7 +298,9 @@ if not self_comparison:
     # print("BLAST species B vs species A done.")
 
 
-best_b_vs_a = dict(best_hits.best_hits(b_vs_a, min_identity, min_coverage, self_comparison))
+best_b_vs_a = dict(
+    best_hits.best_hits(b_vs_a, min_identity, min_coverage, self_comparison)
+)
 
 
 count = 0
