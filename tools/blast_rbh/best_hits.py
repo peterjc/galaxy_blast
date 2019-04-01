@@ -1,29 +1,19 @@
 #!/usr/bin/env python
-"""BLAST Reciprocal Best Hit (RBH) from two BLAST tabular files.
-   This is calculated by the best_hits method below.
+"""Helper code for BLAST Reciprocal Best Hit (RBH) from two BLAST tabular files.
 
-   The method expects the blast_tabular parameter to be a file
-   that contains BLAST tabular output with these columns:
-     "qseqid sseqid bitscore pident qcovhsp qlen length"
+This module defines a function best_hits to return the best hit in a BLAST
+tabular file, intended for use in finding BLAST Reciprocal Best Hits (RBH).
 
-   The method iterate over the BLAST tabular output, returns best hits as 2-tuples.
-   Each return value is (query name, tuple of value for the best hit).
+The code in this module originated from blast_rbh.py in
+https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 
-   Tied best hits to different sequences are NOT returned.
-
-   One hit is returned for tied best hits to the same sequence
-   (e.g. repeated domains).
-
-   The code in this module originated from blast_rbh.py in
-   https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
-
-   Please cite the author per instructions in
-   https://github.com/peterjc/galaxy_blast/blob/master/tools/blast_rbh/README.rst
+Please cite the author per instructions in
+https://github.com/peterjc/galaxy_blast/blob/master/tools/blast_rbh/README.rst
 """
 
 import sys
 
-tie_warning=0
+tie_warning = 0
 
 c_query = 0
 c_match = 1
@@ -35,7 +25,23 @@ c_length = 6
 
 cols = "qseqid sseqid bitscore pident qcovhsp qlen length"
 
+
 def best_hits(blast_tabular, min_identity=70, min_coverage=50, ignore_self=False):
+    """Parse BLAST tabular output returning the best hit.
+
+    Argument blast_tabular should be a filename, containing BLAST tabular
+    output with "qseqid sseqid bitscore pident qcovhsp qlen length" as
+    the columns.
+
+    Parses the tabular file, iterating over the results as 2-tuples
+    of (query name, tuple of values for the best hit).
+
+    One hit is returned for tied best hits to the same sequence
+    (e.g. repeated domains).
+
+    Tied best hits to different sequences are NOT returned. Instead,
+    global variable tie_warning is incremented.
+    """
     global tie_warning
     current = None
     best_score = None
@@ -116,4 +122,3 @@ def best_hits(blast_tabular, min_identity=70, min_coverage=50, ignore_self=False
             # print("%s has %i equally good hits: %s"
             # % (a, len(best), ", ".join(best)))
             tie_warning += 1
-

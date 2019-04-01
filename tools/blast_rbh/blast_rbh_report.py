@@ -26,7 +26,9 @@ import best_hits
 
 from optparse import OptionParser
 
+
 def main():
+    """Tool entry point defining command line API."""
     if "--version" in sys.argv[1:]:
         # TODO - Capture version of BLAST+ binaries too?
         print("BLAST RBH v0.1.11")
@@ -92,30 +94,46 @@ def main():
         min_identity = float(options.min_identity)
     except ValueError:
         sys.exit(
-            "Expected number between 0 and 100 for minimum identity, not %r" % min_identity
+            "Expected number between 0 and 100 for minimum identity, not %r"
+            % min_identity
         )
     if not (0 <= min_identity <= 100):
-        sys.exit("Expected minimum identity between 0 and 100, not %0.2f" % min_identity)
+        sys.exit(
+            "Expected minimum identity between 0 and 100, not %0.2f" % min_identity
+        )
     try:
         min_coverage = float(options.min_coverage)
     except ValueError:
         sys.exit(
-            "Expected number between 0 and 100 for minimum coverage, not %r" % min_coverage
+            "Expected number between 0 and 100 for minimum coverage, not %r"
+            % min_coverage
         )
     if not (0 <= min_coverage <= 100):
-        sys.exit("Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage)
+        sys.exit(
+            "Expected minimum coverage between 0 and 100, not %0.2f" % min_coverage
+        )
 
-    best_b_vs_a = dict(best_hits.best_hits(b_vs_a, min_identity, min_coverage, self_comparison))
-
+    best_b_vs_a = dict(
+        best_hits.best_hits(b_vs_a, min_identity, min_coverage, self_comparison)
+    )
 
     count = 0
     with open(out_file, "w") as outfile:
         outfile.write(
-            "#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\tlength\tpident\tbitscore\n"
+            "#A_id\tB_id\tA_length\tB_length\tA_qcovhsp\tB_qcovhsp\t"
+            "length\tpident\tbitscore\n"
         )
         for (
             a,
-            (b, a_score_float, a_score_str, a_identity_str, a_coverage_str, a_qlen, a_length),
+            (
+                b,
+                a_score_float,
+                a_score_str,
+                a_identity_str,
+                a_coverage_str,
+                a_qlen,
+                a_length,
+            ),
         ) in best_hits.best_hits(a_vs_b, min_identity, min_coverage, self_comparison):
             if b not in best_b_vs_a:
                 # Match b has no best hit
@@ -153,7 +171,7 @@ def main():
             "Warning: Sequences with tied best hits found, "
             "you may have duplicates/clusters\n"
         )
- 
-if __name__ == '__main__':
-    main()
 
+
+if __name__ == "__main__":
+    main()
