@@ -43,9 +43,10 @@ things, including the dependency the NCBI BLAST+ binaries.
 Manual Installation
 ===================
 
-There are just two files to install:
+There are just three files to install:
 
 - ``blast_rbh.py`` (the Python script)
+- ``best_hits.py`` (helper script, put in same directory)
 - ``blast_rbh.xml`` (the Galaxy tool definition)
 
 The suggested location is in a ``tools/blast_rbh/`` folder. You will then
@@ -93,6 +94,7 @@ v0.1.11 - Updated to depend on NCBI BLAST+ 2.5.0 via ToolShed or BioConda.
         - Tweak Python script to work under Python 2 or Python 3.
 v0.1.12 - Use ``<command detect_errors="aggressive">`` (internal change only).
         - Single quote command line arguments (internal change only).
+v0.2.0  - Refactored to use more than one Python file (internal change only).
 ======= ======================================================================
 
 
