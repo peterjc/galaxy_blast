@@ -8,7 +8,7 @@
     <command detect_errors="aggressive" strict="true">
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
-blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}"
+blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(',',' ')}"
 
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
