@@ -151,4 +151,3 @@ include:
   - ../../tools/ncbi_blast_plus/ncbi_tblastn_wrapper.xml
   - ../../tools/ncbi_blast_plus/ncbi_tblastx_wrapper.xml
   - ../../tools/ncbi_blast_plus/repository_dependencies.xml
-  - ../../tools/ncbi_blast_plus/tool_dependencies.xml
