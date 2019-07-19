@@ -266,6 +266,8 @@ v0.3.1  - Clarify help text for max hits option, confusing as depending on the
         - Workaround for gzipped support under Galaxy release 16.01 or older.
 v0.3.2  - Fixed incomplete ``@CLI_OPTIONS@`` macro in the help text for the
           ``tblastn`` and ``blastdbcmd`` wrappers.
+v0.3.3  - Fixed ``tool_dependencies.xml`` to use BLAST+ 2.7.1 (useful only for
+          older Galaxy instances - we recommend conda for dependencies now).
 ======= ======================================================================
 
 
