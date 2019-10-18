@@ -45,30 +45,17 @@ which is shown to the user via the Galaxy interface to this tool.
 """
 
 parser = OptionParser(usage=usage)
-parser.add_option(
-    "-s",
-    "--sep",
-    dest="sep",
-    default=";",
-    help="Separator character for combining identifiers "
-    "of duplicated records e.g. '|' or ';' (required)",
-)
-parser.add_option(
-    "-a",
-    "--alphasort",
-    action="store_true",
-    help="When merging duplicated records sort their "
-    "identifiers alphabetically before combining them. "
-    "Default is input file order.",
-)
-parser.add_option(
-    "-o",
-    "--output",
-    dest="output",
-    default="/dev/stdout",
-    metavar="FILE",
-    help="Output filename (defaults to stdout)",
-)
+parser.add_option("-s", "--sep", dest="sep",
+                  default=";",
+                  help="Separator character for combining identifiers "
+                  "of duplicated records e.g. '|' or ';' (required)")
+parser.add_option("-a", "--alphasort", action="store_true",
+                  help="When merging duplicated records sort their "
+                  "identifiers alphabetically before combining them. "
+                  "Default is input file order.")
+parser.add_option("-o", "--output", dest="output",
+                  default="/dev/stdout", metavar="FILE",
+                  help="Output filename (defaults to stdout)")
 options, args = parser.parse_args()
 
 if not args:
@@ -79,7 +66,7 @@ def gzip_open(filename):
     """Open a possibly gzipped text file."""
     with open(filename, "rb") as h:
         magic = h.read(2)
-    if magic == b"\x1f\x8b":
+    if magic == b'\x1f\x8b':
         return gzip.open(filename, "rt")
     else:
         return open(filename)
@@ -107,6 +94,7 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
     unique = 0
     representatives = dict()
     duplicates = set()
+    titles = set()
     for cluster in by_seq.values():
         if len(cluster) > 1:
             # Is it useful to offer to sort here?
@@ -133,15 +121,16 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
                         elif idn in duplicates:
                             continue
                         # TODO - line wrapping
-                        handle.write(">%s\n%s\n" % (title, seq))
-        sys.stderr.write(
-            "%i unique entries; removed %i duplicates "
-            "leaving %i representative records\n"
-            % (unique, len(duplicates), len(representatives))
-        )
+                        if not title in titles:
+                            handle.write(">%s\n%s\n" % (title, seq))
+                            titles.update([title])
+        sys.stderr.write("%i unique entries; removed %i duplicates "
+                         "leaving %i representative records\n"
+                         % (unique, len(duplicates), len(representatives)))
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
-        sys.stderr.write("No perfect duplicates in file, %i unique entries\n" % unique)
+        sys.stderr.write("No perfect duplicates in file, %i unique entries\n"
+                         % unique)
 
 
 make_nr(args, options.output, options.sep, options.alphasort)
