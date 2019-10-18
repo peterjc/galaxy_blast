@@ -121,7 +121,7 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
                         elif idn in duplicates:
                             continue
                         # TODO - line wrapping
-                        if not title in titles:
+                        if title not in titles:
                             handle.write(">%s\n%s\n" % (title, seq))
                             titles.update([title])
         sys.stderr.write("%i unique entries; removed %i duplicates "
