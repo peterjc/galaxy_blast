@@ -146,7 +146,7 @@ tblastn
             <param name="max_hits" value="0" />
             <param name="word_size" value="" />
             <param name="parse_deflines" value="false" />
-            <output name="output1" file="tblastn_four_human_vs_rhodopsin.html" ftype="html" lines_diff="8" />
+            <output name="output1" file="tblastn_four_human_vs_rhodopsin.html" ftype="html" lines_diff="10" />
         </test>
     </tests>
     <help>
