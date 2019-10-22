@@ -72,12 +72,27 @@ def gzip_open(filename):
         return open(filename)
 
 
+def make_p_seq(ids, records, seq, sort_ids):
+    """Make the printable sequence."""
+    if sort_ids:
+        return(">{} representing {} records\n{}\n".format(
+               ";".join(sorted(ids)),
+               records,
+               seq))
+    else:
+        return(">{} representing {} records\n{}\n".format(
+               ";".join(ids),
+               records,
+               seq))
+
+
 def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
     """Make the sequences in FASTA files non-redundant.
 
     Argument input_fasta is a list of filenames.
     """
     by_seq = dict()
+    duplicate = 0
     try:
         from Bio.SeqIO.FastaIO import SimpleFastaParser
     except ImportError:
@@ -89,48 +104,38 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
                 seq = seq.upper()
                 try:
                     by_seq[seq].append(idn)
+                    duplicate += 1
                 except KeyError:
                     by_seq[seq] = [idn]
     unique = 0
-    representatives = dict()
-    duplicates = set()
-    titles = set()
-    for cluster in by_seq.values():
-        if len(cluster) > 1:
-            # Is it useful to offer to sort here?
-            # if sort_ids:
-            #     cluster.sort()
-            representatives[cluster[0]] = cluster
-            duplicates.update(cluster[1:])
-        else:
-            unique += 1
-    del by_seq
-    if duplicates:
-        # TODO - refactor as a generator with single SeqIO.write(...) call
+    representative = 0
+    sequences = set()
+    if duplicate:
         with open(output_fasta, "w") as handle:
             for f in input_fasta:
                 with gzip_open(f) as in_handle:
-                    for title, seq in SimpleFastaParser(in_handle):
+                    for title, one_seq in SimpleFastaParser(in_handle):
                         idn = title.split(None, 1)[0]  # first word only
-                        if idn in representatives:
-                            cluster = representatives[idn]
-                            if sort_ids:
-                                cluster.sort()
-                            idn = sep.join(cluster)
-                            title = "%s representing %i records" % (idn, len(cluster))
-                        elif idn in duplicates:
-                            continue
-                        # TODO - line wrapping
-                        if title not in titles:
-                            handle.write(">%s\n%s\n" % (title, seq))
-                            titles.update([title])
+                        if one_seq.upper() not in sequences:
+                            if len(by_seq[one_seq.upper()]) > 1:
+                                pseq = make_p_seq(by_seq[one_seq.upper()],
+                                                  len(by_seq[one_seq.upper()]),
+                                                  one_seq,
+                                                  sort_ids)
+                                handle.write(pseq)
+                                representative += 1
+                            else:
+                                handle.write(">{}\n{}\n".format(title,
+                                                                one_seq))
+                                unique += 1
+                            sequences.update([one_seq.upper()])
         sys.stderr.write("%i unique entries; removed %i duplicates "
                          "leaving %i representative records\n"
-                         % (unique, len(duplicates), len(representatives)))
+                         % (unique, duplicate, representative))
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
         sys.stderr.write("No perfect duplicates in file, %i unique entries\n"
-                         % unique)
+                         % len(by_seq))
 
 
 make_nr(args, options.output, options.sep, options.alphasort)
