@@ -1,7 +1,9 @@
 Database: Rhodopsin nucleotides
 	6 sequences; 10,296 total bases
 
-Date: Oct 31, 2017  4:23 PM	Longest sequence: 4,301 bases
+Date: Apr 23, 2020  3:16 PM	Longest sequence: 4,301 bases
+
+BLASTDB Version: 4
 
 Volumes:
-	/mnt/galaxy/repositories/galaxy_blast/test-data/rhodopsin_nucs.fasta
+	/home/abretaud/git/galaxy_blast/test-data/rhodopsin_nucs.fasta

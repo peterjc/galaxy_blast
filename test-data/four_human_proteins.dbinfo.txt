@@ -1,7 +1,9 @@
 Database: Just 4 human proteins
 	4 sequences; 3,297 total residues
 
-Date: Oct 31, 2017  4:23 PM	Longest sequence: 1,382 residues
+Date: Apr 23, 2020  3:16 PM	Longest sequence: 1,382 residues
+
+BLASTDB Version: 4
 
 Volumes:
-	/mnt/galaxy/repositories/galaxy_blast/test-data/four_human_proteins_taxid.fasta
+	/home/abretaud/git/galaxy_blast/test-data/four_human_proteins_taxid.fasta
