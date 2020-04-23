@@ -136,6 +136,7 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
+2.9.0+galaxy0  - Updated for NCBI BLAST+ 2.9.0 release.
 2.7.1+galaxy0  - Adopted BLAST version with integer Galaxy wrapper suffix.
                - Dropped legacy ``repository_dependencies.xml`` and
                  ``tool_dependencies.xml`` files. Instead assumes conda for
