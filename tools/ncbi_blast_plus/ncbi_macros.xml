@@ -1,5 +1,5 @@
 <macros>
-    <token name="@WRAPPER_VERSION@">0.3.3</token>
+    <token name="@WRAPPER_VERSION@">0.3.4</token>
     <xml name="parallelism">
         <!-- If job splitting is enabled, break up the query file into parts -->
         <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
@@ -7,7 +7,8 @@
 
     <xml name="preamble">
         <requirements>
-            <requirement type="package" version="2.7.1">blast</requirement>
+            <requirement type="package" version="2.9.0">blast</requirement>
+            <requirement type="package" version="13.3">entrez-direct</requirement>
         </requirements>
         <version_command>@BINARY@ -version</version_command>
     </xml>
@@ -524,6 +525,8 @@
                 <option value="gilist">GI identifiers</option>
                 <option value="negative_gilist">Negative GI identifiers</option>
                 <option value="seqidlist">Sequence identifiers (SeqId's)</option>
+                <option value="taxidlist">Taxonomy identifiers</option>
+                <option value="negative_taxidlist">Negative Taxonomy identifiers</option>
             </param>
             <when value="none" />
             <when value="gilist">
@@ -535,7 +538,15 @@
                        help="This option is only available for database searches."/>
             </when>
             <when value="seqidlist">
-                <param argument="-seqidlist" type="data" format="txt" label=" Restrict search of database to list of SeqId's"
+                <param argument="-seqidlist" type="data" format="txt" label="Restrict search of database to list of SeqId's"
+                       help="This option is only available for database searches."/>
+            </when>
+            <when value="taxidlist">
+                <param argument="-taxidlist" type="integer" label="Restrict search of database to all children of a specified Taxonomy ID"
+                       help="This option is only available for database searches."/>
+            </when>
+            <when value="taxidlist">
+                <param argument="-negative_taxidlist" type="integer" label="Restrict search of database to everything except the children of a specified Taxonomy ID"
                        help="This option is only available for database searches."/>
             </when>
         </conditional>
@@ -561,6 +572,10 @@
     -gilist '{$adv_opts.adv_optional_id_files_opts.gilist}'
 #elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'seqidlist':
     -seqidlist '${adv_opts.adv_optional_id_files_opts.seqidlist}'
+#elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_taxidlist':
+    -negative_taxidlist <(get_species_taxids.sh -t '${adv_opts.adv_optional_id_files_opts.negative_taxidlist}')
+#elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'taxidlist':
+    -taxidlist <(get_species_taxids.sh -t '${adv_opts.adv_optional_id_files_opts.taxidlist}')
 #end if
     ]]></token>
 
