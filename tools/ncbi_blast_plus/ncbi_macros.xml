@@ -428,14 +428,40 @@
               <option value="prot">Protein</option>
             </param>
             <when value="nucl">
-                <param name="database" argument="-db" type="select" multiple="true" label="Nucleotide BLAST database">
-                    <options from_data_table="blastdb" />
-                </param>
+                <conditional name="db_origin">
+                    <param name="db_origin_selector" type="select" label="Subject database/sequences">
+                          <option value="db" selected="true">Locally installed BLAST database</option>
+                          <option value="histdb">BLAST database from your history</option>
+                    </param>
+                    <when value="db">
+                        <param name="database" argument="-db" type="select" multiple="true" label="Nucleotide BLAST database">
+                            <options from_data_table="blastdb" />
+                        </param>
+                        <param name="histdb" type="hidden" value="" />
+                    </when>
+                    <when value="histdb">
+                        <param name="database" type="hidden" value="" />
+                        <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+                    </when>
+                </conditional>
             </when>
             <when value="prot">
-                <param name="database" argument="-db" type="select" multiple="true" label="Protein BLAST database">
-                    <options from_data_table="blastdb_p" />
-                </param>
+                <conditional name="db_origin">
+                    <param name="db_origin_selector" type="select" label="Subject database/sequences">
+                          <option value="db" selected="true">Locally installed BLAST database</option>
+                          <option value="histdb">BLAST database from your history</option>
+                      </param>
+                      <when value="db">
+                          <param name="database" argument="-db" type="select" multiple="true" label="Protein BLAST database">
+                            <options from_data_table="blastdb_p" />
+                        </param>
+                        <param name="histdb" type="hidden" value="" />
+                      </when>
+                      <when value="histdb">
+                        <param name="database" type="hidden" value="" />
+                        <param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
+                      </when>
+                </conditional>
             </when>
         </conditional>
     </xml>
@@ -696,8 +722,16 @@ $adv_opts.parse_deflines
 '${db_opts.database}'
 #elif str($db_opts.db_opts_selector)=='histdb'
 '${db_opts.histdb.name}'
-#else
+#elif str($db_opts.db_opts_selector)=='file'
 '${db_opts.subject.name}'
+#end if
+]]></token>
+
+    <token name="@ON_DB_SUBJECT_ORIGIN@"><![CDATA[
+#if str($db_opts.db_origin.db_origin_selector)=="db"
+'${db_opts.db_origin.database}'
+#else
+'${db_opts.db_origin.histdb.name}'
 #end if
 ]]></token>
 

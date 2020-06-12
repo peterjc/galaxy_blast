@@ -6,33 +6,39 @@
     </macros>
     <expand macro="preamble" />
     <command detect_errors="aggressive">
-blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(',',' ')}" -info -out "$info"
+blastdbcmd -dbtype $db_opts.db_type
+    #if $db_opts.db_origin.db_origin_selector=="db":
+        -db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
+    #else if $db_opts.db_origin.db_origin_selector=="histdb":
+        -db '${os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}'
+    #end if
+     -info -out "$info"
     </command>
     <inputs>
         <expand macro="input_conditional_choose_db_type" />
     </inputs>
     <outputs>
-        <data name="info" format="txt" label="${db_opts.database.fields.name} info" />
+        <data name="info" format="txt" label="@ON_DBCMD_SUBJECT@ info" />
     </outputs>
     <tests>
         <test>
             <param name="db_opts|db_type" value="prot" />
-            <param name="db_opts|database" value="four_human_proteins" />
+            <param name="db_opts|db_origin|database" value="four_human_proteins" />
             <output name="info" file="four_human_proteins.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="three_human_mRNA" />
+            <param name="db_opts|db_origin|database" value="three_human_mRNA" />
             <output name="info" file="three_human_mRNA.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <param name="db_opts|db_origin|database" value="rhodopsin_nucs" />
             <output name="info" file="rhodopsin_nucs.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="three_human_mRNA,rhodopsin_nucs" />
+            <param name="db_opts|db_origin|database" value="three_human_mRNA,rhodopsin_nucs" />
             <output name="info" file="three_human_mRNA_and_rhodopsin_nucs.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
     </tests>
