@@ -8,7 +8,7 @@
     <command detect_errors="aggressive" strict="true">
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
-blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(',',' ')}"
+blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
 
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
@@ -67,12 +67,12 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
         </param>
     </inputs>
     <outputs>
-        <data name="seq" format="fasta" label="Sequences from ${db_opts.database.fields.name}" />
+        <data name="seq" format="fasta" label="Sequences from ${db_opts.db_origin.database.fields.name}" />
     </outputs>
     <tests>
         <test>
             <param name="db_opts|db_type" value="prot" />
-            <param name="db_opts|database" value="four_human_proteins" />
+            <param name="db_opts|db_origin|database" value="four_human_proteins" />
             <param name="id_opts|id_type" value="prompt" />
             <param name="id_opts|entries" value="all" />
             <param name="outfmt" value="original" />
@@ -81,7 +81,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
         <test>
             <!-- This used to recover the original FASTA file, but had GI numbers -->
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <param name="db_opts|db_origin|database" value="rhodopsin_nucs" />
             <param name="id_opts|id_type" value="prompt" />
             <param name="id_opts|entries" value="all" />
             <param name="outfmt" value="original" />
@@ -90,7 +90,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
         <test>
             <!-- This uses various start end frame combinations but all recover full sequence -->
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <param name="db_opts|db_origin|database" value="rhodopsin_nucs" />
             <param name="id_opts|id_type" value="file" />
             <param name="id_opts|entries" value="rhodopsin_nucs.blastdbcmd.txt" ftype="txt" />
             <param name="outfmt" value="original" />
@@ -98,7 +98,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <param name="db_opts|db_origin|database" value="rhodopsin_nucs" />
             <param name="id_opts|id_type" value="prompt" />
             <param name="id_opts|entries" value="U59921.1" />
             <param name="outfmt" value="original" />
@@ -106,7 +106,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <param name="db_opts|db_origin|database" value="rhodopsin_nucs" />
             <param name="id_opts|id_type" value="prompt" />
             <param name="id_opts|entries" value="gi|2734705|gb|U59921.1|BBU59921" />
             <param name="outfmt" value="original" />

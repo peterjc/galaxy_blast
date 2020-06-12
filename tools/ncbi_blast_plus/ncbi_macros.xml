@@ -426,7 +426,7 @@
               <option value="prot">Protein</option>
             </param>
             <when value="nucl">
-            	<conditional name="db_origin_nucl">
+            	<conditional name="db_origin">
             		<param name="db_origin_selector" type="select" label="Subject database/sequences">
               			<option value="db" selected="true">Locally installed BLAST database</option>
               			<option value="histdb">BLAST database from your history</option>
@@ -448,7 +448,7 @@
                 </param> -->
             </when>
             <when value="prot">
-            	<conditional name="db_origin_prot">
+            	<conditional name="db_origin">
             		<param name="db_origin_selector" type="select" label="Subject database/sequences">
               			<option value="db" selected="true">Locally installed BLAST database</option>
               			<option value="histdb">BLAST database from your history</option>
