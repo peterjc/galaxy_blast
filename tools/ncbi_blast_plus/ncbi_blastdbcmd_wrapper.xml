@@ -12,8 +12,8 @@ blastdbcmd
 	-dbtype $db_opts.db_type
 	#if $db_opts.db_origin.db_origin_selector=="db":
 		-db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
-	#else:
-		-db "{os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}"
+	#else if $db_opts.db_origin.db_origin_selector=="histdb":
+		-db "$db_opts.db_origin.histdb.extra_files_path/blastdb"
 	#end if
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
@@ -72,12 +72,18 @@ blastdbcmd
         </param>
     </inputs>
     <outputs>
-        <data name="seq" format="fasta" label="Sequences from ${db_opts.db_origin.database.fields.name}" />
+
+        <data name="seq" format="fasta" label="Sequences from blastdbcmd">
+        </data>
+<!--        <data name="seq2" format="fasta" label="Sequences from ${db_opts.db_origin.histdb}">
+        	<filter>db_opts.db_origin['db_origin_selector']=="histdb"</filter>
+        </data>	-->
     </outputs>
     <tests>
         <test>
             <param name="db_opts|db_type" value="prot" />
             <param name="db_opts|db_origin|database" value="four_human_proteins" />
+            <param name="db_opts|db_origin|db_origin_selector" value="db" />
             <param name="id_opts|id_type" value="prompt" />
             <param name="id_opts|entries" value="all" />
             <param name="outfmt" value="original" />
