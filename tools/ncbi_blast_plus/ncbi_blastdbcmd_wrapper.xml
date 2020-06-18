@@ -13,7 +13,7 @@ blastdbcmd
 	#if $db_opts.db_origin.db_origin_selector=="db":
 		-db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
 	#else if $db_opts.db_origin.db_origin_selector=="histdb":
-		-db "$db_opts.db_origin.histdb.extra_files_path/blastdb"
+		-db '${os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}'
 	#end if
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
