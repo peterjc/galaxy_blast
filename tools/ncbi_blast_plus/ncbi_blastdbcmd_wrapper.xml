@@ -73,7 +73,7 @@ blastdbcmd
     </inputs>
     <outputs>
 
-        <data name="seq" format="fasta" label="Sequences from blastdbcmd">
+        <data name="seq" format="fasta" label="Sequences from blastdbcmd @ON_DBCMD_SUBJECT@">
         </data>
 <!--        <data name="seq2" format="fasta" label="Sequences from ${db_opts.db_origin.histdb}">
         	<filter>db_opts.db_origin['db_origin_selector']=="histdb"</filter>

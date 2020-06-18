@@ -728,10 +728,18 @@ $adv_opts.parse_deflines
 '${db_opts.database}'
 #elif str($db_opts.db_opts_selector)=='histdb'
 '${db_opts.histdb.name}'
-#else
+#elif str($db_opts.db_opts_selector)=='file'
 '${db_opts.subject.name}'
 #end if
 ]]></token>
+
+    <token name="@ON_DBCMD_SUBJECT@"><![CDATA[
+#if str($db_opts.db_origin.db_origin_selector)=="db"
+'${db_opts.db_origin.database}'
+#else
+'${db_opts.db_origin.histdb.name}'
+#end if
+]]></token>    
 
     <token name="@REFERENCES@"><![CDATA[
 Peter J. A. Cock, John M. Chilton, Björn Grüning, James E. Johnson, Nicola Soranzo (2015).
