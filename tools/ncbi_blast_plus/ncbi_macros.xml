@@ -430,7 +430,6 @@
             		<param name="db_origin_selector" type="select" label="Subject database/sequences">
               			<option value="db" selected="true">Locally installed BLAST database</option>
               			<option value="histdb">BLAST database from your history</option>
-<!--              			<option value="file">FASTA file from your history (see warning note below)</option>	-->
             		</param>
             		<when value="db">
             			<param name="database" argument="-db" type="select" multiple="true" label="Nucleotide BLAST database">
@@ -443,9 +442,6 @@
             			<param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
             		</when> 
             	</conditional>
-<!--            <param name="database" argument="-db" type="select" multiple="true" label="Nucleotide BLAST database">
-                    <options from_data_table="blastdb" />
-                </param> -->
             </when>
             <when value="prot">
             	<conditional name="db_origin">
@@ -464,10 +460,6 @@
             			<param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
               		</when>
             	</conditional>
-            
-<!--                <param name="database" argument="-db" type="select" multiple="true" label="Protein BLAST database">
-                    <options from_data_table="blastdb_p" />
-                </param> -->
             </when>
         </conditional>
     </xml>
@@ -733,7 +725,7 @@ $adv_opts.parse_deflines
 #end if
 ]]></token>
 
-    <token name="@ON_DBCMD_SUBJECT@"><![CDATA[
+    <token name="@ON_DB_SUBJECT_ORIGIN@"><![CDATA[
 #if str($db_opts.db_origin.db_origin_selector)=="db"
 '${db_opts.db_origin.database}'
 #else
