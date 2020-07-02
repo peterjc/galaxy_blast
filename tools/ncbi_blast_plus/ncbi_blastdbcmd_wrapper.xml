@@ -8,7 +8,7 @@
     <command detect_errors="aggressive" strict="true">
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
-blastdbcmd 
+blastdbcmd
     -dbtype $db_opts.db_type
     #if $db_opts.db_origin.db_origin_selector=="db":
         -db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"

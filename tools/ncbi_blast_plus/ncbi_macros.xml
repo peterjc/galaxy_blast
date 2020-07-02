@@ -440,7 +440,7 @@
                     <when value="histdb">
                         <param name="database" type="hidden" value="" />
                         <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
-                    </when> 
+                    </when>
                 </conditional>
             </when>
             <when value="prot">
@@ -731,7 +731,7 @@ $adv_opts.parse_deflines
 #else
 '${db_opts.db_origin.histdb.name}'
 #end if
-]]></token>    
+]]></token>
 
     <token name="@REFERENCES@"><![CDATA[
 Peter J. A. Cock, John M. Chilton, Björn Grüning, James E. Johnson, Nicola Soranzo (2015).
