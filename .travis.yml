@@ -31,7 +31,7 @@ jobs:
         - pip install planemo
       script:
         - echo "Using planemo lint to check for obvious tool errors"
-        - planemo shed_lint --tools --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
+        - planemo shed_lint --tools --ensure_metadata --urls --report_level warn --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
     - stage: test
       python: "3.7"
       env: GALAXY_BRANCH=master
@@ -106,8 +106,11 @@ before_install:
 # Galaxy core. Therefore we'll over-write them if needed.
 
 install:
- - cd ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH}
- - bash scripts/common_startup.sh --no-create-venv --dev-wheels
+  - planemo conda_init
+  - export PATH="$PLANEMO_CONDA_PREFIX/bin:$PATH"
+  - conda install -y -c conda-forge conda=4.6.8
+  - planemo --version
+  - conda --version
 
 
 # Testing tools in Galaxy
