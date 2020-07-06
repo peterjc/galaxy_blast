@@ -1,5 +1,8 @@
-<tool id="reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.0.8">
+<tool id="reciprocal_best_hits" name="BLAST Reciprocal Best Hits (RBH)" version="0.0.9">
     <description>from BLAST output or similar data</description>
+    <requirements>
+        <requirement type="package" version="3.7">python</requirement>
+    </requirements>
     <version_command>
 python $__tool_directory__/reciprocal_best_hits.py --version
     </version_command>

@@ -18,7 +18,6 @@ include:
   - ../../tools/make_nr/README.rst
   - ../../tools/make_nr/make_nr.py
   - ../../tools/make_nr/make_nr.xml
-  - ../../tools/make_nr/tool_dependencies.xml
   - ../../test-data/duplicates.fasta
   - ../../test-data/duplicates.fasta.gz
   - ../../test-data/duplicates.nr.fasta
