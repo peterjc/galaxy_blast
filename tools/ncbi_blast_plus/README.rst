@@ -43,9 +43,7 @@ Automated Installation
 ======================
 
 Galaxy should be able to automatically install the dependencies, i.e. the
-BLAST+ binaries and the ``blast_datatypes`` repository which defines the
-BLAST XML file format (``blastxml``), protein and nucleotide BLAST databases
-(``blastdbp`` and ``blastdbn``), and so on.
+BLAST+ binaries.
 
 See the configuration notes below.
 

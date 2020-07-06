@@ -359,7 +359,7 @@
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" type="data" format="blastdbn" label="Nucleotide BLAST database" />
+                <param name="histdb" type="data" format="blastdbn5" label="Nucleotide BLAST database" />
                 <param name="subject" type="hidden" value="" />
             </when>
             <when value="file">
@@ -387,7 +387,7 @@
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" type="data" format="blastdbp" label="Protein BLAST database" />
+                <param name="histdb" type="data" format="blastdbp5" label="Protein BLAST database" />
                 <param name="subject" type="hidden" value="" />
             </when>
             <when value="file">
@@ -413,7 +413,7 @@
             </when>
             <when value="histdb">
                 <param name="database" type="hidden" value="" />
-                <param name="histdb" argument="-db" type="data" format="blastdbd" label="Protein domain database" />
+                <param name="histdb" argument="-db" type="data" format="blastdbd5" label="Protein domain database" />
                 <param name="subject" type="hidden" value="" />
             </when>
         </conditional>
