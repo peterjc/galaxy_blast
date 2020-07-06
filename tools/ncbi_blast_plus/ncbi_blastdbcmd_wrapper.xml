@@ -94,7 +94,7 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
             <param name="id_opts|id_type" value="file" />
             <param name="id_opts|entries" value="rhodopsin_nucs.blastdbcmd.txt" ftype="txt" />
             <param name="outfmt" value="original" />
-            <output name="seq" file="rhodopsin_nucs.no_gi.fasta" ftype="fasta" />
+            <output name="seq" file="rhodopsin_nucs.no_gi.region.fasta" ftype="fasta" />
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
