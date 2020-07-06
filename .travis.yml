@@ -94,6 +94,7 @@ before_install:
  - tar -zxvf ${GALAXY_BRANCH} | tail
  - cd galaxy-${GALAXY_BRANCH}
  - echo biopython >> requirements.txt
+ - export PLANEMO_CONDA_PREFIX="$HOME/conda"
 
 
 # Configuring tools within Galaxy
@@ -106,11 +107,7 @@ before_install:
 # Galaxy core. Therefore we'll over-write them if needed.
 
 install:
-  - planemo conda_init
-  - export PATH="$PLANEMO_CONDA_PREFIX/bin:$PATH"
-  - conda install -y -c conda-forge conda=4.6.8
   - planemo --version
-  - conda --version
 
 
 # Testing tools in Galaxy
