@@ -2,7 +2,7 @@
     <description>from two FASTA files</description>
     <requirements>
         <requirement type="package" version="1.77">biopython</requirement>
-        <requirement type="package" version="2.9.0">blast</requirement>
+        <requirement type="package" version="2.10.1">blast</requirement>
     </requirements>
     <version_command>
 python $__tool_directory__/blast_rbh.py --version
