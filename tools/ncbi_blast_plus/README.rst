@@ -266,7 +266,7 @@ v0.3.2  - Fixed incomplete ``@CLI_OPTIONS@`` macro in the help text for the
           ``tblastn`` and ``blastdbcmd`` wrappers.
 v0.3.3  - Fixed ``tool_dependencies.xml`` to use BLAST+ 2.7.1 (useful only for
           older Galaxy instances - we recommend conda for dependencies now).
-v2.10.1  - Updated for NCBI BLAST+ 2.10.1
+v2.10.1 - Updated for NCBI BLAST+ 2.10.1
         - Removed support for legacy tool dependencies
 ======= ======================================================================
 
