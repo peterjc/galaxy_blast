@@ -94,8 +94,6 @@ ${infile}
                 <extra_files type="file" value="cd00003_and_cd00008.psq" name="blastdb.psq" />
                 <extra_files type="file" value="cd00003_and_cd00008.freq" name="blastdb.freq" />
                 <extra_files type="file" value="cd00003_and_cd00008.loo" name="blastdb.loo" />
-                <extra_files type="file" value="cd00003_and_cd00008.psd" name="blastdb.psd" />
-                <extra_files type="file" value="cd00003_and_cd00008.psi" name="blastdb.psi" />
                 <extra_files type="file" value="cd00003_and_cd00008.rps" name="blastdb.rps" />
                 <extra_files type="file" value="cd00003_and_cd00008.aux" name="blastdb.aux" />
             </output>
