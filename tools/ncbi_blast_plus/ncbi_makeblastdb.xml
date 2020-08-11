@@ -124,8 +124,6 @@ $hash_index
                 <extra_files type="file" value="four_human_proteins.fasta.pog" name="blastdb.pog" />
                 <extra_files type="file" value="four_human_proteins.fasta.phd" name="blastdb.phd" />
                 <extra_files type="file" value="four_human_proteins.fasta.phi" name="blastdb.phi" />
-                <extra_files type="file" value="four_human_proteins.fasta.psd" name="blastdb.psd" />
-                <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
             </output>
         </test>
         <test>
@@ -143,8 +141,6 @@ $hash_index
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.pog" name="blastdb.pog" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.phd" name="blastdb.phd" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.phi" name="blastdb.phi" />
-                <extra_files type="file" value="four_human_proteins_taxid.fasta.psd" name="blastdb.psd" />
-                <extra_files type="file" value="four_human_proteins_taxid.fasta.psi" name="blastdb.psi" />
             </output>
         </test>
         <test>
@@ -161,8 +157,6 @@ $hash_index
                 <extra_files type="file" value="four_human_proteins.fasta.pog" name="blastdb.pog" />
                 <extra_files type="file" value="four_human_proteins.fasta.phd" name="blastdb.phd" />
                 <extra_files type="file" value="four_human_proteins.fasta.phi" name="blastdb.phi" />
-                <extra_files type="file" value="four_human_proteins.fasta.psd" name="blastdb.psd" />
-                <extra_files type="file" value="four_human_proteins.fasta.psi" name="blastdb.psi" />
             </output>
         </test>
         <test>
@@ -180,8 +174,6 @@ $hash_index
                 <extra_files type="file" value="three_human_mRNA.fasta.nog" name="blastdb.nog" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nhd" name="blastdb.nhd" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nhi" name="blastdb.nhi" />
-                <extra_files type="file" value="three_human_mRNA.fasta.nsd" name="blastdb.nsd" />
-                <extra_files type="file" value="three_human_mRNA.fasta.nsi" name="blastdb.nsi" />
             </output>
         </test>
     </tests>
