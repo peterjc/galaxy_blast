@@ -346,7 +346,7 @@ Effective search space used: 106299490
 
 
   Database: Just 3 human mRNA sequences
-    Posted date:  Jul 24, 2020  5:21 PM
+    Posted date:  Aug 11, 2020  11:15 AM
   Number of letters in database: 10,732
   Number of sequences in database:  3
 
