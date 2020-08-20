@@ -30,4 +30,3 @@ include:
   - ../../tools/blast_rbh/best_hits.py
   - ../../tools/blast_rbh/blast_rbh.py
   - ../../tools/blast_rbh/blast_rbh.xml
-  - ../../tools/blast_rbh/tool_dependencies.xml
