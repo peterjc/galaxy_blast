@@ -7,13 +7,12 @@
 # for background,
 # http://blastedbio.blogspot.com/2013/09/using-travis-ci-for-testing-galaxy-tools.html
 
-# Galaxy currently only supports Python 2.7
 language: python
 cache: pip
 jobs:
   include:
     - stage: lint
-      python: "2.7"
+      python: "3.6"
       before_install:
         - "if grep -P '\t' *.rst */*.rst */*/*.rst; then echo 'Tabs are bad, please use four spaces in RST files.'; false; fi"
         - "if grep -P '\t' */*/*.xml; then echo 'Tabs are bad, please use four spaces in XML files.'; false; fi"
@@ -23,6 +22,8 @@ jobs:
         - "if grep -n -r '[[:blank:]]$' */*/.shed.yml; then echo 'Please remove trailing whitespace in shed YAML files.'; false; fi"
       install:
         - pip install --upgrade pip setuptools
+        - pip install black
+        - black --check --diff .
         - pip install flake8 flake8-blind-except flake8-docstrings flake8-rst-docstrings restructuredtext-lint
         - echo "Using flake8 to check Python code"
         - flake8 .
@@ -33,10 +34,10 @@ jobs:
         - echo "Using planemo lint to check for obvious tool errors"
         - planemo shed_lint --tools --fail_level error --ensure_metadata -r ${TRAVIS_BUILD_DIR}
     - stage: test
-      python: "2.7"
+      python: "3.6"
       env: GALAXY_BRANCH=master
     - stage: test
-      python: "2.7"
+      python: "3.6"
       env: GALAXY_BRANCH=dev
     - stage: deploy
       before_install:
@@ -88,15 +89,6 @@ before_install:
  - pip install planemo
  - echo "Removing tools we're not going to test"
  - for line in $(cat .tt_skip); do rm -rf $line; done
- - echo "Fixing permissions on Python eggs cache folder"
- - mkdir -p "$HOME/.python-eggs"
- - chmod 700 "$HOME/.python-eggs" 
- - echo "Downloading and setting up dependencies..."
- - export INSTALL_DIR=/tmp/dep_install && mkdir $INSTALL_DIR
- - export DOWNLOAD_CACHE=/tmp/download_cache && mkdir $DOWNLOAD_CACHE
- - planemo dependency_script ${TRAVIS_BUILD_DIR}/packages/package_blast_plus_2_7_1
- - bash dep_install.sh
- - source env.sh
  - echo "Fetching Galaxy ${GALAXY_BRANCH} branch..."
  - cd ${TRAVIS_BUILD_DIR}
  - wget https://codeload.github.com/galaxyproject/galaxy/tar.gz/${GALAXY_BRANCH}
@@ -116,12 +108,9 @@ before_install:
 
 install:
  - cd ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH}
- - export GALAXY_TEST_UPLOAD_ASYNC=false
- - export GALAXY_TEST_DB_TEMPLATE=https://github.com/jmchilton/galaxy-downloads/raw/master/db_gx_rev_0127.sqlite
  - rm -f lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
  - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
- - bash scripts/common_startup.sh --no-create-venv --dev-wheels
 
 
 # Testing tools in Galaxy
@@ -133,7 +122,7 @@ install:
 script:
  - cd ${TRAVIS_BUILD_DIR}
  - planemo --version
- - planemo test --no_conda_auto_install --galaxy_root ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH} --skip_venv tools/
+ - planemo test --galaxy_root ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH} --skip_venv tools/
 
 notifications:
   email: false
