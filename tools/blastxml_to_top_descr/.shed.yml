@@ -34,4 +34,3 @@ include:
   - ../../tools/blastxml_to_top_descr/README.rst
   - ../../tools/blastxml_to_top_descr/blastxml_to_top_descr.py
   - ../../tools/blastxml_to_top_descr/blastxml_to_top_descr.xml
-  - ../../tools/blastxml_to_top_descr/repository_dependencies.xml

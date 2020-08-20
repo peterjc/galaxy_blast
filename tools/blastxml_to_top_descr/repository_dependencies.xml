@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<repositories description="Requires BLAST XML and database datatype definitions.">
-<repository name="blast_datatypes" owner="devteam" />
-</repositories>
