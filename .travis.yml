@@ -100,24 +100,19 @@ before_install:
 # Configuring tools within Galaxy
 # ===============================
 #
-# We setup our datatypes by adding blast.py to the Galaxy library folder,
-# and replacing the datatypes_conf.xml file.
-#
-# Note that as of October 2016, the Galaxy datatypes are back in the
-# Galaxy core. Therefore we'll over-write them if needed.
+# We originally setup our own datatypes by adding blast.py to the
+# Galaxy library folder, and replacing the datatypes_conf.xml file.
+# As of October 2016, the Galaxy datatypes are back in the Galaxy
+# core, and maintained there.
 
 install:
  - cd ${TRAVIS_BUILD_DIR}/galaxy-${GALAXY_BRANCH}
- - rm -f lib/galaxy/datatypes/blast.py
- - ln -s ${TRAVIS_BUILD_DIR}/datatypes/blast_datatypes/blast.py lib/galaxy/datatypes/blast.py
- - ln -s ${TRAVIS_BUILD_DIR}/.travis.datatypes_conf.xml datatypes_conf.xml
-
+ # May in future need to setup test specific *.loc files here
 
 # Testing tools in Galaxy
 # =======================
 #
-# Having setup our Galaxy with our datatypes, and dependencies,
-# call planemo test
+# Having setup our Galaxy with our needs, call planemo test
 
 script:
  - cd ${TRAVIS_BUILD_DIR}
