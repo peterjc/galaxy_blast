@@ -1,4 +1,4 @@
-<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="@WRAPPER_VERSION@">
+<tool id="ncbi_makeblastdb" name="NCBI BLAST+ makeblastdb" version="@WRAPPER_VERSION@" profile="@PROFILE@">
     <description>Make BLAST database</description>
     <macros>
         <token name="@BINARY@">makeblastdb</token>
