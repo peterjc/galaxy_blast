@@ -1,4 +1,4 @@
-<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="@WRAPPER_VERSION@">
+<tool id="ncbi_tblastx_wrapper" name="NCBI BLAST+ tblastx" version="@WRAPPER_VERSION@" profile="@PROFILE@">
     <description>Search translated nucleotide database with translated nucleotide query sequence(s)</description>
     <macros>
         <token name="@BINARY@">tblastx</token>

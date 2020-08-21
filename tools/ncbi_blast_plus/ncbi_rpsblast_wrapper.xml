@@ -1,4 +1,4 @@
-<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="@WRAPPER_VERSION@">
+<tool id="ncbi_rpsblast_wrapper" name="NCBI BLAST+ rpsblast" version="@WRAPPER_VERSION@" profile="@PROFILE@">
     <description>Search protein domain database (PSSMs) with protein query sequence(s)</description>
     <macros>
         <token name="@BINARY@">deltablast</token>
