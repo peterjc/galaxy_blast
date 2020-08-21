@@ -1,7 +1,11 @@
-Galaxy datatype definitions
-===========================
+Galaxy datatype definitions (OBSOLETE)
+======================================
 
-Each sub-folder represents a different entry on the Galaxy ToolShed,
+For a time, the Galaxy community shared additional datatypes on the
+Galaxy Tool Shed. Since the October 2016 release of Galaxy, our NCBI
+BLAST XML and database datatypes returned to the Galaxy core.
+
+Each sub-folder represented a different entry on the Galaxy ToolShed,
 for example ``blast_datatypes`` contains definitions for BLAST specific
 file types such as BLAST XML and BLAST databases.
 
