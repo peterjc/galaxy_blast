@@ -1,5 +1,5 @@
-Galaxy datatypes for NCBI BLAST+ suite
-======================================
+Galaxy datatypes for NCBI BLAST+ suite (OBSOLETE)
+=================================================
 
 These Galaxy datatypes are copyright 2010-2014 by Peter Cock (The James Hutton
 Institute, UK) and additional contributors including Edward Kirton, Nicola
@@ -12,6 +12,10 @@ distributed as part of the main Galaxy repository, but as of August 2012 moved
 to the Galaxy Tool Shed as 'blast_datatypes' (and 'ncbi_blast_plus' for the
 wrappers). My thanks to Dannon Baker from the Galaxy development team for his
 assistance with this.
+
+The datatypes returned to the main Galaxy repository and were including in the
+October 2016 release. There have been minor changes there since. These copies
+are now obsolete.
 
 It is available from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes

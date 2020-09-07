@@ -1,4 +1,4 @@
-<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="@WRAPPER_VERSION@">
+<tool id="ncbi_blastdbcmd_info" name="NCBI BLAST+ database info" version="@WRAPPER_VERSION@" profile="@PROFILE@">
     <description>Show BLAST database information from blastdbcmd</description>
     <macros>
         <token name="@BINARY@">blastdbcmd</token>

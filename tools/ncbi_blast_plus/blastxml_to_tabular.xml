@@ -1,4 +1,4 @@
-<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="@WRAPPER_VERSION@">
+<tool id="blastxml_to_tabular" name="BLAST XML to tabular" version="@WRAPPER_VERSION@" profile="@PROFILE@">
     <description>Convert BLAST XML output to tabular</description>
     <macros>
         <import>ncbi_macros.xml</import>

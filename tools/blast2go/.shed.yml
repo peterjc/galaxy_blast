@@ -29,5 +29,3 @@ include:
   - ../../tools/blast2go/blast2go.py
   - ../../tools/blast2go/blast2go.xml
   - ../../tools/blast2go/massage_xml_for_blast2go.py
-  - ../../tools/blast2go/repository_dependencies.xml
-  - ../../tools/blast2go/tool_dependencies.xml

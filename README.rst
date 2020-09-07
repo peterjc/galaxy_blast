@@ -22,34 +22,40 @@ line, and via the NCBI website for smaller searches. For more details see
 http://blast.ncbi.nlm.nih.gov/Blast.cgi
 
 This repository is for the development of the main Galaxy wrappers for the
-NCBI BLAST+ suite, associated datatype definitions for use within Galaxy,
-and dependency handling within the Galaxy Tool Shed framework.
+NCBI BLAST+ suite.
 
 It also contains additional related Galaxy tools for working with BLAST.
 
-Each of these Galaxy wrappers, tools, datatypes, etc has its own README
-file.
+Each of these Galaxy wrappers, tools, etc has its own README file.
 
 
 Galaxy wrappers for NCBI BLAST+
 ===============================
 
 The main focus of this work is the development of the NCBI BLAST+ command line
-tool wrappers and datatype definitions for Galaxy, published on the Galaxy
-Tool Shed here:
+tool wrappers for Galaxy, published on the Galaxy Tool Shed here:
 
 * http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus/
-* http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
 
 Development test releases are on the Test Tool Shed here:
 
 * http://testtoolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus/
-* http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
 
 The associated development is on GitHub at:
 
 * https://github.com/peterjc/galaxy_blast/tree/master/tools/ncbi_blast_plus
+
+
+Galaxy Datatypes
+================
+
+Historically this repository also including the associated Galaxy datatypes,
+which are now included and developed within Galaxy itself:
+
+* http://toolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
+* http://testtoolshed.g2.bx.psu.edu/view/devteam/blast_datatypes/
 * https://github.com/peterjc/galaxy_blast/tree/master/datatypes/blast_datatypes
+* https://github.com/galaxyproject/galaxy/blob/dev/lib/galaxy/datatypes/blast.py
 
 
 Galaxy Packages
@@ -70,7 +76,7 @@ Tool Shed packages:
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_5_0
 * http://toolshed.g2.bx.psu.edu/view/iuc/package_blast_plus_2_6_0
 
-However, in line with current Galaxy policy, hereafter we assume Galaxy
+However, in line with current Galaxy policy, thereafter we assume Galaxy
 will be fetching packages from Conda, specifically the BioConda channel:
 
 * https://anaconda.org/bioconda/blast
@@ -78,7 +84,7 @@ will be fetching packages from Conda, specifically the BioConda channel:
 Note all of these packages target the NCBI's C++ rewrite of BLAST called BLAST+,
 available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/ -- we
 do not support the now deprecated "legacy" BLAST suite written in C, still
-available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/
+available at ftp://ftp.ncbi.nlm.nih.gov/blast/executables/legacy.NOTSUPPORTED/
 
 
 History
@@ -128,9 +134,10 @@ Within the ``tools`` folder is one folder for each Tool or Tool Suite released
 on the Galaxy Tool Shed (these child folder names match the Tool Shed names).
 
 Similarly, ``packages`` contains packages for Galaxy Tool Shed dependency
-definitions, ``datatypes`` contains packages for Galaxy Tool Shed datatype
-definitions, and ``data_managers`` contains Galaxy Data Managers for tasks
-like setting up local copies of NCBI BLAST databases (currently unfinished).
+definitions (obsolete), ``datatypes`` contains packages for Galaxy Tool Shed
+datatype definitions (obsolete), and ``data_managers`` contains Galaxy Data
+Managers for tasks like setting up local copies of NCBI BLAST databases
+(currently unfinished).
 
 All of these child folders contain additional README files, which cover
 things like how to install each tool manually or via the Galaxy Tool Shed.
@@ -148,13 +155,10 @@ and recommended way to do this is via the Galaxy Tool Shed which should
 handle the dependencies for you. However, manual installation is possible
 as described in the README file of each tool.
 
-Binary dependencies like NCBI BLAST+ have been packaged for the Galaxy
-Tool Shed (links given above), and installing via the Tool Shed allow
-multiple versions to be available under Galaxy's control for full
-reproducibility.  If you opt to install the NCBI BLAST+ simply on the
-system ``$PATH`` outside of Galaxy's control, you are giving up full
-reproducibility as Galaxy has no control over which version of BLAST+
-will be run.
+Binary dependencies like NCBI BLAST+ are best handled by Galaxy via Conda.
+If you opt to install the NCBI BLAST+ simply on the system ``$PATH`` outside
+of Galaxy's control, you are giving up full reproducibility as Galaxy has no
+control over which version of BLAST+ will be run.
 
 If you wish to use pre-existing BLAST databases, either local to your
 institute or from the NCBI BLAST databases FTP site, they must currently be
@@ -178,10 +182,6 @@ you can run these tests via Galaxy's ``run_tests.sh`` script - and/or do
 this automatically if installing the tools via the Tool Shed. See the
 README file for each tool for more details.
 
-The Galaxy team run regular tests on all the tools which have been uploaded
-to the main Tool Shed and the Test Tool Shed, simulating how they would
-behave in a local Galaxy instance once installed via the Tool Shed.
-
 In addition we are running the same functional tests via TravisCI whenever
 this GitHub repository is updated:
 
@@ -189,8 +189,8 @@ this GitHub repository is updated:
    :alt: Current status of TravisCI build for master branch
    :target: https://travis-ci.org/peterjc/galaxy_blast/builds
 
-This TravisCI integration simulates a manual install of these Galaxy Tools
-and their dependencies. See the special ``.travis.yml`` file for more
+This TravisCI integration simulates an install of these Galaxy Tools, and
+their dependencies via Conda. See the special ``.travis.yml`` file for more
 technical details.
 
 

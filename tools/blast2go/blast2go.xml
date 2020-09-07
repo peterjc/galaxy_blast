@@ -1,4 +1,4 @@
-<tool id="blast2go" name="Blast2GO" version="0.0.11">
+<tool id="blast2go" name="Blast2GO" version="0.0.11" profile="16.10">
     <description>Maps BLAST results to GO annotation terms</description>
     <requirements>
         <requirement type="package" version="2.5">b2g4pipe</requirement>
