@@ -61,7 +61,7 @@ ${adv_opts.ungapped}
             <expand macro="input_strand" />
             <expand macro="input_max_hits" />
             <param name="identity_cutoff" argument="-perc_identity" type="float" min="0" max="100" value="0" label="Percent identity cutoff" help="Use zero for no cutoff" />
-            <expand macro="input_word_size" />
+            <expand macro="input_word_size_blastn" />
             <param argument="-ungapped" type="boolean" label="Perform ungapped alignment only?" truevalue="-ungapped" falsevalue="" checked="false" />
             <expand macro="input_parse_deflines" />
             <expand macro="advanced_optional_id_files" />
