@@ -466,6 +466,12 @@
         help="Leave blank for default, otherwise minimum 2" />
     </xml>
 
+    <xml name="input_word_size_blastn">
+        <param argument="-word_size" type="integer" min="4" optional="true"
+        label="Word size for wordfinder algorithm"
+        help="Leave blank for default, otherwise minimum 4" />
+    </xml>
+
     <xml name="input_strand">
         <param argument="-strand" type="select" label="Query strand(s) to search against database/subject">
             <option value="-strand both">Both</option>
