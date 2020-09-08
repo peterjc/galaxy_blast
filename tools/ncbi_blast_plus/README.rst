@@ -130,6 +130,23 @@ for the end user.
 History
 =======
 
+The wrappers now follow the Galaxy convention of underlying tool version with
+a galaxy specific suffix which gets reset to zero with each new BLAST version:
+
+============== ===============================================================
+Version        Changes
+-------------- ---------------------------------------------------------------
+2.7.1+galaxy0  - Adopted BLAST version with integer Galaxy wrapper suffix.
+               - Dropped legacy ``repository_dependencies.xml`` and
+                 ``tool_dependencies.xml`` files. Instead assumes conda for
+                 dependency resolution and requires at least Galaxy v16.10
+                 which includes the BLAST datatypes.
+               - ``blastdbcmd`` wrapper supports multiple databases
+============== ===============================================================
+
+Prior releases used a self-contained version number (deliberately kept low to
+avoid any confusion with the NCBI BLAST version numbers):
+
 ======= ======================================================================
 Version Changes
 ------- ----------------------------------------------------------------------
