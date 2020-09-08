@@ -722,7 +722,7 @@ $adv_opts.parse_deflines
 '${db_opts.database}'
 #elif str($db_opts.db_opts_selector)=='histdb'
 '${db_opts.histdb.name}'
-#elif str($db_opts.db_opts_selector)=='file'
+#else
 '${db_opts.subject.name}'
 #end if
 ]]></token>
