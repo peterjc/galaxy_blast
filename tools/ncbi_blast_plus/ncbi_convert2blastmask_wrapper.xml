@@ -1,4 +1,4 @@
-<tool id="ncbi_convert2blastmask_wrapper" name="NCBI BLAST+ convert2blastmask" version="@WRAPPER_VERSION@" profile="@PROFILE@">
+<tool id="ncbi_convert2blastmask_wrapper" name="NCBI BLAST+ convert2blastmask" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>Convert masking information in lower-case masked FASTA input to file formats suitable for makeblastdb</description>
     <macros>
         <token name="@BINARY@">convert2blastmask</token>

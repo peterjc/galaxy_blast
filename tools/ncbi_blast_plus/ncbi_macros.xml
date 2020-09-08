@@ -1,5 +1,6 @@
 <macros>
-    <token name="@WRAPPER_VERSION@">0.3.3</token>
+    <token name="@TOOL_VERSION@">2.7.1</token>
+    <token name="@VERSION_SUFFIX@">0</token>
     <token name="@PROFILE@">16.10</token>
     <xml name="parallelism">
         <!-- If job splitting is enabled, break up the query file into parts -->
@@ -8,7 +9,7 @@
 
     <xml name="preamble">
         <requirements>
-            <requirement type="package" version="2.7.1">blast</requirement>
+            <requirement type="package" version="@TOOL_VERSION@">blast</requirement>
         </requirements>
         <version_command>@BINARY@ -version</version_command>
     </xml>
