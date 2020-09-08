@@ -9,12 +9,8 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 blastdbcmd
-    -dbtype $db_opts.db_type
-    #if $db_opts.db_origin.db_origin_selector=="db":
-        -db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
-    #else if $db_opts.db_origin.db_origin_selector=="histdb":
-        -db '${os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}'
-    #end if
+@DBCMD_OPTS@
+
 ##TODO: What about -ctrl_a and -target_only as advanced options?
 
 #if $id_opts.id_type=="file":
@@ -73,7 +69,7 @@ blastdbcmd
     </inputs>
     <outputs>
 
-        <data name="seq" format="fasta" label="Sequences from blastdbcmd @ON_DBCMD_SUBJECT@">
+        <data name="seq" format="fasta" label="Sequences from blastdbcmd @ON_DBCMD_OPTS@">
         </data>
     </outputs>
     <tests>

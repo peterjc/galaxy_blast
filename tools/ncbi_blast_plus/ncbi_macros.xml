@@ -602,6 +602,17 @@
 #end if
     ]]></token>
 
+    <!-- Implement -dbtype and -db command line options (in blastdbcmd) -->
+    <token name="@DBCMD_OPTS@"><![CDATA[
+-dbtype "$db_opts.db_type"
+#if $db_opts.db_origin.db_origin_selector=="db":
+  -db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
+#else if $db_opts.db_origin.db_origin_selector=="histdb":
+  -db '${os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}'
+#end if
+    ]]></token>
+
+    <!-- Implement -db ... / -subject ... command line options -->
     <token name="@BLAST_DB_SUBJECT@"><![CDATA[
 #if $db_opts.db_opts_selector == "db":
   -db '${" ".join(str($db_opts.database.fields.path).split(","))}'
@@ -727,7 +738,8 @@ $adv_opts.parse_deflines
 #end if
 ]]></token>
 
-    <token name="@ON_DB_SUBJECT_ORIGIN@"><![CDATA[
+    <!-- @ON_DBCMD_OPTS@ is for use with @DBCMD_OPTS@ -->
+    <token name="@ON_DBCMD_OPTS@"><![CDATA[
 #if str($db_opts.db_origin.db_origin_selector)=="db"
 '${db_opts.db_origin.database}'
 #else
