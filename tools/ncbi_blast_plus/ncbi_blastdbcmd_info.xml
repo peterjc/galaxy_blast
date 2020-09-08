@@ -6,19 +6,15 @@
     </macros>
     <expand macro="preamble" />
     <command detect_errors="aggressive">
-blastdbcmd -dbtype $db_opts.db_type
-    #if $db_opts.db_origin.db_origin_selector=="db":
-        -db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
-    #else if $db_opts.db_origin.db_origin_selector=="histdb":
-        -db '${os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}'
-    #end if
-     -info -out "$info"
+blastdbcmd
+@DBCMD_OPTS@
+-info -out "$info"
     </command>
     <inputs>
         <expand macro="input_conditional_choose_db_type" />
     </inputs>
     <outputs>
-        <data name="info" format="txt" label="@ON_DBCMD_SUBJECT@ info" />
+        <data name="info" format="txt" label="@ON_DBCMD_OPTS@ info" />
     </outputs>
     <tests>
         <test>
