@@ -6,7 +6,7 @@
     </macros>
     <expand macro="preamble" />
     <command detect_errors="aggressive">
-blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info -out "$info"
+blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(',',' ')}" -info -out "$info"
     </command>
     <inputs>
         <expand macro="input_conditional_choose_db_type" />
