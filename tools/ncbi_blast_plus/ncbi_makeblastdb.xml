@@ -24,6 +24,7 @@ cat
     #end if
 #end for
 | makeblastdb -out '${os.path.join($outfile.files_path, "blastdb")}'
+-blastdb_version 4
 $parse_seqids
 $hash_index
 -in -

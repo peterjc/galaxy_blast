@@ -8,7 +8,9 @@
     <command detect_errors="aggressive" strict="true">
 ##Unlike makeblastdb, makeprofiledb needs directory to exist already:
 mkdir -p $outfile.files_path &amp;&amp;
-makeprofiledb -out '${os.path.join($outfile.files_path, "blastdb")}'
+makeprofiledb
+-blastdb_version 4
+-out '${os.path.join($outfile.files_path, "blastdb")}'
 
 ##We turn $input_file into $infiles with a configfile entry defined below
 -in '$infiles'
