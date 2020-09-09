@@ -95,7 +95,7 @@ v0.1.11 - Updated to depend on NCBI BLAST+ 2.5.0 via ToolShed or BioConda.
 v0.1.12 - Use ``<command detect_errors="aggressive">`` (internal change only).
         - Single quote command line arguments (internal change only).
 v0.2.0  - Refactored to use more than one Python file (internal change only).
-v0.3.0  - Updated dependencies and removed legacy tool packages
+v0.3.0  - Updated to BLAST+ 2.9.0 via conda; removed legacy tool packages.
 ======= ======================================================================
 
 
