@@ -106,7 +106,8 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
-            <param name="db_opts|database" value="rhodopsin_nucs" />
+            <!-- look in two databases for this entry -->
+            <param name="db_opts|database" value="rhodopsin_nucs,three_human_mRNA" />
             <param name="id_opts|id_type" value="prompt" />
             <param name="id_opts|entries" value="gi|2734705|gb|U59921.1|BBU59921" />
             <param name="outfmt" value="original" />
