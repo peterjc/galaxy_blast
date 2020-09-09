@@ -59,6 +59,9 @@ blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -info | head -n 3 > rhodopsin_n
 echo "rhodopsin_nucs.no_gi.fasta (from blastdbcmd)"
 blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -entry all -out rhodopsin_nucs.no_gi.fasta
 
+echo "rhodopsin_nucs.no_gi.region.fasta (from blastdbcmd)"
+blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -entry_batch rhodopsin_nucs.blastdbcmd.txt -out rhodopsin_nucs.no_gi.region.fasta
+
 echo "rhodopsin_bufo.fasta (from blastdbcmd)"
 blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -entry "gi|2734705|gb|U59921.1|BBU59921" -out rhodopsin_bufo.fasta
 
