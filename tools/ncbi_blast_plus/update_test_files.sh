@@ -45,6 +45,9 @@ grep -A 1 "^New DB title" three_human_mRNA.fasta.log > three_human_mRNA.fasta.lo
 echo "three_human_mRNA.dbinfo.txt"
 blastdbcmd -dbtype nucl -db three_human_mRNA.fasta -info | head -n 3 > three_human_mRNA.dbinfo.txt
 
+echo "three_human_mRNA_and_rhodopsin_nucs.dbinfo.txt"
+blastdbcmd -dbtype nucl -db "three_human_mRNA.fasta rhodopsin_nucs.fasta" -info | head -n 3 > three_human_mRNA_and_rhodopsin_nucs.dbinfo.txt
+
 echo "rhodopsin_nucs.fasta"
 rm -f rhodopsin_nucs.fasta.n*
 makeblastdb -out rhodopsin_nucs.fasta -hash_index -in rhodopsin_nucs.fasta -title "Rhodopsin nucleotides" -dbtype nucl -parse_seqids > rhodopsin_nucs.fasta.log

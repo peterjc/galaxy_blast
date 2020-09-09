@@ -1,0 +1,3 @@
+Database: Just 3 human mRNA sequences; Rhodopsin nucleotides
+	9 sequences; 21,028 total bases
+

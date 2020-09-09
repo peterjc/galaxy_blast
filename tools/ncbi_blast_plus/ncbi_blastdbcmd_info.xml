@@ -30,6 +30,11 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path.replace(
             <param name="db_opts|database" value="rhodopsin_nucs" />
             <output name="info" file="rhodopsin_nucs.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
+        <test>
+            <param name="db_opts|db_type" value="nucl" />
+            <param name="db_opts|database" value="three_human_mRNA,rhodopsin_nucs" />
+            <output name="info" file="three_human_mRNA_and_rhodopsin_nucs.dbinfo.txt" ftype="txt" compare="contains" />
+        </test>
     </tests>
     <help>
 
