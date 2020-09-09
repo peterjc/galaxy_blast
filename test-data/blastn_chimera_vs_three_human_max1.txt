@@ -1,4 +1,4 @@
-BLASTN 2.9.0+
+BLASTN 2.10.1+
 
 
 Reference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and Webb
@@ -15,10 +15,10 @@ Database: Just 3 human mRNA sequences
 Query= chimera chunks of AB011145 plus M10051 plus BC112106
 
 Length=9973
-                                                                      Score        E
-Sequences producing significant alignments:                          (Bits)     Value
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
 
-ENA|AB011145|AB011145.1 Homo sapiens mRNA for KIAA0573 protein, p...  8421       0.0  
+ENA|AB011145|AB011145.1 Homo sapiens mRNA for KIAA0573 protein, p...  8421    0.0  
 
 
 >ENA|AB011145|AB011145.1 Homo sapiens mRNA for KIAA0573 protein, 
@@ -346,7 +346,7 @@ Effective search space used: 106299490
 
 
   Database: Just 3 human mRNA sequences
-    Posted date:  Apr 23, 2020  3:16 PM
+    Posted date:  Sep 9, 2020  11:23 PM
   Number of letters in database: 10,732
   Number of sequences in database:  3
 
