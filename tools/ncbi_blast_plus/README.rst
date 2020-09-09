@@ -141,7 +141,9 @@ Version        Changes
                  ``tool_dependencies.xml`` files. Instead assumes conda for
                  dependency resolution and requires at least Galaxy v16.10
                  which includes the BLAST datatypes.
-               - ``blastdbcmd`` wrapper supports multiple databases
+               - ``blastdbcmd`` wrapper supports multiple locally installed
+                 databases (contribution from Frederic Sapet), or a database
+                 from your Galaxy history.
 ============== ===============================================================
 
 Prior releases used a self-contained version number (deliberately kept low to
