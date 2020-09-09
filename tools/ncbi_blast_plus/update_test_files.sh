@@ -35,7 +35,7 @@ makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_prot
 grep -A 1 "^New DB title" four_human_proteins_taxid.fasta.log > four_human_proteins_taxid.fasta.log.txt
 
 echo "four_human_proteins.dbinfo.txt"
-blastdbcmd -dbtype prot -db four_human_proteins_taxid.fasta -info -out four_human_proteins.dbinfo.txt
+blastdbcmd -dbtype prot -db four_human_proteins_taxid.fasta -info | head -n 3 > four_human_proteins.dbinfo.txt
 
 echo "three_human_mRNA.fasta"
 rm -f three_human_mRNA.fasta.n*
@@ -43,7 +43,7 @@ makeblastdb -out three_human_mRNA.fasta -hash_index -in three_human_mRNA.fasta -
 grep -A 1 "^New DB title" three_human_mRNA.fasta.log > three_human_mRNA.fasta.log.txt
 
 echo "three_human_mRNA.dbinfo.txt"
-blastdbcmd -dbtype nucl -db three_human_mRNA.fasta -info -out three_human_mRNA.dbinfo.txt
+blastdbcmd -dbtype nucl -db three_human_mRNA.fasta -info | head -n 3 > three_human_mRNA.dbinfo.txt
 
 echo "rhodopsin_nucs.fasta"
 rm -f rhodopsin_nucs.fasta.n*
@@ -51,7 +51,7 @@ makeblastdb -out rhodopsin_nucs.fasta -hash_index -in rhodopsin_nucs.fasta -titl
 grep -A 1 "^New DB title" rhodopsin_nucs.fasta.log > rhodopsin_nucs.fasta.log.txt
 
 echo "rhodopsin_nucs.fasta.txt"
-blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -info -out rhodopsin_nucs.dbinfo.txt
+blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -info | head -n 3 > rhodopsin_nucs.dbinfo.txt
 
 echo "rhodopsin_nucs.no_gi.fasta (from blastdbcmd)"
 blastdbcmd -dbtype nucl -db rhodopsin_nucs.fasta -entry all -out rhodopsin_nucs.no_gi.fasta

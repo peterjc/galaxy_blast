@@ -18,17 +18,17 @@ blastdbcmd -dbtype $db_opts.db_type -db "${db_opts.database.fields.path}" -info 
         <test>
             <param name="db_opts|db_type" value="prot" />
             <param name="db_opts|database" value="four_human_proteins" />
-            <output name="info" file="four_human_proteins.dbinfo.txt" ftype="txt" lines_diff="4" />
+            <output name="info" file="four_human_proteins.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
             <param name="db_opts|database" value="three_human_mRNA" />
-            <output name="info" file="three_human_mRNA.dbinfo.txt" ftype="txt" lines_diff="4" />
+            <output name="info" file="three_human_mRNA.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
         <test>
             <param name="db_opts|db_type" value="nucl" />
             <param name="db_opts|database" value="rhodopsin_nucs" />
-            <output name="info" file="rhodopsin_nucs.dbinfo.txt" ftype="txt" lines_diff="4" />
+            <output name="info" file="rhodopsin_nucs.dbinfo.txt" ftype="txt" compare="contains" />
         </test>
     </tests>
     <help>
