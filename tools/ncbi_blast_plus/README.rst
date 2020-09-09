@@ -136,6 +136,13 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
+2.10.1+galaxy0 - Updated for NCBI BLAST+ 2.10.1 release.
+               - Supports locally installed v4 or v5 format BLAST databases
+                 (listed in the ``blastdb*.loc`` files).
+               - ``makeblastdb`` and ``makeprofiledb`` still produce v4 format
+                 databases (pending updates to the Galaxy datatypes for v5).
+               - Minimum word size for ``blastn`` now 4 (update from Anthony
+                 Bretaudeau).
 2.9.0+galaxy0  - Updated for NCBI BLAST+ 2.9.0 release (contribution from
                  Anthony Bretaudeau).
 2.7.1+galaxy0  - Adopted BLAST version with integer Galaxy wrapper suffix.
