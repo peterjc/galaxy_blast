@@ -23,7 +23,7 @@ echo ===========
 
 echo "four_human_proteins.fasta"
 rm -f test-data/four_human_proteins.fasta.p*
-makeblastdb -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot > four_human_proteins.fasta.log
+makeblastdb -blastdb_version 4 -out four_human_proteins.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot > four_human_proteins.fasta.log
 grep -A 1 "^New DB title" four_human_proteins.fasta.log > four_human_proteins.fasta.log.txt
 
 
@@ -31,7 +31,7 @@ echo "four_human_proteins_taxid.fasta"
 #Bar the *.pin file and *.log with trivial differences due to a time stamp,
 #only real difference expected is the TaxID embedded in the *.phr file:
 rm -f test-data/four_human_proteins_taxid.fasta.p*
-makeblastdb -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
+makeblastdb -blastdb_version 4 -out four_human_proteins_taxid.fasta -hash_index -in four_human_proteins.fasta  -title "Just 4 human proteins" -dbtype prot -taxid 9606 > four_human_proteins_taxid.fasta.log
 grep -A 1 "^New DB title" four_human_proteins_taxid.fasta.log > four_human_proteins_taxid.fasta.log.txt
 
 echo "four_human_proteins.dbinfo.txt"
@@ -39,7 +39,7 @@ blastdbcmd -dbtype prot -db four_human_proteins_taxid.fasta -info | head -n 3 > 
 
 echo "three_human_mRNA.fasta"
 rm -f three_human_mRNA.fasta.n*
-makeblastdb -out three_human_mRNA.fasta -hash_index -in three_human_mRNA.fasta -title "Just 3 human mRNA sequences" -dbtype nucl -taxid 9606 > three_human_mRNA.fasta.log
+makeblastdb -blastdb_version 4 -out three_human_mRNA.fasta -hash_index -in three_human_mRNA.fasta -title "Just 3 human mRNA sequences" -dbtype nucl -taxid 9606 > three_human_mRNA.fasta.log
 grep -A 1 "^New DB title" three_human_mRNA.fasta.log > three_human_mRNA.fasta.log.txt
 
 echo "three_human_mRNA.dbinfo.txt"
@@ -50,7 +50,7 @@ blastdbcmd -dbtype nucl -db "three_human_mRNA.fasta rhodopsin_nucs.fasta" -info 
 
 echo "rhodopsin_nucs.fasta"
 rm -f rhodopsin_nucs.fasta.n*
-makeblastdb -out rhodopsin_nucs.fasta -hash_index -in rhodopsin_nucs.fasta -title "Rhodopsin nucleotides" -dbtype nucl -parse_seqids > rhodopsin_nucs.fasta.log
+makeblastdb -blastdb_version 4 -out rhodopsin_nucs.fasta -hash_index -in rhodopsin_nucs.fasta -title "Rhodopsin nucleotides" -dbtype nucl -parse_seqids > rhodopsin_nucs.fasta.log
 grep -A 1 "^New DB title" rhodopsin_nucs.fasta.log > rhodopsin_nucs.fasta.log.txt
 
 echo "rhodopsin_nucs.fasta.txt"
@@ -71,7 +71,7 @@ echo =============
 
 echo "cd00003_and_cd00008"
 #Rather than supplying a file listing *.smp inputs, using stdin
-echo "cd00003.smp cd00008.smp" | makeprofiledb -in /dev/stdin -out cd00003_and_cd00008 -title "Just 2 PSSM matrices"
+echo "cd00003.smp cd00008.smp" | makeprofiledb -blastdb_version 4 -in /dev/stdin -out cd00003_and_cd00008 -title "Just 2 PSSM matrices"
 
 echo
 echo Masking
