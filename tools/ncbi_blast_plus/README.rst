@@ -3,8 +3,8 @@ Galaxy wrappers for NCBI BLAST+ suite
 
 These wrappers are copyright 2010-2018 by Peter Cock (James Hutton Institute,
 UK) and additional contributors including Edward Kirton, John Chilton, Nicola
-Soranzo, Jim Johnson, Bjoern Gruening, Caleb Easterly, and Anton Nekrutenko.
-See the licence text below.
+Soranzo, Jim Johnson, Bjoern Gruening, Caleb Easterly, Anton Nekrutenko and
+Anthony Bretaudeau. See the licence text below.
 
 Note this does not work with the NCBI 'legacy' BLAST suite written in C
 (e.g. binary name ``blastall``), but its replacement BLAST, which is
@@ -136,7 +136,8 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
-2.9.0+galaxy0  - Updated for NCBI BLAST+ 2.9.0 release.
+2.9.0+galaxy0  - Updated for NCBI BLAST+ 2.9.0 release (contribution from
+                 Anthony Bretaudeau).
 2.7.1+galaxy0  - Adopted BLAST version with integer Galaxy wrapper suffix.
                - Dropped legacy ``repository_dependencies.xml`` and
                  ``tool_dependencies.xml`` files. Instead assumes conda for
