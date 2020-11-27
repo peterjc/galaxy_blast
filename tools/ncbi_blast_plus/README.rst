@@ -136,7 +136,7 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
-2.10.1+galaxy1 - Make cached reference data selector non-optional
+2.10.1+galaxy1 - Make locally installed database selector non-optional.
 2.10.1+galaxy0 - Updated for NCBI BLAST+ 2.10.1 release.
                - Supports locally installed v4 or v5 format BLAST databases
                  (listed in the ``blastdb*.loc`` files).
