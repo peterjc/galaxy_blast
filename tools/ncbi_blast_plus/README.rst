@@ -248,6 +248,15 @@ v0.1.00 - Now depends on ``package_blast_plus_2_2_29`` in ToolShed.
         - Supports setting a taxonomy ID in ``makeblastdb`` wrapper.
         - Subtle changes like new conditional settings will require some old
           workflows be updated to cope.
+v0.0.22 - More use of macros to simplify the wrappers.
+        - Set number of threads via ``$GALAXY_SLOTS`` environment variable.
+        - More descriptive default output names.
+        - Tests require updated BLAST DB definitions (``blast_datatypes``
+          v0.0.18).
+        - Pre-check for duplicate identifiers in ``makeblastdb`` wrapper.
+        - Tests updated for BLAST+ 2.2.28 instead of BLAST+ 2.2.27.
+        - Now depends on ``package_blast_plus_2_2_28`` in ToolShed.
+        - Extended tabular output includes 'salltitles' as column 25.
 v0.0.21 - Use macros to simplify the XML wrappers (by John Chilton).
         - Added wrapper for dustmasker.
         - Enabled masking for makeblastdb (Nicola Soranzo).
@@ -288,15 +297,6 @@ v0.0.12 - Implements genetic code option for translation searches.
           e-values
 v0.0.11 - Final revision as part of the Galaxy main repository, and the
           first release via the Tool Shed
-v0.0.22 - More use of macros to simplify the wrappers.
-        - Set number of threads via ``$GALAXY_SLOTS`` environment variable.
-        - More descriptive default output names.
-        - Tests require updated BLAST DB definitions (``blast_datatypes``
-          v0.0.18).
-        - Pre-check for duplicate identifiers in ``makeblastdb`` wrapper.
-        - Tests updated for BLAST+ 2.2.28 instead of BLAST+ 2.2.27.
-        - Now depends on ``package_blast_plus_2_2_28`` in ToolShed.
-        - Extended tabular output includes 'salltitles' as column 25.
 ======= ======================================================================
 
 
