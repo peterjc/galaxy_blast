@@ -1,6 +1,6 @@
 <macros>
     <token name="@TOOL_VERSION@">2.10.1</token>
-    <token name="@VERSION_SUFFIX@">0</token>
+    <token name="@VERSION_SUFFIX@">1</token>
     <token name="@PROFILE@">16.10</token>
     <xml name="parallelism">
         <!-- If job splitting is enabled, break up the query file into parts -->
@@ -353,7 +353,7 @@
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
             <when value="db">
-                <param name="database" type="select" multiple="true" label="Nucleotide BLAST database">
+                <param name="database" type="select" multiple="true" optional="false" label="Nucleotide BLAST database">
                     <options from_data_table="blastdb" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
@@ -381,7 +381,7 @@
               <option value="file">FASTA file from your history (see warning note below)</option>
             </param>
             <when value="db">
-                <param name="database" type="select" multiple="true" label="Protein BLAST database">
+                <param name="database" type="select" multiple="true" optional="false" label="Protein BLAST database">
                     <options from_data_table="blastdb_p" />
                 </param>
                 <param name="histdb" type="hidden" value="" />
@@ -452,7 +452,7 @@
                           <option value="histdb">BLAST database from your history</option>
                       </param>
                       <when value="db">
-                          <param name="database" argument="-db" type="select" multiple="true" label="Protein BLAST database">
+                          <param name="database" argument="-db" type="select" multiple="true" optional="false" label="Protein BLAST database">
                             <options from_data_table="blastdb_p" />
                         </param>
                         <param name="histdb" type="hidden" value="" />
