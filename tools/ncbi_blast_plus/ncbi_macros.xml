@@ -558,6 +558,8 @@
                 <option value="gilist">GI identifiers</option>
                 <option value="negative_gilist">Negative GI identifiers</option>
                 <option value="seqidlist">Sequence identifiers (SeqId's)</option>
+                <option value="taxidlist">Taxonomy identifiers (TaxId's)</option>
+                <option value="negative_taxidlist">Negative taxonomy identifiers (TaxId's)</option>
             </param>
             <when value="none" />
             <when value="gilist">
@@ -572,8 +574,17 @@
                 <param argument="-seqidlist" type="data" format="txt" label=" Restrict search of database to list of SeqId's"
                        help="This option is only available for database searches."/>
             </when>
+            <when value="taxidlist">
+                <param argument="-taxidlist" type="data" format="txt" label="Restrict search of database to list of TaxId's"
+                       help="This option is only available for database searches."/>
+            </when>
+            <when value="negative_taxidlist">
+                <param argument="-negative_taxidlist" type="data" format="txt" label="Restrict search of database to list of TaxId's"
+                       help="This option is only available for database searches."/>
+            </when>
         </conditional>
     </xml>
+
 <!--Tokens-->
     <token name="@ADV_MATRIX_GAPCOSTS@"><![CDATA[
 #if str($adv_opts.matrix_gapcosts.matrix):
@@ -595,6 +606,10 @@
     -gilist '{$adv_opts.adv_optional_id_files_opts.gilist}'
 #elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'seqidlist':
     -seqidlist '${adv_opts.adv_optional_id_files_opts.seqidlist}'
+#elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'taxidlist':
+    -taxidlist '${adv_opts.adv_optional_id_files_opts.taxidlist}'
+#elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_taxidlist':
+    -negative_taxidlist '${adv_opts.adv_optional_id_files_opts.negative_taxidlist}'
 #end if
     ]]></token>
 

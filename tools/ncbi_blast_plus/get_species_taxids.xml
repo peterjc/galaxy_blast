@@ -1,0 +1,102 @@
+<tool id="get_species_taxids" name="NCBI get species taxids" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
+    <description></description>
+    <macros>
+        <import>ncbi_macros.xml</import>
+    </macros>
+    <expand macro="preamble"/>
+    <command detect_errors="aggressive"><![CDATA[
+#if $type_cond.type_sel == 'names'
+    #for name in $type_cond.names.split(',')
+        taxid=\$(get_species_taxids.sh -n '$name' | grep Taxid | sed 's/Taxid://') &&
+        if [ -z \$taxid ]; then
+            >&2 echo "could not find taxid for $name" && exit 1;
+        else
+            echo " $name -> \$taxid";
+        fi &&
+        get_species_taxids.sh -t \$taxid >> species_ids.txt &&
+    #end for
+#else
+    #for taxid in $type_cond.ids.split(',')
+       get_species_taxids.sh -t $taxid >> species_ids.txt &&
+    #end for
+#end if
+sort -n -u  species_ids.txt > '$output'
+    ]]></command>
+    <inputs>
+        <conditional name="type_cond">
+            <param name="type_sel" type="select" label="Get taxids by">
+                <option value="names">Taxon names</option>
+                <option value="ids">Taxon ids</option>
+            </param>
+            <when value="names">
+                <param name="names" type="text" label="Taxon names" help="comma separated"/>
+            </when>
+            <when value="ids">
+                <param name="ids" type="text" label="Taxon ids" help="comma separated"/>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data format="txt" name="output"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="type_cond|type_sel" value="names"/>
+            <param name="type_cond|names" value="Enterobacterales"/>
+            <output name="output" ftype="txt">
+                <assert_contents>
+                    <has_line line="9"/>
+                    <has_line line="2791989"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+            <param name="type_cond|type_sel" value="ids"/>
+            <param name="type_cond|ids" value="91347"/>
+            <output name="output" ftype="txt">
+                <assert_contents>
+                    <has_line line="9"/>
+                    <has_line line="2791989"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+            <param name="type_cond|type_sel" value="names"/>
+            <param name="type_cond|names" value="Enterobacterales,Hominidae"/>
+            <output name="output" ftype="txt">
+                <assert_contents>
+                    <has_line line="9"/>
+                    <has_line line="9606"/>
+                    <has_line line="2791989"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+            <param name="type_cond|type_sel" value="ids"/>
+            <param name="type_cond|ids" value="91347,9604"/>
+            <output name="output" ftype="txt">
+                <assert_contents>
+                    <has_line line="9"/>
+                    <has_line line="9606"/>
+                    <has_line line="2791989"/>
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+
+**What it does**
+
+Returns a list of species taxids for a taxon. It relies on the get_species_taxids.sh script of the BLAST+ package https://www.ncbi.nlm.nih.gov/books/NBK546209/
+
+-------
+
+**References**
+
+If you use this Galaxy tool in work leading to a scientific publication please
+cite the following papers:
+
+@REFERENCES@
+    </help>
+    <expand macro="blast_citations"/>
+</tool>
