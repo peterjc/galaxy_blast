@@ -621,7 +621,7 @@
     <!-- Implement -db ... / -subject ... command line options -->
     <token name="@BLAST_DB_SUBJECT@"><![CDATA[
 #if $db_opts.db_opts_selector == "db":
-  -db '${" ".join(str($db_opts.database.fields.path).split(","))}'
+  -db '"${'" "'.join(str($db_opts.database.fields.path).split(","))}"'
 #elif $db_opts.db_opts_selector == "histdb":
   -db '${os.path.join($db_opts.histdb.extra_files_path, "blastdb")}'
 #else:
