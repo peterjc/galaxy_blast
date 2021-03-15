@@ -18,7 +18,7 @@ from optparse import OptionParser
 
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print("v0.0.1")
+    print("v0.0.2")
     sys.exit(0)
 
 
@@ -134,14 +134,17 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
                             continue
                         # TODO - line wrapping
                         handle.write(">%s\n%s\n" % (title, seq))
-        sys.stderr.write(
-            "%i unique entries; removed %i duplicates "
-            "leaving %i representative records\n"
-            % (unique, len(duplicates), len(representatives))
-        )
     else:
-        os.symlink(os.path.abspath(input_fasta), output_fasta)
-        sys.stderr.write("No perfect duplicates in file, %i unique entries\n" % unique)
+        with open(output_fasta, "w") as handle:
+            for f in input_fasta:
+                with gzip_open(f) as in_handle:
+                    for title, seq in SimpleFastaParser(in_handle):
+                        handle.write(">%s\n%s\n" % (title, seq))
+    sys.stderr.write(
+        "%i unique entries; removed %i duplicates "
+        "leaving %i representative records\n"
+        % (unique, len(duplicates), len(representatives))
+    )
 
 
 make_nr(args, options.output, options.sep, options.alphasort)

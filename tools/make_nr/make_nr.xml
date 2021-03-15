@@ -1,4 +1,4 @@
-<tool id="make_nr" name="Make FASTA non-redundant" version="0.0.1">
+<tool id="make_nr" name="Make FASTA non-redundant" version="0.0.2">
     <description>by combining duplicated sequences</description>
     <requirements>
         <requirement type="package" version="1.67">biopython</requirement>
