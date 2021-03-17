@@ -29,10 +29,14 @@ sort -n -u  species_ids.txt > '$output'
                 <option value="ids">Taxon ids</option>
             </param>
             <when value="names">
-                <param name="names" type="text" label="Taxon names" help="comma separated"/>
+                <param name="names" type="text" label="Taxon names" help="comma separated">
+                    <validator type="regex" message="Enter a comma separated list of taxon names">[a-zA-Z ,]+</validator>
+                </param>
             </when>
             <when value="ids">
-                <param name="ids" type="text" label="Taxon ids" help="comma separated"/>
+                <param name="ids" type="text" label="Taxon ids" help="comma separated">
+                    <validator type="regex" message="Enter a comma separated list of taxids">[0-9,]+</validator>
+                </param>
             </when>
         </conditional>
     </inputs>
