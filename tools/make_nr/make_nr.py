@@ -134,17 +134,25 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
                             continue
                         # TODO - line wrapping
                         handle.write(">%s\n%s\n" % (title, seq))
+        sys.stderr.write(
+            "%i unique entries; removed %i duplicates "
+            "leaving %i representative records\n"
+            % (unique, len(duplicates), len(representatives))
+        )
+    elif len(input_fasta) == 1:
+        # Single file, no need to make a copy or edit titles
+        os.symlink(os.path.abspath(input_fasta), output_fasta)
+        sys.stderr.write("No perfect duplicates in file, %i unique entries\n" % unique)
     else:
         with open(output_fasta, "w") as handle:
             for f in input_fasta:
                 with gzip_open(f) as in_handle:
                     for title, seq in SimpleFastaParser(in_handle):
                         handle.write(">%s\n%s\n" % (title, seq))
-    sys.stderr.write(
-        "%i unique entries; removed %i duplicates "
-        "leaving %i representative records\n"
-        % (unique, len(duplicates), len(representatives))
-    )
+        sys.stderr.write(
+            "No perfect duplicates in %i files, %i unique entries\n"
+            % (len(input_fasta), unique)
+        )
 
 
 make_nr(args, options.output, options.sep, options.alphasort)
