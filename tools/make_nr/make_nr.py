@@ -45,30 +45,17 @@ which is shown to the user via the Galaxy interface to this tool.
 """
 
 parser = OptionParser(usage=usage)
-parser.add_option(
-    "-s",
-    "--sep",
-    dest="sep",
-    default=";",
-    help="Separator character for combining identifiers "
-    "of duplicated records e.g. '|' or ';' (required)",
-)
-parser.add_option(
-    "-a",
-    "--alphasort",
-    action="store_true",
-    help="When merging duplicated records sort their "
-    "identifiers alphabetically before combining them. "
-    "Default is input file order.",
-)
-parser.add_option(
-    "-o",
-    "--output",
-    dest="output",
-    default="/dev/stdout",
-    metavar="FILE",
-    help="Output filename (defaults to stdout)",
-)
+parser.add_option("-s", "--sep", dest="sep",
+                  default=";",
+                  help="Separator character for combining identifiers "
+                  "of duplicated records e.g. '|' or ';' (required)")
+parser.add_option("-a", "--alphasort", action="store_true",
+                  help="When merging duplicated records sort their "
+                  "identifiers alphabetically before combining them. "
+                  "Default is input file order.")
+parser.add_option("-o", "--output", dest="output",
+                  default="/dev/stdout", metavar="FILE",
+                  help="Output filename (defaults to stdout)")
 options, args = parser.parse_args()
 
 if not args:
@@ -79,10 +66,24 @@ def gzip_open(filename):
     """Open a possibly gzipped text file."""
     with open(filename, "rb") as h:
         magic = h.read(2)
-    if magic == b"\x1f\x8b":
+    if magic == b'\x1f\x8b':
         return gzip.open(filename, "rt")
     else:
         return open(filename)
+
+
+def make_p_seq(ids, records, seq, sort_ids):
+    """Make the printable sequence."""
+    if sort_ids:
+        return(">{} representing {} records\n{}\n".format(
+               ";".join(sorted(ids)),
+               records,
+               seq))
+    else:
+        return(">{} representing {} records\n{}\n".format(
+               ";".join(ids),
+               records,
+               seq))
 
 
 def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
@@ -91,6 +92,7 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
     Argument input_fasta is a list of filenames.
     """
     by_seq = dict()
+    duplicate = 0
     try:
         from Bio.SeqIO.FastaIO import SimpleFastaParser
     except ImportError:
@@ -102,46 +104,38 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
                 seq = seq.upper()
                 try:
                     by_seq[seq].append(idn)
+                    duplicate += 1
                 except KeyError:
                     by_seq[seq] = [idn]
     unique = 0
-    representatives = dict()
-    duplicates = set()
-    for cluster in by_seq.values():
-        if len(cluster) > 1:
-            # Is it useful to offer to sort here?
-            # if sort_ids:
-            #     cluster.sort()
-            representatives[cluster[0]] = cluster
-            duplicates.update(cluster[1:])
-        else:
-            unique += 1
-    del by_seq
-    if duplicates:
-        # TODO - refactor as a generator with single SeqIO.write(...) call
+    representative = 0
+    sequences = set()
+    if duplicate:
         with open(output_fasta, "w") as handle:
             for f in input_fasta:
                 with gzip_open(f) as in_handle:
-                    for title, seq in SimpleFastaParser(in_handle):
+                    for title, one_seq in SimpleFastaParser(in_handle):
                         idn = title.split(None, 1)[0]  # first word only
-                        if idn in representatives:
-                            cluster = representatives[idn]
-                            if sort_ids:
-                                cluster.sort()
-                            idn = sep.join(cluster)
-                            title = "%s representing %i records" % (idn, len(cluster))
-                        elif idn in duplicates:
-                            continue
-                        # TODO - line wrapping
-                        handle.write(">%s\n%s\n" % (title, seq))
-        sys.stderr.write(
-            "%i unique entries; removed %i duplicates "
-            "leaving %i representative records\n"
-            % (unique, len(duplicates), len(representatives))
-        )
+                        if one_seq.upper() not in sequences:
+                            if len(by_seq[one_seq.upper()]) > 1:
+                                pseq = make_p_seq(by_seq[one_seq.upper()],
+                                                  len(by_seq[one_seq.upper()]),
+                                                  one_seq,
+                                                  sort_ids)
+                                handle.write(pseq)
+                                representative += 1
+                            else:
+                                handle.write(">{}\n{}\n".format(title,
+                                                                one_seq))
+                                unique += 1
+                            sequences.update([one_seq.upper()])
+        sys.stderr.write("%i unique entries; removed %i duplicates "
+                         "leaving %i representative records\n"
+                         % (unique, duplicate, representative))
     else:
         os.symlink(os.path.abspath(input_fasta), output_fasta)
-        sys.stderr.write("No perfect duplicates in file, %i unique entries\n" % unique)
+        sys.stderr.write("No perfect duplicates in file, %i unique entries\n"
+                         % len(by_seq))
 
 
 make_nr(args, options.output, options.sep, options.alphasort)
