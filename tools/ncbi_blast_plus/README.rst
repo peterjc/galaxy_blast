@@ -1,22 +1,22 @@
-Galaxy wrappers for NCBI BLAST+ suite
-=====================================
+        Galaxy wrappers for NCBI BLAST+ suite
+        =====================================
 
-These wrappers are copyright 2010-2018 by Peter Cock (James Hutton Institute,
-UK) and additional contributors including Edward Kirton, John Chilton, Nicola
-Soranzo, Jim Johnson, Bjoern Gruening, Caleb Easterly, Anton Nekrutenko and
-Anthony Bretaudeau. See the licence text below.
+        These wrappers are copyright 2010-2018 by Peter Cock (James Hutton Institute,
+        UK) and additional contributors including Edward Kirton, John Chilton, Nicola
+        Soranzo, Jim Johnson, Bjoern Gruening, Caleb Easterly, Anton Nekrutenko and
+        Anthony Bretaudeau. See the licence text below.
 
-Note this does not work with the NCBI 'legacy' BLAST suite written in C
-(e.g. binary name ``blastall``), but its replacement BLAST, which is
-written in C++ (e.g. binary name ``blastn``).
+        Note this does not work with the NCBI 'legacy' BLAST suite written in C
+        (e.g. binary name ``blastall``), but its replacement BLAST, which is
+        written in C++ (e.g. binary name ``blastn``).
 
-Note that these wrappers (and the associated datatypes) were originally
-distributed as part of the main Galaxy repository, but as of August 2012
-moved to the Galaxy Tool Shed as ``ncbi_blast_plus`` (and ``blast_datatypes``).
-My thanks to Dannon Baker from the Galaxy development team for his assistance
-with this.
+        Note that these wrappers (and the associated datatypes) were originally
+        distributed as part of the main Galaxy repository, but as of August 2012
+        moved to the Galaxy Tool Shed as ``ncbi_blast_plus`` (and ``blast_datatypes``).
+        My thanks to Dannon Baker from the Galaxy development team for his assistance
+        with this.
 
-These wrappers are available from the Galaxy Tool Shed at:
+        These wrappers are available from the Galaxy Tool Shed at:
 http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
 
 In-development test releases are available from the Test Tool Shed at:
@@ -136,6 +136,14 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
+2.10.1+galaxy2 - Add tool `NCBI get species taxids` that wraps NCBI's 
+                 `get_species_taxids.sh` script
+                 (https://www.ncbi.nlm.nih.gov/books/NBK546209/).
+                 It allows to determine all species taxids below a certain
+                 Taxon.
+               - Add the possibility to restrict BLAST searches taxonomically
+                 by species taxids given in a file. 
+               - Properly quote cached databases
 2.10.1+galaxy1 - Make locally installed database selector non-optional.
 2.10.1+galaxy0 - Updated for NCBI BLAST+ 2.10.1 release.
                - Supports locally installed v4 or v5 format BLAST databases
