@@ -51,6 +51,14 @@ python $__tool_directory__/make_nr.py $alphasort -s '$separator' -o '$output'
             <param name="alphasort" value="-a"/>
             <output name="output" file="deduplicate.sortids.fasta" ftype="fasta"/>
         </test>
+        <test>
+            <param name="input" value="empty.fasta" ftype="fasta"/>
+            <output name="output" file="empty.fasta" ftype="fasta"/>
+        </test>
+        <test>
+            <param name="input" value="empty.fasta,empty.fasta" ftype="fasta"/>
+            <output name="output" file="empty.fasta" ftype="fasta"/>
+        </test>
     </tests>
     <help>
 **What it does**
