@@ -145,6 +145,13 @@ Version        Changes
                  by species taxids given in a file. 
                - Properly quote cached databases
 2.10.1+galaxy1 - Make locally installed database selector non-optional.
+               - Add tool "NCBI get species taxids" wrapping NCBI's
+                 ``get_species_taxids.sh`` script which determines all species
+                 taxids below a certain taxon, see
+                 https://www.ncbi.nlm.nih.gov/books/NBK546209/
+               - Can restrict BLAST searches taxonomically (using the
+                  ``-taxidlist`` and ``-negative_taxidlist`` options).
+               - Properly quote multiple database filenames with spaces.
 2.10.1+galaxy0 - Updated for NCBI BLAST+ 2.10.1 release.
                - Supports locally installed v4 or v5 format BLAST databases
                  (listed in the ``blastdb*.loc`` files).
