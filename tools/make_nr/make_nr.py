@@ -12,6 +12,7 @@ from __future__ import print_function
 
 import gzip
 import os
+import shutil
 import sys
 
 from optparse import OptionParser
@@ -141,7 +142,7 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
         )
     elif len(input_fasta) == 1:
         # Single file, no need to make a copy or edit titles
-        os.symlink(os.path.abspath(input_fasta[0]), output_fasta)
+        shutil.copy(os.path.abspath(input_fasta[0]), output_fasta)
         sys.stderr.write("No perfect duplicates in file, %i unique entries\n" % unique)
     else:
         with open(output_fasta, "w") as handle:
