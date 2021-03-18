@@ -12,13 +12,14 @@ from __future__ import print_function
 
 import gzip
 import os
+import shutil
 import sys
 
 from optparse import OptionParser
 
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print("v0.0.1")
+    print("v0.0.2")
     sys.exit(0)
 
 
@@ -139,9 +140,20 @@ def make_nr(input_fasta, output_fasta, sep=";", sort_ids=False):
             "leaving %i representative records\n"
             % (unique, len(duplicates), len(representatives))
         )
-    else:
-        os.symlink(os.path.abspath(input_fasta), output_fasta)
+    elif len(input_fasta) == 1:
+        # Single file, no need to make a copy or edit titles
+        shutil.copy(os.path.abspath(input_fasta[0]), output_fasta)
         sys.stderr.write("No perfect duplicates in file, %i unique entries\n" % unique)
+    else:
+        with open(output_fasta, "w") as handle:
+            for f in input_fasta:
+                with gzip_open(f) as in_handle:
+                    for title, seq in SimpleFastaParser(in_handle):
+                        handle.write(">%s\n%s\n" % (title, seq))
+        sys.stderr.write(
+            "No perfect duplicates in %i files, %i unique entries\n"
+            % (len(input_fasta), unique)
+        )
 
 
 make_nr(args, options.output, options.sep, options.alphasort)

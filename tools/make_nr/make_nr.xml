@@ -1,4 +1,4 @@
-<tool id="make_nr" name="Make FASTA non-redundant" version="0.0.1">
+<tool id="make_nr" name="Make FASTA non-redundant" version="0.0.2">
     <description>by combining duplicated sequences</description>
     <requirements>
         <requirement type="package" version="1.67">biopython</requirement>
@@ -50,6 +50,14 @@ python $__tool_directory__/make_nr.py $alphasort -s '$separator' -o '$output'
             <param name="input" value="more_duplicates.fasta,duplicates.fasta" ftype="fasta"/>
             <param name="alphasort" value="-a"/>
             <output name="output" file="deduplicate.sortids.fasta" ftype="fasta"/>
+        </test>
+        <test>
+            <param name="input" value="empty.fasta" ftype="fasta"/>
+            <output name="output" file="empty.fasta" ftype="fasta"/>
+        </test>
+        <test>
+            <param name="input" value="empty.fasta,empty.fasta" ftype="fasta"/>
+            <output name="output" file="empty.fasta" ftype="fasta"/>
         </test>
     </tests>
     <help>
