@@ -83,7 +83,9 @@ TODO:
 ======= ======================================================================
 Version Changes
 ------- ----------------------------------------------------------------------
-v0.0.0  - Initial version
+v0.0.2  - Fixed bug writing files when there were no duplicates
+v0.0.1  - Added option to sort merged IDs, and support for gzipped files
+v0.0.0  - Initial version (not published to main Galaxy Tool Shed)
 ======= ======================================================================
 
 
