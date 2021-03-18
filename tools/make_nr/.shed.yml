@@ -24,3 +24,4 @@ include:
   - ../../test-data/more_duplicates.fasta
   - ../../test-data/deduplicate.nosortids.fasta
   - ../../test-data/deduplicate.sortids.fasta
+  - ../../test-data/empty.fasta
