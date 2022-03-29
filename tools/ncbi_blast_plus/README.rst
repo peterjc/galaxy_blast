@@ -136,7 +136,7 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
-2.10.1+galaxy2 - Add tool `NCBI get species taxids` that wraps NCBI's
+2.10.1+galaxy1 - Add tool `NCBI get species taxids` that wraps NCBI's
                  `get_species_taxids.sh` script
                  (https://www.ncbi.nlm.nih.gov/books/NBK546209/).
                  It allows to determine all species taxids below a certain
@@ -144,7 +144,7 @@ Version        Changes
                - Add the possibility to restrict BLAST searches taxonomically
                  by species taxids given in a file.
                - Properly quote cached databases
-2.10.1+galaxy1 - Make locally installed database selector non-optional.
+               - Make locally installed database selector non-optional.
 2.10.1+galaxy0 - Updated for NCBI BLAST+ 2.10.1 release.
                - Supports locally installed v4 or v5 format BLAST databases
                  (listed in the ``blastdb*.loc`` files).
