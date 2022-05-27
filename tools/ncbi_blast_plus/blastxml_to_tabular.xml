@@ -3,6 +3,9 @@
     <macros>
         <import>ncbi_macros.xml</import>
     </macros>
+    <requirements>
+        <requirement type="package" version="3.9">python</requirement>
+    </requirements>
     <version_command>python $__tool_directory__/blastxml_to_tabular.py --version</version_command>
     <command detect_errors="aggressive">
 python $__tool_directory__/blastxml_to_tabular.py -o '$tabular_file'

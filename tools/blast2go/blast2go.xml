@@ -2,6 +2,7 @@
     <description>Maps BLAST results to GO annotation terms</description>
     <requirements>
         <requirement type="package" version="2.5">b2g4pipe</requirement>
+        <requirement type="package" version="3.9">python</requirement>
     </requirements>
     <command detect_errors="aggressive">
 python $__tool_directory__/blast2go.py '$xml' '${prop.fields.path}' '$tab'

@@ -10,6 +10,7 @@
     <xml name="preamble">
         <requirements>
             <requirement type="package" version="@TOOL_VERSION@">blast</requirement>
+            <yield />
         </requirements>
         <version_command>@BINARY@ -version</version_command>
     </xml>
