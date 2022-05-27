@@ -1,5 +1,8 @@
 <tool id="blastxml_to_top_descr" name="BLAST top hit descriptions" version="0.1.2" profile="16.10">
     <description>Make a table from BLAST output</description>
+    <requirements>
+        <requirement type="package" version="3.9">python</requirement>
+    </requirements>
     <version_command>
 python $__tool_directory__/blastxml_to_top_descr.py --version
     </version_command>

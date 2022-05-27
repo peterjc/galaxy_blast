@@ -4,7 +4,9 @@
         <token name="@BINARY@">makeblastdb</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="preamble" />
+    <expand macro="preamble">
+        <requirement type="package" version="3.9">python</requirement>
+    </expand>
     <command detect_errors="aggressive" strict="true"><![CDATA[
 python $__tool_directory__/check_no_duplicates.py
 ##First check for duplicates (since BLAST+ 2.2.28 fails to do so)

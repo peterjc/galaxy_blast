@@ -2,6 +2,7 @@
     <description>Downloader</description>
     <requirements>
         <requirement type="package" version="2.2.29">blast+</requirement>
+        <requirement type="package" version="3.9">python</requirement>
     </requirements>
     <stdio>
         <exit_code range="1:" level="fatal" description="Tool exception" />
