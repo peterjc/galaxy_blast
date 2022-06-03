@@ -30,7 +30,7 @@ ${adv_opts.ungapped}
 @ADV_QCOV_HSP_PERC@
 ## only use window size if dc-megablast mode is used
 #if ($blast_type == "dc-megablast"):
--window_size @ADV_WINDOW_SIZE@
+   @ADV_WINDOW_SIZE@
 #end if
 @ADV_GAPOPEN@
 @ADV_GAPEXTEND@
