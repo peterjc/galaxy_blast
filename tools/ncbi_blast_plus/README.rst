@@ -136,6 +136,8 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
+2.10.1+galaxy2 - Fixed ``dc-megablast`` option in ``ncbi_blastn_wrapper.xml`` 
+                 wrapper from inserting ``-window_size`` twice when executing.
 2.10.1+galaxy1 - Add tool `NCBI get species taxids` that wraps NCBI's
                  `get_species_taxids.sh` script
                  (https://www.ncbi.nlm.nih.gov/books/NBK546209/).
