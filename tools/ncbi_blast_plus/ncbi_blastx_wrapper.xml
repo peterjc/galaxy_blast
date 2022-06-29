@@ -5,10 +5,13 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="parallelism" />
-    <expand macro="preamble" />
+    <expand macro="preamble">
+      <requirement type="package" version="3.9">python</requirement>
+    </expand>
     <command detect_errors="aggressive">
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
+@TAXID_FILE_GEN@
 blastx
 @QUERY@
 @BLAST_DB_SUBJECT@
