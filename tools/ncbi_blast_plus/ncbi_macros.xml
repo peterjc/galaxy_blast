@@ -1,6 +1,6 @@
 <macros>
-    <token name="@TOOL_VERSION@">2.10.1</token>
-    <token name="@VERSION_SUFFIX@">2</token>
+    <token name="@TOOL_VERSION@">2.12.0</token>
+    <token name="@VERSION_SUFFIX@">1</token>
     <token name="@PROFILE@">16.10</token>
     <xml name="parallelism">
         <!-- If job splitting is enabled, break up the query file into parts -->
@@ -576,12 +576,64 @@
                        help="This option is only available for database searches."/>
             </when>
             <when value="taxidlist">
-                <param argument="-taxidlist" type="data" format="txt" label="Restrict search of database to list of TaxId's"
-                       help="This option is only available for database searches."/>
+              <conditional name="taxon_filtering">
+                <param type="select" label="Filter results by TaxID" name="taxon_selection">
+                  <option value="file_filter">Use TaxIDs from text file</option>
+                  <option value="text_filter">Manually enter TaxIDs</option>
+                </param>
+                <when value="file_filter">
+                  <param name="filter_item" type="data" format="txt" label="TaxID List from History (New-line separated, .txt format)"/>
+                </when>
+                <when value="text_filter">
+                  <conditional name="master_taxon_list">
+                    <param type="select" label="TaxID master list (For deriving sub-IDs)" name="master_selection">
+                      <option value="installed" selected="true">Use installed nodes.dmp file to derive sub-IDs</option>
+                      <option value="uploaded">Use history item to derive sub-IDs (Must match NCBI nodes.dmp format)</option>
+                      <option value="no_master">Do not derive sub-IDs</option>
+                    </param>
+                    <when value="installed">
+                      <param name="database" type="select" multiple="false" label="Select masterlist of TaxIDs (nodes.dmp file)">
+                        <options from_data_table="taxid_nodes" />
+                      </param>
+                    </when>
+                    <when value="uploaded">
+                      <param name="database" type="data" format="txt,dmp" multiple="false" label="Select masterlist of TaxIDs (nodes.dmp file)"/>
+                    </when>
+                  </conditional>
+                  <param label="Filter by these TaxIDs (Can be multiple, comma-separated)" name="taxids" type="text" value="" optional="true"/>
+                </when>
+              </conditional>
             </when>
             <when value="negative_taxidlist">
-                <param argument="-negative_taxidlist" type="data" format="txt" label="Restrict search of database to list of TaxId's"
-                       help="This option is only available for database searches."/>
+                <conditional name="taxon_filtering">
+                <param type="select" label="Filter results by TaxID" name="taxon_selection">
+                  <option value="file_filter">Use TaxIDs from text file</option>
+                  <option value="text_filter">Manually enter TaxIDs</option>
+                </param>
+                <when value="file_filter">
+                  <param name="filter_item" type="data" format="txt" label="TaxID List from History (New-line separated, .txt format)"/>
+                </when>
+                <when value="text_filter">
+                  <conditional name="master_taxon_list">
+                    <param type="select" label="TaxID master list (For deriving sub-IDs)" name="master_selection">
+                      <option value="installed" selected="true">Use installed nodes.dmp file to derive sub-IDs</option>
+                      <option value="uploaded">Use history item to derive sub-IDs (First two columns must match NCBI nodes.dmp format)</option>
+                      <option value="no_master">Do not derive sub-IDs (Can only use species and strain level IDs)</option>
+                    </param>
+                    <when value="installed">
+                      <param name="database" type="select" multiple="false" label="Select masterlist of TaxIDs (nodes.dmp file)">
+                        <options from_data_table="taxid_nodes" />
+                      </param>
+                    </when>
+                    <when value="uploaded">
+                      <param name="database" type="data" format="txt,dmp" multiple="false" label="Select masterlist of TaxIDs (nodes.dmp file)"/>
+                    </when>
+                    <when value="no_master">
+                    </when>
+                  </conditional>
+                  <param label="Filter by these TaxIDs (Can be multiple, comma-separated)" name="taxids" type="text" value="" optional="true"/>
+                </when>
+              </conditional>
             </when>
         </conditional>
     </xml>
@@ -600,6 +652,25 @@
 #end if
     ]]></token>
 
+    <token name="@TAXID_FILE_GEN@"><![CDATA[
+#if $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'taxidlist' or $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_taxidlist':
+  #if $adv_opts.adv_optional_id_files_opts.taxon_filtering.taxon_selection == 'text_filter':
+    #if $adv_opts.adv_optional_id_files_opts.taxon_filtering.master_taxon_list.master_selection == 'no_master':
+      $__tool_directory__/taxSubIDs.py
+      '${adv_opts.adv_optional_id_files_opts.taxon_filtering.taxids}' >> ./taxFile.txt;
+    #elif $adv_opts.adv_optional_id_files_opts.taxon_filtering.master_taxon_list.master_selection == 'uploaded':
+      $__tool_directory__/taxSubIDs.py
+      '${adv_opts.adv_optional_id_files_opts.taxon_filtering.master_taxon_list.database}' '${adv_opts.adv_optional_id_files_opts.taxon_filtering.taxids}' >> ./taxFile.txt;
+    #else
+      $__tool_directory__/taxSubIDs.py
+      '${adv_opts.adv_optional_id_files_opts.taxon_filtering.master_taxon_list.database.fields.path}' '${adv_opts.adv_optional_id_files_opts.taxon_filtering.taxids}' >> ./taxFile.txt;
+    #end if
+  #elif $adv_opts.adv_optional_id_files_opts.taxon_filtering.taxon_selection == 'file_filter':
+    ln -s '${adv_opts.adv_optional_id_files_opts.taxon_filtering.filter_item}' ./taxFile.txt
+  #end if
+#end if
+    ]]></token>
+
     <token name="@ADV_ID_LIST_FILTER@"><![CDATA[
 #if $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_gilist':
     -negative_gilist '${adv_opts.adv_optional_id_files_opts.negative_gilist}'
@@ -608,9 +679,9 @@
 #elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'seqidlist':
     -seqidlist '${adv_opts.adv_optional_id_files_opts.seqidlist}'
 #elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'taxidlist':
-    -taxidlist '${adv_opts.adv_optional_id_files_opts.taxidlist}'
+    -taxidlist taxFile.txt
 #elif $adv_opts.adv_optional_id_files_opts.adv_optional_id_files_opts_selector == 'negative_taxidlist':
-    -negative_taxidlist '${adv_opts.adv_optional_id_files_opts.negative_taxidlist}'
+    -negative_taxidlist taxFile.txt
 #end if
     ]]></token>
 
@@ -630,7 +701,7 @@
 #if $db_opts.db_origin.db_origin_selector=="db":
   -db "${db_opts.db_origin.database.fields.path.replace(',',' ')}"
 #else if $db_opts.db_origin.db_origin_selector=="histdb":
-  -db '${os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}'
+-db ${os.path.join($db_opts.db_origin.histdb.extra_files_path, "blastdb")}
 #end if
     ]]></token>
 
