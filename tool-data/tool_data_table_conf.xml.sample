@@ -11,4 +11,8 @@
         <columns>value, name, path</columns>
         <file path="tool-data/blastdb_d.loc" />
     </table>
+    <table name="taxid_nodes" comment_char="#" allow_duplicate_entries="False">
+        <columns>value, name, path</columns>
+        <file path="tool-data/taxid_nodes.loc" />
+    </table>
 </tables>

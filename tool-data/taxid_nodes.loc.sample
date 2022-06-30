@@ -1,0 +1,7 @@
+# A sample of the TaxID location file, functionally identical to the blastloc files
+# One probably would not need to store more than just the copy ofnodes.dmp from NCBI,
+# but this method does allow it if so desired. 
+#
+#<unique_id>	<database_caption>	<base_name_path>
+#
+ncbi_nodes	NCBI nodes.dmp 06.29.2022	/opt/blast/nodes.dmp
