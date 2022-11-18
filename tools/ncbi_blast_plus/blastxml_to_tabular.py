@@ -46,7 +46,7 @@ Column NCBI name     Description
     25 salltitles    All subject titles, separated by '&lt;&gt;'
 ====== ============= ===========================================
 
-Most of these fields are given explicitly in the XML file, others some like
+Most of these fields are given explicitly in the XML file, but some like
 the percentage identity and the number of gap openings must be calculated.
 
 Be aware that the sequence in the extended tabular output or XML direct from
