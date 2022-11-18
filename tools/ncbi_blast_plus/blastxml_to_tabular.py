@@ -137,7 +137,7 @@ parser.add_option(
     dest="hits",
     type=int,
     default=float("inf"),
-    help="number of query hits to display (default to displaying all hits)"
+    help="number of query hits to display (defaults to all query hits)"
 )
 (options, args) = parser.parse_args()
 
