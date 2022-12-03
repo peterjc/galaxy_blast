@@ -1,5 +1,5 @@
 <tool id="ncbi_tblastn_wrapper" name="NCBI BLAST+ tblastn" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description>Search translated nucleotide database with protein query sequence(s)</description>
+    <description>search translated nucleotide database with protein query sequence(s)</description>
     <macros>
         <token name="@BINARY@">tblastn</token>
         <import>ncbi_macros.xml</import>
