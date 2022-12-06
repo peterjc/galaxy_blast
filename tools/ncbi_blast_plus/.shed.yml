@@ -11,7 +11,7 @@ categories:
 - Sequence Analysis
 type: unrestricted
 include:
-- strip_components: 2
+- strip_components: 0
   source:
   - test-data/blastdb.loc
   - test-data/blastdb_d.loc

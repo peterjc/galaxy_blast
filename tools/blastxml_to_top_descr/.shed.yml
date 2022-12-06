@@ -25,7 +25,7 @@ categories:
 - Text Manipulation
 type: unrestricted
 include:
-- strip_components: 2
+- strip_components: 0
   source:
   - test-data/blastp_four_human_vs_rhodopsin.xml
   - test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
