@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 """Send Blast2GO Annotation Table to map2slim for GO Slim."""
-
 from __future__ import print_function
 
 import gzip

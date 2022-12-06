@@ -26,7 +26,6 @@ http://toolshed.g2.bx.psu.edu/view/peterjc/blast2go
 This script is under version control here:
 https://github.com/peterjc/galaxy_blast/tree/master/blast2go
 """
-
 from __future__ import print_function
 
 import os

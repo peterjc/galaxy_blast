@@ -10,7 +10,6 @@ https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 Please cite the author per instructions in
 https://github.com/peterjc/galaxy_blast/blob/master/tools/blast_rbh/README.rst
 """
-
 import sys
 
 tie_warning = 0
