@@ -31,6 +31,6 @@ include:
   - test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
   - test-data/blastp_four_human_vs_rhodopsin_top3.tabular
   - test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
-  - ../../tools/blastxml_to_top_descr/README.rst
-  - ../../tools/blastxml_to_top_descr/blastxml_to_top_descr.py
-  - ../../tools/blastxml_to_top_descr/blastxml_to_top_descr.xml
+  - README.rst
+  - blastxml_to_top_descr.py
+  - blastxml_to_top_descr.xml

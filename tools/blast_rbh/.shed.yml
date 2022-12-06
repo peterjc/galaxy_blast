@@ -26,7 +26,7 @@ include:
   - test-data/rhodopsin_nucs.fasta
   - test-data/rhodopsin_proteins.fasta
   - test-data/three_human_mRNA.fasta
-  - ../../tools/blast_rbh/README.rst
-  - ../../tools/blast_rbh/best_hits.py
-  - ../../tools/blast_rbh/blast_rbh.py
-  - ../../tools/blast_rbh/blast_rbh.xml
+  - README.rst
+  - best_hits.py
+  - blast_rbh.py
+  - blast_rbh.xml

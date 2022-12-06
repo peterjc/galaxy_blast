@@ -131,23 +131,23 @@ include:
   - ../../tool-data/blastdb_d.loc.sample
   - ../../tool-data/blastdb_p.loc.sample
   - ../../tool-data/tool_data_table_conf.xml.sample
-  - ../../tools/ncbi_blast_plus/get_species_taxids.xml
-  - ../../tools/ncbi_blast_plus/README.rst
-  - ../../tools/ncbi_blast_plus/blastxml_to_tabular.py
-  - ../../tools/ncbi_blast_plus/blastxml_to_tabular.xml
-  - ../../tools/ncbi_blast_plus/check_no_duplicates.py
-  - ../../tools/ncbi_blast_plus/ncbi_blastdbcmd_info.xml
-  - ../../tools/ncbi_blast_plus/ncbi_blastdbcmd_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_blastn_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_blastp_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_blastx_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_convert2blastmask_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_dustmasker_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_macros.xml
-  - ../../tools/ncbi_blast_plus/ncbi_makeblastdb.xml
-  - ../../tools/ncbi_blast_plus/ncbi_makeprofiledb.xml
-  - ../../tools/ncbi_blast_plus/ncbi_rpsblast_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_rpstblastn_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_segmasker_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_tblastn_wrapper.xml
-  - ../../tools/ncbi_blast_plus/ncbi_tblastx_wrapper.xml
+  - get_species_taxids.xml
+  - README.rst
+  - blastxml_to_tabular.py
+  - blastxml_to_tabular.xml
+  - check_no_duplicates.py
+  - ncbi_blastdbcmd_info.xml
+  - ncbi_blastdbcmd_wrapper.xml
+  - ncbi_blastn_wrapper.xml
+  - ncbi_blastp_wrapper.xml
+  - ncbi_blastx_wrapper.xml
+  - ncbi_convert2blastmask_wrapper.xml
+  - ncbi_dustmasker_wrapper.xml
+  - ncbi_macros.xml
+  - ncbi_makeblastdb.xml
+  - ncbi_makeprofiledb.xml
+  - ncbi_rpsblast_wrapper.xml
+  - ncbi_rpstblastn_wrapper.xml
+  - ncbi_segmasker_wrapper.xml
+  - ncbi_tblastn_wrapper.xml
+  - ncbi_tblastx_wrapper.xml

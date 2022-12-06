@@ -25,7 +25,7 @@ include:
   - test-data/blastp_sample.blast2go.tabular
   - test-data/blastp_sample.xml
   - ../../tool-data/blast2go.loc.sample
-  - ../../tools/blast2go/README.rst
-  - ../../tools/blast2go/blast2go.py
-  - ../../tools/blast2go/blast2go.xml
-  - ../../tools/blast2go/massage_xml_for_blast2go.py
+  - README.rst
+  - blast2go.py
+  - blast2go.xml
+  - massage_xml_for_blast2go.py

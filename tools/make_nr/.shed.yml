@@ -15,9 +15,9 @@ type: unrestricted
 include:
 - strip_components: 2
   source:
-  - ../../tools/make_nr/README.rst
-  - ../../tools/make_nr/make_nr.py
-  - ../../tools/make_nr/make_nr.xml
+  - README.rst
+  - make_nr.py
+  - make_nr.xml
   - test-data/duplicates.fasta
   - test-data/duplicates.fasta.gz
   - test-data/duplicates.nr.fasta
