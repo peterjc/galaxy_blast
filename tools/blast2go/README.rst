@@ -173,7 +173,7 @@ v0.0.11 - Fix parameter help text which was not being displayed.
         - Single quote command line arguments (internal change only).
         - Python 3 compatible syntax.
         - Record ``b2g4pipe_v2.5.zip`` SHA256 checksum, and download this via
-          the Galaxy pacakge cache.
+          the Galaxy package cache.
 ======= ======================================================================
 
 
