@@ -24,7 +24,7 @@ include:
   source:
   - test-data/blastp_sample.blast2go.tabular
   - test-data/blastp_sample.xml
-  - ../../tool-data/blast2go.loc.sample
+  - tool-data/blast2go.loc.sample
   - README.rst
   - blast2go.py
   - blast2go.xml

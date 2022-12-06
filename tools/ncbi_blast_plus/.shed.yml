@@ -127,10 +127,10 @@ include:
   - test-data/three_human_mRNA.fasta.nsi
   - test-data/three_human_mRNA.fasta.nsq
   - test-data/tool_data_table_conf.xml.test
-  - ../../tool-data/blastdb.loc.sample
-  - ../../tool-data/blastdb_d.loc.sample
-  - ../../tool-data/blastdb_p.loc.sample
-  - ../../tool-data/tool_data_table_conf.xml.sample
+  - tool-data/blastdb.loc.sample
+  - tool-data/blastdb_d.loc.sample
+  - tool-data/blastdb_p.loc.sample
+  - tool-data/tool_data_table_conf.xml.sample
   - get_species_taxids.xml
   - README.rst
   - blastxml_to_tabular.py
