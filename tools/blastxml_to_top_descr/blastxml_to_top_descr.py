@@ -6,13 +6,11 @@ BLAST filename, number of hits to collect the descriptions of.
 
 Assumes the hits are pre-sorted, so "best" 3 hits gives first 3 hits.
 """
-
 from __future__ import print_function
 
 import os
 import re
 import sys
-
 from optparse import OptionParser
 
 if "-v" in sys.argv or "--version" in sys.argv:

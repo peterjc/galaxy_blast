@@ -11,7 +11,6 @@ Takes seven command line options,
 7. Output filename
 
 """
-
 from __future__ import print_function
 
 import sys
