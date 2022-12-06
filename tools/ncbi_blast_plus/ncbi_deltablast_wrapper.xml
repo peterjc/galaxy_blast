@@ -14,7 +14,9 @@ deltablast
 @BLAST_DB_SUBJECT@
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@
-@THREADS@
+#if $db_opts.db_opts_selector!="subject":
+    @THREADS@
+#end if
 #if $adv_opts.adv_opts_selector=="advanced":
     @ADV_MATRIX@
     @ADV_FILTER_QUERY@
