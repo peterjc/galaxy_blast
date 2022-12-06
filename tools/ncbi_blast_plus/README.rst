@@ -136,6 +136,8 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
+2.10.1+galaxy3 - Silenced ``deltablast`` warning about using ``-num_threads``
+                 with ``--subject`` (i.e. FASTA file from your history).
 2.10.1+galaxy2 - Fixed ``dc-megablast`` option in ``ncbi_blastn_wrapper.xml`` 
                  wrapper from inserting ``-window_size`` twice when executing.
 2.10.1+galaxy1 - Add tool `NCBI get species taxids` that wraps NCBI's
