@@ -1,4 +1,3 @@
-tools/ncbi_blast_plus/ncbi_psiblast_wrapper.xml
-tools/ncbi_blast_plus/ncbi_deltablast_wrapper.xml
-tools/reciprocal_best_hits/reciprocal_best_hits.xml
-tools/blast2go/blast2go.xml
+tools/blast2go/
+datatypes/
+workflows/
