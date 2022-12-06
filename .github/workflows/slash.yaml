@@ -10,7 +10,7 @@ jobs:
         # workaround for checking availablity of secret https://github.com/actions/runner/issues/520
         env:
           PAT: ${{ secrets.PAT }}
-        if: github.repository_owner == 'peterjc' and env.PAT != ''
+        if: ${{ ( github.repository_owner == 'peterjc' ) && ( env.PAT != '' ) }}
         uses: peter-evans/slash-command-dispatch@v3
         with:
           token: ${{ secrets.PAT }}
