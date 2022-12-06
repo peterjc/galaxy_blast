@@ -152,7 +152,7 @@ blastp
             <param name="query" value="rhodopsin_proteins.fasta" ftype="fasta" />
             <param name="db_opts_selector" value="file" />
             <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="database value=" />
+            <param name="database" value="" />
             <param name="evalue_cutoff" value="1e-8"/>
             <param name="blast_type" value="blastp" />
             <param name="out_format" value="6"/>
