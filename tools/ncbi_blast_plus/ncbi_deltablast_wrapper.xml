@@ -14,7 +14,7 @@ deltablast
 @BLAST_DB_SUBJECT@
 -evalue $evalue_cutoff
 @BLAST_OUTPUT@
-#if $db_opts.db_opts_selector!="subject":
+#if $db_opts.db_opts_selector!="file":
     @THREADS@
 #end if
 #if $adv_opts.adv_opts_selector=="advanced":
