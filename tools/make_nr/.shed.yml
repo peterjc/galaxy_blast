@@ -18,10 +18,10 @@ include:
   - ../../tools/make_nr/README.rst
   - ../../tools/make_nr/make_nr.py
   - ../../tools/make_nr/make_nr.xml
-  - ../../test-data/duplicates.fasta
-  - ../../test-data/duplicates.fasta.gz
-  - ../../test-data/duplicates.nr.fasta
-  - ../../test-data/more_duplicates.fasta
-  - ../../test-data/deduplicate.nosortids.fasta
-  - ../../test-data/deduplicate.sortids.fasta
-  - ../../test-data/empty.fasta
+  - test-data/duplicates.fasta
+  - test-data/duplicates.fasta.gz
+  - test-data/duplicates.nr.fasta
+  - test-data/more_duplicates.fasta
+  - test-data/deduplicate.nosortids.fasta
+  - test-data/deduplicate.sortids.fasta
+  - test-data/empty.fasta

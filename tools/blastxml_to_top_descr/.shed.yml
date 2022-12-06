@@ -27,10 +27,10 @@ type: unrestricted
 include:
 - strip_components: 2
   source:
-  - ../../test-data/blastp_four_human_vs_rhodopsin.xml
-  - ../../test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
-  - ../../test-data/blastp_four_human_vs_rhodopsin_top3.tabular
-  - ../../test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
+  - test-data/blastp_four_human_vs_rhodopsin.xml
+  - test-data/blastp_four_human_vs_rhodopsin_converted_ext.tabular
+  - test-data/blastp_four_human_vs_rhodopsin_top3.tabular
+  - test-data/blastp_four_human_vs_rhodopsin_top3_positive.tabular
   - ../../tools/blastxml_to_top_descr/README.rst
   - ../../tools/blastxml_to_top_descr/blastxml_to_top_descr.py
   - ../../tools/blastxml_to_top_descr/blastxml_to_top_descr.xml

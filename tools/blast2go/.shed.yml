@@ -22,8 +22,8 @@ type: unrestricted
 include:
 - strip_components: 2
   source:
-  - ../../test-data/blastp_sample.blast2go.tabular
-  - ../../test-data/blastp_sample.xml
+  - test-data/blastp_sample.blast2go.tabular
+  - test-data/blastp_sample.xml
   - ../../tool-data/blast2go.loc.sample
   - ../../tools/blast2go/README.rst
   - ../../tools/blast2go/blast2go.py
