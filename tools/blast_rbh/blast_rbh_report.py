@@ -2,14 +2,12 @@
 """BLAST Reciprocal Best Hit (RBH) from two BLAST tabular files.
 
 Run "blast_rbh_report.py -h" to see the help text.  Also, look at
-blast_rbh.xml and README.rst files which are available on GitHub at:
+blast_rbh.xml (taking two FASTA input files) and README.rst which
+are available on GitHub at:
+
 https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
 
 This requires Python to be installed and on the $PATH.
-
-You can also run this tool via Galaxy using the "blast_rbh.xml"
-definition file. This is available as a package on the Galaxy
-Tool Shed: http://toolshed.g2.bx.psu.edu/view/peterjc/blast_rbh
 """
 # TODO - Output more columns, e.g. pident, qcovs, descriptions?
 # TODO - Use new -qcov_hsp_perc option in BLAST+ 2.2.30 to filter
