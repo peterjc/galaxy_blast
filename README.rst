@@ -1,9 +1,6 @@
-.. image:: https://img.shields.io/travis/peterjc/galaxy_blast/master.svg
-   :alt: Linux testing with TravisCI
-   :target: https://travis-ci.org/peterjc/galaxy_blast/branches
-.. image:: https://landscape.io/github/peterjc/galaxy_blast/master/landscape.svg?style=flat
-   :alt: Landscape Code Metrics
-   :target: https://landscape.io/github/peterjc/galaxy_blast
+.. image:: https://github.com/peterjc/galaxy_blast/actions/workflows/pr.yaml/badge.svg?branch=master
+   :alt: Galaxy Tool Linting and Tests
+   :target: https://github.com/peterjc/galaxy_blast/actions/workflows/pr.yaml?query=branch%3Amaster
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :alt: Code style: black
    :target: https://github.com/ambv/black
