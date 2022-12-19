@@ -60,6 +60,7 @@ deltablast
         </data>
     </outputs>
     <tests>
+        <!--
         <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
             <param name="db_opts_selector" value="file" />
@@ -115,6 +116,7 @@ deltablast
             <param name="adv_opts_selector" value="basic" />
             <output name="output1" file="deltablast_rhodopsin_vs_four_human.tabular" ftype="tabular" />
         </test>
+        -->
     </tests>
     <help>
 
