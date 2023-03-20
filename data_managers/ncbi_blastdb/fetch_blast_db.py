@@ -17,7 +17,7 @@ if sys.version_info[0] >= 3:
     basestring = str
 
 DEFAULT_ALGORITHM = hashlib.sha512
-CHUNK_SIZE = 2 ** 20  # 1mb
+CHUNK_SIZE = 2**20  # 1mb
 
 
 def get_dir_hash(directory, algorithm=None, followlinks=True, chunk_size=None):
