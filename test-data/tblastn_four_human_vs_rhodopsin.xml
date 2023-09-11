@@ -2,7 +2,7 @@
 <!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
 <BlastOutput>
   <BlastOutput_program>tblastn</BlastOutput_program>
-  <BlastOutput_version>TBLASTN 2.10.1+</BlastOutput_version>
+  <BlastOutput_version>TBLASTN 2.14.1+</BlastOutput_version>
   <BlastOutput_reference>Stephen F. Altschul, Thomas L. Madden, Alejandro A. Sch&amp;auml;ffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), &quot;Gapped BLAST and PSI-BLAST: a new generation of protein database search programs&quot;, Nucleic Acids Res. 25:3389-3402.</BlastOutput_reference>
   <BlastOutput_db></BlastOutput_db>
   <BlastOutput_query-ID>Query_1</BlastOutput_query-ID>
@@ -149,8 +149,8 @@
   <Hit_hsps>
     <Hsp>
       <Hsp_num>1</Hsp_num>
-      <Hsp_bit-score>658.198</Hsp_bit-score>
-      <Hsp_score>1517</Hsp_score>
+      <Hsp_bit-score>682.354</Hsp_bit-score>
+      <Hsp_score>1573</Hsp_score>
       <Hsp_evalue>0</Hsp_evalue>
       <Hsp_query-from>11</Hsp_query-from>
       <Hsp_query-to>336</Hsp_query-to>
