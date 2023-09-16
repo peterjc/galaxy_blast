@@ -1,5 +1,5 @@
-OBGalaxy tool to extract top BLAST hit descriptions from BLAST XML
-==================================================================
+Galaxy tool to extract top BLAST hit descriptions from BLAST XML
+================================================================
 
 This tool is copyright 2012-2015 by Peter Cock, The James Hutton Institute
 (formerly SCRI, Scottish Crop Research Institute), UK. All rights reserved.
