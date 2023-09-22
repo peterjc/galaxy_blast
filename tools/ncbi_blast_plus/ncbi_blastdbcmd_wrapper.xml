@@ -11,8 +11,6 @@
 blastdbcmd
 @DBCMD_OPTS@
 
-##TODO: What about -ctrl_a and -target_only as advanced options?
-
 #if $id_opts.id_type=="file":
 -entry_batch '$id_opts.entries'
 #else:
@@ -66,6 +64,7 @@ blastdbcmd
           <option value="original">FASTA with original identifiers</option>
           <option value="blastid">FASTA with BLAST assigned identifiers</option>
         </param>
+        <!-- TODO: What about -ctrl_a and -target_only as advanced options? -->
     </inputs>
     <outputs>
 

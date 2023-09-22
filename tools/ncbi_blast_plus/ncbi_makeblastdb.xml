@@ -52,7 +52,6 @@ $hash_index
 ## --------------------------------------------------------------------
 #if $tax.taxselect == 'id':
 -taxid $tax.taxid
-## TODO - Can we use a tabular file for the taxonomy mapping?
 ## #else if $tax.taxselect == 'map':
 ## -taxid_map $tax.taxmap
 #end if
@@ -84,6 +83,7 @@ $hash_index
                 <option value="id">Assign the same Taxonomy ID to all the sequences</option>
                 <!--
                 <option value="map">Supply text file mapping sequence IDs to taxnomy IDs</option>
+                TODO - Can we use a tabular file for the taxonomy mapping?
                 -->
             </param>
             <when value="">

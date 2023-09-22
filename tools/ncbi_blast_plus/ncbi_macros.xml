@@ -655,7 +655,7 @@
     -outfmt '6 std sallseqid score nident positive gaps ppos qframe sframe qseq sseq qlen slen salltitles'
 #elif str($output.out_format)=="cols"
 ##Pick your own columns. Galaxy gives us it comma separated, BLAST+ wants space separated:
-##TODO - Can we catch the user picking no columns and raise an error here?
+##Can we catch the user picking no columns and raise an error here?
 #set cols = (str($output.std_cols)+","+str($output.ext_cols)+","+str($output.ids_cols)+","+str($output.misc_cols)+","+str($output.tax_cols)).replace("None", "").replace(",,", ",").replace(",", " ").strip()
     -outfmt '6 $cols'
 #else:
