@@ -79,7 +79,7 @@ jobs:
     - name: Install wheel
       run: pip install wheel
     - name: Install flake8
-      run: pip install -r .flake8_requirements
+      run: pip install flake8 flake8-import-order flake8-blind-except flake8-docstrings flake8-rst-docstrings
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
