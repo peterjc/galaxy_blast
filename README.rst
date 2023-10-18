@@ -179,16 +179,16 @@ you can run these tests via Galaxy's ``run_tests.sh`` script - and/or do
 this automatically if installing the tools via the Tool Shed. See the
 README file for each tool for more details.
 
-In addition we are running the same functional tests via TravisCI whenever
-this GitHub repository is updated:
+In addition we are running the same functional tests via GitHub Actions
+whenever this GitHub repository is updated:
 
-.. image:: https://travis-ci.org/peterjc/galaxy_blast.png?branch=master
-   :alt: Current status of TravisCI build for master branch
-   :target: https://travis-ci.org/peterjc/galaxy_blast/builds
+.. image:: https://github.com/peterjc/galaxy_blast/actions/workflows/pr.yaml/badge.svg?branch=master
+   :alt: Galaxy Tool Linting and Tests
+   :target: https://github.com/peterjc/galaxy_blast/actions/workflows/pr.yaml?query=branch%3Amaster
 
-This TravisCI integration simulates an install of these Galaxy Tools, and
-their dependencies via Conda. See the special ``.travis.yml`` file for more
-technical details.
+This continuous integration testing simulates an install of these Galaxy Tools,
+and their dependencies via Conda. See the files under ``.github/workflows/``
+for more technical details.
 
 
 Bug Reports
