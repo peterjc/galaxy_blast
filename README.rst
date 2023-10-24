@@ -195,7 +195,7 @@ Bug Reports
 ===========
 
 You can file an issue here https://github.com/peterjc/galaxy_blast/issues or ask
-us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
+us on the Galaxy Gitter discussion.
 
 
 Citation
