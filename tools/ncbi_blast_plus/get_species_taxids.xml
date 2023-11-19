@@ -7,17 +7,17 @@
     <command detect_errors="aggressive"><![CDATA[
 #if $type_cond.type_sel == 'names'
     #for name in $type_cond.names.split(',')
-        taxid=\$(get_species_taxids.sh -n '$name' | grep Taxid | sed 's/Taxid://') &&
-        if [ -z \$taxid ]; then
+        taxid=\$(get_species_taxids.sh -n '$name' | grep Taxid | sed 's/Taxid\s*:\s*//') &&
+        if [ -z "\$taxid" ]; then
             >&2 echo "could not find taxid for $name" && exit 1;
         else
             echo " $name -> \$taxid";
         fi &&
-        get_species_taxids.sh -t \$taxid >> species_ids.txt &&
+        get_species_taxids.sh -t "\$taxid" >> species_ids.txt &&
     #end for
 #else
     #for taxid in $type_cond.ids.split(',')
-       get_species_taxids.sh -t $taxid >> species_ids.txt &&
+       get_species_taxids.sh -t "$taxid" >> species_ids.txt &&
     #end for
 #end if
 sort -n -u  species_ids.txt > '$output'
