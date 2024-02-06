@@ -136,11 +136,10 @@ datatype definitions (obsolete), and ``data_managers`` contains Galaxy Data
 Managers for tasks like setting up local copies of NCBI BLAST databases
 (currently unfinished).
 
-All of these child folders contain additional README files, which cover
-things like how to install each tool manually or via the Galaxy Tool Shed.
-
-Additionally there is a shared ``test-data`` folder used for functional test
-sample data, and a shared ``tool-data`` folder used for configuration files.
+All of these child folders contain additional README files, which cover things
+like how to install each tool manually or via the Galaxy Tool Shed, subfolder
+``test-data`` for functional test sample data, and sometimes a subfolder
+``tool-data`` for configuration files.
 
 
 Installation
