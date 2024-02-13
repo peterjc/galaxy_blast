@@ -144,8 +144,8 @@ $hash_index
         <!-- If we only accepted one FASTA file, we could use its human name here... -->
       <data name="outfile" format="data" label="${input_selection.dbtype} BLAST database from ${on_string}">
         <change_format>
-          <when input="dbtype" value="nucl" format="blastdbn" />
-          <when input="dbtype" value="prot" format="blastdbp" />
+          <when input="input_selection.dbtype" value="nucl" format="blastdbn" />
+          <when input="input_selection.dbtype" value="prot" format="blastdbp" />
         </change_format>
       </data>
     </outputs>
@@ -157,8 +157,10 @@ $hash_index
              With and without the taxid the only real difference is in the *.phr file.
         -->
       <test>
-        <param name="dbtype" value="prot" />
-        <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+        <conditional name="input_selection">
+          <param name="dbtype" value="prot" />
+          <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+        </conditional>  
         <param name="title" value="Just 4 human proteins" />
         <param name="parse_seqids" value="" />
         <param name="hash_index" value="true" />
@@ -174,8 +176,10 @@ $hash_index
         </output>
       </test>
       <test>
-        <param name="dbtype" value="prot" />
-        <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+        <conditional name="input_selection">
+          <param name="dbtype" value="prot" />
+          <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+        </conditional>  
         <param name="title" value="Just 4 human proteins" />
         <param name="parse_seqids" value="" />
         <param name="hash_index" value="true" />
@@ -193,8 +197,10 @@ $hash_index
         </output>
       </test>
       <test>
-        <param name="dbtype" value="prot" />
-        <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+        <conditional name="input_selection">
+          <param name="dbtype" value="prot" />
+          <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+        </conditional>  
         <param name="title" value="Just 4 human proteins" />
         <param name="parse_seqids" value="" />
         <param name="hash_index" value="true" />
@@ -211,8 +217,13 @@ $hash_index
         </output>
       </test>
       <test>
-        <param name="dbtype" value="nucl" />
-        <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
+        <conditional name="input_selection">
+          <param name="dbtype" value="nucl" />
+          <conditional name="nucl_cond">
+            <param name="source" value="history"/>
+            <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
+          </conditional>
+        </conditional>
         <param name="title" value="Just 3 human mRNA sequences" />
         <param name="parse_seqids" value="" />
         <param name="hash_index" value="true" />
