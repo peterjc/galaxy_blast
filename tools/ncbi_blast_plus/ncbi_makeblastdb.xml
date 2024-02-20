@@ -51,7 +51,7 @@ $hash_index
 ##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
 -title 'BLAST Database'
 #end if
--dbtype
+-dbtypne
 #if $input.type == "protein":
     prot
 #else:
@@ -231,8 +231,7 @@ $hash_index
                 <repeat name="selection">
                     <conditional name="nuc_choice">
                         <param name="source" value="history"/>
-                        <!--param name="source" value="cached"-->
-                            <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
+                        <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
                     </conditional> 
                 </repeat>
             </conditional> 
@@ -252,13 +251,13 @@ $hash_index
                 <extra_files type="file" value="three_human_mRNA.fasta.nsi" name="blastdb.nsi" />
             </output>
         </test>
-        <!--test>
+        <test>
             <conditional name="input">
                 <param name="type" value="nucleotide"/>
                 <repeat name="selection">
                     <conditional name="nuc_choice">
-                        <param name="source" value="cached">
-                            <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
+                        <param name="source" value="cached"/>
+                        <param name="input_file" value="three_human_mRNA" />
                     </conditional> 
                 </repeat>
             </conditional> 
@@ -277,7 +276,7 @@ $hash_index
                 <extra_files type="file" value="three_human_mRNA.fasta.nsd" name="blastdb.nsd" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nsi" name="blastdb.nsi" />
             </output>
-        </test-->
+        </test>
     </tests>
     <help>
 **What it does**

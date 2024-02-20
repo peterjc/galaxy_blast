@@ -12,4 +12,8 @@
         <columns>value, name, path</columns>
         <file path="${__HERE__}/blastdb_d.loc" />
     </table>
+    <table name="all_fasta" comment_char="#">
+        <columns>value, dbkey, name, path</columns>
+        <file path="${__HERE__}/all_fasta.loc" />
+    </table>
 </tables>
