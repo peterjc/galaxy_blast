@@ -51,7 +51,7 @@ $hash_index
 ##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
 -title 'BLAST Database'
 #end if
--dbtypne
+-dbtype
 #if $input.type == "protein":
     prot
 #else:
