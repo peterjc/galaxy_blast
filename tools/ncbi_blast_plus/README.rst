@@ -136,8 +136,8 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
-2.14.1+galaxy2 - Add usage of genome FASTA files on the gaalxy server with 
-                 ``makeblastdb`` (contribution from Wolfgang Mayer and 
+2.14.1+galaxy2 - Add usage of genome FASTA files on the Galaxy server with
+                 ``makeblastdb`` (contribution from Wolfgang Maier and
                  Elischa Berger)
 2.14.1+galaxy1 - Fix for get_species_taxids
 2.14.1+galaxy0 - Updated for NCBI BLAST+ 2.14.1 release.
