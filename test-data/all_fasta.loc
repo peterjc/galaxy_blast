@@ -1,0 +1,3 @@
+#<value>        <dbkey> <display_name>  <file_path>
+#
+three_human_mRNA	thmRNA	Three-Human-mRANs	${__HERE__}/three_human_mRNA.fasta

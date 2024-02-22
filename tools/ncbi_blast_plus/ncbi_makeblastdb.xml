@@ -8,21 +8,36 @@
         <requirement type="package" version="3.9">python</requirement>
     </expand>
     <command detect_errors="aggressive" strict="true"><![CDATA[
+#set $inputs = []
+#set $input_compression = []
+#for r in $input.selection:
+    #if $input.type == "protein":
+        #silent $inputs.append($r.input_file)
+        #silent $input_compression.append($r.input_file.is_of_type('fasta.gz'))
+    #elif $r.nuc_choice.source == "history":
+        #silent $inputs.append($r.nuc_choice.input_file)
+        #silent $input_compression.append($r.nuc_choice.input_file.is_of_type('fasta.gz'))
+    #else:
+        #silent $inputs.append($r.nuc_choice.input_file.fields.path)
+        #silent $input_compression.append(False)
+    #end if
+#end for
+
 python $__tool_directory__/check_no_duplicates.py
 ##First check for duplicates (since BLAST+ 2.2.28 fails to do so)
 ##and abort (via the ampersand ampersand trick) if any are found.
-#for i in $input_file#'${i}' #end for#
+#for i in $inputs#'$i' #end for#
 &&
 ##makeblastdb does not like input redirects of the sort
 ##makeblastdb -in <(gunzip -c gzipped_fasta_file)
 ##therefore we're cramming everything
 ##into a single cat command below
 cat
-#for i in $input_file:
-    #if $i.is_of_type('fasta.gz') and $i.ext != "fasta":
-        <(gunzip -c ${i})
+#for i, is_gzipped in zip($inputs, $input_compression):
+    #if $is_gzipped:
+        <(gunzip -c '$i')
     #else:
-        ${i}
+        '$i'
     #end if
 #end for
 | makeblastdb -out '${os.path.join($outfile.files_path, "blastdb")}'
@@ -36,7 +51,12 @@ $hash_index
 ##Would default to being based on the cryptic Galaxy filenames, which is unhelpful
 -title 'BLAST Database'
 #end if
--dbtype $dbtype
+-dbtype
+#if $input.type == "protein":
+    prot
+#else:
+    nucl
+#end if
 ## --------------------------------------------------------------------
 ## Masking
 ## --------------------------------------------------------------------
@@ -60,15 +80,39 @@ $hash_index
 > '$outfile'
     ]]></command>
     <inputs>
-        <param argument="-dbtype" type="select" display="radio" label="Molecule type of input">
-            <option value="prot">protein</option>
-            <option value="nucl">nucleotide</option>
-        </param>
-        <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)?
-             NOTE Double check the new database would be self contained first
-        -->
-        <!-- Note this is a mandatory parameter - default should be most recent FASTA file -->
-        <param name="input_file" argument="-in" type="data" multiple="true" optional="false" format="fasta,fasta.gz" label="Input FASTA files(s)" help="One or more FASTA files" />
+        <conditional name="input">
+            <param argument="-dbtype" name="type" type="select" label="Molecule type of input">
+                <option value="protein">protein</option>
+                <option value="nucleotide">nucleotide</option>
+            </param>
+            <!-- TODO Allow merging of existing BLAST databases (conditional on the database type)?
+                 NOTE Double check the new database would be self contained first
+            -->
+            <when value="protein">
+                <repeat name="selection" title="Select input" min="1" default="1">
+                    <!-- Note this is a mandatory parameter - default should be most recent FASTA file -->
+                    <param name="input_file" argument="-in" type="data" format="fasta,fasta.gz" label="FASTA input" help="FASTA file with one or more sequences to add to the database" />
+                </repeat>
+            </when>
+            <when value="nucleotide">
+                <repeat name="selection" title="Select input" min="1" default="1">
+                    <conditional name="nuc_choice">
+                        <param name="source" type="select" label="Input is a">
+                            <option value="history">Dataset in history</option>
+                            <option value="cached">Genome on server</option>
+                        </param>
+                        <when value="history">
+                            <param name="input_file" argument="-in" type="data" format="fasta,fasta.gz" label="FASTA input" help="FASTA file with one or more sequences to add to the database" />
+                        </when>
+                        <when value="cached">
+                            <param name="input_file" type="select" label="Installed genome">
+                                <options from_data_table="all_fasta"/>
+                            </param>
+                        </when>
+                    </conditional>
+                </repeat>
+            </when>
+        </conditional>        
         <param argument="-title" type="text" value="" label="Title for BLAST database" help="This is the database name shown in BLAST search output" />
         <param argument="-parse_seqids" type="boolean" truevalue="-parse_seqids" falsevalue="" checked="false" label="Parse the sequence identifiers" help="This is only advised if your FASTA file follows the NCBI naming conventions using pipe '|' symbols" />
         <param argument="-hash_index" type="boolean" truevalue="-hash_index" falsevalue="" checked="true" label="Enable the creation of sequence hash values" help="These hash values can then be used to quickly determine if a given sequence data exists in this BLAST database." />
@@ -95,15 +139,16 @@ $hash_index
             <when value="map">
                 <param name="taxmap" argument="-taxid_map" type="data" format="txt" label="Seq ID : Tax ID mapping file" help="Format: SequenceId TaxonomyId" />
             </when>
+
             -->
         </conditional>
     </inputs>
     <outputs>
         <!-- If we only accepted one FASTA file, we could use its human name here... -->
-        <data name="outfile" format="data" label="${dbtype.value_label} BLAST database from ${on_string}">
+        <data name="outfile" format="data" label="${input.type} BLAST database from ${on_string}">
             <change_format>
-                <when input="dbtype" value="nucl" format="blastdbn" />
-                <when input="dbtype" value="prot" format="blastdbp" />
+                <when input="input.type" value="nucleotide" format="blastdbn" />
+                <when input="input.type" value="protein" format="blastdbp" />
             </change_format>
         </data>
     </outputs>
@@ -115,8 +160,12 @@ $hash_index
              With and without the taxid the only real difference is in the *.phr file.
         -->
         <test>
-            <param name="dbtype" value="prot" />
-            <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="input">
+                <param name="type" value="protein"/>
+                <repeat name="selection">
+                    <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+                </repeat>
+            </conditional>    
             <param name="title" value="Just 4 human proteins" />
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
@@ -132,8 +181,12 @@ $hash_index
             </output>
         </test>
         <test>
-            <param name="dbtype" value="prot" />
-            <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="input">
+                <param name="type" value="protein"/>
+                <repeat name="selection">
+                    <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+                </repeat>
+            </conditional>    
             <param name="title" value="Just 4 human proteins" />
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
@@ -151,8 +204,12 @@ $hash_index
             </output>
         </test>
         <test>
-            <param name="dbtype" value="prot" />
-            <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="input">
+                <param name="type" value="protein"/>
+                <repeat name="selection">
+                    <param name="input_file" value="four_human_proteins.fasta" ftype="fasta" />
+                </repeat>
+            </conditional>                
             <param name="title" value="Just 4 human proteins" />
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
@@ -169,8 +226,41 @@ $hash_index
             </output>
         </test>
         <test>
-            <param name="dbtype" value="nucl" />
-            <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
+            <conditional name="input">
+                <param name="type" value="nucleotide"/>
+                <repeat name="selection">
+                    <conditional name="nuc_choice">
+                        <param name="source" value="history"/>
+                        <param name="input_file" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
+                    </conditional> 
+                </repeat>
+            </conditional> 
+            <param name="title" value="Just 3 human mRNA sequences" />
+            <param name="parse_seqids" value="" />
+            <param name="hash_index" value="true" />
+            <param name="taxselect" value="id" />
+            <param name="taxid" value="9606" />
+            <output name="outfile" compare="contains" file="three_human_mRNA.fasta.log.txt" ftype="blastdbn">
+                <extra_files type="file" value="three_human_mRNA.fasta.nhr" name="blastdb.nhr" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" compare="sim_size" delta="8" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nsq" name="blastdb.nsq" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nog" name="blastdb.nog" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nhd" name="blastdb.nhd" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nhi" name="blastdb.nhi" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nsd" name="blastdb.nsd" />
+                <extra_files type="file" value="three_human_mRNA.fasta.nsi" name="blastdb.nsi" />
+            </output>
+        </test>
+        <test>
+            <conditional name="input">
+                <param name="type" value="nucleotide"/>
+                <repeat name="selection">
+                    <conditional name="nuc_choice">
+                        <param name="source" value="cached"/>
+                        <param name="input_file" value="three_human_mRNA" />
+                    </conditional> 
+                </repeat>
+            </conditional> 
             <param name="title" value="Just 3 human mRNA sequences" />
             <param name="parse_seqids" value="" />
             <param name="hash_index" value="true" />
