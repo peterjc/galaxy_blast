@@ -136,6 +136,9 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
+2.14.1+galaxy2 - Add usage of genome FASTA files on the gaalxy server with 
+                 ``makeblastdb`` (contribution from Wolfgang Mayer and 
+                 Elischa Berger)
 2.14.1+galaxy0 - Updated for NCBI BLAST+ 2.14.1 release.
 2.10.1+galaxy3 - Silenced ``deltablast`` warning about using ``-num_threads``
                  with ``--subject`` (i.e. FASTA file from your history).
