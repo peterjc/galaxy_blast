@@ -130,6 +130,7 @@ include:
   - ../../tool-data/blastdb.loc.sample
   - ../../tool-data/blastdb_d.loc.sample
   - ../../tool-data/blastdb_p.loc.sample
+  - ../../tool-data/all_fasta.loc.sample
   - ../../tool-data/tool_data_table_conf.xml.sample
   - ../../tools/ncbi_blast_plus/get_species_taxids.xml
   - ../../tools/ncbi_blast_plus/README.rst
