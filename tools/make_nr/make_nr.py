@@ -18,7 +18,7 @@ from optparse import OptionParser
 
 
 if "-v" in sys.argv or "--version" in sys.argv:
-    print("v0.0.2")
+    print("v0.0.3")
     sys.exit(0)
 
 
