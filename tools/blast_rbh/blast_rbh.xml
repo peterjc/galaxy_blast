@@ -4,6 +4,9 @@
         <requirement type="package" version="1.77">biopython</requirement>
         <requirement type="package" version="2.9.0">blast</requirement>
     </requirements>
+    <xrefs>
+        <xref type="bio.tools">blast_rbh</xref>
+    </xrefs>
     <version_command>
 python $__tool_directory__/blast_rbh.py --version
     </version_command>
