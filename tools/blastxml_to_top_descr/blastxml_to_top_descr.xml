@@ -3,6 +3,9 @@
     <requirements>
         <requirement type="package" version="3.9">python</requirement>
     </requirements>
+    <xrefs>
+        <xref type="bio.tools">blastxml_to_top_descr</xref>
+    </xrefs>
     <version_command>
 python $__tool_directory__/blastxml_to_top_descr.py --version
     </version_command>
