@@ -1,5 +1,8 @@
 <tool id="make_nr" name="Make FASTA non-redundant" version="0.0.3">
     <description>by combining duplicated sequences</description>
+    <xrefs>
+        <xref type="bio.tools">make_nr</xref>
+    </xrefs>
     <requirements>
         <requirement type="package" version="1.73">biopython</requirement>
     </requirements>
