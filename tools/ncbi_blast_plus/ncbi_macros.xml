@@ -7,6 +7,10 @@
         <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
     </xml>
 
+    <xrefs>
+        <xref type="bio.tools">ncbi_blast_plus</xref>
+    </xrefs>
+
     <xml name="preamble">
         <requirements>
             <requirement type="package" version="@TOOL_VERSION@">blast</requirement>
