@@ -1,7 +1,7 @@
-<tool id="data_manager_blast_db" name="Blast DB" version="0.0.3" tool_type="manage_data">
+<tool id="data_manager_blast_db" name="Blast DB" version="0.0.4" tool_type="manage_data">
     <description>Downloader</description>
     <requirements>
-        <requirement type="package" version="2.2.29">blast+</requirement>
+        <requirement type="package" version="2.2.29">blast</requirement>
         <requirement type="package" version="3.9">python</requirement>
     </requirements>
     <stdio>
