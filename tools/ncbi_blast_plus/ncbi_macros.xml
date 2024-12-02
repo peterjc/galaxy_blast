@@ -8,7 +8,7 @@
     </xml>
 
     <xrefs>
-        <xref type="bio.tools">ncbi_blast_plus</xref>
+        <xref type="bio.tools">blast</xref>
     </xrefs>
 
     <xml name="preamble">
