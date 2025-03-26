@@ -2,10 +2,6 @@
     <token name="@TOOL_VERSION@">2.16.0</token>
     <token name="@VERSION_SUFFIX@">0</token>
     <token name="@PROFILE@">22.01</token>
-    <xml name="parallelism">
-        <!-- If job splitting is enabled, break up the query file into parts -->
-        <parallelism method="multi" split_inputs="query" split_mode="to_size" split_size="1000" merge_outputs="output1" />
-    </xml>
 
     <xrefs>
         <xref type="bio.tools">blast</xref>
@@ -777,19 +773,6 @@ $adv_opts.parse_deflines
 #end if
 ]]></token>
 
-    <token name="@REFERENCES@"><![CDATA[
-Peter J. A. Cock, John M. Chilton, Björn Grüning, James E. Johnson, Nicola Soranzo (2015).
-NCBI BLAST+ integrated into Galaxy. *GigaScience* 4:39
-https://doi.org/10.1186/s13742-015-0080-7
-
-Christiam Camacho et al. (2009).
-BLAST+: architecture and applications.
-*BMC Bioinformatics* 15;10:421.
-https://doi.org/10.1186/1471-2105-10-421
-
-This wrapper is available to install into other Galaxy Instances via the Galaxy
-Tool Shed at http://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
-    ]]></token>
     <xml name="blast_citations">
         <citations>
             <citation type="doi">10.1093/nar/25.17.3389</citation>

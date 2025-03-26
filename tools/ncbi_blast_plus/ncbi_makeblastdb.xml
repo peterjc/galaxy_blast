@@ -302,12 +302,6 @@ Applying masks to an existing BLAST database will not change the original databa
 For this reason, it's best to apply all masks at once to minimize the number of unnecessary intermediate databases.
 -->
 
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

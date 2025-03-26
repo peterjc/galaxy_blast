@@ -152,14 +152,6 @@ getting a list of BLAST assigned identifiers isn't straightforward.
 
 @CLI_OPTIONS@
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

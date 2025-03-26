@@ -46,14 +46,6 @@ Calls the NCBI BLAST+ blastdbcmd command line tool with the -info
 switch to give summary information about a BLAST database, such as
 the size (number of sequences and total length) and date.
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

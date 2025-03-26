@@ -96,12 +96,6 @@ More information about segmasker can be found in the `BLAST Command Line Applica
 .. _BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
 .. _SEG: https://www.ncbi.nlm.nih.gov/pubmed/8743706
 
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

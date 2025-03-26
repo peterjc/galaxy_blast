@@ -4,7 +4,6 @@
         <token name="@BINARY@">blastn</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="parallelism" />
     <expand macro="preamble" />
     <command detect_errors="aggressive">
 <![CDATA[
@@ -247,14 +246,6 @@ Algorithms include blastn, megablast, and discontiguous megablast.
 
 @CLI_OPTIONS@
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

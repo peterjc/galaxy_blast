@@ -4,7 +4,6 @@
         <token name="@BINARY@">tblastx</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="parallelism" />
     <expand macro="preamble" />
     <command detect_errors="aggressive">
 ## The command is a Cheetah template which allows some Python based syntax.
@@ -95,14 +94,6 @@ using the NCBI BLAST+ tblastx command line tool.
 
 @CLI_OPTIONS@
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

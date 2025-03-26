@@ -94,14 +94,6 @@ sort -n -u  species_ids.txt > '$output'
 
 Returns a list of species taxids for a taxon. It relies on the get_species_taxids.sh script of the BLAST+ package https://www.ncbi.nlm.nih.gov/books/NBK546209/
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations"/>
 </tool>
