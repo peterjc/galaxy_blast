@@ -6,7 +6,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 dustmasker
@@ -14,12 +14,18 @@ dustmasker
   -in '${db_opts.database.fields.path}' -infmt blastdb
 #elif $db_opts.db_opts_selector == "histdb":
   -in '${os.path.join($db_opts.histdb.files_path, "blastdb")}' -infmt blastdb
-#else:
-  -in '$subject' -infmt fasta
+#else
+  -in
+    #if $subject.ext == "fasta"
+        '$subject'
+    #else
+        <(gunzip -c '$subject')
+    #end if
+  -infmt fasta
 #end if
 -out '$outfile'
 -window $window -level $level -linker $linker -outfmt $outformat
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_conditional_nucleotide_db" />
         <param argument="-window" type="integer" value="64" label="DUST window length" />
@@ -62,7 +68,7 @@ dustmasker
         <test>
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="file" />
-                <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+                <param name="subject" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
             </conditional>
             <param name="window" value="64" />
             <param name="level" value="20" />
