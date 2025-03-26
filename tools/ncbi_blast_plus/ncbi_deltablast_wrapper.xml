@@ -4,9 +4,8 @@
         <token name="@BINARY@">deltablast</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="parallelism" />
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 deltablast
@@ -27,10 +26,10 @@ deltablast
     @ADV_QCOV_HSP_PERC@
 ## End of advanced options:
 #end if
-##TODO: Either must install cdd_delta and configure environment variables,
+##Either must install cdd_delta and configure environment variables,
 ##or specifcy its location via -rpsdb, in which case Do we need a specific
 ##cdd_delta.loc file for this, or is blastdb_d.loc OK?
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="prot_query" />
 
@@ -60,63 +59,88 @@ deltablast
         </data>
     </outputs>
     <tests>
-        <!--
-        <test>
+        <!-- <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-8" />
-            <param name="out_format" value="5" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM62" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="true" />
+            <conditional name="output">
+                <param name="out_format" value="5" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM62" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <param name="parse_deflines" value="true" />
+            </conditional>
             <output name="output1" file="deltablast_four_human_vs_rhodopsin.xml" ftype="blastxml" />
         </test>
         <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-8" />
-            <param name="out_format" value="6" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM62" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="true" />
+            <conditional name="output">
+                <param name="out_format" value="6" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM62" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <param name="parse_deflines" value="true" />
+            </conditional>
             <output name="output1" file="deltablast_four_human_vs_rhodopsin.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-8" />
-            <param name="out_format" value="ext" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM62" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="true" />
+            <conditional name="output">
+                <param name="out_format" value="ext" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM62" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <param name="parse_deflines" value="true" />
+            </conditional>
             <output name="output1" file="deltablast_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="query" value="rhodopsin_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-8" />
-            <param name="out_format" value="6" />
-            <param name="adv_opts_selector" value="basic" />
+            <conditional name="output">
+                <param name="out_format" value="6" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="basic" />
+            </conditional>
             <output name="output1" file="deltablast_rhodopsin_vs_four_human.tabular" ftype="tabular" />
-        </test>
-        -->
+        </test> -->
     </tests>
     <help>
 
@@ -138,14 +162,6 @@ sequence database.
 
 @OUTPUT_FORMAT@
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

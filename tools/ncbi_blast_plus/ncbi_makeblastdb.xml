@@ -167,7 +167,7 @@ $hash_index
                 </repeat>
             </conditional>    
             <param name="title" value="Just 4 human proteins" />
-            <param name="parse_seqids" value="" />
+            <param name="parse_seqids" value="false" />
             <param name="hash_index" value="true" />
             <output name="outfile" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins.fasta.phr" name="blastdb.phr" />
@@ -188,10 +188,12 @@ $hash_index
                 </repeat>
             </conditional>    
             <param name="title" value="Just 4 human proteins" />
-            <param name="parse_seqids" value="" />
+            <param name="parse_seqids" value="false" />
             <param name="hash_index" value="true" />
-            <param name="taxselect" value="id" />
-            <param name="taxid" value="9606" />
+            <conditional name="tax">
+                <param name="taxselect" value="id" />
+                <param name="taxid" value="9606" />
+            </conditional>
             <output name="outfile" compare="contains" file="four_human_proteins_taxid.fasta.log.txt" ftype="blastdbp">
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.phr" name="blastdb.phr" />
                 <extra_files type="file" value="four_human_proteins_taxid.fasta.pin" name="blastdb.pin" compare="sim_size" delta="0" />
@@ -211,7 +213,7 @@ $hash_index
                 </repeat>
             </conditional>                
             <param name="title" value="Just 4 human proteins" />
-            <param name="parse_seqids" value="" />
+            <param name="parse_seqids" value="false" />
             <param name="hash_index" value="true" />
             <param name="mask_data_file" value="segmasker_four_human.maskinfo-asn1" ftype="maskinfo-asn1" />
             <output name="outfile" compare="contains" file="four_human_proteins.fasta.log.txt" ftype="blastdbp">
@@ -236,10 +238,12 @@ $hash_index
                 </repeat>
             </conditional> 
             <param name="title" value="Just 3 human mRNA sequences" />
-            <param name="parse_seqids" value="" />
+            <param name="parse_seqids" value="false" />
             <param name="hash_index" value="true" />
-            <param name="taxselect" value="id" />
-            <param name="taxid" value="9606" />
+            <conditional name="tax">
+                <param name="taxselect" value="id" />
+                <param name="taxid" value="9606" />
+            </conditional>
             <output name="outfile" compare="contains" file="three_human_mRNA.fasta.log.txt" ftype="blastdbn">
                 <extra_files type="file" value="three_human_mRNA.fasta.nhr" name="blastdb.nhr" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" compare="sim_size" delta="8" />
@@ -262,10 +266,12 @@ $hash_index
                 </repeat>
             </conditional> 
             <param name="title" value="Just 3 human mRNA sequences" />
-            <param name="parse_seqids" value="" />
+            <param name="parse_seqids" value="false" />
             <param name="hash_index" value="true" />
-            <param name="taxselect" value="id" />
-            <param name="taxid" value="9606" />
+            <conditional name="tax">
+                <param name="taxselect" value="id" />
+                <param name="taxid" value="9606" />
+            </conditional>
             <output name="outfile" compare="contains" file="three_human_mRNA.fasta.log.txt" ftype="blastdbn">
                 <extra_files type="file" value="three_human_mRNA.fasta.nhr" name="blastdb.nhr" />
                 <extra_files type="file" value="three_human_mRNA.fasta.nin" name="blastdb.nin" compare="sim_size" delta="8" />
@@ -296,12 +302,6 @@ Applying masks to an existing BLAST database will not change the original databa
 For this reason, it's best to apply all masks at once to minimize the number of unnecessary intermediate databases.
 -->
 
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

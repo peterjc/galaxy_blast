@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 convert2blastmask
@@ -15,7 +15,7 @@ convert2blastmask
 $parse_seqids
 -out '$outfile'
 -outfmt $outformat
-    </command>
+    ]]></command>
     <inputs>
         <param name="infile" argument="-in" type="data" format="fasta" label="Masked FASTA file"/>
         <param argument="-masking_algorithm" type="select" label="Used masking algorithm">
@@ -76,12 +76,6 @@ More information about segmasker can be found in the `BLAST Command Line Applica
 
 .. _BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
 
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

@@ -3,7 +3,8 @@
     <macros>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="preamble"/>
+    <expand macro="requirements"/>
+    <version_command>echo "@TOOL_VERSION@"</version_command>
     <command detect_errors="aggressive"><![CDATA[
 #if $type_cond.type_sel == 'names'
     #for name in $type_cond.names.split(',')
@@ -93,14 +94,6 @@ sort -n -u  species_ids.txt > '$output'
 
 Returns a list of species taxids for a taxon. It relies on the get_species_taxids.sh script of the BLAST+ package https://www.ncbi.nlm.nih.gov/books/NBK546209/
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations"/>
 </tool>

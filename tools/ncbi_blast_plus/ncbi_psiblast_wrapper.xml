@@ -6,9 +6,8 @@
         <token name="@BINARY@">psiblast</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="parallelism" />
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 psiblast
@@ -47,7 +46,7 @@ psiblast
 #if $pssm_ascii_output_selector == "yes"
     -out_ascii_pssm '$pssm_ascii_output'
 #end if
-    </command>
+    ]]></command>
     <inputs>
         <conditional name="input_opts">
             <param name="input_opts_selector" type="select" label="Select the input file type">
@@ -59,10 +58,10 @@ psiblast
                 <expand macro="prot_query" />
             </when>
             <when value="msa">
-                <param argument="-in_msa" type="data" format="msa,phylip" label="Multiple Sequence Alignment File" />
+                <param argument="-in_msa" type="data" format="phylip" label="Multiple Sequence Alignment File" />
             </when>
             <when value="pssm">
-                <param argument="-in_pssm" type="data" format="pssm" label="PSI-BLAST checkpoint file" />
+                <param argument="-in_pssm" type="data" format="pssm-asn1" label="PSI-BLAST checkpoint file" />
             </when>
         </conditional>
 
@@ -109,16 +108,12 @@ psiblast
     </inputs>
     <outputs>
         <data name="output1" format="tabular" label="psiblast $input_opts.input_opts_selector vs @ON_DB_SUBJECT@">
-
             <expand macro="output_change_format" />
-
         </data>
-
         <data name="pssm_ascii_output" format="txt" label="psiblast.pssm.txt" >
             <filter>pssm_ascii_output_selector == "yes" </filter>
         </data>
-
-        <data name="pssm_output" format="pssm" label="psiblast.pssm" >
+        <data name="pssm_output" format="pssm-asn1" label="psiblast.pssm" >
             <filter>pssm_output_selector == "yes"</filter>
         </data>
     </outputs>
@@ -136,14 +131,6 @@ Runs the Position-Specific Initiated BLAST tool ``psiblast``.
 
 @OUTPUT_FORMAT@
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

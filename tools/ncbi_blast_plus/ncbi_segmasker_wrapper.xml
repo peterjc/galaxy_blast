@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 segmasker
@@ -21,7 +21,7 @@ segmasker
 -locut $locut
 -hicut $hicut
 -outfmt $outformat
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_conditional_protein_db" />
         <param name="window" type="integer" value="12" label="SEG window length" help="(-window)" />
@@ -51,8 +51,10 @@ segmasker
     </outputs>
     <tests>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="12" />
             <param name="locut" value="2.2" />
             <param name="hicut" value="2.5" />
@@ -60,8 +62,10 @@ segmasker
             <output name="outfile" file="segmasker_four_human.fasta" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="12" />
             <param name="locut" value="2.2" />
             <param name="hicut" value="2.5" />
@@ -69,8 +73,10 @@ segmasker
             <output name="outfile" file="segmasker_four_human.maskinfo-asn1-binary" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="12" />
             <param name="locut" value="2.2" />
             <param name="hicut" value="2.5" />
@@ -90,12 +96,6 @@ More information about segmasker can be found in the `BLAST Command Line Applica
 .. _BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
 .. _SEG: https://www.ncbi.nlm.nih.gov/pubmed/8743706
 
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

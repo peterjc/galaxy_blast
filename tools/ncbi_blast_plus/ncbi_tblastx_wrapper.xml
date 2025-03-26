@@ -4,9 +4,8 @@
         <token name="@BINARY@">tblastx</token>
         <import>ncbi_macros.xml</import>
     </macros>
-    <expand macro="parallelism" />
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 tblastx
@@ -28,7 +27,7 @@ tblastx
     @ADV_THRESHOLD@
 ## End of advanced options:
 #end if
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="nucl_query" />
 
@@ -61,12 +60,18 @@ tblastx
     <tests>
         <test>
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="database" value="" />
+                <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-40" />
-            <param name="out_format" value="6" />
-            <param name="adv_opts_selector" value="basic" />
+            <conditional name="output">
+                <param name="out_format" value="6" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="basic" />
+            </conditional>
             <output name="output1" file="tblastx_rhodopsin_vs_three_human.tabular" ftype="tabular" />
         </test>
     </tests>
@@ -89,14 +94,6 @@ using the NCBI BLAST+ tblastx command line tool.
 
 @CLI_OPTIONS@
 
--------
-
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>

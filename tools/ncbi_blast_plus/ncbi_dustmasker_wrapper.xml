@@ -6,7 +6,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 dustmasker
@@ -14,12 +14,18 @@ dustmasker
   -in '${db_opts.database.fields.path}' -infmt blastdb
 #elif $db_opts.db_opts_selector == "histdb":
   -in '${os.path.join($db_opts.histdb.files_path, "blastdb")}' -infmt blastdb
-#else:
-  -in '$subject' -infmt fasta
+#else
+  -in
+    #if $subject.ext == "fasta"
+        '$subject'
+    #else
+        <(gunzip -c '$subject')
+    #end if
+  -infmt fasta
 #end if
 -out '$outfile'
 -window $window -level $level -linker $linker -outfmt $outformat
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_conditional_nucleotide_db" />
         <param argument="-window" type="integer" value="64" label="DUST window length" />
@@ -49,8 +55,10 @@ dustmasker
     </outputs>
     <tests>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />
@@ -58,8 +66,10 @@ dustmasker
             <output name="outfile" file="dustmasker_three_human.fasta" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="three_human_mRNA.fasta.gz" ftype="fasta.gz" />
+            </conditional>
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />
@@ -67,8 +77,10 @@ dustmasker
             <output name="outfile" file="dustmasker_three_human.maskinfo-asn1-binary" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />
@@ -86,14 +98,8 @@ If you select *maskinfo ASN.1* (binary or text) as output format, the output fil
 More information about dustmasker can be found in the `BLAST Command Line Applications User Manual`_.
 
 .. _BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
-.. _DUST: https://doi.org/10.1089/cmb.2006.13.1028
+.. _DUST: https://www.ncbi.nlm.nih.gov/pubmed/16796549
 
-**References**
-
-If you use this Galaxy tool in work leading to a scientific publication please
-cite the following papers:
-
-@REFERENCES@
     </help>
     <expand macro="blast_citations" />
 </tool>
