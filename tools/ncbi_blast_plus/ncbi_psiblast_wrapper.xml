@@ -59,10 +59,10 @@ psiblast
                 <expand macro="prot_query" />
             </when>
             <when value="msa">
-                <param argument="-in_msa" type="data" format="msa,phylip" label="Multiple Sequence Alignment File" />
+                <param argument="-in_msa" type="data" format="phylip" label="Multiple Sequence Alignment File" />
             </when>
             <when value="pssm">
-                <param argument="-in_pssm" type="data" format="pssm" label="PSI-BLAST checkpoint file" />
+                <param argument="-in_pssm" type="data" format="pssm-asn1" label="PSI-BLAST checkpoint file" />
             </when>
         </conditional>
 
@@ -118,7 +118,7 @@ psiblast
             <filter>pssm_ascii_output_selector == "yes" </filter>
         </data>
 
-        <data name="pssm_output" format="pssm" label="psiblast.pssm" >
+        <data name="pssm_output" format="pssm-asn1" label="psiblast.pssm" >
             <filter>pssm_output_selector == "yes"</filter>
         </data>
     </outputs>
