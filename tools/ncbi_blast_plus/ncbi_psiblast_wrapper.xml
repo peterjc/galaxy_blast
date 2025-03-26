@@ -7,7 +7,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 psiblast
@@ -46,7 +46,7 @@ psiblast
 #if $pssm_ascii_output_selector == "yes"
     -out_ascii_pssm '$pssm_ascii_output'
 #end if
-    </command>
+    ]]></command>
     <inputs>
         <conditional name="input_opts">
             <param name="input_opts_selector" type="select" label="Select the input file type">

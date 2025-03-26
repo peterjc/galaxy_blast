@@ -5,11 +5,11 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 blastdbcmd
 @DBCMD_OPTS@
 -info -out "$info"
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_conditional_choose_db_type" />
     </inputs>

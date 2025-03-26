@@ -5,9 +5,9 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive" strict="true">
+    <command detect_errors="aggressive" strict="true"><![CDATA[
 ##Unlike makeblastdb, makeprofiledb needs directory to exist already:
-mkdir -p $outfile.files_path &amp;&amp;
+mkdir -p $outfile.files_path &&
 makeprofiledb
 -blastdb_version 4
 -out '${os.path.join($outfile.files_path, "blastdb")}'
@@ -35,13 +35,13 @@ makeprofiledb
 -exclude_invalid $exclude_invalid
 
 -logfile '$outfile'
-    </command>
+    ]]></command>
     <configfiles>
-        <configfile name="infiles">
+        <configfile name="infiles"><![CDATA[
 #for $infile in $input_file
 ${infile}
 #end for
-        </configfile>
+    ]]></configfile>
     </configfiles>
     <inputs>
         <param name="input_file" argument="-in" type="data" multiple="true" optional="false" format="pssm-asn1"

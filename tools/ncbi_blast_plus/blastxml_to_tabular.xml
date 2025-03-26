@@ -7,7 +7,7 @@
         <requirement type="package" version="3.9">python</requirement>
     </requirements>
     <version_command>python $__tool_directory__/blastxml_to_tabular.py --version</version_command>
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 python $__tool_directory__/blastxml_to_tabular.py -o '$tabular_file'
 #if $output.out_format == "cols":
 #set cols = (str($output.std_cols)+","+str($output.ext_cols)).replace("None", " ").replace(",,", ",").replace(",", " ")
@@ -16,7 +16,7 @@ python $__tool_directory__/blastxml_to_tabular.py -o '$tabular_file'
 -c '$output.out_format'
 #end if
 #for i in $blastxml_file#'${i}' #end for#
-    </command>
+    ]]></command>
     <inputs>
         <param name="blastxml_file" type="data" format="blastxml" multiple="true" label="BLAST results as XML"/>
         <conditional name="output">

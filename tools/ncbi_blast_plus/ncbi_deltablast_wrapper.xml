@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 deltablast
@@ -29,7 +29,7 @@ deltablast
 ##Either must install cdd_delta and configure environment variables,
 ##or specifcy its location via -rpsdb, in which case Do we need a specific
 ##cdd_delta.loc file for this, or is blastdb_d.loc OK?
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="prot_query" />
 

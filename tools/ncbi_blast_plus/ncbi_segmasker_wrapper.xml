@@ -5,7 +5,7 @@
         <import>ncbi_macros.xml</import>
     </macros>
     <expand macro="preamble" />
-    <command detect_errors="aggressive">
+    <command detect_errors="aggressive"><![CDATA[
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 segmasker
@@ -21,7 +21,7 @@ segmasker
 -locut $locut
 -hicut $hicut
 -outfmt $outformat
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_conditional_protein_db" />
         <param name="window" type="integer" value="12" label="SEG window length" help="(-window)" />
