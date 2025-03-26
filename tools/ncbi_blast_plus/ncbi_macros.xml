@@ -8,7 +8,9 @@
     </xrefs>
 
     <xml name="preamble">
-        <expand macro="requirements"/>
+        <expand macro="requirements">
+            <yield/>
+        </expand>
         <version_command>@BINARY@ -version</version_command>
     </xml>
 
