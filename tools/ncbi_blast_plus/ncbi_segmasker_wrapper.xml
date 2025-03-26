@@ -51,8 +51,10 @@ segmasker
     </outputs>
     <tests>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="12" />
             <param name="locut" value="2.2" />
             <param name="hicut" value="2.5" />
@@ -60,8 +62,10 @@ segmasker
             <output name="outfile" file="segmasker_four_human.fasta" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="12" />
             <param name="locut" value="2.2" />
             <param name="hicut" value="2.5" />
@@ -69,8 +73,10 @@ segmasker
             <output name="outfile" file="segmasker_four_human.maskinfo-asn1-binary" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="12" />
             <param name="locut" value="2.2" />
             <param name="hicut" value="2.5" />

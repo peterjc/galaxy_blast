@@ -72,80 +72,120 @@ tblastn
     <tests>
         <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="5" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM80" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="false" />
+            <conditional name="output">
+                <param name="out_format" value="5" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM80" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <!-- <param name="word_size" value="" /> https://github.com/galaxyproject/galaxy/issues/19908 -->
+                <param name="parse_deflines" value="false" />
+            </conditional>
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.xml" ftype="blastxml" />
         </test>
         <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="ext" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM80" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="false" />
+            <conditional name="output">
+                <param name="out_format" value="ext" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM80" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <!-- <param name="word_size" value="" /> -->
+                <param name="parse_deflines" value="false" />
+            </conditional>
             <output name="output1" file="tblastn_four_human_vs_rhodopsin_ext.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="6" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM80" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="false" />
+            <conditional name="output">
+                <param name="out_format" value="6" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM80" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <!-- <param name="word_size" value="" /> -->
+                <param name="parse_deflines" value="false" />
+            </conditional>
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.tabular" ftype="tabular" />
         </test>
         <test>
             <!-- Same as above, but parse deflines -->
             <!-- Note back on BLAST 2.2.25+ - 2.2.27+ made no difference -->
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="6" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM80" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="true" />
+            <conditional name="output">
+                <param name="out_format" value="6" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM80" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <!-- <param name="word_size" value="" /> -->
+                <param name="parse_deflines" value="true" />
+            </conditional>
             <output name="output1" file="tblastn_four_human_vs_rhodopsin_deflines.tabular" ftype="tabular" />
         </test>
         <test>
             <!-- As of BLAST 2.5.0+ the full path appears twice, so get small diff -->
             <param name="query" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="rhodopsin_nucs.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="0 -html" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="filter_query" value="false" />
-            <param name="matrix" value="BLOSUM80" />
-            <param name="max_hits" value="0" />
-            <param name="word_size" value="" />
-            <param name="parse_deflines" value="false" />
+            <conditional name="output">
+                <param name="out_format" value="0 -html" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <param name="filter_query" value="false" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM80" />
+                </conditional>
+                <param name="max_hits" value="0" />
+                <!-- <param name="word_size" value="" /> -->
+                <param name="parse_deflines" value="false" />
+            </conditional>
             <output name="output1" file="tblastn_four_human_vs_rhodopsin.html" ftype="html" lines_diff="10" />
         </test>
     </tests>

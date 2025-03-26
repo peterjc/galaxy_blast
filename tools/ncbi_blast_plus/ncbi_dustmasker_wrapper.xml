@@ -49,8 +49,10 @@ dustmasker
     </outputs>
     <tests>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />
@@ -58,8 +60,10 @@ dustmasker
             <output name="outfile" file="dustmasker_three_human.fasta" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />
@@ -67,8 +71,10 @@ dustmasker
             <output name="outfile" file="dustmasker_three_human.maskinfo-asn1-binary" />
         </test>
         <test>
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="three_human_mRNA.fasta" ftype="fasta" />
+            </conditional>
             <param name="window" value="64" />
             <param name="level" value="20" />
             <param name="linker" value="1" />

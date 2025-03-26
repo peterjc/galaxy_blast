@@ -66,73 +66,97 @@ python $__tool_directory__/blastxml_to_tabular.py -o '$tabular_file'
     <tests>
         <test>
             <param name="blastxml_file" value="blastp_four_human_vs_rhodopsin.xml" ftype="blastxml" />
-            <param name="out_format" value="std" />
+            <conditional name="output">
+                <param name="out_format" value="std" />
+            </conditional>
             <!-- Note this has some white space differences from the actual blastp output blast_four_human_vs_rhodopsin.tabluar -->
             <output name="tabular_file" file="blastp_four_human_vs_rhodopsin_converted.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastp_four_human_vs_rhodopsin.xml" ftype="blastxml" />
-            <param name="out_format" value="ext" />
+            <conditional name="output">
+                <param name="out_format" value="ext" />
+            </conditional>
             <!-- Note this has some white space differences from the actual blastp output blast_four_human_vs_rhodopsin_22c.tabluar -->
             <output name="tabular_file" file="blastp_four_human_vs_rhodopsin_converted_ext.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastp_sample.xml" ftype="blastxml" />
-            <param name="out_format" value="std" />
+            <conditional name="output">
+                <param name="out_format" value="std" />
+            </conditional>
             <!-- Note this has some white space differences from the actual blastp output -->
             <output name="tabular_file" file="blastp_sample_converted.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastx_rhodopsin_vs_four_human.xml" ftype="blastxml" />
-            <param name="out_format" value="std" />
+            <conditional name="output">
+                <param name="out_format" value="std" />
+            </conditional>
             <!-- Note this has some white space differences from the actual blastx output -->
             <output name="tabular_file" file="blastx_rhodopsin_vs_four_human_converted.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastx_rhodopsin_vs_four_human.xml" ftype="blastxml" />
-            <param name="out_format" value="ext" />
+            <conditional name="output">
+                <param name="out_format" value="ext" />
+            </conditional>
             <!-- Note this has some white space and XXXX masking differences from the actual blastx output -->
             <output name="tabular_file" file="blastx_rhodopsin_vs_four_human_converted_ext.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastx_sample.xml" ftype="blastxml" />
-            <param name="out_format" value="std" />
+            <conditional name="output">
+                <param name="out_format" value="std" />
+            </conditional>
             <!-- Note this has some white space differences from the actual blastx output -->
             <output name="tabular_file" file="blastx_sample_converted.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastp_human_vs_pdb_seg_no.xml" ftype="blastxml" />
-            <param name="out_format" value="std" />
+            <conditional name="output">
+                <param name="out_format" value="std" />
+            </conditional>
             <!-- Note this has some white space differences from the actual blastp output -->
             <output name="tabular_file" file="blastp_human_vs_pdb_seg_no_converted_std.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastp_human_vs_pdb_seg_no.xml" ftype="blastxml" />
-            <param name="out_format" value="ext" />
+            <conditional name="output">
+                <param name="out_format" value="ext" />
+            </conditional>
             <!-- Note this has some white space differences from the actual blastp output -->
             <output name="tabular_file" file="blastp_human_vs_pdb_seg_no_converted_ext.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastn_arabidopsis.xml" ftype="blastxml" />
-            <param name="out_format" value="std" />
+            <conditional name="output">
+                <param name="out_format" value="std" />
+            </conditional>
             <output name="tabular_file" file="blastn_arabidopsis.standard.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastn_arabidopsis.xml" ftype="blastxml" />
-            <param name="out_format" value="ext" />
+            <conditional name="output">
+                <param name="out_format" value="ext" />
+            </conditional>
             <output name="tabular_file" file="blastn_arabidopsis.extended.tabular" ftype="tabular" />
         </test>
         <!-- there are some harmless white space differences in our conversion to the BLAST+ output here: -->
         <test>
             <param name="blastxml_file" value="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
-            <param name="out_format" value="std" />
+            <conditional name="output">
+                <param name="out_format" value="std" />
+            </conditional>
             <output name="tabular_file" file="blastn_rhodopsin_vs_three_human_converted.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="blastxml_file" value="blastn_rhodopsin_vs_three_human.xml" ftype="blastxml" />
-            <param name="out_format" value="cols" />
-            <param name="std_cols" value="qseqid,sseqid,pident" />
-            <param name="ext_cols" value="qlen,slen" />
+            <conditional name="output">
+                <param name="out_format" value="cols" />
+                <param name="std_cols" value="qseqid,sseqid,pident" />
+                <param name="ext_cols" value="qlen,slen" />
+            </conditional>
             <output name="tabular_file" file="blastn_rhodopsin_vs_three_human.columns.tabular" ftype="tabular" />
         </test>
     </tests>

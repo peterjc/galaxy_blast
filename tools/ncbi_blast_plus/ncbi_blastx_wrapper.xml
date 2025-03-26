@@ -68,58 +68,90 @@ $adv_opts.ungapped
     <tests>
         <test>
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="5" />
-            <param name="adv_opts_selector" value="basic" />
+            <conditional name="output">
+                <param name="out_format" value="5" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="basic" />
+            </conditional>
             <output name="output1" file="blastx_rhodopsin_vs_four_human.xml" ftype="blastxml" />
         </test>
         <test>
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="6" />
-            <param name="adv_opts_selector" value="basic" />
+            <conditional name="output">
+                <param name="out_format" value="6" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="basic" />
+            </conditional>
             <output name="output1" file="blastx_rhodopsin_vs_four_human.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="ext" />
-            <param name="adv_opts_selector" value="basic" />
+            <conditional name="output">
+                <param name="out_format" value="ext" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="basic" />
+            </conditional>
             <output name="output1" file="blastx_rhodopsin_vs_four_human_ext.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="cols" />
-            <param name="std_cols" value="qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,sstart,send,evalue,bitscore" />
-            <param name="ext_cols" value="sallseqid,score,nident,positive,gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles" />
-            <param name="ids_cols" value="qgi,qacc,qaccver,sallseqid,sgi,sallgi,sacc,saccver,sallacc,stitle" />
-            <param name="misc_cols" value="sstrand,frames,btop,qcovs,qcovhsp" />
-            <param name="tax_cols" value="staxids,sscinames,scomnames,sblastnames,sskingdoms" />
-            <param name="adv_opts_selector" value="basic" />
+            <conditional name="output">
+                <param name="out_format" value="cols" />
+                <param name="std_cols" value="qseqid,sseqid,pident,length,mismatch,gapopen,qstart,qend,sstart,send,evalue,bitscore" />
+                <param name="ext_cols" value="sallseqid,score,nident,positive,gaps,ppos,qframe,sframe,qseq,sseq,qlen,slen,salltitles" />
+                <param name="ids_cols" value="qgi,qacc,qaccver,sallseqid,sgi,sallgi,sacc,saccver,sallacc,stitle" />
+                <param name="misc_cols" value="sstrand,frames,btop,qcovs,qcovhsp" />
+                <param name="tax_cols" value="staxids,sscinames,scomnames,sblastnames,sskingdoms" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="basic" />
+            </conditional>
             <output name="output1" file="blastx_rhodopsin_vs_four_human_all.tabular" ftype="tabular" />
         </test>
         <test>
             <param name="query" value="rhodopsin_nucs.fasta" ftype="fasta" />
-            <param name="db_opts_selector" value="file" />
-            <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
-            <param name="database" value="" />
+            <conditional name="db_opts">
+                <param name="db_opts_selector" value="file" />
+                <param name="subject" value="four_human_proteins.fasta" ftype="fasta" />
+                <param name="database" value="" />
+            </conditional>
             <param name="evalue_cutoff" value="1e-10" />
-            <param name="out_format" value="6" />
-            <param name="adv_opts_selector" value="advanced" />
-            <param name="matrix" value="BLOSUM62" />
+            <conditional name="output">
+                <param name="out_format" value="6" />
+            </conditional>
+            <conditional name="adv_opts">
+                <param name="adv_opts_selector" value="advanced" />
+                <conditional name="matrix_gapcosts">
+                    <param name="matrix" value="BLOSUM62" />
+                </conditional>
+            </conditional>
             <output name="output1" file="blastx_rhodopsin_adv_vs_four_human.tabular" ftype="tabular" />
         </test>
     </tests>
