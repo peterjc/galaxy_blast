@@ -92,7 +92,7 @@ If you select *maskinfo ASN.1* (binary or text) as output format, the output fil
 More information about dustmasker can be found in the `BLAST Command Line Applications User Manual`_.
 
 .. _BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
-.. _DUST: https://www.ncbi.nlm.nih.gov/pubmed/16796549
+.. _DUST: https://doi.org/10.1089/cmb.2006.13.1028
 
     </help>
     <expand macro="blast_citations" />
