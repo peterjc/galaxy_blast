@@ -12,11 +12,15 @@
     </xrefs>
 
     <xml name="preamble">
+        <expand macro="requirements"/>
+        <version_command>@BINARY@ -version</version_command>
+    </xml>
+
+    <xml name="requirements">
         <requirements>
             <requirement type="package" version="@TOOL_VERSION@">blast</requirement>
             <yield />
         </requirements>
-        <version_command>@BINARY@ -version</version_command>
     </xml>
 
     <xml name="nucl_query">
