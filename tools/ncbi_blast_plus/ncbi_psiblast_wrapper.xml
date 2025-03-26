@@ -109,15 +109,11 @@ psiblast
     </inputs>
     <outputs>
         <data name="output1" format="tabular" label="psiblast $input_opts.input_opts_selector vs @ON_DB_SUBJECT@">
-
             <expand macro="output_change_format" />
-
         </data>
-
         <data name="pssm_ascii_output" format="txt" label="psiblast.pssm.txt" >
             <filter>pssm_ascii_output_selector == "yes" </filter>
         </data>
-
         <data name="pssm_output" format="pssm-asn1" label="psiblast.pssm" >
             <filter>pssm_output_selector == "yes"</filter>
         </data>
