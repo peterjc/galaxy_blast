@@ -130,6 +130,13 @@ parser.add_option(
     help="[std|ext|col1,col2,...] standard 12 columns, "
     "extended 25 columns, or list of column names",
 )
+parser.add_option(
+    "--hits",
+    dest="hits",
+    type=int,
+    default=float("inf"),
+    help="number of query hits to display (defaults to all query hits)"
+)
 (options, args) = parser.parse_args()
 
 colnames = (
@@ -240,6 +247,11 @@ def convert(blastxml_filename, output_handle):
                 # <Hit_def>chrIII gi|240255695|ref|NC_003074.8| Arabidopsis
                 # thaliana chromosome 3, complete sequence</Hit_def>
                 # <Hit_accession>2</Hit_accession>
+
+                # Skip query hits above user-defined threshold
+                if int(hit.findtext("Hit_num")) > options.hits:
+                  continue
+
                 sseqid = hit.findtext("Hit_id").split(None, 1)[0]
                 hit_def = sseqid + " " + hit.findtext("Hit_def")
                 if re_default_subject_id.match(sseqid) and sseqid == hit.findtext(
