@@ -36,6 +36,8 @@ include:
   - ../../test-data/blastp_human_vs_pdb_seg_no.xml
   - ../../test-data/blastp_human_vs_pdb_seg_no_converted_ext.tabular
   - ../../test-data/blastp_human_vs_pdb_seg_no_converted_std.tabular
+  - ../../test-data/blastp_rhodopsin_adv_vs_four_human.tabular
+  - ../../test-data/blastp_rhodopsin_peptides_vs_four_human.tabular
   - ../../test-data/blastp_rhodopsin_vs_four_human.tabular
   - ../../test-data/blastp_sample.xml
   - ../../test-data/blastp_sample_converted.tabular
@@ -104,6 +106,7 @@ include:
   - ../../test-data/rhodopsin_nucs.no_gi.fasta
   - ../../test-data/rhodopsin_nucs.blastdbcmd.txt
   - ../../test-data/rhodopsin_bufo.fasta
+  - ../../test-data/rhodopsin_peptides.fasta
   - ../../test-data/rhodopsin_proteins.fasta
   - ../../test-data/segmasker_four_human.fasta
   - ../../test-data/segmasker_four_human.maskinfo-asn1
