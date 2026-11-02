@@ -8,9 +8,9 @@
     <command detect_errors="aggressive"><![CDATA[
 ## EDirect defaults to HTTP/1.0, which causes curl TLS errors with NCBI.
 nquire() {
-    command nquire -http-version 1.1 "\$@"
-}
-export -f nquire
+    command nquire -http-version 1.1 "\$@";
+} &&
+export -f nquire &&
 #if $type_cond.type_sel == 'names'
     #for name in $type_cond.names.split(',')
         taxid=\$(get_species_taxids.sh -n '$name' | grep Taxid | sed 's/Taxid\s*:\s*//') &&
