@@ -136,6 +136,9 @@ a galaxy specific suffix which gets reset to zero with each new BLAST version:
 ============== ===============================================================
 Version        Changes
 -------------- ---------------------------------------------------------------
+2.16.0+galaxy1 - Add missing test files for BLASTP.
+               - Force HTTP/1.1 rather than default 1.0 in get_species_taxids.
+2.16.0+galaxy0 - Updated for NCBI BLAST+ 2.16.0 release.
 2.14.1+galaxy2 - Add usage of genome FASTA files on the Galaxy server with
                  ``makeblastdb`` (contribution from Wolfgang Maier and
                  Elischa Berger)
